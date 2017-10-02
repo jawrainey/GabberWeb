@@ -15,7 +15,7 @@
         computed: {
             filteredRegions() {
                 // Via store
-                let selectedTags = this.$store.state.selectedTags;
+                let selectedTags = this.$store.getters.selectedTags;
 
                 if (this.selectedTopics.length > 0 && selectedTags.length > 0) {
                     return this.regions.filter(

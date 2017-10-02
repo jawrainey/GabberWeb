@@ -1,21 +1,11 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import filterByTags from './modules/filterByTags.js'
 
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
-    state: {
-        tags: require('../data/tags.json'),
-        selectedTags: []
-    },
-    getters: {
-        tags(state) {
-            return state.tags;
-        }
-    },
-    mutations: {
-        setSelectedTags(state, selectedTags) {
-            state.selectedTags = selectedTags;
-        }
+    modules: {
+        filterByTags
     }
 });
