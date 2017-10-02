@@ -8,7 +8,6 @@
     import Region from './Region.vue'
 
     export default {
-        props: ['selectedTopics', 'sortType'],
         data: () => ({
             regions: require('../data/regions.json')
         }),
@@ -16,17 +15,19 @@
             filteredRegions() {
                 // Via store
                 let selectedTags = this.$store.getters.selectedTags;
+                let selectedTopics = this.$store.getters.selectedTopics;
+                console.log(selectedTopics);
 
-                if (this.selectedTopics.length > 0 && selectedTags.length > 0) {
+                if (selectedTopics.length > 0 && selectedTags.length > 0) {
                     return this.regions.filter(
-                        r => this.selectedTopics.includes(r.topic) &&
+                        r => selectedTopics.includes(r.topic) &&
                         r.tags.some(tag => selectedTags.includes(tag))
                     )
                 }
                 let filterRegions = this.regions;
 
-                if (this.selectedTopics.length > 0) {
-                    filterRegions = this.regions.filter(r => this.selectedTopics.includes(r.topic))
+                if (selectedTopics.length > 0) {
+                    filterRegions = this.regions.filter(r => selectedTopics.includes(r.topic))
                 }
 
                 if (selectedTags.length > 0) {

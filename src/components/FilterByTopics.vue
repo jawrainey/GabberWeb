@@ -16,13 +16,17 @@
 <script>
     export default {
         data: () => ({
-            topics: require('../data/topics.json'),
             selectedTopics: [],
         }),
         methods: {
             onTopicSelected () {
-                this.$emit('onTopicSelected', this.selectedTopics)
+                this.$store.commit('setSelectedTopics', this.selectedTopics);
             },
+        },
+        computed: {
+            topics() {
+                return this.$store.getters.topics;
+            }
         }
     }
 </script>
