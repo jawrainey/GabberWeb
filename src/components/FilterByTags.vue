@@ -14,6 +14,8 @@
 </template>
 
 <script>
+    import { mapGetters } from 'vuex'
+
     export default {
         data: () => ({
             selectedTags: []
@@ -23,11 +25,7 @@
                 this.$store.commit('setSelectedTags', this.selectedTags);
             }
         },
-        computed: {
-            tags() {
-                return this.$store.getters.tags;
-            }
-        }
+        computed: mapGetters({tags: 'tags'})
     }
 </script>
 

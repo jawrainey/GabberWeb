@@ -13,10 +13,9 @@
         }),
         computed: {
             filteredRegions() {
-                // Via store
+                //
                 let selectedTags = this.$store.getters.selectedTags;
                 let selectedTopics = this.$store.getters.selectedTopics;
-                console.log(selectedTopics);
 
                 if (selectedTopics.length > 0 && selectedTags.length > 0) {
                     return this.regions.filter(
