@@ -10,7 +10,7 @@
     export default {
         props: ['selectedTags', 'selectedTopics', 'sortType'],
         data: () => ({
-            regions: require('../data/regions.json').regions
+            regions: require('../data/regions.json')
         }),
         computed: {
             filteredRegions() {

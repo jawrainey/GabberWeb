@@ -4,7 +4,8 @@
        @mouseenter="showOptions = true"
        @mouseleave="showOptions = false">
         <div class="region-col outer">
-            <button v-if="showOptions" @click="playPause" class="playpause"></button>
+            <button v-if="isPlaying" @click="onPlayPause" class="pause"></button>
+            <button v-else @click="onPlayPause" class="play"></button>
             <span class="position" v-else>{{ region.id }}.</span>
         </div>
         <div class="region-col outer">
@@ -31,14 +32,16 @@
 
     export default {
         props: ['region'],
-        data: () => ({ showOptions: false }),
+        data: () => ({
+            isPlaying: false,
+            showOptions: false
+        }),
         methods: {
             // These events also update the AudioPlayer, so we either need to couple the regions with it (bad idea)
             // or have an event bus between them, requiring a lifecycle hook on AudioPlayer.
-            playPause() {
-                // Change local icon
+            onPlayPause() {
+                this.isPlaying = !this.isPlaying;
                 // Fire event to audio player
-                alert('Hello');
             },
             addToPlaylist() {
                 // Change local icon
@@ -71,7 +74,7 @@
 
 <style>
     /* Shared between buttons: needs fixed as they are button elements */
-    .playpause, .playlist-add, .options {
+    .play, .pause, .playlist-add, .options {
         height: 24px;
         width: 24px;
         cursor: pointer;
@@ -105,8 +108,12 @@
             margin-top: 4px;
         }
         
-        .region-col.outer .playpause {
+        .region-col.outer .play {
             background-image: url("../assets/play.svg");
+        }
+
+        .region-col.outer .pause {
+            background-image: url("../assets/pause.svg");
         }
 
         .region-col.outer .playlist-add {

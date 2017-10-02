@@ -1,11 +1,12 @@
 <template>
     <footer id="audioplayer">
         <div id="audioplayer__options">
-            <span>{{ region.topic }}</span>
+            <span>{{ region.topic }} - {{ region.id }}</span>
             <div id="audioplayer__buttons">
                 <button @click="onSeek(-10)" class="back-ten"></button>
                 <button @click="onPreviousRegion" class="previous"></button>
-                <button @click="onPlayPause" class="playpause"></button>
+                <button v-if="isPlaying" @click="onPlayPause" class="pause"></button>
+                <button v-else @click="onPlayPause" class="play"></button>
                 <button @click="onNextRegion" class="next"></button>
                 <button @click="onSeek(10)" class="forward-ten"></button>
                 <button @click="onAddToPlaylist" class="playlist-add"></button>
@@ -27,6 +28,7 @@
         data: () => ({
             region: {},
             advanced: false,
+            isPlaying: false,
             audioSource: ''
         }),
         methods: {
@@ -34,7 +36,10 @@
             setAudioSource(url) {},
 
             // Would affect Region read/unread icon
-            onPlayPause() {},
+            onPlayPause() {
+                this.isPlaying = !this.isPlaying;
+                // Play audio
+            },
             onNextRegion() {},
             onPreviousRegion() {},
             onSeek(position) {},
@@ -121,8 +126,12 @@
         background-image: url("../../assets/av-controls/previous.svg");
     }
 
-    #audioplayer__buttons .playpause {
+    #audioplayer__buttons .play {
         background-image: url("../../assets/av-controls/play-circle.svg");
+    }
+
+    #audioplayer__buttons .pause {
+        background-image: url("../../assets/av-controls/pause-circle.svg");
     }
 
     #audioplayer__buttons .next {
