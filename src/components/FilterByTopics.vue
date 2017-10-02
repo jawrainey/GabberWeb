@@ -16,7 +16,7 @@
 <script>
     export default {
         data: () => ({
-            topics: ['Pretend region one', 'Pretend region two', 'Pretend region three'],
+            topics: require('../data/topics.json'),
             selectedTopics: [],
         }),
         methods: {

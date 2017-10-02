@@ -1,145 +1,142 @@
-{
-  "regions":[
-    {
-      "id":1,
-      "topic":"Pretend region one",
-      "tags":[
-        "faith",
-        "hope"
-      ],
-      "audio":{
-        "length":60,
-        "url":"https://gabber.audio/protected/1505293291.mp4s://gabber.audio/protected/1505293291.mp4"
-      }
-    },
-    {
-      "id":2,
-      "topic":"Pretend region two",
-      "tags":[
-        "lol",
-        "faith"
-      ],
-      "audio":{
-        "length":20,
-        "url":"https://gabber.audio/protected/1505293291.mp4"
-      }
-    },
-    {
-      "id":3,
-      "topic":"Pretend region three",
-      "tags":[
-        "jim",
-        "hope"
-      ],
-      "audio":{
-        "length":30,
-        "url":"https://gabber.audio/protected/1505293291.mp4"
-      }
-    },
-    {
-      "id":4,
-      "topic":"Pretend region three",
-      "tags":[
-        "jim"
-      ],
-      "audio":{
-        "length":90,
-        "url":"https://gabber.audio/protected/1505293291.mp4"
-      }
-    },
-    {
-      "id":5,
-      "topic":"Pretend region one",
-      "tags":[
-        "faith",
-        "hope"
-      ],
-      "audio":{
-        "length":60,
-        "url":"https://gabber.audio/protected/1505293291.mp4"
-      }
-    },
-    {
-      "id":6,
-      "topic":"Pretend region two",
-      "tags":[
-        "lol",
-        "faith"
-      ],
-      "audio":{
-        "length":20,
-        "url":"https://gabber.audio/protected/1505293291.mp4"
-      }
-    },
-    {
-      "id":7,
-      "topic":"Pretend region three",
-      "tags":[
-        "jim",
-        "hope"
-      ],
-      "audio":{
-        "length":30,
-        "url":"https://gabber.audio/protected/1505293291.mp4"
-      }
-    },
-    {
-      "id":8,
-      "topic":"Pretend region three",
-      "tags":[
-        "jim"
-      ],
-      "audio":{
-        "length":90,
-        "url":"https://gabber.audio/protected/1505293291.mp4"
-      }
-    },
-    {
-      "id":9,
-      "topic":"Pretend region one",
-      "tags":[
-        "faith",
-        "hope"
-      ],
-      "audio":{
-        "length":60,
-        "url":"https://gabber.audio/protected/1505293291.mp4"
-      }
-    },
-    {
-      "id":10,
-      "topic":"Pretend region two",
-      "tags":[
-        "lol",
-        "faith"
-      ],
-      "audio":{
-        "length":20,
-        "url":"https://gabber.audio/protected/1505293291.mp4"
-      }
-    },
-    {
-      "id":11,
-      "topic":"Pretend region three",
-      "tags":[
-        "jim",
-        "hope"
-      ],
-      "audio":{
-        "length":30,
-        "url":"https://gabber.audio/protected/1505293291.mp4"
-      }
-    },
-    {
-      "id":21,
-      "topic":"Pretend region three",
-      "tags":[
-        "jim"
-      ],
-      "audio":{
-        "length":90,
-        "url":"https://gabber.audio/protected/1505293291.mp4"
-      }
+[{
+  "id": 1,
+  "topic": "Pretend region one",
+  "tags": [
+    "faith",
+    "hope"
+  ],
+  "audio": {
+    "length": 60,
+    "url": "https://gabber.audio/protected/1505293291.mp4s://gabber.audio/protected/1505293291.mp4"
+  }
+},
+  {
+    "id": 2,
+    "topic": "Pretend region two",
+    "tags": [
+      "lol",
+      "faith"
+    ],
+    "audio": {
+      "length": 20,
+      "url": "https://gabber.audio/protected/1505293291.mp4"
     }
-  ]
-}
+  },
+  {
+    "id": 3,
+    "topic": "Pretend region three",
+    "tags": [
+      "jim",
+      "hope"
+    ],
+    "audio": {
+      "length": 30,
+      "url": "https://gabber.audio/protected/1505293291.mp4"
+    }
+  },
+  {
+    "id": 4,
+    "topic": "Pretend region three",
+    "tags": [
+      "jim"
+    ],
+    "audio": {
+      "length": 90,
+      "url": "https://gabber.audio/protected/1505293291.mp4"
+    }
+  },
+  {
+    "id": 5,
+    "topic": "Pretend region one",
+    "tags": [
+      "faith",
+      "hope"
+    ],
+    "audio": {
+      "length": 60,
+      "url": "https://gabber.audio/protected/1505293291.mp4"
+    }
+  },
+  {
+    "id": 6,
+    "topic": "Pretend region two",
+    "tags": [
+      "lol",
+      "faith"
+    ],
+    "audio": {
+      "length": 20,
+      "url": "https://gabber.audio/protected/1505293291.mp4"
+    }
+  },
+  {
+    "id": 7,
+    "topic": "Pretend region three",
+    "tags": [
+      "jim",
+      "hope"
+    ],
+    "audio": {
+      "length": 30,
+      "url": "https://gabber.audio/protected/1505293291.mp4"
+    }
+  },
+  {
+    "id": 8,
+    "topic": "Pretend region three",
+    "tags": [
+      "jim"
+    ],
+    "audio": {
+      "length": 90,
+      "url": "https://gabber.audio/protected/1505293291.mp4"
+    }
+  },
+  {
+    "id": 9,
+    "topic": "Pretend region one",
+    "tags": [
+      "faith",
+      "hope"
+    ],
+    "audio": {
+      "length": 60,
+      "url": "https://gabber.audio/protected/1505293291.mp4"
+    }
+  },
+  {
+    "id": 10,
+    "topic": "Pretend region two",
+    "tags": [
+      "lol",
+      "faith"
+    ],
+    "audio": {
+      "length": 20,
+      "url": "https://gabber.audio/protected/1505293291.mp4"
+    }
+  },
+  {
+    "id": 11,
+    "topic": "Pretend region three",
+    "tags": [
+      "jim",
+      "hope"
+    ],
+    "audio": {
+      "length": 30,
+      "url": "https://gabber.audio/protected/1505293291.mp4"
+    }
+  },
+  {
+    "id": 21,
+    "topic": "Pretend region three",
+    "tags": [
+      "jim"
+    ],
+    "audio": {
+      "length": 90,
+      "url": "https://gabber.audio/protected/1505293291.mp4"
+    }
+  }
+]

@@ -16,7 +16,7 @@
 <script>
     export default {
         data: () => ({
-            tags: ['faith', 'hope', 'jim'],
+            tags: require('../data/tags.json'),
             selectedTags: [],
         }),
         methods: {
