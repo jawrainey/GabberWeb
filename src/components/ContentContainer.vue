@@ -1,8 +1,8 @@
 <template>
     <div id="content__container">
         <filter-by-topics @onTopicSelected="setSelectedTopics"></filter-by-topics>
-        <filter-by-tags @onTagSelected="setSelectedTags"></filter-by-tags>
-        <region-container :selectedTags="selectedTags" :selectedTopics="selectedTopics"></region-container>
+        <filter-by-tags></filter-by-tags>
+        <region-container :selectedTopics="selectedTopics"></region-container>
     </div>
 </template>
 
@@ -17,11 +17,9 @@
         data: () => ({
             // These are being set by the associated filters in their own components (this child)
             // which are then used to compute in the regionContainer child.
-            selectedTags: [],
             selectedTopics: [],
         }),
         methods: {
-            setSelectedTags(selectedTags) { this.selectedTags = selectedTags; },
             setSelectedTopics(selectedTopics) { this.selectedTopics = selectedTopics; }
         },
         components: {

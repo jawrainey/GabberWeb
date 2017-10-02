@@ -8,16 +8,19 @@
     import Region from './Region.vue'
 
     export default {
-        props: ['selectedTags', 'selectedTopics', 'sortType'],
+        props: ['selectedTopics', 'sortType'],
         data: () => ({
             regions: require('../data/regions.json')
         }),
         computed: {
             filteredRegions() {
-                if (this.selectedTopics.length > 0 && this.selectedTags.length > 0) {
+                // Via store
+                let selectedTags = this.$store.state.selectedTags;
+
+                if (this.selectedTopics.length > 0 && selectedTags.length > 0) {
                     return this.regions.filter(
                         r => this.selectedTopics.includes(r.topic) &&
-                        r.tags.some(tag => this.selectedTags.includes(tag))
+                        r.tags.some(tag => selectedTags.includes(tag))
                     )
                 }
                 let filterRegions = this.regions;
@@ -26,9 +29,9 @@
                     filterRegions = this.regions.filter(r => this.selectedTopics.includes(r.topic))
                 }
 
-                if (this.selectedTags.length > 0) {
+                if (selectedTags.length > 0) {
                     // This is currently OR (i.e. some) and should be AND instead;
-                    filterRegions = this.regions.filter(r => r.tags.some(tag => this.selectedTags.includes(tag)))
+                    filterRegions = this.regions.filter(r => r.tags.some(tag => selectedTags.includes(tag)))
                 }
 
                 // Calculate index; not the best place for this: Look into vue.set;

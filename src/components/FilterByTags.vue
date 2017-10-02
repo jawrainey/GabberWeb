@@ -16,12 +16,16 @@
 <script>
     export default {
         data: () => ({
-            tags: require('../data/tags.json'),
-            selectedTags: [],
+            selectedTags: []
         }),
         methods: {
             onTagSelected () {
-                this.$emit('onTagSelected', this.selectedTags)
+                this.$store.commit('setSelectedTags', this.selectedTags);
+            }
+        },
+        computed: {
+            tags() {
+                return this.$store.getters.tags;
             }
         }
     }
