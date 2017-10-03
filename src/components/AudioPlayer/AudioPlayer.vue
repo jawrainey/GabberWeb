@@ -1,7 +1,7 @@
 <template>
     <footer id="audioplayer">
         <div id="audioplayer__options">
-            <span>{{ region.topic }} - {{ region.id }}</span>
+            <span>{{ region.topic }}</span>
             <div id="audioplayer__buttons">
                 <button @click="onSeek(-10)" class="back-ten"></button>
                 <button @click="onPreviousRegion" class="previous"></button>
@@ -13,7 +13,7 @@
             </div>
             <div id="audioplayer__bar">
                 <div class="audioplayer__progress_time">00:00</div>
-                <audio id="player" v-bind:src="audioURL" controls></audio>
+                <audio id="player" ref="player" v-bind:src="regionURL" controls></audio>
                 <div class="audioplayer__progress_time">00:20</div>
             </div>
         </div>
@@ -21,13 +21,29 @@
 </template>
 
 <script>
-    const audioPlayer = document.getElementById("player");
+    import {AudioBus} from '../../AudioBus.js';
 
     export default {
         data: () => ({ position: 0 }),
+        created() {
+            AudioBus.$on('AUDIO_PLAY', (isPlaying) => {
+                if (isPlaying) {
+                    this.$refs.player.play();
+                }
+                else {
+                    this.$refs.player.pause();
+                }
+            });
+            AudioBus.$on('AUDIO_NEXT_10', () => {});
+            AudioBus.$on('AUDIO_NEXT', () => {});
+            AudioBus.$on('AUDIO_PREV_10', () => {});
+            AudioBus.$on('AUDIO_PREV', () => {});
+            AudioBus.$on('AUDIO_SEEK', () => {});
+        },
         methods: {
-            // Would affect Region read/unread icon
-            onPlayPause() {},
+            onPlayPause() {
+                this.$store.commit('setSelectedRegion', this.region);
+            },
             onNextRegion() {},
             onPreviousRegion() {},
             onSeek(position){},
@@ -37,8 +53,12 @@
             region: function() {
                 return this.$store.getters.selectedRegion;
             },
-            audioURL: function () {},
-            isPlaying: function() {}
+            regionURL: function () {
+                return this.$store.getters.regionURL;
+            },
+            isPlaying: function() {
+                return this.$store.getters.isRegionPlaying(this.$store.getters.selectedRegion.id);
+            }
         }
     }
 </script>
