@@ -59,6 +59,23 @@ const mutations = {
         }
         state.selectedRegion = state.regions.find(r => r.id === region.id);
         AudioBus.$emit('AUDIO_PLAY', state.isPlaying);
+    },
+    prevFilteredRegion: function(state, filteredRegions) {
+        if (filteredRegions.length <= 0) return;
+        let index = filteredRegions.indexOf(state.selectedRegion);
+        // We are at the start of the filtered list, so go around again
+        if (index === 0) {
+            state.selectedRegion = filteredRegions[filteredRegions.length - 1];
+        }
+        // The region does not exist, for example, if a filter was re-applied.
+        else if (index === -1) {
+            state.selectedRegion = filteredRegions[0];
+        }
+        else {
+            state.selectedRegion = filteredRegions[index -1];
+        }
+        state.isPlaying = true;
+        AudioBus.$emit('AUDIO_PLAY', state.isPlaying);
     }
 };
 

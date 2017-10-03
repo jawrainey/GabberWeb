@@ -35,9 +35,7 @@
                 else player.pause();
             });
             AudioBus.$on('AUDIO_NEXT_10', () => {});
-            AudioBus.$on('AUDIO_NEXT', () => {});
             AudioBus.$on('AUDIO_PREV_10', () => {});
-            AudioBus.$on('AUDIO_PREV', () => {});
             AudioBus.$on('AUDIO_SEEK', () => {});
         },
         methods: {
@@ -45,7 +43,9 @@
                 this.$store.commit('setSelectedRegion', this.region);
             },
             onNextRegion() {},
-            onPreviousRegion() {},
+            onPreviousRegion() {
+                this.$store.commit('prevFilteredRegion', this.$store.getters.filteredRegions);
+            },
             onSeek(position){},
             onAddToPlaylist(){}
         },
