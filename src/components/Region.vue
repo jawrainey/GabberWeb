@@ -1,15 +1,15 @@
 <template>
     <div class="region-row"
        @click="onRegionChosen(region)"
-       @mouseenter="showOptions = true"
-       @mouseleave="showOptions = false">
+       @mouseenter="onHover = true"
+       @mouseleave="onHover = false">
         <div class="region-col outer">
-            <button v-if="isPlaying" @click="onPlayPause" class="pause"></button>
-            <button v-else @click="onPlayPause" class="play"></button>
-            <span class="position" v-else>{{ region.id }}.</span>
+            <button v-if="isRegionPlaying" class="pause"></button>
+            <button v-else-if="onHover && !isRegionPlaying" class="play"></button>
+            <span v-else-if="!onHover" class="position">{{ region.id }}.</span>
         </div>
         <div class="region-col outer">
-            <button @click="addToPlaylist" class="playlist-add"></button>
+            <button class="playlist-add"></button>
         </div>
         <div class="region-col content">
             <span class="topic">{{ region.topic }}</span>
@@ -17,8 +17,8 @@
                 <button v-for="tag in region.tags">{{ tag }}</button>
             </div>
         </div>
-        <div v-show="showOptions" class="region-col more">
-            <button @click.stop="onOptions" class="options"></button>
+        <div v-show="onHover" class="region-col more">
+            <button @click.stop="" class="options"></button>
         </div>
         <div class="region-col duration">
             <span>{{ region.audio.length | readableSeconds }}</span>
@@ -27,39 +27,20 @@
 </template>
 
 <script>
-    // Sending data to AudioPlayer.vue
-    import {EventBus} from '../EventBus.js'
-
     export default {
         props: ['region'],
-        data: () => ({
-            isPlaying: false,
-            showOptions: false
-        }),
+        data: () => ({ onHover: false }),
         methods: {
-            // These events also update the AudioPlayer, so we either need to couple the regions with it (bad idea)
-            // or have an event bus between them, requiring a lifecycle hook on AudioPlayer.
-            onPlayPause() {
-                this.isPlaying = !this.isPlaying;
-                // Fire event to audio player
-            },
-            addToPlaylist() {
-                // Change local icon
-                // Fire event to playlist (for animation)
-            },
-            onOptions() {
-                // Display a dropdown with associated options
-                console.log("We are on options only");
-            },
             // Update the AudioPlayer with this particular region
             onRegionChosen(region) {
-                EventBus.$emit('REGION_SELECTED', region);
+                this.$store.commit('setSelectedRegion', region);
             },
-            // Show a read/unread icon to identify if the region was viewed
-            // This should be a data variable? Same with Play/Pause?
-            regionVisited() {
-                // Show a read/unread icon to identify if the region was viewed
-
+            addToPlaylist() {},
+            onOptions() {}
+        },
+        computed: {
+            isRegionPlaying() {
+                return this.$store.getters.isRegionPlaying(this.region.id);
             }
         },
         filters: {

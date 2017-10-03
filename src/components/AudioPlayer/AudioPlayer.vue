@@ -13,7 +13,7 @@
             </div>
             <div id="audioplayer__bar">
                 <div class="audioplayer__progress_time">00:00</div>
-                <audio id="player" v-bind:src="audioSource" controls></audio>
+                <audio id="player" v-bind:src="audioURL" controls></audio>
                 <div class="audioplayer__progress_time">00:20</div>
             </div>
         </div>
@@ -21,40 +21,24 @@
 </template>
 
 <script>
-    // Receiving data from Region.vue
-    import {EventBus} from '../../EventBus.js'
+    const audioPlayer = document.getElementById("player");
 
     export default {
-        data: () => ({
-            region: {},
-            advanced: false,
-            isPlaying: false,
-            audioSource: ''
-        }),
+        data: () => ({ position: 0 }),
         methods: {
-            // helpers
-            setAudioSource(url) {},
-
             // Would affect Region read/unread icon
-            onPlayPause() {
-                this.isPlaying = !this.isPlaying;
-                // Play audio
-            },
+            onPlayPause() {},
             onNextRegion() {},
             onPreviousRegion() {},
-            onSeek(position) {},
-            // Would affect PlayList.vue UI
-            onAddToPlaylist() {
-
-            },
-            // Advanced methods: soundwave, speakers, annotator, tags.
-            showAdvancedView(){}
+            onSeek(position){},
+            onAddToPlaylist(){}
         },
-        created () {
-            EventBus.$on('REGION_SELECTED', (region) => {
-                this.region = region;
-                this.audioSource = region.audio.url;
-            })
+        computed: {
+            region: function() {
+                return this.$store.getters.selectedRegion;
+            },
+            audioURL: function () {},
+            isPlaying: function() {}
         }
     }
 </script>
