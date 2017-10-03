@@ -40,7 +40,9 @@
         },
         computed: {
             isRegionPlaying() {
-                return this.$store.getters.isRegionPlaying(this.region.id);
+                let selectedRegion = this.$store.getters.selectedRegion.id;
+                let isAudioPlaying = this.$store.getters.isAudioPlaying;
+                return (this.region.id === selectedRegion && isAudioPlaying)
             }
         },
         filters: {

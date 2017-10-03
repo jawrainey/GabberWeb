@@ -25,14 +25,14 @@
 
     export default {
         data: () => ({ position: 0 }),
-        created() {
-            AudioBus.$on('AUDIO_PLAY', (isPlaying) => {
-                if (isPlaying) {
-                    this.$refs.player.play();
-                }
-                else {
-                    this.$refs.player.pause();
-                }
+
+        mounted() {
+            let player = this.$refs.player;
+
+            AudioBus.$on('AUDIO_PLAY', function(isPlaying) {
+                // TODO: a hack to avoid the promise...
+                if (isPlaying) setTimeout(function () { player.play(); }, 150);
+                else player.pause();
             });
             AudioBus.$on('AUDIO_NEXT_10', () => {});
             AudioBus.$on('AUDIO_NEXT', () => {});
@@ -57,7 +57,7 @@
                 return this.$store.getters.regionURL;
             },
             isPlaying: function() {
-                return this.$store.getters.isRegionPlaying(this.$store.getters.selectedRegion.id);
+                return this.$store.getters.isAudioPlaying;
             }
         }
     }
