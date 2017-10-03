@@ -42,7 +42,9 @@
             onPlayPause() {
                 this.$store.commit('setSelectedRegion', this.region);
             },
-            onNextRegion() {},
+            onNextRegion() {
+                this.$store.commit('nextFilteredRegion', this.$store.getters.filteredRegions);
+            },
             onPreviousRegion() {
                 this.$store.commit('prevFilteredRegion', this.$store.getters.filteredRegions);
             },
