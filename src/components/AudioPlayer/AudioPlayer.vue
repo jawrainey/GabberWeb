@@ -3,18 +3,19 @@
         <div id="audioplayer__options">
             <span>{{ region.topic }}</span>
             <div id="audioplayer__buttons">
-                <button @click="onSeek(-10)" class="back-ten"></button>
+                <button @click="onSeekBackTen" class="back-ten"></button>
                 <button @click="onPreviousRegion" class="previous"></button>
-                <button v-if="isPlaying" @click="onPlayPause" class="pause"></button>
-                <button v-else @click="onPlayPause" class="play"></button>
+                <button v-if="isPlaying" @click="pauseAudio" class="pause"></button>
+                <button v-else @click="playAudio" class="play"></button>
                 <button @click="onNextRegion" class="next"></button>
-                <button @click="onSeek(10)" class="forward-ten"></button>
+                <button @click="onSeekForwardTen" class="forward-ten"></button>
                 <button @click="onAddToPlaylist" class="playlist-add"></button>
             </div>
             <div id="audioplayer__bar">
-                <div class="audioplayer__progress_time">00:00</div>
-                <audio id="player" ref="player" v-bind:src="regionURL" controls></audio>
-                <div class="audioplayer__progress_time">00:20</div>
+                <div class="audioplayer__progress_time">{{ position | readableSeconds }}</div>
+                <progress class="progress is-primary is-small" :value="position" :max="region.audio.length"></progress>
+                <div class="audioplayer__progress_time">{{ region.audio.length | readableSeconds }}</div>
+                <audio id="player" ref="player" v-bind:src="regionURL"></audio>
             </div>
         </div>
     </footer>
@@ -24,23 +25,39 @@
     import {AudioBus} from '../../AudioBus.js';
 
     export default {
-        data: () => ({ position: 0 }),
-
+        data: () => ({ position: 0, timer: {}, player: {}}),
         mounted() {
-            let player = this.$refs.player;
+            this.player = this.$refs.player;
+            let _this = this;
 
-            AudioBus.$on('AUDIO_PLAY', function(isPlaying) {
-                // TODO: a hack to avoid the promise...
-                if (isPlaying) setTimeout(function () { player.play(); }, 150);
-                else player.pause();
+            // An alternative approach is associating a watcher with the local isPlaying.
+            // That becomes complicated as playAudio/pauseAudio set it, which would invoke the watcher.
+            AudioBus.$on('SAME_REGION_SELECTED', function() {
+                if (_this.isPlaying) _this.playAudio();
+                else _this.pauseAudio();
+
             });
-            AudioBus.$on('AUDIO_NEXT_10', () => {});
-            AudioBus.$on('AUDIO_PREV_10', () => {});
-            AudioBus.$on('AUDIO_SEEK', () => {});
+
+            // An alternative approach could be associating a watcher with the local region
+            // When the ID changes: invoke reset/PlayAudio. That would not affect the next/prev
+            // methods as this event is also run when they are pressed.
+            AudioBus.$on('DIFFERENT_REGION_SELECTED', function() {
+                _this.resetProgressBar();
+                _this.playAudio();
+            });
         },
         methods: {
-            onPlayPause() {
-                this.$store.commit('setSelectedRegion', this.region);
+            playAudio() {
+                this.createProgressBar();
+                // TODO: an interface hack to avoid the promise when switching between audio sources.
+                setTimeout(function () { this.player.play(); }, 150);
+                this.$store.commit('isPlaying', true);
+            },
+            pauseAudio() {
+                // Only need to reset timer (not position) during pause; hence no resetProgressBar
+                clearInterval(this.timer);
+                this.player.pause();
+                this.$store.commit('isPlaying', false);
             },
             onNextRegion() {
                 this.$store.commit('nextFilteredRegion', this.$store.getters.filteredRegions);
@@ -48,8 +65,45 @@
             onPreviousRegion() {
                 this.$store.commit('prevFilteredRegion', this.$store.getters.filteredRegions);
             },
-            onSeek(position){},
-            onAddToPlaylist(){}
+            onSeekForwardTen() {
+                // edge case: trying to go forward 10 when we are at the end
+                if (this.player.currentTime + 10 >= this.region.audio.length) {
+                    this.resetProgressBar();
+                }
+                else {
+                    this.player.currentTime += 10;
+                    this.position += 10;
+                }
+            },
+            onSeekBackTen() {
+                // edge case: trying to go back 10 when we are at the start.
+                if (this.player.currentTime - 10 <= 0) {
+                    this.resetProgressBar();
+                }
+                else {
+                    this.player.currentTime -= 10;
+                    this.position -= 10;
+                }
+            },
+            onAddToPlaylist(){},
+            createProgressBar() {
+                let _this = this;
+                this.timer = setInterval(function() {
+                    if (_this.position >= _this.region.audio.length) {
+                        _this.resetProgressBar();
+                    }
+                    else {
+                        _this.position += .1;
+                    }
+                }, 100);
+            },
+            resetProgressBar() {
+                this.player.currentTime = 0;
+                this.position = 0;
+                clearInterval(this.timer);
+                // Important: changing the isPlaying flag when pausing
+                this.pauseAudio();
+            },
         },
         computed: {
             region: function() {
@@ -60,6 +114,14 @@
             },
             isPlaying: function() {
                 return this.$store.getters.isAudioPlaying;
+            }
+        },
+        filters: {
+            // TODO: share this between components (it is copied from Region.vue)
+            readableSeconds: function (value) {
+                let date = new Date(null);
+                date.setSeconds(value);
+                return date.toTimeString().replace(/.*(\d{2}:\d{2}).*/, "$1");
             }
         }
     }

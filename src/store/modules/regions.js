@@ -50,15 +50,21 @@ const getters = {
 };
 
 const mutations = {
+    // TODO: used inside AudioPlayer only
+    isPlaying(state, option) { state.isPlaying = option; },
+    // Required in Region.vue and AudioPlayer.vue because the selectedRegion can change
+    // using next/prev, but also when a user clicks a track (region) in the playlist.
     setSelectedRegion(state, region) {
+        // Autoplay when another region is selected in the playlist.
         if (state.selectedRegion.id !== region.id) {
             state.isPlaying = true;
+            AudioBus.$emit('DIFFERENT_REGION_SELECTED');
         }
         else {
             state.isPlaying = !state.isPlaying;
+            AudioBus.$emit('SAME_REGION_SELECTED');
         }
         state.selectedRegion = state.regions.find(r => r.id === region.id);
-        AudioBus.$emit('AUDIO_PLAY', state.isPlaying);
     },
     prevFilteredRegion: function(state, filteredRegions) {
         if (filteredRegions.length <= 0) return;
@@ -74,8 +80,7 @@ const mutations = {
         else {
             state.selectedRegion = filteredRegions[index - 1];
         }
-        state.isPlaying = true;
-        AudioBus.$emit('AUDIO_PLAY', state.isPlaying);
+        AudioBus.$emit('DIFFERENT_REGION_SELECTED');
     },
     nextFilteredRegion: function(state, filteredRegions) {
         if (filteredRegions.length <= 0) return;
@@ -87,8 +92,7 @@ const mutations = {
         else {
             state.selectedRegion = filteredRegions[index + 1];
         }
-        state.isPlaying = true;
-        AudioBus.$emit('AUDIO_PLAY', state.isPlaying);
+        AudioBus.$emit('DIFFERENT_REGION_SELECTED');
     }
 };
 
