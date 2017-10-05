@@ -1,7 +1,6 @@
 <template>
     <div id="content__container">
-        <filter-by-topics></filter-by-topics>
-        <filter-by-tags></filter-by-tags>
+        <filter-bar></filter-bar>
         <div id="regions__container">
             <region v-for="region in filteredRegions" :key="region.id" :region="region"></region>
         </div>
@@ -9,16 +8,14 @@
 </template>
 
 <script>
-    import FilterByTopics from './FilterByTopics.vue'
-    import FilterByTags from './FilterByTags.vue'
+    import FilterBar from './TheFilterBar.vue'
     import Region from './Region.vue'
     import { mapGetters } from 'vuex'
 
     export default {
         computed: mapGetters({filteredRegions: 'filteredRegions'}),
         components: {
-            FilterByTopics,
-            FilterByTags,
+            FilterBar,
             Region
         }
     }
