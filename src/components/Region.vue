@@ -1,5 +1,6 @@
 <template>
     <div class="region-row"
+       v-bind:class="{ 'is-selected': isRegionSelected }"
        @click="onRegionChosen(region)"
        @mouseenter="onHover = true"
        @mouseleave="onHover = false">
@@ -39,10 +40,11 @@
             onOptions() {}
         },
         computed: {
+            isRegionSelected() {
+                return (this.region.id === this.$store.getters.selectedRegion.id);
+            },
             isRegionPlaying() {
-                let selectedRegion = this.$store.getters.selectedRegion.id;
-                let isAudioPlaying = this.$store.getters.isAudioPlaying;
-                return (this.region.id === selectedRegion && isAudioPlaying)
+                return (this.isRegionSelected && this.$store.getters.isAudioPlaying)
             }
         },
         filters: {
@@ -73,7 +75,7 @@
         cursor: pointer;
         transition: background-color .2s linear;
     }
-        .region-row:hover {
+        .region-row.is-selected, .region-row:hover {
             background-color: #EFEFEF;
         }
 
