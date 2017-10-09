@@ -2,7 +2,8 @@
     <div class="dropdown column is-one-quarter" v-bind:class="{ 'is-active': isActive }">
         <div class="dropdown-trigger">
             <button @click="filterApplied" class="button is-white">
-                <span>Topics</span>
+                <span>Topics </span>
+                <span v-if="selectedTopics.length >= 1" class="number-selected">{{ selectedTopics.length }}</span>
                 <span v-bind:class="[isActive ? 'arrow-up' : 'arrow-down']"></span>
             </button>
         </div>
