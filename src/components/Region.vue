@@ -3,23 +3,36 @@
        v-bind:class="{ 'is-selected': isRegionSelected }"
        @click="onRegionChosen(region)"
        @mouseenter="onHover = true"
-       @mouseleave="onHover = false">
+       @mouseleave="onHover = false; showOptions = false">
         <div class="region-col outer">
             <button v-if="isRegionPlaying" class="pause"></button>
             <button v-else-if="onHover && !isRegionPlaying" class="play"></button>
             <span v-else-if="!onHover" class="position">{{ region.id }}.</span>
         </div>
         <div class="region-col outer">
-            <button class="playlist-add"></button>
+            <button @click.stop="toggleSelectedPlaylist" class="playlist-add"></button>
+            <add-region-to-play-list-menu
+                :region="region"
+                v-if="selectedPlaylist">
+            </add-region-to-play-list-menu>
         </div>
         <div class="region-col content">
             <span class="topic">{{ region.topic }}</span>
             <div class="tags">
-                <button v-for="tag in region.tags">{{ tag }}</button>
+                <span class="tag" v-for="tag in region.tags">{{ tag }}</span>
             </div>
         </div>
-        <div v-show="onHover" class="region-col more">
-            <button @click.stop="" class="options"></button>
+        <div class="region-col more">
+            <div v-if="onHover" class="dropdown is-active">
+                <div class="dropdown-trigger">
+                    <button @click.stop="showOptions = !showOptions" class="options"></button>
+                </div>
+                <div v-if="showOptions" class="dropdown-menu">
+                    <div class="dropdown-content">
+                        <a href="#" @click.stop="" class="dropdown-item ">View in context</a>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="region-col duration">
             <span>{{ region.audio.length | readableSeconds }}</span>
@@ -28,16 +41,25 @@
 </template>
 
 <script>
+    import AddRegionToPlayListMenu from './Playlist/AddRegionToPlayListMenu.vue'
+
     export default {
         props: ['region'],
-        data: () => ({ onHover: false }),
+        components: {
+            AddRegionToPlayListMenu
+        },
+        data: () => ({
+            onHover: false,
+            showOptions: false
+        }),
         methods: {
             // Update the AudioPlayer with this particular region
             onRegionChosen(region) {
                 this.$store.commit('setSelectedRegion', region);
             },
-            addToPlaylist() {},
-            onOptions() {}
+            toggleSelectedPlaylist() {
+                this.$store.commit('showPlayListMenu', this.region.id);
+            }
         },
         computed: {
             isRegionSelected() {
@@ -45,6 +67,9 @@
             },
             isRegionPlaying() {
                 return (this.isRegionSelected && this.$store.getters.isAudioPlaying)
+            },
+            selectedPlaylist() {
+                return this.$store.getters.showPlayListMenu === this.region.id;
             }
         },
         filters: {
@@ -59,7 +84,7 @@
 
 <style>
     /* Shared between buttons: needs fixed as they are button elements */
-    .play, .pause, .playlist-add, .options {
+    .play, .pause, .playlist-add, .options, .add-to-playlist {
         height: 24px;
         width: 24px;
         cursor: pointer;
@@ -68,16 +93,28 @@
         background-repeat: no-repeat;
     }
 
+    .play:focus, .pause:focus, .playlist-add:focus, .options:focus {
+        outline: none;
+    }
+
     .region-row {
         display: -ms-flexbox;
         display: flex;
-        height: 3.05em;
+        height: 3.5em;
         cursor: pointer;
         transition: background-color .2s linear;
     }
         .region-row.is-selected, .region-row:hover {
             background-color: #EFEFEF;
         }
+
+        /* Sane overrides */
+        .region-row .dropdown-content {
+            border-radius: 0;
+            padding: 0;
+        }
+        .region-row .dropdown-menu { min-width: 6rem; }
+        .region-row .dropdown-item { padding-right: 1rem; }
 
     .region-col {
         display: block;
@@ -113,6 +150,7 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+        margin-bottom: 0;
     }
         .region-col.content .topic {
             font-size: .9em;
@@ -136,6 +174,10 @@
         width: 2.52em;
         text-align: center;
         margin-top: 4px;
+    }
+
+    .tag:not(body) {
+        height: 1.68em;
     }
 
 </style>

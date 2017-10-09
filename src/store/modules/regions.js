@@ -56,6 +56,8 @@ const mutations = {
     // using next/prev, but also when a user clicks a track (region) in the playlist.
     setSelectedRegion(state, region) {
         // Autoplay when another region is selected in the playlist.
+        // This means we cannot set the state of the selected region yet as
+        // we need to compare the region with the previous selected.
         if (state.selectedRegion.id !== region.id) {
             state.isPlaying = true;
             AudioBus.$emit('DIFFERENT_REGION_SELECTED');

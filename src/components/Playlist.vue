@@ -8,23 +8,10 @@
 
 <script>
     import PlayListItem from './PlayListItem.vue'
+    import { mapGetters } from 'vuex'
 
     export default {
-        data: () => (
-            {
-                playlists: [
-                {
-                    'name': 'CDT teaching',
-                    'totalTime': '08:15',
-                    'numberOfRegions': 4
-                },
-                {
-                    'name': 'Research methods',
-                    'totalTime': '06:12',
-                    'numberOfRegions': 5
-                }
-                ]
-            }),
+        computed: mapGetters({playlists: 'userPlayLists'}),
         components : { 'playListItem': PlayListItem }
     }
 </script>

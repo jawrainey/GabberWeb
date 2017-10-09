@@ -2,7 +2,7 @@
     <li class="playlist__item">
         <h4 @click="toggle">{{ playlist.name }}</h4>
         <div v-if="isActive">
-            {{ playlist.totalTime }} - {{ playlist.numberOfRegions }}
+            {{ sumOfRegionsLengthInSeconds | readableSeconds }} - {{ numOfRegions }}
         </div>
     </li>
 </template>
@@ -11,6 +11,22 @@
     export default {
         props: ['playlist'],
         data: () => ({ isActive: false }),
-        methods: { toggle () { this.isActive = !this.isActive; } }
+        methods: { toggle () { this.isActive = !this.isActive; } },
+        computed: {
+            sumOfRegionsLengthInSeconds() {
+                return this.playlist.regions.reduce((s, v) => s + v.length, 0);
+            },
+            numOfRegions() {
+                return this.playlist.regions.length;
+            }
+        },
+        filters: {
+            // TODO: this is also in Region.vue so refactor it out
+            readableSeconds: function (value) {
+                let date = new Date(null);
+                date.setSeconds(value);
+                return date.toTimeString().replace(/.*(\d{2}:\d{2}).*/, "$1");
+            }
+        }
     }
 </script>
