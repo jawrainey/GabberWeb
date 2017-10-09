@@ -28,7 +28,7 @@
 
 <script>
     import { mapGetters } from 'vuex'
-    import {AudioBus} from '../AudioBus.js';
+    import {AudioBus} from '../../AudioBus.js';
 
     export default {
         data: () => ({

@@ -15,5 +15,4 @@
             FilterByTags
         }
     }
-
 </script>

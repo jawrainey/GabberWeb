@@ -35,7 +35,7 @@
     // refactor this into slots; however, how best we expose this local state (isActive)
     // currently eludes me. I could put the logic in shared state (for each filter dropdown),
     // but that feels wrong.
-    import {AudioBus} from '../AudioBus.js';
+    import {AudioBus} from '../../AudioBus.js';
 
     export default {
         data: () => ({
@@ -71,8 +71,8 @@
         width: 24px;
     }
 
-    .arrow-up { background-image: url("../assets/arrow-up.svg"); }
-    .arrow-down { background-image: url("../assets/arrow-down.svg"); }
+    .arrow-up { background-image: url("../../assets/arrow-up.svg"); }
+    .arrow-down { background-image: url("../../assets/arrow-down.svg"); }
     input[type="checkbox"] { margin-right: .8rem; }
 
     .control {
@@ -121,5 +121,4 @@
         background: #fff;
         cursor: pointer;
     }
-
 </style>

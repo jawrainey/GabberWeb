@@ -8,8 +8,8 @@
 </template>
 
 <script>
-    import FilterBar from './TheFilterBar.vue'
-    import Region from './Region.vue'
+    import FilterBar from './FilterBar/TheFilterBar.vue'
+    import Region from './Region/Region.vue'
     import { mapGetters } from 'vuex'
 
     export default {

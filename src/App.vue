@@ -9,7 +9,7 @@
 </template>
 
 <script>
-    import Playlist from './components/Playlist.vue'
+    import Playlist from './components/Playlist/Playlist.vue'
     import ContentContainer from './components/ContentContainer.vue'
     import AudioPlayer from './components/AudioPlayer/AudioPlayer.vue'
 

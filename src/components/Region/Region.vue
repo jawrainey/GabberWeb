@@ -41,7 +41,7 @@
 </template>
 
 <script>
-    import AddRegionToPlayListMenu from './Playlist/AddRegionToPlayListMenu.vue'
+    import AddRegionToPlayListMenu from './AddRegionToPlayListMenu.vue'
 
     export default {
         props: ['region'],
@@ -131,15 +131,15 @@
         }
         
         .region-col.outer .play {
-            background-image: url("../assets/play.svg");
+            background-image: url("../../assets/play.svg");
         }
 
         .region-col.outer .pause {
-            background-image: url("../assets/pause.svg");
+            background-image: url("../../assets/pause.svg");
         }
 
         .region-col.outer .playlist-add {
-            background-image: url("../assets/playlist-add.svg");
+            background-image: url("../../assets/playlist-add.svg");
         }
 
     .region-col.content {
@@ -165,7 +165,7 @@
 
     }
         .options {
-            background-image: url("../assets/options.svg");
+            background-image: url("../../assets/options.svg");
         }
 
     .region-col.duration {
@@ -179,5 +179,4 @@
     .tag:not(body) {
         height: 1.68em;
     }
-
 </style>
