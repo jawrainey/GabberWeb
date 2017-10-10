@@ -19,6 +19,7 @@
                             v-bind:value="tag"
                         />
                         <span>{{ tag | capitalize }}</span>
+                        <span class="numSelected">{{ numRegionsPerTag(tag) }}</span>
                     </label>
                 </div>
             </div>
@@ -36,10 +37,8 @@
             selectedTags: []
         }),
         mounted() {
-            let _this = this;
-
-            AudioBus.$on('FILTER_TOPICS_APPLIED', function() {
-                _this.isActive = false;
+            AudioBus.$on('FILTER_TOPICS_APPLIED', () => {
+                this.isActive = false;
             });
         },
         methods: {
@@ -53,7 +52,7 @@
                 }
             }
         },
-        computed: mapGetters({tags: 'tags'}),
+        computed: mapGetters({tags: 'tags', numRegionsPerTag: 'numRegionsPerTag'}),
         filters: {
             capitalize: function (string) {
                 return string.charAt(0).toUpperCase() + string.slice(1);

@@ -2,7 +2,7 @@
     <div class="dropdown column is-one-quarter" v-bind:class="{ 'is-active': isActive }">
         <div class="dropdown-trigger">
             <button @click="filterApplied" class="button is-white">
-                <span>Topics </span>
+                <span>Topics</span>
                 <span v-if="selectedTopics.length >= 1" class="number-selected">{{ selectedTopics.length }}</span>
                 <span v-bind:class="[isActive ? 'arrow-up' : 'arrow-down']"></span>
             </button>
@@ -20,6 +20,7 @@
                                 v-bind:value="topic"
                             />
                             <span>{{ topic }}</span>
+                            <span class="numSelected">{{ numRegionsPerTopic(topic) }}</span>
                         </label>
                     </div>
                 </div>
@@ -43,10 +44,8 @@
             selectedTopics: []
         }),
         mounted() {
-            let _this = this;
-
-            AudioBus.$on('FILTER_TAGS_APPLIED', function() {
-                _this.isActive = false;
+            AudioBus.$on('FILTER_TAGS_APPLIED', () => {
+                this.isActive = false;
             });
         },
         methods: {
@@ -60,7 +59,7 @@
                 }
             }
         },
-        computed: mapGetters({topics: 'topics'})
+        computed: mapGetters({topics: 'topics', numRegionsPerTopic: 'numRegionsPerTopic'})
     }
 </script>
 
@@ -69,6 +68,11 @@
     .arrow-up, .arrow-down {
         height: 24px;
         width: 24px;
+    }
+
+    .numSelected {
+        font-weight: 600;
+        font-size: .75em;
     }
 
     .arrow-up { background-image: url("../../assets/arrow-up.svg"); }

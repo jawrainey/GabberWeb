@@ -5,7 +5,10 @@ const state = {
 
 const getters = {
     topics: state => state.topics,
-    selectedTopics: state => state.selectedTopics
+    selectedTopics: state => state.selectedTopics,
+    numRegionsPerTopic: (state, getters) => (topic) => {
+        return getters.filteredRegions.includes(r => r.topic === topic).length;
+    }
 };
 
 const mutations = {
