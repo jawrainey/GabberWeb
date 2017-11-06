@@ -40,6 +40,8 @@
             AudioBus.$on('FILTER_TOPICS_APPLIED', () => {
                 this.isActive = false;
             });
+            // TODO: this parameter should be based on URL [e.g. when using vue-router]
+            this.$store.dispatch('FETCH_TAGS', 3);
         },
         methods: {
             onTagSelected () {

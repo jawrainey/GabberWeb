@@ -1,5 +1,7 @@
+import {GABBER_API} from '../../api/http-common';
+
 const state = {
-    tags: require('../../data/tags.json'),
+    tags: [],
     selectedTags: []
 };
 
@@ -15,11 +17,21 @@ const getters = {
 const mutations = {
     setSelectedTags(state, selectedTags) {
         state.selectedTags = selectedTags;
+    },
+    SET_TAGS: (state, data) => state.tags = data.codebook
+};
+
+const actions = {
+    FETCH_TAGS: ({commit}, projectID) =>  {
+        GABBER_API.get('/project/' + projectID)
+            .then(response => commit('SET_TAGS', response.data))
+            .catch(error => console.log(error))
     }
 };
 
 export default {
     state,
     getters,
-    mutations
+    mutations,
+    actions
 }
