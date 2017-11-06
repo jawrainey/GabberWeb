@@ -17,7 +17,8 @@
         }),
         methods: {
             createPlaylist() {
-                this.$store.dispatch('createPlaylist', { 'name': this.playlistName });
+                // TODO: change userID based on router...
+                this.$store.dispatch('CREATE_NEW_PLAYLIST', { 'name': this.playlistName, 'userID': 1});
             }
         }
     }

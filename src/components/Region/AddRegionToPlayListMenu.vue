@@ -15,7 +15,7 @@
                             v-bind:value="playlist.id"
                             @change="addRemove(playlist, $event)"
                         />
-                        <span>{{ playlist.name }}</span>
+                        <span>{{ playlist.title }} - {{ playlist.id }}</span>
                     </label>
                     <add-note-to-region
                         :region="region"
@@ -54,14 +54,14 @@
         }),
         methods: {
             addRemove(playlist, event) {
-                let payload = {'regionID': this.region.id, 'playlistID': playlist.id};
+                let payload = {'regionID': this.region.id, 'playlistID': playlist.id, 'userID': 1};
                 // This is fired after checked; did the user check a playlist?
                 if (event.target.checked) {
-                    this.$store.commit('addRegionToPlaylist', payload);
+                    this.$store.dispatch('ADD_REGION_TO_PLAYLIST', payload);
                     this.$store.commit('showAddRegionNote', true);
                 }
                 else {
-                    this.$store.commit('removeRegionFromPlaylist', payload);
+                    this.$store.dispatch('REMOVE_REGION_FROM_PLAYLIST', payload);
                 }
             }
         },

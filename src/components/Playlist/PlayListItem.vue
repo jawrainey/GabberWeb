@@ -1,6 +1,6 @@
 <template>
     <li class="playlist__item">
-        <h4 @click="toggle">{{ playlist.name }}</h4>
+        <h4 @click="toggle">{{ playlist.title }}</h4>
         <div v-if="isActive">
             {{ sumOfRegionsLengthInSeconds | readableSeconds }} - {{ numOfRegions }}
         </div>
@@ -14,7 +14,7 @@
         methods: { toggle () { this.isActive = !this.isActive; } },
         computed: {
             sumOfRegionsLengthInSeconds() {
-                return this.playlist.regions.reduce((s, v) => s + v.length, 0);
+                return this.playlist.regions.reduce((s, v) => s + v.region.length, 0);
             },
             numOfRegions() {
                 return this.playlist.regions.length;

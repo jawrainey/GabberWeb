@@ -11,6 +11,10 @@
     import { mapGetters } from 'vuex'
 
     export default {
+        mounted() {
+            // TODO: change userID based on router...
+            this.$store.dispatch('FETCH_USER_PLAYLISTS', 1);
+        },
         computed: mapGetters({playlists: 'userPlayLists'}),
         components : { 'playListItem': PlayListItem }
     }
