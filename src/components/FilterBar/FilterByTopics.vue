@@ -47,6 +47,8 @@
             AudioBus.$on('FILTER_TAGS_APPLIED', () => {
                 this.isActive = false;
             });
+            // TODO: have a guess ...
+            this.$store.dispatch('FETCH_TOPICS', 3);
         },
         methods: {
             onTopicSelected () {

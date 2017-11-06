@@ -36,7 +36,7 @@ const getters = {
         let filterRegions = regions;
 
         if (selectedTopics.length > 0) {
-            filterRegions = regions.filter(r => selectedTopics.includes(r.topic))
+            filterRegions = regions.filter(r => selectedTopics.includes(r.interview.topic));
         }
 
         if (selectedTags.length > 0) {
