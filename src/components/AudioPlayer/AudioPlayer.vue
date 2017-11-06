@@ -1,8 +1,8 @@
 <template>
     <footer id="audioplayer">
         <div id="audioplayer__options">
-            <span>{{ region.topic }}</span>
-            <div id="audioplayer__buttons">
+            <span>{{ region.interview.topic }}</span>
+            <div id="audioplayer__buttons" :disabled="!regionsLoaded">
                 <button @click="onSeekBackTen" class="back-ten"></button>
                 <button @click="onPreviousRegion" class="previous"></button>
                 <button v-if="isPlaying" @click="pauseAudio" class="pause"></button>
@@ -13,8 +13,8 @@
             </div>
             <div id="audioplayer__bar">
                 <div class="audioplayer__progress_time">{{ position | readableSeconds }}</div>
-                <progress class="progress is-primary is-small" :value="position" :max="region.audio.length"></progress>
-                <div class="audioplayer__progress_time">{{ region.audio.length | readableSeconds }}</div>
+                <progress class="progress is-primary is-small" :value="position" :max="region.length"></progress>
+                <div class="audioplayer__progress_time">{{ region.length | readableSeconds }}</div>
                 <audio id="player" ref="player" v-bind:src="regionURL"></audio>
             </div>
         </div>
@@ -67,7 +67,7 @@
             },
             onSeekForwardTen() {
                 // edge case: trying to go forward 10 when we are at the end
-                if (this.player.currentTime + 10 >= this.region.audio.length) {
+                if (this.player.currentTime + 10 >= this.region.length) {
                     this.resetProgressBar();
                 }
                 else {
@@ -89,7 +89,7 @@
             createProgressBar() {
                 let _this = this;
                 this.timer = setInterval(function() {
-                    if (_this.position >= _this.region.audio.length) {
+                    if (_this.position >= _this.region.length) {
                         _this.resetProgressBar();
                     }
                     else {
@@ -110,10 +110,13 @@
                 return this.$store.getters.selectedRegion;
             },
             regionURL: function () {
-                return this.$store.getters.regionURL;
+                return this.$store.getters.selectedRegion.interview.url;
             },
             isPlaying: function() {
                 return this.$store.getters.isAudioPlaying;
+            },
+            regionsLoaded: function() {
+                return this.$store.getters.regionsLoaded;
             }
         },
         filters: {

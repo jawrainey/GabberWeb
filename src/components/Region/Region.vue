@@ -17,7 +17,7 @@
             </add-region-to-play-list-menu>
         </div>
         <div class="region-col content">
-            <span class="topic">{{ region.topic }}</span>
+            <span class="topic">{{ region.interview.topic }}</span>
             <div class="tags">
                 <span class="tag" v-for="tag in region.tags">{{ tag }}</span>
             </div>
@@ -35,7 +35,7 @@
             </div>
         </div>
         <div class="region-col duration">
-            <span>{{ region.audio.length | readableSeconds }}</span>
+            <span>{{ region.length | readableSeconds }}</span>
         </div>
     </div>
 </template>

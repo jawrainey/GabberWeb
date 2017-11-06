@@ -2,7 +2,8 @@
     <div id="content__container">
         <filter-bar></filter-bar>
         <div id="regions__container">
-            <region v-for="region in filteredRegions" :key="region.id" :region="region"></region>
+            <div v-if="!regionsLoaded">Loading regions from Gabber ... {{ regionsLoaded }} </div>
+            <region v-if="regionsLoaded" v-for="region in filteredRegions" :key="region.id" :region="region"></region>
         </div>
     </div>
 </template>
@@ -13,7 +14,11 @@
     import { mapGetters } from 'vuex'
 
     export default {
-        computed: mapGetters({filteredRegions: 'filteredRegions'}),
+        mounted() {
+            // TODO: this parameter should be based on URL [e.g. when using vue-router]
+            this.$store.dispatch('FETCH_REGIONS_BY_PROJECT', 3);
+        },
+        computed: mapGetters({filteredRegions: 'filteredRegions', regionsLoaded: 'regionsLoaded'}),
         components: {
             FilterBar,
             Region

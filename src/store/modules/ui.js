@@ -1,11 +1,13 @@
 const state = {
     activeShowPlayListMenu: null,
-    showAddRegionNote: false
+    showAddRegionNote: false,
+    regionsLoaded: false
 };
 
 const getters = {
     showPlayListMenu: state => state.activeShowPlayListMenu,
-    showAddRegionNote: state => state.showAddRegionNote
+    showAddRegionNote: state => state.showAddRegionNote,
+    regionsLoaded: state => state.regionsLoaded
 };
 
 const mutations = {
@@ -21,7 +23,8 @@ const mutations = {
     },
     showAddRegionNote(state, isShowing) {
         state.showAddRegionNote = isShowing;
-    }
+    },
+    regionsLoaded: (state, isLoaded) => state.regionsLoaded = isLoaded
 };
 
 export default {

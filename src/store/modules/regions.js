@@ -1,18 +1,16 @@
 import {AudioBus} from '../../AudioBus.js';
+import {GABBER_API} from '../../api/http-common';
 
 const state = {
-    regions: require('../../data/regions.json'),
-    // TODO: default properties that are required on the UI
+    regions: [],
     selectedRegion: {
-        id: 1,
-        topic: "Pretend region one",
-        tags: [
-            "faith",
-            "hope"
-        ],
-        audio: {
-            length: 60,
-            url: "https://gabber.audio/protected/1505293291.mp4"
+        "id": -1,
+        "length": -1,
+        "codes": [],
+        "interview": {
+            "id": -1,
+            "topic": "",
+            "url": ""
         }
     },
     isPlaying: false
@@ -20,7 +18,7 @@ const state = {
 
 const getters = {
     regions: state => state.regions,
-    regionURL: state => state.selectedRegion.audio.url,
+    regionURL: state => state.selectedRegion.interview.url,
     isAudioPlaying: state => state.isPlaying,
     selectedRegion: state => state.selectedRegion,
     filteredRegions: function(state, getters) {
@@ -31,7 +29,7 @@ const getters = {
         if (selectedTopics.length > 0 && selectedTags.length > 0) {
             // Returning early to not apply other filters
             return regions.filter(
-                r => selectedTopics.includes(r.topic) &&
+                r => selectedTopics.includes(r.interview.topic) &&
                     r.tags.some(tag => selectedTags.includes(tag))
             )
         }
@@ -50,6 +48,7 @@ const getters = {
 };
 
 const mutations = {
+    SET_REGIONS: (state, data) => state.regions = data,
     // TODO: used inside AudioPlayer only
     isPlaying(state, option) { state.isPlaying = option; },
     // Required in Region.vue and AudioPlayer.vue because the selectedRegion can change
@@ -98,8 +97,22 @@ const mutations = {
     }
 };
 
+const actions = {
+    FETCH_REGIONS_BY_PROJECT: ({commit}, projectID) =>  {
+        GABBER_API.get('/project/' + projectID + '/regions/')
+            .then(
+                response => {
+                    commit('SET_REGIONS', response.data);
+                    commit('regionsLoaded', true);
+                }
+            )
+            .catch(error => console.log(error))
+    }
+};
+
 export default {
     state,
     getters,
-    mutations
+    mutations,
+    actions
 }
