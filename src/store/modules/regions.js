@@ -49,6 +49,7 @@ const getters = {
 
 const mutations = {
     SET_REGIONS: (state, data) => state.regions = data,
+    SET_SELECTED_AS_FIRST_REGION: (state) => state.selectedRegion = state.regions[0],
     // TODO: used inside AudioPlayer only
     isPlaying(state, option) { state.isPlaying = option; },
     // Required in Region.vue and AudioPlayer.vue because the selectedRegion can change
@@ -104,6 +105,7 @@ const actions = {
                 response => {
                     commit('SET_REGIONS', response.data);
                     commit('regionsLoaded', true);
+                    commit('SET_SELECTED_AS_FIRST_REGION');
                 }
             )
             .catch(error => console.log(error))
