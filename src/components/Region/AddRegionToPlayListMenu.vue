@@ -15,7 +15,7 @@
                             v-bind:value="playlist.id"
                             @change="addRemove(playlist, $event)"
                         />
-                        <span>{{ playlist.title }} - {{ playlist.id }}</span>
+                        <span>{{ playlist.title }}</span>
                     </label>
                     <add-note-to-region
                         :region="region"
