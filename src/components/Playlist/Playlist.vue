@@ -21,5 +21,5 @@
 </script>
 
 <style>
-    #playlist__container { cursor: pointer; display: flex; width: 30%; float: left; border-right: 1px solid gold; }
+    #playlist__container { cursor: pointer; display: flex; width: 25%; float: left; border-right: 1px solid gold; }
 </style>

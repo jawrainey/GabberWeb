@@ -1,41 +1,22 @@
 <template>
     <div>
-    <div id="main">
-        <playlist></playlist>
-        <content-container></content-container>
-    </div>
-    <audio-player></audio-player>
+        <main-header class="container"></main-header>
+        <router-view></router-view>
     </div>
 </template>
 
 <script>
-    import Playlist from './components/Playlist/Playlist.vue'
-    import ContentContainer from './components/ContentContainer.vue'
-    import AudioPlayer from './components/AudioPlayer/AudioPlayer.vue'
+    import MainHeader from './components/Shared/Header.vue'
 
     export default {
         components: {
-            Playlist,
-            ContentContainer,
-            AudioPlayer
+            MainHeader
         }
     }
 </script>
 
 <style>
-
     body { margin: 0; }
-
-    #main {
-        font-family: 'Avenir', Helvetica, Arial, sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        text-align: center;
-        color: #2c3e50;
-        width: 720px;
-        margin: 1.68em auto;
-        flex: 1;
-    }
 
     h1, h2 {
         font-weight: normal;

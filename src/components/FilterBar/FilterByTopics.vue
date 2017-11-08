@@ -1,7 +1,7 @@
 <template>
-    <div class="dropdown column is-one-quarter" v-bind:class="{ 'is-active': isActive }">
+    <div class="dropdown column is-one-quarter" v-bind:class="{ 'is-active': isActive }" :disabled="!regionsLoaded">
         <div class="dropdown-trigger">
-            <button @click="filterApplied" class="button is-white">
+            <button @click="filterApplied" class="button is-white" :disabled="!regionsLoaded">
                 <span>Topics</span>
                 <span v-if="selectedTopics.length >= 1" class="number-selected">{{ selectedTopics.length }}</span>
                 <span v-bind:class="[isActive ? 'arrow-up' : 'arrow-down']"></span>
@@ -39,6 +39,12 @@
     import {AudioBus} from '../../AudioBus.js';
 
     export default {
+        created() {
+            this.projectChangedUI();
+        },
+        watch: {
+            '$route': 'projectChangedUI'
+        },
         data: () => ({
             isActive: false,
             selectedTopics: []
@@ -47,10 +53,13 @@
             AudioBus.$on('FILTER_TAGS_APPLIED', () => {
                 this.isActive = false;
             });
-            // TODO: have a guess ...
-            this.$store.dispatch('FETCH_TOPICS', 3);
         },
         methods: {
+            projectChangedUI() {
+                this.isActive = false;
+                this.selectedTopics = [];
+                this.$store.dispatch('FETCH_TOPICS', this.$route.params.projectID);
+            },
             onTopicSelected () {
                 this.$store.commit('setSelectedTopics', this.selectedTopics);
             },
@@ -61,7 +70,11 @@
                 }
             }
         },
-        computed: mapGetters({topics: 'topics', numRegionsPerTopic: 'numRegionsPerTopic'})
+        computed: mapGetters({
+            regionsLoaded: 'regionsLoaded',
+            topics: 'topics',
+            numRegionsPerTopic: 'numRegionsPerTopic'
+        })
     }
 </script>
 

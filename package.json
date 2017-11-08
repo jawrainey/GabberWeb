@@ -13,7 +13,8 @@
   },
   "dependencies": {
     "axios": "^0.17.0",
-    "vue": "^2.4.4"
+    "vue": "^2.4.4",
+    "vue-router": "^3.0.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

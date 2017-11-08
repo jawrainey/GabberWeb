@@ -1,13 +1,15 @@
 const state = {
     activeShowPlayListMenu: null,
     showAddRegionNote: false,
-    regionsLoaded: false
+    regionsLoaded: false,
+    regionsLoadedMessage: "Searching for regions for this project ..."
 };
 
 const getters = {
     showPlayListMenu: state => state.activeShowPlayListMenu,
     showAddRegionNote: state => state.showAddRegionNote,
-    regionsLoaded: state => state.regionsLoaded
+    regionsLoaded: state => state.regionsLoaded,
+    regionsLoadedMessage: state => state.regionsLoadedMessage
 };
 
 const mutations = {
@@ -24,7 +26,8 @@ const mutations = {
     showAddRegionNote(state, isShowing) {
         state.showAddRegionNote = isShowing;
     },
-    regionsLoaded: (state, isLoaded) => state.regionsLoaded = isLoaded
+    regionsLoaded: (state, isLoaded) => state.regionsLoaded = isLoaded,
+    regionsLoadedMessage: (state, message) => state.regionsLoadedMessage = message
 };
 
 export default {

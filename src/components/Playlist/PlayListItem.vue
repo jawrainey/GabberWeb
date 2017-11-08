@@ -3,6 +3,10 @@
         <h4 @click="toggle">{{ playlist.title }}</h4>
         <div v-if="isActive">
             {{ sumOfRegionsLengthInSeconds | readableSeconds }} - {{ numOfRegions }}
+            <router-link :to="{
+                name: 'userPlaylist',
+                params: { uid: 1, pid: this.playlist.id }}"
+            >GoTo</router-link>
         </div>
     </li>
 </template>

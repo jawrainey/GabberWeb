@@ -1,15 +1,15 @@
 <template>
     <footer id="audioplayer">
-        <div id="audioplayer__options">
-            <span>{{ region.interview.topic }}</span>
-            <div id="audioplayer__buttons" :disabled="!regionsLoaded">
-                <button @click="onSeekBackTen" class="back-ten"></button>
-                <button @click="onPreviousRegion" class="previous"></button>
-                <button v-if="isPlaying" @click="pauseAudio" class="pause"></button>
-                <button v-else @click="playAudio" class="play"></button>
-                <button @click="onNextRegion" class="next"></button>
-                <button @click="onSeekForwardTen" class="forward-ten"></button>
-                <button @click="onAddToPlaylist" class="playlist-add"></button>
+        <div id="audioplayer__options" :disabled="!regionsLoaded">
+            <span v-if="regionsLoaded">{{ region.interview.topic }}</span>
+            <div id="audioplayer__buttons">
+                <button @click="onSeekBackTen" class="back-ten" :disabled="!regionsLoaded"></button>
+                <button @click="onPreviousRegion" class="previous" :disabled="!regionsLoaded"></button>
+                <button v-if="isPlaying" @click="pauseAudio" class="pause" :disabled="!regionsLoaded"></button>
+                <button v-else @click="playAudio" class="play" :disabled="!regionsLoaded"></button>
+                <button @click="onNextRegion" class="next" :disabled="!regionsLoaded"></button>
+                <button @click="onSeekForwardTen" class="forward-ten" :disabled="!regionsLoaded"></button>
+                <button @click="onAddToPlaylist" class="playlist-add" :disabled="!regionsLoaded"></button>
             </div>
             <div id="audioplayer__bar">
                 <div class="audioplayer__progress_time">{{ position | readableSeconds }}</div>
@@ -131,6 +131,20 @@
 </script>
 
 <style>
+    /*
+    Note: it is possible to remove all the disabled attributes from the button options,
+    then use "pointer-events: none" style for each button. However, this property only
+    accounts for clicks and not tab behavior: disabled prevents click and tab behavior.
+    */
+    div[disabled], button[disabled] {
+        background-color: white !important;
+        border-color: #DBDBDB !important;
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+        opacity: 0.5 !important;
+        cursor: not-allowed !important;
+    }
+
     #audioplayer {
         background: #EFEFEF;
         position: fixed;

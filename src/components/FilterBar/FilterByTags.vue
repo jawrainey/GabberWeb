@@ -1,7 +1,7 @@
 <template>
-    <div class="dropdown column is-one-quarter" v-bind:class="{ 'is-active': isActive }">
+    <div class="dropdown column is-one-quarter" v-bind:class="{ 'is-active': isActive }" :disabled="!regionsLoaded">
         <div class="dropdown-trigger">
-            <button @click="filterApplied" class="button is-white">
+            <button @click="filterApplied" class="button is-white" :disabled="!regionsLoaded">
                 <span>Tags </span>
                 <span v-if="selectedTags.length >= 1" class="number-selected">{{ selectedTags.length }}</span>
                 <span v-bind:class="[isActive ? 'arrow-up' : 'arrow-down']"></span>
@@ -32,6 +32,12 @@
     import {AudioBus} from '../../AudioBus.js';
 
     export default {
+        created() {
+            this.projectChangedUI();
+        },
+        watch: {
+            '$route': 'projectChangedUI'
+        },
         data: () => ({
             isActive: false,
             selectedTags: []
@@ -40,10 +46,14 @@
             AudioBus.$on('FILTER_TOPICS_APPLIED', () => {
                 this.isActive = false;
             });
-            // TODO: this parameter should be based on URL [e.g. when using vue-router]
-            this.$store.dispatch('FETCH_TAGS', 3);
         },
         methods: {
+            projectChangedUI() {
+                // Reset the drop-down position and the number of tags selected
+                this.isActive = false;
+                this.selectedTags = [];
+                this.$store.dispatch('FETCH_TAGS', this.$route.params.projectID);
+            },
             onTagSelected () {
                 this.$store.commit('setSelectedTags', this.selectedTags);
             },
@@ -54,7 +64,7 @@
                 }
             }
         },
-        computed: mapGetters({tags: 'tags', numRegionsPerTag: 'numRegionsPerTag'}),
+        computed: mapGetters({regionsLoaded: 'regionsLoaded', tags: 'tags', numRegionsPerTag: 'numRegionsPerTag'}),
         filters: {
             capitalize: function (string) {
                 return string.charAt(0).toUpperCase() + string.slice(1);

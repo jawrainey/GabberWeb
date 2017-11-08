@@ -100,15 +100,26 @@ const mutations = {
 
 const actions = {
     FETCH_REGIONS_BY_PROJECT: ({commit}, projectID) =>  {
+        // Reset between requests as an error may occur or no results found;
+        commit('regionsLoaded', false);
+
         GABBER_API.get('/project/' + projectID + '/regions/')
             .then(
                 response => {
                     commit('SET_REGIONS', response.data);
-                    commit('regionsLoaded', true);
-                    commit('SET_SELECTED_AS_FIRST_REGION');
+                    if (response.data.length > 0) {
+                        commit('regionsLoaded', true);
+                        commit('SET_SELECTED_AS_FIRST_REGION');
+                    }
+                    else {
+                        commit('regionsLoadedMessage', "No regions found for this project...");
+                    }
                 }
             )
-            .catch(error => console.log(error))
+            .catch(error => {
+                commit('regionsLoadedMessage', "Something went wrong.");
+                console.log(error);
+            })
     }
 };
 
