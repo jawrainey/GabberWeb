@@ -50,7 +50,15 @@
             playAudio() {
                 this.createProgressBar();
                 // TODO: an interface hack to avoid the promise when switching between audio sources.
-                setTimeout(function () { this.player.play(); }, 150);
+                let region = this.$store.getters.selectedRegion;
+
+                setTimeout(function () {
+                    // Note: we seek to the start of the region as the whole file is currently sent from the server.
+                    this.player.currentTime = region.start;
+                    // When rapidly switching between audio sources an error is thrown (https://goo.gl/LdLk22)
+                    // To overcome this, we catch the error and do nothing ...
+                    this.player.play().catch();
+                    }, 150);
                 this.$store.commit('isPlaying', true);
             },
             pauseAudio() {
