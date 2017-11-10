@@ -45,6 +45,12 @@
                 _this.resetProgressBar();
                 _this.playAudio();
             });
+
+            AudioBus.$on('RESET_SLIDER_AND_STOP_AUDIO', function() {
+                _this.resetProgressBar();
+                _this.pauseAudio();
+            });
+
         },
         methods: {
             playAudio() {
