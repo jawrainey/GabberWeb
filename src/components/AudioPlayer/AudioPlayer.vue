@@ -158,20 +158,10 @@
         position: fixed;
         bottom: 0;
         width: 100%;
-        padding: 1em 0;
     }
 
     #audioplayer__options {
-        display: -ms-flexbox;
-        display: flex;
-        -ms-flex-direction: column;
-        flex-direction: column;
-        -ms-flex-pack: center;
-        justify-content: center;
-        -ms-flex-align: center;
-        align-items: center;
-        width: 20%;
-        margin: 0 auto;
+        text-align: center;
     }
 
     #audioplayer__options button {
@@ -187,15 +177,8 @@
     }
 
     #audioplayer__buttons {
-        margin-bottom: 12px;
-        cursor: default;
-        display: -ms-flexbox;
-        display: flex;
+        margin: 0 auto;
         width: 224px;
-        -ms-flex-pack: justify;
-        justify-content: space-between;
-        -ms-flex-flow: row nowrap;
-        flex-flow: row nowrap;
     }
 
     #audioplayer__bar {

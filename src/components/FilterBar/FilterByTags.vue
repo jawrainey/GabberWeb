@@ -1,5 +1,5 @@
 <template>
-    <div class="dropdown column is-one-quarter" v-bind:class="{ 'is-active': isActive }" :disabled="!regionsLoaded">
+    <div class="dropdown" v-bind:class="{ 'is-active': isActive }" :disabled="!regionsLoaded">
         <div class="dropdown-trigger">
             <button @click="filterApplied" class="button is-white" :disabled="!regionsLoaded">
                 <span>Tags </span>

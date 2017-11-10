@@ -27,7 +27,7 @@
                 <div class="dropdown-trigger">
                     <button @click.stop="showOptions = !showOptions" class="options"></button>
                 </div>
-                <div v-if="showOptions" class="dropdown-menu">
+                <div v-if="showOptions" class="dropdown-menu more-options">
                     <div class="dropdown-content">
                         <a href="#" @click.stop="" class="dropdown-item ">View in context</a>
                     </div>
@@ -105,7 +105,7 @@
         transition: background-color .2s linear;
     }
         .region-row.is-selected, .region-row:hover {
-            background-color: #EFEFEF;
+            background-color: #CCC;
         }
 
         /* Sane overrides */
@@ -113,7 +113,6 @@
             border-radius: 0;
             padding: 0;
         }
-        .region-row .dropdown-menu { min-width: 6rem; }
         .region-row .dropdown-item { padding-right: 1rem; }
 
     .region-col {
@@ -127,9 +126,11 @@
     }
         .position {
             display: block;
-            margin-top: 4px;
+            font-size: 0.8em;
+            margin-top: 5px;
+            margin-left: 5px;
         }
-        
+
         .region-col.outer .play {
             background-image: url("../../assets/play.svg");
         }
@@ -162,16 +163,23 @@
 
     .region-col.more {
         margin-top: 0;
-
+        width: 1.68em;
+        margin-right: auto;
     }
         .options {
             background-image: url("../../assets/options.svg");
         }
 
+        .more-options {
+            /* TODO: temporary HACK */
+            left: -500%;
+            top: 12px;
+            min-width: 0;
+        }
+
     .region-col.duration {
         font-size: 0.8em;
         font-feature-settings: "tnum";
-        width: 2.52em;
         text-align: center;
         margin-top: 4px;
     }

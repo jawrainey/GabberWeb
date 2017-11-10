@@ -1,79 +1,54 @@
 <template>
+    <div>
     <div class="container">
         <div class="tile is-ancestor">
-            <div class="tile is-vertical is-12 userPlaylist">
+            <div class="tile is-vertical is-12">
                 <div class="tile">
                     <div class="tile is-parent is-vertical">
-                        <article class="tile is-child notification is-primary">
-                            <p class="title">Your playlists ...</p>
-                            <p class="subtitle">Top tile</p>
-                        </article>
+                        <h2 class="title is-4">Your playlists</h2>
+                        <playlist></playlist>
                     </div>
                     <div class="tile is-parent is-9">
-                        <article class="tile is-child notification is-info">
-                            <p class="title">Filters...</p>
-                            <div class="is-scrollable">
-                                <div class="is-scroll-container">
-                                    <p>All the regions</p>
-                                </div>
-                            </div>
+                        <article class="tile is-child">
+                            <h2 class="column" style="height: 60px;">{{ activePlaylistTitle }}</h2>
+                            <region-list></region-list>
                         </article>
                     </div>
-                </div>
-                <div class="tile is-parent audioPlayer">
-                    <article class="tile is-child notification is-danger">
-                        <p class="title">Audio player</p>
-                        <div class="content">
-                            <p>Audio player ...</p>
-                        </div>
-                    </article>
                 </div>
             </div>
         </div>
+    </div>
+    <audio-player class=""></audio-player>
     </div>
 </template>
 
 <script>
     import Playlist from '../components/Playlist/Playlist.vue'
-    import ContentContainer from '../components/ContentContainer.vue'
+    import RegionList from '../components/Region/RegionList.vue'
     import AudioPlayer from '../components/AudioPlayer/AudioPlayer.vue'
 
     export default {
         components: {
             Playlist,
-            ContentContainer,
+            RegionList,
             AudioPlayer
+        },
+        created () {
+            this.fetchRegions();
+        },
+        watch: {
+            '$route': 'fetchRegions'
+        },
+        methods: {
+            fetchRegions() {
+                let payload = { userID: 1, playlistID: this.$route.params.playlistID };
+                this.$store.dispatch('FETCH_USER_REGIONS_FOR_PLAYLIST_BY_ID', payload);
+            }
+        },
+        computed: {
+            activePlaylistTitle() {
+                return this.$store.getters.currentPlaylist(this.$route.params.playlistID).title;
+            }
         }
     }
 </script>
-
-<style>
-    /*
-    NOTE:
-        This does not account for varying screen-sizes or mobile devices as
-        they will not be used in the next deployment.
-    */
-    header {
-        height: 5vh;
-    }
-    .userPlaylist {
-        margin-top: 1rem;
-        height: 92vh;
-    }
-    html, body {
-        height: 100%;
-        max-height: 100%;
-    }
-
-    .audioPlayer {
-        max-height: 5vh;
-    }
-
-    .is-scrollable {
-        overflow-y: scroll;
-    }
-    .is-scroll-container {
-        height: 60vh;
-    }
-
-</style>

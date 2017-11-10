@@ -106,8 +106,8 @@ const actions = {
         GABBER_API.get('/project/' + projectID + '/regions/')
             .then(
                 response => {
-                    commit('SET_REGIONS', response.data);
                     if (response.data.length > 0) {
+                        commit('SET_REGIONS', response.data);
                         commit('regionsLoaded', true);
                         commit('SET_SELECTED_AS_FIRST_REGION');
                     }

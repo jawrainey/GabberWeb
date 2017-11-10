@@ -1,7 +1,7 @@
 <template>
     <div class="columns">
-        <filter-by-topics></filter-by-topics>
-        <filter-by-tags></filter-by-tags>
+        <filter-by-topics class="column is-narrow"></filter-by-topics>
+        <filter-by-tags class="column is-narrow"></filter-by-tags>
     </div>
 </template>
 

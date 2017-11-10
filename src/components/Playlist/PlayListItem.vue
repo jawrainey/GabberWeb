@@ -1,24 +1,20 @@
 <template>
     <li class="playlist__item">
-        <h4 @click="toggle">{{ playlist.title }}</h4>
-        <div v-if="isActive">
-            {{ sumOfRegionsLengthInSeconds | readableSeconds }} - {{ numOfRegions }}
-            <router-link :to="{
-                name: 'userPlaylist',
-                params: { uid: 1, pid: this.playlist.id }}"
-            >GoTo</router-link>
-        </div>
+        <router-link :to="{name: 'userPlaylist', params: { uid: 1, playlistID: this.playlist.id }}">
+            {{ playlist.title }}
+            <span class="playlist__meta">
+                {{ numOfRegions }} tracks &mdash; {{ sumOfRegionsLengthInSeconds | readableSeconds }}
+            </span>
+        </router-link>
     </li>
 </template>
 
 <script>
     export default {
         props: ['playlist'],
-        data: () => ({ isActive: false }),
-        methods: { toggle () { this.isActive = !this.isActive; } },
         computed: {
             sumOfRegionsLengthInSeconds() {
-                return this.playlist.regions.reduce((s, v) => s + v.region.length, 0);
+                return this.playlist.regions.reduce((s, region) => s + region.length, 0);
             },
             numOfRegions() {
                 return this.playlist.regions.length;
@@ -34,3 +30,32 @@
         }
     }
 </script>
+
+<style>
+    .playlist__item {
+        font-size: 1em;
+        font-weight: 700;
+        margin: 0 1em;
+        border-bottom: 1px solid #CCC;
+        line-height: 1.68em;
+    }
+        .playlist__item:hover {
+            transition: background-color 50ms ease-out 50ms;
+            background: #CCC;
+            cursor: pointer;
+        }
+
+        .playlist__item > a {
+            color: #333;
+            width: 100%;
+            transition: color .2s;
+            display: inline-block;
+            padding: .42em;
+        }
+
+    .playlist__meta {
+        text-transform: capitalize;
+        font-size: .72em;
+        display: block;
+    }
+</style>

@@ -6,6 +6,10 @@ const state = {
 
 const getters = {
     userPlayLists: state => state.userPlayLists,
+    currentPlaylist: (state, getters) => (playlistID) => {
+        let filteredPlaylist = state.userPlayLists.filter(playlist => playlist.id === parseInt(playlistID));
+        return (filteredPlaylist.length <= 0) ? [] : filteredPlaylist[0];
+    },
     // This maps to a v-model as a computed value
     selectedPlaylistsForRegion: (state, getters) => (region_id) => {
         return state.userPlayLists.filter(playlist =>
@@ -38,6 +42,27 @@ const actions = {
     CREATE_NEW_PLAYLIST: ({commit}, payload) => {
         GABBER_API.post('/users/' + payload.userID + '/playlists', {'title': payload.name})
             .then(response => commit('ADD_PLAYLIST', response.data))
+            .catch(error => console.log(error));
+    },
+    FETCH_USER_REGIONS_FOR_PLAYLIST_BY_ID: ({commit}, payload) => {
+        // Switching between view when regions exist, and none are returned
+        // from the server would otherwise result in viewing the previous set.
+        commit('regionsLoaded', false);
+        // TODO: the only difference between this and FETCH_REGIONS_BY_PROJECT is the endpoint
+        let endpoint = '/users/' + payload.userID + '/playlists/' + payload.playlistID + '/regions';
+        GABBER_API.get(endpoint)
+            .then(
+                response => {
+                    if (response.data.length > 0) {
+                        commit('SET_REGIONS', response.data);
+                        commit('regionsLoaded', true);
+                        commit('SET_SELECTED_AS_FIRST_REGION');
+                    }
+                    else {
+                        commit('regionsLoadedMessage', "No regions found for this project...");
+                    }
+                }
+            )
             .catch(error => console.log(error));
     },
     ADD_REGION_TO_PLAYLIST: ({commit}, payload) => {

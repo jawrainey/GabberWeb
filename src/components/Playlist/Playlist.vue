@@ -1,8 +1,10 @@
 <template>
-    <div id="playlist__container">
-        <ul>
-            <play-list-item v-for="playlist in playlists" :key="playlist.id" :playlist="playlist"></play-list-item>
-        </ul>
+    <div class="is-scrollable">
+        <div class="is-scroll-container">
+            <ul>
+                <play-list-item v-for="playlist in playlists" :key="playlist.id" :playlist="playlist"></play-list-item>
+            </ul>
+        </div>
     </div>
 </template>
 
@@ -19,7 +21,3 @@
         components : { 'playListItem': PlayListItem }
     }
 </script>
-
-<style>
-    #playlist__container { cursor: pointer; display: flex; width: 25%; float: left; border-right: 1px solid gold; }
-</style>
