@@ -9,7 +9,6 @@
                 <button v-else @click="playAudio" class="play" :disabled="!regionsLoaded"></button>
                 <button @click="onNextRegion" class="next" :disabled="!regionsLoaded"></button>
                 <button @click="onSeekForwardTen" class="forward-ten" :disabled="!regionsLoaded"></button>
-                <button @click="onAddToPlaylist" class="playlist-add" :disabled="!regionsLoaded"></button>
             </div>
             <div id="audioplayer__bar">
                 <div class="audioplayer__progress_time">{{ position | readableSeconds }}</div>
@@ -99,7 +98,6 @@
                     this.position -= 10;
                 }
             },
-            onAddToPlaylist(){},
             createProgressBar() {
                 let _this = this;
                 this.timer = setInterval(function() {
