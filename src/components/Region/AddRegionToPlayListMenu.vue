@@ -17,11 +17,6 @@
                         />
                         <span>{{ playlist.title }}</span>
                     </label>
-                    <add-note-to-region
-                        :region="region"
-                        :playlist="playlist"
-                        v-if="showAddRegionNote">
-                    </add-note-to-region>
                 </div>
                 <hr class="dropdown-divider">
                 <div class="dropdown-item">
@@ -36,6 +31,10 @@
                 </div>
             </div>
         </div>
+        <add-note-to-region
+            :region="region"
+            v-if="showAddRegionNote">
+        </add-note-to-region>
     </div>
 </template>
 
@@ -58,6 +57,7 @@
                 // This is fired after checked; did the user check a playlist?
                 if (event.target.checked) {
                     this.$store.dispatch('ADD_REGION_TO_PLAYLIST', payload);
+                    this.$store.commit('SELECTED_PLAYLISTID_FOR_REGION_TO_ADD', payload.playlistID);
                     this.$store.commit('showAddRegionNote', true);
                 }
                 else {

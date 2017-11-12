@@ -76,6 +76,15 @@ const actions = {
         GABBER_API.delete(endpoint, {data: {'regionID': payload.regionID}})
             .then(() => commit('REMOVE_REGION_FROM_PLAYLIST', payload))
             .catch(error => console.log(error));
+    },
+    // TODO: abstract this to its own module?
+    ADD_NOTE_TO_REGION_IN_PLAYLIST({commit}, payload) {
+        let endpoint = '/users/' + payload.userID + '/playlists/' + payload.playlistID +
+            '/region/' + payload.regionID + '/note';
+
+        GABBER_API.post(endpoint, {'note': payload.note})
+            .then(response => console.log(response))
+            .catch(error => console.log(error));
     }
 };
 

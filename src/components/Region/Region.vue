@@ -18,6 +18,7 @@
         </div>
         <div class="region-col content">
             <span class="topic">{{ region.interview.topic }}</span>
+            <p class="note" v-if="showNote">{{ region.note }}</p>
             <div class="tags" v-bind:class="{ showTags: showTags }">
                 <span class="tag" v-for="tag in region.tags">{{ tag }}</span>
             </div>
@@ -29,7 +30,10 @@
                 </div>
                 <div v-if="showOptions" class="dropdown-menu more-options">
                     <div class="dropdown-content">
-                        <a href="#" @click.stop="" class="dropdown-item ">View in context</a>
+                        <a href="#" @click.stop="" class="dropdown-item">View in context</a>
+                        <a @click.stop="showNote = !showNote" class="dropdown-item">
+                            <span v-if="showNote">Hide</span><span v-else>Show</span> note
+                        </a>
                         <a @click.stop="showTags = !showTags" class="dropdown-item">
                             <span v-if="showTags">Hide</span><span v-else>Show</span> all tags
                         </a>
@@ -53,7 +57,8 @@
         },
         data: () => ({
             onHover: false,
-            showOptions: false
+            showOptions: false,
+            showNote: false,
             showTags: false
         }),
         methods: {
@@ -161,6 +166,12 @@
             font-size: .9em;
             font-weight: 600;
         }
+
+        .region-col.content .note {
+            display: block;
+            margin-bottom: .5em;
+        }
+
         .region-col.content .tags {
             font-size: .8em;
         }

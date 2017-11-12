@@ -29,9 +29,16 @@
         data: () => ({
             regionNote: ""
         }),
+
         methods: {
             addNote() {
-                // TODO:
+                let payload = {
+                    'note': this.regionNote,
+                    'userID': 1, // TODO: set this based on session
+                    'regionID': this.region.id,
+                    'playlistID': this.$store.getters.lastSelectedPlaylistID
+                };
+                this.$store.dispatch('ADD_NOTE_TO_REGION_IN_PLAYLIST', payload);
                 this.closeModal();
             },
             closeModal() {
