@@ -18,7 +18,7 @@
         </div>
         <div class="region-col content">
             <span class="topic">{{ region.interview.topic }}</span>
-            <div class="tags">
+            <div class="tags" v-bind:class="{ showTags: showTags }">
                 <span class="tag" v-for="tag in region.tags">{{ tag }}</span>
             </div>
         </div>
@@ -30,6 +30,9 @@
                 <div v-if="showOptions" class="dropdown-menu more-options">
                     <div class="dropdown-content">
                         <a href="#" @click.stop="" class="dropdown-item ">View in context</a>
+                        <a @click.stop="showTags = !showTags" class="dropdown-item">
+                            <span v-if="showTags">Hide</span><span v-else>Show</span> all tags
+                        </a>
                     </div>
                 </div>
             </div>
@@ -51,6 +54,7 @@
         data: () => ({
             onHover: false,
             showOptions: false
+            showTags: false
         }),
         methods: {
             // Update the AudioPlayer with this particular region
@@ -100,7 +104,7 @@
     .region-row {
         display: -ms-flexbox;
         display: flex;
-        height: 3.5em;
+        /*height: 3.5em;*/
         cursor: pointer;
         transition: background-color .2s linear;
     }
@@ -187,4 +191,17 @@
     .tag:not(body) {
         height: 1.68em;
     }
+    .tags:last-child {
+        /* Removes the large (1em) default margin-bottom property */
+        margin: 0 !important;
+    }
+    .tags {
+        margin: .8em 0;
+        /* This prevents multi-line tags for consistent UX, and is removed on-click */
+        height: 28px;
+    }
+    .showTags {
+        height: auto !important;
+    }
+
 </style>
