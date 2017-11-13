@@ -10,9 +10,9 @@
                 <button @click="onNextRegion" class="next" :disabled="!regionsLoaded"></button>
                 <button @click="onSeekForwardTen" class="forward-ten" :disabled="!regionsLoaded"></button>
             </div>
+            <vue-slider @callback="playPause" v-model="position" :tooltip="false" :max="region.length"></vue-slider>
             <div id="audioplayer__bar">
                 <div class="audioplayer__progress_time">{{ position | readableSeconds }}</div>
-                <progress class="progress is-primary is-small" :value="position" :max="region.length"></progress>
                 <div class="audioplayer__progress_time">{{ region.length | readableSeconds }}</div>
                 <audio id="player" ref="player" v-bind:src="regionURL"></audio>
             </div>
@@ -21,11 +21,22 @@
 </template>
 
 <script>
+    import vueSlider from 'vue-slider-component';
+
     export default {
+        components: {
+            vueSlider
+        },
         mounted() {
             this.$store.commit('AUDIO_PLAYER', this.$refs.player);
         },
         methods: {
+            playPause() {
+                // This is called when the slider is moved. As the position is updated
+                // when play is called 'fresh' it invokes the updated position.
+                this.pauseAudio();
+                this.playAudio();
+            },
             playAudio() {
                 this.$store.dispatch('PLAY_AUDIO', this.$store.getters.selectedRegion);
             },
@@ -46,8 +57,13 @@
             }
         },
         computed: {
-            position: function() {
-                return this.$store.getters.POSITION;
+            position: {
+                get() {
+                    return this.$store.getters.POSITION;
+                },
+                set(position) {
+                    this.$store.commit('UPDATE_POSITION', position);
+                }
             },
             region: function() {
                 return this.$store.getters.selectedRegion;

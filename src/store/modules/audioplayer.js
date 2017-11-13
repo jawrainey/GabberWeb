@@ -14,18 +14,18 @@ const getters = {
 
 const mutations = {
     AUDIO_PLAYER: (state, player) => state.player = player,
-    INCREASE_POSITION: (state, position) => state.position += position
+    INCREASE_POSITION: (state, position) => state.position += position,
+    UPDATE_POSITION: (state, position) => state.position = position
 };
 
 const actions = {
     PLAY_AUDIO: ({dispatch, state}, region) => {
-        state.player.currentTime = region.start;
         // When rapidly switching between audio sources an error is thrown (https://goo.gl/LdLk22)
         // HACK: setting a timeout avoids the promise and loads the next audio (https://goo.gl/nbCrje)
         setTimeout(function () {
             // Note: we seek to the start of the region as the whole file is currently sent from the server.
-            this.player.currentTime = region.start;
-            this.player.play().catch();
+            state.player.currentTime = (state.position > 0) ? (region.start + state.position) : region.start;
+            state.player.play().catch();
             dispatch('CREATE_PROGRESS_BAR', region);
             state.isPlaying = true;
         }, 150);
