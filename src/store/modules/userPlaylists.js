@@ -44,7 +44,7 @@ const actions = {
             .then(response => commit('ADD_PLAYLIST', response.data))
             .catch(error => console.log(error));
     },
-    FETCH_USER_REGIONS_FOR_PLAYLIST_BY_ID: ({commit}, payload) => {
+    FETCH_USER_REGIONS_FOR_PLAYLIST_BY_ID: ({commit, dispatch}, payload) => {
         // Switching between view when regions exist, and none are returned
         // from the server would otherwise result in viewing the previous set.
         commit('regionsLoaded', false);
@@ -57,6 +57,7 @@ const actions = {
                         commit('SET_REGIONS', response.data);
                         commit('regionsLoaded', true);
                         commit('SET_SELECTED_AS_FIRST_REGION');
+                        dispatch('RESET_AUDIO');
                     }
                     else {
                         commit('regionsLoadedMessage', "No regions found for this project...");

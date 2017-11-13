@@ -1,4 +1,3 @@
-import {AudioBus} from '../../AudioBus.js';
 import {GABBER_API} from '../../api/http-common';
 
 const state = {
@@ -12,14 +11,12 @@ const state = {
             "topic": "",
             "url": ""
         }
-    },
-    isPlaying: false
+    }
 };
 
 const getters = {
     regions: state => state.regions,
     regionURL: state => state.selectedRegion.interview.url,
-    isAudioPlaying: state => state.isPlaying,
     selectedRegion: state => state.selectedRegion,
     filteredRegions: function(state, getters) {
         let regions = state.regions;
@@ -50,25 +47,25 @@ const getters = {
 const mutations = {
     SET_REGIONS: (state, data) => state.regions = data,
     SET_SELECTED_AS_FIRST_REGION: (state) => state.selectedRegion = state.regions[0],
-    // TODO: used inside AudioPlayer only
-    isPlaying(state, option) { state.isPlaying = option; },
+    SET_SELECTED_REGION: (state, region) => state.selectedRegion = region
+};
+
+const actions = {
     // Required in Region.vue and AudioPlayer.vue because the selectedRegion can change
     // using next/prev, but also when a user clicks a track (region) in the playlist.
-    setSelectedRegion(state, region) {
+    SET_SELECTED_REGION: ({dispatch, commit, state}, region) => {
         // Autoplay when another region is selected in the playlist.
         // This means we cannot set the state of the selected region yet as
         // we need to compare the region with the previous selected.
         if (state.selectedRegion.id !== region.id) {
-            state.isPlaying = true;
-            AudioBus.$emit('DIFFERENT_REGION_SELECTED');
+            dispatch('TRACK_CHANGED', region);
         }
         else {
-            state.isPlaying = !state.isPlaying;
-            AudioBus.$emit('SAME_REGION_SELECTED');
+            dispatch('PLAYPAUSE_AUDIO', region);
         }
-        state.selectedRegion = state.regions.find(r => r.id === region.id);
+        commit('SET_SELECTED_REGION', state.regions.find(r => r.id === region.id))
     },
-    prevFilteredRegion: function(state, filteredRegions) {
+    PREV_REGION: ({dispatch}, filteredRegions) => {
         if (filteredRegions.length <= 0) return;
         let index = filteredRegions.indexOf(state.selectedRegion);
         // We are at the start of the filtered list, so go around again
@@ -82,9 +79,9 @@ const mutations = {
         else {
             state.selectedRegion = filteredRegions[index - 1];
         }
-        AudioBus.$emit('DIFFERENT_REGION_SELECTED');
+        dispatch('TRACK_CHANGED', state.selectedRegion);
     },
-    nextFilteredRegion: function(state, filteredRegions) {
+    NEXT_REGION: ({dispatch}, filteredRegions) => {
         if (filteredRegions.length <= 0) return;
         let index = filteredRegions.indexOf(state.selectedRegion);
         // We are at the end of the filtered list OR the region does not exist
@@ -94,11 +91,8 @@ const mutations = {
         else {
             state.selectedRegion = filteredRegions[index + 1];
         }
-        AudioBus.$emit('DIFFERENT_REGION_SELECTED');
-    }
-};
-
-const actions = {
+        dispatch('TRACK_CHANGED', state.selectedRegion);
+    },
     FETCH_REGIONS_BY_PROJECT: ({commit}, projectID) =>  {
         // Reset between requests as an error may occur or no results found;
         commit('regionsLoaded', false);
@@ -118,7 +112,6 @@ const actions = {
             )
             .catch(error => {
                 commit('regionsLoadedMessage', "Something went wrong.");
-                console.log(error);
             })
     }
 };

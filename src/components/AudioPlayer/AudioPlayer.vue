@@ -21,103 +21,34 @@
 </template>
 
 <script>
-    import {AudioBus} from '../../AudioBus.js';
-
     export default {
-        data: () => ({ position: 0, timer: {}, player: {}}),
         mounted() {
-            this.player = this.$refs.player;
-            let _this = this;
-
-            // An alternative approach is associating a watcher with the local isPlaying.
-            // That becomes complicated as playAudio/pauseAudio set it, which would invoke the watcher.
-            AudioBus.$on('SAME_REGION_SELECTED', function() {
-                if (_this.isPlaying) _this.playAudio();
-                else _this.pauseAudio();
-
-            });
-
-            // An alternative approach could be associating a watcher with the local region
-            // When the ID changes: invoke reset/PlayAudio. That would not affect the next/prev
-            // methods as this event is also run when they are pressed.
-            AudioBus.$on('DIFFERENT_REGION_SELECTED', function() {
-                _this.resetProgressBar();
-                _this.playAudio();
-            });
-
-            AudioBus.$on('RESET_SLIDER_AND_STOP_AUDIO', function() {
-                _this.resetProgressBar();
-                _this.pauseAudio();
-            });
-
+            this.$store.commit('AUDIO_PLAYER', this.$refs.player);
         },
         methods: {
             playAudio() {
-                this.createProgressBar();
-                // TODO: an interface hack to avoid the promise when switching between audio sources.
-                let region = this.$store.getters.selectedRegion;
-
-                setTimeout(function () {
-                    // Note: we seek to the start of the region as the whole file is currently sent from the server.
-                    this.player.currentTime = region.start;
-                    // When rapidly switching between audio sources an error is thrown (https://goo.gl/LdLk22)
-                    // To overcome this, we catch the error and do nothing ...
-                    this.player.play().catch();
-                    }, 150);
-                this.$store.commit('isPlaying', true);
+                this.$store.dispatch('PLAY_AUDIO', this.$store.getters.selectedRegion);
             },
             pauseAudio() {
-                // Only need to reset timer (not position) during pause; hence no resetProgressBar
-                clearInterval(this.timer);
-                this.player.pause();
-                this.$store.commit('isPlaying', false);
+                this.$store.dispatch('PAUSE_AUDIO');
             },
             onNextRegion() {
-                this.$store.commit('nextFilteredRegion', this.$store.getters.filteredRegions);
+                this.$store.dispatch('NEXT_REGION', this.$store.getters.filteredRegions);
             },
             onPreviousRegion() {
-                this.$store.commit('prevFilteredRegion', this.$store.getters.filteredRegions);
+                this.$store.dispatch('PREV_REGION', this.$store.getters.filteredRegions);
             },
             onSeekForwardTen() {
-                // edge case: trying to go forward 10 when we are at the end
-                if (this.player.currentTime + 10 >= this.region.length) {
-                    this.resetProgressBar();
-                }
-                else {
-                    this.player.currentTime += 10;
-                    this.position += 10;
-                }
+                this.$store.dispatch('SEEK_TEN_FORWARD');
             },
             onSeekBackTen() {
-                // edge case: trying to go back 10 when we are at the start.
-                if (this.player.currentTime - 10 <= 0) {
-                    this.resetProgressBar();
-                }
-                else {
-                    this.player.currentTime -= 10;
-                    this.position -= 10;
-                }
-            },
-            createProgressBar() {
-                let _this = this;
-                this.timer = setInterval(function() {
-                    if (_this.position >= _this.region.length) {
-                        _this.resetProgressBar();
-                    }
-                    else {
-                        _this.position += .1;
-                    }
-                }, 100);
-            },
-            resetProgressBar() {
-                this.player.currentTime = 0;
-                this.position = 0;
-                clearInterval(this.timer);
-                // Important: changing the isPlaying flag when pausing
-                this.pauseAudio();
-            },
+                this.$store.dispatch('SEEK_TEN_BACKWARD');
+            }
         },
         computed: {
+            position: function() {
+                return this.$store.getters.POSITION;
+            },
             region: function() {
                 return this.$store.getters.selectedRegion;
             },
@@ -125,7 +56,7 @@
                 return this.$store.getters.selectedRegion.interview.url;
             },
             isPlaying: function() {
-                return this.$store.getters.isAudioPlaying;
+                return this.$store.getters.IS_PLAYING;
             },
             regionsLoaded: function() {
                 return this.$store.getters.regionsLoaded;

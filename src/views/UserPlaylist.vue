@@ -18,7 +18,7 @@
             </div>
         </div>
     </div>
-    <audio-player class=""></audio-player>
+    <audio-player></audio-player>
     </div>
 </template>
 
@@ -26,10 +26,6 @@
     import Playlist from '../components/Playlist/Playlist.vue'
     import RegionList from '../components/Region/RegionList.vue'
     import AudioPlayer from '../components/AudioPlayer/AudioPlayer.vue'
-    // TODO: quick workaround because the AudioPlayer state is not exposed via the state.
-    // Note: this is very bad; the general state of the AudioPlayer should be abstracted
-    // to a store module, but until then we want to use it here to reset the progress bar
-    import {AudioBus} from '../AudioBus.js';
 
     export default {
         components: {
@@ -45,10 +41,6 @@
         },
         methods: {
             fetchRegions() {
-                // Each time playlists are loaded we must reset the progress bar;
-                // This is independent of fetching and AudioPlayer because this view
-                // composes them and hence having this 'action' here makes most sense.
-                AudioBus.$emit('RESET_SLIDER_AND_STOP_AUDIO');
                 let payload = { userID: 1, playlistID: this.$route.params.playlistID };
                 this.$store.dispatch('FETCH_USER_REGIONS_FOR_PLAYLIST_BY_ID', payload);
             }

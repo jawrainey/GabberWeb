@@ -64,7 +64,7 @@
         methods: {
             // Update the AudioPlayer with this particular region
             onRegionChosen(region) {
-                this.$store.commit('setSelectedRegion', region);
+                this.$store.dispatch('SET_SELECTED_REGION', region);
             },
             toggleSelectedPlaylist() {
                 this.$store.commit('showPlayListMenu', this.region.id);
@@ -75,7 +75,7 @@
                 return (this.region.id === this.$store.getters.selectedRegion.id);
             },
             isRegionPlaying() {
-                return (this.isRegionSelected && this.$store.getters.isAudioPlaying)
+                return (this.isRegionSelected && this.$store.getters.IS_PLAYING)
             },
             selectedPlaylist() {
                 return this.$store.getters.showPlayListMenu === this.region.id;
