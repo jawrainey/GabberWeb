@@ -30,7 +30,7 @@
                 </div>
                 <div v-if="showOptions" class="dropdown-menu more-options">
                     <div class="dropdown-content">
-                        <a href="#" @click.stop="" class="dropdown-item">View in context</a>
+                        <a :href="region.interview.uri" @click.stop="" target="_blank" class="dropdown-item">View in context</a>
                         <a @click.stop="showNote = !showNote" class="dropdown-item">
                             <span v-if="showNote">Hide</span><span v-else>Show</span> note
                         </a>
