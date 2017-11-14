@@ -14,8 +14,7 @@
 
     export default {
         mounted() {
-            // TODO: change userID based on router...
-            this.$store.dispatch('FETCH_USER_PLAYLISTS', 1);
+            this.$store.dispatch('FETCH_USER_PLAYLISTS');
         },
         computed: mapGetters({playlists: 'userPlayLists'}),
         components : { 'playListItem': PlayListItem }

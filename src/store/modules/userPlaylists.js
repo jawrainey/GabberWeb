@@ -34,22 +34,22 @@ const mutations = {
 };
 
 const actions = {
-    FETCH_USER_PLAYLISTS: ({commit}, userID) =>  {
-        GABBER_API.get('/users/' + userID + '/playlists')
+    FETCH_USER_PLAYLISTS: ({commit, getters}) =>  {
+        GABBER_API.get('/users/' + getters.USER.id + '/playlists')
             .then(response => commit('SET_PLAYLISTS', response.data))
             .catch(error => console.log(error))
     },
-    CREATE_NEW_PLAYLIST: ({commit}, payload) => {
-        GABBER_API.post('/users/' + payload.userID + '/playlists', {'title': payload.name})
+    CREATE_NEW_PLAYLIST: ({commit, getters}, payload) => {
+        GABBER_API.post('/users/' + getters.USER.id + '/playlists', {'title': payload.name})
             .then(response => commit('ADD_PLAYLIST', response.data))
             .catch(error => console.log(error));
     },
-    FETCH_USER_REGIONS_FOR_PLAYLIST_BY_ID: ({commit, dispatch}, payload) => {
+    FETCH_USER_REGIONS_FOR_PLAYLIST_BY_ID: ({commit, getters, dispatch}, payload) => {
         // Switching between view when regions exist, and none are returned
         // from the server would otherwise result in viewing the previous set.
         commit('regionsLoaded', false);
         // TODO: the only difference between this and FETCH_REGIONS_BY_PROJECT is the endpoint
-        let endpoint = '/users/' + payload.userID + '/playlists/' + payload.playlistID + '/regions';
+        let endpoint = '/users/' + getters.USER.id + '/playlists/' + payload.playlistID + '/regions';
         GABBER_API.get(endpoint)
             .then(
                 response => {
@@ -66,21 +66,21 @@ const actions = {
             )
             .catch(error => console.log(error));
     },
-    ADD_REGION_TO_PLAYLIST: ({commit}, payload) => {
-        let endpoint = '/users/' + payload.userID + '/playlists/' + payload.playlistID + '/regions';
+    ADD_REGION_TO_PLAYLIST: ({commit, getters}, payload) => {
+        let endpoint = '/users/' + getters.USER.id + '/playlists/' + payload.playlistID + '/regions';
         GABBER_API.post(endpoint, {'regionID': payload.regionID})
             .then(response => commit('ADD_REGION_TO_PLAYLIST', response.data))
             .catch(error => console.log(error));
     },
-    REMOVE_REGION_FROM_PLAYLIST({commit}, payload) {
-        let endpoint = '/users/' + payload.userID + '/playlists/' + payload.playlistID + '/regions';
+    REMOVE_REGION_FROM_PLAYLIST({commit, getters}, payload) {
+        let endpoint = '/users/' + getters.USER.id + '/playlists/' + payload.playlistID + '/regions';
         GABBER_API.delete(endpoint, {data: {'regionID': payload.regionID}})
             .then(() => commit('REMOVE_REGION_FROM_PLAYLIST', payload))
             .catch(error => console.log(error));
     },
     // TODO: abstract this to its own module?
-    ADD_NOTE_TO_REGION_IN_PLAYLIST({commit}, payload) {
-        let endpoint = '/users/' + payload.userID + '/playlists/' + payload.playlistID +
+    ADD_NOTE_TO_REGION_IN_PLAYLIST({getters}, payload) {
+        let endpoint = '/users/' + getters.USER.id + '/playlists/' + payload.playlistID +
             '/region/' + payload.regionID + '/note';
 
         GABBER_API.post(endpoint, {'note': payload.note})

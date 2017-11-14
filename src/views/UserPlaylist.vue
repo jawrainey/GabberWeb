@@ -41,7 +41,7 @@
         },
         methods: {
             fetchRegions() {
-                let payload = { userID: 1, playlistID: this.$route.params.playlistID };
+                let payload = { playlistID: this.$route.params.playlistID };
                 this.$store.dispatch('FETCH_USER_REGIONS_FOR_PLAYLIST_BY_ID', payload);
             }
         },

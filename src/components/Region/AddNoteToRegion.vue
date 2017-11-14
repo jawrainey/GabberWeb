@@ -34,7 +34,6 @@
             addNote() {
                 let payload = {
                     'note': this.regionNote,
-                    'userID': 1, // TODO: set this based on session
                     'regionID': this.region.id,
                     'playlistID': this.$store.getters.lastSelectedPlaylistID
                 };

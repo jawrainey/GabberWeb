@@ -53,7 +53,7 @@
         }),
         methods: {
             addRemove(playlist, event) {
-                let payload = {'regionID': this.region.id, 'playlistID': playlist.id, 'userID': 1};
+                let payload = {'regionID': this.region.id, 'playlistID': playlist.id};
                 // This is fired after checked; did the user check a playlist?
                 if (event.target.checked) {
                     this.$store.dispatch('ADD_REGION_TO_PLAYLIST', payload);
