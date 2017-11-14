@@ -50,6 +50,7 @@ const actions = {
         commit('regionsLoaded', false);
         // TODO: the only difference between this and FETCH_REGIONS_BY_PROJECT is the endpoint
         let endpoint = '/users/' + getters.USER.id + '/playlists/' + payload.playlistID + '/regions';
+        let errorMessage = "No regions were found for this project.";
         GABBER_API.get(endpoint)
             .then(
                 response => {
@@ -60,11 +61,11 @@ const actions = {
                         dispatch('RESET_AUDIO');
                     }
                     else {
-                        commit('regionsLoadedMessage', "No regions found for this project...");
+                        commit('regionsLoadedMessage', errorMessage);
                     }
                 }
             )
-            .catch(error => console.log(error));
+            .catch(error => commit('regionsLoadedMessage', errorMessage));
     },
     ADD_REGION_TO_PLAYLIST: ({commit, getters}, payload) => {
         let endpoint = '/users/' + getters.USER.id + '/playlists/' + payload.playlistID + '/regions';
