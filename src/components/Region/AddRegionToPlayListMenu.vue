@@ -6,6 +6,7 @@
                     <p>Add region to ...</p>
                 </div>
                 <hr class="dropdown-divider">
+                <span class="dropdown-item" v-if="allUserPlaylists.length <= 0">You have no playlists. Why not create one?</span>
                 <div class="dropdown-item control" v-for="playlist in allUserPlaylists">
                     <label>
                         <input

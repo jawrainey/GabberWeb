@@ -1,5 +1,6 @@
 <template>
     <div class="is-scrollable">
+        <span v-if="playlists.length <= 0">You have not created any playlists.</span>
         <div class="is-scroll-container">
             <ul>
                 <play-list-item v-for="playlist in playlists" :key="playlist.id" :playlist="playlist"></play-list-item>
