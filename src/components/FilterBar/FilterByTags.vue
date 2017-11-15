@@ -27,6 +27,7 @@
 </template>
 
 <script>
+    import {mapGetters} from 'vuex'
     import {AudioBus} from '../../AudioBus.js';
 
     export default {
@@ -58,15 +59,7 @@
             }
         },
         computed: {
-            tags() {
-                return this.$store.getters.tags;
-            },
-            regionsLoaded() {
-                return this.$store.getters.regionsLoaded;
-            },
-            numRegionsPerTag() {
-                return this.$store.getters.numRegionsPerTag;
-            },
+            ...mapGetters(['tags', 'regionsLoaded', 'numRegionsPerTag']),
             selectedTags: {
                 get() {
                     return this.$store.getters.selectedTags;
