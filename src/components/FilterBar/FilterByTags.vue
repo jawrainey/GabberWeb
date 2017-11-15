@@ -14,7 +14,6 @@
                         <input
                             type="checkbox"
                             class="checkbox"
-                            @click.capture="onTagSelected"
                             v-model="selectedTags"
                             v-bind:value="tag"
                         />
@@ -28,7 +27,6 @@
 </template>
 
 <script>
-    import { mapGetters } from 'vuex'
     import {AudioBus} from '../../AudioBus.js';
 
     export default {
@@ -39,8 +37,7 @@
             '$route': 'projectChangedUI'
         },
         data: () => ({
-            isActive: false,
-            selectedTags: []
+            isActive: false
         }),
         mounted() {
             AudioBus.$on('FILTER_TOPICS_APPLIED', () => {
@@ -51,20 +48,34 @@
             projectChangedUI() {
                 // Reset the drop-down position and the number of tags selected
                 this.isActive = false;
-                this.selectedTags = [];
                 this.$store.dispatch('FETCH_TAGS', this.$route.params.projectID);
             },
-            onTagSelected () {
-                this.$store.commit('setSelectedTags', this.selectedTags);
-            },
-            filterApplied () {
+            filterApplied() {
                 this.isActive = !this.isActive;
                 if (this.isActive) {
                     AudioBus.$emit('FILTER_TAGS_APPLIED');
                 }
             }
         },
-        computed: mapGetters({regionsLoaded: 'regionsLoaded', tags: 'tags', numRegionsPerTag: 'numRegionsPerTag'}),
+        computed: {
+            tags() {
+                return this.$store.getters.tags;
+            },
+            regionsLoaded() {
+                return this.$store.getters.regionsLoaded;
+            },
+            numRegionsPerTag() {
+                return this.$store.getters.numRegionsPerTag;
+            },
+            selectedTags: {
+                get() {
+                    return this.$store.getters.selectedTags;
+                },
+                set(value) {
+                    this.$store.commit("setSelectedTags", value);
+                }
+            }
+        },
         filters: {
             capitalize: function (string) {
                 return string.charAt(0).toUpperCase() + string.slice(1);
