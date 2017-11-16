@@ -1,24 +1,24 @@
 <template>
-    <div class="container">
-        <div class="tile is-ancestor">
-            <div class="tile is-vertical is-12 userPlaylist">
-                <div class="tile">
-                    <div class="tile is-parent is-vertical">
-                        <h2 class="title is-4">Your playlists</h2>
-                        <playlist></playlist>
+    <div>
+        <div class="container">
+            <div class="tile is-ancestor">
+                <div class="tile is-vertical is-12 userPlaylist">
+                    <div class="tile">
+                        <div class="tile is-parent is-vertical">
+                            <h2 class="title is-4">Your playlists</h2>
+                            <playlist></playlist>
+                        </div>
+                        <div class="tile is-parent is-9">
+                            <article class="tile is-child">
+                                <filter-bar></filter-bar>
+                                <region-list></region-list>
+                            </article>
+                        </div>
                     </div>
-                    <div class="tile is-parent is-9">
-                        <article class="tile is-child">
-                            <filter-bar></filter-bar>
-                            <region-list></region-list>
-                        </article>
-                    </div>
-                </div>
-                <div class="tile is-parent audioPlayer">
-                    <audio-player class="tile is-child"></audio-player>
                 </div>
             </div>
         </div>
+        <audio-player></audio-player>
     </div>
 </template>
 
