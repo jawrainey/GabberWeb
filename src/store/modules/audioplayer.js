@@ -8,7 +8,6 @@ const state = {
 
 const getters = {
     POSITION: state => state.position,
-    CURRENT_TIME: state => state.player.currentTime,
     IS_PLAYING: state => state.isPlaying
 };
 
@@ -40,7 +39,7 @@ const actions = {
         else dispatch('PLAY_AUDIO', region);
     },
     SEEK_TEN_FORWARD: ({dispatch, getters}) => {
-        if (getters.CURRENT_TIME + 10 >= getters.selectedRegion.length) {
+        if (state.position + 10 >= getters.selectedRegion.length) {
             dispatch('RESET_AUDIO');
         }
         else {
@@ -48,8 +47,8 @@ const actions = {
             state.position += 10;
         }
     },
-    SEEK_TEN_BACKWARD: ({dispatch, getters}) => {
-        if (getters.CURRENT_TIME - 10 <= 0) {
+    SEEK_TEN_BACKWARD: ({dispatch}) => {
+        if (state.position - 10 <= 0) {
             dispatch('RESET_AUDIO');
         }
         else {
