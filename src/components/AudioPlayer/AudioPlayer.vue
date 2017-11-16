@@ -1,20 +1,20 @@
 <template>
     <footer id="audioplayer">
         <div id="audioplayer__options" :disabled="!regionsLoaded">
-            <span v-if="regionsLoaded">{{ region.interview.topic }}</span>
+            <span v-if="regionsLoaded">{{ selectedRegion.interview.topic }}</span>
             <div id="audioplayer__buttons">
-                <button @click="onSeekBackTen" class="back-ten" :disabled="!regionsLoaded"></button>
-                <button @click="onPreviousRegion" class="previous" :disabled="!regionsLoaded"></button>
-                <button v-if="isPlaying" @click="pauseAudio" class="pause" :disabled="!regionsLoaded"></button>
-                <button v-else @click="playAudio" class="play" :disabled="!regionsLoaded"></button>
-                <button @click="onNextRegion" class="next" :disabled="!regionsLoaded"></button>
-                <button @click="onSeekForwardTen" class="forward-ten" :disabled="!regionsLoaded"></button>
+                <button @click="SEEK_TEN_BACKWARD" class="back-ten" :disabled="!regionsLoaded"></button>
+                <button @click="PREV_REGION(filteredRegions)" class="previous" :disabled="!regionsLoaded"></button>
+                <button v-if="IS_PLAYING" @click="PAUSE_AUDIO" class="pause" :disabled="!regionsLoaded"></button>
+                <button v-else @click="PLAY_AUDIO(selectedRegion)" class="play" :disabled="!regionsLoaded"></button>
+                <button @click="NEXT_REGION(filteredRegions)" class="next" :disabled="!regionsLoaded"></button>
+                <button @click="SEEK_TEN_FORWARD" class="forward-ten" :disabled="!regionsLoaded"></button>
             </div>
-            <vue-slider @callback="playPause" v-model="position" :tooltip="false" :max="region.length"></vue-slider>
+            <vue-slider @callback="PAUSE_PLAY" v-model="position" :tooltip="false" :max="selectedRegion.length"></vue-slider>
             <div id="audioplayer__bar">
                 <div class="audioplayer__progress_time">{{ readableSeconds(position) }}</div>
-                <div class="audioplayer__progress_time">{{ readableSeconds(region.length) }}</div>
-                <audio id="player" ref="player" v-bind:src="regionURL"></audio>
+                <div class="audioplayer__progress_time">{{ readableSeconds(selectedRegion.length) }}</div>
+                <audio id="player" ref="player" v-bind:src="selectedRegion.interview.url"></audio>
             </div>
         </div>
     </footer>
@@ -23,6 +23,7 @@
 <script>
     import vueSlider from 'vue-slider-component';
     import {utilsMixin} from '../../mixins/index'
+    import { mapActions, mapGetters } from 'vuex'
 
     export default {
         components: {
@@ -33,32 +34,16 @@
             this.$store.commit('AUDIO_PLAYER', this.$refs.player);
         },
         methods: {
-            playPause() {
+            ...mapActions(['PLAY_AUDIO', 'PAUSE_AUDIO', 'NEXT_REGION', 'PREV_REGION', 'SEEK_TEN_FORWARD','SEEK_TEN_BACKWARD']),
+            PAUSE_PLAY() {
                 // This is called when the slider is moved. As the position is updated
                 // when play is called 'fresh' it invokes the updated position.
-                this.pauseAudio();
-                this.playAudio();
-            },
-            playAudio() {
-                this.$store.dispatch('PLAY_AUDIO', this.$store.getters.selectedRegion);
-            },
-            pauseAudio() {
-                this.$store.dispatch('PAUSE_AUDIO');
-            },
-            onNextRegion() {
-                this.$store.dispatch('NEXT_REGION', this.$store.getters.filteredRegions);
-            },
-            onPreviousRegion() {
-                this.$store.dispatch('PREV_REGION', this.$store.getters.filteredRegions);
-            },
-            onSeekForwardTen() {
-                this.$store.dispatch('SEEK_TEN_FORWARD');
-            },
-            onSeekBackTen() {
-                this.$store.dispatch('SEEK_TEN_BACKWARD');
+                this.PAUSE_AUDIO();
+                this.PLAY_AUDIO(this.selectedRegion);
             }
         },
         computed: {
+            ...mapGetters(['selectedRegion', 'filteredRegions', 'IS_PLAYING', 'regionsLoaded']),
             position: {
                 get() {
                     return this.$store.getters.POSITION;
@@ -66,18 +51,6 @@
                 set(position) {
                     this.$store.commit('UPDATE_POSITION', position);
                 }
-            },
-            region: function() {
-                return this.$store.getters.selectedRegion;
-            },
-            regionURL: function () {
-                return this.$store.getters.selectedRegion.interview.url;
-            },
-            isPlaying: function() {
-                return this.$store.getters.IS_PLAYING;
-            },
-            regionsLoaded: function() {
-                return this.$store.getters.regionsLoaded;
             }
         }
     }
