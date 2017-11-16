@@ -15,7 +15,6 @@
                             <input
                                 type="checkbox"
                                 class="checkbox"
-                                @click.capture="onTopicSelected"
                                 v-model="selectedTopics"
                                 v-bind:value="topic"
                             />
@@ -46,8 +45,7 @@
             '$route': 'projectChangedUI'
         },
         data: () => ({
-            isActive: false,
-            selectedTopics: []
+            isActive: false
         }),
         mounted() {
             AudioBus.$on('FILTER_TAGS_APPLIED', () => {
@@ -57,11 +55,7 @@
         methods: {
             projectChangedUI() {
                 this.isActive = false;
-                this.selectedTopics = [];
                 this.$store.dispatch('FETCH_TOPICS', this.$route.params.projectID);
-            },
-            onTopicSelected () {
-                this.$store.commit('setSelectedTopics', this.selectedTopics);
             },
             filterApplied () {
                 this.isActive = !this.isActive;
@@ -70,11 +64,17 @@
                 }
             }
         },
-        computed: mapGetters({
-            regionsLoaded: 'regionsLoaded',
-            topics: 'topics',
-            numRegionsPerTopic: 'numRegionsPerTopic'
-        })
+        computed: {
+            ...mapGetters(['regionsLoaded', 'topics', 'numRegionsPerTopic']),
+            selectedTopics: {
+                get() {
+                    return this.$store.getters.selectedTopics;
+                },
+                set(value) {
+                    this.$store.commit("setSelectedTopics", value);
+                }
+            }
+        }
     }
 </script>
 
