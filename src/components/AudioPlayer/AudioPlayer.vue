@@ -12,8 +12,8 @@
             </div>
             <vue-slider @callback="playPause" v-model="position" :tooltip="false" :max="region.length"></vue-slider>
             <div id="audioplayer__bar">
-                <div class="audioplayer__progress_time">{{ position | readableSeconds }}</div>
-                <div class="audioplayer__progress_time">{{ region.length | readableSeconds }}</div>
+                <div class="audioplayer__progress_time">{{ readableSeconds(position) }}</div>
+                <div class="audioplayer__progress_time">{{ readableSeconds(region.length) }}</div>
                 <audio id="player" ref="player" v-bind:src="regionURL"></audio>
             </div>
         </div>
@@ -22,11 +22,13 @@
 
 <script>
     import vueSlider from 'vue-slider-component';
+    import {utilsMixin} from '../../mixins/index'
 
     export default {
         components: {
             vueSlider
         },
+        mixins: [utilsMixin],
         mounted() {
             this.$store.commit('AUDIO_PLAYER', this.$refs.player);
         },
@@ -76,14 +78,6 @@
             },
             regionsLoaded: function() {
                 return this.$store.getters.regionsLoaded;
-            }
-        },
-        filters: {
-            // TODO: share this between components (it is copied from Region.vue)
-            readableSeconds: function (value) {
-                let date = new Date(null);
-                date.setSeconds(value);
-                return date.toTimeString().replace(/.*(\d{2}:\d{2}).*/, "$1");
             }
         }
     }

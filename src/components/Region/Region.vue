@@ -42,16 +42,18 @@
             </div>
         </div>
         <div class="region-col duration">
-            <span>{{ region.length | readableSeconds }}</span>
+            <span>{{ readableSeconds(region.length) }}</span>
         </div>
     </div>
 </template>
 
 <script>
     import AddRegionToPlayListMenu from './AddRegionToPlayListMenu.vue'
+    import {utilsMixin} from '../../mixins/index'
 
     export default {
         props: ['region'],
+        mixins: [utilsMixin],
         components: {
             AddRegionToPlayListMenu
         },
@@ -79,13 +81,6 @@
             },
             selectedPlaylist() {
                 return this.$store.getters.showPlayListMenu === this.region.id;
-            }
-        },
-        filters: {
-            readableSeconds: function (value) {
-                let date = new Date(null);
-                date.setSeconds(value);
-                return date.toTimeString().replace(/.*(\d{2}:\d{2}).*/, "$1");
             }
         }
     }

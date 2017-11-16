@@ -3,29 +3,24 @@
         <router-link :to="{name: 'userPlaylist', params: { uid: 1, playlistID: this.playlist.id }}">
             {{ playlist.title }}
             <span class="playlist__meta">
-                {{ numOfRegions }} tracks &mdash; {{ sumOfRegionsLengthInSeconds | readableSeconds }}
+                {{ numOfRegions }} tracks &mdash; {{ readableSeconds(sumOfRegionsLengthInSeconds) }}
             </span>
         </router-link>
     </li>
 </template>
 
 <script>
+    import {utilsMixin} from '../../mixins/index'
+
     export default {
         props: ['playlist'],
+        mixins: [utilsMixin],
         computed: {
             sumOfRegionsLengthInSeconds() {
                 return this.playlist.regions.reduce((s, region) => s + region.length, 0);
             },
             numOfRegions() {
                 return this.playlist.regions.length;
-            }
-        },
-        filters: {
-            // TODO: this is also in Region.vue so refactor it out
-            readableSeconds: function (value) {
-                let date = new Date(null);
-                date.setSeconds(value);
-                return date.toTimeString().replace(/.*(\d{2}:\d{2}).*/, "$1");
             }
         }
     }
