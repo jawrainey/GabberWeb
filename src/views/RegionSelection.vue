@@ -58,7 +58,6 @@
         This does not account for varying screen-sizes or mobile devices as
         they will not be used in the next deployment.
     */
-    header { height: 5vh; }
     .userPlaylist { margin-top: 1rem; height: 92vh; }
     .audioPlayer { max-height: 5vh; }
 </style>

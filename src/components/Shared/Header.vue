@@ -4,22 +4,22 @@
             <div class="level-left">
                 <div class="level-item">
                     <p class="subtitle is-5">
-                        <strong>RegionPlaylists</strong>
+                        <strong></strong>
                     </p>
                 </div>
             </div>
-            <div class="level-right">
+            <div class="level-right navigation">
                 <p class="level-item has-text-centered">
-                    <router-link to="/">Home</router-link>
+                    <a href="/">Home</a>
                 </p>
                 <p class="level-item has-text-centered">
-                    <router-link to="/">About</router-link>
+                    <a href="/about">About</a>
                 </p>
                 <p class="level-item has-text-centered">
-                    <router-link to="/">Projects</router-link>
+                    <a href="/projects">Projects</a>
                 </p>
                 <p class="level-item has-text-centered">
-                    <router-link to="/">Profile</router-link>
+                    <a href="/logout">Logout</a>
                 </p>
             </div>
         </nav>
@@ -33,5 +33,23 @@
     }
     .header {
         border-bottom: 1px solid gold;
+    }
+
+    .navigation p {
+        height: 64px;
+        line-height: 64px;
+    }
+
+    .navigation p a {
+        color: #000000;
+        transition: background-color .3s;
+        font-size: 1rem;
+        display: block;
+        padding: 0 15px;
+        cursor: pointer;
+    }
+
+    .navigation p a:hover {
+        background-color: rgba(0,0,0,0.1);
     }
 </style>
