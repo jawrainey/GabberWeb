@@ -8,16 +8,16 @@ import userPlaylists from './modules/userPlaylists'
 import audioplayer from './modules/audioplayer'
 import auth from './modules/auth'
 
-Vue.use(Vuex);
+Vue.use(Vuex)
 
 export const store = new Vuex.Store({
-    modules: {
-        audioplayer,
-        auth,
-        ui,
-        filterByTags,
-        filterByTopics,
-        regions,
-        userPlaylists
-    }
-});
+  modules: {
+    audioplayer,
+    auth,
+    ui,
+    filterByTags,
+    filterByTopics,
+    regions,
+    userPlaylists
+  }
+})

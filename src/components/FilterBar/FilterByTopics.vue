@@ -35,46 +35,46 @@
     // refactor this into slots; however, how best we expose this local state (isActive)
     // currently eludes me. I could put the logic in shared state (for each filter dropdown),
     // but that feels wrong.
-    import {AudioBus} from '../../AudioBus.js';
+    import {AudioBus} from '../../AudioBus.js'
 
-    export default {
-        created() {
-            this.projectChangedUI();
+export default {
+      created () {
+        this.projectChangedUI()
+      },
+      watch: {
+        '$route': 'projectChangedUI'
+      },
+      data: () => ({
+        isActive: false
+      }),
+      mounted () {
+        AudioBus.$on('FILTER_TAGS_APPLIED', () => {
+          this.isActive = false
+        })
+      },
+      methods: {
+        projectChangedUI () {
+          this.isActive = false
+          this.$store.dispatch('FETCH_TOPICS', this.$route.params.projectID)
         },
-        watch: {
-            '$route': 'projectChangedUI'
-        },
-        data: () => ({
-            isActive: false
-        }),
-        mounted() {
-            AudioBus.$on('FILTER_TAGS_APPLIED', () => {
-                this.isActive = false;
-            });
-        },
-        methods: {
-            projectChangedUI() {
-                this.isActive = false;
-                this.$store.dispatch('FETCH_TOPICS', this.$route.params.projectID);
-            },
-            filterApplied () {
-                this.isActive = !this.isActive;
-                if (this.isActive) {
-                    AudioBus.$emit('FILTER_TOPICS_APPLIED');
-                }
-            }
-        },
-        computed: {
-            ...mapGetters(['regionsLoaded', 'topics', 'numRegionsPerTopic']),
-            selectedTopics: {
-                get() {
-                    return this.$store.getters.selectedTopics;
-                },
-                set(value) {
-                    this.$store.commit("setSelectedTopics", value);
-                }
-            }
+        filterApplied () {
+          this.isActive = !this.isActive
+          if (this.isActive) {
+            AudioBus.$emit('FILTER_TOPICS_APPLIED')
+          }
         }
+      },
+      computed: {
+        ...mapGetters(['regionsLoaded', 'topics', 'numRegionsPerTopic']),
+        selectedTopics: {
+          get () {
+            return this.$store.getters.selectedTopics
+          },
+          set (value) {
+            this.$store.commit('setSelectedTopics', value)
+          }
+        }
+      }
     }
 </script>
 

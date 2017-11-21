@@ -29,26 +29,26 @@
     import AudioPlayer from '../components/AudioPlayer/AudioPlayer.vue'
 
     export default {
-        components: {
-            Playlist,
-            FilterBar,
-            RegionList,
-            AudioPlayer
-        },
-        created () {
-            this.fetchRegions();
-        },
-        watch: {
+      components: {
+        Playlist,
+        FilterBar,
+        RegionList,
+        AudioPlayer
+      },
+      created () {
+        this.fetchRegions()
+      },
+      watch: {
             // When this route is activated (e.g. changes) we want to fetch the regions for
             // the new route (based on the projectID parameter). This also lets us display
             // the loading state while the data is being fetched (e.g. fetching after navigation).
-            '$route': 'fetchRegions'
-        },
-        methods: {
-            fetchRegions () {
-                this.$store.dispatch('FETCH_REGIONS_BY_PROJECT', this.$route.params.projectID);
-            }
+        '$route': 'fetchRegions'
+      },
+      methods: {
+        fetchRegions () {
+          this.$store.dispatch('FETCH_REGIONS_BY_PROJECT', this.$route.params.projectID)
         }
+      }
     }
 </script>
 

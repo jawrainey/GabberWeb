@@ -25,27 +25,27 @@
 <script>
     // TODO: scroll disabled AND click outside to hide
     export default {
-        props: ["region", "playlist"],
-        data: () => ({
-            regionNote: ""
-        }),
+      props: ['region', 'playlist'],
+      data: () => ({
+        regionNote: ''
+      }),
 
-        methods: {
-            addNote() {
-                let payload = {
-                    'note': this.regionNote,
-                    'regionID': this.region.id,
-                    'playlistID': this.$store.getters.lastSelectedPlaylistID
-                };
-                this.$store.dispatch('ADD_NOTE_TO_REGION_IN_PLAYLIST', payload);
-                this.closeModal();
-            },
-            closeModal() {
+      methods: {
+        addNote () {
+          let payload = {
+            'note': this.regionNote,
+            'regionID': this.region.id,
+            'playlistID': this.$store.getters.lastSelectedPlaylistID
+          }
+          this.$store.dispatch('ADD_NOTE_TO_REGION_IN_PLAYLIST', payload)
+          this.closeModal()
+        },
+        closeModal () {
                 // Modifies the UI state only; this is where module namespaces would help.
-                this.$store.commit('showAddRegionNote', false);
-                this.$store.commit('showPlayListMenu', -1);
-            }
+          this.$store.commit('showAddRegionNote', false)
+          this.$store.commit('showPlayListMenu', -1)
         }
+      }
     }
 </script>
 

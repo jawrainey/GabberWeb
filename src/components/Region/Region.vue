@@ -52,37 +52,37 @@
     import {utilsMixin} from '../../mixins/index'
 
     export default {
-        props: ['region'],
-        mixins: [utilsMixin],
-        components: {
-            AddRegionToPlayListMenu
-        },
-        data: () => ({
-            onHover: false,
-            showOptions: false,
-            showNote: false,
-            showTags: false
-        }),
-        methods: {
+      props: ['region'],
+      mixins: [utilsMixin],
+      components: {
+        AddRegionToPlayListMenu
+      },
+      data: () => ({
+        onHover: false,
+        showOptions: false,
+        showNote: false,
+        showTags: false
+      }),
+      methods: {
             // Update the AudioPlayer with this particular region
-            onRegionChosen(region) {
-                this.$store.dispatch('SET_SELECTED_REGION', region);
-            },
-            toggleSelectedPlaylist() {
-                this.$store.commit('showPlayListMenu', this.region.id);
-            }
+        onRegionChosen (region) {
+          this.$store.dispatch('SET_SELECTED_REGION', region)
         },
-        computed: {
-            isRegionSelected() {
-                return (this.region.id === this.$store.getters.selectedRegion.id);
-            },
-            isRegionPlaying() {
-                return (this.isRegionSelected && this.$store.getters.IS_PLAYING)
-            },
-            selectedPlaylist() {
-                return this.$store.getters.showPlayListMenu === this.region.id;
-            }
+        toggleSelectedPlaylist () {
+          this.$store.commit('showPlayListMenu', this.region.id)
         }
+      },
+      computed: {
+        isRegionSelected () {
+          return (this.region.id === this.$store.getters.selectedRegion.id)
+        },
+        isRegionPlaying () {
+          return (this.isRegionSelected && this.$store.getters.IS_PLAYING)
+        },
+        selectedPlaylist () {
+          return this.$store.getters.showPlayListMenu === this.region.id
+        }
+      }
     }
 </script>
 

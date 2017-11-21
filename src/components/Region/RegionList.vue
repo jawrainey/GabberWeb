@@ -13,15 +13,15 @@
     import { mapGetters } from 'vuex'
 
     export default {
-        computed: mapGetters({
-            filteredRegions: 'filteredRegions',
-            regionsLoaded: 'regionsLoaded',
-            regionsLoadedMessage: 'regionsLoadedMessage'
-        }),
-        components: {
-            FilterBar,
-            Region
-        }
+      computed: mapGetters({
+        filteredRegions: 'filteredRegions',
+        regionsLoaded: 'regionsLoaded',
+        regionsLoadedMessage: 'regionsLoadedMessage'
+      }),
+      components: {
+        FilterBar,
+        Region
+      }
     }
 </script>
 

@@ -28,27 +28,27 @@
     import AudioPlayer from '../components/AudioPlayer/AudioPlayer.vue'
 
     export default {
-        components: {
-            Playlist,
-            RegionList,
-            AudioPlayer
-        },
-        created () {
-            this.fetchRegions();
-        },
-        watch: {
-            '$route': 'fetchRegions'
-        },
-        methods: {
-            fetchRegions() {
-                let payload = { playlistID: this.$route.params.playlistID };
-                this.$store.dispatch('FETCH_USER_REGIONS_FOR_PLAYLIST_BY_ID', payload);
-            }
-        },
-        computed: {
-            activePlaylistTitle() {
-                return this.$store.getters.currentPlaylist(this.$route.params.playlistID).title;
-            }
+      components: {
+        Playlist,
+        RegionList,
+        AudioPlayer
+      },
+      created () {
+        this.fetchRegions()
+      },
+      watch: {
+        '$route': 'fetchRegions'
+      },
+      methods: {
+        fetchRegions () {
+          let payload = { playlistID: this.$route.params.playlistID }
+          this.$store.dispatch('FETCH_USER_REGIONS_FOR_PLAYLIST_BY_ID', payload)
         }
+      },
+      computed: {
+        activePlaylistTitle () {
+          return this.$store.getters.currentPlaylist(this.$route.params.playlistID).title
+        }
+      }
     }
 </script>

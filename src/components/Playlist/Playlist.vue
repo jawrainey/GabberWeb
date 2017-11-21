@@ -14,10 +14,10 @@
     import { mapGetters } from 'vuex'
 
     export default {
-        mounted() {
-            this.$store.dispatch('FETCH_USER_PLAYLISTS');
-        },
-        computed: mapGetters(['userPlayLists']),
-        components : { 'playListItem': PlayListItem }
+      mounted () {
+        this.$store.dispatch('FETCH_USER_PLAYLISTS')
+      },
+      computed: mapGetters(['userPlayLists']),
+      components: { 'playListItem': PlayListItem }
     }
 </script>

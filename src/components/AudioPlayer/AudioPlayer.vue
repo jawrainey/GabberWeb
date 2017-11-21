@@ -21,38 +21,38 @@
 </template>
 
 <script>
-    import vueSlider from 'vue-slider-component';
-    import {utilsMixin} from '../../mixins/index'
+    import vueSlider from 'vue-slider-component'
+import {utilsMixin} from '../../mixins/index'
     import { mapActions, mapGetters } from 'vuex'
 
     export default {
-        components: {
-            vueSlider
-        },
-        mixins: [utilsMixin],
-        mounted() {
-            this.$store.commit('AUDIO_PLAYER', this.$refs.player);
-        },
-        methods: {
-            ...mapActions(['PLAY_AUDIO', 'PAUSE_AUDIO', 'NEXT_REGION', 'PREV_REGION', 'SEEK_TEN_FORWARD','SEEK_TEN_BACKWARD']),
-            PAUSE_PLAY() {
+      components: {
+        vueSlider
+      },
+      mixins: [utilsMixin],
+      mounted () {
+        this.$store.commit('AUDIO_PLAYER', this.$refs.player)
+      },
+      methods: {
+        ...mapActions(['PLAY_AUDIO', 'PAUSE_AUDIO', 'NEXT_REGION', 'PREV_REGION', 'SEEK_TEN_FORWARD', 'SEEK_TEN_BACKWARD']),
+        PAUSE_PLAY () {
                 // This is called when the slider is moved. As the position is updated
                 // when play is called 'fresh' it invokes the updated position.
-                this.PAUSE_AUDIO();
-                this.PLAY_AUDIO(this.selectedRegion);
-            }
-        },
-        computed: {
-            ...mapGetters(['selectedRegion', 'filteredRegions', 'IS_PLAYING', 'regionsLoaded']),
-            position: {
-                get() {
-                    return this.$store.getters.POSITION;
-                },
-                set(position) {
-                    this.$store.commit('UPDATE_POSITION', position);
-                }
-            }
+          this.PAUSE_AUDIO()
+          this.PLAY_AUDIO(this.selectedRegion)
         }
+      },
+      computed: {
+        ...mapGetters(['selectedRegion', 'filteredRegions', 'IS_PLAYING', 'regionsLoaded']),
+        position: {
+          get () {
+            return this.$store.getters.POSITION
+          },
+          set (position) {
+            this.$store.commit('UPDATE_POSITION', position)
+          }
+        }
+      }
     }
 </script>
 

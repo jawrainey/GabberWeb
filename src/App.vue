@@ -9,9 +9,9 @@
     import MainHeader from './components/Shared/Header.vue'
 
     export default {
-        components: {
-            MainHeader
-        }
+      components: {
+        MainHeader
+      }
     }
 </script>
 

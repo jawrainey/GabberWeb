@@ -10,9 +10,9 @@
     import FilterByTags from './FilterByTags.vue'
 
     export default {
-        components: {
-            FilterByTopics,
-            FilterByTags
-        }
+      components: {
+        FilterByTopics,
+        FilterByTags
+      }
     }
 </script>

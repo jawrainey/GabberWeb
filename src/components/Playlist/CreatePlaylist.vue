@@ -12,14 +12,14 @@
 
 <script>
     export default {
-        data: () => ({
-            playlistName: ""
-        }),
-        methods: {
-            createPlaylist() {
-                this.$store.dispatch('CREATE_NEW_PLAYLIST', { 'name': this.playlistName});
-                this.$emit('closeCreatePlaylist');
-            }
+      data: () => ({
+        playlistName: ''
+      }),
+      methods: {
+        createPlaylist () {
+          this.$store.dispatch('CREATE_NEW_PLAYLIST', { 'name': this.playlistName })
+          this.$emit('closeCreatePlaylist')
         }
+      }
     }
 </script>
