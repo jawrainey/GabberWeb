@@ -18,7 +18,7 @@
         </div>
         <div class="region-col content">
             <span class="topic">{{ region.interview.topic }}</span>
-            <p class="note" v-if="showNote">{{ region.note }}</p>
+            <p class="note" v-if="showNote && isViewingUserPlaylist">{{ showRegionNote }}</p>
             <div class="tags" v-bind:class="{ showTags: showTags }">
                 <span class="tag" v-for="tag in region.tags">{{ tag }}</span>
             </div>
@@ -31,7 +31,7 @@
                 <div v-if="showOptions" class="dropdown-menu more-options">
                     <div class="dropdown-content">
                         <a :href="region.interview.uri" @click.stop="" target="_blank" class="dropdown-item">View in context</a>
-                        <a @click.stop="showNote = !showNote" class="dropdown-item">
+                        <a v-if="isViewingUserPlaylist" @click.stop="showNote = !showNote" class="dropdown-item">
                             <span v-if="showNote">Hide</span><span v-else>Show</span> note
                         </a>
                         <a @click.stop="showTags = !showTags" class="dropdown-item">
@@ -60,7 +60,7 @@
       data: () => ({
         onHover: false,
         showOptions: false,
-        showNote: false,
+        showNote: true,
         showTags: false
       }),
       methods: {
@@ -81,6 +81,12 @@
         },
         selectedPlaylist () {
           return this.$store.getters.showPlayListMenu === this.region.id
+        },
+        isViewingUserPlaylist () {
+          return this.$route.name === 'userPlaylist'
+        },
+        showRegionNote() {
+          return this.region.note || "You did not add a note for this region"
         }
       }
     }
