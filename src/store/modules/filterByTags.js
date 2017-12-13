@@ -1,4 +1,4 @@
-import {GABBER_API} from '../../api/http-common'
+import {REST_API} from '../../api/http-common'
 
 const state = {
   tags: [],
@@ -21,7 +21,7 @@ const mutations = {
 
 const actions = {
   FETCH_TAGS: ({commit}, projectID) => {
-    GABBER_API.get('/project/' + projectID)
+    REST_API.get('/project/' + projectID)
             .then(response => commit('SET_TAGS', response.data))
             .catch(error => console.log(error))
   }

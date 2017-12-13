@@ -1,5 +1,5 @@
 {
-  "name": "gabber-playlist",
+  "name": "APR",
   "version": "0.0.1",
   "description": "Frontend for viewing, filtering, and creating playlists from regions of audio.",
   "main": "main.js",

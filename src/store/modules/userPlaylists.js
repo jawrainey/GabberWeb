@@ -1,4 +1,4 @@
-import {GABBER_API} from '../../api/http-common'
+import {REST_API} from '../../api/http-common'
 
 const state = {
   userPlayLists: []
@@ -35,12 +35,12 @@ const mutations = {
 
 const actions = {
   FETCH_USER_PLAYLISTS: ({commit, getters}) => {
-    GABBER_API.get('/users/' + getters.USER.id + '/playlists')
+    REST_API.get('/users/' + getters.USER.id + '/playlists')
             .then(response => commit('SET_PLAYLISTS', response.data))
             .catch(error => console.log(error))
   },
   CREATE_NEW_PLAYLIST: ({commit, getters}, payload) => {
-    GABBER_API.post('/users/' + getters.USER.id + '/playlists', {'title': payload.name})
+    REST_API.post('/users/' + getters.USER.id + '/playlists', {'title': payload.name})
             .then(response => commit('ADD_PLAYLIST', response.data))
             .catch(error => console.log(error))
   },
@@ -51,7 +51,7 @@ const actions = {
         // TODO: the only difference between this and FETCH_REGIONS_BY_PROJECT is the endpoint
     let endpoint = '/users/' + getters.USER.id + '/playlists/' + payload.playlistID + '/regions'
     let errorMessage = 'No regions were found for this project.'
-    GABBER_API.get(endpoint)
+    REST_API.get(endpoint)
             .then(
                 response => {
                   if (response.data.length > 0) {
@@ -68,13 +68,13 @@ const actions = {
   },
   ADD_REGION_TO_PLAYLIST: ({commit, getters}, payload) => {
     let endpoint = '/users/' + getters.USER.id + '/playlists/' + payload.playlistID + '/regions'
-    GABBER_API.post(endpoint, {'regionID': payload.regionID})
+    REST_API.post(endpoint, {'regionID': payload.regionID})
             .then(response => commit('ADD_REGION_TO_PLAYLIST', response.data))
             .catch(error => console.log(error))
   },
   REMOVE_REGION_FROM_PLAYLIST ({commit, getters}, payload) {
     let endpoint = '/users/' + getters.USER.id + '/playlists/' + payload.playlistID + '/regions'
-    GABBER_API.delete(endpoint, {data: {'regionID': payload.regionID}})
+    REST_API.delete(endpoint, {data: {'regionID': payload.regionID}})
             .then(() => commit('REMOVE_REGION_FROM_PLAYLIST', payload))
             .catch(error => console.log(error))
   },
@@ -83,7 +83,7 @@ const actions = {
     let endpoint = '/users/' + getters.USER.id + '/playlists/' + payload.playlistID +
             '/region/' + payload.regionID + '/note'
 
-    GABBER_API.post(endpoint, {'note': payload.note})
+    REST_API.post(endpoint, {'note': payload.note})
             .then(response => console.log(response))
             .catch(error => console.log(error))
   }

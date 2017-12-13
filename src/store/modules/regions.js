@@ -1,4 +1,4 @@
-import {GABBER_API} from '../../api/http-common'
+import {REST_API} from '../../api/http-common'
 
 const state = {
   regions: [],
@@ -93,7 +93,7 @@ const actions = {
         // Reset between requests as an error may occur or no results found;
     commit('regionsLoaded', false)
 
-    GABBER_API.get('/project/' + projectID + '/regions/')
+    REST_API.get('/project/' + projectID + '/regions/')
             .then(
                 response => {
                   if (response.data.length > 0) {

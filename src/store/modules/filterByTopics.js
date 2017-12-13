@@ -1,4 +1,4 @@
-import {GABBER_API} from '../../api/http-common'
+import {REST_API} from '../../api/http-common'
 
 const state = {
   topics: [],
@@ -26,7 +26,7 @@ const actions = {
     // TODO: this shares MASSIVE overlap with filterByTags AND
     // it hits the same endpoint ... bad times.
   FETCH_TOPICS: ({commit}, projectID) => {
-    GABBER_API.get('/project/' + projectID)
+    REST_API.get('/project/' + projectID)
             .then(response => commit('SET_TOPICS', response.data))
             .catch(error => console.log(error))
   }
