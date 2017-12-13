@@ -10,7 +10,7 @@ const getters = {
     let filteredPlaylist = state.userPlayLists.filter(playlist => playlist.id === parseInt(playlistID))
     return (filteredPlaylist.length <= 0) ? [] : filteredPlaylist[0]
   },
-    // This maps to a v-model as a computed value
+  // This maps to a v-model as a computed value
   selectedPlaylistsForRegion: (state, getters) => (regionID) => {
     return state.userPlayLists.filter(playlist =>
             playlist.regions.find(r => r.region_id === regionID)
@@ -45,10 +45,10 @@ const actions = {
             .catch(error => console.log(error))
   },
   FETCH_USER_REGIONS_FOR_PLAYLIST_BY_ID: ({commit, getters, dispatch}, payload) => {
-        // Switching between view when regions exist, and none are returned
-        // from the server would otherwise result in viewing the previous set.
+    // Switching between view when regions exist, and none are returned
+    // from the server would otherwise result in viewing the previous set.
     commit('regionsLoaded', false)
-        // TODO: the only difference between this and FETCH_REGIONS_BY_PROJECT is the endpoint
+    // TODO: the only difference between this and FETCH_REGIONS_BY_PROJECT is the endpoint
     let endpoint = '/users/' + getters.USER.id + '/playlists/' + payload.playlistID + '/regions'
     let errorMessage = 'No regions were found for this project.'
     REST_API.get(endpoint)
@@ -78,7 +78,7 @@ const actions = {
             .then(() => commit('REMOVE_REGION_FROM_PLAYLIST', payload))
             .catch(error => console.log(error))
   },
-    // TODO: abstract this to its own module?
+  // TODO: abstract this to its own module?
   ADD_NOTE_TO_REGION_IN_PLAYLIST ({getters}, payload) {
     let endpoint = '/users/' + getters.USER.id + '/playlists/' + payload.playlistID +
             '/region/' + payload.regionID + '/note'

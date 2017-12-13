@@ -64,7 +64,7 @@
         showTags: false
       }),
       methods: {
-            // Update the AudioPlayer with this particular region
+        // Update the AudioPlayer with this particular region
         onRegionChosen (region) {
           this.$store.dispatch('SET_SELECTED_REGION', region)
         },

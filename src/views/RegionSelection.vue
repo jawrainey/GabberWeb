@@ -39,9 +39,6 @@
         this.fetchRegions()
       },
       watch: {
-            // When this route is activated (e.g. changes) we want to fetch the regions for
-            // the new route (based on the projectID parameter). This also lets us display
-            // the loading state while the data is being fetched (e.g. fetching after navigation).
         '$route': 'fetchRegions'
       },
       methods: {

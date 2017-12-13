@@ -16,7 +16,6 @@ const state = {
 
 const getters = {
   regions: state => state.regions,
-  regionURL: state => state.selectedRegion.interview.url,
   selectedRegion: state => state.selectedRegion,
   filteredRegions: function (state, getters) {
     let regions = state.regions
@@ -24,7 +23,7 @@ const getters = {
     let selectedTopics = getters.selectedTopics
 
     if (selectedTopics.length > 0 && selectedTags.length > 0) {
-            // Returning early to not apply other filters
+      // Returning early to not apply other filters
       return regions.filter(
                 r => selectedTopics.includes(r.interview.topic) &&
                     r.tags.some(tag => selectedTags.includes(tag))
@@ -37,7 +36,7 @@ const getters = {
     }
 
     if (selectedTags.length > 0) {
-            // This is currently OR (i.e. some) and should be AND instead;
+      // This is currently OR (i.e. some) and should be AND instead;
       filterRegions = regions.filter(r => r.tags.some(tag => selectedTags.includes(tag)))
     }
     return filterRegions
@@ -51,12 +50,12 @@ const mutations = {
 }
 
 const actions = {
-    // Required in Region.vue and AudioPlayer.vue because the selectedRegion can change
-    // using next/prev, but also when a user clicks a track (region) in the playlist.
+  // Required in Region.vue and AudioPlayer.vue because the selectedRegion can change
+  // using next/prev, but also when a user clicks a track (region) in the playlist.
   SET_SELECTED_REGION: ({dispatch, commit, state}, region) => {
-        // Autoplay when another region is selected in the playlist.
-        // This means we cannot set the state of the selected region yet as
-        // we need to compare the region with the previous selected.
+    // Autoplay when another region is selected in the playlist.
+    // This means we cannot set the state of the selected region yet as
+    // we need to compare the region with the previous selected.
     if (state.selectedRegion.id !== region.id) {
       dispatch('TRACK_CHANGED', region)
     } else {
@@ -67,7 +66,7 @@ const actions = {
   PREV_REGION: ({dispatch}, filteredRegions) => {
     if (filteredRegions.length <= 0) return
     let index = filteredRegions.indexOf(state.selectedRegion)
-        // We are at the start of the filtered list, so go around again
+    // We are at the start of the filtered list, so go around again
     if (index === 0) {
       state.selectedRegion = filteredRegions[filteredRegions.length - 1]
     } else if (index === -1) {
@@ -81,7 +80,7 @@ const actions = {
   NEXT_REGION: ({dispatch}, filteredRegions) => {
     if (filteredRegions.length <= 0) return
     let index = filteredRegions.indexOf(state.selectedRegion)
-        // We are at the end of the filtered list OR the region does not exist
+    // We are at the end of the filtered list OR the region does not exist
     if (index === (filteredRegions.length - 1) || (index === -1)) {
       state.selectedRegion = filteredRegions[0]
     } else {
@@ -90,7 +89,7 @@ const actions = {
     dispatch('TRACK_CHANGED', state.selectedRegion)
   },
   FETCH_REGIONS_BY_PROJECT: ({commit}, projectID) => {
-        // Reset between requests as an error may occur or no results found;
+    // Reset between requests as an error may occur or no results found;
     commit('regionsLoaded', false)
 
     REST_API.get('/project/' + projectID + '/regions/')

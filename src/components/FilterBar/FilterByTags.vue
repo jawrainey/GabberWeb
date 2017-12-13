@@ -47,7 +47,7 @@ export default {
       },
       methods: {
         projectChangedUI () {
-                // Reset the drop-down position and the number of tags selected
+          // Reset the drop-down position and the number of tags selected
           this.isActive = false
           this.$store.dispatch('FETCH_TAGS', this.$route.params.projectID)
         },

@@ -29,7 +29,6 @@
       data: () => ({
         regionNote: ''
       }),
-
       methods: {
         addNote () {
           let payload = {
@@ -41,7 +40,7 @@
           this.closeModal()
         },
         closeModal () {
-                // Modifies the UI state only; this is where module namespaces would help.
+          // Modifies the UI state only; this is where module namespaces would help.
           this.$store.commit('showAddRegionNote', false)
           this.$store.commit('showPlayListMenu', -1)
         }

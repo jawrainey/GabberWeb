@@ -9,7 +9,7 @@ const getters = {
   tags: state => state.tags,
   selectedTags: state => state.selectedTags,
   numRegionsPerTag: (state, getters) => (tag) => {
-        // TODO: this currently does not account for cases or spelling
+    // TODO: this currently does not account for cases or spelling
     return getters.filteredRegions.filter(r => r.tags.includes(tag)).length
   }
 }

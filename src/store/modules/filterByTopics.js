@@ -23,8 +23,8 @@ const mutations = {
 }
 
 const actions = {
-    // TODO: this shares MASSIVE overlap with filterByTags AND
-    // it hits the same endpoint ... bad times.
+  // TODO: this shares MASSIVE overlap with filterByTags AND
+  // it hits the same endpoint ... bad times.
   FETCH_TOPICS: ({commit}, projectID) => {
     REST_API.get('/project/' + projectID)
             .then(response => commit('SET_TOPICS', response.data))

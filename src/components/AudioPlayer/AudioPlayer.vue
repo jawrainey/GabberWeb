@@ -36,8 +36,8 @@ import {utilsMixin} from '../../mixins/index'
       methods: {
         ...mapActions(['PLAY_AUDIO', 'PAUSE_AUDIO', 'NEXT_REGION', 'PREV_REGION', 'SEEK_TEN_FORWARD', 'SEEK_TEN_BACKWARD']),
         PAUSE_PLAY () {
-                // This is called when the slider is moved. As the position is updated
-                // when play is called 'fresh' it invokes the updated position.
+          // This is called when the slider is moved. As the position is updated
+          // when play is called 'fresh' it invokes the updated position.
           this.PAUSE_AUDIO()
           this.PLAY_AUDIO(this.selectedRegion)
         }

@@ -1,6 +1,5 @@
 const state = {
   player: {},
-    // The position of the progress bar as a percentage of the region length
   position: 0,
   isPlaying: false,
   uiProgressTimer: 0
@@ -19,10 +18,10 @@ const mutations = {
 
 const actions = {
   PLAY_AUDIO: ({dispatch, state}, region) => {
-        // When rapidly switching between audio sources an error is thrown (https://goo.gl/LdLk22)
-        // HACK: setting a timeout avoids the promise and loads the next audio (https://goo.gl/nbCrje)
+    // When rapidly switching between audio sources an error is thrown (https://goo.gl/LdLk22)
+    // HACK: setting a timeout avoids the promise and loads the next audio (https://goo.gl/nbCrje)
     setTimeout(function () {
-            // Note: we seek to the start of the region as the whole file is currently sent from the server.
+      // Note: we seek to the start of the region as the whole file is currently sent from the server.
       state.player.currentTime = (state.position > 0) ? (region.start + state.position) : region.start
       state.player.play().catch()
       dispatch('CREATE_PROGRESS_BAR', region)
@@ -66,7 +65,7 @@ const actions = {
   },
   CREATE_PROGRESS_BAR: ({commit, dispatch, getters}, region) => {
     state.uiProgressTimer = setInterval(function () {
-            // NOTE: position is accessed every second from here.
+      // NOTE: position is accessed every second from here.
       if (getters.POSITION >= region.length) {
         dispatch('RESET_AUDIO')
       } else {

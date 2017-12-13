@@ -17,13 +17,13 @@ const getters = {
 const mutations = {
   showPlayListMenu (state, isShowing) {
     if (state.activeShowPlayListMenu === isShowing) {
-            // As the toggle is ID based, we must reset it to null.
+      // As the toggle is ID based, we must reset it to null.
       state.activeShowPlayListMenu = null
     } else {
       state.activeShowPlayListMenu = isShowing
     }
   },
-    // TODO: this really should not be here, but #hack #hack #hack
+  // TODO: this really should not be here, but #hack #hack #hack
   SELECTED_PLAYLISTID_FOR_REGION_TO_ADD: (state, playlistID) => (state.lastSelectedPlaylistID = playlistID),
   showAddRegionNote: (state, isShowing) => (state.showAddRegionNote = isShowing),
   regionsLoaded: (state, isLoaded) => (state.regionsLoaded = isLoaded),
