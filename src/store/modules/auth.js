@@ -1,4 +1,4 @@
-import {GABBER_API} from '../../api/http-common'
+import {REST_API} from '../../api/http-common'
 
 const state = {
   user: null
@@ -14,7 +14,7 @@ const mutations = {
 
 const actions = {
   SET_USER: ({commit}) => {
-    GABBER_API.get('/usertoken')
+    REST_API.get('/usertoken')
             .then(response => commit('SET_USER', response.data))
             .catch(error => console.log(error))
   }
