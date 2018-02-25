@@ -18,7 +18,7 @@ const mutations = {
     state.selectedTopics = selectedTopics
   },
   SET_TOPICS: (state, data) => {
-    state.topics = data.prompts.map(item => item['prompt'])
+    state.topics = data.prompts.map(item => item.text)
   }
 }
 

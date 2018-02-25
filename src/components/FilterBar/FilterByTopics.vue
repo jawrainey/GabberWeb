@@ -79,10 +79,6 @@ export default {
 </script>
 
 <style>
-    .topicSelection .dropdown-content {
-        max-width: 40%;
-    }
-
     .control {
         overflow: hidden;
         text-overflow: ellipsis;
