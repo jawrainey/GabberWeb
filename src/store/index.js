@@ -6,6 +6,7 @@ import filterByTopics from './modules/filterByTopics'
 import regions from './modules/regions'
 import userPlaylists from './modules/userPlaylists'
 import audioplayer from './modules/audioplayer'
+import sessions from './modules/sessions'
 import auth from './modules/auth'
 
 Vue.use(Vuex)
@@ -18,6 +19,7 @@ export const store = new Vuex.Store({
     filterByTags,
     filterByTopics,
     regions,
-    userPlaylists
+    userPlaylists,
+    sessions
   }
 })
