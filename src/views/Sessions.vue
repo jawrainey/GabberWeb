@@ -41,14 +41,20 @@
                     <thead>
                         <tr>
                             <th>Topics</th>
-                            <th>Creator</th>
+                            <th>
+                                <p>Creator</p>
+                                <input v-model="creator" placeholder="Search...">
+                            </th>
                             <th>Participants</th>
-                            <th>Date</th>
+                            <th>
+                                <p>Date</p>
+                                <input v-model="date" placeholder="Search...">
+                            </th>
                             <th>Location</th>
                             <th></th>
                         </tr>
                     </thead>
-                    <session-row v-for="session in PROJECT_SESSIONS" :key="session.id" :projectSession="session"></session-row>
+                    <session-row v-for="session in filteredSessions" :key="session.id" :projectSession="session"></session-row>
                 </table>
             </div>
         </div>
@@ -72,12 +78,31 @@
       // TODO: this should be refactored to a component
       isOverviewShown: false,
       isMembersShown: false,
-      isTopicsShown: false
+      isTopicsShown: false,
+      // filters
+      creator: "",
+      date: ""
     }),
     computed: {
       ...mapGetters(['PROJECT_SESSIONS', 'SESSION_PROJECT']),
       totalAnnotations() {
         return this.PROJECT_SESSIONS.map(i => i.meta.numAnnotations).reduce((t,a) => t + a)
+      },
+      filteredSessions: {
+        get () {
+          let sessions = this.PROJECT_SESSIONS
+          if (this.creator.length >= 1)
+            sessions = sessions.filter(s =>
+              s.creator.toLocaleLowerCase() === this.creator.toLocaleLowerCase() ||
+              s.creator.toLocaleLowerCase().includes(this.creator.toLocaleLowerCase())
+            )
+          if (this.date.length >= 1)
+            sessions = sessions.filter(s =>
+              s.date.toLocaleLowerCase() === this.date.toLocaleLowerCase() ||
+              s.date.toLocaleLowerCase().includes(this.date.toLocaleLowerCase())
+            )
+          return sessions
+        }
       }
     },
     methods: {
