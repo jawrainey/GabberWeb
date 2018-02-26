@@ -1,21 +1,29 @@
 import {REST_API} from '../../api/http-common'
 
 const state = {
-  sessions: []
+  sessions: [],
+  project: null
 }
 const getters = {
-  PROJECT_SESSIONS: state => state.sessions
+  PROJECT_SESSIONS: state => state.sessions,
+  SESSION_PROJECT: state => state.project
 }
 
 const mutations = {
-  SET_PROJECT_SESSIONS: (state, data) => state.sessions = data
+  SET_PROJECT_SESSIONS: (state, data) => state.sessions = data,
+  SET_PROJECT: (state, data) => state.project = data
 }
 
 const actions = {
   FETCH_PROJECT_SESSIONS: ({commit}, projectName) => {
     REST_API.get('/project/' + projectName + '/sessions/')
       .then(response => commit('SET_PROJECT_SESSIONS', response.data.data))
-      .catch(_ => console.log(_))
+      .catch(_ => {})
+  },
+  FETCH_PROJECT: ({commit}, projectSlug) => {
+    REST_API.get('/projectBySlug/' + projectSlug)
+      .then(response => commit('SET_PROJECT', response.data.data))
+      .catch(_ => {})
   }
 }
 
