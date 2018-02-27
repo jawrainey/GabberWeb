@@ -16,8 +16,11 @@
                 </div>
                 <div class="media-right">
                     <a v-if="!isMember" @click="joinProject(project.slug)">Join +</a>
-                    <!--Could do: vuex for user, and check if admin of project? When logged in, get all projects?-->
-                    <!--<span v-if="isAdmin">Edit button </span>-->
+                    <router-link
+                            v-if="isMember && isAdmin"
+                            :to="{name: 'login', params: { playlistSlug: this.project.slug }}">
+                        Edit button
+                    </router-link>
                 </div>
             </div>
             <div class="media">
@@ -60,12 +63,19 @@
       }
     },
     computed: {
+      isAdmin() {
+        if (!this.isMember) return false
+        // The current user is already a member of the project
+        let member = this.project.members.filter(m => parseInt(m.id) === 26)[0]
+        return member.role === "admin";
+      },
+
       // TODO: this should be encapsulated in a ParticipantCircle component
       creatorNameInitals () {
         return this.project.creatorName.split(' ').map(w => w[0].toUpperCase()).join('')
       },
       memberInitals () {
-        return this.project.members.map(p => p.split(' ').map(w => w[0].toUpperCase()).join('')).join(", ")
+        return this.project.members.map(p => p.name.split(' ').map(w => w[0].toUpperCase()).join('')).join(", ")
       }
     }
   }

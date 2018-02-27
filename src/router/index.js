@@ -17,6 +17,7 @@ export const router = new VueRouter({
         { path: '/about/', name: 'about', component: About },
         { path: '/login/', name: 'login', component: Login },
         { path: '/projects/', name: 'Projects', component: Projects },
+        { path: '/project/:projectSlug/edit', name: 'EditProject', component: Projects },
         { path: '/project/:projectSlug/sessions/', name: 'Sessions', component: Sessions },
         { path: '/project/:projectID/playlists/', name: 'ProjectPlaylist', component: RegionSelection },
         { path: '/me/playlist/:playlistID', name: 'userPlaylist', component: UserPlaylist }
