@@ -1,6 +1,5 @@
 <template>
     <div class="box">
-        {{ project.id }}
         <article>
             <div class="media">
                 <div class="media-left">

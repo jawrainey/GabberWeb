@@ -14,12 +14,12 @@
                 </article>
                 <article>
                     <h2 class="title is-3">My projects</h2>
-                    <p v-if="PROJECTS['personal'] && PROJECTS['personal'].length <= 0">You are not a <b>member</b> of any projects. Why not join one below?</p>
-                    <project-item v-for="project in PROJECTS['personal']" :key="project.id" :isMember=true :project="project"></project-item>
+                    <p v-if="MY_PROJECTS && MY_PROJECTS.length <= 0">You are not a <b>member</b> of any projects. Why not join one below?</p>
+                    <project-item v-for="project in MY_PROJECTS" :key="project.id" :isMember=true :project="project"></project-item>
                 </article>
                 <article>
                     <h2 class="title is-3">Public projects</h2>
-                    <project-item v-for="project in PROJECTS['public']" :key="project.id" :isMember=false :project="project"></project-item>
+                    <project-item v-for="project in PUBLIC_PROJECTS" :key="project.id" :project="project"></project-item>
                 </article>
             </div>
         </div>
@@ -38,7 +38,7 @@
       this.$store.dispatch('FETCH_ALL_PROJECTS')
     },
     computed: {
-      ...mapGetters(['PROJECTS'])
+      ...mapGetters(['MY_PROJECTS', 'PUBLIC_PROJECTS'])
     }
   }
 </script>
