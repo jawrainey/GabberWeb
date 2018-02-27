@@ -1,37 +1,28 @@
 <template>
-    <div>
-    <div class="container">
-        <div class="tile is-ancestor">
-            <div class="tile is-vertical is-12">
-                <div class="tile">
-                    <div class="tile is-parent is-vertical">
-                        <h2 class="title is-4">Your playlists</h2>
-                        <playlist></playlist>
-                    </div>
-                    <div class="tile is-parent is-9">
-                        <article class="tile is-child">
-                            <h2 class="column" style="height: 60px;">{{ activePlaylistTitle }}</h2>
-                            <region-list></region-list>
-                        </article>
-                    </div>
-                </div>
-            </div>
+    <base-layout>
+        <div slot="sidebar">
+            <h2 class="title is-4">Your playlists</h2>
+            <playlist></playlist>
         </div>
-    </div>
-    <audio-player></audio-player>
-    </div>
+        <div slot="main">
+            <h2 class="column" style="height: 60px;">{{ activePlaylistTitle }}</h2>
+            <region-list></region-list>
+        </div>
+    </base-layout>
 </template>
 
 <script>
     import Playlist from '../components/Playlist/Playlist.vue'
     import RegionList from '../components/Region/RegionList.vue'
     import AudioPlayer from '../components/AudioPlayer/AudioPlayer.vue'
+    import BaseLayout from '../components/Shared/BaseLayout.vue'
 
     export default {
       components: {
         Playlist,
         RegionList,
-        AudioPlayer
+        AudioPlayer,
+        BaseLayout
       },
       created () {
         this.fetchRegions()

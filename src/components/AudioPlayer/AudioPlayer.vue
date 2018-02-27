@@ -75,6 +75,7 @@ import {utilsMixin} from '../../mixins/index'
         background: #EFEFEF;
         position: fixed;
         bottom: 0;
+        left: 0;
         width: 100%;
     }
 

@@ -1,6 +1,6 @@
 <template>
-    <section class="main-content columns is-fullheight">
-        <aside class="column is-2 is-narrow-mobile is-fullheight section is-hidden-mobile">
+    <base-layout>
+        <div slot="sidebar">
             <p v-if="SESSION_PROJECT" class="menu-label">{{ SESSION_PROJECT.title }}</p>
             <ul class="menu-list" v-if="SESSION_PROJECT">
                 <li>
@@ -33,40 +33,38 @@
                 </li>
             </ul>
             <a href="#" class="button is-fullwidth">Annotation playlist</a>
-        </aside>
-
-        <div class="container column is-10">
-            <div class="section">
-                <table class="table is-hoverable is-fullwidth" style="table-layout: fixed;">
-                    <thead>
-                        <tr>
-                            <th>Topics</th>
-                            <th>
-                                <p>Creator</p>
-                                <input v-model="creator" placeholder="Search...">
-                            </th>
-                            <th>Participants</th>
-                            <th>
-                                <p>Date</p>
-                                <input v-model="date" placeholder="Search...">
-                            </th>
-                            <th>Location</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <session-row v-for="session in filteredSessions" :key="session.id" :projectSession="session"></session-row>
-                </table>
-            </div>
         </div>
-    </section>
+        <div slot="main">
+            <table class="table is-hoverable is-fullwidth" style="table-layout: fixed;">
+                <thead>
+                <tr>
+                    <th>Topics</th>
+                    <th>
+                        <p>Creator</p>
+                        <input v-model="creator" placeholder="Search...">
+                    </th>
+                    <th>Participants</th>
+                    <th>
+                        <p>Date</p>
+                        <input v-model="date" placeholder="Search...">
+                    </th>
+                    <th>Location</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <session-row v-for="session in filteredSessions" :key="session.id" :projectSession="session"></session-row>
+            </table>
+        </div>
+    </base-layout>
 </template>
 
 <script>
   import SessionRow from '../components/Sessions/SessionRow.vue'
+  import BaseLayout from '../components/Shared/BaseLayout.vue'
   import { mapGetters } from 'vuex'
 
   export default {
-    components: {SessionRow},
+    components: {SessionRow, BaseLayout},
     mounted () {
       this.fetchProject()
       this.fetchSessions()
