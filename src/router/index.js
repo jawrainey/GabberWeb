@@ -13,10 +13,10 @@ Vue.use(VueRouter)
 export const router = new VueRouter({
   routes: [
         { path: '/', name: 'home', component: Home },
-        { path: '/sessions/:projectName', name: 'Sessions', component: Sessions },
         { path: '/:projectID', name: 'app', component: RegionSelection },
         { path: '/about/', name: 'about', component: About },
         { path: '/login/', name: 'login', component: Login },
+        { path: '/project/:projectSlug/sessions/', name: 'Sessions', component: Sessions },
         { path: '/me/playlist/:playlistID', name: 'userPlaylist', component: UserPlaylist }
   ]
 })

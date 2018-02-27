@@ -107,10 +107,10 @@
     },
     methods: {
       fetchProject() {
-        this.$store.dispatch('FETCH_PROJECT', this.$route.params.projectName)
+        this.$store.dispatch('FETCH_PROJECT', this.$route.params.projectSlug)
       },
       fetchSessions () {
-        this.$store.dispatch('FETCH_PROJECT_SESSIONS', this.$route.params.projectName)
+        this.$store.dispatch('FETCH_PROJECT_SESSIONS', this.$route.params.projectSlug)
       }
     }
   }

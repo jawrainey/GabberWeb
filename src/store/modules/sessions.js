@@ -21,7 +21,7 @@ const actions = {
       .catch(_ => {})
   },
   FETCH_PROJECT: ({commit}, projectSlug) => {
-    REST_API.get('/projectBySlug/' + projectSlug)
+    REST_API.get('/projectBySlug/' + projectSlug + '/')
       .then(response => commit('SET_PROJECT', response.data.data))
       .catch(_ => {})
   }
