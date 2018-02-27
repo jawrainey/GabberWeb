@@ -26,8 +26,10 @@ const actions = {
   JOIN_PROJECT: ({commit, getters}, projectSlug) => {
     REST_API.post('/project/join/' + projectSlug)
       .then(response => {
-        commit('SET_MY_PROJECTS', getters.MY_PROJECTS.concat(getters.PUBLIC_PROJECTS.filter(p => p.slug === projectSlug)))
-        commit('SET_PUBLIC_PROJECTS', getters.PUBLIC_PROJECTS.filter(p => p.slug !== projectSlug))
+        let projectToJoin = getters.PUBLIC_PROJECTS.filter(p => p.slug === projectSlug)
+        let publicProjectsWithoutProjectToJoin = getters.PUBLIC_PROJECTS.filter(p => p.slug !== projectSlug)
+        commit('SET_MY_PROJECTS', getters.MY_PROJECTS.concat(projectToJoin))
+        commit('SET_PUBLIC_PROJECTS', publicProjectsWithoutProjectToJoin)
       })
       .catch(_ => {})
   },

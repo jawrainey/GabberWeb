@@ -64,12 +64,12 @@
     },
     computed: {
       isAdmin() {
-        if (!this.isMember) return false
-        // The current user is already a member of the project
-        let member = this.project.members.filter(m => parseInt(m.id) === 26)[0]
-        return member.role === "admin";
+        // The current user is already a member of the project, which is not
+        // true if the project was added locally (i.e. when 'JOIN' clicked)
+        let member = this.project.members.filter(m => parseInt(m.id) === 26)
+        if (!this.isMember || member.length <= 0) return false
+        return member[0].role === "admin";
       },
-
       // TODO: this should be encapsulated in a ParticipantCircle component
       creatorNameInitals () {
         return this.project.creatorName.split(' ').map(w => w[0].toUpperCase()).join('')

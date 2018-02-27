@@ -7,10 +7,10 @@
             </div>
             <div class="column is-9">
                 <article>
-                    <h1 class="title is-1">Projects | Search bar</h1>
-                    <span class="button is-success is-rounded">
-                        <strong>Create project</strong>
-                    </span>
+                    <h1 class="title is-1">Projects</h1>
+                    <div class="has-text-centered">
+                        <button class="button is-large is-success is-rounded">Create project</button>
+                    </div>
                 </article>
                 <article>
                     <h2 class="title is-3">My projects</h2>
