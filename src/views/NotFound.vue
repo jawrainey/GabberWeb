@@ -1,13 +1,5 @@
 <template>
-    $END$
+    <main class="container">
+        <p>404, ERROR</p>
+    </main>
 </template>
-
-<script>
-  export default {
-    name: 'not-found'
-  }
-</script>
-
-<style scoped>
-
-</style>
