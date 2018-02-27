@@ -2,6 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import Home from '../views/Home.vue'
+import About from '../views/About.vue'
+import Login from '../views/Login.vue'
 import Sessions from '../views/Sessions.vue'
 import RegionSelection from '../views/RegionSelection.vue'
 import UserPlaylist from '../views/UserPlaylist.vue'
@@ -13,6 +15,8 @@ export const router = new VueRouter({
         { path: '/', name: 'home', component: Home },
         { path: '/sessions/:projectName', name: 'Sessions', component: Sessions },
         { path: '/:projectID', name: 'app', component: RegionSelection },
+        { path: '/about/', name: 'about', component: About },
+        { path: '/login/', name: 'login', component: Login },
         { path: '/me/playlist/:playlistID', name: 'userPlaylist', component: UserPlaylist }
   ]
 })

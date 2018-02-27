@@ -4,22 +4,22 @@
             <div class="level-left">
                 <div class="level-item">
                     <p class="subtitle is-5">
-                        <strong></strong>
+                        <strong>G</strong>
                     </p>
                 </div>
             </div>
             <div class="level-right navigation">
                 <p class="level-item has-text-centered">
-                    <a href="/">Home</a>
+                    <router-link :to="{name: 'home'}">Home</router-link>
                 </p>
                 <p class="level-item has-text-centered">
-                    <a href="/about">About</a>
+                    <router-link :to="{name: 'about'}">About</router-link>
                 </p>
                 <p class="level-item has-text-centered">
-                    <a href="/projects">Projects</a>
+                    <router-link :to="{name: 'Projects'}">Projects</router-link>
                 </p>
                 <p class="level-item has-text-centered">
-                    <a href="/logout">Logout</a>
+                    <router-link :to="{name: 'login'}">Login</router-link>
                 </p>
             </div>
         </nav>
@@ -27,9 +27,8 @@
 </template>
 
 <style>
-    .level-item {
-        margin: 1em;
-        font-size: 1.1em;
+    .level {
+        height: 64px;
     }
     .header {
         border-bottom: 1px solid gold;
