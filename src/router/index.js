@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import About from '../views/About.vue'
 import Login from '../views/Login.vue'
+import Register from '../views/Register.vue'
 import Sessions from '../views/Sessions.vue'
 import RegionSelection from '../views/RegionSelection.vue'
 import UserPlaylist from '../views/UserPlaylist.vue'
@@ -16,8 +17,11 @@ export const router = new VueRouter({
         { path: '/', name: 'home', component: Home },
         { path: '/about/', name: 'about', component: About },
         { path: '/login/', name: 'login', component: Login },
+        { path: '/register/', name: 'register', component: Register },
         { path: '/projects/', name: 'Projects', component: Projects },
+        // Only Administrators of a project can edit
         { path: '/project/:projectSlug/edit', name: 'EditProject', component: Projects },
+        // Only Project Members of Private projects can view sessions and playlists
         { path: '/project/:projectSlug/sessions/', name: 'Sessions', component: Sessions },
         { path: '/project/:projectID/playlists/', name: 'ProjectPlaylist', component: RegionSelection },
         { path: '/me/playlist/:playlistID', name: 'userPlaylist', component: UserPlaylist }

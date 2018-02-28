@@ -7,7 +7,7 @@
             <article>
                 <h1 class="title is-1">Projects</h1>
                 <div class="has-text-centered">
-                    <button class="button is-large is-success is-rounded">Create project</button>
+                    <button class="button is-large is-success">+</button>
                 </div>
             </article>
             <article>
@@ -29,11 +29,19 @@
   import { mapGetters } from 'vuex'
 
   export default {
-    components: {ProjectItem, BaseLayout},
-    name: 'projects',
-    created () {
-      // NOTE: why not also update the session variable and other stuff throughout?
-      this.$store.dispatch('FETCH_ALL_PROJECTS')
+    components: {ProjectItem, BaseLayout, EditProject},
+    mounted () {
+      this.populateProjects()
+    },
+    methods: {
+      populateProjects() {
+        if (this.$store.getters.IS_LOGGED_IN) {
+          this.$store.dispatch('FETCH_ALL_PROJECTS')
+        }
+        else {
+          this.$store.dispatch('FETCH_ALL_PUBLIC_PROJECTS')
+        }
+      }
     },
     computed: {
       ...mapGetters(['MY_PROJECTS', 'PUBLIC_PROJECTS'])

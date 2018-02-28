@@ -19,12 +19,28 @@
                     <router-link :to="{name: 'Projects'}">Projects</router-link>
                 </p>
                 <p class="level-item has-text-centered">
-                    <router-link :to="{name: 'login'}">Login</router-link>
+                    <router-link :to="{name: 'login'}" v-if="!isLoggedIn">Login</router-link>
+                    <a @click="logout" v-else>Logout</a>
                 </p>
             </div>
         </nav>
     </header>
 </template>
+
+<script>
+  export default {
+    methods: {
+      logout() {
+        this.$store.dispatch('LOGOUT_USER')
+      }
+    },
+    computed: {
+      isLoggedIn() {
+        return this.$store.getters.IS_LOGGED_IN
+      }
+    }
+  }
+</script>
 
 <style>
     .level {

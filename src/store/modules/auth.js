@@ -1,22 +1,51 @@
 import {REST_API} from '../../api/http-common'
+import {router} from '../../router/index'
 
 const state = {
-  user: null
+  error: '',
+  isLoggedIn: !!localStorage.getItem("GABBER_ACCESS_TOKEN")
 }
 
 const getters = {
-  USER: state => state.user
+  IS_LOGGED_IN: state => state.isLoggedIn,
+  AUTH_ERROR: state => state.error,
+  BEARER_TOKEN () {
+    return {
+      headers: { Authorization: 'Bearer '.concat(localStorage.getItem('GABBER_ACCESS_TOKEN')) }
+    }
+  }
 }
 
 const mutations = {
-  SET_USER: (state, user) => (state.user = user)
+  IS_LOGGED_IN: (state, data) => (state.isLoggedIn = data),
+  SET_AUTH_ERROR: (state, errorMessage) => (state.error = errorMessage),
+  LOGIN: (state, data) => (state.isLoggedIn = true),
+  LOGOUT: (state, data) => (state.isLoggedIn = false)
 }
 
 const actions = {
-  SET_USER: ({commit}) => {
-    REST_API.get('/usertoken')
-            .then(response => commit('SET_USER', response.data))
-            .catch(error => console.log(error))
+  REGISTER_USER: ({commit}, user) => {
+    REST_API.post('/auth/register/', user)
+      .then(response => {
+        localStorage.setItem("GABBER_ACCESS_TOKEN", response.data.access_token)
+        commit('LOGIN')
+        router.push('/projects')
+      })
+      .catch(e => { commit('SET_AUTH_ERROR', e.response.data.message) })
+  },
+  LOGIN_USER: ({commit}, user) => {
+    REST_API.post('/auth/login/', user)
+      .then(response => {
+        localStorage.setItem("GABBER_ACCESS_TOKEN", response.data.access_token)
+        commit('LOGIN')
+        router.push('/projects')
+      })
+      .catch(e => { commit('SET_AUTH_ERROR', e.response.data.message) })
+  },
+  LOGOUT_USER: ({commit}) => {
+    localStorage.removeItem("GABBER_ACCESS_TOKEN");
+    commit('LOGOUT')
+    router.push('/')
   }
 }
 

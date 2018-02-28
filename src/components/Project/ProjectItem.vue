@@ -59,7 +59,8 @@
     },
     methods: {
       joinProject (projectSlug) {
-        this.$store.dispatch('JOIN_PROJECT', projectSlug);
+        if (this.$store.getters.IS_LOGGED_IN) this.$store.dispatch('JOIN_PROJECT', projectSlug)
+        else console.log("You must be logged in to join a project")
       }
     },
     computed: {

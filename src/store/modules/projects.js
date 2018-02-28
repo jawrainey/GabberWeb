@@ -15,17 +15,25 @@ const mutations = {
 }
 
 const actions = {
-  FETCH_ALL_PROJECTS: ({commit}) => {
-    REST_API.get('/projects/')
+  FETCH_ALL_PROJECTS: ({commit, getters}) => {
+    REST_API.get('/projects/', getters.BEARER_TOKEN)
       .then(response => {
         commit('SET_MY_PROJECTS', response.data.personal)
         commit('SET_PUBLIC_PROJECTS', response.data.public)
       })
       .catch(_ => console.log(_))
   },
-  JOIN_PROJECT: ({commit, getters}, projectSlug) => {
-    REST_API.post('/project/join/' + projectSlug)
+  FETCH_ALL_PUBLIC_PROJECTS: ({commit}) => {
+    REST_API.get('/projects/public')
       .then(response => {
+        commit('SET_MY_PROJECTS', [])
+        commit('SET_PUBLIC_PROJECTS', response.data)
+      })
+      .catch(_ => console.log(_))
+  },
+  JOIN_PROJECT: ({commit, getters}, projectSlug) => {
+    REST_API.post('/project/join/', {'slug': projectSlug}, getters.BEARER_TOKEN)
+      .then(_ => {
         let projectToJoin = getters.PUBLIC_PROJECTS.filter(p => p.slug === projectSlug)
         let publicProjectsWithoutProjectToJoin = getters.PUBLIC_PROJECTS.filter(p => p.slug !== projectSlug)
         commit('SET_MY_PROJECTS', getters.MY_PROJECTS.concat(projectToJoin))
