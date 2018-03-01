@@ -41,7 +41,12 @@ const actions = {
       })
       .catch(_ => {})
   },
-  CREATE_PROJECT: ({}) => {},
+  // TODO: fetching all after adding a project seems quite backwards...
+  CREATE_PROJECT: ({dispatch, getters}, payload) => {
+    return REST_API.post('/project/create/', payload, getters.BEARER_TOKEN)
+      .then(_ => dispatch('FETCH_ALL_PROJECTS'))
+      .catch(e => { throw e.response.data.message })
+  },
   EDIT_PROJECT: ({}) => {},
   EDIT_TOPICS: ({}) => {}
 }

@@ -2,7 +2,6 @@
 <div>
     <h1>Log in to Gabber</h1>
     <input v-model="email" class="input" placeholder="Email" type="text" >
-    <input v-model="email" class="input" placeholder="Email" type="text" >
     <input v-model="password" class="input" placeholder="Password" type="password">
     {{ errorMessage }}
     <a tabindex="100">Forgot password?</a>
