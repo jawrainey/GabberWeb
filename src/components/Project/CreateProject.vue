@@ -50,8 +50,8 @@
         this.addTopicValue = ''
         this.topics.push(event.target.value)
       },
-      removeTopic(event) {
-        this.topics = this.topics.filter(t => t !== event)
+      removeTopic(topicText) {
+        this.topics = this.topics.filter(topic => topic !== topicText)
       },
       onSubmit() {
         // TODO: validate form fields; must have title/description; topics are required.

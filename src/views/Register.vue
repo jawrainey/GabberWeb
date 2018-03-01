@@ -12,7 +12,7 @@
     <p>By signing up, you agree to our Terms of Service and Privacy Policy.</p>
     <hr>
     <div class="control">
-        <button class="button is-link">LOGIN</button>
+        <router-link class="button is-link" :to="{name: 'login'}">LOGIN</router-link>
     </div>
     </div>
 </template>

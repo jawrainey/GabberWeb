@@ -10,7 +10,7 @@
     </div>
     <hr>
     <div class="control">
-        <button class="button is-link">SIGN UP</button>
+        <router-link class="button is-link" :to="{name: 'register'}">SIGN UP</router-link>
     </div>
     </div>
 </template>
