@@ -43,7 +43,10 @@
                         <p>Creator</p>
                         <input v-model="creator" placeholder="Search...">
                     </th>
-                    <th>Participants</th>
+                    <th>
+                        Participants
+                        <input v-model="participants" placeholder="Search...">
+                    </th>
                     <th>
                         <p>Date</p>
                         <input v-model="date" placeholder="Search...">
@@ -79,7 +82,8 @@
       isTopicsShown: false,
       // filters
       creator: "",
-      date: ""
+      date: "",
+      participants: ""
     }),
     computed: {
       ...mapGetters(['PROJECT_SESSIONS', 'SESSION_PROJECT']),
@@ -89,6 +93,15 @@
       filteredSessions: {
         get () {
           let sessions = this.PROJECT_SESSIONS
+          if (this.participants.length >= 1) {
+            sessions = sessions.filter(s =>
+              s.participants.filter(p =>
+                p.toLocaleLowerCase().includes(
+                  this.participants.toLocaleLowerCase()
+                )
+              ).length > 0
+            )
+          }
           if (this.creator.length >= 1)
             sessions = sessions.filter(s =>
               s.creator.toLocaleLowerCase() === this.creator.toLocaleLowerCase() ||
