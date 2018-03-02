@@ -11,6 +11,7 @@ const getters = {
 
 const mutations = {
   SET_MY_PROJECTS: (state, projects) => state.my_projects = projects,
+  UPDATE_MY_PROJECT_BY_INDEX: (state, data) => state.my_projects[data.index] = data.project,
   SET_PUBLIC_PROJECTS: (state, projects) => state.public_projects = projects
 }
 
@@ -47,8 +48,14 @@ const actions = {
       .then(_ => dispatch('FETCH_ALL_PROJECTS'))
       .catch(e => { throw e.response.data.message })
   },
-  EDIT_PROJECT: ({}) => {},
-  EDIT_TOPICS: ({}) => {}
+  UPDATE_PROJECT: ({commit, getters}, payload) => {
+    return REST_API.post('/project/edit/', payload, getters.BEARER_TOKEN)
+      .then((response) => {
+        let index = getters.MY_PROJECTS.findIndex(p => p.id === response.data.project.id)
+        commit('UPDATE_MY_PROJECT_BY_INDEX', {'project': response.data.project, 'index': index})
+      })
+      .catch(e => { throw e.response.data.message })
+  }
 }
 
 export default {

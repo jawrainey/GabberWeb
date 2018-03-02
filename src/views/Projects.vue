@@ -6,7 +6,7 @@
         <div slot="main">
             <article>
                 <h1 class="title is-1">Projects</h1>
-                <div v-if="this.IS_LOGGED_IN">
+                <div v-if="IS_LOGGED_IN">
                     <div class="has-text-centered">
                         <button class="button is-large "
                                 v-bind:class="{ 'is-success': !showCreate, 'is-danger': showCreate }"

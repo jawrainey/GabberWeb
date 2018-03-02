@@ -10,7 +10,11 @@
                     </a>
                     <div v-if="isOverviewShown">
                         <p>{{ SESSION_PROJECT.description }}</p>
-                        <p>Number of sessions ({{ PROJECT_SESSIONS.length }}) | Number of annotations ({{ totalAnnotations }})</p>
+                        <p>
+                            Number of sessions ({{ PROJECT_SESSIONS.length || 0 }})
+                            <br>
+                            Number of annotations ({{ totalAnnotations }})
+                        </p>
                     </div>
                 </li>
                 <li>
@@ -19,7 +23,7 @@
                         <button v-bind:class="[isMembersShown ? 'arrow-down' : 'arrow-right']"></button>
                     </a>
                     <div v-if="isMembersShown" v-for="member in SESSION_PROJECT.members">
-                        {{ member }} <span v-if="SESSION_PROJECT.creatorName === member"> | Creator</span>
+                        {{ member.name }} <span v-if="SESSION_PROJECT.creatorName === member"> | Creator</span>
                     </div>
                 </li>
                 <li>
@@ -28,7 +32,7 @@
                         <button v-bind:class="[isTopicsShown ? 'arrow-down' : 'arrow-right']"></button>
                     </a>
                     <div v-if="isTopicsShown" v-for="topic in SESSION_PROJECT.topics">
-                        {{ topic }}
+                        {{ topic.text }}
                     </div>
                 </li>
             </ul>
