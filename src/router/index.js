@@ -19,10 +19,8 @@ export const router = new VueRouter({
         { path: '/login/', name: 'login', component: Login },
         { path: '/register/', name: 'register', component: Register },
         { path: '/projects/', name: 'Projects', component: Projects },
-        // Only Administrators of a project can edit
-        { path: '/project/:projectSlug/edit', name: 'EditProject', component: Projects },
         // Only Project Members of Private projects can view sessions and playlists
-        { path: '/project/:projectSlug/sessions/', name: 'Sessions', component: Sessions },
+        { path: '/project/:projectID/sessions/', name: 'Sessions', component: Sessions },
         { path: '/project/:projectID/playlists/', name: 'ProjectPlaylist', component: RegionSelection },
         { path: '/me/playlist/:playlistID', name: 'userPlaylist', component: UserPlaylist }
   ]

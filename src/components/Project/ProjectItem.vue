@@ -13,10 +13,10 @@
                     </div>
                 </div>
                 <div class="media-right">
-                    <a v-if="!isMember" @click="joinProject(project.slug)">Join +</a>
+                    <a v-if="!isMember" @click="joinProject(project.id)">Join +</a>
                     <router-link
                             v-if="isMember && isAdmin"
-                            :to="{name: 'login', params: { playlistSlug: this.project.slug }}">
+                            :to="{name: 'login', params: { playlistSlug: project.id }}">
                         Edit button
                     </router-link>
                     <a v-if="!isEditMode" @click="isEditMode = !isEditMode">Edit</a>
@@ -33,7 +33,7 @@
                 </div>
                 <div class="media-right" v-if="!isEditMode">
                     <!-- TODO: the router links are not being updated once the object is edited -->
-                    <router-link class="button is-primary" :to="{name: 'Sessions', params: { projectSlug: project.slug }}">
+                    <router-link class="button is-primary" :to="{name: 'Sessions', params: { projectID: project.id }}">
                         Gabbers
                     </router-link>
                     <router-link class="button is-primary" :to="{name: 'ProjectPlaylist', params: { projectID: project.id }}">
@@ -42,6 +42,17 @@
                 </div>
             </div>
             <div v-if="isEditMode">
+                {{ typeof(project.isPublic) }}
+                <select v-model="project.privacy">
+                    <option value="public" :selected="project.isPublic ? 'selected' : ''">
+                        Public
+                        Anyone can search for and view
+                    </option>
+                    <option value="private" :selected="project.isPublic ? 'selected' : ''">
+                        Private
+                        Only project members can search and view
+                    </option>
+                </select>
                 <h3>Add Topics</h3>
                 <input class="input" :value=addTopicValue placeholder="Add a new topic and press enter to create" @keyup.enter="addTopicField"><br><br>
                 <div v-for="topic in project.topics">
@@ -76,8 +87,8 @@
       topicsRemoved: []
     }),
     methods: {
-      joinProject (projectSlug) {
-        if (this.$store.getters.IS_LOGGED_IN) this.$store.dispatch('JOIN_PROJECT', projectSlug)
+      joinProject (projectID) {
+        if (this.$store.getters.IS_LOGGED_IN) this.$store.dispatch('JOIN_PROJECT', projectID)
         else console.log("You must be logged in to join a project")
       },
       storeTitleChanged (event) {
@@ -115,6 +126,7 @@
         else {
           this.topicsRemoved.push(topicID)
         }
+        // As both are (localProject and storeProject) are added, we must remove em'
         this.project.topics = this.project.topics.filter(t => t.id !== topicID)
       },
       onSubmit () {
@@ -138,9 +150,14 @@
       isAdmin() {
         // The current user is already a member of the project, which is not
         // true if the project was added locally (i.e. when 'JOIN' clicked)
+        // TODO: should get current users id ... how?!
         let member = this.project.members.filter(m => parseInt(m.id) === 26)
         if (!this.isMember || member.length <= 0) return false
         return member[0].role === "admin";
+      },
+      isPublic() {
+        console.log(this.project)
+        return this.project.privacy === 'public'
       }
     }
   }

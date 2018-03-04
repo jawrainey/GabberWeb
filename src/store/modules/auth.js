@@ -9,6 +9,7 @@ const state = {
 const getters = {
   IS_LOGGED_IN: state => state.isLoggedIn,
   AUTH_ERROR: state => state.error,
+  BEARER_TOKEN_OR_NULL: state => state.IS_LOGGED_IN ? state.BEARER_TOKEN : null,
   BEARER_TOKEN () {
     return {
       headers: { Authorization: 'Bearer '.concat(localStorage.getItem('GABBER_ACCESS_TOKEN')) }

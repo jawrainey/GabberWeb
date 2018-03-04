@@ -15,14 +15,9 @@ const mutations = {
 }
 
 const actions = {
-  FETCH_PROJECT_SESSIONS: ({commit, getters}, projectName) => {
-    REST_API.get('/project/' + projectName + '/sessions/', getters.BEARER_TOKEN)
+  FETCH_PROJECT_SESSIONS: ({commit, getters}, projectID) => {
+    REST_API.get('/projects/' + projectID + '/sessions/', getters.BEARER_TOKEN_OR_NULL)
       .then(response => commit('SET_PROJECT_SESSIONS', response.data))
-      .catch(_ => {})
-  },
-  FETCH_PROJECT: ({commit}, projectSlug) => {
-    REST_API.get('/projectBySlug/' + projectSlug + '/')
-      .then(response => commit('SET_PROJECT', response.data.data))
       .catch(_ => {})
   }
 }
