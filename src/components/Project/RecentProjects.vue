@@ -13,9 +13,9 @@ export default {
 }
 </script>
 
-<style lang="stylus" scoped>
+<style lang="sass" scoped>
 
-@import '~stylus/shared'
+@import "~sass/shared"
 
 .recent-projects
     ul

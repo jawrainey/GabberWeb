@@ -138,15 +138,15 @@
   }
 </script>
 
-<style lang="stylus" scoped>
-@import "~stylus/shared"
+<style lang="sass" scoped>
+@import "~sass/shared"
 
 .project-tile
-    radius($radius-large)
-    background-color $grey-darker
-    border-left $primary 10px solid
-    margin-bottom 20px
-    padding 20px
+  +border-radius($radius-large)
+  background-color: $grey-darker
+  border-left: $primary 10px solid
+  margin-bottom: 20px
+  padding: 20px
 
 .media-right
     .button:not(:last-child)

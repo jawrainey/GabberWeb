@@ -28,7 +28,6 @@ base-layout
 
     section.section(slot="meta-sidebar")
         p Project meta content
-
 </template>
 
 <script>
@@ -59,11 +58,11 @@ base-layout
   }
 </script>
 
-<style lang="stylus" scoped>
+<style lang="sass" scoped>
 
-@import '~stylus/shared'
+@import "~sass/shared"
 
 .project-group
-    margin-top 40px
+  margin-top: 40px
 
 </style>

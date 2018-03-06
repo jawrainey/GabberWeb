@@ -12,7 +12,7 @@
         </tr>
         <tr v-if="isShown">
             <td colspan="2">
-                <template v-for="topic in projectSession.topics">
+                <template v-for="topic, id in projectSession.topics">
                     <p>{{ topic }}</p>
                 </template>
             </td>

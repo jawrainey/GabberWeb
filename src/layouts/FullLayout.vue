@@ -1,0 +1,67 @@
+<template lang="pug">
+.full-layout(:class="typeClass")
+  site-header
+  aside.left(v-if="$slots.left")
+    slot(name="left")
+  main
+    slot
+  aside.right(v-if="$slots.right")
+    slot(name="right")
+</template>
+
+<script>
+import SiteHeader from '../components/SiteHeader'
+import SiteFooter from '../components/SiteFooter'
+
+export default {
+  components: { SiteHeader, SiteFooter },
+  data () {
+    return { typeClass: this.calcTypeClass() }
+  },
+  updated () {
+    this.typeClass = this.calcTypeClass()
+  },
+  methods: {
+    calcTypeClass () {
+      if (!this.$slots.left && !this.$slots.right) return 'only-main'
+      if (this.$slots.left && !this.$slots.right) return 'left-main'
+      if (!this.$slots.left && this.$slots.right) return 'main-right'
+      return 'left-main-right'
+    }
+  }
+}
+</script>
+
+<style lang="scss">
+.full-layout {
+  display: grid;
+  height: 100vh;
+  grid-template-rows: 60px auto;
+  
+  &.left-main-right {
+    grid-template-columns: 2fr 8fr 2fr;
+    grid-template-areas: 'header header header' 'left main right';
+  }
+  &.left-main {
+    grid-template-columns: 2fr 10fr;
+    grid-template-areas: 'header header' 'left main';
+  }
+  &.main-right {
+    grid-template-columns: 10fr 2fr;
+    grid-template-areas: 'header header' 'main right';
+  }
+  &.only-main {
+    grid-template-areas: 'header' 'main';
+  }
+  
+  > header { grid-area: header; }
+  > main { grid-area: main; }
+  > .left { grid-area: left; border-right: 1px solid #444; }
+  > .right { grid-area: right; border-left: 1px solid #444; }
+
+  > main, > .left, > .right {
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+</style>

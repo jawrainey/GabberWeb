@@ -28,7 +28,6 @@ section.section.is-medium
             .control
                 router-link.button.is-info.is-link.is-rounded(v-bind:to="{ name: 'register' }") SIGN UP
         .column.is-one-third
-
 </template>
 
 <script>

@@ -10,18 +10,53 @@ import RegionSelection from '../views/RegionSelection.vue'
 import UserPlaylist from '../views/UserPlaylist.vue'
 import Projects from '../views/Projects.vue'
 
+import * as ROUTES from '../const/routes'
+
 Vue.use(VueRouter)
 
-export const router = new VueRouter({
-  routes: [
-        { path: '/', name: 'home', component: Home },
-        { path: '/about/', name: 'about', component: About },
-        { path: '/login/', name: 'login', component: Login },
-        { path: '/register/', name: 'register', component: Register },
-        { path: '/projects/', name: 'Projects', component: Projects },
-        // Only Project Members of Private projects can view sessions and playlists
-        { path: '/project/:projectID/sessions/', name: 'Sessions', component: Sessions },
-        { path: '/project/:projectID/playlists/', name: 'ProjectPlaylist', component: RegionSelection },
-        { path: '/me/playlist/:playlistID', name: 'userPlaylist', component: UserPlaylist }
-  ]
-})
+const routes = [
+  {
+    path: '/',
+    name: ROUTES.HOME_ROUTE,
+    component: Home
+  },
+  {
+    path: '/about/',
+    name: ROUTES.ABOUT_ROUTE,
+    component: About
+  },
+  {
+    path: '/login/',
+    name: ROUTES.LOGIN_ROUTE,
+    component: Login
+  },
+  {
+    path: '/register/',
+    name: ROUTES.REGISTER_ROUTE,
+    component: Register
+  },
+  {
+    path: '/projects/',
+    name: ROUTES.PROJECTS_ROUTE,
+    component: Projects
+  },
+  
+  // Only Project Members of Private projects can view sessions and playlists
+  {
+    path: '/project/:projectID/sessions/',
+    name: ROUTES.SESSIONS_ROUTE,
+    component: Sessions
+  },
+  {
+    path: '/project/:projectID/playlists/',
+    name: ROUTES.PROJECT_PLAYLIST_ROUTE,
+    component: RegionSelection
+  },
+  {
+    path: '/me/playlist/:playlistID',
+    name: ROUTES.USER_PLAYLIST_ROUTE,
+    component: UserPlaylist
+  }
+]
+
+export const router = new VueRouter({ routes })

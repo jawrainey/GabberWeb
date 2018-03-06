@@ -7,15 +7,13 @@
             slot(name="main")
         aside.column.is-desktop
             slot(name="meta-sidebar")
-
 </template>
 
-<style lang="stylus" scoped>
-
-@import '~stylus/shared'
+<style lang="sass" scoped>
+@import "~sass/shared"
 
 .columns
-    flex-wrap wrap
-    align-items stretch
+  flex-wrap: wrap
+  align-items: stretch
 
 </style>

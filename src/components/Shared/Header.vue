@@ -31,8 +31,8 @@
   }
 </script>
 
-<style lang="stylus">
-@import '~stylus/shared'
+<style lang="sass">
+@import "~sass/shared"
 
 .level
     height 64px

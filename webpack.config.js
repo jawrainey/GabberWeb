@@ -24,6 +24,10 @@ module.exports = {
                 loader: 'style-loader!css-loader!stylus-loader'
             },
             {
+                test: /\.(sass|scss)$/,
+                loader: 'style-loader!css-loader'
+            },
+            {
                 test: /\.js$/,
                 loader: 'babel-loader',
                 exclude: /node_modules/
@@ -42,8 +46,7 @@ module.exports = {
         alias: {
             'vue$': 'vue/dist/vue.esm.js',
             '@': resolve('src'),
-            'bulma': resolve('node_modules/bulma.styl'),
-            'stylus': resolve('src/assets/stylus'),
+            'sass': resolve('src/assets/sass'),
             'images': resolve('src/assets/images'),
             'scripts': resolve('src/assets/scripts')
         }
