@@ -50,12 +50,7 @@ base-layout
     },
     methods: {
       populateProjects() {
-        if (this.IS_LOGGED_IN) {
-          this.$store.dispatch('FETCH_ALL_PROJECTS')
-        }
-        else {
-          this.$store.dispatch('FETCH_ALL_PUBLIC_PROJECTS')
-        }
+        this.$store.dispatch('FETCH_ALL_PROJECTS')
       }
     },
     computed: {

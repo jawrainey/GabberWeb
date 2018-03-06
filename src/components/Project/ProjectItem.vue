@@ -8,8 +8,8 @@
                     .content
                         input(v-model="project.title" @change="storeTitleChanged" v-bind:disabled="!isEditMode" class="input" type="text")
                 .media-right
-                    a(v-if="!isMember" @click="joinProject(project.slug)") Join
-                    router-link(v-if="isMember && isAdmin" v-bind:to="{name: 'login', params: { playlistSlug: this.project.slug }}")
+                    a(v-if="!isMember" @click="joinProject(project.id)") Join
+                    router-link(v-if="isMember && isAdmin" v-bind:to="{name: 'login', params: { playlistSlug: this.project.id }}")
                         | Edit button
                     a(v-if="!isEditMode" @click="isEditMode = !isEditMode") Edit
                     a(v-else @click="isEditMode = !isEditMode") Close
@@ -21,10 +21,17 @@
                     //- <!-- TODO: the router links are not being updated once the object is edited -->
                     router-link.button.is-success.is-rounded(v-bind:to="{name: 'ProjectPlaylist', params: { projectID: project.id }}")
                         | Playlists
-                    router-link.button.is-success.is-rounded(v-bind:to="{name: 'Sessions', params: { projectSlug: project.slug }}")
+                    router-link.button.is-success.is-rounded(v-bind:to="{name: 'Sessions', params: { projectSlug: project.id }}")
                         | Gabbers
 
             div(v-if="isEditMode")
+                select(v-model="project.privacy")
+                    option(value="public", :selected="project.isPublic ? 'selected' : ''")
+                        | Public
+                        | Anyone can search for and view
+                    option(value="private", :selected="!project.isPublic ? 'selected' : ''")
+                        | Public
+                        | Anyone can search for and view
                 h5.subtitle.is-5 Add Topics
                 input.input(v-bind:value="addTopicValue" placeholder="Add a new topic and press enter to create" @keyup.enter="addTopicField")
                 div(v-for="topic in project.topics")
@@ -55,8 +62,8 @@
       topicsRemoved: []
     }),
     methods: {
-      joinProject (projectSlug) {
-        if (this.$store.getters.IS_LOGGED_IN) this.$store.dispatch('JOIN_PROJECT', projectSlug)
+      joinProject (projectID) {
+        if (this.$store.getters.IS_LOGGED_IN) this.$store.dispatch('JOIN_PROJECT', projectID)
         else console.log("You must be logged in to join a project")
       },
       storeTitleChanged (event) {
@@ -94,6 +101,7 @@
         else {
           this.topicsRemoved.push(topicID)
         }
+        // As both are (localProject and storeProject) are added, we must remove em'
         this.project.topics = this.project.topics.filter(t => t.id !== topicID)
       },
       onSubmit () {
@@ -117,9 +125,14 @@
       isAdmin() {
         // The current user is already a member of the project, which is not
         // true if the project was added locally (i.e. when 'JOIN' clicked)
+        // TODO: should get current users id ... how?!
         let member = this.project.members.filter(m => parseInt(m.id) === 26)
         if (!this.isMember || member.length <= 0) return false
         return member[0].role === "admin";
+      },
+      isPublic() {
+        console.log(this.project)
+        return this.project.privacy === 'public'
       }
     }
   }
