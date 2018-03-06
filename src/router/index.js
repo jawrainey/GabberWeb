@@ -8,7 +8,7 @@ import Register from '../views/Register.vue'
 import Sessions from '../views/Sessions.vue'
 import RegionSelection from '../views/RegionSelection.vue'
 import UserPlaylist from '../views/UserPlaylist.vue'
-import Projects from '../views/Projects.vue'
+import ProjectList from '../views/ProjectList.vue'
 
 import * as ROUTES from '../const/routes'
 
@@ -37,8 +37,8 @@ const routes = [
   },
   {
     path: '/projects/',
-    name: ROUTES.PROJECTS_ROUTE,
-    component: Projects
+    name: ROUTES.PROJECT_LIST_ROUTE,
+    component: ProjectList
   },
   
   // Only Project Members of Private projects can view sessions and playlists

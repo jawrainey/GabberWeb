@@ -7,11 +7,11 @@
 </template>
 
 <script>
-// import SiteHeader from '../components/SiteHeader'
-// import SiteFooter from '../components/SiteFooter'
+import SiteHeader from '../components/Shared/SiteHeader'
+import SiteFooter from '../components/Shared/SiteFooter'
 
 export default {
-  // components: { SiteHeader, SiteFooter }
+  components: { SiteHeader, SiteFooter }
 }
 </script>
 

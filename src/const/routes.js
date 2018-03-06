@@ -9,7 +9,7 @@ export const TERMS_ROUTE = 'Terms'
 export const LOGIN_ROUTE = 'login'
 export const REGISTER_ROUTE = 'register'
 
-export const PROJECTS_ROUTE = 'Projects'
+export const PROJECT_LIST_ROUTE = 'Projects'
 export const SESSIONS_ROUTE = 'Sessions'
 export const PROJECT_PLAYLIST_ROUTE = 'ProjectPlaylist'
 export const USER_PLAYLIST_ROUTE = 'userPlaylist'

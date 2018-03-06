@@ -1,15 +1,14 @@
 <template lang="pug">
 #app-wrapper
-  main-header
   router-view
 </template>
 
 <script>
-import MainHeader from './components/Shared/Header.vue'
+import SiteHeader from './components/Shared/SiteHeader.vue'
 
 export default {
   components: {
-    MainHeader
+    SiteHeader
   }
 }
 </script>

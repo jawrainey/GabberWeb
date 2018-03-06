@@ -3,15 +3,15 @@
   site-header
   aside.left(v-if="$slots.left")
     slot(name="left")
-  main
-    slot
+  main.main
+    slot(name="main")
   aside.right(v-if="$slots.right")
     slot(name="right")
 </template>
 
 <script>
-import SiteHeader from '../components/SiteHeader'
-import SiteFooter from '../components/SiteFooter'
+import SiteHeader from '../components/Shared/SiteHeader'
+import SiteFooter from '../components/Shared/SiteFooter'
 
 export default {
   components: { SiteHeader, SiteFooter },
@@ -32,36 +32,47 @@ export default {
 }
 </script>
 
-<style lang="scss">
-.full-layout {
-  display: grid;
-  height: 100vh;
-  grid-template-rows: 60px auto;
-  
-  &.left-main-right {
-    grid-template-columns: 2fr 8fr 2fr;
-    grid-template-areas: 'header header header' 'left main right';
-  }
-  &.left-main {
-    grid-template-columns: 2fr 10fr;
-    grid-template-areas: 'header header' 'left main';
-  }
-  &.main-right {
-    grid-template-columns: 10fr 2fr;
-    grid-template-areas: 'header header' 'main right';
-  }
-  &.only-main {
-    grid-template-areas: 'header' 'main';
-  }
-  
-  > header { grid-area: header; }
-  > main { grid-area: main; }
-  > .left { grid-area: left; border-right: 1px solid #444; }
-  > .right { grid-area: right; border-left: 1px solid #444; }
+<style lang="sass">
 
-  > main, > .left, > .right {
-    overflow: scroll;
-    -webkit-overflow-scrolling: touch;
-  }
-}
+=overflow-scroll
+  overflow: scroll
+  -webkit-overflow-scrolling: touch
+
+.full-layout
+  display: grid
+  height: 100vh
+  grid-template-rows: 60px auto
+
+  &.left-main-right
+    grid-template-columns: 2fr 8fr 2fr
+    grid-template-areas: 'header header header' 'left main right'
+  &.left-main
+    grid-template-columns: 2fr 10fr
+    grid-template-areas: 'header header' 'left main'
+  &.main-right
+    grid-template-columns: 10fr 2fr
+    grid-template-areas: 'header header' 'main right'
+  &.only-main
+    grid-template-areas: 'header' 'main'
+
+  > header
+    grid-area: header
+  
+  > main
+    +overflow-scroll
+    grid-area: main
+  
+  > .left
+    +overflow-scroll
+    background-color: $grey-darker
+    grid-area: left
+    border-right: 1px solid $grey-dark
+  
+  > .right
+    +overflow-scroll
+    background-color: $grey
+    grid-area: right
+    border-left: 1px solid $grey-dark
+
+    
 </style>

@@ -1,13 +1,27 @@
 <template lang="pug">
-main
-    .container
-        section.section.is-large
-            .columns
-                .column.is-one-third
-                    img(src="https://gabber.audio/static/img/screen.gif")
-                .column.is-two-thirds
-                    section.section.is-medium
-                        h1.title.is-1 Your voice matters
-                        h2.subtitle.is-2 Record, publish, and collaboratively annotate audio interviews with Gabber
-                        router-link.button.is-success.is-large.is-rounded(v-bind:to="{ name: 'Projects' }") Explore Projects
+simple-layout
+  .container
+    section.section.is-large
+      .columns
+        .column.is-one-third
+          img(src="https://gabber.audio/static/img/screen.gif")
+        .column.is-two-thirds
+          section.section.is-medium
+            h1.title.is-1 Your voice matters
+            h2.subtitle.is-2 Record, publish, and collaboratively annotate audio interviews with Gabber
+            router-link.button.is-success.is-large.is-rounded(:to="projectsRoute")
+              span Explore Projects
+              .icon: fa(icon="chevron-right")
 </template>
+
+<script>
+import { PROJECT_LIST_ROUTE } from '@/const/routes'
+import SimpleLayout from '@/layouts/SimpleLayout'
+
+export default {
+  components: { SimpleLayout },
+  computed: {
+    projectsRoute () { return { name: PROJECT_LIST_ROUTE } }
+  }
+}
+</script>
