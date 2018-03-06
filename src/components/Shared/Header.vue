@@ -1,30 +1,19 @@
-<template>
-    <header class="header">
-        <nav class="level">
-            <div class="level-left">
-                <div class="level-item">
-                    <p class="subtitle is-5">
-                        <strong>G</strong>
-                    </p>
-                </div>
-            </div>
-            <div class="level-right navigation">
-                <p class="level-item has-text-centered">
-                    <router-link :to="{name: 'home'}">Home</router-link>
-                </p>
-                <p class="level-item has-text-centered">
-                    <router-link :to="{name: 'about'}">About</router-link>
-                </p>
-                <p class="level-item has-text-centered">
-                    <router-link :to="{name: 'Projects'}">Projects</router-link>
-                </p>
-                <p class="level-item has-text-centered">
-                    <router-link :to="{name: 'login'}" v-if="!isLoggedIn">Login</router-link>
-                    <a @click="logout" v-else>Logout</a>
-                </p>
-            </div>
-        </nav>
-    </header>
+<template lang="pug">
+    header.header
+        nav.level
+            .level-left
+                .level-item.has-text-centered
+                    router-link#site-logo(v-bind:to="{ name: 'home' }") G
+            .level-right#navigation
+                //- p.level-item.has-text-centered
+                    router-link(v-bind:to="{ name: 'home' }") Home
+                //- p.level-item.has-text-centered
+                    router-link(v-bind:to="{ name: 'about' }") About
+                //- p.level-item.has-text-centered
+                    router-link(v-bind:to="{ name: 'Projects' }") Projects
+                p.level-item.has-text-centered
+                    router-link(v-bind:to="{ name: 'login' }" v-if="!isLoggedIn") Login
+                    a(@click="logout" v-else) Logout
 </template>
 
 <script>
@@ -42,29 +31,33 @@
   }
 </script>
 
-<style>
-    .level {
-        height: 64px;
-    }
-    .header {
-        border-bottom: 1px solid gold;
-    }
+<style lang="stylus">
+@import '~stylus/shared'
 
-    .navigation p {
-        height: 64px;
-        line-height: 64px;
-    }
+.level
+    height 64px
 
-    .navigation p a {
-        color: #000000;
-        transition: background-color .3s;
-        font-size: 1rem;
-        display: block;
-        padding: 0 15px;
-        cursor: pointer;
-    }
+.header
+    // border-bottom $header-border-bottom 1px solid
 
-    .navigation p a:hover {
-        background-color: rgba(0,0,0,0.1);
-    }
+    #site-logo
+        color $white
+        font-size 2.8rem
+        font-weight bold
+        height 64px
+        line-height 64px
+        width 64px
+
+    #navigation p
+        height 64px
+        line-height 64px
+        a
+            color $white
+            cursor pointer
+            display block
+            font-size 1rem
+            padding 0 15px
+            transition background-color .3s
+            &:hover
+                background-color rgba(0,0,0,0.1)
 </style>

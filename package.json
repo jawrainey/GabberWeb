@@ -8,7 +8,9 @@
   "license": "MIT",
   "private": true,
   "babel": {
-    "presets": ["stage-2"]
+    "presets": [
+      "stage-2"
+    ]
   },
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
@@ -16,6 +18,10 @@
   },
   "dependencies": {
     "axios": "^0.17.0",
+    "bulma.styl": "^0.6.11",
+    "pug": "^2.0.0-rc.4",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.2",
     "vue": "^2.4.4",
     "vue-router": "^3.0.1",
     "vue-slider-component": "^2.4.5",

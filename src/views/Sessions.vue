@@ -1,6 +1,7 @@
 <template>
     <base-layout>
-        <div slot="sidebar">
+        <section slot="navigation-sidebar" class="section">
+            <p>Navigation  content</p>
             <p v-if="SESSION_PROJECT" class="menu-label">{{ SESSION_PROJECT.title }}</p>
             <ul class="menu-list" v-if="SESSION_PROJECT">
                 <li>
@@ -37,8 +38,9 @@
                 </li>
             </ul>
             <a href="#" class="button is-fullwidth">Annotation playlist</a>
-        </div>
-        <div slot="main">
+        </section>
+        <section slot="main" class="section">
+            <h1 class="title is-1">Gabbers</h1>
             <table class="table is-hoverable is-fullwidth" style="table-layout: fixed;">
                 <thead>
                 <tr>
@@ -61,7 +63,7 @@
                 </thead>
                 <session-row v-for="session in filteredSessions" :key="session.id" :projectSession="session"></session-row>
             </table>
-        </div>
+        </section>
     </base-layout>
 </template>
 

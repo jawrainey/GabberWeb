@@ -1,46 +1,47 @@
-<template>
-    <base-layout>
-        <div slot="sidebar">
-            <p>Sidebar content</p>
-        </div>
-        <div slot="main">
-            <article>
-                <h1 class="title is-1">Projects</h1>
-                <div v-if="IS_LOGGED_IN">
-                    <div class="has-text-centered">
-                        <button class="button is-large "
-                                v-bind:class="{ 'is-success': !showCreate, 'is-danger': showCreate }"
-                                @click="showCreate = !showCreate">
-                            <span v-if="!showCreate">Create</span>
-                            <span v-else>Close</span>
-                        </button>
-                    </div>
-                    <create-project v-if="showCreate" @projectCreated="showCreate=false"></create-project>
-                </div>
-            </article>
-            <article>
-                <h2 class="title is-3">My projects</h2>
-                <p v-if="MY_PROJECTS && MY_PROJECTS.length <= 0">You are not a <b>member</b> of any projects. Why not join one below?</p>
-                <project-item v-for="project in MY_PROJECTS" :key="project.id" :isMember=true :project="project"></project-item>
-            </article>
-            <article>
-                <h2 class="title is-3">Public projects</h2>
-                <project-item v-for="project in PUBLIC_PROJECTS" :key="project.id" :project="project"></project-item>
-            </article>
-        </div>
-    </base-layout>
+<template lang="pug">
+
+base-layout
+
+    section.section(slot="navigation-sidebar")
+        .tile.is-vertical
+            h5.subtitle.is-5 Search Projects
+            input(type="text" placeholder="Search...")
+        .tile.is-vertical
+            recent-projects
+    section.section(slot="main")
+
+        h1.title.is-1 Projects
+
+        div(v-if="IS_LOGGED_IN")
+            button.button.is-rounded(v-bind:class="{ 'is-success': !showCreate, 'is-danger': showCreate }" @click="showCreate = !showCreate") {{ showCreate ? 'Close' : 'Create' }}
+            create-project(v-if="showCreate" @projectCreated="showCreate=false")
+
+        .project-group
+            h4.subtitle.is-4 My projects
+            p(v-if="MY_PROJECTS && MY_PROJECTS.length <= 0") You are not a <b>member</b> of any projects.
+            project-item(v-for="project in MY_PROJECTS" v-bind:key="project.id" v-bind:isMember="true" v-bind:project="project")
+
+        .project-group
+            h4.subtitle.is-4 Public projects
+            p(v-if="PUBLIC_PROJECTS && PUBLIC_PROJECTS.length <= 0") There are no public projects.
+            project-item(v-for="project in PUBLIC_PROJECTS" v-bind:key="project.id" v-bind:project="project")
+
+    section.section(slot="meta-sidebar")
+        p Project meta content
+
 </template>
 
 <script>
   import ProjectItem from '../components/Project/ProjectItem.vue'
   import BaseLayout from '../components/Shared/BaseLayout.vue'
   import CreateProject from '../components/Project/CreateProject.vue'
+  import RecentProjects from '@/components/Project/RecentProjects.vue'
   import { mapGetters } from 'vuex'
 
   // Edit will emit that it has submitted (only once form is valid and response from server);
   // From here, we can then hide the edit form and highlight the project?
   export default {
-    components: {ProjectItem, BaseLayout, CreateProject},
+    components: {ProjectItem, BaseLayout, CreateProject, RecentProjects},
     data: () => ({
       showCreate: false,
     }),
@@ -62,3 +63,12 @@
     }
   }
 </script>
+
+<style lang="stylus" scoped>
+
+@import '~stylus/shared'
+
+.project-group
+    margin-top 40px
+
+</style>

@@ -1,57 +1,36 @@
-<template>
-    <div class="box">
-        <article>
-            <div class="media">
-                <p class="help is-danger" v-if="isEditMode">{{ errorMessage }}</p>
-                <div class="media-content">
-                    <div class="content">
-                        <input v-model=project.title
-                               @change="storeTitleChanged"
-                               :disabled="!isEditMode"
-                               class="input"
-                               type="text">
-                    </div>
-                </div>
-                <div class="media-right">
-                    <a v-if="!isMember" @click="joinProject(project.slug)">Join +</a>
-                    <router-link
-                            v-if="isMember && isAdmin"
-                            :to="{name: 'login', params: { playlistSlug: this.project.slug }}">
-                        Edit button
-                    </router-link>
-                    <a v-if="!isEditMode" @click="isEditMode = !isEditMode">Edit</a>
-                    <a v-else @click="isEditMode = !isEditMode">Close</a>
-                </div>
-            </div>
-            <div class="media">
-                <div class="media-content">
-                    <input v-model=project.description
-                           @change="storeDescriptionChanged"
-                           :disabled="!isEditMode"
-                           class="input"
-                           type="text">
-                </div>
-                <div class="media-right" v-if="!isEditMode">
-                    <!-- TODO: the router links are not being updated once the object is edited -->
-                    <router-link class="button is-primary" :to="{name: 'Sessions', params: { projectSlug: project.slug }}">
-                        Gabbers
-                    </router-link>
-                    <router-link class="button is-primary" :to="{name: 'ProjectPlaylist', params: { projectID: project.id }}">
-                        Playlists
-                    </router-link>
-                </div>
-            </div>
-            <div v-if="isEditMode">
-                <h3>Add Topics</h3>
-                <input class="input" :value=addTopicValue placeholder="Add a new topic and press enter to create" @keyup.enter="addTopicField"><br><br>
-                <div v-for="topic in project.topics">
-                    <input class="input" type="text" v-model=topic.text @change="topicEdited" :id=topic.id>
-                    <button @click="removeTopic(topic.id)">Remove</button>
-                </div>
-            </div>
-            <a v-if="isEditMode" v-on:click.stop="onSubmit" class="button is-primary is-right">Update</a>
-        </article>
-    </div>
+<template lang="pug">
+    .project-tile
+        article
+            .media
+                p.help.is-danger(v-if="isEditMode") {{ errorMessage }}
+                .media-content
+                    h4.title.is-4 {{ project.title }}
+                    .content
+                        input(v-model="project.title" @change="storeTitleChanged" v-bind:disabled="!isEditMode" class="input" type="text")
+                .media-right
+                    a(v-if="!isMember" @click="joinProject(project.slug)") Join
+                    router-link(v-if="isMember && isAdmin" v-bind:to="{name: 'login', params: { playlistSlug: this.project.slug }}")
+                        | Edit button
+                    a(v-if="!isEditMode" @click="isEditMode = !isEditMode") Edit
+                    a(v-else @click="isEditMode = !isEditMode") Close
+
+            .media
+                .media-content
+                    input(v-model="project.description" @change="storeDescriptionChanged" v-bind:disabled="!isEditMode" class="input" type="text")
+                .media-right(v-if="!isEditMode")
+                    //- <!-- TODO: the router links are not being updated once the object is edited -->
+                    router-link.button.is-success.is-rounded(v-bind:to="{name: 'ProjectPlaylist', params: { projectID: project.id }}")
+                        | Playlists
+                    router-link.button.is-success.is-rounded(v-bind:to="{name: 'Sessions', params: { projectSlug: project.slug }}")
+                        | Gabbers
+
+            div(v-if="isEditMode")
+                h5.subtitle.is-5 Add Topics
+                input.input(v-bind:value="addTopicValue" placeholder="Add a new topic and press enter to create" @keyup.enter="addTopicField")
+                div(v-for="topic in project.topics")
+                    input.input(type="text" v-model="topic.text" @change="topicEdited" v-bind:id="topic.id")
+                    button(@click="removeTopic(topic.id)") Remove
+            a.button.is-primary.is-right(v-if="isEditMode" v-on:click.stop="onSubmit") Update
 </template>
 
 <script>
@@ -146,8 +125,17 @@
   }
 </script>
 
-<style scoped>
-    .box {
-        border-left: 20px solid #FD7C81;
-    }
+<style lang="stylus" scoped>
+@import "~stylus/shared"
+
+.project-tile
+    radius($radius-large)
+    background-color $grey-darker
+    border-left $primary 10px solid
+    margin-bottom 20px
+    padding 20px
+
+.media-right
+    .button:not(:last-child)
+        margin-right 10px
 </style>

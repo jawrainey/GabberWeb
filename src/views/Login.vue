@@ -1,18 +1,34 @@
-<template>
-<div>
-    <h1>Log in to Gabber</h1>
-    <input v-model="email" class="input" placeholder="Email" type="text" >
-    <input v-model="password" class="input" placeholder="Password" type="password">
-    {{ errorMessage }}
-    <a tabindex="100">Forgot password?</a>
-    <div class="control">
-        <button class="button is-link" @click="login">LOG IN</button>
-    </div>
-    <hr>
-    <div class="control">
-        <router-link class="button is-link" :to="{name: 'register'}">SIGN UP</router-link>
-    </div>
-    </div>
+<template lang="pug">
+
+section.section.is-medium
+
+    .columns
+        .column.is-one-third
+        .column.is-one-third.has-text-centered
+            h3.title.is-3 Login to Gabber
+
+            .field
+                label.label
+                    span.has-text-white.has-text-left Email
+                input(v-model="email" class="input" placeholder="Email" type="text")
+            .field
+                label.label
+                    span.has-text-white.has-text-left Password
+                input(v-model="password" class="input" placeholder="Password" type="password")
+
+            p {{ errorMessage }}
+
+            a.has-text-info.is-link(tabindex="100") Forgot password?
+            
+            .control
+                button.button.is-success.is-link.is-rounded(@click="login") LOG IN
+
+            hr
+
+            .control
+                router-link.button.is-info.is-link.is-rounded(v-bind:to="{ name: 'register' }") SIGN UP
+        .column.is-one-third
+
 </template>
 
 <script>

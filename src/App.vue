@@ -1,8 +1,9 @@
-<template>
-    <div class="container">
-        <main-header class="container"></main-header>
-        <router-view></router-view>
-    </div>
+<template lang="pug">
+
+#app-wrapper
+    main-header
+    router-view
+
 </template>
 
 <script>
