@@ -13,7 +13,7 @@ box-layout
       label.label Full Name
       input.input(
         type="text",
-        v-model="fullName",
+        v-model="fullname",
         @keyup.enter="register",
         placeholder="Jim Halpert"
       )
@@ -24,7 +24,7 @@ box-layout
         type="text",
         v-model="email",
         @keyup.enter="register",
-        placeholder="geoff@example.com"
+        placeholder="jim@example.com"
       )
     
     .field

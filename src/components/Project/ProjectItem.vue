@@ -116,8 +116,8 @@ export default {
         topicsRemoved: JSON.stringify(this.topicsRemoved)
       }
       this.$store.dispatch('UPDATE_PROJECT', projectToPush)
-        .then(() => this.isEditMode = false)
-        .catch((e) => this.errorMessage = e)
+        .then(() => { this.isEditMode = false })
+        .catch((e) => { this.errorMessage = e })
     }
   },
   computed: {

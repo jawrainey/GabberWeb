@@ -13,7 +13,7 @@
                 <input :value=addTopicValue placeholder="Add a new topic and press enter to create" @keyup.enter="addTopicField"><br><br>
             </div>
 
-            <div class="control" v-for="(topic, index) in topics">
+            <div class="control" v-for="(topic, index) in topics" :key="index">
                 <input type="text" v-model=topics[index] v-if="topics[index]"> |
                 <span @click="removeTopic(topic)">Remove</span>
             </div>
