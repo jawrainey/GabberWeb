@@ -1,8 +1,9 @@
 <template lang="pug">
 section.box-layout.section.is-medium
-  .columns.is-centered.is-gapless
-    .column.is-half.box
-      slot
+  .container
+    .columns.is-centered.is-gapless
+      .column.is-half.box
+        slot
 </template>
 
 <script>

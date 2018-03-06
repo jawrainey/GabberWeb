@@ -3,7 +3,7 @@ import {router} from '../../router/index'
 
 const state = {
   error: '',
-  isLoggedIn: !!localStorage.getItem("GABBER_ACCESS_TOKEN")
+  isLoggedIn: !!localStorage.getItem('GABBER_ACCESS_TOKEN')
 }
 
 const getters = {
@@ -28,7 +28,7 @@ const actions = {
   REGISTER_USER: ({commit}, user) => {
     REST_API.post('/auth/register/', user)
       .then(response => {
-        localStorage.setItem("GABBER_ACCESS_TOKEN", response.data.access_token)
+        localStorage.setItem('GABBER_ACCESS_TOKEN', response.data.access_token)
         commit('LOGIN')
         router.push('/projects')
       })
@@ -37,14 +37,14 @@ const actions = {
   LOGIN_USER: ({commit}, user) => {
     REST_API.post('/auth/login/', user)
       .then(response => {
-        localStorage.setItem("GABBER_ACCESS_TOKEN", response.data.access_token)
+        localStorage.setItem('GABBER_ACCESS_TOKEN', response.data.access_token)
         commit('LOGIN')
         router.push('/projects')
       })
       .catch(e => { commit('SET_AUTH_ERROR', e.response.data.message) })
   },
   LOGOUT_USER: ({commit}) => {
-    localStorage.removeItem("GABBER_ACCESS_TOKEN");
+    localStorage.removeItem('GABBER_ACCESS_TOKEN')
     commit('LOGOUT')
     router.push('/')
   }

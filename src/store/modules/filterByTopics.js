@@ -27,8 +27,8 @@ const actions = {
   // it hits the same endpoint ... bad times.
   FETCH_TOPICS: ({commit}, projectID) => {
     REST_API.get('/project/' + projectID)
-            .then(response => commit('SET_TOPICS', response.data))
-            .catch(error => console.log(error))
+      .then(response => commit('SET_TOPICS', response.data))
+      .catch(error => console.log(error))
   }
 }
 

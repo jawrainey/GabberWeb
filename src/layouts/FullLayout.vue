@@ -70,9 +70,8 @@ export default {
   
   > .right
     +overflow-scroll
-    background-color: $grey
+    background-color: $grey-darker
     grid-area: right
     border-left: 1px solid $grey-dark
-
     
 </style>

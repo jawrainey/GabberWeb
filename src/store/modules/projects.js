@@ -10,9 +10,9 @@ const getters = {
 }
 
 const mutations = {
-  SET_MY_PROJECTS: (state, projects) => state.my_projects = projects,
-  UPDATE_MY_PROJECT_BY_INDEX: (state, data) => state.my_projects[data.index] = data.project,
-  SET_PUBLIC_PROJECTS: (state, projects) => state.public_projects = projects
+  SET_MY_PROJECTS: (state, projects) => { state.my_projects = projects },
+  UPDATE_MY_PROJECT_BY_INDEX: (state, data) => { state.my_projects[data.index] = data.project },
+  SET_PUBLIC_PROJECTS: (state, projects) => { state.public_projects = projects }
 }
 
 const actions = {
@@ -30,7 +30,7 @@ const actions = {
       .catch(_ => {})
   },
   JOIN_PROJECT: ({commit, getters}, projectID) => {
-    REST_API.post('/projects/' +  + projectID + '/membership/', {}, getters.BEARER_TOKEN)
+    REST_API.post('/projects/' + +projectID + '/membership/', {}, getters.BEARER_TOKEN)
       .then(_ => {
         let projectToJoin = getters.PUBLIC_PROJECTS.filter(p => p.id === projectID)
         let publicProjectsWithoutProjectToJoin = getters.PUBLIC_PROJECTS.filter(p => p.id !== projectID)

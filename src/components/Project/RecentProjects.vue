@@ -9,7 +9,7 @@
 
 <script>
 export default {
-    name: 'recent-projects'
+  name: 'recent-projects'
 }
 </script>
 

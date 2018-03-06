@@ -48,48 +48,48 @@
 </template>
 
 <script>
-    import AddRegionToPlayListMenu from './AddRegionToPlayListMenu.vue'
-    import {utilsMixin} from '../../mixins/index'
+import AddRegionToPlayListMenu from './AddRegionToPlayListMenu.vue'
+import {utilsMixin} from '../../mixins/index'
 
-    export default {
-      props: ['region'],
-      mixins: [utilsMixin],
-      components: {
-        AddRegionToPlayListMenu
-      },
-      data: () => ({
-        onHover: false,
-        showOptions: false,
-        showNote: true,
-        showTags: false
-      }),
-      methods: {
-        // Update the AudioPlayer with this particular region
-        onRegionChosen (region) {
-          this.$store.dispatch('SET_SELECTED_REGION', region)
-        },
-        toggleSelectedPlaylist () {
-          this.$store.commit('showPlayListMenu', this.region.id)
-        }
-      },
-      computed: {
-        isRegionSelected () {
-          return (this.region.id === this.$store.getters.selectedRegion.id)
-        },
-        isRegionPlaying () {
-          return (this.isRegionSelected && this.$store.getters.IS_PLAYING)
-        },
-        selectedPlaylist () {
-          return this.$store.getters.showPlayListMenu === this.region.id
-        },
-        isViewingUserPlaylist () {
-          return this.$route.name === 'userPlaylist'
-        },
-        showRegionNote() {
-          return this.region.note || "You did not add a note for this region"
-        }
-      }
+export default {
+  props: ['region'],
+  mixins: [utilsMixin],
+  components: {
+    AddRegionToPlayListMenu
+  },
+  data: () => ({
+    onHover: false,
+    showOptions: false,
+    showNote: true,
+    showTags: false
+  }),
+  methods: {
+    // Update the AudioPlayer with this particular region
+    onRegionChosen (region) {
+      this.$store.dispatch('SET_SELECTED_REGION', region)
+    },
+    toggleSelectedPlaylist () {
+      this.$store.commit('showPlayListMenu', this.region.id)
     }
+  },
+  computed: {
+    isRegionSelected () {
+      return (this.region.id === this.$store.getters.selectedRegion.id)
+    },
+    isRegionPlaying () {
+      return (this.isRegionSelected && this.$store.getters.IS_PLAYING)
+    },
+    selectedPlaylist () {
+      return this.$store.getters.showPlayListMenu === this.region.id
+    },
+    isViewingUserPlaylist () {
+      return this.$route.name === 'userPlaylist'
+    },
+    showRegionNote () {
+      return this.region.note || 'You did not add a note for this region'
+    }
+  }
+}
 </script>
 
 <style>

@@ -22,8 +22,8 @@ const mutations = {
 const actions = {
   FETCH_TAGS: ({commit}, projectID) => {
     REST_API.get('/project/' + projectID)
-            .then(response => commit('SET_TAGS', response.data))
-            .catch(error => console.log(error))
+      .then(response => commit('SET_TAGS', response.data))
+      .catch(error => console.log(error))
   }
 }
 

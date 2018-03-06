@@ -26,14 +26,14 @@ import { HOME_ROUTE, ABOUT_ROUTE, PROJECT_LIST_ROUTE, LOGIN_ROUTE } from '@/cons
 
 export default {
   computed: {
-    isLoggedIn() { return this.$store.getters.IS_LOGGED_IN },
+    isLoggedIn () { return this.$store.getters.IS_LOGGED_IN },
     homeRoute () { return { name: HOME_ROUTE } },
     aboutRoute () { return { name: ABOUT_ROUTE } },
     projectsRoute () { return { name: PROJECT_LIST_ROUTE } },
     loginRoute () { return { name: LOGIN_ROUTE } }
   },
   methods: {
-    logout() {
+    logout () {
       this.$store.dispatch('LOGOUT_USER')
     },
     routeClass (route) {

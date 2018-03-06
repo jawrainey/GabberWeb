@@ -8,21 +8,21 @@
 </template>
 
 <script>
-    import FilterBar from '../FilterBar/TheFilterBar.vue'
-    import Region from '../Region/Region.vue'
-    import { mapGetters } from 'vuex'
+import FilterBar from '../FilterBar/TheFilterBar.vue'
+import Region from '../Region/Region.vue'
+import { mapGetters } from 'vuex'
 
-    export default {
-      computed: mapGetters({
-        filteredRegions: 'filteredRegions',
-        regionsLoaded: 'regionsLoaded',
-        regionsLoadedMessage: 'regionsLoadedMessage'
-      }),
-      components: {
-        FilterBar,
-        Region
-      }
-    }
+export default {
+  computed: mapGetters({
+    filteredRegions: 'filteredRegions',
+    regionsLoaded: 'regionsLoaded',
+    regionsLoadedMessage: 'regionsLoadedMessage'
+  }),
+  components: {
+    FilterBar,
+    Region
+  }
+}
 </script>
 
 <style>

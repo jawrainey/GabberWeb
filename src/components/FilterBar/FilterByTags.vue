@@ -27,54 +27,54 @@
 </template>
 
 <script>
-    import {mapGetters} from 'vuex'
-    import {AudioBus} from '../../AudioBus.js'
+import {mapGetters} from 'vuex'
+import {AudioBus} from '../../AudioBus.js'
 
 export default {
-      created () {
-        this.projectChangedUI()
-      },
-      watch: {
-        '$route': 'projectChangedUI'
-      },
-      data: () => ({
-        isActive: false
-      }),
-      mounted () {
-        AudioBus.$on('FILTER_TOPICS_APPLIED', () => {
-          this.isActive = false
-        })
-      },
-      methods: {
-        projectChangedUI () {
-          // Reset the drop-down position and the number of tags selected
-          this.isActive = false
-          this.$store.dispatch('FETCH_TAGS', this.$route.params.projectID)
-        },
-        filterApplied () {
-          this.isActive = !this.isActive
-          if (this.isActive) {
-            AudioBus.$emit('FILTER_TAGS_APPLIED')
-          }
-        }
-      },
-      computed: {
-        ...mapGetters(['tags', 'regionsLoaded', 'numRegionsPerTag']),
-        selectedTags: {
-          get () {
-            return this.$store.getters.selectedTags
-          },
-          set (value) {
-            this.$store.commit('setSelectedTags', value)
-          }
-        }
-      },
-      filters: {
-        capitalize: function (string) {
-          return string.charAt(0).toUpperCase() + string.slice(1)
-        }
+  created () {
+    this.projectChangedUI()
+  },
+  watch: {
+    '$route': 'projectChangedUI'
+  },
+  data: () => ({
+    isActive: false
+  }),
+  mounted () {
+    AudioBus.$on('FILTER_TOPICS_APPLIED', () => {
+      this.isActive = false
+    })
+  },
+  methods: {
+    projectChangedUI () {
+      // Reset the drop-down position and the number of tags selected
+      this.isActive = false
+      this.$store.dispatch('FETCH_TAGS', this.$route.params.projectID)
+    },
+    filterApplied () {
+      this.isActive = !this.isActive
+      if (this.isActive) {
+        AudioBus.$emit('FILTER_TAGS_APPLIED')
       }
     }
+  },
+  computed: {
+    ...mapGetters(['tags', 'regionsLoaded', 'numRegionsPerTag']),
+    selectedTags: {
+      get () {
+        return this.$store.getters.selectedTags
+      },
+      set (value) {
+        this.$store.commit('setSelectedTags', value)
+      }
+    }
+  },
+  filters: {
+    capitalize: function (string) {
+      return string.charAt(0).toUpperCase() + string.slice(1)
+    }
+  }
+}
 </script>
 
 <style>

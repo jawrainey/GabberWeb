@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import App from './App.vue'
-import {store} from './store/index'
-import {router} from './router'
+import { store } from './store/index'
+import { router } from './router'
+
+import './api'
 
 import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 import fontawesome from '@fortawesome/fontawesome'

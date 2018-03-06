@@ -10,8 +10,8 @@ const getters = {
 }
 
 const mutations = {
-  SET_PROJECT_SESSIONS: (state, data) => state.sessions = data,
-  SET_PROJECT: (state, data) => state.project = data
+  SET_PROJECT_SESSIONS: (state, data) => { state.sessions = data },
+  SET_PROJECT: (state, data) => { state.project = data }
 }
 
 const actions = {

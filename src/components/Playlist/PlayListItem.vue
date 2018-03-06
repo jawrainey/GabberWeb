@@ -10,20 +10,20 @@
 </template>
 
 <script>
-    import {utilsMixin} from '../../mixins/index'
+import {utilsMixin} from '../../mixins/index'
 
-    export default {
-      props: ['playlist'],
-      mixins: [utilsMixin],
-      computed: {
-        sumOfRegionsLengthInSeconds () {
-          return this.playlist.regions.reduce((s, region) => s + region.length, 0)
-        },
-        numOfRegions () {
-          return this.playlist.regions.length
-        }
-      }
+export default {
+  props: ['playlist'],
+  mixins: [utilsMixin],
+  computed: {
+    sumOfRegionsLengthInSeconds () {
+      return this.playlist.regions.reduce((s, region) => s + region.length, 0)
+    },
+    numOfRegions () {
+      return this.playlist.regions.length
     }
+  }
+}
 </script>
 
 <style>

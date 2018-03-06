@@ -19,11 +19,11 @@ export default {
 @import "~bulma/bulma.sass"
 @import "~bulmaswatch/darkly/_overrides.scss"
 
-.button
-  text-transform: uppercase
-
 .button:focus
   text-decoration: underline
+
+.button.is-uppercase
+  text-transform: uppercase
 
 .input
   background-color: $grey-lighter

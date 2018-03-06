@@ -21,39 +21,39 @@
 </template>
 
 <script>
-    import vueSlider from 'vue-slider-component'
+import vueSlider from 'vue-slider-component'
 import {utilsMixin} from '../../mixins/index'
-    import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
-    export default {
-      components: {
-        vueSlider
+export default {
+  components: {
+    vueSlider
+  },
+  mixins: [utilsMixin],
+  mounted () {
+    this.$store.commit('AUDIO_PLAYER', this.$refs.player)
+  },
+  methods: {
+    ...mapActions(['PLAY_AUDIO', 'PAUSE_AUDIO', 'NEXT_REGION', 'PREV_REGION', 'SEEK_TEN_FORWARD', 'SEEK_TEN_BACKWARD']),
+    PAUSE_PLAY () {
+      // This is called when the slider is moved. As the position is updated
+      // when play is called 'fresh' it invokes the updated position.
+      this.PAUSE_AUDIO()
+      this.PLAY_AUDIO(this.selectedRegion)
+    }
+  },
+  computed: {
+    ...mapGetters(['selectedRegion', 'filteredRegions', 'IS_PLAYING', 'regionsLoaded']),
+    position: {
+      get () {
+        return this.$store.getters.POSITION
       },
-      mixins: [utilsMixin],
-      mounted () {
-        this.$store.commit('AUDIO_PLAYER', this.$refs.player)
-      },
-      methods: {
-        ...mapActions(['PLAY_AUDIO', 'PAUSE_AUDIO', 'NEXT_REGION', 'PREV_REGION', 'SEEK_TEN_FORWARD', 'SEEK_TEN_BACKWARD']),
-        PAUSE_PLAY () {
-          // This is called when the slider is moved. As the position is updated
-          // when play is called 'fresh' it invokes the updated position.
-          this.PAUSE_AUDIO()
-          this.PLAY_AUDIO(this.selectedRegion)
-        }
-      },
-      computed: {
-        ...mapGetters(['selectedRegion', 'filteredRegions', 'IS_PLAYING', 'regionsLoaded']),
-        position: {
-          get () {
-            return this.$store.getters.POSITION
-          },
-          set (position) {
-            this.$store.commit('UPDATE_POSITION', position)
-          }
-        }
+      set (position) {
+        this.$store.commit('UPDATE_POSITION', position)
       }
     }
+  }
+}
 </script>
 
 <style>
@@ -111,7 +111,6 @@ import {utilsMixin} from '../../mixins/index'
         -ms-flex-align: center;
         align-items: center;
     }
-
 
     #audioplayer__buttons .back-ten {
         background-image: url("data:image/svg+xml;base64, PHN2ZyBmaWxsPSIjMDAwMDAwIiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8ZGVmcz4KICAgICAgICA8cGF0aCBkPSJNMCAwaDI0djI0SDBWMHoiIGlkPSJhIi8+CiAgICA8L2RlZnM+CiAgICA8Y2xpcFBhdGggaWQ9ImIiPgogICAgICAgIDx1c2Ugb3ZlcmZsb3c9InZpc2libGUiIHhsaW5rOmhyZWY9IiNhIi8+CiAgICA8L2NsaXBQYXRoPgogICAgPHBhdGggY2xpcC1wYXRoPSJ1cmwoI2IpIiBkPSJNMTIgNVYxTDcgNmw1IDVWN2MzLjMgMCA2IDIuNyA2IDZzLTIuNyA2LTYgNi02LTIuNy02LTZINGMwIDQuNCAzLjYgOCA4IDhzOC0zLjYgOC04LTMuNi04LTgtOHptLTEuMSAxMUgxMHYtMy4zTDkgMTN2LS43bDEuOC0uNmguMVYxNnptNC4zLTEuOGMwIC4zIDAgLjYtLjEuOGwtLjMuNnMtLjMuMy0uNS4zLS40LjEtLjYuMS0uNCAwLS42LS4xLS4zLS4yLS41LS4zLS4yLS4zLS4zLS42LS4xLS41LS4xLS44di0uN2MwLS4zIDAtLjYuMS0uOGwuMy0uNnMuMy0uMy41LS4zLjQtLjEuNi0uMS40IDAgLjYuMWMuMi4xLjMuMi41LjNzLjIuMy4zLjYuMS41LjEuOHYuN3ptLS45LS44di0uNXMtLjEtLjItLjEtLjMtLjEtLjEtLjItLjItLjItLjEtLjMtLjEtLjIgMC0uMy4xbC0uMi4ycy0uMS4yLS4xLjN2MnMuMS4yLjEuMy4xLjEuMi4yLjIuMS4zLjEuMiAwIC4zLS4xbC4yLS4ycy4xLS4yLjEtLjN2LTEuNXoiLz4KPC9zdmc+");

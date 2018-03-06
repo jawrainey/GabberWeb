@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <base-layout>
         <section slot="navigation-sidebar" class="section">
             <p>Navigation  content</p>
@@ -131,4 +131,4 @@
       }
     }
   }
-</script>
+</script> -->

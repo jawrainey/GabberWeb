@@ -10,14 +10,14 @@
 </template>
 
 <script>
-    import PlayListItem from './PlayListItem.vue'
-    import { mapGetters } from 'vuex'
+import PlayListItem from './PlayListItem.vue'
+import { mapGetters } from 'vuex'
 
-    export default {
-      mounted () {
-        this.$store.dispatch('FETCH_USER_PLAYLISTS')
-      },
-      computed: mapGetters(['userPlayLists']),
-      components: { 'playListItem': PlayListItem }
-    }
+export default {
+  mounted () {
+    this.$store.dispatch('FETCH_USER_PLAYLISTS')
+  },
+  computed: mapGetters(['userPlayLists']),
+  components: { 'playListItem': PlayListItem }
+}
 </script>

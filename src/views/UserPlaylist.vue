@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <base-layout>
         <div slot="sidebar">
             <h2 class="title is-4">Your playlists</h2>
@@ -42,4 +42,4 @@
         }
       }
     }
-</script>
+</script> -->

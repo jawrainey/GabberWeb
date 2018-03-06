@@ -6,13 +6,13 @@
 </template>
 
 <script>
-    import FilterByTopics from './FilterByTopics.vue'
-    import FilterByTags from './FilterByTags.vue'
+import FilterByTopics from './FilterByTopics.vue'
+import FilterByTags from './FilterByTags.vue'
 
-    export default {
-      components: {
-        FilterByTopics,
-        FilterByTags
-      }
-    }
+export default {
+  components: {
+    FilterByTopics,
+    FilterByTags
+  }
+}
 </script>

@@ -29,18 +29,18 @@
 </template>
 
 <script>
-  export default {
-    props: ['projectSession'],
-    data: () => ({
-      isShown: false
-    }),
-    computed: {
-      // TODO: this should be encapsulated in a ParticipantCircle component
-      participantInits () {
-        return this.projectSession.participants.map(p => p.split(' ').map(w => w[0].toUpperCase()).join('')).join(", ")
-      }
+export default {
+  props: ['projectSession'],
+  data: () => ({
+    isShown: false
+  }),
+  computed: {
+    // TODO: this should be encapsulated in a ParticipantCircle component
+    participantInits () {
+      return this.projectSession.participants.map(p => p.split(' ').map(w => w[0].toUpperCase()).join('')).join(', ')
     }
   }
+}
 </script>
 
 <style>

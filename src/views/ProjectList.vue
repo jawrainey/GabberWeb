@@ -1,5 +1,4 @@
 <template lang="pug">
-
 full-layout
   section.section(slot="left")
     .tile.is-vertical
@@ -24,29 +23,29 @@ full-layout
       h4.subtitle.is-4 Public projects
       p(v-if="PUBLIC_PROJECTS && PUBLIC_PROJECTS.length <= 0") There are no public projects.
       project-item(v-for="project in PUBLIC_PROJECTS" v-bind:key="project.id" v-bind:project="project")
-  //- section.section(slot="right")
-  //-   p Project meta content
+  section.section(slot="right")
+    p Project meta content
 </template>
 
 <script>
-import ProjectItem from '../components/Project/ProjectItem'
-import FullLayout from '../layouts/FullLayout'
-import CreateProject from '../components/Project/CreateProject'
-import RecentProjects from '@/components/Project/RecentProjects'
+// import ProjectItem from '../components/Project/ProjectItem'
+// import FullLayout from '../layouts/FullLayout'
+// import CreateProject from '../components/Project/CreateProject'
+// import RecentProjects from '@/components/Project/RecentProjects'
 import { mapGetters } from 'vuex'
 
 // Edit will emit that it has submitted (only once form is valid and response from server);
 // From here, we can then hide the edit form and highlight the project?
 export default {
-  components: { ProjectItem, FullLayout, CreateProject, RecentProjects },
+  // components: { ProjectItem, FullLayout, CreateProject, RecentProjects },
   data: () => ({
-    showCreate: false,
+    showCreate: false
   }),
   mounted () {
     this.populateProjects()
   },
   methods: {
-    populateProjects() {
+    populateProjects () {
       this.$store.dispatch('FETCH_ALL_PROJECTS')
     }
   },

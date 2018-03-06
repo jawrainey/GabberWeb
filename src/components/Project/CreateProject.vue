@@ -35,31 +35,31 @@
 </template>
 
 <script>
-  export default {
-    data: () => ({
-      title: '',
-      description: '',
-      privacy: 'public',
-      topics: [],
-      // Used to reset the add topic field when AddTopicField called
-      addTopicValue: '',
-    }),
-    methods: {
-      addTopicField(event) {
-        // Reset the value
-        this.addTopicValue = ''
-        this.topics.push(event.target.value)
-      },
-      removeTopic(topicText) {
-        this.topics = this.topics.filter(topic => topic !== topicText)
-      },
-      onSubmit() {
-        // TODO: validate form fields; must have title/description; topics are required.
-        let project = this.$data
-        this.$store.dispatch('CREATE_PROJECT', project)
-          .then(() => this.$emit('projectCreated'))
-          .catch((e) => console.log(e))
-      }
+export default {
+  data: () => ({
+    title: '',
+    description: '',
+    privacy: 'public',
+    topics: [],
+    // Used to reset the add topic field when AddTopicField called
+    addTopicValue: ''
+  }),
+  methods: {
+    addTopicField (event) {
+      // Reset the value
+      this.addTopicValue = ''
+      this.topics.push(event.target.value)
+    },
+    removeTopic (topicText) {
+      this.topics = this.topics.filter(topic => topic !== topicText)
+    },
+    onSubmit () {
+      // TODO: validate form fields; must have title/description; topics are required.
+      let project = this.$data
+      this.$store.dispatch('CREATE_PROJECT', project)
+        .then(() => this.$emit('projectCreated'))
+        .catch((e) => console.log(e))
     }
   }
+}
 </script>

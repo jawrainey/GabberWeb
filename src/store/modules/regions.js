@@ -25,9 +25,9 @@ const getters = {
     if (selectedTopics.length > 0 && selectedTags.length > 0) {
       // Returning early to not apply other filters
       return regions.filter(
-                r => selectedTopics.includes(r.interview.topic) &&
+        r => selectedTopics.includes(r.interview.topic) &&
                     r.tags.some(tag => selectedTags.includes(tag))
-            )
+      )
     }
     let filterRegions = regions
 
@@ -93,20 +93,20 @@ const actions = {
     commit('regionsLoaded', false)
 
     REST_API.get('/project/' + projectID + '/regions/')
-            .then(
-                response => {
-                  if (response.data.length > 0) {
-                    commit('SET_REGIONS', response.data)
-                    commit('regionsLoaded', true)
-                    commit('SET_SELECTED_AS_FIRST_REGION')
-                  } else {
-                    commit('regionsLoadedMessage', 'No regions found for this project...')
-                  }
-                }
-            )
-            .catch(error => {
-              commit('regionsLoadedMessage', 'Something went wrong.')
-            })
+      .then(
+        response => {
+          if (response.data.length > 0) {
+            commit('SET_REGIONS', response.data)
+            commit('regionsLoaded', true)
+            commit('SET_SELECTED_AS_FIRST_REGION')
+          } else {
+            commit('regionsLoadedMessage', 'No regions found for this project...')
+          }
+        }
+      )
+      .catch(_ => {
+        commit('regionsLoadedMessage', 'Something went wrong.')
+      })
   }
 }
 

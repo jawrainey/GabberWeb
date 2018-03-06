@@ -35,8 +35,8 @@ box-layout
     br
     
     .buttons.is-centered
-      button.button.is-danger.is-rounded(@click="$router.go(-1)") Back
-      button.button.is-success.is-rounded(@click="login") Log In
+      button.button.is-danger.is-rounded.is-uppercase(@click="$router.go(-1)") Back
+      button.button.is-success.is-rounded.is-uppercase(@click="login") Log In
       
     hr
     
@@ -44,7 +44,7 @@ box-layout
       .column
         h3.is-size-4.has-text-grey-lighter Don't already have an account?
       .column.is-narrow
-        router-link.button.is-info.is-link.is-rounded(v-bind:to="{ name: 'register' }") Sign Up
+        router-link.button.is-info.is-link.is-rounded.is-uppercase(v-bind:to="{ name: 'register' }") Sign Up
 </template>
 
 <script>
@@ -59,10 +59,10 @@ export default {
   methods: {
     login () {
       this.$store.dispatch('LOGIN_USER', { email: this.email, password: this.password })
-    },
+    }
   },
   computed: {
-    errorMessage() {
+    errorMessage () {
       return this.$store.getters.AUTH_ERROR
     }
   }

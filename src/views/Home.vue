@@ -26,6 +26,9 @@ export default {
   computed: {
     projectsRoute () { return { name: PROJECT_LIST_ROUTE } },
     loginRoute () { return { name: LOGIN_ROUTE } }
+  },
+  mounted () {
+    console.log(this.$api)
   }
 }
 </script>

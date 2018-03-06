@@ -48,8 +48,8 @@ box-layout
     br
     
     .buttons.is-centered
-      button.button.is-danger.is-rounded(@click="$router.go(-1)") Cancel
-      button.button.is-success.is-rounded(@click="register") Sign Up
+      button.button.is-danger.is-rounded.is-uppercase(@click="$router.go(-1)") Cancel
+      button.button.is-success.is-rounded.is-uppercase(@click="register") Sign Up
 </template>
 
 <script>
@@ -65,14 +65,14 @@ export default {
     password: ''
   }),
   computed: {
-    errorMessage() { return this.$store.getters.AUTH_ERROR },
-    termsRoute() { return { name: TERMS_ROUTE } },
-    privacyRoute() { return { name: PRIVACY_ROUTE } }
+    errorMessage () { return this.$store.getters.AUTH_ERROR },
+    termsRoute () { return { name: TERMS_ROUTE } },
+    privacyRoute () { return { name: PRIVACY_ROUTE } }
   },
   methods: {
     register () {
       this.$store.dispatch('REGISTER_USER', { fullname: this.fullname, email: this.email, password: this.password })
     }
-  },
+  }
 }
 </script>
