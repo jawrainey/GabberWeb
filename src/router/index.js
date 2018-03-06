@@ -3,10 +3,14 @@ import VueRouter from 'vue-router'
 
 import Home from '../views/Home'
 import About from '../views/About'
-import Login from '../views/Login'
 import Terms from '../views/Terms'
 import Privacy from '../views/Privacy'
-import Register from '../views/Register'
+
+import Login from '../views/auth/Login'
+import Register from '../views/auth/Register'
+import Forgot from '../views/auth/Forgot'
+import Reset from '../views/auth/Reset'
+
 import Sessions from '../views/Sessions'
 import RegionSelection from '../views/RegionSelection'
 import UserPlaylist from '../views/UserPlaylist'
@@ -52,6 +56,16 @@ const routes = [
     path: '/register',
     name: ROUTES.REGISTER_ROUTE,
     component: Register
+  },
+  {
+    path: '/forgot',
+    name: ROUTES.FORGOT_ROUTE,
+    component: Forgot
+  },
+  {
+    path: '/reset/:code',
+    name: ROUTES.RESET_ROUTE,
+    component: Reset
   },
   
   // Only Project Members of Private projects can view sessions and playlists

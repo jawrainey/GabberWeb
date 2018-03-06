@@ -23,6 +23,10 @@ export default class ApiInterface {
   /*
    * Auth Endpoints
    */
+  // GET: /auth/me () -> User
+  async getSelf () {
+    this.notImplemented()
+  }
   
   // POST: /auth/register  (fullname, email, password) -> User
   async register (fullname, email, password) {
@@ -36,6 +40,11 @@ export default class ApiInterface {
   
   // POST: /auth/logout () -> void
   async logout () {
+    this.notImplemented()
+  }
+  
+  // POST: /auth/forgot (email) -> void
+  async sendReset (email) {
     this.notImplemented()
   }
   

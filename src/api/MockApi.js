@@ -2,7 +2,7 @@ import ApiInterface from './ApiInterface'
 
 const MOCK = {
   SPEED: 300,
-  LOGGED_IN: false
+  LOGGED_IN: true
 }
 
 export default class MockApi extends ApiInterface {
@@ -20,14 +20,24 @@ export default class MockApi extends ApiInterface {
   /*
    * Auth Endpoints
    */
+  async getSelf () {
+    return MOCK.LOGGED_IN
+      ? this.mock(make.user(99))
+      : this.mock(null, false)
+  }
   async register (fullname, email, password) {
     return this.mock(make.user(99))
   }
   async login (email, password) {
-    return this.mock(make.user(99))
+    return email.match(/.+@.+\..+/)
+      ? this.mock(make.user(99))
+      : this.mock(null, false)
   }
   async logout () {
     return this.mock()
+  }
+  async sendReset (email) {
+    return this.mock(true)
   }
   
   /*

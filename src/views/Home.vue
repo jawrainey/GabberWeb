@@ -1,15 +1,15 @@
 <template lang="pug">
 simple-layout
   .container
-    section.section.is-large
+    section.section.is-medium
       .columns
         .column.is-one-third
           img(src="https://gabber.audio/static/img/screen.gif")
         .column.is-two-thirds
           section.section.is-medium
-            h1.title.is-1
+            h1.title.is-2
               | Your voice matters
-            h2.subtitle.is-2
+            h2.subtitle.is-3
               | Record, publish, and collaboratively annotate audio interviews with Gabber
             .buttons
               router-link.button.is-success.is-large.is-rounded(:to="projectsRoute")
@@ -26,9 +26,6 @@ export default {
   computed: {
     projectsRoute () { return { name: PROJECT_LIST_ROUTE } },
     loginRoute () { return { name: LOGIN_ROUTE } }
-  },
-  mounted () {
-    console.log(this.$api)
   }
 }
 </script>

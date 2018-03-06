@@ -1,9 +1,12 @@
 import {REST_API} from '../../api/http-common'
 import {router} from '../../router/index'
 
+import * as MUTATIONS from '../../const/mutations'
+
 const state = {
   error: '',
-  isLoggedIn: !!localStorage.getItem('GABBER_ACCESS_TOKEN')
+  isLoggedIn: !!localStorage.getItem('GABBER_ACCESS_TOKEN'),
+  user: null
 }
 
 const getters = {
@@ -14,14 +17,18 @@ const getters = {
     return {
       headers: { Authorization: 'Bearer '.concat(localStorage.getItem('GABBER_ACCESS_TOKEN')) }
     }
-  }
+  },
+  
+  currentUser: state => { return state.user }
 }
 
 const mutations = {
   IS_LOGGED_IN: (state, data) => (state.isLoggedIn = data),
   SET_AUTH_ERROR: (state, errorMessage) => (state.error = errorMessage),
-  LOGIN: (state, data) => (state.isLoggedIn = true),
-  LOGOUT: (state, data) => (state.isLoggedIn = false)
+  LOGOUT: (state, data) => (state.isLoggedIn = false),
+  
+  [MUTATIONS.LOGIN_USER]: (state, data) => (state.user = data),
+  [MUTATIONS.LOGOUT_USER]: (state) => (state.user = null)
 }
 
 const actions = {

@@ -1,14 +1,27 @@
 <template lang="pug">
 #app-wrapper
-  router-view
+  router-view(v-if="!isChecking")
 </template>
 
 <script>
-import SiteHeader from './components/Shared/SiteHeader.vue'
+import { LOGIN_USER } from './const/mutations'
 
 export default {
-  components: {
-    SiteHeader
+  data: () => ({
+    isChecking: false
+  }),
+  mounted () {
+    this.checkLogin()
+  },
+  methods: {
+    async checkLogin () {
+      this.isChecking = true
+      let { meta, data } = await this.$api.getSelf()
+      if (meta.success) {
+        this.$store.commit(LOGIN_USER, data)
+      }
+      this.isChecking = false
+    }
   }
 }
 </script>
@@ -24,6 +37,10 @@ export default {
 
 .button.is-uppercase
   text-transform: uppercase
+
+.button.is-default
+  @extend .is-rounded
+  @extend .is-uppercase
 
 .input
   background-color: $grey-lighter

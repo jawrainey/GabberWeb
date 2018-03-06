@@ -23,18 +23,20 @@ header.site-header.hero
 
 <script>
 import { HOME_ROUTE, ABOUT_ROUTE, PROJECT_LIST_ROUTE, LOGIN_ROUTE } from '@/const/routes'
+import { LOGOUT_USER } from '@/const/mutations'
 
 export default {
   computed: {
-    isLoggedIn () { return this.$store.getters.IS_LOGGED_IN },
+    isLoggedIn () { return this.$store.getters.currentUser },
     homeRoute () { return { name: HOME_ROUTE } },
     aboutRoute () { return { name: ABOUT_ROUTE } },
     projectsRoute () { return { name: PROJECT_LIST_ROUTE } },
     loginRoute () { return { name: LOGIN_ROUTE } }
   },
   methods: {
-    logout () {
-      this.$store.dispatch('LOGOUT_USER')
+    async logout () {
+      await this.$api.logout()
+      this.$store.commit(LOGOUT_USER)
     },
     routeClass (route) {
       return {
