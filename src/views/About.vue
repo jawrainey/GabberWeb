@@ -1,9 +1,10 @@
 <template lang="pug">
 simple-layout
-  section.section
-    .container
-      h1.title How it works
-      h2.subtitle Here's all the informtion you need about Gabber.
+  section.hero.is-dark
+    .hero-body
+      .container
+        h1.title How it works
+        h2.subtitle Here's all the informtion you need about Gabber.
   section.hero
     .hero-body
       .container

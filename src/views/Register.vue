@@ -1,38 +1,78 @@
-<template>
-<div>
-    <h1>Register for Gabber</h1>
-    <p>{{ errorMessage }}</p>
-    <input v-model="fullname" class="input" placeholder="Full name" type="text" >
-    <input v-model="email" class="input" placeholder="Email" type="text" >
-    <input v-model="password" class="input" placeholder="Password" type="password">
-    <a tabindex="100">Forgot password?</a>
-    <div class="control">
-        <button class="button is-link" @click="register">SIGN UP</button>
-    </div>
-    <p>By signing up, you agree to our Terms of Service and Privacy Policy.</p>
-    <hr>
-    <div class="control">
-        <router-link class="button is-link" :to="{name: 'login'}">LOGIN</router-link>
-    </div>
-    </div>
+<template lang="pug">
+box-layout
+  section.section
+    h3.title Register for Gabber
+    
+    .message.is-danger(v-if="errorMessage")
+      .message-header
+        p Something went wrong
+      .message-body
+        p {{ errorMessage }}
+    
+    .field
+      label.label Full Name
+      input.input(
+        type="text",
+        v-model="fullName",
+        @keyup.enter="register",
+        placeholder="Jim Halpert"
+      )
+    
+    .field
+      label.label Email
+      input.input(
+        type="text",
+        v-model="email",
+        @keyup.enter="register",
+        placeholder="geoff@example.com"
+      )
+    
+    .field
+      label.label Password
+      input.input(
+        type="password",
+        v-model="password",
+        @keyup.enter="register",
+        placeholder="••••••••"
+      )
+    
+    p
+      | By signing up, you agree to our
+      |
+      router-link(:to="termsRoute", target="_blank") Terms of Service
+      |
+      | and
+      |
+      router-link(:to="privacyRoute", target="_blank") Privacy Policy.
+    
+    br
+    
+    .buttons.is-centered
+      button.button.is-danger.is-rounded(@click="$router.go(-1)") Cancel
+      button.button.is-success.is-rounded(@click="register") Sign Up
 </template>
 
 <script>
-  export default {
-    data: () => ({
-      fullname: '',
-      email: '',
-      password: ''
-    }),
-    methods: {
-      register () {
-        this.$store.dispatch('REGISTER_USER', { fullname: this.fullname, email: this.email, password: this.password })
-      }
-    },
-    computed: {
-      errorMessage() {
-        return this.$store.getters.AUTH_ERROR
-      }
+import { TERMS_ROUTE, PRIVACY_ROUTE } from '@/const/routes'
+
+import BoxLayout from '@/layouts/BoxLayout'
+
+export default {
+  components: { BoxLayout },
+  data: () => ({
+    fullname: '',
+    email: '',
+    password: ''
+  }),
+  computed: {
+    errorMessage() { return this.$store.getters.AUTH_ERROR },
+    termsRoute() { return { name: TERMS_ROUTE } },
+    privacyRoute() { return { name: PRIVACY_ROUTE } }
+  },
+  methods: {
+    register () {
+      this.$store.dispatch('REGISTER_USER', { fullname: this.fullname, email: this.email, password: this.password })
     }
-  }
+  },
+}
 </script>

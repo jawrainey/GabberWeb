@@ -1,50 +1,70 @@
 <template lang="pug">
-
-section.section.is-medium
-
+box-layout
+  section.section
+    h3.title.has-text-centered Login to Gabber
+    
+    .message.is-danger(v-if="errorMessage")
+      .message-header
+        p Something went wrong
+      .message-body
+        p {{ errorMessage }}
+    
+    .field
+      label.label Email
+      input(
+        type="text",
+        v-model="email",
+        @keyup.enter="login",
+        class="input",
+        placeholder="geoff@example.com"
+      )
+    .field
+      label.label
+        span.has-text-white.has-text-left Password
+      input(
+        type="password",
+        v-model="password",
+        @keyup.enter="login",
+        class="input",
+        placeholder="••••••••"
+      )
+    
+    //- p
+    //-   a.is-text(tabindex="100") Forgot password?
+    
+    br
+    
+    .buttons.is-centered
+      button.button.is-danger.is-rounded(@click="$router.go(-1)") Back
+      button.button.is-success.is-rounded(@click="login") Log In
+      
+    hr
+    
     .columns
-        .column.is-one-third
-        .column.is-one-third.has-text-centered
-            h3.title.is-3 Login to Gabber
-
-            .field
-                label.label
-                    span.has-text-white.has-text-left Email
-                input(v-model="email" class="input" placeholder="Email" type="text")
-            .field
-                label.label
-                    span.has-text-white.has-text-left Password
-                input(v-model="password" class="input" placeholder="Password" type="password")
-
-            p {{ errorMessage }}
-
-            a.has-text-info.is-link(tabindex="100") Forgot password?
-            
-            .control
-                button.button.is-success.is-link.is-rounded(@click="login") LOG IN
-
-            hr
-
-            .control
-                router-link.button.is-info.is-link.is-rounded(v-bind:to="{ name: 'register' }") SIGN UP
-        .column.is-one-third
+      .column
+        h3.is-size-4.has-text-grey-lighter Don't already have an account?
+      .column.is-narrow
+        router-link.button.is-info.is-link.is-rounded(v-bind:to="{ name: 'register' }") Sign Up
 </template>
 
 <script>
-  export default {
-    data: () => ({
-      email: '',
-      password: ''
-    }),
-    methods: {
-      login () {
-        this.$store.dispatch('LOGIN_USER', { email: this.email, password: this.password })
-      },
+import BoxLayout from '@/layouts/BoxLayout'
+
+export default {
+  components: { BoxLayout },
+  data: () => ({
+    email: '',
+    password: ''
+  }),
+  methods: {
+    login () {
+      this.$store.dispatch('LOGIN_USER', { email: this.email, password: this.password })
     },
-    computed: {
-      errorMessage() {
-        return this.$store.getters.AUTH_ERROR
-      }
+  },
+  computed: {
+    errorMessage() {
+      return this.$store.getters.AUTH_ERROR
     }
   }
+}
 </script>

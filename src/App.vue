@@ -19,6 +19,22 @@ export default {
 @import "~bulma/bulma.sass"
 @import "~bulmaswatch/darkly/_overrides.scss"
 
+.button
+  text-transform: uppercase
+
+.button:focus
+  text-decoration: underline
+
+.input
+  background-color: $grey-lighter
+
+.input:focus
+  background-color: $white
+
+// Why would a css framework add a transition: all :S
+a, .button
+  transition: none
+
 // input[type="checkbox"] { margin-right: .8rem; }
 //
 // .control {

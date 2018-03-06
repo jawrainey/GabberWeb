@@ -13,24 +13,29 @@ header.site-header.hero
             span Projects
           router-link.navbar-item(:to="aboutRoute", :class="routeClass(aboutRoute)")
             span About
+          
+          template(v-if="!isLoggedIn")
+            router-link.navbar-item(:to="loginRoute", :class="routeClass(loginRoute)")
+              span Login
+          .navbar-item(v-else)
+            button.button.is-dark(@click="logout") Logout
 </template>
 
 <script>
-import { HOME_ROUTE, ABOUT_ROUTE, PROJECT_LIST_ROUTE } from '@/const/routes'
+import { HOME_ROUTE, ABOUT_ROUTE, PROJECT_LIST_ROUTE, LOGIN_ROUTE } from '@/const/routes'
 
 export default {
-  methods: {
-    logout() {
-      this.$store.dispatch('LOGOUT_USER')
-    }
-  },
   computed: {
     isLoggedIn() { return this.$store.getters.IS_LOGGED_IN },
     homeRoute () { return { name: HOME_ROUTE } },
     aboutRoute () { return { name: ABOUT_ROUTE } },
-    projectsRoute () { return { name: PROJECT_LIST_ROUTE } }
+    projectsRoute () { return { name: PROJECT_LIST_ROUTE } },
+    loginRoute () { return { name: LOGIN_ROUTE } }
   },
   methods: {
+    logout() {
+      this.$store.dispatch('LOGOUT_USER')
+    },
     routeClass (route) {
       return {
         'is-active': route.name === this.$route.name
