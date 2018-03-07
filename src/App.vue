@@ -16,8 +16,8 @@ export default {
   methods: {
     async checkLogin () {
       this.isChecking = true
-      let { meta, data } = await this.$api.getSelf()
-      if (meta.success) {
+      let { data } = await this.$api.getSelf()
+      if (data) {
         this.$store.commit(LOGIN_USER, data)
       }
       this.isChecking = false
@@ -28,7 +28,6 @@ export default {
 
 <style lang="sass">
 
-@import "~bulmaswatch/darkly/_variables.scss"
 @import "~bulma/bulma.sass"
 @import "~bulmaswatch/darkly/_overrides.scss"
 
@@ -42,15 +41,20 @@ export default {
   @extend .is-rounded
   @extend .is-uppercase
 
-.input
+.input, .textarea, .select select
   background-color: $grey-lighter
-
-.input:focus
-  background-color: $white
+  &:focus
+    background-color: $white
+  &:disabled
+    color: $grey-dark
+    background-color: $grey-light
 
 // Why would a css framework add a transition: all :S
 a, .button
   transition: none
+
+hr
+  height: 1px
 
 // input[type="checkbox"] { margin-right: .8rem; }
 //

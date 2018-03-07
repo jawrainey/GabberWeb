@@ -12,11 +12,11 @@ const getters = {
   // PUBLIC_PROJECTS: state => state.public_projects,
   
   personalProjects: (state, getters) => state.allProjects.filter(proj =>
-    // proj.creator.id === getters.currentUser.id
-    !proj.isProjectPublic
+    proj.creator.id === getters.currentUser.id ||
+    proj.members.some(member => member.id === getters.currentUser.id)
   ),
   publicProjects: (state, getters) => state.allProjects.filter(proj =>
-    proj.isProjectPublic && proj.creator.id !== getters.currentUser.id
+    !getters.personalProjects.includes(proj)
   )
 }
 
@@ -25,7 +25,18 @@ const mutations = {
   // UPDATE_MY_PROJECT_BY_INDEX: (state, data) => (state.my_projects[data.index] = data.project),
   // SET_PUBLIC_PROJECTS: (state, projects) => (state.public_projects = projects),
   
-  [MUTATIONS.SET_PROJECTS]: (state, projects) => (state.allProjects = projects)
+  [MUTATIONS.SET_PROJECTS]: (state, projects) => (state.allProjects = projects),
+  [MUTATIONS.UPDATE_PROJECT]: (state, { id, project }) => {
+    let existing = state.allProjects.find(p => p.id === id)
+    if (existing) {
+      Object.assign(existing, project)
+    } else {
+      state.allProjects.push(project)
+    }
+  },
+  [MUTATIONS.DELETE_PROJECT]: (state, projectId) => {
+    state.allProjects = state.allProjects.filter(p => p.id !== projectId)
+  }
 }
 
 const actions = {

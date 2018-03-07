@@ -19,9 +19,9 @@
                     input(v-model="project.description" @change="storeDescriptionChanged" v-bind:disabled="!isEditMode" class="input" type="text")
                 .media-right(v-if="!isEditMode")
                     //- <!-- TODO: the router links are not being updated once the object is edited -->
-                    router-link.button.is-success.is-rounded(v-bind:to="{name: 'ProjectPlaylist', params: { projectID: project.id }}")
+                    router-link.button.is-success.is-rounded(v-bind:to="{name: 'ProjectPlaylist', params: { project_id: project.id }}")
                         | Playlists
-                    router-link.button.is-success.is-rounded(v-bind:to="{name: 'Sessions', params: { projectSlug: project.id }}")
+                    router-link.button.is-success.is-rounded(v-bind:to="{name: 'Sessions', params: { project_id: project.id }}")
                         | Gabbers
 
             div(v-if="isEditMode")

@@ -11,7 +11,7 @@ full-layout.project-list
   
   message.is-danger(v-model="errors", clearable)
   
-  section.main(slot="main")
+  .main(slot="main")
     .level
       .level-left
         .level-item
@@ -24,30 +24,21 @@ full-layout.project-list
     
     //- create-project(v-if="showCreate" @projectCreated="showCreate=false")
     
-    .project-group
-      h4.is-size-4 My Projects
-      project-item(
+    section.project-group
+      h4.is-size-4.has-text-grey-light My Projects
+      project-pill(
         v-for="project in filteredPersonalProjects",
         :key="project.id",
         :project="project"
       )
     
-    .project-group
-      h4.is-size-4 Public Projects
-      project-item(
+    section.project-group
+      h4.is-size-4.has-text-grey-light Public Projects
+      project-pill(
         v-for="project in filteredPublicProjects",
         :key="project.id",
         :project="project"
       )
-    //- .project-group
-    //-   h4.subtitle.is-4 My projects
-    //-   p(v-if="MY_PROJECTS && MY_PROJECTS.length <= 0") You are not a <b>member</b> of any projects.
-    //-   project-item(v-for="project in MY_PROJECTS" v-bind:key="project.id" v-bind:isMember="true" v-bind:project="project")
-    //-
-    //- .project-group
-    //-   h4.subtitle.is-4 Public projects
-    //-   p(v-if="PUBLIC_PROJECTS && PUBLIC_PROJECTS.length <= 0") There are no public projects.
-    //-   project-item(v-for="project in PUBLIC_PROJECTS" v-bind:key="project.id" v-bind:project="project")
 </template>
 
 <script>
@@ -55,6 +46,7 @@ import { SET_PROJECTS } from '@/const/mutations'
 import FullLayout from '@/layouts/FullLayout'
 import Message from '@/components/utils/Message'
 import ProjectItem from '@/components/project/ProjectItem'
+import ProjectPill from '@/components/project/ProjectPill'
 import CreateProject from '@/components/project/CreateProject'
 import RecentProjects from '@/components/project/RecentProjects'
 import { mapGetters } from 'vuex'
@@ -62,7 +54,9 @@ import { mapGetters } from 'vuex'
 // Edit will emit that it has submitted (only once form is valid and response from server);
 // From here, we can then hide the edit form and highlight the project?
 export default {
-  components: { ProjectItem, FullLayout, Message, CreateProject, RecentProjects },
+  components: {
+    ProjectItem, FullLayout, Message, CreateProject, RecentProjects, ProjectPill
+  },
   data: () => ({
     showCreate: false,
     isCreating: false,
@@ -93,9 +87,6 @@ export default {
       
       this.errors = meta.messages
       
-      console.log(meta)
-      console.log(data)
-      
       if (meta.success) {
         this.$store.commit(
           SET_PROJECTS,
@@ -117,5 +108,8 @@ export default {
     padding: 1.5em 1em
   .main
     max-width: $desktop
+  
+  .project-group:not(:last-child)
+    margin-bottom: 3em
   
 </style>

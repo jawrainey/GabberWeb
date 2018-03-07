@@ -12,6 +12,6 @@ export const FORGOT_ROUTE = 'Forgot'
 export const RESET_ROUTE = 'Reset'
 
 export const PROJECT_LIST_ROUTE = 'Projects'
-export const SESSIONS_ROUTE = 'Sessions'
-export const PROJECT_PLAYLIST_ROUTE = 'ProjectPlaylist'
+export const SESSION_LIST_ROUTE = 'Sessions'
+export const PLAYLIST_LIST_ROUTE = 'ProjectPlaylist'
 export const USER_PLAYLIST_ROUTE = 'userPlaylist'

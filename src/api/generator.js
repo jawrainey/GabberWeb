@@ -18,6 +18,7 @@ export const make = {
       description: 'Aenean lacinia bibendum nulla sed consectetur',
       isProjectPublic: privacy === 'public',
       members: memberships,
+      privacy,
       creator: {
         id: creatorId,
         name: `User ${creatorId}`
@@ -38,6 +39,7 @@ export const make = {
   },
   membership (id, role = 'user') {
     return model('Membership', id, {
+      user: id,
       name: `User ${id}`,
       role: role
     })

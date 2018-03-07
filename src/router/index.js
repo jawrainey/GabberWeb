@@ -70,17 +70,17 @@ const routes = [
   
   // Only Project Members of Private projects can view sessions and playlists
   {
-    path: '/project/:projectID/sessions',
-    name: ROUTES.SESSIONS_ROUTE,
+    path: '/project/:project_id/sessions',
+    name: ROUTES.SESSION_LIST_ROUTE,
     component: Sessions
   },
   {
-    path: '/project/:projectID/playlists',
-    name: ROUTES.PROJECT_PLAYLIST_ROUTE,
+    path: '/project/:project_id/playlists',
+    name: ROUTES.PLAYLIST_LIST_ROUTE,
     component: RegionSelection
   },
   {
-    path: '/me/playlist/:playlistID',
+    path: '/me/playlist/:playlist_id',
     name: ROUTES.USER_PLAYLIST_ROUTE,
     component: UserPlaylist
   }

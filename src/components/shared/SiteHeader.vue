@@ -50,6 +50,6 @@ export default {
 <style lang="sass">
 .site-header
   nav
-    border-bottom: 1px solid $grey
+    border-bottom: 1px solid $border
     height: 60px
 </style>

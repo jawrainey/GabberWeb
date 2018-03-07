@@ -67,8 +67,9 @@ export default class ApiInterface {
   //   this.notImplemented()
   // }
   
-  // POST: //project/join (slug) -> boolean
-  async joinProject (slug) {
+  // POST: /project/join (id) -> Project
+  async joinProject (id) {
+    // NOTE: could this return the joined project?
     this.notImplemented()
   }
   
@@ -78,7 +79,12 @@ export default class ApiInterface {
   }
   
   // POST: /project/edit (...Project) -> Project
-  async editProject (title, description, tags, privacy) {
+  async editProject (id, title, description, tags, privacy) {
+    this.notImplemented()
+  }
+  
+  // DEL:  /project/:id (project_id)
+  async deleteProject (id) {
     this.notImplemented()
   }
   

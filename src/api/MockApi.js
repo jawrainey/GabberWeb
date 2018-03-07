@@ -64,18 +64,32 @@ export default class MockApi extends ApiInterface {
   // async listPublicProjects () {
   //   return this.mock(makeList(5, make.project))
   // }
-  async joinProject (slug) {
-    return this.mock(true)
+  async joinProject (id) {
+    // return this.editProject(id, `Project ${id}`, '...', 'private')
+    let project = make.project(id)
+    project.members.push(make.membership(CURRENT_USER_ID, 'user'))
+    return this.mock(project)
   }
   async createProject (title, description, tags, privacy) {
     return this.mock(
       model('Project', CURRENT_USER_ID, { title, description, privacy })
     )
   }
-  async editProject (title, description, tags, privacy) {
-    return this.mock(
-      model('Project', CURRENT_USER_ID, { title, description, privacy })
-    )
+  async editProject (id, title, description, tags, privacy) {
+    if (title === 'fail') return this.mock(null, false)
+    
+    return this.mock(Object.assign(
+      make.project(id, privacy),
+      {
+        title,
+        description,
+        creator: make.user(CURRENT_USER_ID),
+        isProjectPublic: privacy === 'public'
+      }
+    ))
+  }
+  async deleteProject (id) {
+    return this.mock(null)
   }
   
   /*
