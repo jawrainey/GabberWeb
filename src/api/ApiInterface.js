@@ -63,9 +63,9 @@ export default class ApiInterface {
   }
   
   // GET: /projects/public () -> Project[]
-  async listPublicProjects () {
-    this.notImplemented()
-  }
+  // async listPublicProjects () {
+  //   this.notImplemented()
+  // }
   
   // POST: //project/join (slug) -> boolean
   async joinProject (slug) {

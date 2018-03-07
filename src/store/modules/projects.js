@@ -1,18 +1,31 @@
-import {REST_API} from '../../api/http-common'
+import {REST_API} from '@/api/http-common'
+import * as MUTATIONS from '@/const/mutations'
 
 const state = {
-  my_projects: [],
-  public_projects: []
+  // my_projects: [],
+  // public_projects: [],
+  
+  allProjects: []
 }
 const getters = {
-  MY_PROJECTS: state => state.my_projects,
-  PUBLIC_PROJECTS: state => state.public_projects
+  // MY_PROJECTS: state => state.my_projects,
+  // PUBLIC_PROJECTS: state => state.public_projects,
+  
+  personalProjects: (state, getters) => state.allProjects.filter(proj =>
+    // proj.creator.id === getters.currentUser.id
+    !proj.isProjectPublic
+  ),
+  publicProjects: (state, getters) => state.allProjects.filter(proj =>
+    proj.isProjectPublic && proj.creator.id !== getters.currentUser.id
+  )
 }
 
 const mutations = {
-  SET_MY_PROJECTS: (state, projects) => { state.my_projects = projects },
-  UPDATE_MY_PROJECT_BY_INDEX: (state, data) => { state.my_projects[data.index] = data.project },
-  SET_PUBLIC_PROJECTS: (state, projects) => { state.public_projects = projects }
+  // SET_MY_PROJECTS: (state, projects) => (state.my_projects = projects),
+  // UPDATE_MY_PROJECT_BY_INDEX: (state, data) => (state.my_projects[data.index] = data.project),
+  // SET_PUBLIC_PROJECTS: (state, projects) => (state.public_projects = projects),
+  
+  [MUTATIONS.SET_PROJECTS]: (state, projects) => (state.allProjects = projects)
 }
 
 const actions = {

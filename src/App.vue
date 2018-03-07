@@ -10,7 +10,7 @@ export default {
   data: () => ({
     isChecking: false
   }),
-  mounted () {
+  created () {
     this.checkLogin()
   },
   methods: {

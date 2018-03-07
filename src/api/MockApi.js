@@ -1,4 +1,6 @@
 import ApiInterface from './ApiInterface'
+import { make, makeList, model, CURRENT_USER_ID } from './generator'
+import { store } from '../store'
 
 const MOCK = {
   SPEED: 300,
@@ -24,17 +26,17 @@ export default class MockApi extends ApiInterface {
    */
   async getSelf () {
     return MOCK.LOGGED_IN
-      ? this.mock(make.user(99))
+      ? this.mock(make.user(CURRENT_USER_ID))
       : this.mock(null, false)
   }
   async register (fullname, email, password) {
     return isEmail.test(email)
-      ? this.mock(make.user(99))
+      ? this.mock(make.user(CURRENT_USER_ID))
       : this.mock(null, false)
   }
   async login (email, password) {
     return isEmail.test(email)
-      ? this.mock(make.user(99))
+      ? this.mock(make.user(CURRENT_USER_ID))
       : this.mock(null, false)
   }
   async logout () {
@@ -45,7 +47,7 @@ export default class MockApi extends ApiInterface {
   }
   async resetPassword (token, password) {
     return token !== 'fail'
-      ? this.mock(make.user(99))
+      ? this.mock(make.user(CURRENT_USER_ID))
       : this.mock(null, false)
   }
   
@@ -53,22 +55,26 @@ export default class MockApi extends ApiInterface {
    * Projects Management
    */
   async listAllProjects () {
-    return this.mock(makeList(5, make.project))
+    return this.mock({
+      personal: store.getters.currentUser
+        ? makeList(2, make.project, 'private') : [],
+      public: makeList({ from: 3, to: 8 }, make.project)
+    })
   }
-  async listPublicProjects () {
-    return this.mock(makeList(5, make.project, 'public'))
-  }
+  // async listPublicProjects () {
+  //   return this.mock(makeList(5, make.project))
+  // }
   async joinProject (slug) {
     return this.mock(true)
   }
   async createProject (title, description, tags, privacy) {
     return this.mock(
-      model('Project', 99, { title, description, privacy })
+      model('Project', CURRENT_USER_ID, { title, description, privacy })
     )
   }
   async editProject (title, description, tags, privacy) {
     return this.mock(
-      model('Project', 99, { title, description, privacy })
+      model('Project', CURRENT_USER_ID, { title, description, privacy })
     )
   }
   
@@ -96,50 +102,4 @@ export default class MockApi extends ApiInterface {
     // -> Project
     this.notImplemented()
   }
-}
-
-const make = {
-  user (id) {
-    return model('User', id, {
-      fullname: 'Geoff Testington',
-      email: 'geoff@example.com'
-    })
-  },
-  project (id, privacy = 'public') {
-    return model('Project', id, {
-      slug: `project-${id}`,
-      title: `Project ${id}`,
-      description: 'Aenean lacinia bibendum nulla sed consectetur',
-      privacy
-    })
-  },
-  tag (id) {
-    return model('Tag', id, { name: `Tag ${id}` })
-  },
-  session (id, projectId, creatorId) {
-    return model('Session', id, {
-      project: projectId,
-      creator: creatorId
-    })
-  },
-  playlist (id, creatorId) {
-    return model('Playlist', id, { name: `Playlist ${id}` })
-  }
-}
-
-function makeList (count, maker, ...args) {
-  let items = []
-  for (let i = 1; i <= count; i++) {
-    items.push(maker(i, ...args))
-  }
-  return items
-}
-
-function model (type, id, obj) {
-  return Object.assign({
-    _modeltype: type,
-    id: parseInt(id),
-    created_on: new Date('2018-02-05T03:24:42'),
-    updated_on: new Date('2018-02-11T03:24:42')
-  }, obj)
 }
