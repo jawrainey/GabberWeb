@@ -3,11 +3,7 @@ box-layout
   section.section
     h3.title Register for Gabber
     
-    .message.is-danger(v-if="errorMessage")
-      .message-header
-        p Something went wrong
-      .message-body
-        p {{ errorMessage }}
+    message.is-danger(v-model="errors", clearable)
     
     .login-form(v-if="!created")
       .field
@@ -48,9 +44,10 @@ box-layout
           @click="register", :disabled="!canRegister"
         ) Sign Up
     template(v-else)
-      .message.is-primary
-        .message-header: p Account Created
-        .message-body: p Whop Whoop ...
+      message.is-primary(
+        title="Account Created",
+        value="Whoop Whoop"
+      )
       .buttons.is-right
         router-link.button.is-success(:to="projectListRoute")
           | Checkout some projects!
@@ -60,14 +57,16 @@ box-layout
 import { LOGIN_USER } from '@/const/mutations'
 import { TERMS_ROUTE, PRIVACY_ROUTE, PROJECT_LIST_ROUTE } from '@/const/routes'
 import BoxLayout from '@/layouts/BoxLayout'
+import Message from '@/components/utils/Message'
 
 export default {
-  components: { BoxLayout },
+  components: { BoxLayout, Message },
   data: () => ({
     fullname: '',
     email: '',
     password: '',
-    created: false
+    created: false,
+    errors: [ ]
   }),
   computed: {
     errorMessage () { return this.$store.getters.AUTH_ERROR },
@@ -83,16 +82,19 @@ export default {
   methods: {
     async register () {
       if (!this.canRegister) return
+      this.errors = []
       
       let { meta, data } = await this.$api.register(
         this.fullname, this.email, this.password
       )
       
+      this.errors = meta.messages
+      
       if (meta.success) {
         this.$store.commit(LOGIN_USER, data)
         this.created = true
-      } else {
-        console.log(meta.messages)
+      } else if (meta.messages.length === 0) {
+        this.errors.push('Registration failed, please try again')
       }
     }
   }

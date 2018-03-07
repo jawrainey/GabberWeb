@@ -5,6 +5,8 @@ const MOCK = {
   LOGGED_IN: true
 }
 
+const isEmail = /.+@.+\..+/
+
 export default class MockApi extends ApiInterface {
   /*
    * Mock Utils
@@ -26,10 +28,12 @@ export default class MockApi extends ApiInterface {
       : this.mock(null, false)
   }
   async register (fullname, email, password) {
-    return this.mock(make.user(99))
+    return isEmail.test(email)
+      ? this.mock(make.user(99))
+      : this.mock(null, false)
   }
   async login (email, password) {
-    return email.match(/.+@.+\..+/)
+    return isEmail.test(email)
       ? this.mock(make.user(99))
       : this.mock(null, false)
   }
@@ -38,6 +42,11 @@ export default class MockApi extends ApiInterface {
   }
   async sendReset (email) {
     return this.mock(true)
+  }
+  async resetPassword (token, password) {
+    return token !== 'fail'
+      ? this.mock(make.user(99))
+      : this.mock(null, false)
   }
   
   /*

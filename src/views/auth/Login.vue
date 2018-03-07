@@ -3,12 +3,7 @@ box-layout
   section.section
     h1.title.has-text-centered Login to Gabber
     
-    .message.is-danger(v-if="errors.length > 0")
-      .message-header
-        p Something went wrong
-        button.delete(@click="errors = []")
-      .message-body
-        p(v-for="err in errors") {{ err }}
+    message.is-danger(v-model="errors", clearable)
     
     .field
       label.label Email
@@ -52,9 +47,10 @@ box-layout
 import { LOGIN_USER } from '@/const/mutations'
 import { PROJECT_LIST_ROUTE, REGISTER_ROUTE, FORGOT_ROUTE } from '@/const/routes'
 import BoxLayout from '@/layouts/BoxLayout'
+import Message from '@/components/utils/Message'
 
 export default {
-  components: { BoxLayout },
+  components: { BoxLayout, Message },
   data: () => ({
     email: '',
     password: '',

@@ -4,26 +4,27 @@ box-layout
     h1.title Forgotten password
     h2.subtitle Send an email to you to reset your password
     
-    .reset-form(v-if="!sentCode")
+    .forgot-form(v-if="!sentCode")
       label.label Enter your email
       .field.has-addons
         .control.is-expanded
           input.input(
             type="text",
             v-model="email",
-            @keyup.enter="send",
+            @keyup.enter="sendCode",
             placeholder="pam@example.com"
           )
         .control
           button.button.is-success(
-            @click="send",
+            @click="sendCode",
             :disabled="!canSend"
           ) Send
     
     template(v-else)
-      .message.is-success
-        .message-header: p Code Sent
-        .message-body: p We've sent a code to that email address, if it exists in our system, check your email to reset your password.
+      message.is-success(
+        title="Code Sent",
+        value="We've sent a code to that email address, if it exists in our system, check your email to reset your password."
+      )
       .buttons.is-centered
         button.button.is-primary(@click="sentCode = false")
           | Try Again?
@@ -37,9 +38,10 @@ box-layout
 <script>
 import { LOGIN_ROUTE } from '@/const/routes'
 import BoxLayout from '@/layouts/BoxLayout'
+import Message from '@/components/utils/Message'
 
 export default {
-  components: { BoxLayout },
+  components: { BoxLayout, Message },
   data: () => ({
     email: '',
     sentCode: false
@@ -49,7 +51,7 @@ export default {
     loginRoute () { return { name: LOGIN_ROUTE } }
   },
   methods: {
-    async send () {
+    async sendCode () {
       if (!this.canSend) return
       
       let { meta } = await this.$api.sendReset(this.email)

@@ -48,6 +48,11 @@ export default class ApiInterface {
     this.notImplemented()
   }
   
+  // POST: /auth/reset (token, password) -> User
+  async resetPassword (token, password) {
+    this.notImplemented()
+  }
+  
   /*
    * Projects Management
    */
