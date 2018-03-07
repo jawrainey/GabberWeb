@@ -17,7 +17,8 @@ const getters = {
   ),
   publicProjects: (state, getters) => state.allProjects.filter(proj =>
     !getters.personalProjects.includes(proj)
-  )
+  ),
+  projectById: state => id => state.allProjects.find(p => p.id === id)
 }
 
 const mutations = {

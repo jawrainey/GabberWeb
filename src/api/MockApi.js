@@ -5,7 +5,7 @@ import { store } from '../store'
 const MOCK = {
   SPEED: 300,
   LOGGED_IN: true,
-  newProjId: 100
+  newProjId: 10
 }
 
 const isEmail = /.+@.+\..+/
@@ -62,6 +62,11 @@ export default class MockApi extends ApiInterface {
       public: makeList({ from: 3, to: 8 }, make.project)
     })
   }
+  async getProject (id) {
+    return id < 100
+      ? this.mock(make.project(id, id % 2 ? 'public' : 'private'))
+      : this.mock(null, false)
+  }
   // async listPublicProjects () {
   //   return this.mock(makeList(5, make.project))
   // }
@@ -110,7 +115,9 @@ export default class MockApi extends ApiInterface {
    */
   async getProjectSessions (projectId) {
     // -> Session[]
-    this.notImplemented()
+    return this.mock(
+      makeList(7, make.session, projectId, CURRENT_USER_ID)
+    )
   }
   async projectBySlug (slug) {
     // -> Project

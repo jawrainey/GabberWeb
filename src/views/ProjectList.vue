@@ -1,8 +1,8 @@
 <template lang="pug">
-full-layout.project-list
+full-layout.project-list-view
   section.filter(slot="left")
     h2.subtitle Filter Projects
-    label.label By name
+    label.label Search for a project
     input.input(
       type="text",
       v-model="query",
@@ -15,7 +15,7 @@ full-layout.project-list
     .level
       .level-left
         .level-item
-          h1.title.is-1 Gabber Projects
+          h1.title.is-1 Projects
       .level-right(v-if="currentUser && !newProject")
         .level-item
           button.button.is-rounded.is-success(@click="toggleCreate") Create Project
@@ -132,9 +132,10 @@ export default {
 
 <style lang="sass" scoped>
   
-.project-list
+.project-list-view
   .filter, .main, .detail
-    padding: 1.5em 1em
+    padding: 1em
+  
   .main
     max-width: $desktop
   

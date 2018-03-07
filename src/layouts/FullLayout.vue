@@ -44,13 +44,13 @@ export default {
   grid-template-rows: 60px auto
 
   &.left-main-right
-    grid-template-columns: 2fr 8fr 2fr
+    grid-template-columns: 3fr 8fr 3fr
     grid-template-areas: 'header header header' 'left main right'
   &.left-main
-    grid-template-columns: 2fr 10fr
+    grid-template-columns: 3fr 10fr
     grid-template-areas: 'header header' 'left main'
   &.main-right
-    grid-template-columns: 10fr 2fr
+    grid-template-columns: 10fr 3fr
     grid-template-areas: 'header header' 'main right'
   &.only-main
     grid-template-areas: 'header' 'main'

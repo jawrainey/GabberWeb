@@ -62,6 +62,11 @@ export default class ApiInterface {
     this.notImplemented()
   }
   
+  // GET: /project/:id () -> Project
+  async getProject (id) {
+    this.notImplemented()
+  }
+  
   // GET: /projects/public () -> Project[]
   // async listPublicProjects () {
   //   this.notImplemented()

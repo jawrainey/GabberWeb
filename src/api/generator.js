@@ -19,10 +19,7 @@ export const make = {
       isProjectPublic: privacy === 'public',
       members: memberships,
       privacy,
-      creator: {
-        id: creatorId,
-        name: `User ${creatorId}`
-      }
+      creator: make.creator(creatorId)
     })
   },
   tag (id) {
@@ -30,8 +27,10 @@ export const make = {
   },
   session (id, projectId, creatorId) {
     return model('Session', id, {
-      project: projectId,
-      creator: creatorId
+      projectId,
+      creator: make.creator(creatorId),
+      participants: makeList(5, make.user),
+      topics: makeList(7, make.tag)
     })
   },
   playlist (id, creatorId) {
@@ -42,6 +41,11 @@ export const make = {
       user: id,
       name: `User ${id}`,
       role: role
+    })
+  },
+  creator (id) {
+    return model('Creator', id, {
+      name: `User ${id}`
     })
   }
 }
