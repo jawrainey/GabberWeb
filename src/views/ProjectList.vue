@@ -54,9 +54,9 @@ full-layout.project-list
 import { SET_PROJECTS } from '@/const/mutations'
 import FullLayout from '@/layouts/FullLayout'
 import Message from '@/components/utils/Message'
-import ProjectItem from '@/components/Project/ProjectItem'
-import CreateProject from '@/components/Project/CreateProject'
-import RecentProjects from '@/components/Project/RecentProjects'
+import ProjectItem from '@/components/project/ProjectItem'
+import CreateProject from '@/components/project/CreateProject'
+import RecentProjects from '@/components/project/RecentProjects'
 import { mapGetters } from 'vuex'
 
 // Edit will emit that it has submitted (only once form is valid and response from server);
