@@ -1,30 +1,12 @@
 <template lang="pug">
 .project-item
-  .level.is-mobile
-    .level-left
-      .level-item
-        fa(:icon="projectIcon", size="2x")
-      h4.level-item.title.is-4
-        | {{project.title}}
-        span(v-if="membershipType")
-          | &ndash; {{ membershipType }}
-    .level-right
-      .level-item(v-if="canEdit")
-        button.button.is-dark.is-rounded(@click="startEdit")
-          .icon: fa(icon="cog")
-          span Edit
-      .level-item(v-if="isEditing")
-        button.button.is-success.is-rounded(@click="saveEdit", :disabled="!canSaveEdit")
-          .icon: fa(icon="check")
-          span Save
-      .level-item(v-if="isEditing")
-        button.button.is-link.is-rounded(@click="cancelEdit", :disabled="inProgress")
-          .icon: fa(icon="times")
-          span Cancel
-      .level-item(v-if="!isProjectMember")
-        button.button.is-dark.is-rounded(@click="joinProject", :disabled="inProgress")
-          .icon: fa(icon="user-plus")
-          span Join
+  project-header(
+    :in-progress="inProgress",
+    :is-editing="isEditing",
+    :project="project",
+    @startEdit="startEdit",
+    @join="joinProject"
+  )
   template(v-if="!isEditing")
     .columns.project-info
       .column
@@ -39,42 +21,29 @@
             span Playlists
   template(v-else)
     message.is-danger(v-model="errors", clearable)
-    .project-edit-form
-      .field
-        label.label Name
-        input.input(type="text", v-model="changes.title", :disabled="inProgress")
-      .field
-        label.label Description
-        textarea.textarea(v-model="changes.description", :disabled="inProgress")
-      .field
-        label.label Privacy
-        p.control
-          span.select
-            select(v-model="changes.privacy")
-              option(value="private", default) Private
-              option(value="public", default) Public
-      hr
-      .field.is-grouped
-        .control
-          button.button.is-danger.is-rounded.is-small(@click="deleteProject", :disabled="!canDelete")
-            .icon: fa(icon="trash")
-            span Delete Project
+    project-edit(
+      :project="changes",
+      :disabled="inProgress",
+      :deletable="true",
+      action="Update",
+      @submit="saveEdit",
+      @cancel="cancelEdit",
+      @delete="deleteProject"
+    )
 </template>
 
 <script>
 import { SESSION_LIST_ROUTE, PLAYLIST_LIST_ROUTE } from '@/const/routes'
-import { UPDATE_PROJECT, DELETE_PROJECT } from '@/const/mutations'
+import { SAVE_PROJECT, DELETE_PROJECT } from '@/const/mutations'
+import ProjectPropMixin from '@/mixins/ProjectProp'
 import Message from '@/components/utils/Message'
+import ProjectHeader from './ProjectHeader'
+import ProjectEdit from './ProjectEdit'
 import { mapGetters } from 'vuex'
 
 export default {
-  components: { Message },
-  props: {
-    project: {
-      type: Object,
-      required: true
-    }
-  },
+  mixins: [ ProjectPropMixin ],
+  components: { Message, ProjectHeader, ProjectEdit },
   data: () => ({
     isEditing: false,
     changes: {},
@@ -83,18 +52,6 @@ export default {
   }),
   computed: {
     ...mapGetters(['currentUser']),
-    isOwner () {
-      return this.project.creator.id === this.currentUser.id
-    },
-    isProjectMember () {
-      return this.isOwner || this.project.members.some(member =>
-        member.id === this.currentUser.id
-      )
-    },
-    projectIcon () {
-      return this.project.isProjectPublic ? 'users' : 'lock'
-    },
-    canEdit () { return this.isOwner && !this.isEditing },
     canDelete () { return this.isOwner && !this.inProgress },
     sessionsRoute () {
       const params = { project_id: this.project.id }
@@ -103,17 +60,6 @@ export default {
     playlistsRoute () {
       const params = { project_id: this.project.id }
       return { name: PLAYLIST_LIST_ROUTE, params }
-    },
-    canSaveEdit () {
-      return !this.inProgress &&
-        this.changes.title !== '' &&
-        this.changes.description !== ''
-    },
-    membershipType () {
-      if (!this.isProjectMember) return null
-      if (this.isOwner) return 'Owner'
-      let membership = this.project.members.some(m => m.user === this.currentUser)
-      return membership.role === 'admin' ? 'Admin' : 'User'
     }
   },
   methods: {
@@ -122,12 +68,10 @@ export default {
       this.changes = JSON.parse(JSON.stringify(this.project))
     },
     cancelEdit () {
-      console.log('Cancel!')
       this.isEditing = false
       this.changes = {}
     },
     async saveEdit () {
-      if (!this.canSaveEdit || this.inProgress) return
       this.inProgress = true
       this.errors = []
       
@@ -142,10 +86,7 @@ export default {
       this.errors = meta.messages
       
       if (meta.success) {
-        this.$store.commit(UPDATE_PROJECT, {
-          id: this.project.id,
-          project: data
-        })
+        this.$store.commit(SAVE_PROJECT, data)
         this.isEditing = false
       } else if (meta.messages.length === 0) {
         this.errors.push('Could not save project, try again?')
@@ -182,10 +123,7 @@ export default {
       this.errors = meta.messages
       
       if (meta.success) {
-        this.$store.commit(UPDATE_PROJECT, {
-          id: this.project.id,
-          project: data
-        })
+        this.$store.commit(SAVE_PROJECT, data)
       }
       
       this.inProgress = false

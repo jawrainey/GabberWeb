@@ -1,10 +1,11 @@
 import ApiInterface from './ApiInterface'
-import { make, makeList, model, CURRENT_USER_ID } from './generator'
+import { make, makeList, CURRENT_USER_ID } from './generator'
 import { store } from '../store'
 
 const MOCK = {
   SPEED: 300,
-  LOGGED_IN: true
+  LOGGED_IN: true,
+  newProjId: 100
 }
 
 const isEmail = /.+@.+\..+/
@@ -71,9 +72,8 @@ export default class MockApi extends ApiInterface {
     return this.mock(project)
   }
   async createProject (title, description, tags, privacy) {
-    return this.mock(
-      model('Project', CURRENT_USER_ID, { title, description, privacy })
-    )
+    let id = MOCK.newProjId++
+    return this.editProject(id, title, description, tags, privacy)
   }
   async editProject (id, title, description, tags, privacy) {
     if (title === 'fail') return this.mock(null, false)

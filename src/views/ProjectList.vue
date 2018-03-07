@@ -16,13 +16,20 @@ full-layout.project-list
       .level-left
         .level-item
           h1.title.is-1 Gabber Projects
-      //- .level-right(v-if="currentUser")
-        .level-item(v-if="!isCreating")
-          button.button.is-rounded.is-success(@click="toggleCreate") Create
-        .lebel-item(v-else)
-          button.button.is-rounded.is-danger(@click="toggleCreate") Cancel
+      .level-right(v-if="currentUser && !newProject")
+        .level-item
+          button.button.is-rounded.is-success(@click="toggleCreate") Create Project
     
-    //- create-project(v-if="showCreate" @projectCreated="showCreate=false")
+    .box.new-project(v-if="newProject")
+      h3.subtitle.is-4 Create a new Project
+      message.is-danger(v-model="errors", clearable)
+      project-edit(
+        :project="newProject",
+        action="Create",
+        :disabled="isCreating",
+        @submit="createProject",
+        @cancel="toggleCreate"
+      )
     
     section.project-group
       h4.is-size-4.has-text-grey-light My Projects
@@ -42,12 +49,12 @@ full-layout.project-list
 </template>
 
 <script>
-import { SET_PROJECTS } from '@/const/mutations'
+import { SET_PROJECTS, SAVE_PROJECT } from '@/const/mutations'
 import FullLayout from '@/layouts/FullLayout'
 import Message from '@/components/utils/Message'
 import ProjectItem from '@/components/project/ProjectItem'
 import ProjectPill from '@/components/project/ProjectPill'
-import CreateProject from '@/components/project/CreateProject'
+import ProjectEdit from '@/components/project/ProjectEdit'
 import RecentProjects from '@/components/project/RecentProjects'
 import { mapGetters } from 'vuex'
 
@@ -55,13 +62,13 @@ import { mapGetters } from 'vuex'
 // From here, we can then hide the edit form and highlight the project?
 export default {
   components: {
-    ProjectItem, FullLayout, Message, CreateProject, RecentProjects, ProjectPill
+    ProjectItem, FullLayout, Message, ProjectEdit, RecentProjects, ProjectPill
   },
   data: () => ({
-    showCreate: false,
-    isCreating: false,
     errors: [],
-    query: ''
+    query: '',
+    newProject: null,
+    isCreating: false
   }),
   computed: {
     ...mapGetters(['currentUser', 'personalProjects', 'publicProjects']),
@@ -78,13 +85,25 @@ export default {
   methods: {
     filterProjects (projects, query) {
       query = this.query.toLowerCase()
-      return projects.filter(p =>
-        p.title.toLowerCase().includes(query)
-      )
+      return projects.filter(p => p.title.toLowerCase().includes(query))
+    },
+    toggleCreate () {
+      if (this.newProject) {
+        this.newProject = null
+      } else {
+        this.newProject = {
+          title: '',
+          description: '',
+          privacy: 'public',
+          tags: [],
+          creator: this.currentUser
+        }
+      }
+      console.log(this.newProject)
     },
     async fetchProjects () {
+      this.errors = []
       let { meta, data } = await this.$api.listAllProjects()
-      
       this.errors = meta.messages
       
       if (meta.success) {
@@ -94,8 +113,18 @@ export default {
         )
       }
     },
-    toggleCreate () {
-      this.isCreating = !this.isCreating
+    async createProject () {
+      this.errors = []
+      let { meta, data } = await this.$api.createProject(
+        this.newProject.title, this.newProject.description, this.newProject.tags, this.newProject.privacy
+      )
+      this.errors = meta.messages
+      if (meta.success) {
+        this.$store.commit(SAVE_PROJECT, data)
+        this.newProject = null
+      } else if (this.errors.length === 0) {
+        this.errors.push('Could not create project, please try again')
+      }
     }
   }
 }
@@ -108,6 +137,9 @@ export default {
     padding: 1.5em 1em
   .main
     max-width: $desktop
+  
+  .new-project
+    border-left: 15px solid $green
   
   .project-group:not(:last-child)
     margin-bottom: 3em

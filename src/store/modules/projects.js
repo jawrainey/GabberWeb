@@ -26,8 +26,8 @@ const mutations = {
   // SET_PUBLIC_PROJECTS: (state, projects) => (state.public_projects = projects),
   
   [MUTATIONS.SET_PROJECTS]: (state, projects) => (state.allProjects = projects),
-  [MUTATIONS.UPDATE_PROJECT]: (state, { id, project }) => {
-    let existing = state.allProjects.find(p => p.id === id)
+  [MUTATIONS.SAVE_PROJECT]: (state, project) => {
+    let existing = state.allProjects.find(p => p.id === project.id)
     if (existing) {
       Object.assign(existing, project)
     } else {
