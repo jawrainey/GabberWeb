@@ -116,10 +116,15 @@ export default class ApiInterface {
     this.notImplemented()
   }
   
-  // GET: /projectBySlug/:slug () -> Project
-  async projectBySlug (slug) {
+  // GET: /project/:proj_id/sessions/:session_id -> Session
+  async getSession (sessionId) {
     this.notImplemented()
   }
+  
+  // GET: /projectBySlug/:slug () -> Project
+  // async projectBySlug (slug) {
+  //   this.notImplemented()
+  // }
   
   /*
    * Playlists

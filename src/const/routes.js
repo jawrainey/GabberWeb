@@ -13,6 +13,6 @@ export const RESET_ROUTE = 'Reset'
 
 export const PROJECT_LIST_ROUTE = 'ProjectList'
 export const SESSION_LIST_ROUTE = 'SessionList'
-export const SESSION_ROUTE = 'Session'
+export const SESSION_DETAIL_ROUTE = 'Session'
 export const PLAYLIST_LIST_ROUTE = 'ProjectPlaylist'
 export const USER_PLAYLIST_ROUTE = 'UserPlaylist'

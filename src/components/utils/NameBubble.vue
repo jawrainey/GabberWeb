@@ -45,6 +45,7 @@ export default {
   border-radius: 1em
   text-align: center
   text-transform: capitalize
+  vertical-align: middle
   
   .initials
     font-size: 0.8em

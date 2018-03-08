@@ -1,17 +1,11 @@
 <template lang="pug">
-full-layout.session-list-view(v-if="loading")
-  div(slot="left")
-  .main(slot="main")
-    breadcrumbs
-    h1.title.is-1 Fetching Gabbers
-  div(slot="right")
-box-layout(v-else-if="errors.length > 0")
-  section.section
-    h1.title Something went wrong
-    message.is-danger(v-model="errors")
-    .buttons.is-centered
-      router-link.button.is-link(:to="projectListRoute")
-        | Go home
+loading-full-layout(
+  v-if="isLoading || errors.length > 0",
+  loading-message="Fetching Project's Gabbers",
+  :is-loading="isLoading",
+  :errors="errors",
+  :back-route="projectListRoute"
+)
 full-layout.session-list-view(v-else)
   .filter(slot="left")
     h3.subtitle Filter Gabbers
@@ -38,14 +32,14 @@ full-layout.session-list-view(v-else)
     label-value(label="Description", :value="project.description")
     label-value(label="Creator")
       p.is-size-4
-        name-bubble(
+        name-bubble.is-size-5(
           :name="project.creator.name",
           :color-id="project.creator.id",
           padded
         )
-        span.is-size-4 {{project.creator.name}}
+        span {{project.creator.name}}
     label-value(label="Project Members")
-      name-bubble.is-size-5(
+      name-bubble.is-size-6(
         v-for="member in project.members",
         :key="member.id",
         :name="member.name",
@@ -56,9 +50,12 @@ full-layout.session-list-view(v-else)
 
 <script>
 import moment from 'moment-mini'
+
 import { ADD_SESSIONS, SAVE_PROJECT } from '@/const/mutations'
-import { PROJECT_LIST_ROUTE, SESSION_ROUTE } from '@/const/routes'
+import { PROJECT_LIST_ROUTE, SESSION_DETAIL_ROUTE } from '@/const/routes'
+
 import FullLayout from '@/layouts/FullLayout'
+import LoadingFullLayout from '@/layouts/LoadingFullLayout'
 import BoxLayout from '@/layouts/BoxLayout'
 import Message from '@/components/utils/Message'
 import Breadcrumbs from '@/components/utils/Breadcrumbs'
@@ -68,10 +65,10 @@ import LabelValue from '@/components/utils/LabelValue'
 
 export default {
   components: {
-    FullLayout, BoxLayout, Breadcrumbs, Message, SessionPill, NameBubble, LabelValue
+    FullLayout, LoadingFullLayout, BoxLayout, Breadcrumbs, Message, SessionPill, NameBubble, LabelValue
   },
   data: () => ({
-    loading: true,
+    isLoading: true,
     errors: [],
     query: ''
   }),
@@ -99,7 +96,8 @@ export default {
       )
     },
     projectDate () {
-      return moment(this.project.created_on).format('h:mm a MMMM Do YYYY')
+      return moment(this.project.created_on)
+        .format('h:mm a MMMM Do YYYY')
     }
   },
   watch: {
@@ -111,7 +109,7 @@ export default {
   methods: {
     async fetchData () {
       this.errors = []
-      this.loading = true
+      this.isLoading = true
       
       let [ projectRes, sessionsRes ] = await Promise.all([
         this.$api.getProject(this.projectId),
@@ -132,11 +130,11 @@ export default {
           this.$store.commit(ADD_SESSIONS, sessionsRes.data)
         }
       }
-      this.loading = false
+      this.isLoading = false
     },
     viewSession (session) {
       const params = { project_id: this.project.id, session_id: session.id }
-      this.$router.push({ name: SESSION_ROUTE, params })
+      this.$router.push({ name: SESSION_DETAIL_ROUTE, params })
     }
   }
 }
@@ -145,11 +143,7 @@ export default {
 <style lang="sass" scoped>
 
 .session-list-view
-  .filter, .detail
-    padding: 1em
-  
   .main
-    padding: 0.5em 1em
     max-width: $desktop
 
 </style>

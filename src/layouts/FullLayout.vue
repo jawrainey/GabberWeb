@@ -34,9 +34,10 @@ export default {
 
 <style lang="sass">
 
-=overflow-scroll
+=panel-common
   overflow: scroll
   -webkit-overflow-scrolling: touch
+  padding: 0.5em 1em
 
 .full-layout
   display: grid
@@ -59,17 +60,17 @@ export default {
     grid-area: header
   
   > .layout-main
-    +overflow-scroll
+    +panel-common
     grid-area: main
   
   > .layout-left
-    +overflow-scroll
+    +panel-common
     background-color: $grey-darker
     grid-area: left
     border-right: 1px solid $grey-dark
   
   > .layout-right
-    +overflow-scroll
+    +panel-common
     background-color: $grey-darker
     grid-area: right
     border-left: 1px solid $grey-dark

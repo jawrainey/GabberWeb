@@ -1,5 +1,5 @@
 import ApiInterface from './ApiInterface'
-import { make, makeList, CURRENT_USER_ID } from './generator'
+import { make, makeList, CURRENT_USER_ID, hasher } from './generator'
 import { store } from '../store'
 
 const MOCK = {
@@ -119,8 +119,14 @@ export default class MockApi extends ApiInterface {
       makeList(7, make.session, projectId, CURRENT_USER_ID)
     )
   }
-  async projectBySlug (slug) {
-    // -> Project
-    this.notImplemented()
+  async getSession (sessionId) {
+    let id = hasher.decode(sessionId)[0]
+    return id
+      ? this.mock(make.session(id, 1, CURRENT_USER_ID))
+      : this.mock(null, false)
   }
+  // async projectBySlug (slug) {
+  //   // -> Project
+  //   this.notImplemented()
+  // }
 }

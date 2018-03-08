@@ -11,7 +11,8 @@ const getters = {
   
   sessionsForProject: state => id => state.sessions.filter(session =>
     session.projectId === id
-  )
+  ),
+  sessionById: state => id => state.sessions.find(s => s.id === id)
 }
 
 const mutations = {

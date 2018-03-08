@@ -16,7 +16,7 @@ import RegionSelection from '../views/RegionSelection'
 import UserPlaylist from '../views/UserPlaylist'
 import ProjectList from '../views/ProjectList'
 import SessionList from '../views/SessionList'
-import Session from '../views/Session'
+import SessionDetail from '../views/SessionDetail'
 
 import * as ROUTES from '../const/routes'
 
@@ -55,21 +55,19 @@ const routes = [
             path: 'sessions',
             component: Holder,
             meta: {
+              crumb: 'Gabbers',
               holderFor: ROUTES.SESSION_LIST_ROUTE
             },
             children: [
               {
                 path: '',
                 name: ROUTES.SESSION_LIST_ROUTE,
-                component: SessionList,
-                meta: {
-                  crumb: 'Gabbers'
-                }
+                component: SessionList
               },
               {
                 path: ':session_id',
-                name: ROUTES.SESSION_ROUTE,
-                component: Session,
+                name: ROUTES.SESSION_DETAIL_ROUTE,
+                component: SessionDetail,
                 meta: {
                   crumb: 'Gabber'
                 }

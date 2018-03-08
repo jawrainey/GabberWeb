@@ -1,3 +1,7 @@
+import Hashids from 'hashids'
+
+export const hasher = new Hashids('really_not_secret', 8)
+
 export const CURRENT_USER_ID = 99
 
 export const make = {
@@ -32,6 +36,7 @@ export const make = {
   },
   session (id, projectId, creatorId) {
     return model('Session', id, {
+      id: hasher.encode(id),
       projectId,
       creator: make.creator(creatorId),
       participants: makeList(pickBetween(1, 7), make.participant),

@@ -133,9 +133,6 @@ export default {
 <style lang="sass" scoped>
   
 .project-list-view
-  .filter, .main, .detail
-    padding: 1em
-  
   .main
     max-width: $desktop
   
