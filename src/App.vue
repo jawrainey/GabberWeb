@@ -41,6 +41,13 @@ export default {
   @extend .is-rounded
   @extend .is-uppercase
 
+.button.no-active-effects
+  @each $name, $pair in $colors
+    &.is-#{$name}:active
+      box-shadow: none
+      background-color: nth($pair, 1)
+      border-color: nth($pair, 1)
+
 .input, .textarea, .select select
   background-color: $grey-lighter
   &:focus

@@ -39,6 +39,7 @@ export const make = {
       id: hasher.encode(id),
       projectId,
       creator: make.creator(creatorId),
+      file: '/static/audio/horse.mp3',
       participants: makeList(pickBetween(1, 7), make.participant),
       topics: makeList(pickBetween(2, 8), make.topics),
       user_annotations: makeList(pickBetween(0, 12), make.annotation, id)

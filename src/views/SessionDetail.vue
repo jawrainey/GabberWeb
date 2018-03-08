@@ -7,54 +7,37 @@ loading-full-layout(
   :back-route="sessionListRoute"
 )
 full-layout(v-else)
-  aside(slot="left")
-    h3.subtitle Filter Annotations
+  annotation-filters(
+    slot="left"
+  )
   .main(slot="main")
     breadcrumbs
     h1.title {{session.creator.name}}'s Gabber
+    audio-player(:session="session")
     pre {{session}}
-  aside(slot="right")
-    h3.subtitle Gabber Info
-    label-value(label="Created on", :value="sessionDate")
-    label-value(label="Creator")
-      p.is-size-4
-        name-bubble.is-size-5(
-          :name="session.creator.name",
-          :color-id="session.creator.id",
-          padded
-        )
-        span {{session.creator.name}}
-    label-value(label="Participants")
-      name-bubble.is-size-6(
-        v-for="member in session.participants",
-        :key="member.id",
-        :name="member.name",
-        :color-id="member.user_id",
-        padded
-      )
-    label-value(label="Topics")
-      .tags
-        .tag.is-link(v-for="topic in session.topics") {{topic.name}}
-    label-value(
-      label="Annotations", :value="session.user_annotations.length"
-    )
+  session-info-sidebar(
+    slot="right",
+    :session="session"
+  )
 </template>
 
 <script>
-import moment from 'moment-mini'
 
 import { ADD_SESSIONS } from '@/const/mutations'
 import { SESSION_LIST_ROUTE } from '@/const/routes'
 
 import FullLayout from '@/layouts/FullLayout'
 import LoadingFullLayout from '@/layouts/LoadingFullLayout'
+
 import Breadcrumbs from '@/components/utils/Breadcrumbs'
-import NameBubble from '@/components/utils/NameBubble'
-import LabelValue from '@/components/utils/LabelValue'
+
+import AnnotationFilters from '@/components/annotation/AnnotationFilters'
+import SessionInfoSidebar from '@/components/session/SessionInfoSidebar'
+import AudioPlayer from '@/components/audio/AudioPlayer2'
 
 export default {
   components: {
-    FullLayout, LoadingFullLayout, Breadcrumbs, NameBubble, LabelValue
+    FullLayout, LoadingFullLayout, Breadcrumbs, AnnotationFilters, SessionInfoSidebar, AudioPlayer
   },
   data: () => ({
     errors: [],
@@ -71,11 +54,7 @@ export default {
   computed: {
     sessionListRoute () { return { name: SESSION_LIST_ROUTE } },
     sessionId () { return this.$route.params.session_id },
-    session () { return this.$store.getters.sessionById(this.sessionId) },
-    sessionDate () {
-      return moment(this.session.created_on)
-        .format('h:mm a MMMM Do YYYY')
-    }
+    session () { return this.$store.getters.sessionById(this.sessionId) }
   },
   methods: {
     async fetchGabber () {

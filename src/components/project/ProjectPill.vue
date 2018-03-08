@@ -7,8 +7,7 @@
     @startEdit="startEdit",
     @join="joinProject"
   )
-  template(v-if="!isEditing")
-    project-info(:project="project")
+  project-info(v-if="!isEditing", :project="project")
   template(v-else)
     message.is-danger(v-model="errors", clearable)
     project-edit(
