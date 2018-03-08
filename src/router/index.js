@@ -16,6 +16,7 @@ import RegionSelection from '../views/RegionSelection'
 import UserPlaylist from '../views/UserPlaylist'
 import ProjectList from '../views/ProjectList'
 import SessionList from '../views/SessionList'
+import Session from '../views/Session'
 
 import * as ROUTES from '../const/routes'
 
@@ -47,20 +48,43 @@ const routes = [
         component: ProjectList
       },
       {
-        path: ':project_id/sessions',
-        name: ROUTES.SESSION_LIST_ROUTE,
-        component: SessionList,
-        meta: {
-          crumb: 'Gabbers'
-        }
-      },
-      {
-        path: ':project_id/playlists',
-        name: ROUTES.PLAYLIST_LIST_ROUTE,
-        component: RegionSelection,
-        meta: {
-          crumb: 'Playlists'
-        }
+        path: ':project_id',
+        component: Holder,
+        children: [
+          {
+            path: 'sessions',
+            component: Holder,
+            meta: {
+              holderFor: ROUTES.SESSION_LIST_ROUTE
+            },
+            children: [
+              {
+                path: '',
+                name: ROUTES.SESSION_LIST_ROUTE,
+                component: SessionList,
+                meta: {
+                  crumb: 'Gabbers'
+                }
+              },
+              {
+                path: ':session_id',
+                name: ROUTES.SESSION_ROUTE,
+                component: Session,
+                meta: {
+                  crumb: 'Gabber'
+                }
+              }
+            ]
+          },
+          {
+            path: 'playlists',
+            name: ROUTES.PLAYLIST_LIST_ROUTE,
+            component: RegionSelection,
+            meta: {
+              crumb: 'Playlists'
+            }
+          }
+        ]
       }
     ]
   },

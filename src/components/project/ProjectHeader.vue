@@ -1,19 +1,19 @@
 <template lang="pug">
 .level.is-mobile.project-header
   .level-left
-    .level-item
-      fa(:icon="projectIcon", size="2x")
+    .level-item.icon-item
+      fa(v-if="projectIcon", :icon="projectIcon")
     
     .level-item.title
       h4.is-4 {{project.title}}
-        span(v-if="membershipType") &ndash; {{ membershipType }}
+        span.membership(v-if="membershipType") {{ membershipType }}
   
   .level-right
-    .level-item(v-if="canEdit")
+    .level-item.is-marginless(v-if="canEdit")
       icon-button.is-dark.is-rounded(@click="$emit('startEdit')", icon="cog")
         | Edit
     
-    .level-item(v-if="!isProjectMember")
+    .level-item.is-marginless(v-if="!isProjectMember")
       icon-button.is-dark.is-rounded(icon="user-plus", @click="$emit('join')", :disabled="inProgress")
         | Join
 </template>
@@ -31,7 +31,7 @@ export default {
   },
   computed: {
     projectIcon () {
-      return this.project.privacy === 'public' ? 'users' : 'lock'
+      return this.project.privacy === 'public' ? '' : 'lock'
     },
     canEdit () {
       return this.isOwner && !this.isEditing
@@ -43,4 +43,13 @@ export default {
 <style lang="sass">
 .project-header
   min-height: 40px
+  
+  .icon-item
+    width: 1rem
+  
+  .membership
+    padding-left: 0.5em
+    font-size: 0.6em
+    color: $grey-light
+    text-transform: lowercase
 </style>

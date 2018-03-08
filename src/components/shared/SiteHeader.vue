@@ -1,24 +1,24 @@
 <template lang="pug">
 header.site-header.hero
   nav.navbar(role="navigation", aria-label="main navigation")
-    .container
-      .navbar-brand
-        p.navbar-item.is-size-3.has-text-weight-bold
-          router-link.has-text-white(:to="homeRoute") Gabber
-      .navbar-menu
-        .navbar-end
-          router-link.navbar-item(:to="homeRoute", :class="routeClass(homeRoute)")
-            span Home
-          router-link.navbar-item(:to="projectsRoute", :class="routeClass(projectsRoute)")
-            span Projects
-          router-link.navbar-item(:to="aboutRoute", :class="routeClass(aboutRoute)")
-            span About
-          
-          template(v-if="!isLoggedIn")
-            router-link.navbar-item(:to="loginRoute", :class="routeClass(loginRoute)")
-              span Login
-          .navbar-item(v-else)
-            button.button.is-dark(@click="logout") Logout
+    //- div(:class="{ container: !fullWidth }")
+    .navbar-brand
+      p.navbar-item.is-size-3.has-text-weight-bold
+        router-link.has-text-white(:to="homeRoute") Gabber
+    .navbar-menu
+      .navbar-end
+        router-link.navbar-item(:to="homeRoute", :class="routeClass(homeRoute)")
+          span Home
+        router-link.navbar-item(:to="projectsRoute", :class="routeClass(projectsRoute)")
+          span Projects
+        router-link.navbar-item(:to="aboutRoute", :class="routeClass(aboutRoute)")
+          span About
+        
+        template(v-if="!isLoggedIn")
+          router-link.navbar-item(:to="loginRoute", :class="routeClass(loginRoute)")
+            span Login
+        .navbar-item(v-else)
+          button.button.is-dark(@click="logout") Logout
 </template>
 
 <script>
@@ -26,6 +26,12 @@ import { HOME_ROUTE, ABOUT_ROUTE, PROJECT_LIST_ROUTE, LOGIN_ROUTE } from '@/cons
 import { LOGOUT_USER } from '@/const/mutations'
 
 export default {
+  props: {
+    fullWidth: {
+      type: Boolean,
+      default: false
+    }
+  },
   computed: {
     isLoggedIn () { return this.$store.getters.currentUser },
     homeRoute () { return { name: HOME_ROUTE } },

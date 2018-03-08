@@ -141,12 +141,4 @@ export default class ApiInterface {
 
 /* EXPECTED TYPES:
 
-User     { fullname, email }
-Project  { title, description, tags, privacy }
-Tag      { name }
-Session  { projectId, creatorId }
-Playlist ???
-Note     ???
-Region   { note, playlist, region, user }
-
  */

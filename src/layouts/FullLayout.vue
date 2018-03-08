@@ -1,11 +1,11 @@
 <template lang="pug">
 .full-layout(:class="typeClass")
-  site-header
-  aside.left(v-if="$slots.left")
+  site-header(:full-width="true")
+  aside.layout-left(v-if="$slots.left")
     slot(name="left")
-  main.main
+  main.layout-main
     slot(name="main")
-  aside.right(v-if="$slots.right")
+  aside.layout-right(v-if="$slots.right")
     slot(name="right")
 </template>
 
@@ -47,10 +47,10 @@ export default {
     grid-template-columns: 3fr 8fr 3fr
     grid-template-areas: 'header header header' 'left main right'
   &.left-main
-    grid-template-columns: 3fr 10fr
+    grid-template-columns: 3fr 11fr
     grid-template-areas: 'header header' 'left main'
   &.main-right
-    grid-template-columns: 10fr 3fr
+    grid-template-columns: 11fr 3fr
     grid-template-areas: 'header header' 'main right'
   &.only-main
     grid-template-areas: 'header' 'main'
@@ -58,17 +58,17 @@ export default {
   > header
     grid-area: header
   
-  > main
+  > .layout-main
     +overflow-scroll
     grid-area: main
   
-  > .left
+  > .layout-left
     +overflow-scroll
     background-color: $grey-darker
     grid-area: left
     border-right: 1px solid $grey-dark
   
-  > .right
+  > .layout-right
     +overflow-scroll
     background-color: $grey-darker
     grid-area: right

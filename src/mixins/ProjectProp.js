@@ -23,7 +23,7 @@ export default {
       if (!this.isProjectMember) return null
       if (this.isOwner) return 'Owner'
       let membership = this.project.members.some(m => m.user === this.currentUser)
-      return membership.role === 'admin' ? 'Admin' : 'User'
+      return membership.role === 'admin' ? 'Admin' : 'Member'
     }
   }
 }

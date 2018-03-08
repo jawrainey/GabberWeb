@@ -8,17 +8,7 @@
     @join="joinProject"
   )
   template(v-if="!isEditing")
-    .columns.project-info
-      .column
-        p {{ project.description }}
-      .column.is-narrow
-        .buttons.is-right
-          router-link.button.is-link.is-rounded.is-medium(:to="sessionsRoute")
-            .icon: fa(icon="microphone")
-            span Gabbers
-          router-link.button.is-link.is-rounded.is-medium(:to="playlistsRoute")
-            .icon: fa(icon="headphones")
-            span Playlists
+    project-info(:project="project")
   template(v-else)
     message.is-danger(v-model="errors", clearable)
     project-edit(
@@ -33,17 +23,17 @@
 </template>
 
 <script>
-import { SESSION_LIST_ROUTE, PLAYLIST_LIST_ROUTE } from '@/const/routes'
 import { SAVE_PROJECT, DELETE_PROJECT } from '@/const/mutations'
 import ProjectPropMixin from '@/mixins/ProjectProp'
 import Message from '@/components/utils/Message'
 import ProjectHeader from './ProjectHeader'
 import ProjectEdit from './ProjectEdit'
+import ProjectInfo from './ProjectInfo'
 import { mapGetters } from 'vuex'
 
 export default {
   mixins: [ ProjectPropMixin ],
-  components: { Message, ProjectHeader, ProjectEdit },
+  components: { Message, ProjectHeader, ProjectEdit, ProjectInfo },
   data: () => ({
     isEditing: false,
     changes: {},
@@ -52,15 +42,7 @@ export default {
   }),
   computed: {
     ...mapGetters(['currentUser']),
-    canDelete () { return this.isOwner && !this.inProgress },
-    sessionsRoute () {
-      const params = { project_id: this.project.id }
-      return { name: SESSION_LIST_ROUTE, params }
-    },
-    playlistsRoute () {
-      const params = { project_id: this.project.id }
-      return { name: PLAYLIST_LIST_ROUTE, params }
-    }
+    canDelete () { return this.isOwner && !this.inProgress }
   },
   methods: {
     startEdit () {
@@ -142,9 +124,5 @@ export default {
   
   &:not(:last-child)
     margin-bottom: 1.3em
-  
-  .project-info
-    border-top: 1px solid $border
-    padding-top: 0.6em
 
 </style>

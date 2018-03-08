@@ -20,7 +20,11 @@ const mutations = {
   
   [MUTATIONS.ADD_SESSIONS]: (state, sessions) => {
     // NOTE: expecting them to have a projectId set
-    state.sessions = state.sessions.concat(sessions)
+    sessions.forEach(newSession => {
+      let index = state.sessions.findIndex(s => s.id === newSession.id)
+      if (index !== -1) state.sessions[index] = newSession
+      else state.sessions.push(newSession)
+    })
   }
 }
 

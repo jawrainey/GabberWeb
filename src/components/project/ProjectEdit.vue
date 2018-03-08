@@ -20,8 +20,8 @@
     p.control
       span.select
         select(v-model="project.privacy")
-          option(value="private", default) Private
           option(value="public", default) Public
+          option(value="private", default) Private
   hr
   .field.is-grouped.is-grouped-right
     

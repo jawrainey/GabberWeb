@@ -1,28 +1,28 @@
 <template>
     <tbody>
-        <tr @click="isShown=!isShown">
-            <td>{{ projectSession.topics.length }}</td>
-            <td>{{ projectSession.creator }}</td>
+        <tr @click="isShown = !isShown">
+            <td>{{ session.topics.length }}</td>
+            <td>{{ session.creator.name }}</td>
             <td>{{ participantInits }}</td>
-            <td>{{ projectSession.date }}</td>
-            <td>{{ projectSession.location }}</td>
-            <td>
+            <td>{{ session.date }}</td>
+            <td>{{ session.location }}</td>
+            <td class="is-narrow">
                 <button class="arrow-right" v-bind:class="[isShown ? 'arrow-down' : 'arrow-right']"></button>
             </td>
         </tr>
         <tr v-if="isShown">
             <td colspan="2">
-                <template v-for="topic, id in projectSession.topics">
-                    <p>{{ topic }}</p>
-                </template>
+                <span v-for="(topic, i) in session.topics" :key="i">
+                    {{ topic.text_prompt }} <br>
+                </span>
             </td>
             <td colspan="2">
-                <template v-for="participant in projectSession.participants">
-                    <p>{{ participant }}</p>
-                </template>
+                <span v-for="(participant, i) in session.participants" :key="i">
+                    {{ participant.name }} <br>
+                </span>
             </td>
             <td colspan="2">
-                Number of annotations: {{ projectSession.meta.numAnnotations }}
+                <!-- Number of annotations: {{ session.meta.numAnnotations }} -->
             </td>
         </tr>
     </tbody>
@@ -30,14 +30,15 @@
 
 <script>
 export default {
-  props: ['projectSession'],
+  props: [ 'session' ],
   data: () => ({
     isShown: false
   }),
   computed: {
     // TODO: this should be encapsulated in a ParticipantCircle component
     participantInits () {
-      return this.projectSession.participants.map(p => p.split(' ').map(w => w[0].toUpperCase()).join('')).join(', ')
+      return this.session.participants.map(s => s.name).join(', ')
+      // return this.session.participants.map(p => p.split(' ').map(w => w[0].toUpperCase()).join('')).join(', ')
     }
   }
 }

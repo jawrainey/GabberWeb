@@ -1,7 +1,10 @@
 <template lang="pug">
-box-layout(v-if="loading")
-  section.section
-    h1.title Fetching Gabbers
+full-layout.session-list-view(v-if="loading")
+  div(slot="left")
+  .main(slot="main")
+    breadcrumbs
+    h1.title.is-1 Fetching Gabbers
+  div(slot="right")
 box-layout(v-else-if="errors.length > 0")
   section.section
     h1.title Something went wrong
@@ -22,26 +25,51 @@ full-layout.session-list-view(v-else)
   .main(slot="main")
     breadcrumbs
     h1.title.is-1 Gabbers
-    pre {{project.title}}
-    pre {{sessions.map(s => s.creator.name)}}
+    session-pill(
+      v-for="session in filteredSessions",
+      :key="session.id",
+      :session="session",
+      @view="viewSession"
+    )
   
   .detail(slot="right")
-    .content
-      h3.subtitle {{project.title}}
-      p {{project.created_on}}
-      p {{project.description}}
+    h3.title.is-3 {{project.title}}
+    p.subtitle {{projectDate}}
+    label-value(label="Description", :value="project.description")
+    label-value(label="Creator")
+      p.is-size-4
+        name-bubble(
+          :name="project.creator.name",
+          :color-id="project.creator.id",
+          padded
+        )
+        span.is-size-4 {{project.creator.name}}
+    label-value(label="Project Members")
+      name-bubble.is-size-5(
+        v-for="member in project.members",
+        :key="member.id",
+        :name="member.name",
+        :color-id="member.user_id",
+        padded
+      )
 </template>
 
 <script>
+import moment from 'moment-mini'
 import { ADD_SESSIONS, SAVE_PROJECT } from '@/const/mutations'
-import { PROJECT_LIST_ROUTE } from '@/const/routes'
+import { PROJECT_LIST_ROUTE, SESSION_ROUTE } from '@/const/routes'
 import FullLayout from '@/layouts/FullLayout'
 import BoxLayout from '@/layouts/BoxLayout'
 import Message from '@/components/utils/Message'
 import Breadcrumbs from '@/components/utils/Breadcrumbs'
+import SessionPill from '@/components/sessions/SessionPill'
+import NameBubble from '@/components/utils/NameBubble'
+import LabelValue from '@/components/utils/LabelValue'
 
 export default {
-  components: { FullLayout, BoxLayout, Breadcrumbs, Message },
+  components: {
+    FullLayout, BoxLayout, Breadcrumbs, Message, SessionPill, NameBubble, LabelValue
+  },
   data: () => ({
     loading: true,
     errors: [],
@@ -62,7 +90,20 @@ export default {
     sessions () {
       if (!this.project) return []
       return this.$store.getters.sessionsForProject(this.projectId)
+    },
+    filteredSessions () {
+      let regex = new RegExp(this.query, 'gi')
+      return this.sessions.filter(session =>
+        session.creator.name.match(regex) ||
+        session.participants.some(participant => participant.name.match(regex))
+      )
+    },
+    projectDate () {
+      return moment(this.project.created_on).format('h:mm a MMMM Do YYYY')
     }
+  },
+  watch: {
+    '$route.params.project_id' () { this.fetchData() }
   },
   mounted () {
     this.fetchData()
@@ -92,6 +133,10 @@ export default {
         }
       }
       this.loading = false
+    },
+    viewSession (session) {
+      const params = { project_id: this.project.id, session_id: session.id }
+      this.$router.push({ name: SESSION_ROUTE, params })
     }
   }
 }
