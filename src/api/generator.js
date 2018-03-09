@@ -1,8 +1,18 @@
 import Hashids from 'hashids'
+import eases from 'eases'
 
 export const hasher = new Hashids('really_not_secret', 8)
 
 export const CURRENT_USER_ID = 99
+
+export const DUMMY_TOPICS = [
+  'Introduction',
+  'What is the point of this chat?',
+  'Project Description',
+  'General Conversation',
+  'The big issues',
+  'A specific issue'
+]
 
 export const make = {
   user (id) {
@@ -26,22 +36,22 @@ export const make = {
       creator: make.creator(creatorId)
     })
   },
-  topics (id, projectId) {
+  topic (id, projectId) {
     return model('Topic', id, {
-      name: `Topic ${id}`,
+      text: pickFrom(DUMMY_TOPICS),
       is_active: 1,
-      project: projectId,
-      text_prompt: `topic ${id}`
+      project: projectId
     })
   },
   session (id, projectId, creatorId) {
+    let numTopics = pickBetween(3, 8)
     return model('Session', id, {
       id: hasher.encode(id),
       projectId,
       creator: make.creator(creatorId),
-      file: '/static/audio/horse.mp3',
+      file: '/static/audio/tmp.m4a',
       participants: makeList(pickBetween(1, 7), make.participant),
-      topics: makeList(pickBetween(2, 8), make.topics),
+      topics: makeList(numTopics, make.sessionTopic, projectId, numTopics, 292),
       user_annotations: makeList(pickBetween(0, 12), make.annotation, id)
     })
   },
@@ -73,6 +83,15 @@ export const make = {
       user_id: pickBetween(1, 9),
       justification: 'Morbi leo risus, porta ac consectetur ac, vestibulum at eros.'
     })
+  },
+  sessionTopic (id, projectId, count, duration) {
+    let start = eases.quadInOut((id - 1) / count)
+    let end = eases.quadInOut(id / count)
+    return {
+      ...make.topic(id, projectId),
+      start: start * duration,
+      end: end * duration
+    }
   }
 }
 
@@ -98,6 +117,10 @@ export function model (type, id, obj) {
 
 export function pickBetween (from, to) {
   return from + Math.floor(Math.random() * (to - from))
+}
+
+export function pickFrom (list) {
+  return list[Math.floor(Math.random() * list.length)]
 }
 
 export function username (id, segment = 'User') {

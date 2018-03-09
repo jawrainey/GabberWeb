@@ -56,6 +56,11 @@ export default {
     color: $grey-dark
     background-color: $grey-light
 
+.box.is-pill
+  @each $name, $pair in $colors
+    &.is-#{$name}
+      border-left: 15px solid nth($pair, 1)
+
 // Why would a css framework add a transition: all :S
 a, .button
   transition: none

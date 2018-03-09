@@ -27,7 +27,7 @@
       label-value(label="Topics")
         .tags
           .tag(v-for="topic in limitedTopics")
-            | {{topic.name}}
+            | {{topic.text}}
           .tag(v-if="session.topics.length > topicLimit")
             | + {{session.topics.length - topicLimit}} more
 </template>
@@ -46,7 +46,7 @@ export default {
     },
     topicLimit: {
       type: Number,
-      default: 5
+      default: 3
     }
   },
   computed: {
@@ -80,6 +80,7 @@ export default {
   cursor: pointer
   position: relative
   transition: border-color 0.3s, transform 0.3s
+  padding-right: 3rem
   
   &:not(:last-child)
     margin-bottom: 1em

@@ -18,12 +18,11 @@
       :color-id="member.user_id",
       padded
     )
-  label-value(label="Topics")
-    .tags
-      .tag.is-link(v-for="topic in session.topics") {{topic.name}}
-  label-value(
-    label="Annotations", :value="session.user_annotations.length"
-  )
+  .columns
+    .column
+      label-value(label="Topics", :value="session.topics.length")
+    .column
+      label-value(label="Annotations", :value="session.user_annotations.length")
 </template>
 
 <script>

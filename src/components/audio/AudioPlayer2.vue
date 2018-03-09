@@ -1,6 +1,5 @@
 <template lang="pug">
 .audio-player
-  p {{ state }}
   .controls
     .columns.is-mobile.is-gapless
       .column
@@ -15,11 +14,6 @@
           circle-button.is-link.is-large.no-active-effects(
             :icon="toggleIcon",
             @click="toggle",
-            :disabled="!canPlay"
-          )
-          circle-button.is-link.no-active-effects(
-            icon="stop",
-            @click="stop",
             :disabled="!canPlay"
           )
           circle-button.is-link.no-active-effects(
@@ -41,10 +35,33 @@ import WaveSurfer from 'wavesurfer.js'
 
 import CircleButton from '@/components/utils/CircleButton'
 
-const PLAYING = 'playing'
-const PAUSED = 'paused'
-const STOPPED = 'stopped'
-const NOT_READY = 'not-ready'
+const PLAYER_CONFIG = {
+  barWidth: 4,
+  cursorColor: '#38597E',
+  cursorWidth: 2,
+  progressColor: '#1BBC9C',
+  waveColor: '#5E6D6E',
+  scrollParent: true,
+  minPxPerSec: 0,
+  normalize: true,
+  responsive: true
+}
+
+export const PlayerState = {
+  Playing: 'playing',
+  Paused: 'paused',
+  Stopped: 'stopped',
+  NotReady: 'not_ready'
+}
+
+/* Emitted Events
+
+@progress (duration)  -> when the player position changed
+@finish ()            -> when playing finished
+@state ()             -> when the state changes
+@ready (length)       -> when the audio was loaded
+
+ */
 
 export default {
   components: { CircleButton },
@@ -52,18 +69,18 @@ export default {
     session: { type: Object, required: true }
   },
   data: () => ({
-    wavesurfer: false,
-    state: NOT_READY,
+    audio: null,
+    state: PlayerState.NotReady,
     progress: 0
   }),
   watch: {
     session () { this.setup() }
   },
   computed: {
-    isPlaying () { return this.state === PLAYING },
-    isPaused () { return this.state === PAUSED },
-    isStopped () { return this.state === STOPPED },
-    canPlay () { return this.state !== NOT_READY },
+    isPlaying () { return this.state === PlayerState.Playing },
+    isPaused () { return this.state === PlayerState.Paused },
+    isStopped () { return this.state === PlayerState.Stopped },
+    canPlay () { return this.state !== PlayerState.NotReady },
     toggleIcon () { return this.isPlaying ? 'pause' : 'play' },
     current () {
       if (!this.canPlay) return '~'
@@ -71,74 +88,92 @@ export default {
     },
     remaining () {
       if (!this.canPlay) return '~'
-      return this.format(Math.floor(this.wavesurfer.getDuration()) - this.progress)
+      return this.format(Math.round(this.audio.getDuration()) - this.progress)
     }
   },
   mounted () { this.setup() },
   destroyed () { this.teardown() },
   methods: {
     toggle () {
-      if (this.state === PLAYING) {
-        this.wavesurfer.pause()
-        this.state = PAUSED
+      if (this.state === PlayerState.Stopped) {
+        this.audio.seekTo(0)
+      }
+      if (this.state === PlayerState.Playing) {
+        this.audio.pause()
+        this.setState(PlayerState.Paused)
       } else {
-        this.wavesurfer.play()
-        this.state = PLAYING
+        this.audio.play()
+        this.setState(PlayerState.Playing)
       }
     },
     stop () {
-      this.wavesurfer.stop()
-      this.state = STOPPED
+      this.audio.stop()
+      this.setState(PlayerState.Stopped)
     },
     backwards () {
-      this.wavesurfer.skipBackward(1)
+      this.audio.skipBackward(1)
     },
     forwards () {
-      this.wavesurfer.skipForward(1)
+      this.audio.skipForward(1)
     },
     format (seconds) {
-      const pad = num => (num < 10 ? '0' : '') + num
+      seconds = Math.max(0, seconds)
+      const pad = num => (num < 10 ? '0' : '') + Math.max(0, num)
       
       let mins = Math.floor(seconds / 60)
       let secs = Math.floor(seconds - (mins * 60))
-      return `${pad(mins)}.${pad(secs)}s`
-      // console.log(typeof seconds, seconds)
-      // return `~`
+      return `${pad(mins)}:${pad(secs)}`
+    },
+    setProgress (progress) {
+      this.progress = progress
+      this.$emit('progress', progress)
+      if (this.isStopped && progress > 0) {
+        this.setState(PlayerState.Paused)
+      }
+    },
+    setState (state) {
+      this.state = state
+      this.$emit('state', state)
+    },
+    seekTo (progress) {
+      let val = Math.min(
+        1, Math.max(0, progress / this.audio.getDuration())
+      )
+      this.audio.seekAndCenter(val)
+      if (this.state === PlayerState.Stopped) {
+        this.state = PlayerState.Paused
+      }
     },
     setup () {
       this.teardown()
       
       let wavesurfer = WaveSurfer.create({
-        container: this.$refs.player,
-        barWidth: 4,
-        cursorColor: '#38597E',
-        cursorWidth: 2,
-        progressColor: '#1BBC9C',
-        waveColor: '#5E6D6E'
+        ...PLAYER_CONFIG, container: this.$refs.player
       })
       
       wavesurfer.load(this.session.file)
       wavesurfer.on('ready', () => {
-        console.log('ready')
-        this.state = STOPPED
+        this.$emit('ready', this.audio.getDuration())
+        this.setState(PlayerState.Stopped)
       })
       wavesurfer.on('finish', () => {
-        console.log('finish')
-        this.state = STOPPED
-        wavesurfer.seekTo(0)
+        this.setState(PlayerState.Stopped)
+        this.$emit('finish')
       })
       wavesurfer.on('audioprocess', progress => {
-        console.log('audioprocess', progress)
-        this.progress = progress
+        this.setProgress(progress)
       })
-      this.wavesurfer = wavesurfer
-      this.state = NOT_READY
+      wavesurfer.on('seek', percent => {
+        this.setProgress(wavesurfer.getDuration() * percent)
+      })
+      this.audio = wavesurfer
+      this.setState(PlayerState.NotReady)
     },
     teardown () {
-      if (this.wavesurfer) {
-        this.wavesurfer.destroy()
+      if (this.audio) {
+        this.audio.destroy()
       }
-      this.state = NOT_READY
+      this.setState(PlayerState.NotReady)
     }
   }
 }
@@ -147,7 +182,6 @@ export default {
 <style lang="sass">
 
 .audio-player
-  padding-bottom: 1em
   
   .controls
     padding-bottom: 1em
@@ -160,18 +194,16 @@ export default {
       padding: 0 0.5em
   
   .player-wrapper
-    padding: 1em
-    height: calc(128px + 2em)
+    height: 128px
     position: relative
-    background: $grey-darker
-    border-radius: $radius-large
   
   .loading
     position: absolute
     left: 0
     right: 0
-    top: 0
+    top: 1rem
     bottom: 0
     line-height: 128px
+    height: 128px
 
 </style>

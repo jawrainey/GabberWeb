@@ -13,7 +13,7 @@
         <tr v-if="isShown">
             <td colspan="2">
                 <span v-for="(topic, i) in session.topics" :key="i">
-                    {{ topic.text_prompt }} <br>
+                    {{ topic.text }} <br>
                 </span>
             </td>
             <td colspan="2">

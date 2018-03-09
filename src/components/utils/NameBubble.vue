@@ -1,10 +1,16 @@
 <template lang="pug">
-span.name-bubble(:class="classes", :style="styles")
-  span.initials {{ initials }}
+tooltip(:tip="name", display="inline-flex")
+  span.name-bubble(:class="classes", :style="styles")
+    span.initials {{ initials }}
 </template>
 
 <script>
+import ColorGeneratorMixin from '@/mixins/ColorGenerator'
+import Tooltip from '@/components/utils/Tooltip'
+
 export default {
+  mixins: [ ColorGeneratorMixin ],
+  components: { Tooltip },
   props: {
     name: { type: String, required: true },
     colorId: { type: Number, default: null },
@@ -16,10 +22,7 @@ export default {
     },
     styles () {
       if (typeof this.colorId !== 'number') return {}
-      let id = (this.colorId * 42) % 360
-      return {
-        'background-color': `hsl(${id}, 42%, 50%)`
-      }
+      return { 'background-color': this.colorFromId(this.colorId) }
     },
     initials () {
       let segments = this.name.split(' ').map(s => s[0])

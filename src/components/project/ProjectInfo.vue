@@ -1,7 +1,16 @@
 <template lang="pug">
 .columns.project-info
   .column.description
-    p {{ project.description }}
+    label-value.is-marginless(label="Description", :value="project.description")
+  .column.members
+    label-value.is-marginless(label="Members")
+      name-bubble(
+        v-for="member in project.members",
+        :key="member.id",
+        :name="member.name",
+        :color-id="member.user_id",
+        padded
+      )
   .column.is-narrow
     .buttons.is-right
       router-link.button.is-link.is-rounded.is-medium(:to="sessionsRoute")
@@ -16,8 +25,12 @@
 import { SESSION_LIST_ROUTE, PLAYLIST_LIST_ROUTE } from '@/const/routes'
 import ProjectPropMixin from '@/mixins/ProjectProp'
 
+import LabelValue from '@/components/utils/LabelValue'
+import NameBubble from '@/components/utils/NameBubble'
+
 export default {
   mixins: [ ProjectPropMixin ],
+  components: { LabelValue, NameBubble },
   computed: {
     sessionsRoute () {
       const params = { project_id: this.project.id }

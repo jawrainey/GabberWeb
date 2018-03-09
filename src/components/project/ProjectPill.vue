@@ -1,5 +1,5 @@
 <template lang="pug">
-.project-item
+.project-item.box.is-pill.is-primary
   project-header(
     :in-progress="inProgress",
     :is-editing="isEditing",
@@ -116,10 +116,10 @@ export default {
 <style lang="sass">
 
 .project-item
-  +border-radius($radius-large)
-  background-color: $grey-darker
-  border-left: $primary 15px solid
-  padding: 1.3em
+  // +border-radius($radius-large)
+  // background-color: $grey-darker
+  // border-left: $primary 15px solid
+  // padding: 1.3em
   
   &:not(:last-child)
     margin-bottom: 1.3em
