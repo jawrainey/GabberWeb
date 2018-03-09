@@ -1,12 +1,12 @@
 <template lang="pug">
 simple-layout
-  .container
-    section.section.is-medium
+  .container.home-page.vertical-aligned
+    section.section
       .columns
         .column.is-one-third
           img(src="https://gabber.audio/static/img/screen.gif")
-        .column.is-two-thirds
-          section.section.is-medium
+        .column.is-two-thirds.vertical-aligned
+          section.section
             h1.title.is-2
               | Your voice matters
             h2.subtitle.is-3
@@ -31,4 +31,13 @@ export default {
 </script>
 
 <style lang="sass">
+
+.vertical-aligned
+  display: flex
+  align-items: center
+  justify-content: center
+
+.home-page
+  flex: 1
+
 </style>

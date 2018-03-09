@@ -152,6 +152,7 @@ export default {
       })
       
       wavesurfer.load(this.session.file)
+      wavesurfer.setVolume(0.5)
       wavesurfer.on('ready', () => {
         this.$emit('ready', this.audio.getDuration())
         this.setState(PlayerState.Stopped)

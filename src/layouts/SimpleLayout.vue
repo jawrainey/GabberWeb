@@ -1,5 +1,5 @@
 <template lang="pug">
-.default-layout
+.simple-layout
   main
     site-header
     slot
@@ -15,13 +15,16 @@ export default {
 }
 </script>
 
-<style lang="scss">
-.default-layout {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-  > main {
-    flex: 1;
-  }
-}
+<style lang="sass">
+
+.simple-layout
+  display: flex
+  min-height: 100vh
+  flex-direction: column
+  
+  > main
+    flex: 1
+    display: flex
+    flex-direction: column
+
 </style>

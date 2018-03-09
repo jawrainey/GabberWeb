@@ -6,7 +6,9 @@
     :topic="topic",
     :audio-duration="audioDuration",
     :is-active="topic.id === (activeTopic && activeTopic.id)"
-    @click="$emit('pickTopic', topic)"
+    @click="$emit('pickTopic', topic)",
+    @over="t => $emit('over', t)",
+    @leave="t => $emit('leave', t)"
   )
 </template>
 

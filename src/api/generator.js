@@ -5,6 +5,8 @@ export const hasher = new Hashids('really_not_secret', 8)
 
 export const CURRENT_USER_ID = 99
 
+// TODO: update user/creator/member/participant to use fullname
+
 export const DUMMY_TOPICS = [
   'Introduction',
   'What is the point of this chat?',
@@ -12,6 +14,14 @@ export const DUMMY_TOPICS = [
   'General Conversation',
   'The big issues',
   'A specific issue'
+]
+
+export const DUMMY_COMMENTS = [
+  'I love that!',
+  'I really like this bit, it means ...',
+  'How did they do that?',
+  'Would it still work if you ...',
+  'I do not agree, I think that ...'
 ]
 
 export const make = {
@@ -45,14 +55,15 @@ export const make = {
   },
   session (id, projectId, creatorId) {
     let numTopics = pickBetween(3, 8)
+    const duration = 292
     return model('Session', id, {
       id: hasher.encode(id),
       projectId,
       creator: make.creator(creatorId),
       file: '/static/audio/tmp.m4a',
       participants: makeList(pickBetween(1, 7), make.participant),
-      topics: makeList(numTopics, make.sessionTopic, projectId, numTopics, 292),
-      user_annotations: makeList(pickBetween(0, 12), make.annotation, id)
+      topics: makeList(numTopics, make.sessionTopic, projectId, numTopics, duration),
+      user_annotations: makeList(pickBetween(2, 10), make.annotation, id, duration)
     })
   },
   playlist (id, creatorId) {
@@ -77,11 +88,16 @@ export const make = {
       user_id: id
     })
   },
-  annotation (id, sessionId) {
+  annotation (id, sessionId, duration) {
+    let when = pickBetween(0, duration)
     return model('Annotation', id, {
       sessionId,
       user_id: pickBetween(1, 9),
-      justification: 'Morbi leo risus, porta ac consectetur ac, vestibulum at eros.'
+      comments: [],
+      content: pickFrom(DUMMY_COMMENTS),
+      creator: make.creator(CURRENT_USER_ID),
+      start_interval: when,
+      end_interval: 2
     })
   },
   sessionTopic (id, projectId, count, duration) {

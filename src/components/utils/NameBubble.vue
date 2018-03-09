@@ -1,7 +1,6 @@
 <template lang="pug">
-tooltip(:tip="name", display="inline-flex")
-  span.name-bubble(:class="classes", :style="styles")
-    span.initials {{ initials }}
+span.name-bubble(:class="classes", :style="styles")
+  span.initials {{ initials }}
 </template>
 
 <script>
@@ -56,7 +55,8 @@ export default {
   
   &.is-padded
     margin-right: 0.3em
-    margin-bottom: 0.3em
+    &:not(:last-child)
+      margin-bottom: 0.3em
   
   color: white
   

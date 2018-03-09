@@ -1,5 +1,11 @@
 <template lang="pug">
-.topic-segment(:class="classes", :style="styles", @click="$emit('click', $event)")
+.topic-segment(
+  :class="classes",
+  :style="styles",
+  @click="$emit('click', $event)",
+  @mouseover="onMouseover",
+  @mouseleave="onMouseleave",
+)
 </template>
 
 <script>
@@ -22,6 +28,14 @@ export default {
         'background-color': this.colorFromId(this.topic.id),
         'width': `${this.duration / this.audioDuration * 100}%`
       }
+    }
+  },
+  methods: {
+    onMouseover () {
+      this.$emit('over', this.topic)
+    },
+    onMouseleave () {
+      this.$emit('leave', this.topic)
     }
   }
 }

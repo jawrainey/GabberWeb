@@ -26,11 +26,14 @@ full-layout.session-detail(v-else)
         :topics="session.topics",
         :audio-duration="audioDuration",
         :active-topic="currentTopic",
-        @pickTopic="pickTopic"
+        @pickTopic="pickTopic",
+        @over="t => highlightTopic = t",
+        @leave="highlightTopic = null"
       )
-      p.is-size-4.current-topic-name(v-if="currentTopic")
+      p.is-size-4.current-topic-name(v-if="highlightTopic || currentTopic")
         span.is-size-5.has-text-grey-light Topic
-        span {{ ' ' + currentTopic.text }}
+        span {{ ` ${(highlightTopic || currentTopic).text} ` }}
+        
     
     label.label Gabber Topics
     .tags.topic-tags
@@ -42,7 +45,12 @@ full-layout.session-detail(v-else)
       )
     section
       h1.title Annotations
-      .box.is-pill.is-info(v-for="annotation in session.user_annotations")
+      annotation-pill(
+        v-for="annotation in session.user_annotations",
+        :key="annotation.id",
+        :annotation="annotation"
+      )
+      //- .box.is-pill.is-info(v-for="annotation in session.user_annotations")
         pre {{annotation}}
       
   session-info-sidebar(
@@ -63,6 +71,7 @@ import LoadingFullLayout from '@/layouts/LoadingFullLayout'
 import Breadcrumbs from '@/components/utils/Breadcrumbs'
 
 import AnnotationFilters from '@/components/annotation/AnnotationFilters'
+import AnnotationPill from '@/components/annotation/AnnotationPill'
 import SessionInfoSidebar from '@/components/session/SessionInfoSidebar'
 import AudioPlayer from '@/components/audio/AudioPlayer2'
 
@@ -71,13 +80,14 @@ import TopicsBar from '@/components/topic/TopicsBar'
 export default {
   mixins: [ ColorGeneratorMixin ],
   components: {
-    FullLayout, LoadingFullLayout, Breadcrumbs, AnnotationFilters, SessionInfoSidebar, AudioPlayer, TopicsBar
+    FullLayout, LoadingFullLayout, Breadcrumbs, AnnotationFilters, AnnotationPill, SessionInfoSidebar, AudioPlayer, TopicsBar
   },
   data: () => ({
     errors: [],
     isLoading: true,
     audioProgress: 0,
-    audioDuration: null
+    audioDuration: null,
+    highlightTopic: null
   }),
   mounted () {
     this.fetchGabber()
