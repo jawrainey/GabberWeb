@@ -5,6 +5,7 @@
     :key="topic.id",
     :topic="topic",
     :audio-duration="audioDuration",
+    :is-active="topic.id === (activeTopic && activeTopic.id)"
     @click="$emit('pickTopic', topic)"
   )
 </template>
@@ -16,7 +17,8 @@ export default {
   components: { TopicSegment },
   props: {
     topics: { type: Array, required: true },
-    audioDuration: { type: Number, required: true }
+    audioDuration: { type: Number, required: true },
+    activeTopic: { type: Object, default: null }
   }
 }
 </script>

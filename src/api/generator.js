@@ -89,8 +89,8 @@ export const make = {
     let end = eases.quadInOut(id / count)
     return {
       ...make.topic(id, projectId),
-      start: start * duration,
-      end: end * duration
+      start_interval: start * duration,
+      end_interval: end * duration
     }
   }
 }

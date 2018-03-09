@@ -24,15 +24,13 @@ full-layout.session-detail(v-else)
       topics-bar(
         v-if="audioDuration",
         :topics="session.topics",
-        @pickTopic="pickTopic",
-        :audio-duration="audioDuration"
+        :audio-duration="audioDuration",
+        :active-topic="currentTopic",
+        @pickTopic="pickTopic"
       )
-    
-    .box(v-if="currentTopic")
-      h2.title.is-4
+      p.is-size-4.current-topic-name(v-if="currentTopic")
         span.is-size-5.has-text-grey-light Topic
-        |
-        | {{ currentTopic.text }}
+        span {{ ' ' + currentTopic.text }}
     
     label.label Gabber Topics
     .tags.topic-tags
@@ -44,7 +42,9 @@ full-layout.session-detail(v-else)
       )
     section
       h1.title Annotations
-      h2.subtitle ...
+      .box.is-pill.is-info(v-for="annotation in session.user_annotations")
+        pre {{annotation}}
+      
   session-info-sidebar(
     slot="right",
     :session="session"
@@ -91,7 +91,8 @@ export default {
     session () { return this.$store.getters.sessionById(this.sessionId) },
     currentTopic () {
       return this.session.topics.find(topic =>
-        this.audioProgress >= topic.start && this.audioProgress < topic.end
+        this.audioProgress >= topic.start_interval &&
+        this.audioProgress < topic.end_interval
       )
     }
   },
@@ -117,7 +118,7 @@ export default {
     },
     pickTopic (topic) {
       // Seek to that point, plus a tiny bit because of float maths
-      this.$refs.audioPlayer.seekTo(topic.start + 0.01)
+      this.$refs.audioPlayer.seekTo(topic.start_interval + 0.01)
     }
   }
 }
@@ -129,5 +130,8 @@ export default {
   
   .topic-tags .tag
     cursor: pointer
+  
+  .current-topic-name
+    padding-top: 0.5em
 
 </style>
