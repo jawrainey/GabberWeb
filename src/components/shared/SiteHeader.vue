@@ -8,7 +8,7 @@ header.site-header.hero
         span
         span
         span
-    .navbar-menu(:class="menuClasses")
+    .navbar-menu.has-text-centered-mobile(:class="menuClasses")
       .navbar-end
         router-link.navbar-item(:to="homeRoute", :class="routeClass(homeRoute)")
           span Home
