@@ -12,11 +12,11 @@ const getters = {
   // SESSION_PROJECT: state => state.project
   
   sessionsForProject: state => projectId => state.sessions.filter(session =>
-    session.projectId === projectId
+    session.project_id === projectId
   ),
   sessionById: state => id => state.sessions.find(s => s.id === id),
   annotationsForSession: state => sessionId => state.annotations.filter(annotation =>
-    annotation.sessionId === sessionId
+    annotation.session_id === sessionId
   ),
   annotationById: state => id => state.annotations.find(a => a.id === id)
 }

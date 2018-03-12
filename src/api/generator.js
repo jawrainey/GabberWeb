@@ -6,9 +6,6 @@ export const hasher = new Hashids('really_not_secret', 8)
 export const CURRENT_USER_ID = 99
 export const MOCK_DURATION = 292
 
-// TODO: updated ids from someId to some_id
-// TODO: get annotation_id on comments
-
 export const DUMMY_TOPICS = [
   'Introduction',
   'What is the point of this chat?',
@@ -59,7 +56,7 @@ export const make = {
     let numTopics = pickBetween(3, 8)
     return model('Session', id, {
       id: hasher.encode(id),
-      projectId,
+      project_id: projectId,
       creator: make.creator(creatorId),
       file: '/static/audio/tmp.m4a',
       participants: makeList(pickBetween(1, 7), make.participant),
@@ -92,7 +89,7 @@ export const make = {
   annotation (id, sessionId) {
     let when = pickBetween(0, MOCK_DURATION)
     return model('Annotation', id, {
-      sessionId,
+      session_id: sessionId,
       user_id: pickBetween(1, 9),
       comments: makeIds(pickBetween(2, 5)),
       content: pickFrom(DUMMY_COMMENTS),
