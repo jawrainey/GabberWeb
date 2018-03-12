@@ -1,19 +1,23 @@
 <template lang="pug">
 article.media.comment
   .media-left
-    name-bubble.is-size-5(:name="comment.creator.fullname", :color-id="comment.creator.id")
+    name-bubble.is-size-5(
+      :name="comment.creator.fullname",
+      :color-id="comment.creator.id"
+    )
   .media-content
     .content
       .columns.is-gapless.is-marginless.is-mobile
         .column
           p.comment-content {{ comment.content }}
-        .column.is-narrow(v-if="comment.creator.id === $store.getters.currentUserId")
-          button.delete(@click="deleteSelf", :disabled="isLoading") Delete
+        .column.is-narrow(v-if="isCreator")
+          button.delete(@click="deleteSelf", :disabled="apiInProgress") Delete
       nav.level.is-mobile
         .level-left
           button.button.is-link.is-rounded.is-small(@click="toggleReplies")
             | {{ toggleTitle }}
-    h3.subtitle.has-text-centered(v-if="showReplies && isLoading") Fetching Replies ...
+    h3.subtitle.has-text-centered(v-if="showReplies && apiInProgress")
+      | Fetching Replies ...
     comment-section(
       v-else-if="showReplies",
       :annotation="annotation",
@@ -24,18 +28,19 @@ article.media.comment
 
 <script>
 import { ADD_COMMENTS, REMOVE_COMMENT } from '@/const/mutations'
+import ApiWorkerMixin from '@/mixins/ApiWorker'
 import NameBubble from '@/components/utils/NameBubble'
 import CommentSection from './CommentSection'
 
 export default {
   name: 'comment',
+  mixins: [ ApiWorkerMixin ],
   components: { NameBubble, CommentSection },
   props: {
     annotation: { type: Object, required: true },
     comment: { type: Object, required: true }
   },
   data: () => ({
-    isLoading: false,
     showReplies: false
   }),
   computed: {
@@ -49,9 +54,7 @@ export default {
         return this.numReplies > 0 ? 'Hide Replies' : 'Cancel'
       } else {
         let plural = this.numReplies === 1 ? 'reply' : 'Replies'
-        return this.numReplies > 0
-          ? `${this.numReplies} ${plural}`
-          : `Add a Reply`
+        return this.numReplies > 0 ? `${this.numReplies} ${plural}` : `Add a Reply`
       }
     },
     replies () {
@@ -61,9 +64,10 @@ export default {
   methods: {
     async deleteSelf () {
       let msg = 'Are you sure you want to delete your comment? This cannot be undone'
-      if (!this.isCreator || this.isLoading || !confirm(msg)) return
-      this.isLoading = true
+      if (!this.isCreator || this.apiInProgress || !confirm(msg)) return
+      this.startApiWork()
       
+      // Try to delete the comment
       let { meta } = await this.$api.deleteComment(
         parseInt(this.$route.params.project_id),
         this.$route.params.session_id,
@@ -71,24 +75,28 @@ export default {
         this.comment.id
       )
       
+      // If successfull, remove from the state
       if (meta.success) {
         // this.comment.content = '[deleted]'
         this.$store.commit(REMOVE_COMMENT, this.comment.id)
       }
       
-      this.isLoading = false
+      // Re-enable the ui
+      this.endApiWork(meta)
     },
     toggleReplies () {
       this.showReplies = !this.showReplies
       if (!this.showReplies) return
       
+      // If no replies, fetch them
       if (this.replies.length === 0) {
         this.fetchReplies()
       }
     },
     async fetchReplies () {
-      this.isLoading = true
+      this.startApiWork()
       
+      // Fetch child comments
       let { meta, data } = await this.$api.getChildComments(
         parseInt(this.$route.params.project_id),
         this.$route.params.session_id,
@@ -96,13 +104,15 @@ export default {
         this.comment.id
       )
       
-      if (!meta.success) {
+      // Commit the comments
+      if (meta.success) {
+        this.$store.commit(ADD_COMMENTS, data || [])
+      } else {
         console.log('Error', meta.messages)
       }
       
-      this.$store.commit(ADD_COMMENTS, data || [])
-      
-      this.isLoading = false
+      this.endApiWork(meta)
+      console.log(this.apiInProgress)
     }
   }
 }

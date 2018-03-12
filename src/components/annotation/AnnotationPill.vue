@@ -11,16 +11,13 @@
           )
           span.is-size-4 {{ annotation.creator.fullname }}
           button.button.is-text.timestamp(@click="$emit('chosen', annotation)")
-            | {{ formattedTimestamp }}
+            | {{ formatDuration(annotation.start_interval) }}
   .columns.is-gapless
     .column
       p.is-size-5 {{ annotation.content }}
     .column.is-narrow
-      .buttons
-        //- button.button.is-primary.is-rounded(v-if="currentUser", @click="addComment")
-          | Add Comment
-        button.button.is-link.is-rounded(v-if="comments.length > 0", @click="toggleComments")
-          | {{ commentTitle }}
+      button.button.is-link.is-rounded(v-if="comments.length > 0", @click="toggleComments")
+        | {{ commentTitle }}
   template(v-if="showComments")
     hr
     comment-section(
@@ -47,9 +44,6 @@ export default {
   }),
   computed: {
     ...mapGetters(['currentUser']),
-    formattedTimestamp () {
-      return this.formatDuration(this.annotation.start_interval)
-    },
     commentTitle () {
       let plural = this.comments.length === 1 ? 'Comment' : 'Comments'
       return this.showComments

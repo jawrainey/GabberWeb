@@ -1,7 +1,7 @@
 <template lang="pug">
 .project-item.box.is-pill.is-primary
   project-header(
-    :in-progress="inProgress",
+    :in-progress="apiInProgress",
     :is-editing="isEditing",
     :project="project",
     @startEdit="startEdit",
@@ -9,10 +9,10 @@
   )
   project-info(v-if="!isEditing", :project="project")
   template(v-else)
-    message.is-danger(v-model="errors", clearable)
+    message.is-danger(v-model="apiErrors", clearable)
     project-edit(
       :project="changes",
-      :disabled="inProgress",
+      :disabled="apiInProgress",
       :deletable="true",
       action="Update",
       @submit="saveEdit",
@@ -24,6 +24,7 @@
 <script>
 import { SAVE_PROJECT, DELETE_PROJECT } from '@/const/mutations'
 import ProjectPropMixin from '@/mixins/ProjectProp'
+import ApiWorkerMixin from '@/mixins/ApiWorker'
 import Message from '@/components/utils/Message'
 import ProjectHeader from './ProjectHeader'
 import ProjectEdit from './ProjectEdit'
@@ -31,17 +32,15 @@ import ProjectInfo from './ProjectInfo'
 import { mapGetters } from 'vuex'
 
 export default {
-  mixins: [ ProjectPropMixin ],
+  mixins: [ ProjectPropMixin, ApiWorkerMixin ],
   components: { Message, ProjectHeader, ProjectEdit, ProjectInfo },
   data: () => ({
     isEditing: false,
-    changes: {},
-    errors: [],
-    inProgress: false
+    changes: {}
   }),
   computed: {
     ...mapGetters(['currentUser']),
-    canDelete () { return this.isOwner && !this.inProgress }
+    canDelete () { return this.isOwner && !this.apiInProgress }
   },
   methods: {
     startEdit () {
@@ -53,8 +52,8 @@ export default {
       this.changes = {}
     },
     async saveEdit () {
-      this.inProgress = true
-      this.errors = []
+      if (this.apiInProgress) return
+      this.startApiWork()
       
       let { meta, data } = await this.$api.editProject(
         this.project.id,
@@ -64,50 +63,38 @@ export default {
         this.changes.privacy
       )
       
-      this.errors = meta.messages
-      
       if (meta.success) {
         this.$store.commit(SAVE_PROJECT, data)
         this.isEditing = false
-      } else if (meta.messages.length === 0) {
-        this.errors.push('Could not save project, try again?')
       }
       
-      this.inProgress = false
+      this.endApiWork(meta, 'Could not save project, try again?')
     },
     async deleteProject () {
       let message = 'Are you sure you want to delete this project? This action cannot be undone'
-      if (this.inProgress || !confirm(message)) return
-      this.inProgress = true
-      this.errors = []
+      if (this.apiInProgress || !confirm(message)) return
+      this.startApiWork()
       
       let { meta } = await this.$api.deleteProject(this.project.id)
       
-      this.errors = meta.messages
-      
       if (meta.success) {
         this.$store.commit(DELETE_PROJECT, this.project.id)
-      } else if (this.errors.length === 0) {
-        this.errors.push('Failed to delete project, please try again')
       }
       
-      this.inProgress = false
+      this.endApiWork(meta, 'Failed to delete project, please try again')
     },
     async joinProject () {
       let message = 'Are you sure you want to join this project?'
-      if (this.inProgress || !confirm(message)) return
-      this.inProgress = true
-      this.errors = []
+      if (this.apiInProgress || !confirm(message)) return
+      this.startApiWork()
       
       let { meta, data } = await this.$api.joinProject(this.project.id)
-      
-      this.errors = meta.messages
       
       if (meta.success) {
         this.$store.commit(SAVE_PROJECT, data)
       }
       
-      this.inProgress = false
+      this.endApiWork(meta, 'Failed to join project, please try again')
     }
   }
 }
@@ -116,11 +103,6 @@ export default {
 <style lang="sass">
 
 .project-item
-  // +border-radius($radius-large)
-  // background-color: $grey-darker
-  // border-left: $primary 15px solid
-  // padding: 1.3em
-  
   &:not(:last-child)
     margin-bottom: 1.3em
 

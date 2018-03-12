@@ -79,7 +79,6 @@ export default {
   },
   computed: {
     isPlaying () { return this.state === PlayerState.Playing },
-    isPaused () { return this.state === PlayerState.Paused },
     isStopped () { return this.state === PlayerState.Stopped },
     canPlay () { return this.state !== PlayerState.NotReady },
     toggleIcon () { return this.isPlaying ? 'pause' : 'play' },
@@ -96,39 +95,39 @@ export default {
   destroyed () { this.teardown() },
   methods: {
     toggle () {
-      if (this.state === PlayerState.Stopped) {
-        this.audio.seekTo(0)
-      }
+      // If stopped, seek to the start
+      if (this.state === PlayerState.Stopped) this.audio.seekTo(0)
+      
+      // If playing, pause
       if (this.state === PlayerState.Playing) {
         this.audio.pause()
         this.setState(PlayerState.Paused)
       } else {
+        // If paused, start playing
         this.audio.play()
         this.setState(PlayerState.Playing)
       }
     },
     stop () {
+      // Stop the audio & update the state
       this.audio.stop()
       this.setState(PlayerState.Stopped)
     },
     backwards () {
-      this.audio.skipBackward(1)
+      // Skip back 10 seconds
+      this.audio.skipBackward(10)
     },
     forwards () {
-      this.audio.skipForward(1)
-    },
-    format (seconds) {
-      seconds = Math.max(0, seconds)
-      const pad = num => (num < 10 ? '0' : '') + Math.max(0, num)
-      
-      let mins = Math.floor(seconds / 60)
-      let secs = Math.floor(seconds - (mins * 60))
-      return `${pad(mins)}:${pad(secs)}`
+      // Skip forward 10 seconds
+      this.audio.skipForward(10)
     },
     setProgress (progress) {
       this.progress = progress
       this.$emit('progress', progress)
+      
+      // If stopped, move to a paused state
       if (this.isStopped && progress > 0) {
+        console.log('set')
         this.setState(PlayerState.Paused)
       }
     },
@@ -137,23 +136,23 @@ export default {
       this.$emit('state', state)
     },
     seekTo (progress) {
-      let val = Math.min(
+      this.audio.seekAndCenter(Math.min(
         1, Math.max(0, progress / this.audio.getDuration())
-      )
-      this.audio.seekAndCenter(val)
-      if (this.state === PlayerState.Stopped) {
-        this.state = PlayerState.Paused
-      }
+      ))
     },
     setup () {
       this.teardown()
       
+      // Create a wavesurfer instance
       let wavesurfer = WaveSurfer.create({
         ...PLAYER_CONFIG, container: this.$refs.player
       })
       
+      // Load the audio & set the volume
       wavesurfer.load(this.session.file)
       wavesurfer.setVolume(0.5)
+      
+      // Add event listeners
       wavesurfer.on('ready', () => {
         this.$emit('ready', this.audio.getDuration())
         this.setState(PlayerState.Stopped)
@@ -168,12 +167,15 @@ export default {
       wavesurfer.on('seek', percent => {
         this.setProgress(wavesurfer.getDuration() * percent)
       })
+      
+      // Store the instance & set our state
       this.audio = wavesurfer
       this.setState(PlayerState.NotReady)
     },
     teardown () {
       if (this.audio) {
         this.audio.destroy()
+        this.audio = null
       }
       this.setState(PlayerState.NotReady)
     }
@@ -190,7 +192,6 @@ export default {
     
     .is-time
       line-height: 3.5rem
-      // height: 2.5rem
       font-size: 1.5rem
       color: $grey-light
       padding: 0 0.5em

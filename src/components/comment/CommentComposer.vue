@@ -1,9 +1,12 @@
 <template lang="pug">
 article.comment-composer.media(v-if="user")
   .media-left
-    name-bubble(:name="user.fullname", :color-id="user.id")
+    name-bubble(
+      :name="user.fullname",
+      :color-id="user.id"
+    )
   .media-content
-    message.is-danger.is-small(v-model="errors", clearable)
+    message.is-danger.is-small(v-model="apiErrors", clearable)
     .field.is-grouped
       .control.is-expanded
         textarea.textarea(
@@ -23,34 +26,33 @@ article.comment-composer.media(v-if="user")
 
 <script>
 import { ADD_COMMENTS } from '@/const/mutations'
+import ApiWorkerMixin from '@/mixins/ApiWorker'
 import NameBubble from '@/components/utils/NameBubble'
 import Message from '@/components/utils/Message'
 
 export default {
+  mixins: [ ApiWorkerMixin ],
   components: { NameBubble, Message },
   props: {
     annotation: { type: Object, required: true },
     parent: { type: Object, default: null }
   },
   data: () => ({
-    errors: [],
-    content: '',
-    inProgress: false
+    content: ''
   }),
   computed: {
     user () { return this.$store.getters.currentUser },
     canSubmit () {
       return this.user &&
-        !this.inProgress &&
+        !this.apiInProgress &&
         this.content.trim() !== ''
     },
     canType () { return this.canSubmit || this.content === '' }
   },
   methods: {
     async submit () {
-      if (!this.canSubmit) return
-      this.inProgress = true
-      this.errors = []
+      if (!this.canSubmit || this.apiInProgress) return
+      this.startApiWork()
       
       this.content = this.content.trim()
       
@@ -58,25 +60,21 @@ export default {
         parseInt(this.$route.params.project_id),
         this.$route.params.session_id,
         this.annotation.id,
-        this.content.trim(),
+        this.content,
         (this.parent && this.parent.id) || null
       )
-      
-      this.errors = meta.messages
-      console.log(meta)
       
       if (meta.success) {
         this.content = ''
         this.$store.commit(ADD_COMMENTS, [ data ])
-      } else if (this.errors.length === 0) {
-        this.errors.push('Could not make comment, please try again')
       }
       
-      this.inProgress = false
+      this.endApiWork(meta, 'Could not make comment, please try again')
     }
   }
 }
 </script>
 
 <style lang="sass">
+
 </style>

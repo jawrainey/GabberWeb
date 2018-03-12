@@ -2,15 +2,22 @@ import ApiInterface from './ApiInterface'
 import { make, makeList, CURRENT_USER_ID, hasher } from './generator'
 import { store } from '../store'
 
+// Constants for mocking
 const MOCK = {
   SPEED: 300,
-  LOGGED_IN: true,
-  newProjId: 10,
-  commentId: 100
+  LOGGED_IN: true
 }
 
+// Auto incrementing ids for mocking
+const mockIds = {
+  project: 10,
+  comment: 100
+}
+
+// A very basic regex for emails
 const isEmail = /.+@.+\..+/
 
+/** An implementation of ApiInterface that mocks all responses */
 export default class MockApi extends ApiInterface {
   /*
    * Mock Utils
@@ -59,7 +66,8 @@ export default class MockApi extends ApiInterface {
   async listAllProjects () {
     return this.mock({
       personal: store.getters.currentUser
-        ? makeList(2, make.project, 'private') : [],
+        ? makeList(2, make.project, 'private')
+        : [],
       public: makeList({ from: 3, to: 8 }, make.project)
     })
   }
@@ -74,20 +82,16 @@ export default class MockApi extends ApiInterface {
     return this.mock(project)
   }
   async createProject (title, description, tags, privacy) {
-    let id = MOCK.newProjId++
+    let id = mockIds.project++
     return this.editProject(id, title, description, tags, privacy)
   }
   async editProject (id, title, description, tags, privacy) {
     if (title === 'fail') return this.mock(null, false)
     
+    let creator = make.user(CURRENT_USER_ID)
     return this.mock(Object.assign(
       make.project(id, privacy),
-      {
-        title,
-        description,
-        creator: make.user(CURRENT_USER_ID),
-        isProjectPublic: privacy === 'public'
-      }
+      { title, description, creator }
     ))
   }
   async deleteProject (id) {
@@ -95,19 +99,9 @@ export default class MockApi extends ApiInterface {
   }
   
   /*
-   * Projects Relations
-   */
-  async getProjectTags (projectId) {
-    return this.mock(
-      makeList(7, make.tag)
-    )
-  }
-  
-  /*
    * Sessions
    */
   async getProjectSessions (projectId) {
-    // -> Session[]
     return this.mock(
       makeList(7, make.session, projectId, CURRENT_USER_ID)
     )
@@ -123,23 +117,23 @@ export default class MockApi extends ApiInterface {
       makeList(5, make.detailedAnnotation, sessionId)
     )
   }
+  
+  /*
+   * Comments
+   */
   async getChildComments (projectId, sessionId, annotationId, commentId) {
-    const from = MOCK.commentId
+    const from = mockIds.comment
     const pageSize = { from, to: from + 5 }
-    MOCK.commentId += 5
+    mockIds.comment += 5
     return this.mock(
       makeList(pageSize, make.comment, annotationId, commentId)
     )
   }
   async createComment (projectId, sessionId, annotationId, content, parentId = null) {
     if (content === 'fail') return this.mock(null, false)
+    let id = mockIds.comment++
     return this.mock({
-      ...make.comment(
-        MOCK.commentId++,
-        annotationId,
-        parentId || null,
-        CURRENT_USER_ID
-      ),
+      ...make.comment(id, annotationId, parentId, CURRENT_USER_ID),
       content
     })
   }

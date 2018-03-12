@@ -39,7 +39,6 @@ export const make = {
       slug: `project-${id}`,
       title: `Project ${id}`,
       description: 'Aenean lacinia bibendum nulla sed consectetur',
-      isProjectPublic: privacy === 'public',
       members: memberships,
       privacy,
       creator: make.creator(creatorId)

@@ -40,14 +40,8 @@ import NameBubble from '@/components/utils/NameBubble'
 export default {
   components: { LabelValue, NameBubble },
   props: {
-    session: {
-      type: Object,
-      required: true
-    },
-    topicLimit: {
-      type: Number,
-      default: 3
-    }
+    session: { type: Object, required: true },
+    topicLimit: { type: Number, default: 3 }
   },
   computed: {
     formatedDate () {
@@ -56,18 +50,8 @@ export default {
     formatedTime () {
       return moment(this.session.created_on).format('h:mm a')
     },
-    participantList () {
-      return this.session.participants.map(p => this.initialize(p.fullname)).join(', ')
-    },
     limitedTopics () {
       return this.session.topics.slice(0, this.topicLimit)
-    }
-  },
-  methods: {
-    initialize (name) {
-      return name.split(' ')
-        .map(s => s[0])
-        .join('')
     }
   }
 }
@@ -101,5 +85,6 @@ export default {
     right: 0.5em
     top: 50%
     transform: translateY(-50%)
+    color: $grey
 
 </style>

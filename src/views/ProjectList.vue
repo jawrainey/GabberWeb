@@ -52,17 +52,15 @@ full-layout.project-list-view
 import { SET_PROJECTS, SAVE_PROJECT } from '@/const/mutations'
 import FullLayout from '@/layouts/FullLayout'
 import Message from '@/components/utils/Message'
-import ProjectItem from '@/components/project/ProjectItem'
 import ProjectPill from '@/components/project/ProjectPill'
 import ProjectEdit from '@/components/project/ProjectEdit'
-import RecentProjects from '@/components/project/RecentProjects'
 import { mapGetters } from 'vuex'
 
 // Edit will emit that it has submitted (only once form is valid and response from server);
 // From here, we can then hide the edit form and highlight the project?
 export default {
   components: {
-    ProjectItem, FullLayout, Message, ProjectEdit, RecentProjects, ProjectPill
+    FullLayout, Message, ProjectEdit, ProjectPill
   },
   data: () => ({
     errors: [],

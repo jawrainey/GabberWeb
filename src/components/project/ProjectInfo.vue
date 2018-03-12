@@ -13,10 +13,10 @@
       )
   .column.is-narrow
     .buttons.is-right
-      router-link.button.is-link.is-rounded.is-medium(:to="sessionsRoute")
+      router-link.button.is-link.is-rounded(:to="sessionsRoute")
         .icon: fa(icon="microphone")
         span Gabbers
-      router-link.button.is-link.is-rounded.is-medium(:to="playlistsRoute")
+      router-link.button.is-link.is-rounded(:to="playlistsRoute")
         .icon: fa(icon="headphones")
         span Playlists
 </template>
@@ -30,7 +30,9 @@ import NameBubble from '@/components/utils/NameBubble'
 
 export default {
   mixins: [ ProjectPropMixin ],
-  components: { LabelValue, NameBubble },
+  components: {
+    LabelValue, NameBubble
+  },
   computed: {
     sessionsRoute () {
       const params = { project_id: this.project.id }

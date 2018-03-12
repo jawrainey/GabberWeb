@@ -1,11 +1,14 @@
 <template lang="pug">
 header.site-header.hero
   nav.navbar(role="navigation", aria-label="main navigation")
-    //- div(:class="{ container: !fullWidth }")
     .navbar-brand
-      p.navbar-item.is-size-3.has-text-weight-bold
+      .navbar-item.is-size-3.has-text-weight-bold
         router-link.has-text-white(:to="homeRoute") Gabber
-    .navbar-menu
+      .navbar-burger(@click="toggleMobileNav", :class="menuClasses")
+        span
+        span
+        span
+    .navbar-menu(:class="menuClasses")
       .navbar-end
         router-link.navbar-item(:to="homeRoute", :class="routeClass(homeRoute)")
           span Home
@@ -27,17 +30,18 @@ import { LOGOUT_USER } from '@/const/mutations'
 
 export default {
   props: {
-    fullWidth: {
-      type: Boolean,
-      default: false
-    }
+    fullWidth: { type: Boolean, default: false }
   },
+  data: () => ({
+    mobileNav: false
+  }),
   computed: {
     isLoggedIn () { return this.$store.getters.currentUser },
     homeRoute () { return { name: HOME_ROUTE } },
     aboutRoute () { return { name: ABOUT_ROUTE } },
     projectsRoute () { return { name: PROJECT_LIST_ROUTE } },
-    loginRoute () { return { name: LOGIN_ROUTE } }
+    loginRoute () { return { name: LOGIN_ROUTE } },
+    menuClasses () { return { 'is-active': this.mobileNav } }
   },
   methods: {
     async logout () {
@@ -48,6 +52,9 @@ export default {
       return {
         'is-active': route.name === this.$route.name
       }
+    },
+    toggleMobileNav () {
+      this.mobileNav = !this.mobileNav
     }
   }
 }
@@ -58,4 +65,5 @@ export default {
   nav
     border-bottom: 1px solid $border
     height: 60px
+    z-index: 100
 </style>

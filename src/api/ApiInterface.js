@@ -1,4 +1,6 @@
-/** An interface for interacting with the Gabber api */
+/**
+ * An interface for interacting with the Gabber api
+ */
 export default class ApiInterface {
   /** Creates a new Api */
   constructor (base = '') {
@@ -67,43 +69,23 @@ export default class ApiInterface {
     this.notImplemented()
   }
   
-  // GET: /projects/public () -> Project[]
-  // async listPublicProjects () {
-  //   this.notImplemented()
-  // }
-  
-  // POST: /projects/join (id) -> Project
+  // POST: /projects/:id/membership/ (id) -> Boolean
   async joinProject (id) {
-    // NOTE: could this return the joined project?
     this.notImplemented()
   }
   
-  // POST: /projects/create (...Project) -> Project
+  // POST: /projects/ (...Project) -> Project
   async createProject (title, description, tags, privacy) {
     this.notImplemented()
   }
   
-  // POST: /projects/edit (...Project) -> Project
+  // PUT: /projects/id/ (...Project) -> Project
   async editProject (id, title, description, tags, privacy) {
     this.notImplemented()
   }
   
-  // DEL:  /projects/:id (project_id)
+  // DEL:  /projects/:id () -> Boolean
   async deleteProject (id) {
-    this.notImplemented()
-  }
-  
-  /*
-   * Projects Relations
-   */
-  
-  // GET: /projects/:id () -> Tag[]
-  async getProjectTags (projectId) {
-    this.notImplemented()
-  }
-  
-  // GET: /projects/:id/regions () -> Region[]
-  async getProjectRegions (projectId) {
     this.notImplemented()
   }
   
@@ -116,15 +98,19 @@ export default class ApiInterface {
     this.notImplemented()
   }
   
-  // GET: /projects/:proj_id/sessions/:session_id -> Session
+  // GET: /projects/:proj_id/sessions/:session_id () -> Session
   async getSession (sessionId, projectId) {
     this.notImplemented()
   }
   
-  // GET: /projects/:proj_id/sessions/:sess_id/annotations
+  // GET: /projects/:proj_id/sessions/:sess_id/annotations -> Annotation[]
   async getSessionAnnotations (sessionId, projectId) {
     this.notImplemented()
   }
+  
+  /*
+   * Comments
+   */
   
   // GET: /projects/:id1/sessions/:id2/annotations/:id3/comments/:id4 -> Comment[]
   async getChildComments (projectId, sessionId, annotationId, commentId) {
@@ -152,13 +138,3 @@ export default class ApiInterface {
   // DEL:  /users/:id/playlists/:id/regions (region_id) -> boolean
   // POST: /users/:id/playlists/:id/region/:id/note (note) -> Note
 }
-
-/* EXPECTED ENDPOINTS:
-
-...
-
-*/
-
-/* EXPECTED TYPES:
-
- */

@@ -6,11 +6,13 @@
     :comment="comment",
     :annotation="annotation"
   )
-  comment-composer(:annotation="annotation", :parent="parent")
+  comment-composer(
+    :annotation="annotation",
+    :parent="parent"
+  )
 </template>
 
 <script>
-// import Comment from './Comment'
 import CommentComposer from './CommentComposer'
 
 export default {
@@ -20,10 +22,8 @@ export default {
     comments: { type: Array, required: true },
     parent: { type: Object, default: null }
   },
-  data: () => ({
-    isLoading: false
-  }),
   beforeCreate () {
+    // We have to require it manually to fix the circular dependancy
     this.$options.components.Comment = require('./Comment.vue').default
   }
 }

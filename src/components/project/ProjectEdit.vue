@@ -17,11 +17,12 @@
     )
   .field
     label.label Privacy
-    p.control
+    .control
       span.select
         select(v-model="project.privacy")
           option(value="public", default) Public
           option(value="private", default) Private
+      .help {{ privacyMessage }}
   hr
   .field.is-grouped.is-grouped-right
     
@@ -32,12 +33,14 @@
         
     .control
       button.button.is-link.is-rounded(
-        @click="cancel", :disabled="disabled"
+        @click="cancel",
+        :disabled="disabled"
       ) Cancel
     
     .control
       button.button.is-success.is-rounded(
-        @click="submit", :disabled="!canSubmit"
+        @click="submit",
+        :disabled="!canSubmit"
       ) {{ action }}
 </template>
 
@@ -56,6 +59,11 @@ export default {
       return !this.disabled &&
         this.project.title !== '' &&
         this.project.description !== ''
+    },
+    privacyMessage () {
+      return this.project.privacy === 'private'
+        ? 'Only you and invited participants will see your project'
+        : 'Anyone on Gabber will see and be able to join your project'
     }
   },
   methods: {
@@ -70,5 +78,5 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="sass">
 </style>

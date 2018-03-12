@@ -10,12 +10,19 @@
   
   .level-right
     .level-item.is-marginless(v-if="canEdit")
-      icon-button.is-dark.is-rounded(@click="$emit('startEdit')", icon="cog")
-        | Edit
+      icon-button.is-dark.is-rounded(
+        @click="$emit('startEdit')",
+        icon="cog",
+        v-text="'Edit'"
+      )
     
     .level-item.is-marginless(v-if="!isProjectMember")
-      icon-button.is-dark.is-rounded(icon="user-plus", @click="$emit('join')", :disabled="inProgress")
-        | Join
+      icon-button.is-dark.is-rounded(
+        icon="user-plus",
+        @click="$emit('join')",
+        :disabled="inProgress",
+        v-text="'Join'"
+      )
 </template>
 
 <script>
