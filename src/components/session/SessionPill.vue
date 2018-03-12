@@ -4,13 +4,13 @@
   .tile.is-ancestor
     .tile.is-vertical.is-parent
       .tile
-        h1.title.main-title.is-3 {{ session.creator.name }}
+        h1.title.main-title.is-3 {{ session.creator.fullname }}
       .tile
         label-value(label="Participants")
           name-bubble.is-primary(
             v-for="participant in session.participants",
             :key="participant.id",
-            :name="participant.name",
+            :name="participant.fullname",
             :color-id="participant.user_id",
             padded
           )
@@ -57,7 +57,7 @@ export default {
       return moment(this.session.created_on).format('h:mm a')
     },
     participantList () {
-      return this.session.participants.map(p => this.initialize(p.name)).join(', ')
+      return this.session.participants.map(p => this.initialize(p.fullname)).join(', ')
     },
     limitedTopics () {
       return this.session.topics.slice(0, this.topicLimit)

@@ -7,7 +7,7 @@
       name-bubble(
         v-for="member in project.members",
         :key="member.id",
-        :name="member.name",
+        :name="member.fullname",
         :color-id="member.user_id",
         padded
       )

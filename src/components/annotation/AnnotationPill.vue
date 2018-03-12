@@ -5,11 +5,11 @@
       .level-item
         p
           name-bubble.is-size-5(
-            :name="annotation.creator.name",
+            :name="annotation.creator.fullname",
             :color-id="annotation.creator.id",
             padded
           )
-          span.is-size-4 {{ annotation.creator.name }}
+          span.is-size-4 {{ annotation.creator.fullname }}
           button.button.is-text.timestamp(@click="$emit('chosen', annotation)")
             | {{ formattedTimestamp }}
   .columns.is-gapless

@@ -6,7 +6,6 @@ export const hasher = new Hashids('really_not_secret', 8)
 export const CURRENT_USER_ID = 99
 export const MOCK_DURATION = 292
 
-// TODO: update user/creator/member/participant to use fullname
 // TODO: updated ids from someId to some_id
 // TODO: get annotation_id on comments
 
@@ -74,18 +73,18 @@ export const make = {
   membership (id, role = 'user') {
     return model('Membership', id, {
       user_id: id,
-      name: username(id, 'User'),
+      fullname: username(id, 'User'),
       role: role
     })
   },
   creator (id) {
     return model('Creator', id, {
-      name: username(id, 'User')
+      fullname: username(id, 'User')
     })
   },
   participant (id) {
     return model('Participant', id, {
-      name: username(id, 'Participant'),
+      fullname: username(id, 'Participant'),
       role: 'interviewer',
       user_id: id
     })

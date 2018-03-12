@@ -12,7 +12,7 @@ full-layout.session-detail(v-else)
   )
   .main(slot="main")
     breadcrumbs
-    h1.title {{ session.creator.name }}'s Gabber
+    h1.title {{ session.creator.fullname }}'s Gabber
     
     .box
       audio-player(

@@ -69,8 +69,8 @@ export default {
     filteredSessions () {
       let regex = new RegExp(this.query, 'gi')
       return this.sessions.filter(session =>
-        session.creator.name.match(regex) ||
-        session.participants.some(participant => participant.name.match(regex))
+        session.creator.fullname.match(regex) ||
+        session.participants.some(participant => participant.fullname.match(regex))
       )
     }
   },

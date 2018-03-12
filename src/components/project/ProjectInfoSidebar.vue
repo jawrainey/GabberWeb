@@ -6,16 +6,16 @@
   label-value(label="Creator")
     p.is-size-4
       name-bubble.is-size-5(
-        :name="project.creator.name",
+        :name="project.creator.fullname",
         :color-id="project.creator.id",
         padded
       )
-      span {{project.creator.name}}
+      span {{ project.creator.fullname }}
   label-value(label="Project Members")
     name-bubble.is-size-6(
       v-for="member in project.members",
       :key="member.id",
-      :name="member.name",
+      :name="member.fullname",
       :color-id="member.user_id",
       padded
     )

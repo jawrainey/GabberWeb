@@ -5,16 +5,16 @@
   label-value(label="Creator")
     p.is-size-4
       name-bubble.is-size-5(
-        :name="session.creator.name",
+        :name="session.creator.fullname",
         :color-id="session.creator.id",
         padded
       )
-      span {{session.creator.name}}
+      span {{ session.creator.fullname }}
   label-value(label="Participants")
     name-bubble.is-size-6(
       v-for="member in session.participants",
       :key="member.id",
-      :name="member.name",
+      :name="member.fullname",
       :color-id="member.user_id",
       padded
     )
