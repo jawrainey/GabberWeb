@@ -4,8 +4,11 @@ import eases from 'eases'
 export const hasher = new Hashids('really_not_secret', 8)
 
 export const CURRENT_USER_ID = 99
+export const MOCK_DURATION = 292
 
 // TODO: update user/creator/member/participant to use fullname
+// TODO: updated ids from someId to some_id
+// TODO: get annotation_id on comments
 
 export const DUMMY_TOPICS = [
   'Introduction',
@@ -55,15 +58,14 @@ export const make = {
   },
   session (id, projectId, creatorId) {
     let numTopics = pickBetween(3, 8)
-    const duration = 292
     return model('Session', id, {
       id: hasher.encode(id),
       projectId,
       creator: make.creator(creatorId),
       file: '/static/audio/tmp.m4a',
       participants: makeList(pickBetween(1, 7), make.participant),
-      topics: makeList(numTopics, make.sessionTopic, projectId, numTopics, duration),
-      user_annotations: makeList(pickBetween(2, 10), make.annotation, id, duration)
+      topics: makeList(numTopics, make.sessionTopic, projectId, numTopics, MOCK_DURATION),
+      user_annotations: makeList(pickBetween(2, 10), make.annotation, id, MOCK_DURATION)
     })
   },
   playlist (id, creatorId) {
@@ -88,12 +90,12 @@ export const make = {
       user_id: id
     })
   },
-  annotation (id, sessionId, duration) {
-    let when = pickBetween(0, duration)
+  annotation (id, sessionId) {
+    let when = pickBetween(0, MOCK_DURATION)
     return model('Annotation', id, {
       sessionId,
       user_id: pickBetween(1, 9),
-      comments: [],
+      comments: makeIds(pickBetween(2, 5)),
       content: pickFrom(DUMMY_COMMENTS),
       creator: make.creator(CURRENT_USER_ID),
       start_interval: when,
@@ -108,6 +110,24 @@ export const make = {
       start_interval: start * duration,
       end_interval: end * duration
     }
+  },
+  comment (id, annotationId, parentId = null, creatorId = null) {
+    return model('Comment', id, {
+      content: pickFrom(DUMMY_COMMENTS),
+      creator: make.creator(creatorId || pickFrom([CURRENT_USER_ID, pickBetween(1, 10)])),
+      annotation_id: annotationId,
+      parent_id: parentId,
+      replies: makeIds(pickBetween(0, 2)),
+      user_id: pickBetween(1, 10)
+    })
+  },
+  detailedAnnotation (id, ...args) {
+    const from = id * 3
+    const numComments = { from, to: from + 5 }
+    return {
+      ...make.annotation(id, ...args),
+      comments: makeList(numComments, make.comment, id)
+    }
   }
 }
 
@@ -120,6 +140,12 @@ export function makeList (count, maker, ...args) {
     items.push(maker(i, ...args))
   }
   return items
+}
+
+export function makeIds (count) {
+  return new Array(count)
+    .fill(0)
+    .map((_, i) => i + 1)
 }
 
 export function model (type, id, obj) {

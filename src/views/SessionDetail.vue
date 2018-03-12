@@ -30,13 +30,15 @@ full-layout.session-detail(v-else)
         @over="t => highlightTopic = t",
         @leave="highlightTopic = null"
       )
-      p.is-size-4.current-topic-name(v-if="highlightTopic || currentTopic")
+      p.is-size-4.current-topic-name(v-if="currentTopic")
         span.is-size-5.has-text-grey-light Topic
-        span {{ ` ${(highlightTopic || currentTopic).text} ` }}
-        
+        span {{ ` ${(currentTopic).text} ` }}
+        span(v-if="highlightTopic && currentTopic.id !== highlightTopic.id")
+          fa(icon="long-arrow-alt-right")
+          span {{` ${highlightTopic.text}`}}
     
-    label.label Gabber Topics
-    .tags.topic-tags
+    //- label.label Gabber Topics
+    //- .tags.topic-tags
       .tag(
         v-for="(topic, index) in session.topics",
         @click="pickTopic(topic)",
@@ -46,12 +48,11 @@ full-layout.session-detail(v-else)
     section
       h1.title Annotations
       annotation-pill(
-        v-for="annotation in session.user_annotations",
+        v-for="annotation in annotations",
         :key="annotation.id",
-        :annotation="annotation"
+        :annotation="annotation",
+        @chosen="choseAnnotation"
       )
-      //- .box.is-pill.is-info(v-for="annotation in session.user_annotations")
-        pre {{annotation}}
       
   session-info-sidebar(
     slot="right",
@@ -60,7 +61,7 @@ full-layout.session-detail(v-else)
 </template>
 
 <script>
-import { ADD_SESSIONS } from '@/const/mutations'
+import { ADD_SESSIONS, ADD_ANNOTATIONS, ADD_COMMENTS } from '@/const/mutations'
 import { SESSION_LIST_ROUTE } from '@/const/routes'
 
 import ColorGeneratorMixin from '@/mixins/ColorGenerator'
@@ -97,8 +98,10 @@ export default {
   },
   computed: {
     sessionListRoute () { return { name: SESSION_LIST_ROUTE } },
+    projectId () { return parseInt(this.$route.params.project_id) },
     sessionId () { return this.$route.params.session_id },
     session () { return this.$store.getters.sessionById(this.sessionId) },
+    annotations () { return this.$store.getters.annotationsForSession(this.sessionId) },
     currentTopic () {
       return this.session.topics.find(topic =>
         this.audioProgress >= topic.start_interval &&
@@ -111,12 +114,22 @@ export default {
       this.errors = []
       this.loading = true
       
-      let { meta, data } = await this.$api.getSession(this.sessionId)
+      let [ sessionRes, annotationsRes ] = await Promise.all([
+        this.$api.getSession(this.sessionId, this.projectId),
+        this.$api.getSessionAnnotations(this.sessionId, this.projectId)
+      ])
       
-      this.errors = meta.messages
+      this.errors = sessionRes.meta.messages
+        .concat(annotationsRes.meta.messages)
       
-      if (meta.success) {
-        this.$store.commit(ADD_SESSIONS, [ data ])
+      let allComments = (annotationsRes.data || []).reduce((comments, annotation) => {
+        return comments.concat(annotation.comments)
+      }, [])
+      
+      if (sessionRes.meta.success) {
+        this.$store.commit(ADD_SESSIONS, [ sessionRes.data ])
+        this.$store.commit(ADD_ANNOTATIONS, annotationsRes.data || [])
+        this.$store.commit(ADD_COMMENTS, allComments)
       } else if (this.errors.length === 0) {
         this.errors.push('Gabber not found')
       }
@@ -129,6 +142,9 @@ export default {
     pickTopic (topic) {
       // Seek to that point, plus a tiny bit because of float maths
       this.$refs.audioPlayer.seekTo(topic.start_interval + 0.01)
+    },
+    choseAnnotation (annotation) {
+      this.$refs.audioPlayer.seekTo(annotation.start_interval)
     }
   }
 }

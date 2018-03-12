@@ -62,7 +62,7 @@ export default class ApiInterface {
     this.notImplemented()
   }
   
-  // GET: /project/:id () -> Project
+  // GET: /projects/:id () -> Project
   async getProject (id) {
     this.notImplemented()
   }
@@ -72,23 +72,23 @@ export default class ApiInterface {
   //   this.notImplemented()
   // }
   
-  // POST: /project/join (id) -> Project
+  // POST: /projects/join (id) -> Project
   async joinProject (id) {
     // NOTE: could this return the joined project?
     this.notImplemented()
   }
   
-  // POST: /project/create (...Project) -> Project
+  // POST: /projects/create (...Project) -> Project
   async createProject (title, description, tags, privacy) {
     this.notImplemented()
   }
   
-  // POST: /project/edit (...Project) -> Project
+  // POST: /projects/edit (...Project) -> Project
   async editProject (id, title, description, tags, privacy) {
     this.notImplemented()
   }
   
-  // DEL:  /project/:id (project_id)
+  // DEL:  /projects/:id (project_id)
   async deleteProject (id) {
     this.notImplemented()
   }
@@ -97,12 +97,12 @@ export default class ApiInterface {
    * Projects Relations
    */
   
-  // GET: /project/:id () -> Tag[]
+  // GET: /projects/:id () -> Tag[]
   async getProjectTags (projectId) {
     this.notImplemented()
   }
   
-  // GET: /project/:id/regions () -> Region[]
+  // GET: /projects/:id/regions () -> Region[]
   async getProjectRegions (projectId) {
     this.notImplemented()
   }
@@ -111,20 +111,35 @@ export default class ApiInterface {
    * Sessions
    */
   
-  // GET: /project/:id/sessions () -> Session[]
+  // GET: /projects/:id/sessions () -> Session[]
   async getProjectSessions (projectId) {
     this.notImplemented()
   }
   
-  // GET: /project/:proj_id/sessions/:session_id -> Session
-  async getSession (sessionId) {
+  // GET: /projects/:proj_id/sessions/:session_id -> Session
+  async getSession (sessionId, projectId) {
     this.notImplemented()
   }
   
-  // GET: /projectBySlug/:slug () -> Project
-  // async projectBySlug (slug) {
-  //   this.notImplemented()
-  // }
+  // GET: /projects/:proj_id/sessions/:sess_id/annotations
+  async getSessionAnnotations (sessionId, projectId) {
+    this.notImplemented()
+  }
+  
+  // GET: /projects/:id1/sessions/:id2/annotations/:id3/comments/:id4 -> Comment[]
+  async getChildComments (projectId, sessionId, annotationId, commentId) {
+    this.notImplemented()
+  }
+  
+  // POST: /projects/:id1/sessions/:id2/annotations/:id3/comments
+  async createComment (projectId, sessionId, annotationId, content, parentId = null) {
+    this.notImplemented()
+  }
+  
+  // DELETE: /projects/:id1/sessions/:id2/annotations/:id3/comments/:id4
+  async deleteComment (projectId, sessionId, annotationId, commentId) {
+    this.notImplemented()
+  }
   
   /*
    * Playlists

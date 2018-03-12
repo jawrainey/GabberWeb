@@ -19,7 +19,8 @@ const getters = {
   //   }
   // },
   
-  currentUser: state => { return state.currentUser }
+  currentUser: state => state.currentUser,
+  currentUserId: state => (state.currentUser && state.currentUser.id) || null
 }
 
 const mutations = {

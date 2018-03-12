@@ -24,7 +24,7 @@ box-layout
       )
     
     p
-      router-link.is-text(:to="forgotRoute", tabindex="100")
+      router-link.has-text-primary(:to="forgotRoute", tabindex="100")
         | Forgot your password?
     
     br

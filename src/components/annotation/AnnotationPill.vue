@@ -1,29 +1,76 @@
 <template lang="pug">
-.box.is-pill.is-info
+.box.is-pill.is-info.annotation-pill
   .level
     .level-left
       .level-item
-        div
-          p.is-size-4
-            name-bubble.is-size-5(
-              :name="annotation.creator.name",
-              :color-id="annotation.creator.id",
-              padded
-            )
-            span {{ annotation.creator.name }}
-          p.is-size-5 {{ annotation.content }}
+        p
+          name-bubble.is-size-5(
+            :name="annotation.creator.name",
+            :color-id="annotation.creator.id",
+            padded
+          )
+          span.is-size-4 {{ annotation.creator.name }}
+          button.button.is-text.timestamp(@click="$emit('chosen', annotation)")
+            | {{ formattedTimestamp }}
+  .columns.is-gapless
+    .column
+      p.is-size-5 {{ annotation.content }}
+    .column.is-narrow
+      .buttons
+        //- button.button.is-primary.is-rounded(v-if="currentUser", @click="addComment")
+          | Add Comment
+        button.button.is-link.is-rounded(v-if="comments.length > 0", @click="toggleComments")
+          | {{ commentTitle }}
+  template(v-if="showComments")
+    hr
+    comment-section(
+      v-if="showComments",
+      :annotation="annotation",
+      :comments="comments"
+    )
 </template>
 
 <script>
+import TemporalMixin from '@/mixins/Temporal'
 import NameBubble from '@/components/utils/NameBubble'
+import CommentSection from '@/components/comment/CommentSection'
+import { mapGetters } from 'vuex'
 
 export default {
-  components: { NameBubble },
+  mixins: [ TemporalMixin ],
+  components: { NameBubble, CommentSection },
   props: {
     annotation: { type: Object, required: true }
+  },
+  data: () => ({
+    showComments: false
+  }),
+  computed: {
+    ...mapGetters(['currentUser']),
+    formattedTimestamp () {
+      return this.formatDuration(this.annotation.start_interval)
+    },
+    commentTitle () {
+      let plural = this.comments.length === 1 ? 'Comment' : 'Comments'
+      return this.showComments
+        ? `Hide ${plural}`
+        : `${this.comments.length} ${plural}`
+    },
+    comments () {
+      return this.$store.getters.commentsForAnnotation(this.annotation.id)
+    }
+  },
+  methods: {
+    toggleComments () {
+      this.showComments = !this.showComments
+    },
+    addComment () {
+      // ...
+    }
   }
 }
 </script>
 
-<style lang="css">
+<style lang="sass">
+
 </style>

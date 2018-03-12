@@ -52,6 +52,8 @@ export default {
   background-color: $grey-lighter
   &:focus
     background-color: $white
+    border-color: $primary
+    box-shadow: 0 0 5px rgba(255,255,255, 0.5)
   &:disabled
     color: $grey-dark
     background-color: $grey-light

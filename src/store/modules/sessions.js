@@ -1,18 +1,24 @@
 // import {REST_API} from '../../api/http-common'
 import * as MUTATIONS from '@/const/mutations'
+import { mergeIntoById } from './mergeIntoById'
 
 const state = {
   sessions: [],
+  annotations: [],
   project: null
 }
 const getters = {
   // PROJECT_SESSIONS: state => state.sessions,
   // SESSION_PROJECT: state => state.project
   
-  sessionsForProject: state => id => state.sessions.filter(session =>
-    session.projectId === id
+  sessionsForProject: state => projectId => state.sessions.filter(session =>
+    session.projectId === projectId
   ),
-  sessionById: state => id => state.sessions.find(s => s.id === id)
+  sessionById: state => id => state.sessions.find(s => s.id === id),
+  annotationsForSession: state => sessionId => state.annotations.filter(annotation =>
+    annotation.sessionId === sessionId
+  ),
+  annotationById: state => id => state.annotations.find(a => a.id === id)
 }
 
 const mutations = {
@@ -20,12 +26,10 @@ const mutations = {
   // SET_PROJECT: (state, data) => { state.project = data }
   
   [MUTATIONS.ADD_SESSIONS]: (state, sessions) => {
-    // NOTE: expecting them to have a projectId set
-    sessions.forEach(newSession => {
-      let index = state.sessions.findIndex(s => s.id === newSession.id)
-      if (index !== -1) state.sessions[index] = newSession
-      else state.sessions.push(newSession)
-    })
+    mergeIntoById(state.sessions, sessions)
+  },
+  [MUTATIONS.ADD_ANNOTATIONS]: (state, annotations) => {
+    mergeIntoById(state.annotations, annotations)
   }
 }
 

@@ -5,7 +5,8 @@ import { store } from '../store'
 const MOCK = {
   SPEED: 300,
   LOGGED_IN: true,
-  newProjId: 10
+  newProjId: 10,
+  commentId: 100
 }
 
 const isEmail = /.+@.+\..+/
@@ -67,11 +68,7 @@ export default class MockApi extends ApiInterface {
       ? this.mock(make.project(id, id % 2 ? 'public' : 'private'))
       : this.mock(null, false)
   }
-  // async listPublicProjects () {
-  //   return this.mock(makeList(5, make.project))
-  // }
   async joinProject (id) {
-    // return this.editProject(id, `Project ${id}`, '...', 'private')
     let project = make.project(id)
     project.members.push(make.membership(CURRENT_USER_ID, 'user'))
     return this.mock(project)
@@ -105,10 +102,6 @@ export default class MockApi extends ApiInterface {
       makeList(7, make.tag)
     )
   }
-  async getProjectRegions (projectId) {
-    // -> Region[]
-    this.notImplemented()
-  }
   
   /*
    * Sessions
@@ -119,14 +112,38 @@ export default class MockApi extends ApiInterface {
       makeList(7, make.session, projectId, CURRENT_USER_ID)
     )
   }
-  async getSession (sessionId) {
+  async getSession (sessionId, projectId) {
     let id = hasher.decode(sessionId)[0]
     return id
-      ? this.mock(make.session(id, 1, CURRENT_USER_ID))
+      ? this.mock(make.session(id, projectId, CURRENT_USER_ID))
       : this.mock(null, false)
   }
-  // async projectBySlug (slug) {
-  //   // -> Project
-  //   this.notImplemented()
-  // }
+  async getSessionAnnotations (sessionId, projectId) {
+    return this.mock(
+      makeList(5, make.detailedAnnotation, sessionId)
+    )
+  }
+  async getChildComments (projectId, sessionId, annotationId, commentId) {
+    const from = MOCK.commentId
+    const pageSize = { from, to: from + 5 }
+    MOCK.commentId += 5
+    return this.mock(
+      makeList(pageSize, make.comment, annotationId, commentId)
+    )
+  }
+  async createComment (projectId, sessionId, annotationId, content, parentId = null) {
+    if (content === 'fail') return this.mock(null, false)
+    return this.mock({
+      ...make.comment(
+        MOCK.commentId++,
+        annotationId,
+        parentId || null,
+        CURRENT_USER_ID
+      ),
+      content
+    })
+  }
+  async deleteComment (projectId, sessionId, annotationId, commentId) {
+    return this.mock(null)
+  }
 }

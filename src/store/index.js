@@ -9,6 +9,7 @@ import audioplayer from './modules/audioplayer'
 import sessions from './modules/sessions'
 import projects from './modules/projects'
 import auth from './modules/auth'
+import comments from './modules/comments'
 
 Vue.use(Vuex)
 
@@ -22,6 +23,7 @@ export const store = new Vuex.Store({
     regions,
     userPlaylists,
     sessions,
-    projects
+    projects,
+    comments
   }
 })

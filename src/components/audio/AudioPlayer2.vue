@@ -32,7 +32,7 @@
 
 <script>
 import WaveSurfer from 'wavesurfer.js'
-
+import TemporalMixin from '@/mixins/Temporal'
 import CircleButton from '@/components/utils/CircleButton'
 
 const PLAYER_CONFIG = {
@@ -64,6 +64,7 @@ export const PlayerState = {
  */
 
 export default {
+  mixins: [ TemporalMixin ],
   components: { CircleButton },
   props: {
     session: { type: Object, required: true }
@@ -84,11 +85,11 @@ export default {
     toggleIcon () { return this.isPlaying ? 'pause' : 'play' },
     current () {
       if (!this.canPlay) return '~'
-      return this.format(this.progress)
+      return this.formatDuration(this.progress)
     },
     remaining () {
       if (!this.canPlay) return '~'
-      return this.format(Math.round(this.audio.getDuration()) - this.progress)
+      return this.formatDuration(Math.round(this.audio.getDuration()) - this.progress)
     }
   },
   mounted () { this.setup() },

@@ -31,14 +31,14 @@ full-layout.project-list-view
         @cancel="toggleCreate"
       )
     
-    section.project-group
+    section.project-group(v-if="filteredPersonalProjects.length > 0")
       h4.is-size-4.has-text-grey-light My Projects
       project-pill(
         v-for="project in filteredPersonalProjects",
         :key="project.id",
         :project="project"
       )
-    
+      
     section.project-group
       h4.is-size-4.has-text-grey-light Public Projects
       project-pill(
@@ -99,7 +99,6 @@ export default {
           creator: this.currentUser
         }
       }
-      console.log(this.newProject)
     },
     async fetchProjects () {
       this.errors = []
