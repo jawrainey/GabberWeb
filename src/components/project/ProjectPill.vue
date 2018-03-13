@@ -6,8 +6,9 @@
     :project="project",
     @startEdit="startEdit",
     @stopEdit="cancelEdit",
-    @editMembers="isEditingMembers = true"
-    @join="joinProject"
+    @editMembers="isEditingMembers = true",
+    @join="joinProject",
+    @leave="leaveProject"
   )
   transition(name="fade-short", mode="out-in")
     .editing-info(v-if="isEditingInfo")
@@ -30,7 +31,7 @@
 </template>
 
 <script>
-import { SAVE_PROJECT, DELETE_PROJECT } from '@/const/mutations'
+import { SAVE_PROJECT, DELETE_PROJECT, ADD_MEMBER_TO_PROJECT, REMOVE_MEMBER_FROM_PROJECT } from '@/const/mutations'
 import ProjectPropMixin from '@/mixins/ProjectProp'
 import ApiWorkerMixin from '@/mixins/ApiWorker'
 import Message from '@/components/utils/Message'
@@ -103,10 +104,33 @@ export default {
       let { meta, data } = await this.$api.joinProject(this.project.id)
       
       if (meta.success) {
-        this.$store.commit(SAVE_PROJECT, data)
+        this.$store.commit(ADD_MEMBER_TO_PROJECT, {
+          projectId: this.project.id,
+          member: data
+        })
       }
       
       this.endApiWork(meta, 'Failed to join project, please try again')
+    },
+    async leaveProject () {
+      let member = this.currentMembership
+      
+      let message = 'Are you sure you want to leave this project?'
+      if (!member || this.apiInProgress || !confirm(message)) return
+      this.startApiWork()
+      
+      let { meta } = await this.$api.leaveProject(
+        this.project.id, member.id
+      )
+      
+      if (meta.success) {
+        this.$store.commit(REMOVE_MEMBER_FROM_PROJECT, {
+          projectId: this.project.id,
+          memberId: member.id
+        })
+      }
+      
+      this.endApiWork(meta, 'Failed to leave project, please try again')
     }
   }
 }

@@ -107,8 +107,14 @@ export default class MockApi extends ApiInterface {
    * Project Membership
    */
   async joinProject (id) {
+    return this.mock({
+      ...make.membership(CURRENT_USER_ID, 'user'),
+      project_id: id
+    })
+  }
+  async leaveProject (id) {
     let project = make.project(id)
-    project.members.push(make.membership(CURRENT_USER_ID, 'user'))
+    project.members.filter(member => member.user_id !== CURRENT_USER_ID)
     return this.mock(project)
   }
   async inviteToProject (projectId, fullname, email) {
@@ -124,8 +130,9 @@ export default class MockApi extends ApiInterface {
    * Sessions
    */
   async getProjectSessions (projectId) {
+    let range = { from: projectId * 7, to: (projectId * 7) + 7 }
     return this.mock(
-      makeList(7, make.session, projectId, CURRENT_USER_ID)
+      makeList(range, make.session, projectId, CURRENT_USER_ID)
     )
   }
   async getSession (sessionId, projectId) {
@@ -134,10 +141,17 @@ export default class MockApi extends ApiInterface {
       ? this.mock(make.session(id, projectId, CURRENT_USER_ID))
       : this.mock(null, false)
   }
+  
+  /*
+   * Annotations
+   */
   async getSessionAnnotations (sessionId, projectId) {
     return this.mock(
       makeList(5, make.detailedAnnotation, sessionId)
     )
+  }
+  async deleteAnnotation (projectId, sessionId, annotationId) {
+    return this.mock(null)
   }
   
   /*

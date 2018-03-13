@@ -7,22 +7,27 @@ export default {
   },
   computed: {
     currentUser () {
+      // TODO: remove this
       return this.$store.getters.currentUser
     },
+    currentUserId () {
+      return this.$store.getters.currentUserId
+    },
     isOwner () {
-      if (!this.currentUser) return false
-      return this.project.creator.id === this.currentUser.id
+      return this.project.creator.user_id === this.currentUserId
+    },
+    currentMembership () {
+      return this.project.members.find(m => m.user_id === this.currentUserId)
     },
     isProjectMember () {
-      if (!this.currentUser) return false
-      return this.isOwner || this.project.members.some(member =>
-        member.id === this.currentUser.id
-      )
+      if (!this.currentUserId) return false
+      if (this.isOwner) return true
+      return !!this.currentMembership
     },
     membershipType () {
       if (!this.isProjectMember) return null
       if (this.isOwner) return 'Owner'
-      let membership = this.project.members.some(m => m.user === this.currentUser)
+      let membership = this.currentMembership
       return membership.role === 'admin' ? 'Admin' : 'Member'
     }
   }

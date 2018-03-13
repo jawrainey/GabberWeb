@@ -61,7 +61,7 @@ export default {
   }),
   computed: {
     membersWithoutCreator () {
-      return this.project.members.filter(m => m.id !== this.project.creator.id)
+      return this.project.members.filter(m => m.id !== this.project.creator.user_id)
     },
     canCreateMember () {
       return !this.apiInProgress &&

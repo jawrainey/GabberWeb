@@ -7,7 +7,7 @@
     p.is-size-4
       name-bubble.is-size-5(
         :name="project.creator.fullname",
-        :color-id="project.creator.id",
+        :color-id="project.creator.user_id",
         padded
       )
       span {{ project.creator.fullname }}

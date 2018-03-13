@@ -3,7 +3,7 @@ article.media.comment
   .media-left
     name-bubble.is-size-5(
       :name="comment.creator.fullname",
-      :color-id="comment.creator.id"
+      :color-id="comment.creator.user_id"
     )
   .media-content
     .content
@@ -49,7 +49,7 @@ export default {
     numReplies () { return this.comment.replies.length },
     hasReplies () { return this.comment.replies.length > 0 },
     isCreator () {
-      return this.comment.creator.id === this.$store.getters.currentUserId
+      return this.comment.creator.user_id === this.$store.getters.currentUserId
     },
     toggleTitle () {
       if (this.showReplies) {

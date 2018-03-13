@@ -6,7 +6,7 @@
     p.is-size-4
       name-bubble.is-size-5(
         :name="session.creator.fullname",
-        :color-id="session.creator.id",
+        :color-id="session.creator.user_id",
         padded
       )
       span {{ session.creator.fullname }}

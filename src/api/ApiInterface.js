@@ -93,6 +93,11 @@ export default class ApiInterface {
     this.notImplemented()
   }
   
+  // DEL: /projects/:id/membership/ (id) -> Boolean
+  async leaveProject (id) {
+    this.notImplemented()
+  }
+  
   // POST: /project/:id/membership/invites/
   async inviteToProject (projectId, fullname, email) {
     this.notImplemented()
@@ -117,8 +122,17 @@ export default class ApiInterface {
     this.notImplemented()
   }
   
+  /*
+   * Annotations
+   */
+  
   // GET: /projects/:proj_id/sessions/:sess_id/annotations -> Annotation[]
   async getSessionAnnotations (sessionId, projectId) {
+    this.notImplemented()
+  }
+  
+  // DEL: /projects/:id1/sessions/:id2/annotations/:id3
+  async deleteAnnotation (projectId, sessionId, annotationId) {
     this.notImplemented()
   }
   

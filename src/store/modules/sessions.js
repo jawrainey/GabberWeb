@@ -30,6 +30,9 @@ const mutations = {
   },
   [MUTATIONS.ADD_ANNOTATIONS]: (state, annotations) => {
     mergeIntoById(state.annotations, annotations)
+  },
+  [MUTATIONS.REMOVE_ANNOTATION]: (state, annotationId) => {
+    state.annotations = state.annotations.filter(a => a.id !== annotationId)
   }
 }
 

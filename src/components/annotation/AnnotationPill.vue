@@ -6,12 +6,16 @@
         p
           name-bubble.is-size-5(
             :name="annotation.creator.fullname",
-            :color-id="annotation.creator.id",
+            :color-id="annotation.creator.user_id",
             padded
           )
           span.is-size-4 {{ annotation.creator.fullname }}
           button.button.is-text.timestamp(@click="$emit('chosen', annotation)")
             | {{ formatDuration(annotation.start_interval) }}
+    .level-right
+      .level-item.is-marginless(v-if="isOwner")
+        button.button.is-dark.is-rounded(@click="deleteSelf")
+          .icon: fa(icon="trash")
   .columns.is-gapless
     .column
       p.is-size-5 {{ annotation.content }}
@@ -27,13 +31,17 @@
 </template>
 
 <script>
+import { REMOVE_ANNOTATION } from '@/const/mutations'
+
 import TemporalMixin from '@/mixins/Temporal'
+import ApiWorkerMixin from '@/mixins/ApiWorker'
+
 import NameBubble from '@/components/utils/NameBubble'
 import CommentSection from '@/components/comment/CommentSection'
 import { mapGetters } from 'vuex'
 
 export default {
-  mixins: [ TemporalMixin ],
+  mixins: [ TemporalMixin, ApiWorkerMixin ],
   components: { NameBubble, CommentSection },
   props: {
     annotation: { type: Object, required: true }
@@ -51,14 +59,32 @@ export default {
     },
     comments () {
       return this.$store.getters.commentsForAnnotation(this.annotation.id)
+    },
+    isOwner () {
+      return this.annotation.creator.user_id === this.$store.getters.currentUserId
     }
   },
   methods: {
     toggleComments () {
       this.showComments = !this.showComments
     },
-    addComment () {
-      // ...
+    async deleteSelf () {
+      let message = 'Are you sure you want to delete this annotation? This cannot be undone'
+      
+      if (!this.isOwner || this.apiInProgress || !confirm(message)) return
+      this.startApiWork()
+      
+      let { meta } = await this.$api.deleteAnnotation(
+        parseInt(this.$route.params.project_id),
+        this.$route.params.session_id,
+        this.annotation.id
+      )
+      
+      if (meta.success) {
+        this.$store.commit(REMOVE_ANNOTATION, this.annotation.id)
+      }
+      
+      this.endApiWork(meta, 'Could not delete annotation, please try again')
     }
   }
 }

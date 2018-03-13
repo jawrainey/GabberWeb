@@ -12,8 +12,8 @@ const getters = {
   // PUBLIC_PROJECTS: state => state.public_projects,
   
   personalProjects: (state, getters) => state.allProjects.filter(proj =>
-    proj.creator.id === getters.currentUserId ||
-    proj.members.some(member => member.id === getters.currentUserId)
+    proj.creator.user_id === getters.currentUserId ||
+    proj.members.some(member => member.user_id === getters.currentUserId)
   ),
   publicProjects: (state, getters) => state.allProjects.filter(proj =>
     !getters.personalProjects.includes(proj)

@@ -76,6 +76,7 @@ export const make = {
   },
   creator (id) {
     return model('Creator', id, {
+      user_id: id,
       fullname: username(id, 'User')
     })
   },

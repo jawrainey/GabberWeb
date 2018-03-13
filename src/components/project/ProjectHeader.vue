@@ -36,6 +36,14 @@
         :disabled="inProgress",
         title="Join"
       )
+    
+    .level-item.is-marginless(v-if="isProjectMember && !isOwner")
+      icon-button.is-dark.is-rounded(
+        icon="user-times",
+        @click="$emit('leave')",
+        :disabled="inProgress",
+        title="Leave"
+      )
 </template>
 
 <script>
