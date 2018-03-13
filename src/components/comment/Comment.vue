@@ -125,7 +125,6 @@ export default {
       }
       
       this.endApiWork(meta)
-      console.log(this.apiInProgress)
     }
   }
 }

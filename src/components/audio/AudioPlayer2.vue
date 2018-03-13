@@ -127,7 +127,6 @@ export default {
       
       // If stopped, move to a paused state
       if (this.isStopped && progress > 0) {
-        console.log('set')
         this.setState(PlayerState.Paused)
       }
     },

@@ -11,7 +11,8 @@ const MOCK = {
 // Auto incrementing ids for mocking
 const mockIds = {
   project: 10,
-  comment: 100
+  comment: 100,
+  membership: 100
 }
 
 // A very basic regex for emails
@@ -76,11 +77,6 @@ export default class MockApi extends ApiInterface {
       ? this.mock(make.project(id, id % 2 ? 'public' : 'private'))
       : this.mock(null, false)
   }
-  async joinProject (id) {
-    let project = make.project(id)
-    project.members.push(make.membership(CURRENT_USER_ID, 'user'))
-    return this.mock(project)
-  }
   async createProject (title, description, tags, privacy) {
     let id = mockIds.project++
     return this.editProject(id, title, description, tags, privacy)
@@ -97,8 +93,6 @@ export default class MockApi extends ApiInterface {
       }
     })
     
-    console.log(topics)
-    
     let creator = make.user(CURRENT_USER_ID)
     return this.mock(Object.assign(
       make.project(id, privacy),
@@ -106,6 +100,23 @@ export default class MockApi extends ApiInterface {
     ))
   }
   async deleteProject (id) {
+    return this.mock(null)
+  }
+  
+  /*
+   * Project Membership
+   */
+  async joinProject (id) {
+    let project = make.project(id)
+    project.members.push(make.membership(CURRENT_USER_ID, 'user'))
+    return this.mock(project)
+  }
+  async inviteToProject (projectId, fullname, email) {
+    return this.mock({
+      ...make.membership(mockIds.membership++, 'user'), fullname
+    })
+  }
+  async removeFromProject (projectId, memberId) {
     return this.mock(null)
   }
   

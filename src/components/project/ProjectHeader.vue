@@ -9,11 +9,24 @@
         span.membership(v-if="membershipType") {{ membershipType }}
   
   .level-right
+    .level-item(v-if="canEdit")
+      icon-button.is-dark.is-rounded(
+        @click="$emit('editMembers')",
+        icon="users",
+        title="Members"
+      )
+    
     .level-item.is-marginless(v-if="canEdit")
       icon-button.is-dark.is-rounded(
         @click="$emit('startEdit')",
         icon="cog",
         title="Edit"
+      )
+    
+    .level-item.is-marginless(v-if="isEditing")
+      icon-button.is-dark.is-rounded(
+        @click="$emit('stopEdit')",
+        title="Close"
       )
     
     .level-item.is-marginless(v-if="!isProjectMember")
@@ -28,6 +41,16 @@
 <script>
 import ProjectPropMixin from '@/mixins/ProjectProp'
 import IconButton from '@/components/utils/IconButton'
+
+/* Emitted Events
+
+@editMembers () -> when the user triggered member editing
+@startEdit ()   -> when the user triggered info editing
+@stopEdit()     -> when the user want to cancel editing
+@join ()        -> when a user wants to join the project
+@leave ()       -> when a user wants to leave the project
+
+*/
 
 export default {
   mixins: [ ProjectPropMixin ],

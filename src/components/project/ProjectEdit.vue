@@ -21,12 +21,12 @@
         label.label Privacy
         .control
           span.select
-            select(v-model="project.privacy")
+            select(v-model="project.privacy", :disabled="disabled")
               option(value="public", default) Public
               option(value="private", default) Private
           .help {{ privacyMessage }}
     .column
-      topic-list-edit(v-model="project.topics")
+      topic-list-edit(v-model="project.topics", :is-editing="!!project.id")
   hr
   .field.is-grouped.is-grouped-right
     
@@ -64,7 +64,8 @@ export default {
     canSubmit () {
       return !this.disabled &&
         this.project.title !== '' &&
-        this.project.description !== ''
+        this.project.description !== '' &&
+        this.project.topics.length > 0
     },
     privacyMessage () {
       return this.project.privacy === 'private'

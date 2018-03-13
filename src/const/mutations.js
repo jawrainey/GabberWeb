@@ -5,6 +5,8 @@ export const LOGOUT_USER = 'LogoutUser'
 export const SET_PROJECTS = 'SetProjects'
 export const SAVE_PROJECT = 'SaveProject'
 export const DELETE_PROJECT = 'DeleteProject'
+export const ADD_MEMBER_TO_PROJECT = 'AddMemberToProject'
+export const REMOVE_MEMBER_FROM_PROJECT = 'RemoveMemberFromProject'
 
 export const ADD_SESSIONS = 'AddSessions'
 export const ADD_ANNOTATIONS = 'AddAnnotations'

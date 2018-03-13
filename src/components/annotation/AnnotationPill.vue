@@ -18,8 +18,7 @@
     .column.is-narrow
       button.button.is-link.is-rounded(v-if="comments.length > 0", @click="toggleComments")
         | {{ commentTitle }}
-  template(v-if="showComments")
-    hr
+  transition(name="fade")
     comment-section(
       v-if="showComments",
       :annotation="annotation",
@@ -66,5 +65,11 @@ export default {
 </script>
 
 <style lang="sass">
+
+.annotation-pill
+  > .comment-section
+    margin-top: 2em
+    border-top: 1px solid $grey
+    padding-top: 2em
 
 </style>

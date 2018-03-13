@@ -91,7 +91,8 @@ export default {
           description: '',
           privacy: 'public',
           tags: [],
-          creator: this.currentUser
+          creator: this.currentUser,
+          topics: []
         }
       }
     },
@@ -110,8 +111,10 @@ export default {
       if (this.apiInProgress) return
       this.startApiWork()
       
+      let topics = this.newProject.topics.map(p => p.text)
+      
       let { meta, data } = await this.$api.createProject(
-        this.newProject.title, this.newProject.description, this.newProject.tags, this.newProject.privacy
+        this.newProject.title, this.newProject.description, this.newProject.tags, this.newProject.privacy, topics
       )
       
       if (meta.success) {

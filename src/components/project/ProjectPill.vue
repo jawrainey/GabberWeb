@@ -2,23 +2,31 @@
 .project-item.box.is-pill.is-primary
   project-header(
     :in-progress="apiInProgress",
-    :is-editing="isEditing",
+    :is-editing="isEditingInfo || isEditingMembers",
     :project="project",
     @startEdit="startEdit",
+    @stopEdit="cancelEdit",
+    @editMembers="isEditingMembers = true"
     @join="joinProject"
   )
-  project-info(v-if="!isEditing", :project="project")
-  template(v-else)
-    message.is-danger(v-model="apiErrors", clearable)
-    project-edit(
-      :project="changes",
-      :disabled="apiInProgress",
-      :deletable="true",
-      action="Update",
-      @submit="saveEdit",
-      @cancel="cancelEdit",
-      @delete="deleteProject"
+  transition(name="fade-short", mode="out-in")
+    .editing-info(v-if="isEditingInfo")
+      message.is-danger(v-model="apiErrors", clearable)
+      project-edit(
+        :project="changes",
+        :disabled="apiInProgress",
+        :deletable="true",
+        action="Update",
+        @submit="saveEdit",
+        @cancel="cancelEdit",
+        @delete="deleteProject"
+      )
+    project-members(
+      v-else-if="isEditingMembers",
+      :project="project",
+      :disabled="apiInProgress"
     )
+    project-info(v-else, :project="project")
 </template>
 
 <script>
@@ -28,14 +36,16 @@ import ApiWorkerMixin from '@/mixins/ApiWorker'
 import Message from '@/components/utils/Message'
 import ProjectHeader from './ProjectHeader'
 import ProjectEdit from './ProjectEdit'
+import ProjectMembers from './ProjectMembers'
 import ProjectInfo from './ProjectInfo'
 import { mapGetters } from 'vuex'
 
 export default {
   mixins: [ ProjectPropMixin, ApiWorkerMixin ],
-  components: { Message, ProjectHeader, ProjectEdit, ProjectInfo },
+  components: { Message, ProjectHeader, ProjectEdit, ProjectMembers, ProjectInfo },
   data: () => ({
-    isEditing: false,
+    isEditingInfo: false,
+    isEditingMembers: false,
     changes: {}
   }),
   computed: {
@@ -44,11 +54,12 @@ export default {
   },
   methods: {
     startEdit () {
-      this.isEditing = true
+      this.isEditingInfo = true
       this.changes = JSON.parse(JSON.stringify(this.project))
     },
     cancelEdit () {
-      this.isEditing = false
+      this.isEditingMembers = false
+      this.isEditingInfo = false
       this.changes = {}
     },
     async saveEdit () {
@@ -66,7 +77,7 @@ export default {
       
       if (meta.success) {
         this.$store.commit(SAVE_PROJECT, data)
-        this.isEditing = false
+        this.isEditingInfo = false
       }
       
       this.endApiWork(meta, 'Could not save project, try again?')

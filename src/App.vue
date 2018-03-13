@@ -29,6 +29,7 @@ export default {
 
 @import "~bulma/bulma.sass"
 @import "~bulmaswatch/darkly/_overrides.scss"
+@import "~sass/transitions.sass"
 
 .button:focus
   text-decoration: underline

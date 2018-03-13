@@ -37,6 +37,16 @@ const mutations = {
   },
   [MUTATIONS.DELETE_PROJECT]: (state, projectId) => {
     state.allProjects = state.allProjects.filter(p => p.id !== projectId)
+  },
+  [MUTATIONS.ADD_MEMBER_TO_PROJECT]: (state, { projectId, member }) => {
+    let project = state.allProjects.find(p => p.id === projectId)
+    if (!project) return
+    project.members.push(member)
+  },
+  [MUTATIONS.REMOVE_MEMBER_FROM_PROJECT]: (state, { projectId, memberId }) => {
+    let project = state.allProjects.find(p => p.id === projectId)
+    if (!project) return
+    project.members = project.members.filter(m => m.id !== memberId)
   }
 }
 

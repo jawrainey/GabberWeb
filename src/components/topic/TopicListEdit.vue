@@ -1,6 +1,9 @@
 <template lang="pug">
 .topic-list-edit
   label.label Topics
+  p.help(v-if="isEditing")
+    | WARNING &ndash; Editing these topics will update the topics for existing gabbers
+  p.help(v-else) Add topics for people to discuss in their Gabbers
   .field.has-addons(v-for="topic, index in value", :class="topicClasses(topic)")
     .control
       div.button.is-static(tabindex="-1") {{ index + 1 }}.
@@ -25,7 +28,7 @@
         button.button.is-danger(@click="deleteTopic(topic)")
           fa(icon="trash", fixed-width)
   .buttons.is-centered
-    button.button.is-primary(@click="addTopic")
+    button.button.is-primary.is-rounded(@click="addTopic")
       .icon: fa(icon="plus")
       span Add Topic
 </template>
@@ -33,7 +36,8 @@
 <script>
 export default {
   props: {
-    value: { type: Array, required: true }
+    value: { type: Array, required: true },
+    isEditing: { type: Boolean, default: false }
   },
   methods: {
     topicClasses (topic) {
@@ -97,6 +101,12 @@ export default {
 .topic-list-edit
   
   $duration: 0.3s
+  
+  .help
+    margin-bottom: 1em
+    padding: 0.5em
+    border-left: 3px solid $white
+    background-color: rgba(255,255,255, 0.1)
   
   .field
     opacity: 1
