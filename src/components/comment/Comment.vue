@@ -14,12 +14,12 @@ article.media.comment
           button.delete(@click="deleteSelf", :disabled="apiInProgress") Delete
       nav.level.is-mobile
         .level-left
-          button.button.is-link.is-rounded.is-small(@click="toggleReplies")
+          button.button.is-link.is-rounded.is-small(v-if="canReply", @click="toggleReplies")
             | {{ toggleTitle }}
     h3.subtitle.has-text-centered(v-if="showReplies && apiInProgress")
       | Fetching Replies ...
     comment-section(
-      v-else-if="showReplies",
+      v-else-if="showReplies && canReply",
       :annotation="annotation",
       :comments="replies",
       :parent="comment"
@@ -31,6 +31,8 @@ import { ADD_COMMENTS, REMOVE_COMMENT } from '@/const/mutations'
 import ApiWorkerMixin from '@/mixins/ApiWorker'
 import NameBubble from '@/components/utils/NameBubble'
 import CommentSection from './CommentSection'
+
+const NEST_LIMIT = 3
 
 export default {
   name: 'comment',
@@ -59,6 +61,17 @@ export default {
     },
     replies () {
       return this.$store.getters.commentChildren(this.comment.id)
+    },
+    canReply () {
+      let depth = 0
+      let parentId = this.comment.parent_id
+      let current = null
+      do {
+        current = this.$store.getters.commentById(parentId)
+        parentId = (current && current.parent_id) || null
+        depth++
+      } while (current && depth <= NEST_LIMIT)
+      return depth < NEST_LIMIT
     }
   },
   methods: {

@@ -11,7 +11,8 @@ const getters = {
       comment.annotation_id === annotationId && comment.parent_id === null
     ),
   commentChildren: state => parentId =>
-    state.comments.filter(comment => comment.parent_id === parentId)
+    state.comments.filter(comment => comment.parent_id === parentId),
+  commentById: state => id => state.comments.find(c => c.id === id)
 }
 
 const mutations = {
