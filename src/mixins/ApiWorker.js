@@ -5,27 +5,24 @@ export default {
   }),
   methods: {
     mergeMetaBlocks (...blocks) {
+      const initialMeta = { success: true, messages: [] }
       return blocks.reduce((sum, meta) => {
         sum.success = sum.success && meta.success
         sum.messages = sum.messages.concat(meta.messages)
-      }, { success: true, messages: [] })
-      // let messages = []
-      // let success = true
-      // blocks.forEach(meta => {
-      //   success = success && meta
-      //   messages = messages.concat(meta.messages)
-      // })
-      // return { success, messages }
+        return sum
+      }, initialMeta)
     },
     startApiWork () {
       this.apiInProgress = true
-      this.errors = []
+      this.apiErrors = []
     },
     endApiWork (meta, defaultError = null) {
       this.apiInProgress = false
-      this.errors = meta.messages.length === 0
-        ? meta.messages
-        : [ defaultError || 'Something went wrong' ]
+      if (!meta.success) {
+        this.apiErrors = meta.messages.length === 0
+          ? [ defaultError || 'Something went wrong' ]
+          : meta.messages
+      }
     }
   }
 }

@@ -29,7 +29,7 @@
           .tag(v-for="topic in limitedTopics")
             | {{topic.text}}
           .tag(v-if="session.topics.length > topicLimit")
-            | + {{session.topics.length - topicLimit}} more
+            | +{{session.topics.length - topicLimit}} more
 </template>
 
 <script>

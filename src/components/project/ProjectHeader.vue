@@ -13,7 +13,7 @@
       icon-button.is-dark.is-rounded(
         @click="$emit('startEdit')",
         icon="cog",
-        v-text="'Edit'"
+        title="Edit"
       )
     
     .level-item.is-marginless(v-if="!isProjectMember")
@@ -21,7 +21,7 @@
         icon="user-plus",
         @click="$emit('join')",
         :disabled="inProgress",
-        v-text="'Join'"
+        title="Join"
       )
 </template>
 

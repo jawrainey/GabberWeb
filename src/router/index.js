@@ -6,6 +6,7 @@ import About from '../views/About'
 import Terms from '../views/Terms'
 import Privacy from '../views/Privacy'
 import Holder from '../views/Holder'
+import NotFound from '../views/NotFound'
 
 import Login from '../views/auth/Login'
 import Register from '../views/auth/Register'
@@ -133,6 +134,12 @@ const routes = [
     path: '/me/playlist/:playlist_id',
     name: ROUTES.USER_PLAYLIST_ROUTE,
     component: UserPlaylist
+  },
+  
+  /* 404 - Page Not Found */
+  {
+    path: '*',
+    component: NotFound
   }
 ]
 

@@ -6,7 +6,7 @@ box-layout
     
     .forgot-form(v-if="!sentCode")
       label.label Enter your email
-      .field.has-addons
+      .field.is-grouped
         .control.is-expanded
           input.input(
             type="text",
@@ -23,7 +23,7 @@ box-layout
     template(v-else)
       message.is-success(
         title="Code Sent",
-        value="We've sent a code to that email address, if it exists in our system, check your email to reset your password."
+        :value="`We've sent a code to that ${email}, if it exists in our system, check your email to reset your password.`"
       )
       .buttons.is-centered
         button.button.is-primary(@click="sentCode = false")
@@ -37,27 +37,33 @@ box-layout
 
 <script>
 import { LOGIN_ROUTE } from '@/const/routes'
+import ApiWorkerMixin from '@/mixins/ApiWorker'
 import BoxLayout from '@/layouts/BoxLayout'
 import Message from '@/components/utils/Message'
 
 export default {
+  mixins: [ ApiWorkerMixin ],
   components: { BoxLayout, Message },
   data: () => ({
     email: '',
     sentCode: false
   }),
   computed: {
-    canSend () { return this.email !== '' },
+    canSend () { return this.isEmail(this.email) && !this.apiInProgress },
     loginRoute () { return { name: LOGIN_ROUTE } }
   },
   methods: {
+    isEmail (string) {
+      return /^.+@.+\..+$/.test(string)
+    },
     async sendCode () {
       if (!this.canSend) return
+      this.startApiWork()
       
       let { meta } = await this.$api.sendReset(this.email)
-      
       this.sentCode = meta.success
-      // this.email = ''
+      
+      this.endApiWork(meta)
     }
   }
 }

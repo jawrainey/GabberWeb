@@ -2,15 +2,16 @@
 button.button(@click="$emit('click')", :disabled="disabled")
   span.icon(v-if="icon")
     fa(:icon="icon")
-  span
-    slot
+  span(v-if="title", v-text="title")
+  slot(v-else)
 </template>
 
 <script>
 export default {
   props: {
     icon: { type: String, default: null },
-    disabled: { type: Boolean, default: false }
+    disabled: { type: Boolean, default: false },
+    title: { type: String, default: null }
   }
 }
 </script>

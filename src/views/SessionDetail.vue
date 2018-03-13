@@ -1,12 +1,12 @@
 <template lang="pug">
 loading-full-layout(
-  v-if="isLoading || errors.length > 0"
+  v-if="apiInProgress || apiErrors.length > 0"
   loading-message="Fetching Gabber Session",
-  :is-loading="isLoading",
-  :errors="errors",
+  :is-loading="apiInProgress",
+  :errors="apiErrors",
   :back-route="sessionListRoute"
 )
-full-layout.session-detail(v-else)
+full-layout.session-detail(v-else-if="session")
   annotation-filters(
     slot="left"
   )
@@ -64,6 +64,7 @@ full-layout.session-detail(v-else)
 import { ADD_SESSIONS, ADD_ANNOTATIONS, ADD_COMMENTS } from '@/const/mutations'
 import { SESSION_LIST_ROUTE } from '@/const/routes'
 
+import ApiWorkerMixin from '@/mixins/ApiWorker'
 import ColorGeneratorMixin from '@/mixins/ColorGenerator'
 
 import FullLayout from '@/layouts/FullLayout'
@@ -79,13 +80,11 @@ import AudioPlayer from '@/components/audio/AudioPlayer2'
 import TopicsBar from '@/components/topic/TopicsBar'
 
 export default {
-  mixins: [ ColorGeneratorMixin ],
+  mixins: [ ColorGeneratorMixin, ApiWorkerMixin ],
   components: {
     FullLayout, LoadingFullLayout, Breadcrumbs, AnnotationFilters, AnnotationPill, SessionInfoSidebar, AudioPlayer, TopicsBar
   },
   data: () => ({
-    errors: [],
-    isLoading: true,
     audioProgress: 0,
     audioDuration: null,
     highlightTopic: null
@@ -111,30 +110,28 @@ export default {
   },
   methods: {
     async fetchGabber () {
-      this.errors = []
-      this.loading = true
+      this.startApiWork()
       
       let [ sessionRes, annotationsRes ] = await Promise.all([
         this.$api.getSession(this.sessionId, this.projectId),
         this.$api.getSessionAnnotations(this.sessionId, this.projectId)
       ])
       
-      this.errors = sessionRes.meta.messages
-        .concat(annotationsRes.meta.messages)
+      let meta = this.mergeMetaBlocks(sessionRes.meta, annotationsRes.meta)
       
-      let allComments = (annotationsRes.data || []).reduce((comments, annotation) => {
+      let sessions = [ sessionRes.data ]
+      let annotations = annotationsRes.data || []
+      let comments = annotations.reduce((comments, annotation) => {
         return comments.concat(annotation.comments)
       }, [])
       
-      if (sessionRes.meta.success) {
-        this.$store.commit(ADD_SESSIONS, [ sessionRes.data ])
-        this.$store.commit(ADD_ANNOTATIONS, annotationsRes.data || [])
-        this.$store.commit(ADD_COMMENTS, allComments)
-      } else if (this.errors.length === 0) {
-        this.errors.push('Gabber not found')
+      if (meta.success) {
+        this.$store.commit(ADD_SESSIONS, sessions)
+        this.$store.commit(ADD_ANNOTATIONS, annotations)
+        this.$store.commit(ADD_COMMENTS, comments)
       }
       
-      this.isLoading = false
+      this.endApiWork(meta, 'Gabber not found')
     },
     onProgress (progress) {
       this.audioProgress = progress

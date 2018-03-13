@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import SiteHeader from '../components/Shared/SiteHeader'
-import SiteFooter from '../components/Shared/SiteFooter'
+import SiteHeader from '../components/shared/SiteHeader'
+import SiteFooter from '../components/shared/SiteFooter'
 
 export default {
   components: { SiteHeader, SiteFooter }

@@ -9,8 +9,6 @@ full-layout.project-list-view
       placeholder="e.g. My Fancy Project"
     )
   
-  message.is-danger(v-model="errors", clearable)
-  
   .main(slot="main")
     .level
       .level-left
@@ -22,14 +20,15 @@ full-layout.project-list-view
     
     .box.new-project(v-if="newProject")
       h3.subtitle.is-4 Create a new Project
-      message.is-danger(v-model="errors", clearable)
+      message.is-danger(v-model="apiErrors", clearable)
       project-edit(
         :project="newProject",
         action="Create",
-        :disabled="isCreating",
+        :disabled="apiInProgress",
         @submit="createProject",
         @cancel="toggleCreate"
       )
+    message.is-danger(v-else, v-model="apiErrors")
     
     section.project-group(v-if="filteredPersonalProjects.length > 0")
       h4.is-size-4.has-text-grey-light My Projects
@@ -39,7 +38,7 @@ full-layout.project-list-view
         :project="project"
       )
       
-    section.project-group
+    section.project-group(v-if="filteredPublicProjects.length > 0")
       h4.is-size-4.has-text-grey-light Public Projects
       project-pill(
         v-for="project in filteredPublicProjects",
@@ -50,23 +49,21 @@ full-layout.project-list-view
 
 <script>
 import { SET_PROJECTS, SAVE_PROJECT } from '@/const/mutations'
+import ApiWorkerMixin from '@/mixins/ApiWorker'
 import FullLayout from '@/layouts/FullLayout'
 import Message from '@/components/utils/Message'
 import ProjectPill from '@/components/project/ProjectPill'
 import ProjectEdit from '@/components/project/ProjectEdit'
 import { mapGetters } from 'vuex'
 
-// Edit will emit that it has submitted (only once form is valid and response from server);
-// From here, we can then hide the edit form and highlight the project?
 export default {
+  mixins: [ ApiWorkerMixin ],
   components: {
     FullLayout, Message, ProjectEdit, ProjectPill
   },
   data: () => ({
-    errors: [],
     query: '',
-    newProject: null,
-    isCreating: false
+    newProject: null
   }),
   computed: {
     ...mapGetters(['currentUser', 'personalProjects', 'publicProjects']),
@@ -99,29 +96,32 @@ export default {
       }
     },
     async fetchProjects () {
-      this.errors = []
+      this.startApiWork()
+      
       let { meta, data } = await this.$api.listAllProjects()
-      this.errors = meta.messages
       
       if (meta.success) {
-        this.$store.commit(
-          SET_PROJECTS,
-          data.personal.concat(data.public)
-        )
+        this.$store.commit(SET_PROJECTS, data.personal.concat(data.public))
       }
+      
+      this.endApiWork(meta, 'Could not fetch projects, please reload')
     },
     async createProject () {
-      this.errors = []
+      if (this.apiInProgress) return
+      this.startApiWork()
+      
       let { meta, data } = await this.$api.createProject(
         this.newProject.title, this.newProject.description, this.newProject.tags, this.newProject.privacy
       )
-      this.errors = meta.messages
+      
       if (meta.success) {
         this.$store.commit(SAVE_PROJECT, data)
         this.newProject = null
-      } else if (this.errors.length === 0) {
-        this.errors.push('Could not create project, please try again')
+      } else if (this.apiErrors.length === 0) {
+        this.apiErrors.push('Could not create project, please try again')
       }
+      
+      this.endApiWork(meta, 'Could not create project')
     }
   }
 }
