@@ -60,7 +60,8 @@ export default {
         this.changes.title,
         this.changes.description,
         this.changes.tags,
-        this.changes.privacy
+        this.changes.privacy,
+        this.changes.topics
       )
       
       if (meta.success) {

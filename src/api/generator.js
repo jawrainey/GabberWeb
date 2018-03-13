@@ -41,7 +41,8 @@ export const make = {
       description: 'Aenean lacinia bibendum nulla sed consectetur',
       members: memberships,
       privacy,
-      creator: make.creator(creatorId)
+      creator: make.creator(creatorId),
+      topics: makeList(5, make.topic, id)
     })
   },
   topic (id, projectId) {

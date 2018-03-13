@@ -1,28 +1,32 @@
 <template lang="pug">
 .project-edit-form
-  .field
-    label.label Name
-    input.input(
-      type="text",
-      v-model="project.title",
-      :disabled="disabled",
-      placeholder="e.g. My Awesome Project"
-    )
-  .field
-    label.label Description
-    textarea.textarea(
-      v-model="project.description",
-      :disabled="disabled",
-      placeholder="This project is ..."
-    )
-  .field
-    label.label Privacy
-    .control
-      span.select
-        select(v-model="project.privacy")
-          option(value="public", default) Public
-          option(value="private", default) Private
-      .help {{ privacyMessage }}
+  .columns
+    .column
+      .field
+        label.label Name
+        input.input(
+          type="text",
+          v-model="project.title",
+          :disabled="disabled",
+          placeholder="e.g. My Awesome Project"
+        )
+      .field
+        label.label Description
+        textarea.textarea(
+          v-model="project.description",
+          :disabled="disabled",
+          placeholder="This project is ..."
+        )
+      .field
+        label.label Privacy
+        .control
+          span.select
+            select(v-model="project.privacy")
+              option(value="public", default) Public
+              option(value="private", default) Private
+          .help {{ privacyMessage }}
+    .column
+      topic-list-edit(v-model="project.topics")
   hr
   .field.is-grouped.is-grouped-right
     
@@ -46,9 +50,11 @@
 
 <script>
 import ProjectPropMixin from '@/mixins/ProjectProp'
+import TopicListEdit from '@/components/topic/TopicListEdit'
 
 export default {
   mixins: [ ProjectPropMixin ],
+  components: { TopicListEdit },
   props: {
     disabled: { type: Boolean, required: true },
     deletable: { type: Boolean, default: false },

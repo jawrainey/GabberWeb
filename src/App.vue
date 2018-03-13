@@ -47,6 +47,9 @@ export default {
       background-color: nth($pair, 1)
       border-color: nth($pair, 1)
 
+.button.is-static
+  background-color: $grey-lighter
+
 .input, .textarea, .select select
   background-color: $grey-lighter
   &:focus

@@ -80,7 +80,7 @@ export default class ApiInterface {
   }
   
   // PUT: /projects/id/ (...Project) -> Project
-  async editProject (id, title, description, tags, privacy) {
+  async editProject (id, title, description, tags, privacy, topics) {
     this.notImplemented()
   }
   
