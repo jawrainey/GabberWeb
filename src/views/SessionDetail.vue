@@ -8,7 +8,8 @@ loading-full-layout(
 )
 full-layout.session-detail(v-else-if="session")
   annotation-filters(
-    slot="left"
+    slot="left",
+    :session="session"
   )
   .main(slot="main")
     breadcrumbs
@@ -19,8 +20,15 @@ full-layout.session-detail(v-else-if="session")
         ref="audioPlayer",
         :session="session",
         @progress="onProgress",
+        @seek="onSeek",
         @ready="d => audioDuration = d"
       )
+        annotation-range(
+          v-if="newAnnotation",
+          :audio-duration="audioDuration",
+          :start="newAnnotation.start_interval",
+          :end="newAnnotation.end_interval"
+        )
       topics-bar(
         v-if="audioDuration",
         :topics="session.topics",
@@ -37,16 +45,29 @@ full-layout.session-detail(v-else-if="session")
           fa(icon="long-arrow-alt-right")
           span {{` ${highlightTopic.text}`}}
     
-    //- label.label Gabber Topics
-    //- .tags.topic-tags
-      .tag(
-        v-for="(topic, index) in session.topics",
-        @click="pickTopic(topic)",
-        v-text="`${index + 1}. ${topic.text}`",
-        :style="{ 'background-color': colorFromId(topic.id) }"
-      )
     section
-      h1.title Annotations
+      .level
+        .level-left
+          .level-item
+            h1.title Annotations
+        .level-right
+          add-cancel-button.is-medium(
+            @click="toggleNewAnnotation",
+            :toggled="!!newAnnotation",
+            :disabled="apiInProgress"
+          )
+      
+      .box.is-pill.is-success.new-annotation(v-if="newAnnotation")
+        h3.subtitle.is-4 Add an annotation
+        message.is-danger(v-model="apiErrors", clearable)
+        annotation-edit(
+          :annotation="newAnnotation",
+          :audio-progress="audioProgress",
+          :disabled="apiInProgress",
+          @position="t => seekTo(t)"
+          @submit="createAnnotation",
+          @cancel="toggleNewAnnotation"
+        )
       annotation-pill(
         v-for="annotation in annotations",
         :key="annotation.id",
@@ -71,9 +92,13 @@ import FullLayout from '@/layouts/FullLayout'
 import LoadingFullLayout from '@/layouts/LoadingFullLayout'
 
 import Breadcrumbs from '@/components/utils/Breadcrumbs'
+import Message from '@/components/utils/Message'
+import AddCancelButton from '@/components/utils/AddCancelButton'
 
 import AnnotationFilters from '@/components/annotation/AnnotationFilters'
 import AnnotationPill from '@/components/annotation/AnnotationPill'
+import AnnotationEdit from '@/components/annotation/AnnotationEdit'
+import AnnotationRange from '@/components/annotation/AnnotationRange'
 import SessionInfoSidebar from '@/components/session/SessionInfoSidebar'
 import AudioPlayer from '@/components/audio/AudioPlayer2'
 
@@ -82,12 +107,13 @@ import TopicsBar from '@/components/topic/TopicsBar'
 export default {
   mixins: [ ColorGeneratorMixin, ApiWorkerMixin ],
   components: {
-    FullLayout, LoadingFullLayout, Breadcrumbs, AnnotationFilters, AnnotationPill, SessionInfoSidebar, AudioPlayer, TopicsBar
+    FullLayout, LoadingFullLayout, Breadcrumbs, Message, AddCancelButton, AnnotationFilters, AnnotationPill, AnnotationEdit, AnnotationRange, SessionInfoSidebar, AudioPlayer, TopicsBar
   },
   data: () => ({
     audioProgress: 0,
     audioDuration: null,
-    highlightTopic: null
+    highlightTopic: null,
+    newAnnotation: null
   }),
   mounted () {
     this.fetchGabber()
@@ -134,14 +160,57 @@ export default {
       this.endApiWork(meta, 'Gabber not found')
     },
     onProgress (progress) {
-      this.audioProgress = progress
+      if (this.newAnnotation && progress > this.newAnnotation.end_interval) {
+        this.seekTo(this.newAnnotation.start_interval)
+      } else {
+        this.audioProgress = progress
+      }
+    },
+    onSeek (progress) {
+      // if (this.newAnnotation) {
+      //   this.newAnnotation.start_interval = Math.round(progress)
+      // }
     },
     pickTopic (topic) {
       // Seek to that point, plus a tiny bit because of float maths
-      this.$refs.audioPlayer.seekTo(topic.start_interval + 0.01)
+      this.seekTo(topic.start_interval + 0.01)
     },
     choseAnnotation (annotation) {
-      this.$refs.audioPlayer.seekTo(annotation.start_interval)
+      this.seekTo(annotation.start_interval)
+    },
+    seekTo (duration) {
+      this.$refs.audioPlayer.seekTo(duration)
+    },
+    toggleNewAnnotation () {
+      if (this.newAnnotation) {
+        this.newAnnotation = null
+        return
+      }
+      
+      // this.$refs.audioPlayer.pause()
+      this.newAnnotation = {
+        creator: this.$store.getters.currentUser,
+        content: '',
+        start_interval: Math.max(this.audioProgress - 10, 0),
+        end_interval: Math.min(this.audioProgress + 10, this.audioDuration)
+      }
+    },
+    async createAnnotation () {
+      if (this.apiInProgress) return
+      this.startApiWork()
+      
+      let { meta, data } = await this.$api.createAnnotation(
+        this.newAnnotation.content,
+        this.newAnnotation.start_interval,
+        this.newAnnotation.end_interval,
+        this.$router.params.session_id,
+        parseInt(this.$router.params.project_id)
+      )
+      
+      console.log(meta)
+      console.log(data)
+      
+      this.endApiWork()
     }
   }
 }

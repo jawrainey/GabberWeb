@@ -28,6 +28,7 @@
       fa(icon="circle-notch", spin)
       span &nbsp;Loading Audio
     .player(ref="player")
+    slot
 </template>
 
 <script>
@@ -37,7 +38,8 @@ import CircleButton from '@/components/utils/CircleButton'
 
 const PLAYER_CONFIG = {
   barWidth: 4,
-  cursorColor: '#38597E',
+  // cursorColor: '#38597E',
+  cursorColor: '#fff',
   cursorWidth: 2,
   progressColor: '#1BBC9C',
   waveColor: '#5E6D6E',
@@ -100,13 +102,21 @@ export default {
       
       // If playing, pause
       if (this.state === PlayerState.Playing) {
-        this.audio.pause()
-        this.setState(PlayerState.Paused)
+        this.pause()
       } else {
         // If paused, start playing
-        this.audio.play()
-        this.setState(PlayerState.Playing)
+        this.play()
       }
+    },
+    play () {
+      if (this.state === PlayerState.Playing) return
+      this.audio.play()
+      this.setState(PlayerState.Playing)
+    },
+    pause () {
+      if (this.state === PlayerState.Paused) return
+      this.audio.pause()
+      this.setState(PlayerState.Paused)
     },
     stop () {
       // Stop the audio & update the state
@@ -164,7 +174,9 @@ export default {
         this.setProgress(progress)
       })
       wavesurfer.on('seek', percent => {
-        this.setProgress(wavesurfer.getDuration() * percent)
+        let progress = wavesurfer.getDuration() * percent
+        this.$emit('seek', progress)
+        this.setProgress(progress)
       })
       
       // Store the instance & set our state
@@ -198,6 +210,9 @@ export default {
   .player-wrapper
     height: 128px
     position: relative
+    
+    .player
+      z-index: 100
   
   .loading
     position: absolute

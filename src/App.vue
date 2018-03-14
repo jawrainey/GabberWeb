@@ -31,25 +31,31 @@ export default {
 @import "~bulmaswatch/darkly/_overrides.scss"
 @import "~sass/transitions.sass"
 
-.button:focus
-  text-decoration: underline
-
-.button.is-uppercase
-  text-transform: uppercase
-
-.button.is-default
-  @extend .is-rounded
-  @extend .is-uppercase
-
-.button.no-active-effects
-  @each $name, $pair in $colors
-    &.is-#{$name}:active
-      box-shadow: none
-      background-color: nth($pair, 1)
-      border-color: nth($pair, 1)
-
-.button.is-static
-  background-color: $grey-lighter
+.button
+  &:focus
+    text-decoration: underline
+  &.is-uppercase
+    text-transform: uppercase
+  &.is-default
+    @extend .is-rounded
+    @extend .is-uppercase
+  &.no-active-effects
+    @each $name, $pair in $colors
+      &.is-#{$name}:active
+        box-shadow: none
+        background-color: nth($pair, 1)
+        border-color: nth($pair, 1)
+  &.is-static
+    background-color: $grey-lighter
+  &.is-circle
+    display: inline-flex
+    flex-direction: column
+    border-radius: $radius-rounded
+    vertical-align: middle
+    width: 2.5em
+    height: 2.5em
+    // > *
+      transform: scale(0.8)
 
 .input, .textarea, .select select
   background-color: $grey-lighter

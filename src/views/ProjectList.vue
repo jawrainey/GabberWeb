@@ -14,9 +14,9 @@ full-layout.project-list-view
       .level-left
         .level-item
           h1.title.is-1 Projects
-      .level-right(v-if="currentUser && !newProject")
+      .level-right(v-if="currentUser")
         .level-item
-          button.button.is-rounded.is-success(@click="toggleCreate") Create Project
+          add-cancel-button.is-medium(@click="toggleCreate", :toggled="!!newProject")
     
     .box.new-project(v-if="newProject")
       h3.subtitle.is-4 Create a new Project
@@ -52,6 +52,7 @@ import { SET_PROJECTS, SAVE_PROJECT } from '@/const/mutations'
 import ApiWorkerMixin from '@/mixins/ApiWorker'
 import FullLayout from '@/layouts/FullLayout'
 import Message from '@/components/utils/Message'
+import AddCancelButton from '@/components/utils/AddCancelButton'
 import ProjectPill from '@/components/project/ProjectPill'
 import ProjectEdit from '@/components/project/ProjectEdit'
 import { mapGetters } from 'vuex'
@@ -59,7 +60,7 @@ import { mapGetters } from 'vuex'
 export default {
   mixins: [ ApiWorkerMixin ],
   components: {
-    FullLayout, Message, ProjectEdit, ProjectPill
+    FullLayout, Message, AddCancelButton, ProjectEdit, ProjectPill
   },
   data: () => ({
     query: '',
