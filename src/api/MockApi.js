@@ -77,11 +77,11 @@ export default class MockApi extends ApiInterface {
       ? this.mock(make.project(id, id % 2 ? 'public' : 'private'))
       : this.mock(null, false)
   }
-  async createProject (title, description, tags, privacy) {
+  async createProject (title, description, topics, privacy) {
     let id = mockIds.project++
-    return this.editProject(id, title, description, tags, privacy)
+    return this.editProject(id, title, description, topics, privacy)
   }
-  async editProject (id, title, description, tags, privacy, topics = []) {
+  async editProject (id, title, description, topics, privacy) {
     if (title === 'fail') return this.mock(null, false)
     
     // Process new topics into models

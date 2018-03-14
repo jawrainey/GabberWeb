@@ -71,10 +71,12 @@ export default {
         this.project.id,
         this.changes.title,
         this.changes.description,
-        this.changes.tags,
-        this.changes.privacy,
-        this.changes.topics
+        this.changes.topics,
+        this.changes.privacy
       )
+      
+      console.log(meta)
+      console.log(data)
       
       if (meta.success) {
         this.$store.commit(SAVE_PROJECT, data)
