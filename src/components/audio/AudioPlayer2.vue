@@ -158,7 +158,7 @@ export default {
       })
       
       // Load the audio & set the volume
-      wavesurfer.load(this.session.file)
+      wavesurfer.load(this.session.audio_url)
       wavesurfer.setVolume(0.5)
       
       // Add event listeners
@@ -218,7 +218,6 @@ export default {
     position: absolute
     left: 0
     right: 0
-    top: 1rem
     bottom: 0
     line-height: 128px
     height: 128px

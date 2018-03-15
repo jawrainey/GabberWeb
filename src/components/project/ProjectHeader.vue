@@ -29,7 +29,7 @@
         title="Close"
       )
     
-    .level-item.is-marginless(v-if="!isProjectMember")
+    .level-item.is-marginless(v-if="!isProjectMember && currentUser")
       icon-button.is-dark.is-rounded(
         icon="user-plus",
         @click="$emit('join')",
@@ -49,6 +49,7 @@
 <script>
 import ProjectPropMixin from '@/mixins/ProjectProp'
 import IconButton from '@/components/utils/IconButton'
+import { mapGetters } from 'vuex'
 
 /* Emitted Events
 
@@ -68,6 +69,7 @@ export default {
     isEditing: { type: Boolean, required: true }
   },
   computed: {
+    ...mapGetters([ 'currentUser' ]),
     projectIcon () {
       return this.project.privacy === 'public' ? '' : 'lock'
     },

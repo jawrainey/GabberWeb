@@ -99,10 +99,10 @@ export default {
     async fetchProjects () {
       this.startApiWork()
       
-      let { meta, data } = await this.$api.listAllProjects()
+      let { meta, data } = await this.$api.listProjects()
       
       if (meta.success) {
-        this.$store.commit(SET_PROJECTS, data.personal.concat(data.public))
+        this.$store.commit(SET_PROJECTS, data)
       }
       
       this.endApiWork(meta, 'Could not fetch projects, please reload')

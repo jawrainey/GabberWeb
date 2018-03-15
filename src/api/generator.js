@@ -58,7 +58,7 @@ export const make = {
       id: hasher.encode(id),
       project_id: projectId,
       creator: make.creator(creatorId),
-      file: '/static/audio/tmp.m4a',
+      audio_url: '/static/audio/tmp.m4a',
       participants: makeList(pickBetween(1, 7), make.participant),
       topics: makeList(numTopics, make.sessionTopic, projectId, numTopics, MOCK_DURATION),
       user_annotations: makeList(pickBetween(2, 10), make.annotation, id, MOCK_DURATION)

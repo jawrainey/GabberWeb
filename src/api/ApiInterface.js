@@ -60,7 +60,7 @@ export default class ApiInterface {
    */
   
   // GET: /projects () -> Project[]
-  async listAllProjects () {
+  async listProjects () {
     this.notImplemented()
   }
   

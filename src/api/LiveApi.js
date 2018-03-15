@@ -42,7 +42,6 @@ export default class LiveApi extends ApiInterface {
     } catch (error) {
       if (error.response) {
         let envelope = error.response.data || {}
-        console.log(envelope)
         return this.makeEnvelope(
           false,
           null,
@@ -70,42 +69,42 @@ export default class LiveApi extends ApiInterface {
   /*
    * Auth Endpoints
    */
-  // GET: /auth/me () -> User
+  // users.me
   async getSelf () {
-    return this.endpoint('get', '/auth/me')
+    return this.endpoint('get', 'auth/me')
   }
   
-  // POST: /auth/register  (fullname, email, password) -> User
+  // users.register
   async register (fullname, email, password) {
-    let { meta, data } = await this.endpoint('post', '/auth/register', {
+    let { meta, data } = await this.endpoint('post', 'auth/register', {
       fullname, email, password
     })
     return this.processAuth(meta, data)
   }
   
-  // POST: /auth/login (email, password) -> User
+  // users.login
   async login (email, password) {
-    let { meta, data } = await this.endpoint('post', '/auth/login', {
+    let { meta, data } = await this.endpoint('post', 'auth/login', {
       email, password
     })
     return this.processAuth(meta, data)
   }
   
-  // POST: /auth/logout () -> void
+  // (not a real endpoint)
   async logout () {
     localStorage.removeItem(ACCESS_TOKEN_KEY)
     localStorage.removeItem(REFRESH_TOKEN_KEY)
     return this.makeEnvelope(true)
   }
   
-  // POST: /auth/forgot (email) -> void
+  // users.forgot
   async sendReset (email) {
-    return this.endpoint('post', '/auth/forgot', { email })
+    return this.endpoint('post', 'auth/forgot', { email })
   }
   
-  // POST: /auth/reset (token, password) -> User
+  // users.resetPassword
   async resetPassword (token, password) {
-    let { meta, data } = await this.endpoint('post', '/auth/reset', {
+    let { meta, data } = await this.endpoint('post', 'auth/reset', {
       token, password
     })
     return this.processAuth(meta, data)
@@ -115,110 +114,117 @@ export default class LiveApi extends ApiInterface {
    * Projects Management
    */
   
-  // GET: /projects () -> Project[]
-  async listAllProjects () {
-    return this.endpoint('get', '/projects')
+  // projects.index
+  async listProjects () {
+    return this.endpoint('get', 'projects')
   }
   
-  // GET: /projects/:id () -> Project
-  async getProject (id) {
-    return this.endpoint('get', `/projects/${id}`)
-  }
-  
-  // POST: /projects/ (...Project) -> Project
+  // projects.create
   async createProject (title, description, topics, privacy) {
-    return this.endpoint('post', '/projects', {
+    return this.endpoint('post', 'projects', {
       title, description, topics, privacy
     })
   }
   
-  // PUT: /projects/:id/ (...Project) -> Project
+  // projects.show
+  async getProject (id) {
+    return this.endpoint('get', `projects/${id}`)
+  }
+  
+  // projects.update
   async editProject (id, title, description, topics, privacy) {
-    return this.endpoint('put', `/projects/${id}`, {
+    return this.endpoint('put', `projects/${id}`, {
       title, description, privacy, topics
     })
   }
   
-  // DEL:  /projects/:id () -> Boolean
+  // projects.destroy
   async deleteProject (id) {
-    return this.endpoint('delete', `/projects/${id}`)
+    return this.endpoint('delete', `projects/${id}`)
   }
   
   /*
    * Project Membership
    */
   
-  // POST: /projects/:id/membership/ (id) -> Boolean
+  // projects.members.invites.create
+  async inviteToProject (pId, fullname, email) {
+    return this.endpoint('post', `projects/${pId}/membership/invites`, {
+      fullname, email
+    })
+  }
+  
+  // projects.members.invites.destroy
+  async removeFromProject (pId, mId) {
+    return this.endpoint('delete', `projects/${pId}/membership/invites/${mId}`)
+  }
+  
+  // projects.members.join
   async joinProject (id) {
-    // return this.endpoint('post', `/projects/${id}/membership`)
-    this.notImplemented()
+    return this.endpoint('post', `projects/${id}/membership`)
   }
   
-  // DEL: /projects/:id/membership/ (id) -> Boolean
+  // projects.members.leave
   async leaveProject (id) {
-    // return this.endpoint('delete', `/projects/${id}/membership`)
-    this.notImplemented()
-  }
-  
-  // POST: /project/:id/membership/invites/
-  async inviteToProject (projectId, fullname, email) {
-    // return this.endpoint('post', `/projects/${projectId}/membership/invites`, {
-    //   fullname, email
-    // })
-    this.notImplemented()
-  }
-  
-  // DELETE: /projects/:id/membership/invites/:id2
-  async removeFromProject (projectId, memberId) {
-    // return this.endpoint('delete', `/projects/${projectId}/membership/invites/${memberId}`)
-    this.notImplemented()
+    return this.endpoint('delete', `projects/${id}/membership`)
   }
   
   /*
    * Sessions
    */
   
-  // GET: /projects/:id/sessions () -> Session[]
-  async getProjectSessions (projectId) {
-    return this.endpoint('get', `/projects/${projectId}/sessions`)
+  // projects.sessions.index
+  async getProjectSessions (pId) {
+    return this.endpoint('get', `projects/${pId}/sessions`)
   }
   
-  // GET: /projects/:proj_id/sessions/:session_id () -> Session
-  async getSession (sessionId, projectId) {
-    this.notImplemented()
+  // GET: projects.sessions.show
+  async getSession (sId, pId) {
+    return this.endpoint('get', `projects/${pId}/sessions/${sId}`)
   }
   
   /*
    * Annotations
    */
   
-  // GET: /projects/:proj_id/sessions/:sess_id/annotations -> Annotation[]
-  async getSessionAnnotations (sessionId, projectId) {
-    this.notImplemented()
+  // projects.sessions.annotations.index
+  async getSessionAnnotations (sId, pId) {
+    return this.endpoint('get', `projects/${pId}/sessions/${sId}/annotations`)
   }
   
-  // DEL: /projects/:id1/sessions/:id2/annotations/:id3
-  async deleteAnnotation (projectId, sessionId, annotationId) {
-    this.notImplemented()
+  // project.sessions.annotations.destroy
+  async deleteAnnotation (pId, sId, aId) {
+    return this.endpoint('delete', `projects/${pId}/sessions/${sId}/annotations/${aId}`)
   }
+  
+  // projects.sessions.annotations.create
+  // ...
   
   /*
    * Comments
    */
   
-  // GET: /projects/:id1/sessions/:id2/annotations/:id3/comments/:id4 -> Comment[]
-  async getChildComments (projectId, sessionId, annotationId, commentId) {
+  // projects.sessions.annotations.comments.index
+  async getChildComments (pId, sId, aId, cId) {
+    // return this.endpoint('get', `projects/${projectId}/sessions/${sessionId}/annotations/${annotationId}`)
     this.notImplemented()
   }
   
-  // POST: /projects/:id1/sessions/:id2/annotations/:id3/comments
-  async createComment (projectId, sessionId, annotationId, content, parentId = null) {
-    this.notImplemented()
+  // projects.sessions.annotations.comments.create
+  async createComment (pId, sId, aId, content, parentId = null) {
+    return this.endpoint(
+      'post',
+      `/projects/${pId}/sessions/${sId}/annotations/${aId}/comments`,
+      { content, parent_id: parentId }
+    )
   }
   
-  // DEL: /projects/:id1/sessions/:id2/annotations/:id3/comments/:id4
-  async deleteComment (projectId, sessionId, annotationId, commentId) {
-    this.notImplemented()
+  // project.sessions.annotations.comments.destroy
+  async deleteComment (pId, sId, aId, cId) {
+    return this.endpoint(
+      'delete',
+      `/projects/${pId}/sessions/${sId}/annotations/${aId}/comments/${cId}`
+    )
   }
   
   /*

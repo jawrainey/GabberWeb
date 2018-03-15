@@ -64,7 +64,7 @@ export default class MockApi extends ApiInterface {
   /*
    * Projects Management
    */
-  async listAllProjects () {
+  async listProjects () {
     return this.mock({
       personal: store.getters.currentUser
         ? makeList(2, make.project, 'private')

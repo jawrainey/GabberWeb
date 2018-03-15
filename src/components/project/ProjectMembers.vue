@@ -61,7 +61,7 @@ export default {
   }),
   computed: {
     membersWithoutCreator () {
-      return this.project.members.filter(m => m.id !== this.project.creator.user_id)
+      return this.project.members.filter(m => m.user_id !== this.project.creator.user_id)
     },
     canCreateMember () {
       return !this.apiInProgress &&
@@ -100,6 +100,8 @@ export default {
       let msg = 'Are you sure you want to remove this member?'
       if (this.apiInProgress || !confirm(msg)) return
       this.startApiWork()
+      
+      console.log(member)
       
       let { meta } = await this.$api.removeFromProject(
         this.project.id, member.id

@@ -75,9 +75,6 @@ export default {
         this.changes.privacy
       )
       
-      console.log(meta)
-      console.log(data)
-      
       if (meta.success) {
         this.$store.commit(SAVE_PROJECT, data)
         this.isEditingInfo = false

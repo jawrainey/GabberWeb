@@ -20,7 +20,7 @@
     .column
       p.is-size-5 {{ annotation.content }}
     .column.is-narrow
-      button.button.is-link.is-rounded(v-if="comments.length > 0", @click="toggleComments")
+      button.button.is-link.is-rounded(@click="toggleComments")
         | {{ commentTitle }}
   transition(name="fade")
     comment-section(
@@ -52,10 +52,11 @@ export default {
   computed: {
     ...mapGetters(['currentUser']),
     commentTitle () {
-      let plural = this.comments.length === 1 ? 'Comment' : 'Comments'
-      return this.showComments
-        ? `Hide ${plural}`
-        : `${this.comments.length} ${plural}`
+      switch (this.comments.length) {
+        case 0: return 'Add a comment'
+        case 1: return `1 Comment`
+        default: return `${this.comments.length} Comments`
+      }
     },
     comments () {
       return this.$store.getters.commentsForAnnotation(this.annotation.id)
