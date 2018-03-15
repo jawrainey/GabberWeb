@@ -12,7 +12,8 @@ const MOCK = {
 const mockIds = {
   project: 10,
   comment: 100,
-  membership: 100
+  membership: 100,
+  annotation: 100
 }
 
 // A very basic regex for emails
@@ -65,12 +66,10 @@ export default class MockApi extends ApiInterface {
    * Projects Management
    */
   async listProjects () {
-    return this.mock({
-      personal: store.getters.currentUser
-        ? makeList(2, make.project, 'private')
-        : [],
-      public: makeList({ from: 3, to: 8 }, make.project)
-    })
+    let personal = !store.getters.currentUser
+      ? [] : makeList(2, make.project, 'private')
+    let allProjects = personal.concat(makeList({ from: 3, to: 8 }, make.project))
+    return this.mock(allProjects)
   }
   async getProject (id) {
     return id < 100
@@ -152,6 +151,15 @@ export default class MockApi extends ApiInterface {
   }
   async deleteAnnotation (projectId, sessionId, annotationId) {
     return this.mock(null)
+  }
+  async createAnnotation (content, start, end, sId, pId) {
+    if (content === 'fail') return this.mock(null, false)
+    return this.mock({
+      ...make.annotation(mockIds.annotation++, sId),
+      content,
+      start_interval: start,
+      end_interval: end
+    })
   }
   
   /*

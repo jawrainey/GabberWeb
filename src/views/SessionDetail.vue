@@ -21,13 +21,15 @@ full-layout.session-detail(v-else-if="session")
         :session="session",
         @progress="onProgress",
         @seek="onSeek",
-        @ready="d => audioDuration = d"
+        @ready="setAudioDuration"
       )
         annotation-range(
           v-if="newAnnotation",
           :audio-duration="audioDuration",
           :start="newAnnotation.start_interval",
-          :end="newAnnotation.end_interval"
+          :end="newAnnotation.end_interval",
+          :disabled="isCreatingAnnotation"
+          @change="updateRange"
         )
       topics-bar(
         v-if="audioDuration",
@@ -46,7 +48,7 @@ full-layout.session-detail(v-else-if="session")
           span {{` ${highlightTopic.text}`}}
     
     section
-      .level
+      .level.is-mobile
         .level-left
           .level-item
             h1.title Annotations
@@ -54,20 +56,21 @@ full-layout.session-detail(v-else-if="session")
           add-cancel-button.is-medium(
             @click="toggleNewAnnotation",
             :toggled="!!newAnnotation",
-            :disabled="apiInProgress"
+            :disabled="apiInProgress || isCreatingAnnotation"
           )
       
       .box.is-pill.is-success.new-annotation(v-if="newAnnotation")
         h3.subtitle.is-4 Add an annotation
-        message.is-danger(v-model="apiErrors", clearable)
+        message.is-danger(v-model="newAnnotationErrors", clearable)
         annotation-edit(
           :annotation="newAnnotation",
           :audio-progress="audioProgress",
-          :disabled="apiInProgress",
+          :disabled="isCreatingAnnotation",
           @position="t => seekTo(t)"
           @submit="createAnnotation",
           @cancel="toggleNewAnnotation"
         )
+      
       annotation-pill(
         v-for="annotation in annotations",
         :key="annotation.id",
@@ -112,8 +115,11 @@ export default {
   data: () => ({
     audioProgress: 0,
     audioDuration: null,
+    audioRatio: null,
     highlightTopic: null,
-    newAnnotation: null
+    newAnnotation: null,
+    newAnnotationErrors: [],
+    isCreatingAnnotation: false
   }),
   mounted () {
     this.fetchGabber()
@@ -181,6 +187,30 @@ export default {
     seekTo (duration) {
       this.$refs.audioPlayer.seekTo(duration)
     },
+    setAudioDuration (duration) {
+      this.audioDuration = duration
+    },
+    updateRange (start, end) {
+      let ratio = this.audioDuration / this.$refs.audioPlayer.$el.offsetWidth
+      if (start) {
+        this.newAnnotation.start_interval = Math.min(
+          this.newAnnotation.end_interval - 0.5,
+          Math.max(
+            this.newAnnotation.start_interval + ratio * start,
+            0
+          )
+        )
+      }
+      if (end) {
+        this.newAnnotation.end_interval = Math.max(
+          this.newAnnotation.start_interval + 0.5,
+          Math.min(
+            this.newAnnotation.end_interval + ratio * end,
+            this.audioDuration
+          )
+        )
+      }
+    },
     toggleNewAnnotation () {
       if (this.newAnnotation) {
         this.newAnnotation = null
@@ -196,21 +226,28 @@ export default {
       }
     },
     async createAnnotation () {
-      if (this.apiInProgress) return
-      this.startApiWork()
+      if (this.isCreatingAnnotation) return
+      this.isCreatingAnnotation = true
+      this.newAnnotationErrors = []
       
       let { meta, data } = await this.$api.createAnnotation(
         this.newAnnotation.content,
         this.newAnnotation.start_interval,
         this.newAnnotation.end_interval,
-        this.$router.params.session_id,
-        parseInt(this.$router.params.project_id)
+        this.sessionId,
+        this.projectId
       )
       
-      console.log(meta)
-      console.log(data)
+      this.newAnnotationErrors = meta.messages
       
-      this.endApiWork()
+      if (meta.success) {
+        this.$store.commit(ADD_ANNOTATIONS, [ data ])
+        this.newAnnotation = null
+      } else if (this.newAnnotationErrors.length === 0) {
+        this.newAnnotationErrors.push('Failed to create annotation, please try again')
+      }
+      
+      this.isCreatingAnnotation = false
     }
   }
 }

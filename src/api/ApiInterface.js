@@ -136,7 +136,10 @@ export default class ApiInterface {
     this.notImplemented()
   }
   
-  // POST: /projects/:id1/
+  // POST: /projects/:id1/sessions/:id2/annotations (content, start, end) -> Annotation
+  async createAnnotation (content, start, end, sId, pId) {
+    this.notImplemented()
+  }
   
   /*
    * Comments

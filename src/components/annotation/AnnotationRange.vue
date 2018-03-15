@@ -1,16 +1,20 @@
 <template lang="pug">
-.annotation-range(:style="styles")
-  .left-bumper
+.annotation-range(:style="styles", :class="classes")
+  draggable.left-bumper(@move="leftMoved", :disabled="disabled")
   .background
-  .right-bumper
+  draggable.right-bumper(@move="rightMoved", :disabled="disabled")
 </template>
 
 <script>
+import Draggable from './Draggable'
+
 export default {
+  components: { Draggable },
   props: {
     audioDuration: { type: Number, required: true },
     start: { type: Number, required: true },
-    end: { type: Number, required: true }
+    end: { type: Number, required: true },
+    disabled: { type: Boolean, default: false }
   },
   computed: {
     styles () {
@@ -19,6 +23,17 @@ export default {
       return {
         left: `${left}%`, right: `${right}%`
       }
+    },
+    classes () {
+      return { 'is-disabled': this.disabled }
+    }
+  },
+  methods: {
+    leftMoved (change) {
+      this.$emit('change', change, 0)
+    },
+    rightMoved (change) {
+      this.$emit('change', 0, change)
     }
   }
 }
@@ -26,7 +41,7 @@ export default {
 
 <style lang="sass">
 
-$bumper-width: 8px
+$bumper-width: 14px
 
 =is-bumper
   position: absolute
@@ -36,8 +51,7 @@ $bumper-width: 8px
   background-color: $warning
   z-index: 1
   pointer-events: all
-  cursor: col-resize
-  border-radius: $bumper-width * 0.5
+  border-radius: $bumper-width * 0.33
 
 .annotation-range
   position: absolute
@@ -45,6 +59,9 @@ $bumper-width: 8px
   bottom: 0
   z-index: 200
   pointer-events: none
+  
+  &.is-disabled
+    opacity: 0.6
   
   .background
     background: transparentize($primary, 0.7)

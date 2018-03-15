@@ -198,7 +198,13 @@ export default class LiveApi extends ApiInterface {
   }
   
   // projects.sessions.annotations.create
-  // ...
+  async createAnnotation (content, start, end, sId, pId) {
+    return this.endpoint(
+      'post',
+      `projects/${pId}/sessions/${sId}/annotations`,
+      { content, start_interval: Math.floor(start), end_interval: Math.ceil(end) }
+    )
+  }
   
   /*
    * Comments

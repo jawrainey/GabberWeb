@@ -11,7 +11,7 @@
           )
           span.is-size-4 {{ annotation.creator.fullname }}
           button.button.is-text.timestamp(@click="$emit('chosen', annotation)")
-            | {{ formatDuration(annotation.start_interval) }}
+            | {{ annotation.start_interval | duration }} → {{ annotation.end_interval | duration }}
     .level-right
       .level-item.is-marginless(v-if="isOwner")
         button.button.is-dark.is-rounded(@click="deleteSelf")

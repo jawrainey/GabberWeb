@@ -1,13 +1,13 @@
 export default {
-  methods: {
-    formatDuration (seconds) {
-      seconds = Math.max(0, seconds)
-      
-      let mins = Math.floor(seconds / 60)
-      let secs = Math.floor(seconds - (mins * 60))
-      return `${pad(mins, 2)}:${pad(secs, 2)}`
-    }
-  }
+  methods: { formatDuration }
+}
+
+export function formatDuration (seconds) {
+  seconds = Math.max(0, seconds)
+  
+  let mins = Math.floor(seconds / 60)
+  let secs = Math.floor(seconds - (mins * 60))
+  return `${pad(mins, 2)}:${pad(secs, 2)}`
 }
 
 export function pad (number, width, padding = '0') {

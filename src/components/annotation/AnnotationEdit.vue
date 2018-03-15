@@ -1,22 +1,8 @@
 <template lang="pug">
 .annotation-edit
-  .columns
-    //- .column.is-narrow
-      label.label Position
-      .field.has-addons
-        .control
-          input.input(
-            type="text",
-            v-model="position",
-            :disabled="disabled",
-            :style="{ width: '92px' }",
-            readonly
-          )
-        .control
-          button.button.is-success(@click="replayFromPosition")
-            .icon: fa(icon="step-backward")
+  label.label Annotation – {{ annotation.start_interval | duration }} → {{ annotation.end_interval | duration }}
+  .columns.is-narrow
     .column
-      label.label Annotation
       .field
         textarea.textarea(
           type="text",
@@ -26,8 +12,7 @@
           rows="2"
         )
     .column.is-narrow
-      label.label &nbsp;
-      button.button.is-success(@click="submit", :disabled="disabled") Create
+      button.button.is-success(@click="submit", :disabled="!canSubmit") Create
 </template>
 
 <script>
@@ -35,7 +20,7 @@ import TemporalMixin from '@/mixins/Temporal'
 
 /* Emitted Events
 
-@position (time) -> When the user changed the position of their annotation
+@submit -> When the user changed the position of their annotation
 
 */
 
@@ -47,16 +32,7 @@ export default {
     audioProgress: { type: Number, required: true }
   },
   computed: {
-    position: {
-      get () {
-        return this.formatDuration(this.annotation.start_interval)
-      },
-      set (p) {
-        this.$emit('position', p)
-        this.annotation.start_interval = p
-        this.annotation.end_interval = p + 1
-      }
-    }
+    canSubmit () { return !this.disabled && this.annotation.content !== '' }
   },
   methods: {
     replayFromPosition () {
