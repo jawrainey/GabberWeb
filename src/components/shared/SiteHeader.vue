@@ -18,15 +18,17 @@ header.site-header.hero
           span About
         
         template(v-if="!isLoggedIn")
-          router-link.navbar-item(:to="loginRoute", :class="routeClass(loginRoute)")
+          a.navbar-item(@click="login", :class="routeClass(loginRoute)")
             span Login
-        .navbar-item(v-else)
+        //- .navbar-item(v-else)
+        .navbar-item
           button.button.is-dark(@click="logout") Logout
 </template>
 
 <script>
 import { HOME_ROUTE, ABOUT_ROUTE, PROJECT_LIST_ROUTE, LOGIN_ROUTE } from '@/const/routes'
-import { LOGOUT_USER } from '@/const/mutations'
+import { LOGOUT_USER, LOGIN_RETURN_ROUTE } from '@/const/mutations'
+import { AuthEvents } from '@/events'
 
 export default {
   props: {
@@ -44,9 +46,18 @@ export default {
     menuClasses () { return { 'is-active': this.mobileNav } }
   },
   methods: {
+    login () {
+      this.$store.commit(LOGIN_RETURN_ROUTE, {
+        name: this.$route.name,
+        params: this.$route.params
+      })
+      // console.log('login ...', this.$route)
+      this.$router.push(this.loginRoute)
+    },
     async logout () {
       await this.$api.logout()
       this.$store.commit(LOGOUT_USER)
+      AuthEvents.$emit('logout')
     },
     routeClass (route) {
       return {

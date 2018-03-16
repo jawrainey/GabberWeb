@@ -1,8 +1,16 @@
 <template lang="pug">
 .annotation-range(:style="styles", :class="classes")
-  draggable.left-bumper(@move="leftMoved", :disabled="disabled")
+  draggable.left-bumper(
+    v-if="editable",
+    @move="leftMoved",
+    :disabled="disabled"
+  )
   .background
-  draggable.right-bumper(@move="rightMoved", :disabled="disabled")
+  draggable.right-bumper(
+    v-if="editable",
+    @move="rightMoved",
+    :disabled="disabled"
+  )
 </template>
 
 <script>
@@ -14,18 +22,19 @@ export default {
     audioDuration: { type: Number, required: true },
     start: { type: Number, required: true },
     end: { type: Number, required: true },
-    disabled: { type: Boolean, default: false }
+    disabled: { type: Boolean, default: false },
+    editable: { type: Boolean, default: false }
   },
   computed: {
     styles () {
       let left = (this.start / this.audioDuration) * 100
       let right = 100 - ((this.end / this.audioDuration) * 100)
       return {
-        left: `${left}%`, right: `${right}%`
+        left: `${Math.max(left, 0)}%`, right: `${Math.max(0, right)}%`
       }
     },
     classes () {
-      return { 'is-disabled': this.disabled }
+      return { 'is-disabled': this.disabled, 'is-editable': this.editable }
     }
   },
   methods: {
@@ -62,6 +71,11 @@ $bumper-width: 14px
   
   &.is-disabled
     opacity: 0.6
+  
+  &:not(.is-editable) .background
+    border-left: 2px solid transparentize($link, 0.3)
+    border-right: 2px solid transparentize($link, 0.7)
+    background: transparentize($link, 0.7)
   
   .background
     background: transparentize($primary, 0.7)

@@ -2,7 +2,7 @@
 .columns.project-info
   .column.description
     label-value.is-marginless(label="Description", :value="project.description")
-  .column.members
+  .column.members(v-if="project.members > 0")
     label-value.is-marginless(label="Members")
       name-bubble(
         v-for="member in project.members",

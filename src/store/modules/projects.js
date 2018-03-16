@@ -1,5 +1,6 @@
 import {REST_API} from '@/api/http-common'
 import * as MUTATIONS from '@/const/mutations'
+import Vue from 'vue'
 
 const state = {
   // my_projects: [],
@@ -47,7 +48,8 @@ const mutations = {
     let project = state.allProjects.find(p => p.id === projectId)
     if (!project) return
     project.members = project.members.filter(m => m.id !== memberId)
-  }
+  },
+  [MUTATIONS.LOGOUT_USER]: (state) => Vue.set(state, 'allProjects', [])
 }
 
 const actions = {

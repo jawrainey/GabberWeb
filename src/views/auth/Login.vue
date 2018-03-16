@@ -30,7 +30,7 @@ box-layout
     br
     
     .buttons.is-centered
-      router-link.button.is-danger(:to="projectListRoute") Back
+      router-link.button.is-danger(:to="returnRoute") Back
       button.button.is-success(
         @click="login", :disabled="!canLogin") Log In
       
@@ -60,6 +60,7 @@ export default {
     canLogin () {
       return this.email !== '' && this.password !== ''
     },
+    returnRoute () { return this.$store.getters.returnRoute || this.projectListRoute },
     projectListRoute () { return { name: PROJECT_LIST_ROUTE } },
     registerRoute () { return { name: REGISTER_ROUTE } },
     forgotRoute () { return { name: FORGOT_ROUTE } },
@@ -74,7 +75,7 @@ export default {
       
       if (meta.success) {
         this.$store.commit(LOGIN_USER, data)
-        this.$router.push({ name: PROJECT_LIST_ROUTE })
+        this.$router.push(this.returnRoute)
       } else {
         this.errors = meta.messages
         if (meta.messages.length === 0) {

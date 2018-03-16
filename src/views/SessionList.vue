@@ -29,6 +29,7 @@ full-layout.session-list-view(v-else-if="project")
 <script>
 import { ADD_SESSIONS, SAVE_PROJECT } from '@/const/mutations'
 import { PROJECT_LIST_ROUTE, SESSION_DETAIL_ROUTE } from '@/const/routes'
+import { AuthEvents } from '@/events'
 
 import ApiWorkerMixin from '@/mixins/ApiWorker'
 
@@ -76,13 +77,17 @@ export default {
     }
   },
   watch: {
-    '$route.params.project_id' () { this.fetchData() }
+    '$route.params.project_id' () { this.fetchSessions() }
   },
   mounted () {
-    this.fetchData()
+    this.fetchSessions()
+    AuthEvents.$on('logout', this.fetchSessions)
+  },
+  destroyed () {
+    AuthEvents.$off('logout', this.fetchSessions)
   },
   methods: {
-    async fetchData () {
+    async fetchSessions () {
       this.startApiWork()
       
       let [ projectRes, sessionsRes ] = await Promise.all([

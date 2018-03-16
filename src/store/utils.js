@@ -6,3 +6,7 @@ export function mergeIntoById (target, set) {
     else target.push(model)
   })
 }
+
+export function findById (set, id) {
+  return set.find(item => item.id === id)
+}

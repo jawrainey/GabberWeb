@@ -28,8 +28,15 @@ full-layout.session-detail(v-else-if="session")
           :audio-duration="audioDuration",
           :start="newAnnotation.start_interval",
           :end="newAnnotation.end_interval",
-          :disabled="isCreatingAnnotation"
+          :disabled="isCreatingAnnotation",
+          :editable="true"
           @change="updateRange"
+        )
+        annotation-range(
+          v-if="focusedAnnotation",
+          :audio-duration="audioDuration",
+          :start="focusedAnnotation.start_interval",
+          :end="focusedAnnotation.end_interval"
         )
       topics-bar(
         v-if="audioDuration",
@@ -44,8 +51,7 @@ full-layout.session-detail(v-else-if="session")
         span.is-size-5.has-text-grey-light Topic
         span {{ ` ${(currentTopic).text} ` }}
         span(v-if="highlightTopic && currentTopic.id !== highlightTopic.id")
-          fa(icon="long-arrow-alt-right")
-          span {{` ${highlightTopic.text}`}}
+          span  → {{highlightTopic.text}}
     
     section
       .level.is-mobile
@@ -75,7 +81,9 @@ full-layout.session-detail(v-else-if="session")
         v-for="annotation in annotations",
         :key="annotation.id",
         :annotation="annotation",
-        @chosen="choseAnnotation"
+        @chosen="choseAnnotation",
+        @focus="annot => focusedAnnotation = annot",
+        @blur="annot => focusedAnnotation = null",
       )
       
   session-info-sidebar(
@@ -87,6 +95,7 @@ full-layout.session-detail(v-else-if="session")
 <script>
 import { ADD_SESSIONS, ADD_ANNOTATIONS, ADD_COMMENTS } from '@/const/mutations'
 import { SESSION_LIST_ROUTE } from '@/const/routes'
+import { AuthEvents } from '@/events'
 
 import ApiWorkerMixin from '@/mixins/ApiWorker'
 import ColorGeneratorMixin from '@/mixins/ColorGenerator'
@@ -119,10 +128,15 @@ export default {
     highlightTopic: null,
     newAnnotation: null,
     newAnnotationErrors: [],
-    isCreatingAnnotation: false
+    isCreatingAnnotation: false,
+    focusedAnnotation: null
   }),
   mounted () {
     this.fetchGabber()
+    AuthEvents.$on('logout', this.fetchGabber)
+  },
+  destroyed () {
+    AuthEvents.$off('logout', this.fetchGabber)
   },
   watch: {
     '$route.params.session_id' () { this.fetchGabber() }

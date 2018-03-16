@@ -49,6 +49,7 @@ full-layout.project-list-view
 
 <script>
 import { SET_PROJECTS, SAVE_PROJECT } from '@/const/mutations'
+import { AuthEvents } from '@/events'
 import ApiWorkerMixin from '@/mixins/ApiWorker'
 import FullLayout from '@/layouts/FullLayout'
 import Message from '@/components/utils/Message'
@@ -77,6 +78,10 @@ export default {
   },
   mounted () {
     this.fetchProjects()
+    AuthEvents.$on('logout', this.fetchProjects)
+  },
+  destroyed () {
+    AuthEvents.$off('logout', this.fetchProjects)
   },
   methods: {
     filterProjects (projects, query) {

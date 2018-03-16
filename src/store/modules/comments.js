@@ -1,5 +1,5 @@
 import * as MUTATIONS from '@/const/mutations'
-import { mergeIntoById } from './mergeIntoById'
+import { mergeIntoById } from '../utils'
 
 const state = {
   comments: []
@@ -21,7 +21,8 @@ const mutations = {
   },
   [MUTATIONS.REMOVE_COMMENT]: (state, id) => {
     state.comments = state.comments.filter(c => c.id !== id)
-  }
+  },
+  [MUTATIONS.LOGOUT_USER]: (state) => (state.comments = [])
 }
 
 const actions = {

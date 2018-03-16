@@ -1,6 +1,6 @@
 // import {REST_API} from '../../api/http-common'
 import * as MUTATIONS from '@/const/mutations'
-import { mergeIntoById } from './mergeIntoById'
+import { mergeIntoById } from '../utils'
 
 const state = {
   sessions: [],
@@ -33,6 +33,10 @@ const mutations = {
   },
   [MUTATIONS.REMOVE_ANNOTATION]: (state, annotationId) => {
     state.annotations = state.annotations.filter(a => a.id !== annotationId)
+  },
+  [MUTATIONS.LOGOUT_USER]: (state) => {
+    state.sessions = []
+    state.annotations = []
   }
 }
 

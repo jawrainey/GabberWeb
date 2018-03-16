@@ -1,5 +1,8 @@
 <template lang="pug">
-.box.is-pill.is-info.annotation-pill
+.box.is-pill.is-info.annotation-pill(
+  @mouseover="$emit('focus', annotation)",
+  @mouseleave="$emit('blur')"
+)
   .level
     .level-left
       .level-item
@@ -40,6 +43,14 @@ import NameBubble from '@/components/utils/NameBubble'
 import CommentSection from '@/components/comment/CommentSection'
 import { mapGetters } from 'vuex'
 
+/* Emitted Events:
+
+@chosen (annotation) ~ When the user chose this annotation
+@focus ()            ~ When the user wants to highlight an annotation
+@blur ()             ~ When the user wants to highlight an annotation
+
+*/
+
 export default {
   mixins: [ TemporalMixin, ApiWorkerMixin ],
   components: { NameBubble, CommentSection },
@@ -52,6 +63,7 @@ export default {
   computed: {
     ...mapGetters(['currentUser']),
     commentTitle () {
+      if (this.showComments) return 'Hide Comments'
       switch (this.comments.length) {
         case 0: return 'Add a comment'
         case 1: return `1 Comment`
@@ -94,6 +106,7 @@ export default {
 <style lang="sass">
 
 .annotation-pill
+  cursor: help
   > .comment-section
     margin-top: 2em
     border-top: 1px solid $grey

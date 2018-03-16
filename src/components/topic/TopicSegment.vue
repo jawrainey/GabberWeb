@@ -4,7 +4,7 @@
   :style="styles",
   @click="$emit('click', $event)",
   @mouseover="onMouseover",
-  @mouseleave="onMouseleave",
+  @mouseleave="onMouseleave"
 )
 </template>
 

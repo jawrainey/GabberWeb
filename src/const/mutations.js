@@ -13,3 +13,5 @@ export const ADD_ANNOTATIONS = 'AddAnnotations'
 export const ADD_COMMENTS = 'AddComments'
 export const REMOVE_COMMENT = 'RemoveComment'
 export const REMOVE_ANNOTATION = 'RemoveAnnotation'
+
+export const LOGIN_RETURN_ROUTE = 'LoginReturnRoute'
