@@ -48,7 +48,7 @@ export default class LiveApi extends ApiInterface {
           envelope.meta && envelope.meta.messages
         )
       } else {
-        return this.makeEnvelope(false, null, 'Something went wrong')
+        return this.makeEnvelope(false, null, [ 'Something went wrong' ])
       }
     }
   }
@@ -216,19 +216,17 @@ export default class LiveApi extends ApiInterface {
    * Comments
    */
   
-  // projects.sessions.annotations.comments.index
+  // projects.sessions.annotations.comments.replies
   async getChildComments (pId, sId, aId, cId) {
-    // return this.endpoint('get', `projects/${projectId}/sessions/${sessionId}/annotations/${annotationId}`)
-    this.notImplemented()
+    return this.endpoint('get', `projects/${pId}/sessions/${sId}/annotations/${aId}/comments/${cId}/replies`)
+    // this.notImplemented()
   }
   
   // projects.sessions.annotations.comments.create
   async createComment (pId, sId, aId, content, parentId = null) {
-    return this.endpoint(
-      'post',
-      `/projects/${pId}/sessions/${sId}/annotations/${aId}/comments`,
-      { content, parent_id: parentId }
-    )
+    let url = `/projects/${pId}/sessions/${sId}/annotations/${aId}/comments/`
+    if (parentId !== null) url += `${parentId}`
+    return this.endpoint('post', url, { content, parent_id: parentId })
   }
   
   // project.sessions.annotations.comments.destroy

@@ -1,11 +1,10 @@
 <template lang="pug">
-transition(name="fade")
-  .message(v-show="messageList.length > 0")
-    .message-header
-      p(v-text="title")
-      button.delete(v-if="clearable", @click="$emit('input', [])")
-    .message-body
-      p(v-for="message in messageList", v-text="message")
+.message(v-show="messageList.length > 0")
+  .message-header
+    p(v-text="title")
+    button.delete(v-if="clearable", @click="$emit('input', [])")
+  .message-body
+    p(v-for="message in messageList", v-text="message")
 </template>
 
 <script>

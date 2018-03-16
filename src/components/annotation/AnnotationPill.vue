@@ -106,7 +106,7 @@ export default {
 <style lang="sass">
 
 .annotation-pill
-  cursor: help
+  // cursor: help
   > .comment-section
     margin-top: 2em
     border-top: 1px solid $grey
