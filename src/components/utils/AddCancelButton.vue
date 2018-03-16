@@ -1,5 +1,5 @@
 <template lang="pug">
-button.button.add-cancel-button.is-circle.no-active-effects(
+button.button.add-cancel-button.is-circle.no-focus-effects(
   @click="$emit('click', $event)",
   :class="toggled ? 'is-danger' : 'is-success'",
   :disabled="disabled"

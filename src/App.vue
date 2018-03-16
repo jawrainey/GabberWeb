@@ -39,9 +39,9 @@ export default {
   &.is-default
     @extend .is-rounded
     @extend .is-uppercase
-  &.no-active-effects
+  &.no-focus-effects
     @each $name, $pair in $colors
-      &.is-#{$name}:active
+      &.is-#{$name}:focus
         box-shadow: none
         background-color: nth($pair, 1)
         border-color: nth($pair, 1)

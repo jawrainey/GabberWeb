@@ -16,7 +16,7 @@
       router-link.button.is-link.is-rounded(:to="sessionsRoute")
         .icon: fa(icon="microphone")
         span Gabbers
-      router-link.button.is-link.is-rounded(:to="playlistsRoute")
+      //- router-link.button.is-link.is-rounded(:to="playlistsRoute")
         .icon: fa(icon="headphones")
         span Playlists
 </template>

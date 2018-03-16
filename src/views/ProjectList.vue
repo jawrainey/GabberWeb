@@ -2,12 +2,14 @@
 full-layout.project-list-view
   section.filter(slot="left")
     h2.subtitle Filter Projects
-    label.label Search for a project
-    input.input(
-      type="text",
-      v-model="query",
-      placeholder="e.g. My Fancy Project"
-    )
+    .field
+      label.label Search for a project
+      input.input(
+        type="text",
+        v-model="query",
+        placeholder="e.g. name / member / topic"
+      )
+    sort-field(v-model="sortMode", label="Sort By")
   
   .main(slot="main")
     .level
@@ -54,6 +56,7 @@ import ApiWorkerMixin from '@/mixins/ApiWorker'
 import FullLayout from '@/layouts/FullLayout'
 import Message from '@/components/utils/Message'
 import AddCancelButton from '@/components/utils/AddCancelButton'
+import SortField from '@/components/utils/SortField'
 import ProjectPill from '@/components/project/ProjectPill'
 import ProjectEdit from '@/components/project/ProjectEdit'
 import { mapGetters } from 'vuex'
@@ -61,10 +64,11 @@ import { mapGetters } from 'vuex'
 export default {
   mixins: [ ApiWorkerMixin ],
   components: {
-    FullLayout, Message, AddCancelButton, ProjectEdit, ProjectPill
+    FullLayout, Message, AddCancelButton, SortField, ProjectEdit, ProjectPill
   },
   data: () => ({
     query: '',
+    sortMode: 'newest',
     newProject: null
   }),
   computed: {
@@ -85,8 +89,19 @@ export default {
   },
   methods: {
     filterProjects (projects, query) {
-      query = this.query.toLowerCase()
-      return projects.filter(p => p.title.toLowerCase().includes(query))
+      let regex = new RegExp(this.query, 'gi')
+      return projects.filter(p =>
+        regex.test(p.title) ||
+        regex.test(p.creator.fullname) ||
+        p.members.some(m => regex.test(m.fullname)) ||
+        p.topics.some(t => regex.test(t.text))
+      ).sort((a, b) => {
+        if (this.sortMode === 'newest') {
+          return a.created_on > b.created_on
+        } else {
+          return a.created_on < b.created_on
+        }
+      })
     },
     toggleCreate () {
       if (this.newProject) {

@@ -9,7 +9,9 @@ loading-full-layout(
 full-layout.session-list-view(v-else-if="project")
   session-filters(
     slot="left",
-    :query.sync="query"
+    :project="project",
+    :query.sync="query",
+    :topics.sync="filterTopics"
   )
   template(slot="main")
     breadcrumbs
@@ -50,7 +52,8 @@ export default {
     FullLayout, LoadingFullLayout, BoxLayout, Breadcrumbs, Message, SessionPill, SessionFilters, ProjectInfoSidebar
   },
   data: () => ({
-    query: ''
+    query: '',
+    filterTopics: []
   }),
   computed: {
     projectListRoute () {
@@ -70,9 +73,10 @@ export default {
     },
     filteredSessions () {
       let regex = new RegExp(this.query, 'gi')
+      console.log(regex)
       return this.sessions.filter(session =>
-        session.creator.fullname.match(regex) ||
-        session.participants.some(participant => participant.fullname.match(regex))
+        regex.test(session.creator.fullname) ||
+        session.participants.some(p => regex.test(p.fullname))
       )
     }
   },

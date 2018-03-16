@@ -6,17 +6,17 @@
         p.has-text-right.is-time {{ current }}
       .column.is-narrow
         .buttons
-          circle-button.is-link.no-active-effects(
+          circle-button.is-link.no-focus-effects(
             icon="backward",
             @click="backwards",
             :disabled="!canPlay"
           )
-          circle-button.is-link.is-large.no-active-effects(
+          circle-button.is-link.is-large.no-focus-effects(
             :icon="toggleIcon",
             @click="toggle",
             :disabled="!canPlay"
           )
-          circle-button.is-link.no-active-effects(
+          circle-button.is-link.no-focus-effects(
             icon="forward",
             @click="forwards",
             :disabled="!canPlay"
