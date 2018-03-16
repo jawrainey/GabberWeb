@@ -14,7 +14,8 @@ export default {
       return this.$store.getters.currentUserId
     },
     isOwner () {
-      return this.project.creator.user_id === this.currentUserId
+      return this.project.creator.user_id === this.currentUserId ||
+        (this.project.members || []).some(m => m.user_id === this.currentUserId && m.role === 'admin')
     },
     currentMembership () {
       return this.project.members.find(m => m.user_id === this.currentUserId)

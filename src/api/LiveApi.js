@@ -92,8 +92,14 @@ export default class LiveApi extends ApiInterface {
   
   // (not a real endpoint)
   async logout () {
+    // Unstore the keys
     localStorage.removeItem(ACCESS_TOKEN_KEY)
     localStorage.removeItem(REFRESH_TOKEN_KEY)
+    
+    // Remove our bearer header
+    delete this.agent.defaults.headers['Authorization']
+    
+    // Return a success
     return this.makeEnvelope(true)
   }
   

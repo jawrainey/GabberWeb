@@ -65,7 +65,8 @@ export default {
       return !this.disabled &&
         this.project.title !== '' &&
         this.project.description !== '' &&
-        this.project.topics.length > 0
+        this.project.topics.length > 0 &&
+        this.project.topics.some(p => p.is_active !== 0)
     },
     privacyMessage () {
       return this.project.privacy === 'private'

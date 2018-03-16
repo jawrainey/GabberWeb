@@ -20,8 +20,7 @@ header.site-header.hero
         template(v-if="!isLoggedIn")
           a.navbar-item(@click="login", :class="routeClass(loginRoute)")
             span Login
-        //- .navbar-item(v-else)
-        .navbar-item
+        .navbar-item(v-else)
           button.button.is-dark(@click="logout") Logout
 </template>
 
