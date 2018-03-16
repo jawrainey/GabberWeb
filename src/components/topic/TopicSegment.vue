@@ -26,7 +26,7 @@ export default {
     styles () {
       return {
         'background-color': this.colorFromId(this.topic.id),
-        'width': `${this.duration / this.audioDuration * 100}%`
+        'flex': this.duration
       }
     }
   },
