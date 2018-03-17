@@ -15,22 +15,19 @@
             :member="member",
             padded
           )
+    .tile.is-vertical.is-parent
+      .tile
+        label-value.is-primary(label="Recorded", :value="session.created_on | longDate")
+      .tile
+        label-value.is-primary(label="Annotations", :value="session.user_annotations.length")
     .tile.is-parent
-      .tile.is-vertical
-        .tile
-          label-value.is-primary(label="Time", :value="formatedTime")
-        .tile
-          label-value.is-primary(label="Annotations", :value="session.user_annotations.length")
-      .tile.is-vertical
-        .tile
-          label-value.is-primary(label="Date", :value="formatedDate")
-    .tile
-      label-value(label="Topics")
-        .tags
-          .tag(v-for="topic in limitedTopics")
-            | {{topic.text}}
-          .tag(v-if="session.topics.length > topicLimit")
-            | +{{session.topics.length - topicLimit}} more
+      .tile
+        label-value(label="Topics")
+          .tags
+            .tag(v-for="topic in limitedTopics")
+              | {{topic.text}}
+            .tag(v-if="session.topics.length > topicLimit")
+              | +{{session.topics.length - topicLimit}} more
 </template>
 
 <script>

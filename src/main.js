@@ -4,7 +4,7 @@ import { store } from './store/index'
 import { router } from './router'
 
 import './api'
-import { formatDuration } from './mixins/Temporal'
+import { formatDuration, formatDateLong } from './mixins/Temporal'
 
 import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 import fontawesome from '@fortawesome/fontawesome'
@@ -17,6 +17,7 @@ Vue.component('fa', FontAwesomeIcon)
 Vue.config.productionTip = false
 
 Vue.filter('duration', formatDuration)
+Vue.filter('longDate', formatDateLong)
 
 /* eslint-disable no-new */
 new Vue({

@@ -23,21 +23,23 @@ full-layout.session-detail(v-else-if="session")
         @seek="onSeek",
         @ready="setAudioDuration"
       )
-        annotation-range(
-          v-if="newAnnotation",
-          :audio-duration="audioDuration",
-          :start="newAnnotation.start_interval",
-          :end="newAnnotation.end_interval",
-          :disabled="isCreatingAnnotation",
-          :editable="true"
-          @change="updateRange"
-        )
-        annotation-range(
-          v-if="focusedAnnotation",
-          :audio-duration="audioDuration",
-          :start="focusedAnnotation.start_interval",
-          :end="focusedAnnotation.end_interval"
-        )
+        transition(name="fade")
+          annotation-range(
+            v-if="newAnnotation",
+            :audio-duration="audioDuration",
+            :start="newAnnotation.start_interval",
+            :end="newAnnotation.end_interval",
+            :disabled="isCreatingAnnotation",
+            :editable="true"
+            @change="updateRange"
+          )
+        transition(name="fade")
+          annotation-range(
+            v-if="focusedAnnotation",
+            :audio-duration="audioDuration",
+            :start="focusedAnnotation.start_interval",
+            :end="focusedAnnotation.end_interval"
+          )
       topics-bar(
         v-if="audioDuration",
         :topics="session.topics",
@@ -49,7 +51,7 @@ full-layout.session-detail(v-else-if="session")
       )
       p.is-size-4.current-topic-name(v-if="currentTopic")
         span.is-size-5.has-text-grey-light Topic
-        span {{ ` ${(currentTopic).text} ` }}
+        span  {{ currentTopic.text }}
         span(v-if="highlightTopic && currentTopic.id !== highlightTopic.id")
           span  → {{highlightTopic.text}}
     

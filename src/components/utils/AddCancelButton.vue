@@ -24,7 +24,7 @@ export default {
   transform: rotate(0deg)
   
   &.is-danger
-    transform: rotate(45deg)
+    transform: rotate(135deg)
   
   .icon *
     transform: scale(1.2)

@@ -25,7 +25,7 @@ export default {
     },
     styles () {
       return {
-        'background-color': this.colorFromId(this.topic.id),
+        'background-color': this.colorFromId(this.topic.topic_id),
         'flex': this.duration
       }
     }
