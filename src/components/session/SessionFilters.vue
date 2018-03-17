@@ -18,7 +18,6 @@
       @select="selectTopic(topic)",
       @deselect="deselectTopic(topic)"
     )
-    pre {{ topics }}
 </template>
 
 <script>

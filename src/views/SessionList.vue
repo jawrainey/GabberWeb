@@ -73,10 +73,22 @@ export default {
     },
     filteredSessions () {
       let regex = new RegExp(this.query, 'gi')
-      console.log(regex)
-      return this.sessions.filter(session =>
+      const topicFilter = session => (
+        this.filterTopics.length === 0 ||
+        // this.filterTopics.every(tId =>
+        //   session.topics.find(t => t.topic_id === tId)
+        // )
+        session.topics.some(topic =>
+          this.filterTopics.includes(topic.topic_id)
+        )
+      )
+      const queryFilter = session => (
+        this.query === '' ||
         regex.test(session.creator.fullname) ||
         session.participants.some(p => regex.test(p.fullname))
+      )
+      return this.sessions.filter(session =>
+        topicFilter(session) && queryFilter(session)
       )
     }
   },

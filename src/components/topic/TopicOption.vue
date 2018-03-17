@@ -1,9 +1,9 @@
 <template lang="pug">
-.topic-option(
+.topic-option.is-block(
   :class="classes",
   :style="styles",
-  v-text="topic.text",
-  @click="toggleSelf"
+  @click="toggleSelf",
+  v-text="topic.text"
 )
 </template>
 
@@ -29,5 +29,22 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="sass">
+
+.topic-option
+  border-radius: 4px
+  padding: 0.4em 0.8em
+  margin-bottom: 0.5em
+  cursor: pointer
+  transition: margin $transition
+  
+  &.is-selected
+    background-color: $primary
+  
+  &:not(.is-selected)
+    background-color: $grey
+  
+  &:hover, &.is-selected
+    margin-left: 0.5em
+
 </style>
