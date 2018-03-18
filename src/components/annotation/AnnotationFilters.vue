@@ -1,31 +1,52 @@
 <template lang="pug">
 .annotation-filters
   h3.subtitle Filter Annotations
-  .field.topics-field.is-grouped.is-grouped-multiline
-    //- .topic(v-for="topic, index in session.topics")
-      label.label
-        input.checkbox(
-          type="checkbox",
-          :value="index",
-          v-model="session.topics"
-        )
-        span {{ index + 1 }}. {{ topic.text }}
+  .field
+    label.label By message
+    input.input.is-small(
+      :value="query",
+      @input="e => $emit('update:query', e.target.value)",
+      placeholder="e.g. ..."
+    )
+  .field
+    label.label By topic
+    topic-option(
+      v-for="topic in session.topics",
+      :key="topic.id",
+      :topic="topic",
+      :selected="topics.includes(topic.topic_id)",
+      :color-id="topic.topic_id"
+      @select="selectTopic(topic)",
+      @deselect="deselectTopic(topic)"
+    )
+  sort-field(
+    :value="sortMode",
+    @input="v => $emit('update:sortMode', v)"
+  )
 </template>
 
 <script>
 import ColorGeneratorMixin from '@/mixins/ColorGenerator'
+import TopicOption from '@/components/topic/TopicOption'
+import SortField from '@/components/utils/SortField'
 
 export default {
   mixins: [ ColorGeneratorMixin ],
+  components: { TopicOption, SortField },
   props: {
-    session: { type: Object, required: true }
+    session: { type: Object, required: true },
+    query: { type: String, required: true },
+    topics: { type: Array, required: true },
+    sortMode: { type: String, required: true }
   },
   methods: {
-    topicClasses (topic) {
-      return {
-        'background-color': this.colorFromId(topic.id),
-        color: 'white'
-      }
+    selectTopic (topic) {
+      this.$emit('update:topics', this.topics.concat([ topic.topic_id ]))
+    },
+    deselectTopic (topic) {
+      this.$emit('update:topics', this.topics.filter(tId =>
+        tId !== topic.topic_id
+      ))
     },
     toggleTopic (topic) {
       console.log('toggle', topic)

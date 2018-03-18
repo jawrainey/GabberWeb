@@ -9,7 +9,10 @@ loading-full-layout(
 full-layout.session-detail(v-else-if="session")
   annotation-filters(
     slot="left",
-    :session="session"
+    :session="session",
+    :query.sync="query"
+    :topics.sync="topicFilters",
+    :sortMode.sync="sortMode"
   )
   .main(slot="main")
     breadcrumbs
@@ -26,7 +29,7 @@ full-layout.session-detail(v-else-if="session")
         transition(name="fade")
           annotation-range(
             v-if="newAnnotation",
-            :audio-duration="audioDuration",
+            :audio-duration="audioDuration && audioDuration",
             :start="newAnnotation.start_interval",
             :end="newAnnotation.end_interval",
             :disabled="isCreatingAnnotation",
@@ -35,7 +38,7 @@ full-layout.session-detail(v-else-if="session")
           )
         transition(name="fade")
           annotation-range(
-            v-if="focusedAnnotation",
+            v-if="audioDuration && focusedAnnotation",
             :audio-duration="audioDuration",
             :start="focusedAnnotation.start_interval",
             :end="focusedAnnotation.end_interval"
@@ -80,7 +83,7 @@ full-layout.session-detail(v-else-if="session")
         )
       
       annotation-pill(
-        v-for="annotation in annotations",
+        v-for="annotation in filteredAnnotations",
         :key="annotation.id",
         :annotation="annotation",
         @chosen="choseAnnotation",
@@ -101,6 +104,7 @@ import { AuthEvents } from '@/events'
 
 import ApiWorkerMixin from '@/mixins/ApiWorker'
 import ColorGeneratorMixin from '@/mixins/ColorGenerator'
+import FiltersMixin from '@/mixins/Filters'
 
 import FullLayout from '@/layouts/FullLayout'
 import LoadingFullLayout from '@/layouts/LoadingFullLayout'
@@ -119,7 +123,7 @@ import AudioPlayer from '@/components/audio/AudioPlayer2'
 import TopicsBar from '@/components/topic/TopicsBar'
 
 export default {
-  mixins: [ ColorGeneratorMixin, ApiWorkerMixin ],
+  mixins: [ ColorGeneratorMixin, ApiWorkerMixin, FiltersMixin ],
   components: {
     FullLayout, LoadingFullLayout, Breadcrumbs, Message, AddCancelButton, AnnotationFilters, AnnotationPill, AnnotationEdit, AnnotationRange, SessionInfoSidebar, AudioPlayer, TopicsBar
   },
@@ -131,7 +135,10 @@ export default {
     newAnnotation: null,
     newAnnotationErrors: [],
     isCreatingAnnotation: false,
-    focusedAnnotation: null
+    focusedAnnotation: null,
+    query: '',
+    topicFilters: [],
+    sortMode: 'newest'
   }),
   mounted () {
     this.fetchGabber()
@@ -154,6 +161,16 @@ export default {
         this.audioProgress >= topic.start_interval &&
         this.audioProgress < topic.end_interval
       )
+    },
+    filteredAnnotations () {
+      return this.annotations.filter(annotation => {
+        let searchKeys = [ annotation.content, annotation.creator.fullname ]
+        let topicFilters = this.topicFilters.map(id =>
+          this.session.topics.find(t => t.topic_id === id)
+        )
+        return this.queryFilter(this.query, searchKeys) &&
+          this.annotationTopicFilters(topicFilters, annotation)
+      }).sort(this.modelSorter(this.sortMode))
     }
   },
   methods: {

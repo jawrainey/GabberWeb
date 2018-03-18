@@ -53,6 +53,7 @@ full-layout.project-list-view
 import { SET_PROJECTS, SAVE_PROJECT } from '@/const/mutations'
 import { AuthEvents } from '@/events'
 import ApiWorkerMixin from '@/mixins/ApiWorker'
+import FiltersMixin from '@/mixins/Filters'
 import FullLayout from '@/layouts/FullLayout'
 import Message from '@/components/utils/Message'
 import AddCancelButton from '@/components/utils/AddCancelButton'
@@ -62,7 +63,7 @@ import ProjectEdit from '@/components/project/ProjectEdit'
 import { mapGetters } from 'vuex'
 
 export default {
-  mixins: [ ApiWorkerMixin ],
+  mixins: [ ApiWorkerMixin, FiltersMixin ],
   components: {
     FullLayout, Message, AddCancelButton, SortField, ProjectEdit, ProjectPill
   },
@@ -89,19 +90,15 @@ export default {
   },
   methods: {
     filterProjects (projects, query) {
-      let regex = new RegExp(this.query, 'gi')
-      return projects.filter(p =>
-        regex.test(p.title) ||
-        regex.test(p.creator.fullname) ||
-        p.members.some(m => regex.test(m.fullname)) ||
-        p.topics.some(t => regex.test(t.text))
-      ).sort((a, b) => {
-        if (this.sortMode === 'newest') {
-          return a.created_on > b.created_on
-        } else {
-          return a.created_on < b.created_on
-        }
-      })
+      return projects.filter(project => {
+        return this.queryFilter(this.query, [
+          project.title,
+          project.creator.fullname,
+          project.description,
+          ...project.members.map(m => m.fullname),
+          ...project.topics.map(m => m.text)
+        ])
+      }).sort(this.modelSorter(this.sortMode))
     },
     toggleCreate () {
       if (this.newProject) {

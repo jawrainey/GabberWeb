@@ -11,7 +11,8 @@ full-layout.session-list-view(v-else-if="project")
     slot="left",
     :project="project",
     :query.sync="query",
-    :topics.sync="filterTopics"
+    :topics.sync="filterTopics",
+    :sortMode.sync="sortMode"
   )
   template(slot="main")
     breadcrumbs
@@ -34,6 +35,7 @@ import { PROJECT_LIST_ROUTE, SESSION_DETAIL_ROUTE } from '@/const/routes'
 import { AuthEvents } from '@/events'
 
 import ApiWorkerMixin from '@/mixins/ApiWorker'
+import FiltersMixin from '@/mixins/Filters'
 
 import FullLayout from '@/layouts/FullLayout'
 import LoadingFullLayout from '@/layouts/LoadingFullLayout'
@@ -47,13 +49,14 @@ import SessionPill from '@/components/session/SessionPill'
 import SessionFilters from '@/components/session/SessionFilters'
 
 export default {
-  mixins: [ ApiWorkerMixin ],
+  mixins: [ ApiWorkerMixin, FiltersMixin ],
   components: {
     FullLayout, LoadingFullLayout, BoxLayout, Breadcrumbs, Message, SessionPill, SessionFilters, ProjectInfoSidebar
   },
   data: () => ({
     query: '',
-    filterTopics: []
+    filterTopics: [],
+    sortMode: 'newest'
   }),
   computed: {
     projectListRoute () {
@@ -72,24 +75,15 @@ export default {
       return this.$store.getters.sessionsForProject(this.projectId)
     },
     filteredSessions () {
-      let regex = new RegExp(this.query, 'gi')
-      const topicFilter = session => (
-        this.filterTopics.length === 0 ||
-        // this.filterTopics.every(tId =>
-        //   session.topics.find(t => t.topic_id === tId)
-        // )
-        session.topics.some(topic =>
-          this.filterTopics.includes(topic.topic_id)
-        )
-      )
-      const queryFilter = session => (
-        this.query === '' ||
-        regex.test(session.creator.fullname) ||
-        session.participants.some(p => regex.test(p.fullname))
-      )
-      return this.sessions.filter(session =>
-        topicFilter(session) && queryFilter(session)
-      )
+      return this.sessions.filter(session => {
+        let queryValues = [
+          session.creator.fullname, ...session.participants.map(p => p.fullname)
+        ]
+        let topicIds = session.topics.map(t => t.topic_id)
+        
+        return this.queryFilter(this.query, queryValues) &&
+          this.topicsFilter(this.filterTopics, topicIds)
+      }).sort(this.modelSorter(this.sortMode))
     }
   },
   watch: {

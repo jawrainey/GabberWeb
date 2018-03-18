@@ -8,17 +8,27 @@
 </template>
 
 <script>
+import ColorGeneratorMixin from '@/mixins/ColorGenerator'
 export default {
+  mixins: [ ColorGeneratorMixin ],
   props: {
     topic: { type: Object, required: true },
-    selected: { type: Boolean, default: false }
+    selected: { type: Boolean, default: false },
+    colorId: { type: Number, default: null }
   },
   computed: {
     classes () {
-      return { 'is-selected': this.selected }
+      return { 'is-selected': this.selected, 'is-colored': this.colorId !== null }
     },
     styles () {
-      return { }
+      let style = { }
+      if (this.colorId && this.selected) {
+        style['background-color'] = this.colorFromId(this.colorId)
+      }
+      if (this.colorId) {
+        style['border-right'] = `2em solid ${this.colorFromId(this.colorId)}`
+      }
+      return style
     }
   },
   methods: {
@@ -36,15 +46,17 @@ export default {
   padding: 0.4em 0.8em
   margin-bottom: 0.5em
   cursor: pointer
-  transition: margin $transition
+  transition: margin $transition, background-color $transition
+  user-select: none
   
   &.is-selected
     background-color: $primary
+    margin-left: 0.3em
   
   &:not(.is-selected)
     background-color: $grey
   
-  &:hover, &.is-selected
-    margin-left: 0.5em
+  &:hover:not(.is-selected)
+    opacity: 0.9
 
 </style>

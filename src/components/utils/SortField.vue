@@ -1,6 +1,6 @@
 <template lang="pug">
 .field.sorting-field
-  label.label Sort By
+  label.label {{ label }}
   .buttons.has-addons
     button.button.no-focus-effects(
       v-for="mode in sortModes",
@@ -15,6 +15,7 @@
 <script>
 export default {
   props: {
+    label: { type: String, default: 'Sort By' },
     value: { type: String, required: true }
   },
   data: () => ({
