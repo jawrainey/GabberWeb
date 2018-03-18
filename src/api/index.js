@@ -8,7 +8,8 @@ const ApiType = process.env.MOCK_API
   : LiveApi
 
 // Create an instance of the api & install it on Vue
-let api = new ApiType(process.env.API_URL)
+let host = (window.CONFIG && window.CONFIG.API_URL) || process.env.API_URL
+let api = new ApiType(host)
 Vue.use(api)
 
 // Export the api instance
