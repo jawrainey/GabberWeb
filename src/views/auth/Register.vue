@@ -1,11 +1,9 @@
 <template lang="pug">
 box-layout
   section.section
-    h3.title Register for Gabber
-    
-    h4.subtitle
-      = 'Already have an account? '
-      router-link(:to="loginRoute") Log in
+    h3.title Create a Gabber Account
+    h4.subtitle or
+      router-link(:to="loginRoute")  log in to your account
     
     message.is-danger(v-model="errors", clearable)
     
@@ -16,7 +14,7 @@ box-layout
           type="text",
           v-model="fullname",
           @keyup.enter="register",
-          placeholder="Jim Halpert"
+          placeholder="e.g. Jim Halpert"
         )
       .field
         label.label Email
@@ -24,7 +22,7 @@ box-layout
           type="text",
           v-model="email",
           @keyup.enter="register",
-          placeholder="jim@example.com"
+          placeholder="e.g. jim@example.com"
         )
       .field
         label.label Password
@@ -32,7 +30,7 @@ box-layout
           type="password",
           v-model="password",
           @keyup.enter="register",
-          placeholder="••••••••"
+          placeholder="e.g. ••••••••"
         )
       p
         = 'By signing up, you agree to our '
@@ -41,9 +39,7 @@ box-layout
         router-link(:to="privacyRoute", target="_blank") Privacy Policy.
       br
       .buttons.is-centered
-        button.button.is-danger(
-          @click="$router.go(-1)"
-        ) Cancel
+        router-link.button.is-link(:to="returnRoute") Cancel
         button.button.is-success(
           @click="register", :disabled="!canRegister"
         ) Sign Up
@@ -78,6 +74,7 @@ export default {
     privacyRoute () { return { name: PRIVACY_ROUTE } },
     projectListRoute () { return { name: PROJECT_LIST_ROUTE } },
     loginRoute () { return { name: LOGIN_ROUTE } },
+    returnRoute () { return this.$store.getters.returnRoute || this.projectListRoute },
     canRegister () {
       return this.fullname !== '' &&
         this.email !== '' &&

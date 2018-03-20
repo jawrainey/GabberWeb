@@ -1,138 +1,238 @@
-<template>
-    <footer id="audioplayer">
-        <div id="audioplayer__options" :disabled="!regionsLoaded">
-            <span v-if="regionsLoaded">{{ selectedRegion.interview.topic }}</span>
-            <div id="audioplayer__buttons">
-                <button @click="SEEK_TEN_BACKWARD" class="back-ten" :disabled="!regionsLoaded"></button>
-                <button @click="PREV_REGION(filteredRegions)" class="previous" :disabled="!regionsLoaded"></button>
-                <button v-if="IS_PLAYING" @click="PAUSE_AUDIO" class="pause" :disabled="!regionsLoaded"></button>
-                <button v-else @click="PLAY_AUDIO(selectedRegion)" class="play" :disabled="!regionsLoaded"></button>
-                <button @click="NEXT_REGION(filteredRegions)" class="next" :disabled="!regionsLoaded"></button>
-                <button @click="SEEK_TEN_FORWARD" class="forward-ten" :disabled="!regionsLoaded"></button>
-            </div>
-            <vue-slider @callback="PAUSE_PLAY" v-model="position" :tooltip="false" :max="selectedRegion.length"></vue-slider>
-            <div id="audioplayer__bar">
-                <div class="audioplayer__progress_time">{{ readableSeconds(position) }}</div>
-                <div class="audioplayer__progress_time">{{ readableSeconds(selectedRegion.length) }}</div>
-                <audio id="player" ref="player" v-bind:src="selectedRegion.interview.url"></audio>
-            </div>
-        </div>
-    </footer>
+<template lang="pug">
+.audio-player
+  .controls
+    .columns.is-mobile.is-gapless
+      .column
+        p.has-text-right.is-time {{ current }}
+      .column.is-narrow
+        .buttons
+          circle-button.is-link.no-focus-effects(
+            icon="backward",
+            @click="backwards",
+            :disabled="!canPlay"
+          )
+          circle-button.is-link.is-large.no-focus-effects(
+            :icon="toggleIcon",
+            @click="toggle",
+            :disabled="!canPlay"
+          )
+          circle-button.is-link.no-focus-effects(
+            icon="forward",
+            @click="forwards",
+            :disabled="!canPlay"
+          )
+      .column
+        p.has-text-left.is-time {{ remaining }}
+  .player-wrapper
+    template(v-if="!canPlay")
+      .loading.has-text-centered.is-size-3(v-if="!failed")
+        fa(icon="circle-notch", spin)
+        span &nbsp;Loading Audio
+      message.is-warning(
+        title="Audio Unavailable",
+        value="This Gabber is no longer available, please contact the interviewer for help."
+      )
+    .player(ref="player")
+    slot
 </template>
 
 <script>
-import vueSlider from 'vue-slider-component'
-import {utilsMixin} from '../../mixins/index'
-import { mapActions, mapGetters } from 'vuex'
+import WaveSurfer from 'wavesurfer.js'
+import TemporalMixin from '@/mixins/Temporal'
+import CircleButton from '@/components/utils/CircleButton'
+import Message from '@/components/utils/Message'
+
+const PLAYER_CONFIG = {
+  barWidth: 4,
+  // cursorColor: '#38597E',
+  cursorColor: '#fff',
+  cursorWidth: 2,
+  progressColor: '#1BBC9C',
+  waveColor: '#5E6D6E',
+  scrollParent: true,
+  minPxPerSec: 0,
+  normalize: true,
+  responsive: true
+}
+
+export const PlayerState = {
+  Playing: 'playing',
+  Paused: 'paused',
+  Stopped: 'stopped',
+  NotReady: 'not_ready'
+}
+
+/* Emitted Events
+
+@progress (duration)  -> when the player position changed
+@finish ()            -> when playing finished
+@state ()             -> when the state changes
+@ready (length)       -> when the audio was loaded
+@error (error)        -> if an error occured fetching the audio file
+
+ */
 
 export default {
-  components: {
-    vueSlider
+  mixins: [ TemporalMixin ],
+  components: { CircleButton, Message },
+  props: {
+    session: { type: Object, required: true }
   },
-  mixins: [utilsMixin],
-  mounted () {
-    this.$store.commit('AUDIO_PLAYER', this.$refs.player)
-  },
-  methods: {
-    ...mapActions(['PLAY_AUDIO', 'PAUSE_AUDIO', 'NEXT_REGION', 'PREV_REGION', 'SEEK_TEN_FORWARD', 'SEEK_TEN_BACKWARD']),
-    PAUSE_PLAY () {
-      // This is called when the slider is moved. As the position is updated
-      // when play is called 'fresh' it invokes the updated position.
-      this.PAUSE_AUDIO()
-      this.PLAY_AUDIO(this.selectedRegion)
-    }
+  data: () => ({
+    audio: null,
+    state: PlayerState.NotReady,
+    progress: 0,
+    failed: false
+  }),
+  watch: {
+    session () { this.setup() }
   },
   computed: {
-    ...mapGetters(['selectedRegion', 'filteredRegions', 'IS_PLAYING', 'regionsLoaded']),
-    position: {
-      get () {
-        return this.$store.getters.POSITION
-      },
-      set (position) {
-        this.$store.commit('UPDATE_POSITION', position)
+    isPlaying () { return this.state === PlayerState.Playing },
+    isStopped () { return this.state === PlayerState.Stopped },
+    canPlay () { return this.state !== PlayerState.NotReady },
+    toggleIcon () { return this.isPlaying ? 'pause' : 'play' },
+    current () {
+      if (!this.canPlay) return '~'
+      return this.formatDuration(this.progress)
+    },
+    remaining () {
+      if (!this.canPlay) return '~'
+      return this.formatDuration(Math.round(this.audio.getDuration()) - this.progress)
+    }
+  },
+  mounted () { this.setup() },
+  destroyed () { this.teardown() },
+  methods: {
+    toggle () {
+      // If stopped, seek to the start
+      if (this.state === PlayerState.Stopped) this.audio.seekTo(0)
+      
+      // If playing, pause
+      if (this.state === PlayerState.Playing) {
+        this.pause()
+      } else {
+        // If paused, start playing
+        this.play()
       }
+    },
+    play () {
+      if (this.state === PlayerState.Playing) return
+      this.audio.play()
+      this.setState(PlayerState.Playing)
+    },
+    pause () {
+      if (this.state === PlayerState.Paused) return
+      this.audio.pause()
+      this.setState(PlayerState.Paused)
+    },
+    stop () {
+      // Stop the audio & update the state
+      this.audio.stop()
+      this.setState(PlayerState.Stopped)
+    },
+    backwards () {
+      // Skip back 10 seconds
+      this.audio.skipBackward(10)
+    },
+    forwards () {
+      // Skip forward 10 seconds
+      this.audio.skipForward(10)
+    },
+    setProgress (progress) {
+      this.progress = progress
+      this.$emit('progress', progress)
+      
+      // If stopped, move to a paused state
+      if (this.isStopped && progress > 0) {
+        this.setState(PlayerState.Paused)
+      }
+    },
+    setState (state) {
+      this.state = state
+      this.$emit('state', state)
+    },
+    seekTo (progress) {
+      this.audio.seekAndCenter(Math.min(
+        1, Math.max(0, progress / this.audio.getDuration())
+      ))
+    },
+    setup () {
+      this.teardown()
+      
+      // Create a wavesurfer instance
+      let wavesurfer = WaveSurfer.create({
+        ...PLAYER_CONFIG, container: this.$refs.player
+      })
+      
+      // Load the audio & set the volume
+      wavesurfer.load(this.session.audio_url)
+      wavesurfer.setVolume(0.5)
+      
+      // Add event listeners
+      wavesurfer.on('ready', () => {
+        this.$emit('ready', this.audio.getDuration())
+        this.setState(PlayerState.Stopped)
+      })
+      wavesurfer.on('finish', () => {
+        this.setState(PlayerState.Stopped)
+        this.$emit('finish')
+      })
+      wavesurfer.on('audioprocess', progress => {
+        this.setProgress(progress)
+      })
+      wavesurfer.on('seek', percent => {
+        let progress = wavesurfer.getDuration() * percent
+        this.$emit('seek', progress)
+        this.setProgress(progress)
+      })
+      wavesurfer.on('error', error => {
+        this.failed = true
+        this.$emit('error', error)
+      })
+      
+      // Store the instance & set our state
+      this.failed = false
+      this.audio = wavesurfer
+      this.setState(PlayerState.NotReady)
+    },
+    teardown () {
+      if (this.audio) {
+        this.audio.destroy()
+        this.audio = null
+      }
+      this.setState(PlayerState.NotReady)
     }
   }
 }
 </script>
 
-<style>
-    /*
-    Note: it is possible to remove all the disabled attributes from the button options,
-    then use "pointer-events: none" style for each button. However, this property only
-    accounts for clicks and not tab behavior: disabled prevents click and tab behavior.
-    */
-    div[disabled], button[disabled] {
-        background-color: white !important;
-        border-color: #DBDBDB !important;
-        -webkit-box-shadow: none !important;
-        box-shadow: none !important;
-        opacity: 0.5 !important;
-        cursor: not-allowed !important;
-    }
+<style lang="sass">
 
-    #audioplayer {
-        background: #EFEFEF;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-    }
+.audio-player
+  
+  .controls
+    padding-bottom: 1em
+    
+    .is-time
+      line-height: 3.5rem
+      font-size: 1.5rem
+      color: $grey-light
+      padding: 0 0.5em
+  
+  .player-wrapper
+    height: 128px
+    position: relative
+    
+    .player
+      z-index: 100
+  
+  .loading
+    position: absolute
+    left: 0
+    right: 0
+    bottom: 0
+    line-height: 128px
+    height: 128px
 
-    #audioplayer__options {
-        text-align: center;
-    }
-
-    #audioplayer__options button {
-        height: 27px;
-        width: 27px;
-        background-size: cover;
-        border: 1px solid #ddd;
-        border-radius: 3px;
-        cursor: pointer;
-        margin-left: .25rem;
-        transition: background-image .25s ease-in-out;
-        background-color: white;
-    }
-
-    #audioplayer__buttons {
-        margin: 0 auto;
-        width: 224px;
-    }
-
-    #audioplayer__bar {
-        width: 100%;
-        display: -ms-flexbox;
-        display: flex;
-        -ms-flex-direction: row;
-        flex-direction: row;
-        -ms-flex-pack: justify;
-        justify-content: space-between;
-        -ms-flex-align: center;
-        align-items: center;
-    }
-
-    #audioplayer__buttons .back-ten {
-        background-image: url("data:image/svg+xml;base64, PHN2ZyBmaWxsPSIjMDAwMDAwIiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8ZGVmcz4KICAgICAgICA8cGF0aCBkPSJNMCAwaDI0djI0SDBWMHoiIGlkPSJhIi8+CiAgICA8L2RlZnM+CiAgICA8Y2xpcFBhdGggaWQ9ImIiPgogICAgICAgIDx1c2Ugb3ZlcmZsb3c9InZpc2libGUiIHhsaW5rOmhyZWY9IiNhIi8+CiAgICA8L2NsaXBQYXRoPgogICAgPHBhdGggY2xpcC1wYXRoPSJ1cmwoI2IpIiBkPSJNMTIgNVYxTDcgNmw1IDVWN2MzLjMgMCA2IDIuNyA2IDZzLTIuNyA2LTYgNi02LTIuNy02LTZINGMwIDQuNCAzLjYgOCA4IDhzOC0zLjYgOC04LTMuNi04LTgtOHptLTEuMSAxMUgxMHYtMy4zTDkgMTN2LS43bDEuOC0uNmguMVYxNnptNC4zLTEuOGMwIC4zIDAgLjYtLjEuOGwtLjMuNnMtLjMuMy0uNS4zLS40LjEtLjYuMS0uNCAwLS42LS4xLS4zLS4yLS41LS4zLS4yLS4zLS4zLS42LS4xLS41LS4xLS44di0uN2MwLS4zIDAtLjYuMS0uOGwuMy0uNnMuMy0uMy41LS4zLjQtLjEuNi0uMS40IDAgLjYuMWMuMi4xLjMuMi41LjNzLjIuMy4zLjYuMS41LjEuOHYuN3ptLS45LS44di0uNXMtLjEtLjItLjEtLjMtLjEtLjEtLjItLjItLjItLjEtLjMtLjEtLjIgMC0uMy4xbC0uMi4ycy0uMS4yLS4xLjN2MnMuMS4yLjEuMy4xLjEuMi4yLjIuMS4zLjEuMiAwIC4zLS4xbC4yLS4ycy4xLS4yLjEtLjN2LTEuNXoiLz4KPC9zdmc+");
-    }
-
-    #audioplayer__buttons .previous {
-        background-image: url("data:image/svg+xml;base64, PHN2ZyBmaWxsPSIjMDAwMDAwIiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Ik02IDZoMnYxMkg2em0zLjUgNmw4LjUgNlY2eiIvPgogICAgPHBhdGggZD0iTTAgMGgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPgo8L3N2Zz4=");
-    }
-
-    #audioplayer__buttons .play {
-        background-image: url("data:image/svg+xml;base64, PHN2ZyBmaWxsPSIjMDAwMDAwIiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz4KICAgIDxwYXRoIGQ9Ik0xMCAxNi41bDYtNC41LTYtNC41djl6TTEyIDJDNi40OCAyIDIgNi40OCAyIDEyczQuNDggMTAgMTAgMTAgMTAtNC40OCAxMC0xMFMxNy41MiAyIDEyIDJ6bTAgMThjLTQuNDEgMC04LTMuNTktOC04czMuNTktOCA4LTggOCAzLjU5IDggOC0zLjU5IDgtOCA4eiIvPgo8L3N2Zz4=");
-    }
-
-    #audioplayer__buttons .pause {
-        background-image: url("data:image/svg+xml;base64, PHN2ZyBmaWxsPSIjMDAwMDAwIiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTAgMGgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPgo8cGF0aCBkPSJNMTIgMkM2LjQ4IDIgMiA2LjQ4IDIgMTJzNC40OCAxMCAxMCAxMCAxMC00LjQ4IDEwLTEwUzE3LjUyIDIgMTIgMnptLTEgMTRIOVY4aDJ2OHptNCAwaC0yVjhoMnY4eiIvPgo8L3N2Zz4=");
-    }
-
-    #audioplayer__buttons .next {
-        background-image: url("data:image/svg+xml;base64, PHN2ZyBmaWxsPSIjMDAwMDAwIiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Ik02IDE4bDguNS02TDYgNnYxMnpNMTYgNnYxMmgyVjZoLTJ6Ii8+CiAgICA8cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+Cjwvc3ZnPg==");
-    }
-
-    #audioplayer__buttons .forward-ten {
-        background-image: url("data:image/svg+xml;base64, PHN2ZyBmaWxsPSIjMDAwMDAwIiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8ZGVmcz4KICAgICAgICA8cGF0aCBkPSJNMjQgMjRIMFYwaDI0djI0eiIgaWQ9ImEiLz4KICAgIDwvZGVmcz4KICAgIDxjbGlwUGF0aCBpZD0iYiI+CiAgICAgICAgPHVzZSBvdmVyZmxvdz0idmlzaWJsZSIgeGxpbms6aHJlZj0iI2EiLz4KICAgIDwvY2xpcFBhdGg+CiAgICA8cGF0aCBjbGlwLXBhdGg9InVybCgjYikiIGQ9Ik00IDEzYzAgNC40IDMuNiA4IDggOHM4LTMuNiA4LThoLTJjMCAzLjMtMi43IDYtNiA2cy02LTIuNy02LTYgMi43LTYgNi02djRsNS01LTUtNXY0Yy00LjQgMC04IDMuNi04IDh6bTYuOCAzSDEwdi0zLjNMOSAxM3YtLjdsMS44LS42aC4xVjE2em00LjMtMS44YzAgLjMgMCAuNi0uMS44bC0uMy42cy0uMy4zLS41LjMtLjQuMS0uNi4xLS40IDAtLjYtLjEtLjMtLjItLjUtLjMtLjItLjMtLjMtLjYtLjEtLjUtLjEtLjh2LS43YzAtLjMgMC0uNi4xLS44bC4zLS42cy4zLS4zLjUtLjMuNC0uMS42LS4xLjQgMCAuNi4xLjMuMi41LjMuMi4zLjMuNi4xLjUuMS44di43em0tLjgtLjh2LS41cy0uMS0uMi0uMS0uMy0uMS0uMS0uMi0uMi0uMi0uMS0uMy0uMS0uMiAwLS4zLjFsLS4yLjJzLS4xLjItLjEuM3Yycy4xLjIuMS4zLjEuMS4yLjIuMi4xLjMuMS4yIDAgLjMtLjFsLjItLjJzLjEtLjIuMS0uM3YtMS41eiIvPgo8L3N2Zz4=");
-    }
 </style>

@@ -17,14 +17,13 @@ simple-layout
 </template>
 
 <script>
-import { PROJECT_LIST_ROUTE, LOGIN_ROUTE } from '@/const/routes'
+import { PROJECT_LIST_ROUTE } from '@/const/routes'
 import SimpleLayout from '@/layouts/SimpleLayout'
 
 export default {
   components: { SimpleLayout },
   computed: {
-    projectsRoute () { return { name: PROJECT_LIST_ROUTE } },
-    loginRoute () { return { name: LOGIN_ROUTE } }
+    projectsRoute () { return { name: PROJECT_LIST_ROUTE } }
   }
 }
 </script>

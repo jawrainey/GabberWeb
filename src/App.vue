@@ -54,8 +54,9 @@ export default {
     vertical-align: middle
     width: 2.5em
     height: 2.5em
-    // > *
-      transform: scale(0.8)
+  &.is-success
+    font-weight: bold
+    text-shadow: 0 0 5px rgba(0,0,0,0.3)
 
 .input, .textarea, .select select
   background-color: $grey-lighter
@@ -81,8 +82,5 @@ a
 
 hr
   height: 1px
-
-body
-  font-size: 16px
 
 </style>

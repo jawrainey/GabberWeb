@@ -50,18 +50,18 @@ full-layout.project-list-view
     
     action-box(v-if="noProjects && !newProject", title="No projects")
       p.is-size-5(slot="content")
-        span(v-if="currentUser") You aren't on any projects ... yet! why not create one above?
-        span(v-else) There are no public projects right now, why not sign up and create your own?
-      router-link.button.is-rounded.is-primary.is-medium.is-marginless(
-        :to="registerRoute", slot="action", v-if="!currentUser"
-      ) Sign up
+        span(v-if="currentUser") You aren't on any projects ... yet. Why not create one above!
+        span(v-else) There are no public projects right now, why not sign up and create your own!
+      a.button.is-success.is-medium.is-marginless(
+        v-if="!currentUser", slot="action", @click="pushRegister"
+      ) Sign up!
 </template>
 
 <script>
-import { REGISTER_ROUTE } from '@/const/routes'
 import { SET_PROJECTS, SAVE_PROJECT } from '@/const/mutations'
 import { AuthEvents } from '@/events'
 import ApiWorkerMixin from '@/mixins/ApiWorker'
+import AuthRedirMixin from '@/mixins/AuthRedir'
 import FiltersMixin from '@/mixins/Filters'
 import FullLayout from '@/layouts/FullLayout'
 import Message from '@/components/utils/Message'
@@ -73,7 +73,7 @@ import ProjectEdit from '@/components/project/ProjectEdit'
 import { mapGetters } from 'vuex'
 
 export default {
-  mixins: [ ApiWorkerMixin, FiltersMixin ],
+  mixins: [ ApiWorkerMixin, AuthRedirMixin, FiltersMixin ],
   components: {
     FullLayout, Message, AddCancelButton, SortField, ActionBox, ProjectEdit, ProjectPill
   },
@@ -93,9 +93,6 @@ export default {
     noProjects () {
       return this.filteredPersonalProjects.length === 0 &&
         this.filteredPublicProjects.length === 0
-    },
-    registerRoute () {
-      return { name: REGISTER_ROUTE }
     }
   },
   mounted () {

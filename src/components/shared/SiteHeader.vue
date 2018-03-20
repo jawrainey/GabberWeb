@@ -18,18 +18,25 @@ header.site-header.hero
           span About
         
         template(v-if="!isLoggedIn")
-          a.navbar-item(@click="login", :class="routeClass(loginRoute)")
-            span Login
+          a.navbar-item(@click.prevent="pushLogin", :class="routeClass(loginRoute)")
+            span Log In
+          .navbar-item
+            a.button.is-success(@click.prevent="pushRegister")
+              span Sign Up!
         .navbar-item(v-else)
           button.button.is-dark(@click="logout") Logout
 </template>
 
 <script>
-import { HOME_ROUTE, ABOUT_ROUTE, PROJECT_LIST_ROUTE, LOGIN_ROUTE } from '@/const/routes'
-import { LOGOUT_USER, LOGIN_RETURN_ROUTE } from '@/const/mutations'
+import {
+  HOME_ROUTE, ABOUT_ROUTE, PROJECT_LIST_ROUTE, LOGIN_ROUTE
+} from '@/const/routes'
+import { LOGOUT_USER } from '@/const/mutations'
 import { AuthEvents } from '@/events'
+import AuthRedirMixin from '@/mixins/AuthRedir'
 
 export default {
+  mixins: [ AuthRedirMixin ],
   props: {
     fullWidth: { type: Boolean, default: false }
   },
@@ -45,14 +52,6 @@ export default {
     menuClasses () { return { 'is-active': this.mobileNav } }
   },
   methods: {
-    login () {
-      this.$store.commit(LOGIN_RETURN_ROUTE, {
-        name: this.$route.name,
-        params: this.$route.params
-      })
-      // console.log('login ...', this.$route)
-      this.$router.push(this.loginRoute)
-    },
     async logout () {
       await this.$api.logout()
       this.$store.commit(LOGOUT_USER)
@@ -75,7 +74,7 @@ export default {
 .site-header
   nav
     border-bottom: 1px solid $border
-    height: 60px
+    height: 63px
     z-index: 100
   
   +touch

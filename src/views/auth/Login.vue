@@ -1,7 +1,9 @@
 <template lang="pug">
 box-layout
   section.section
-    h1.title.has-text-centered Login to Gabber
+    h1.title Login in to Gabber
+    h4.subtitle or
+      router-link(:to="registerRoute")  create an account
     
     message.is-danger(v-model="errors", clearable)
     
@@ -11,7 +13,7 @@ box-layout
         type="text",
         v-model="email",
         @keyup.enter="login",
-        placeholder="jim@example.com"
+        placeholder="e.g. jim@example.com"
       )
     .field
       label.label
@@ -20,7 +22,7 @@ box-layout
         type="password",
         v-model="password",
         @keyup.enter="login",
-        placeholder="••••••••"
+        placeholder="e.g. ••••••••"
       )
     
     p
@@ -30,7 +32,7 @@ box-layout
     br
     
     .buttons.is-centered
-      router-link.button.is-danger(:to="returnRoute") Back
+      router-link.button.is-link(:to="returnRoute") Cancel
       button.button.is-success(
         @click="login", :disabled="!canLogin") Log In
       
@@ -40,7 +42,7 @@ box-layout
       .column
         h3.is-size-4.has-text-grey-lighter Don't already have an account?
       .column.is-narrow
-        router-link.button.is-link(:to="registerRoute") Sign Up
+        router-link.button.is-success(:to="registerRoute") Sign Up!
 </template>
 
 <script>

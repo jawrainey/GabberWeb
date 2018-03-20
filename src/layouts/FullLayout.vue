@@ -83,7 +83,7 @@ export default {
   .full-layout
     display: grid
     height: 100vh
-    grid-template-rows: 60px auto
+    grid-template-rows: 64px auto
 
     &.left-main-right
       grid-template-columns: 3fr 8fr 3fr

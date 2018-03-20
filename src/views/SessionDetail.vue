@@ -128,7 +128,7 @@ import AnnotationPill from '@/components/annotation/AnnotationPill'
 import AnnotationEdit from '@/components/annotation/AnnotationEdit'
 import AnnotationRange from '@/components/annotation/AnnotationRange'
 import SessionInfoSidebar from '@/components/session/SessionInfoSidebar'
-import AudioPlayer from '@/components/audio/AudioPlayer2'
+import AudioPlayer from '@/components/audio/AudioPlayer'
 
 import TopicsBar from '@/components/topic/TopicsBar'
 
