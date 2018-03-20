@@ -65,6 +65,7 @@ full-layout.session-detail(v-else-if="session")
             h1.title Annotations
         .level-right
           add-cancel-button.is-medium(
+            v-if="currentUser",
             @click="toggleNewAnnotation",
             :toggled="!!newAnnotation",
             :disabled="apiInProgress || isCreatingAnnotation"
@@ -86,10 +87,16 @@ full-layout.session-detail(v-else-if="session")
         v-for="annotation in filteredAnnotations",
         :key="annotation.id",
         :annotation="annotation",
+        :topics="session.topics",
         @chosen="choseAnnotation",
         @focus="annot => focusedAnnotation = annot",
         @blur="annot => focusedAnnotation = null",
       )
+      
+      action-box(v-if="filteredAnnotations.length === 0", title="No annotations")
+        p.is-size-5(slot="content")
+          span(v-if="annotations.length === 0") There aren't any annotations yet, why add one above?
+          span(v-else) No annotations matched your query, try tweaking it in the sidebar
       
   session-info-sidebar(
     slot="right",
@@ -102,6 +109,8 @@ import { ADD_SESSIONS, ADD_ANNOTATIONS, ADD_COMMENTS } from '@/const/mutations'
 import { SESSION_LIST_ROUTE } from '@/const/routes'
 import { AuthEvents } from '@/events'
 
+import { mapGetters } from 'vuex'
+
 import ApiWorkerMixin from '@/mixins/ApiWorker'
 import ColorGeneratorMixin from '@/mixins/ColorGenerator'
 import FiltersMixin from '@/mixins/Filters'
@@ -112,6 +121,7 @@ import LoadingFullLayout from '@/layouts/LoadingFullLayout'
 import Breadcrumbs from '@/components/utils/Breadcrumbs'
 import Message from '@/components/utils/Message'
 import AddCancelButton from '@/components/utils/AddCancelButton'
+import ActionBox from '@/components/utils/ActionBox'
 
 import AnnotationFilters from '@/components/annotation/AnnotationFilters'
 import AnnotationPill from '@/components/annotation/AnnotationPill'
@@ -125,7 +135,7 @@ import TopicsBar from '@/components/topic/TopicsBar'
 export default {
   mixins: [ ColorGeneratorMixin, ApiWorkerMixin, FiltersMixin ],
   components: {
-    FullLayout, LoadingFullLayout, Breadcrumbs, Message, AddCancelButton, AnnotationFilters, AnnotationPill, AnnotationEdit, AnnotationRange, SessionInfoSidebar, AudioPlayer, TopicsBar
+    FullLayout, LoadingFullLayout, Breadcrumbs, Message, AddCancelButton, ActionBox, AnnotationFilters, AnnotationPill, AnnotationEdit, AnnotationRange, SessionInfoSidebar, AudioPlayer, TopicsBar
   },
   data: () => ({
     audioProgress: 0,
@@ -151,6 +161,7 @@ export default {
     '$route.params.session_id' () { this.fetchGabber() }
   },
   computed: {
+    ...mapGetters([ 'currentUser' ]),
     sessionListRoute () { return { name: SESSION_LIST_ROUTE } },
     projectId () { return parseInt(this.$route.params.project_id) },
     sessionId () { return this.$route.params.session_id },
@@ -213,6 +224,11 @@ export default {
     pickTopic (topic) {
       // Seek to that point, plus a tiny bit because of float maths
       this.seekTo(topic.start_interval + 0.01)
+      if (this.topicFilters.length === 1 && this.topicFilters[0] === topic.topic_id) {
+        this.topicFilters = [ ]
+      } else {
+        this.topicFilters = [ topic.topic_id ]
+      }
     },
     choseAnnotation (annotation) {
       this.seekTo(annotation.start_interval)
@@ -252,7 +268,7 @@ export default {
       
       // this.$refs.audioPlayer.pause()
       this.newAnnotation = {
-        creator: this.$store.getters.currentUser,
+        creator: this.currentUser,
         content: '',
         start_interval: Math.max(this.audioProgress - 10, 0),
         end_interval: Math.min(this.audioProgress + 10, this.audioDuration)

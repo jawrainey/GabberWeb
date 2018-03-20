@@ -6,12 +6,12 @@
     input.input.is-small(
       :value="query",
       @input="e => $emit('update:query', e.target.value)",
-      placeholder="e.g. ..."
+      placeholder="e.g. The bit about ..."
     )
   .field
     label.label By topic
     topic-option(
-      v-for="topic in session.topics",
+      v-for="topic in uniqueTopics",
       :key="topic.id",
       :topic="topic",
       :selected="topics.includes(topic.topic_id)",
@@ -38,6 +38,13 @@ export default {
     query: { type: String, required: true },
     topics: { type: Array, required: true },
     sortMode: { type: String, required: true }
+  },
+  computed: {
+    uniqueTopics () {
+      return this.session.topics.filter((topic, index) =>
+        index === this.session.topics.findIndex(t => t.topic_id === topic.topic_id)
+      )
+    }
   },
   methods: {
     selectTopic (topic) {

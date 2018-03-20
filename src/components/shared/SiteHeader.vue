@@ -71,9 +71,17 @@ export default {
 </script>
 
 <style lang="sass">
+
 .site-header
   nav
     border-bottom: 1px solid $border
     height: 60px
     z-index: 100
+  
+  +touch
+    .navbar .navbar-menu
+      background: $grey-darker
+      border-radius: 0
+      border-bottom: 1px solid $grey-light
+
 </style>

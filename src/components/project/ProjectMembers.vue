@@ -13,6 +13,9 @@
         .control
           button.button.is-danger(@click="removeMember(member)", :disabled="apiInProgress")
             .icon: fa(icon="user-times")
+      p.is-size-5.has-text-grey-lighter(
+        v-if="membersWithoutCreator.length === 0"
+      ) No members yet, why not add some?
     .column
       h3.subtitle Add Member
       template(v-if="newMember")

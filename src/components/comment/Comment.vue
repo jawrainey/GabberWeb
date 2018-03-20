@@ -12,10 +12,9 @@ article.media.comment
           p.comment-content {{ comment.content }}
         .column.is-narrow(v-if="isCreator")
           button.delete(@click="deleteSelf", :disabled="apiInProgress") Delete
-      nav.level.is-mobile
-        .level-left
-          button.button.is-link.is-rounded.is-small(v-if="canReply", @click="toggleReplies")
-            | {{ toggleTitle }}
+      .buttons
+        button.button.is-link.is-rounded.is-small(v-if="canReply", @click="toggleReplies")
+          span {{ toggleTitle }}
     h3.subtitle.has-text-centered(v-if="showReplies && apiInProgress")
       | Fetching Replies ...
     comment-section(
@@ -51,9 +50,12 @@ export default {
     isCreator () {
       return this.comment.creator.user_id === this.$store.getters.currentUserId
     },
+    toggleIcon () {
+      return this.showReplies ? 'chevron-up' : 'chevron-down'
+    },
     toggleTitle () {
       if (this.showReplies) {
-        return this.numReplies > 0 ? 'Hide Replies' : 'Cancel'
+        return this.numReplies > 0 ? 'Collapse' : 'Cancel'
       } else {
         let plural = this.numReplies === 1 ? 'reply' : 'Replies'
         return this.numReplies > 0 ? `${this.numReplies} ${plural}` : `Add a Reply`
@@ -135,5 +137,11 @@ export default {
 .comment
   .comment-content
     margin-bottom: 0.5em
+  
+  > .media-content
+    overflow: visible
+    
+    > .comment-section
+      margin-left: -1.5rem
 
 </style>

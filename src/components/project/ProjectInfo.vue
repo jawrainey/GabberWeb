@@ -52,7 +52,12 @@ export default {
   border-top: 1px solid $border
   padding-top: 0.6em
   
-  .column.description
-    padding-left: 2.6em
+  +desktop
+    .column.description
+      padding-left: 2.6em
+  
+  +mobile
+    .column.members
+      display: none
 
 </style>

@@ -1,5 +1,6 @@
 <template lang="pug">
 .box.is-pill.is-info.annotation-pill(
+  :style="pillStyles",
   @mouseover="$emit('focus', annotation)",
   @mouseleave="$emit('blur')"
 )
@@ -7,14 +8,15 @@
     .level-left
       .level-item
         p
-          name-bubble.is-size-5(
+          name-bubble.is-size-5.is-size-6-mobile(
             :name="annotation.creator.fullname",
             :color-id="annotation.creator.user_id",
             padded
           )
-          span.is-size-4 {{ annotation.creator.fullname }}
+          span.is-size-4.is-size-4-mobile {{ annotation.creator.fullname }}
           button.button.is-text.timestamp(@click="$emit('chosen', annotation)")
-            | {{ annotation.start_interval | duration }} → {{ annotation.end_interval | duration }}
+            span.is-hidden-touch {{ annotation.start_interval | duration }} → {{ annotation.end_interval | duration }}
+            span.is-hidden-desktop {{ annotation.start_interval | duration }}
     .level-right
       .level-item.is-marginless(v-if="isOwner")
         button.button.is-dark.is-rounded(@click="deleteSelf")
@@ -22,7 +24,7 @@
   .columns.is-gapless
     .column
       p.is-size-5 {{ annotation.content }}
-    .column.is-narrow
+    .column.is-narrow.has-text-right
       button.button.is-link.is-rounded(@click="toggleComments")
         | {{ commentTitle }}
   transition(name="fade")
@@ -38,6 +40,7 @@ import { REMOVE_ANNOTATION } from '@/const/mutations'
 
 import TemporalMixin from '@/mixins/Temporal'
 import ApiWorkerMixin from '@/mixins/ApiWorker'
+import ColorGeneratorMixin from '@/mixins/ColorGenerator'
 
 import NameBubble from '@/components/utils/NameBubble'
 import CommentSection from '@/components/comment/CommentSection'
@@ -52,10 +55,11 @@ import { mapGetters } from 'vuex'
 */
 
 export default {
-  mixins: [ TemporalMixin, ApiWorkerMixin ],
+  mixins: [ TemporalMixin, ApiWorkerMixin, ColorGeneratorMixin ],
   components: { NameBubble, CommentSection },
   props: {
-    annotation: { type: Object, required: true }
+    annotation: { type: Object, required: true },
+    topics: { type: Array, required: false }
   },
   data: () => ({
     showComments: false
@@ -75,6 +79,22 @@ export default {
     },
     isOwner () {
       return this.annotation.creator.user_id === this.$store.getters.currentUserId
+    },
+    startTopic () {
+      if (!this.topics) return null
+      return this.topics.find(topic =>
+        this.annotation.start_interval >= topic.start_interval &&
+        this.annotation.start_interval < topic.end_interval
+      )
+    },
+    pillStyles () {
+      let styles = {}
+      if (this.startTopic) {
+        styles['border-left-color'] = this.colorFromId(
+          this.startTopic.topic_id || this.startTopic.id
+        )
+      }
+      return styles
     }
   },
   methods: {
@@ -95,6 +115,7 @@ export default {
       
       if (meta.success) {
         this.$store.commit(REMOVE_ANNOTATION, this.annotation.id)
+        this.$emit('blur')
       }
       
       this.endApiWork(meta, 'Could not delete annotation, please try again')
@@ -108,8 +129,8 @@ export default {
 .annotation-pill
   // cursor: help
   > .comment-section
-    margin-top: 2em
+    margin-top: 1em
     border-top: 1px solid $grey
-    padding-top: 2em
+    padding-top: 1em
 
 </style>

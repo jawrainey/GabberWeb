@@ -3,6 +3,10 @@ box-layout
   section.section
     h3.title Register for Gabber
     
+    h4.subtitle
+      = 'Already have an account? '
+      router-link(:to="loginRoute") Log in
+    
     message.is-danger(v-model="errors", clearable)
     
     .login-form(v-if="!created")
@@ -46,7 +50,7 @@ box-layout
     template(v-else)
       message.is-primary(
         title="Account Created",
-        value="Whoop Whoop"
+        value="Your account has been created and you should shortly recieve a confirmation by email."
       )
       .buttons.is-right
         router-link.button.is-success(:to="projectListRoute")
@@ -55,7 +59,7 @@ box-layout
 
 <script>
 import { LOGIN_USER } from '@/const/mutations'
-import { TERMS_ROUTE, PRIVACY_ROUTE, PROJECT_LIST_ROUTE } from '@/const/routes'
+import { TERMS_ROUTE, PRIVACY_ROUTE, PROJECT_LIST_ROUTE, LOGIN_ROUTE } from '@/const/routes'
 import BoxLayout from '@/layouts/BoxLayout'
 import Message from '@/components/utils/Message'
 
@@ -73,6 +77,7 @@ export default {
     termsRoute () { return { name: TERMS_ROUTE } },
     privacyRoute () { return { name: PRIVACY_ROUTE } },
     projectListRoute () { return { name: PROJECT_LIST_ROUTE } },
+    loginRoute () { return { name: LOGIN_ROUTE } },
     canRegister () {
       return this.fullname !== '' &&
         this.email !== '' &&

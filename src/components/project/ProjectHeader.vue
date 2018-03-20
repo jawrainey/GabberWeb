@@ -1,44 +1,43 @@
 <template lang="pug">
-.level.is-mobile.project-header
-  .level-left
-    .level-item.icon-item
-      fa(v-if="projectIcon", :icon="projectIcon")
-    
-    .level-item.title
-      h4.is-4 {{project.title}}
-        span.membership(v-if="membershipType") {{ membershipType }}
+.columns.project-header
+  .column
+    h3.title.is-43
+      span.icon-item: fa(v-if="projectIcon", :icon="projectIcon", transform="shrink-6")
+      span  {{project.title}}
+      span.membership.is-size-5.has-text-grey-light(v-if="membershipType")  {{ membershipType }}
   
-  .level-right
-    .level-item(v-if="canEdit")
+  .column.is-narrow
+    .buttons.is-right
       icon-button.is-dark.is-rounded(
+        v-if="canEdit",
         @click="$emit('editMembers')",
         icon="users",
         title="Members"
       )
     
-    .level-item.is-marginless(v-if="canEdit")
       icon-button.is-dark.is-rounded(
+        v-if="canEdit",
         @click="$emit('startEdit')",
         icon="cog",
         title="Edit"
       )
     
-    .level-item.is-marginless(v-if="isEditing")
       icon-button.is-dark.is-rounded(
+        v-if="isEditing",
         @click="$emit('stopEdit')",
         title="Close"
       )
     
-    .level-item.is-marginless(v-if="!isProjectMember && currentUser")
       icon-button.is-dark.is-rounded(
+        v-if="!isProjectMember && currentUser",
         icon="user-plus",
         @click="$emit('join')",
         :disabled="inProgress",
         title="Join"
       )
     
-    .level-item.is-marginless(v-if="isProjectMember && !isOwner")
       icon-button.is-dark.is-rounded(
+        v-if="isProjectMember && !isOwner",
         icon="user-times",
         @click="$emit('leave')",
         :disabled="inProgress",
@@ -84,12 +83,11 @@ export default {
 .project-header
   min-height: 40px
   
-  .icon-item
-    width: 1rem
+  +desktop
+    .icon-item
+      display: inline-block
+      width: 0.8em
   
   .membership
-    padding-left: 0.5em
-    font-size: 0.6em
-    color: $grey-light
     text-transform: lowercase
 </style>

@@ -16,9 +16,9 @@ export default {
     modelSorter (mode) {
       return (a, b) => {
         if (mode === 'newest') {
-          return a.created_on > b.created_on
-        } else {
           return a.created_on < b.created_on
+        } else {
+          return a.created_on > b.created_on
         }
       }
     },

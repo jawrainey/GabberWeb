@@ -1,7 +1,7 @@
 <template lang="pug">
 .draggable-elem(
   @mousedown.prevent="onMousedown",
-  @touchstart.prevent="onMousedown",
+  @touchstart="onMousedown",
   :class="classes"
 )
 </template>
@@ -14,7 +14,20 @@ function globalDrag (e) {
   // e.preventDefault()
   
   if (currentDrag) {
-    currentDrag.vm.$emit('move', e.movementX)
+    // Get the last x position
+    let { x: prevX } = currentDrag
+    
+    // Process a the first touch if a TouchEvent
+    if (e.type === 'touchmove') {
+      currentDrag.x = e.changedTouches[0].clientX
+      currentDrag.y = e.changedTouches[0].clientY
+    } else {
+      // Otherwise, process a MouseEvent
+      currentDrag.x = e.clientX
+      currentDrag.y = e.clientY
+    }
+    
+    currentDrag.vm.$emit('move', currentDrag.x - prevX)
   }
 }
 
@@ -31,8 +44,8 @@ function globalUp (e) {
 if (window.gabberDrag) {
   document.removeEventListener('mousemove', window.gabberDrag.ondrag)
   document.removeEventListener('mouseup', window.gabberDrag.onup)
-  // document.removeEventListener('touchmove', window.gabberDrag.ondrag)
-  // document.removeEventListener('touchend', window.gabberDrag.onup)
+  document.removeEventListener('touchmove', window.gabberDrag.ondrag)
+  document.removeEventListener('touchend', window.gabberDrag.onup)
 }
 
 window.gabberDrag = window.gabberDrag = {
@@ -42,8 +55,8 @@ window.gabberDrag = window.gabberDrag = {
 
 document.addEventListener('mousemove', window.gabberDrag.ondrag)
 document.addEventListener('mouseup', window.gabberDrag.onup)
-// document.addEventListener('touchmove', window.gabberDrag.ondrag)
-// document.addEventListener('touchend', window.gabberDrag.onup)
+document.addEventListener('touchmove', window.gabberDrag.ondrag)
+document.addEventListener('touchend', window.gabberDrag.onup)
 
 export default {
   props: {

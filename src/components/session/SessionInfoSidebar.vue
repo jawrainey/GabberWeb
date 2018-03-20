@@ -22,7 +22,7 @@
     .column
       label-value(label="Topics", :value="session.topics.length")
     .column
-      label-value(label="Annotations", :value="session.user_annotations.length")
+      label-value(label="Annotations", :value="numAnnotations")
 </template>
 
 <script>
@@ -40,6 +40,9 @@ export default {
     sessionDate () {
       return moment(this.session.created_on)
         .format('h:mm a MMMM Do YYYY')
+    },
+    numAnnotations () {
+      return this.$store.getters.annotationsForSession(this.session.id).length
     }
   }
 }

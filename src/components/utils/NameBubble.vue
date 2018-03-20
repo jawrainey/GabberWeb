@@ -24,7 +24,7 @@ export default {
       return { 'background-color': this.colorFromId(this.colorId) }
     },
     initials () {
-      let segments = this.name.split(' ').map(s => s[0])
+      let segments = this.name.trim().split(' ').map(s => s[0])
         
       switch (segments.length) {
         case 0: return '?'

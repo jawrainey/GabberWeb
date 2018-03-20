@@ -76,7 +76,13 @@ export default {
 a, .button
   transition: none
 
+a
+  color: $primary
+
 hr
   height: 1px
+
+body
+  font-size: 16px
 
 </style>

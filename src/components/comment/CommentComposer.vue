@@ -16,12 +16,13 @@ article.comment-composer.media(v-if="user")
           @keyup.enter.prevent="submit",
           rows="2"
         )
-      .control
+      .controlx
         button.button.is-primary(
           @click="submit",
           :disabled="!canSubmit",
-          v-text="'Comment'"
         )
+          span.is-hidden-mobile Comment
+          fa.is-hidden-tablet(icon="paper-plane")
 </template>
 
 <script>

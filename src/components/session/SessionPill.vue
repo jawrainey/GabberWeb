@@ -1,33 +1,32 @@
 <template lang="pug">
 .session-pill.box(@click="$emit('view', session)")
   fa.disclosure(icon="chevron-right", size="2x")
-  .tile.is-ancestor
-    .tile.is-vertical.is-parent
-      .tile
-        h1.title.main-title.is-4
-          fa(icon="microphone")
-          span {{ ' ' + session.creator.fullname }}
-      .tile
-        label-value(label="Participants")
-          member-bubble(
-            v-for="member in session.participants",
-            :key="member.id",
-            :member="member",
-            padded
-          )
-    .tile.is-vertical.is-parent
-      .tile
-        label-value.is-primary(label="Recorded", :value="session.created_on | longDate")
-      .tile
-        label-value.is-primary(label="Annotations", :value="session.user_annotations.length")
-    .tile.is-parent
-      .tile
-        label-value(label="Topics")
-          .tags
-            .tag(v-for="topic in limitedTopics")
-              | {{topic.text}}
-            .tag(v-if="session.topics.length > topicLimit")
-              | +{{session.topics.length - topicLimit}} more
+  .columns.is-multiline.is-mobile
+    .column.is-half-mobile.is-third-tablet
+      h1.title.main-title.is-4
+        fa(icon="microphone")
+        span {{ ' ' + session.creator.fullname }}
+      label-value(label="Participants")
+        member-bubble(
+          v-for="member in session.participants",
+          :key="member.id",
+          :member="member",
+          padded
+        )
+    .column.is-half-mobile.is-third-tablet
+      label-value.is-primary.created-on(
+        label="Recorded", :value="session.created_on | longDate"
+      )
+      label-value.is-primary.num-annotations(
+        label="Annotations", :value="session.user_annotations.length"
+      )
+    .column.is-third-tablet
+      label-value(label="Topics")
+        .tags
+          .tag(v-for="topic in limitedTopics")
+            | {{topic.text}}
+          .tag(v-if="session.topics.length > topicLimit")
+            | +{{session.topics.length - topicLimit}} more
 </template>
 
 <script>
@@ -71,13 +70,17 @@ export default {
   .main-title
     margin-bottom: 0.3em
   
+  .label-value:last-child
+    margin-bottom: 0
+  
   +desktop
-    .label-value
-      margin-bottom: 0
-    
     &:hover
       border-left-color: $primary
       transform: translateX(2px)
+  
+  +mobile
+    .label-value.num-annotations
+      display: none
   
   .disclosure
     position: absolute

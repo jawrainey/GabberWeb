@@ -2,7 +2,7 @@
 .field.sorting-field
   label.label {{ label }}
   .buttons.has-addons
-    button.button.no-focus-effects(
+    button.button.no-focus-effects.is-small(
       v-for="mode in sortModes",
       @click="setMode(mode)",
       :class="modeClasses(mode)"

@@ -69,7 +69,11 @@ export default {
     addAnotherIfLast (event) {
       let index = this.indexOfInput(event.target)
       if (index === this.$refs.inputs.length - 1) {
-        this.addTopic()
+        if (event.target.value === '') {
+          this.deleteTopic(this.value[this.value.length - 1])
+        } else {
+          this.addTopic()
+        }
       }
     },
     indexOfInput (target) {

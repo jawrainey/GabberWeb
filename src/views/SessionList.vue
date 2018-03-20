@@ -1,6 +1,6 @@
 <template lang="pug">
 loading-full-layout(
-  v-if="apiInProgress || apiErrors.length > 0",
+  v-if="sessions.length === 0 && (apiInProgress || apiErrors.length > 0)",
   loading-message="Fetching Project's Gabbers",
   :is-loading="apiInProgress",
   :errors="apiErrors",
@@ -23,6 +23,10 @@ full-layout.session-list-view(v-else-if="project")
       :session="session",
       @view="viewSession"
     )
+    action-box(v-if="filteredSessions.length === 0", title="No gabbers")
+      p.is-size-5(slot="content")
+        span(v-if="sessions.length === 0") There are no gabbers available right now, why not record one in the app?
+        span(v-else) No gabbers matched your query, try tweaking it using in the sidebar.
   project-info-sidebar(
     slot="right",
     :project="project"
@@ -43,6 +47,7 @@ import BoxLayout from '@/layouts/BoxLayout'
 
 import Message from '@/components/utils/Message'
 import Breadcrumbs from '@/components/utils/Breadcrumbs'
+import ActionBox from '@/components/utils/ActionBox'
 
 import ProjectInfoSidebar from '@/components/project/ProjectInfoSidebar'
 import SessionPill from '@/components/session/SessionPill'
@@ -51,7 +56,7 @@ import SessionFilters from '@/components/session/SessionFilters'
 export default {
   mixins: [ ApiWorkerMixin, FiltersMixin ],
   components: {
-    FullLayout, LoadingFullLayout, BoxLayout, Breadcrumbs, Message, SessionPill, SessionFilters, ProjectInfoSidebar
+    FullLayout, LoadingFullLayout, BoxLayout, Breadcrumbs, ActionBox, Message, SessionPill, SessionFilters, ProjectInfoSidebar
   },
   data: () => ({
     query: '',

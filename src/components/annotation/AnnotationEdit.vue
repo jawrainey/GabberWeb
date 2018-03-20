@@ -11,7 +11,7 @@
           placeholder="I think that ...",
           rows="2"
         )
-    .column.is-narrow
+    .column.is-narrow.has-text-right
       button.button.is-success(@click="submit", :disabled="!canSubmit") Create
 </template>
 
