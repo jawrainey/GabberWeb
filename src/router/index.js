@@ -1,23 +1,24 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import Home from '../views/Home'
-import About from '../views/About'
-import Terms from '../views/Terms'
-import Privacy from '../views/Privacy'
-import Holder from '../views/Holder'
-import NotFound from '../views/NotFound'
+import Home from '../views/base/Home'
+import About from '../views/base/About'
+import Terms from '../views/base/Terms'
+import Privacy from '../views/base/Privacy'
+import Holder from '../views/base/Holder'
+import NotFound from '../views/base/NotFound'
 
 import Login from '../views/auth/Login'
 import Register from '../views/auth/Register'
 import Forgot from '../views/auth/Forgot'
 import Reset from '../views/auth/Reset'
+import Verify from '../views/auth/Verify'
+import AcceptInvite from '../views/auth/AcceptInvite'
 
-import RegionSelection from '../views/RegionSelection'
-import UserPlaylist from '../views/UserPlaylist'
-import ProjectList from '../views/ProjectList'
-import SessionList from '../views/SessionList'
-import SessionDetail from '../views/SessionDetail'
+import ProjectList from '../views/project/ProjectList'
+import SessionList from '../views/project/SessionList'
+import SessionDetail from '../views/project/SessionDetail'
+import Consent from '../views/project/Consent'
 
 import * as ROUTES from '../const/routes'
 
@@ -74,15 +75,15 @@ const routes = [
                 }
               }
             ]
-          },
-          {
-            path: 'playlists',
-            name: ROUTES.PLAYLIST_LIST_ROUTE,
-            component: RegionSelection,
-            meta: {
-              crumb: 'Playlists'
-            }
           }
+          // {
+          //   path: 'playlists',
+          //   name: ROUTES.PLAYLIST_LIST_ROUTE,
+          //   component: RegionSelection,
+          //   meta: {
+          //     crumb: 'Playlists'
+          //   }
+          // }
         ]
       }
     ]
@@ -118,6 +119,21 @@ const routes = [
     name: ROUTES.RESET_ROUTE,
     component: Reset
   },
+  {
+    path: '/verify/:token',
+    name: ROUTES.VERIFY_ROUTE,
+    component: Verify
+  },
+  {
+    path: '/accept/:token',
+    name: ROUTES.ACCEPT_INVITE_ROUTE,
+    component: AcceptInvite
+  },
+  {
+    path: '/consent/:token',
+    name: ROUTES.CONSENT_ROUTE,
+    component: Consent
+  },
   
   // Only Project Members of Private projects can view sessions and playlists
   // {
@@ -130,11 +146,11 @@ const routes = [
   //   name: ROUTES.PLAYLIST_LIST_ROUTE,
   //   component: RegionSelection
   // },
-  {
-    path: '/me/playlist/:playlist_id',
-    name: ROUTES.USER_PLAYLIST_ROUTE,
-    component: UserPlaylist
-  },
+  // {
+  //   path: '/me/playlist/:playlist_id',
+  //   name: ROUTES.USER_PLAYLIST_ROUTE,
+  //   component: UserPlaylist
+  // },
   
   /* 404 - Page Not Found */
   {

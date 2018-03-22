@@ -12,7 +12,7 @@ full-layout(v-else-if="errors.length > 0")
     breadcrumbs
     section.section.is-medium
       message.is-danger.is-medium(v-model="errors")
-      .buttons.is-centered
+      .buttons.is-centered(v-if="backRoute")
         router-link.button.is-link(:to="backRoute")
           .icon: fa(icon="chevron-left")
           span Go Back

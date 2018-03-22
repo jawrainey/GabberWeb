@@ -5,7 +5,8 @@ import { store } from '../store'
 // Constants for mocking
 const MOCK = {
   SPEED: 300,
-  LOGGED_IN: true
+  LOGGED_IN: true,
+  FAIL_TOKEN: 'fail'
 }
 
 // Auto incrementing ids for mocking
@@ -41,7 +42,10 @@ export default class MockApi extends ApiInterface {
       : this.mock(null, false)
   }
   async register (fullname, email, password) {
-    return isEmail.test(email)
+    return this.mock(null, isEmail.test(email))
+  }
+  async verify (token) {
+    return token !== MOCK.FAIL_TOKEN
       ? this.mock(make.user(CURRENT_USER_ID))
       : this.mock(null, false)
   }
@@ -57,7 +61,7 @@ export default class MockApi extends ApiInterface {
     return this.mock(true)
   }
   async resetPassword (token, password) {
-    return token !== 'fail'
+    return token !== MOCK.FAIL_TOKEN
       ? this.mock(make.user(CURRENT_USER_ID))
       : this.mock(null, false)
   }
@@ -81,7 +85,7 @@ export default class MockApi extends ApiInterface {
     return this.editProject(id, title, description, topics, privacy)
   }
   async editProject (id, title, description, topics, privacy) {
-    if (title === 'fail') return this.mock(null, false)
+    if (title === MOCK.FAIL_TOKEN) return this.mock(null, false)
     
     // Process new topics into models
     topics = topics.map((t, i) => {
@@ -124,6 +128,16 @@ export default class MockApi extends ApiInterface {
   async removeFromProject (projectId, memberId) {
     return this.mock(null)
   }
+  async getInvite (token) {
+    return token !== MOCK.FAIL_TOKEN
+      ? this.mock(make.invite(1))
+      : this.mock(null, false)
+  }
+  async acceptInvite (token, fullname, password) {
+    return password.length >= 8
+      ? this.mock(make.user(CURRENT_USER_ID))
+      : this.mock(null, false)
+  }
   
   /*
    * Sessions
@@ -153,7 +167,7 @@ export default class MockApi extends ApiInterface {
     return this.mock(null)
   }
   async createAnnotation (content, start, end, sId, pId) {
-    if (content === 'fail') return this.mock(null, false)
+    if (content === MOCK.FAIL_TOKEN) return this.mock(null, false)
     return this.mock({
       ...make.annotation(mockIds.annotation++, sId),
       content,
@@ -174,7 +188,7 @@ export default class MockApi extends ApiInterface {
     )
   }
   async createComment (projectId, sessionId, annotationId, content, parentId = null) {
-    if (content === 'fail') return this.mock(null, false)
+    if (content === MOCK.FAIL_TOKEN) return this.mock(null, false)
     let id = mockIds.comment++
     return this.mock({
       ...make.comment(id, annotationId, parentId, CURRENT_USER_ID),
@@ -182,6 +196,18 @@ export default class MockApi extends ApiInterface {
     })
   }
   async deleteComment (projectId, sessionId, annotationId, commentId) {
+    return this.mock(null)
+  }
+  
+  /*
+   * Consent
+   */
+  async getConsent (token) {
+    return token !== MOCK.FAIL_TOKEN
+      ? this.mock(make.consent(1))
+      : this.mock(null, false)
+  }
+  async sendConsent (token, consent) {
     return this.mock(null)
   }
 }

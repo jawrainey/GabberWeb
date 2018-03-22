@@ -69,12 +69,10 @@ export default class LiveApi extends ApiInterface {
   /*
    * Auth Endpoints
    */
-  // users.me
   async getSelf () {
     return this.endpoint('get', 'auth/me')
   }
   
-  // users.register
   async register (fullname, email, password) {
     let { meta, data } = await this.endpoint('post', 'auth/register', {
       fullname, email, password
@@ -82,7 +80,6 @@ export default class LiveApi extends ApiInterface {
     return this.processAuth(meta, data)
   }
   
-  // users.login
   async login (email, password) {
     let { meta, data } = await this.endpoint('post', 'auth/login', {
       email, password
@@ -237,14 +234,5 @@ export default class LiveApi extends ApiInterface {
     )
   }
   
-  /*
-   * Playlists
-   */
-  
-  // GET:  /users/:id/playlists () -> Playlist[]
-  // POST: /users/:id/playlists (title) -> Playlist
-  // GET:  /users/:id/playlists/:id/regions () -> Region[]
-  // POST: /users/:id/playlists/:id/regions (region_id) -> boolean
-  // DEL:  /users/:id/playlists/:id/regions (region_id) -> boolean
-  // POST: /users/:id/playlists/:id/region/:id/note (note) -> Note
+  // ...
 }

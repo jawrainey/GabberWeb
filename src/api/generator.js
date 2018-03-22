@@ -4,7 +4,7 @@ import eases from 'eases'
 export const hasher = new Hashids('really_not_secret', 8)
 
 export const CURRENT_USER_ID = 99
-export const MOCK_DURATION = 292
+export const MOCK_DURATION = 3
 
 export const DUMMY_TOPICS = [
   'Introduction',
@@ -58,7 +58,7 @@ export const make = {
       id: hasher.encode(id),
       project_id: projectId,
       creator: make.creator(creatorId),
-      audio_url: '/static/audio/tmp.m4a',
+      audio_url: '/static/audio/horse.mp3',
       participants: makeList(pickBetween(1, 7), make.participant),
       topics: makeList(numTopics, make.sessionTopic, projectId, numTopics, MOCK_DURATION),
       user_annotations: makeList(pickBetween(2, 10), make.annotation, id, MOCK_DURATION)
@@ -125,6 +125,20 @@ export const make = {
       ...make.annotation(id, ...args),
       comments: makeList(numComments, make.comment, id)
     }
+  },
+  invite (id) {
+    return model('Invite', id, {
+      user: make.user(CURRENT_USER_ID),
+      project: make.project(1, 'private')
+    })
+  },
+  consent (id) {
+    return model('Consent', id, {
+      user: make.user(CURRENT_USER_ID),
+      project: make.project(1, 'private'),
+      session: make.session(1, 1, 1),
+      consent: 'none'
+    })
   }
 }
 

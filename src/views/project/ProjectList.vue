@@ -4,7 +4,7 @@ full-layout.project-list-view
     h2.subtitle Filter Projects
     .field
       label.label Search for a project
-      input.input(
+      input.input.is-small(
         type="text",
         v-model="query",
         placeholder="e.g. name / member / topic"
@@ -48,7 +48,7 @@ full-layout.project-list-view
         :project="project"
       )
     
-    action-box(v-if="noProjects && !newProject", title="No projects")
+    action-box(v-if="noProjects && !newProject && !apiInProgress", title="No projects")
       p.is-size-5(slot="content")
         span(v-if="currentUser") You aren't on any projects ... yet. Why not create one above!
         span(v-else) There are no public projects right now, why not sign up and create your own!

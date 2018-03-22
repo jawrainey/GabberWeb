@@ -29,6 +29,7 @@
         fa(icon="circle-notch", spin)
         span &nbsp;Loading Audio
       message.is-warning(
+        v-else,
         title="Audio Unavailable",
         value="This Gabber is no longer available, please contact the interviewer for help."
       )

@@ -11,7 +11,7 @@
         :color-id="member.user_id",
         padded
       )
-  .column.is-narrow
+  .column.is-narrow(v-if="!readonly")
     .buttons.is-right
       router-link.button.is-link.is-rounded(:to="sessionsRoute")
         .icon: fa(icon="microphone")
@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import { SESSION_LIST_ROUTE, PLAYLIST_LIST_ROUTE } from '@/const/routes'
+import { SESSION_LIST_ROUTE } from '@/const/routes'
 import ProjectPropMixin from '@/mixins/ProjectProp'
 
 import LabelValue from '@/components/utils/LabelValue'
@@ -33,14 +33,13 @@ export default {
   components: {
     LabelValue, NameBubble
   },
+  props: {
+    readonly: { type: Boolean, default: false }
+  },
   computed: {
     sessionsRoute () {
       const params = { project_id: this.project.id }
       return { name: SESSION_LIST_ROUTE, params }
-    },
-    playlistsRoute () {
-      const params = { project_id: this.project.id }
-      return { name: PLAYLIST_LIST_ROUTE, params }
     }
   }
 }

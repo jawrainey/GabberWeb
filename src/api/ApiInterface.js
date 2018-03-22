@@ -25,32 +25,37 @@ export default class ApiInterface {
   /*
    * Auth Endpoints
    */
-  // GET: /auth/me () -> User
+  // users.me -> User
   async getSelf () {
     this.notImplemented()
   }
   
-  // POST: /auth/register  (fullname, email, password) -> User
+  // users.register -> Boolean
   async register (fullname, email, password) {
     this.notImplemented()
   }
   
-  // POST: /auth/login (email, password) -> User
+  // users.verify -> Boolean
+  async verify (token) {
+    this.notImplemented()
+  }
+  
+  // users.login -> UserAuth
   async login (email, password) {
     this.notImplemented()
   }
   
-  // POST: /auth/logout () -> void
+  // (not a real endpoint) -> Void
   async logout () {
     this.notImplemented()
   }
   
-  // POST: /auth/forgot (email) -> void
+  // users.forgot -> Boolean
   async sendReset (email) {
     this.notImplemented()
   }
   
-  // POST: /auth/reset (token, password) -> User
+  // users.resetPassword -> UserAuth
   async resetPassword (token, password) {
     this.notImplemented()
   }
@@ -59,27 +64,27 @@ export default class ApiInterface {
    * Projects Management
    */
   
-  // GET: /projects () -> Project[]
+  // projects.index -> Project[]
   async listProjects () {
     this.notImplemented()
   }
   
-  // GET: /projects/:id () -> Project
+  // projects.create -> Project
   async getProject (id) {
     this.notImplemented()
   }
   
-  // POST: /projects/ (...Project) -> Project
+  // projects.create -> Project
   async createProject (title, description, tags, privacy) {
     this.notImplemented()
   }
   
-  // PUT: /projects/id/ (...Project) -> Project
+  // projects.update -> Project
   async editProject (id, title, description, topics, privacy) {
     this.notImplemented()
   }
   
-  // DEL:  /projects/:id () -> Boolean
+  // projects.destroy -> Boolean
   async deleteProject (id) {
     this.notImplemented()
   }
@@ -88,23 +93,33 @@ export default class ApiInterface {
    * Project Membership
    */
   
-  // POST: /projects/:id/membership/ (id) -> Boolean
+  // projects.join -> Void
   async joinProject (id) {
     this.notImplemented()
   }
   
-  // DEL: /projects/:id/membership/ (id) -> Boolean
+  // projects.leave -> Void
   async leaveProject (id) {
     this.notImplemented()
   }
   
-  // POST: /project/:id/membership/invites/
+  // projects.invites.create -> Membership
   async inviteToProject (projectId, fullname, email) {
     this.notImplemented()
   }
   
-  // DELETE: /project/:id/membership/invites/
+  // projects.invites.destroy -> Void
   async removeFromProject (projectId, memberId) {
+    this.notImplemented()
+  }
+  
+  // project.invites.show -> { User, Project }
+  async getInvite (token) {
+    this.notImplemented()
+  }
+  
+  // project.invites.accept -> UserAuth
+  async acceptInvite (token, fullname, password) {
     this.notImplemented()
   }
   
@@ -112,12 +127,12 @@ export default class ApiInterface {
    * Sessions
    */
   
-  // GET: /projects/:id/sessions () -> Session[]
+  // projects.sessions.index -> Session[]
   async getProjectSessions (projectId) {
     this.notImplemented()
   }
   
-  // GET: /projects/:proj_id/sessions/:session_id () -> Session
+  // projects.sessions.show -> Session
   async getSession (sessionId, projectId) {
     this.notImplemented()
   }
@@ -126,17 +141,17 @@ export default class ApiInterface {
    * Annotations
    */
   
-  // GET: /projects/:proj_id/sessions/:sess_id/annotations -> Annotation[]
+  // projects.sessions.annotations.index -> Annotation[]
   async getSessionAnnotations (sessionId, projectId) {
     this.notImplemented()
   }
   
-  // DEL: /projects/:id1/sessions/:id2/annotations/:id3
+  // projects.sessions.annotations.destroy -> Void
   async deleteAnnotation (projectId, sessionId, annotationId) {
     this.notImplemented()
   }
   
-  // POST: /projects/:id1/sessions/:id2/annotations (content, start, end) -> Annotation
+  // projects.sessions.annotations.create -> Annotation
   async createAnnotation (content, start, end, sId, pId) {
     this.notImplemented()
   }
@@ -145,29 +160,32 @@ export default class ApiInterface {
    * Comments
    */
   
-  // GET: /projects/:id1/sessions/:id2/annotations/:id3/comments/:id4 -> Comment[]
+  // projects.sessions.annotations.comments.replies -> Comment[]
   async getChildComments (projectId, sessionId, annotationId, commentId) {
     this.notImplemented()
   }
   
-  // POST: /projects/:id1/sessions/:id2/annotations/:id3/comments
+  // projects.sessions.annotations.comments.create -> Comment
   async createComment (projectId, sessionId, annotationId, content, parentId = null) {
     this.notImplemented()
   }
   
-  // DELETE: /projects/:id1/sessions/:id2/annotations/:id3/comments/:id4
+  // projects.sessions.annotations.comments.destroy -> Void
   async deleteComment (projectId, sessionId, annotationId, commentId) {
     this.notImplemented()
   }
   
   /*
-   * Playlists
+   * Consent
    */
   
-  // GET:  /users/:id/playlists () -> Playlist[]
-  // POST: /users/:id/playlists (title) -> Playlist
-  // GET:  /users/:id/playlists/:id/regions () -> Region[]
-  // POST: /users/:id/playlists/:id/regions (region_id) -> boolean
-  // DEL:  /users/:id/playlists/:id/regions (region_id) -> boolean
-  // POST: /users/:id/playlists/:id/region/:id/note (note) -> Note
+  // consent.show
+  async getConsent (token) {
+    this.notImplemented()
+  }
+  
+  // consent.create
+  async sendConsent (token, consent) {
+    this.notImplemented()
+  }
 }

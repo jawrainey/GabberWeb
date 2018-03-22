@@ -4,6 +4,7 @@
     :in-progress="apiInProgress",
     :is-editing="isEditingInfo || isEditingMembers",
     :project="project",
+    :readonly="readonly"
     @startEdit="startEdit",
     @stopEdit="cancelEdit",
     @editMembers="isEditingMembers = true",
@@ -27,7 +28,7 @@
       :project="project",
       :disabled="apiInProgress"
     )
-    project-info(v-else, :project="project")
+    project-info(v-else, :project="project", :readonly="readonly")
 </template>
 
 <script>
@@ -44,6 +45,9 @@ import { mapGetters } from 'vuex'
 export default {
   mixins: [ ProjectPropMixin, ApiWorkerMixin ],
   components: { Message, ProjectHeader, ProjectEdit, ProjectMembers, ProjectInfo },
+  props: {
+    readonly: { type: Boolean, default: false }
+  },
   data: () => ({
     isEditingInfo: false,
     isEditingMembers: false,

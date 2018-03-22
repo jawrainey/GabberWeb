@@ -6,7 +6,7 @@
       span  {{project.title}}
       span.membership.is-size-5.has-text-grey-light(v-if="membershipType")  {{ membershipType }}
   
-  .column.is-narrow
+  .column.is-narrow(v-if="!readonly")
     .buttons.is-right
       icon-button.is-dark.is-rounded(
         v-if="canEdit",
@@ -65,7 +65,8 @@ export default {
   components: { IconButton },
   props: {
     inProgress: { type: Boolean, required: true },
-    isEditing: { type: Boolean, required: true }
+    isEditing: { type: Boolean, required: true },
+    readonly: { type: Boolean, default: false }
   },
   computed: {
     ...mapGetters([ 'currentUser' ]),
