@@ -163,7 +163,7 @@ export default {
         this.hasSubmitted = true
       }
       
-      this.endApiWork()
+      this.endApiWork(meta)
     }
   }
 }

@@ -3,8 +3,7 @@ full-layout(v-if="isLoading")
   aside(slot="left")
   .main(slot="main")
     breadcrumbs
-    section.section.is-medium
-      h1.title.has-text-centered {{ loadingMessage }}
+    loading(:title="loadingMessage")
   aside(slot="right")
 full-layout(v-else-if="errors.length > 0")
   aside(slot="left")
@@ -23,9 +22,10 @@ full-layout(v-else-if="errors.length > 0")
 import FullLayout from './FullLayout'
 import Message from '@/components/utils/Message'
 import Breadcrumbs from '@/components/utils/Breadcrumbs'
+import Loading from '@/components/utils/Loading'
 
 export default {
-  components: { FullLayout, Message, Breadcrumbs },
+  components: { FullLayout, Message, Breadcrumbs, Loading },
   props: {
     errors: { type: Array },
     isLoading: { type: Boolean },

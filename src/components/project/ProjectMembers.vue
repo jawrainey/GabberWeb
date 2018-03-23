@@ -107,8 +107,6 @@ export default {
       if (this.apiInProgress || !confirm(msg)) return
       this.startApiWork()
       
-      console.log(member)
-      
       let { meta } = await this.$api.removeFromProject(
         this.project.id, member.id
       )

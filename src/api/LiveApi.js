@@ -69,10 +69,13 @@ export default class LiveApi extends ApiInterface {
   /*
    * Auth Endpoints
    */
+  
+  // users.me
   async getSelf () {
     return this.endpoint('get', 'auth/me')
   }
   
+  // users.register
   async register (fullname, email, password) {
     let { meta, data } = await this.endpoint('post', 'auth/register', {
       fullname, email, password
@@ -80,6 +83,7 @@ export default class LiveApi extends ApiInterface {
     return this.processAuth(meta, data)
   }
   
+  // users.login
   async login (email, password) {
     let { meta, data } = await this.endpoint('post', 'auth/login', {
       email, password
@@ -110,6 +114,12 @@ export default class LiveApi extends ApiInterface {
     let { meta, data } = await this.endpoint('post', 'auth/reset', {
       token, password
     })
+    return this.processAuth(meta, data)
+  }
+  
+  // users.verify
+  async verify (token) {
+    let { meta, data } = await this.endpoint('post', `auth/verify/${token}`)
     return this.processAuth(meta, data)
   }
   
@@ -144,6 +154,16 @@ export default class LiveApi extends ApiInterface {
   // projects.destroy
   async deleteProject (id) {
     return this.endpoint('delete', `projects/${id}`)
+  }
+  
+  // project.invites.show
+  async getInvite (token) {
+    return this.endpoint('get', `projects/invites/${token}`)
+  }
+  
+  // project.invites.accept
+  async acceptInvite (token, fullname, password) {
+    return this.endpoint('put', `projects/invites/${token}`, { fullname, password })
   }
   
   /*
@@ -234,5 +254,17 @@ export default class LiveApi extends ApiInterface {
     )
   }
   
-  // ...
+  /*
+   * Consent
+   */
+  
+  // consent.show
+  async getConsent (token) {
+    return this.endpoint('get', `consent/${token}`)
+  }
+  
+  // consent.create
+  async sendConsent (token, consent) {
+    return this.endpoint('put', `consent/${token}`, { consent })
+  }
 }

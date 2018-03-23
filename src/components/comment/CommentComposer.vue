@@ -2,7 +2,7 @@
 article.comment-composer.media(v-if="user")
   .media-left
     member-bubble(
-      :member="user.fullname"
+      :member="user", use-id
     )
   .media-content
     message.is-danger.is-small(v-model="apiErrors", clearable)

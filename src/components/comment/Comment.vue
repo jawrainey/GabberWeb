@@ -9,7 +9,7 @@ article.media.comment
       .columns.is-gapless.is-marginless.is-mobile
         .column
           p.comment-content {{ comment.content }}
-        .column.is-narrow(v-if="isCreator")
+        .column.is-narrow(v-if="isCreator && comment.is_active")
           button.delete(@click="deleteSelf", :disabled="apiInProgress") Delete
       .buttons
         button.button.is-link.is-rounded.is-small(v-if="canReply", @click="toggleReplies")

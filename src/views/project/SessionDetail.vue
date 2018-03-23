@@ -150,8 +150,10 @@ export default {
     topicFilters: [],
     sortMode: 'newest'
   }),
-  mounted () {
+  created () {
     this.fetchGabber()
+  },
+  mounted () {
     AuthEvents.$on('logout', this.fetchGabber)
   },
   destroyed () {

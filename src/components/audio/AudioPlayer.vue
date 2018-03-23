@@ -168,7 +168,7 @@ export default {
       
       // Load the audio & set the volume
       wavesurfer.load(this.session.audio_url)
-      wavesurfer.setVolume(0.5)
+      // wavesurfer.setVolume(0.5)
       
       // Add event listeners
       wavesurfer.on('ready', () => {

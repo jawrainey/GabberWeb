@@ -18,7 +18,7 @@
         label="Recorded", :value="session.created_on | longDate"
       )
       label-value.is-primary.num-annotations(
-        label="Annotations", :value="session.user_annotations.length"
+        label="Annotations", :value="session.num_user_annotations"
       )
     .column.is-third-tablet
       label-value(label="Topics")
