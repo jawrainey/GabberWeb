@@ -7,12 +7,12 @@
         fa(icon="microphone")
         span {{ ' ' + session.creator.fullname }}
       label-value(label="Participants")
-        member-bubble(
-          v-for="member in session.participants",
-          :key="member.id",
-          :member="member",
-          padded
-        )
+        .bubble-list
+          member-bubble(
+            v-for="member in session.participants",
+            :key="member.id",
+            :member="member"
+          )
     .column.is-half-mobile.is-third-tablet
       label-value.is-primary.created-on(
         label="Recorded", :value="session.created_on | longDate"
@@ -32,11 +32,10 @@
 <script>
 import moment from 'moment-mini'
 import LabelValue from '@/components/utils/LabelValue'
-import NameBubble from '@/components/utils/NameBubble'
 import MemberBubble from '@/components/utils/MemberBubble'
 
 export default {
-  components: { LabelValue, NameBubble, MemberBubble },
+  components: { LabelValue, MemberBubble },
   props: {
     session: { type: Object, required: true },
     topicLimit: { type: Number, default: 3 }

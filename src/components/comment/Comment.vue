@@ -1,9 +1,8 @@
 <template lang="pug">
 article.media.comment
   .media-left
-    name-bubble.is-size-5(
-      :name="comment.creator.fullname",
-      :color-id="comment.creator.user_id"
+    member-bubble.is-size-5(
+      :member="comment.creator"
     )
   .media-content
     .content
@@ -28,7 +27,7 @@ article.media.comment
 <script>
 import { ADD_COMMENTS, REMOVE_COMMENT } from '@/const/mutations'
 import ApiWorkerMixin from '@/mixins/ApiWorker'
-import NameBubble from '@/components/utils/NameBubble'
+import MemberBubble from '@/components/utils/MemberBubble'
 import CommentSection from './CommentSection'
 
 const NEST_LIMIT = 3
@@ -36,7 +35,7 @@ const NEST_LIMIT = 3
 export default {
   name: 'comment',
   mixins: [ ApiWorkerMixin ],
-  components: { NameBubble, CommentSection },
+  components: { MemberBubble, CommentSection },
   props: {
     annotation: { type: Object, required: true },
     comment: { type: Object, required: true }

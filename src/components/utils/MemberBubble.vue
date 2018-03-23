@@ -1,22 +1,52 @@
 <template lang="pug">
-name-bubble(
-  :name="member.fullname",
-  :color-id="member.user_id",
-  :padded="padded"
-)
+span.member-bubble(:class="classes", :style="styles")
+  fa(:icon="memberIcon", fixed-width)
 </template>
 
 <script>
-import NameBubble from './NameBubble'
+import ColorGeneratorMixin from '@/mixins/ColorGenerator'
+import Tooltip from '@/components/utils/Tooltip'
+import IconSet from '@/data/member-icons'
 
 export default {
-  components: { NameBubble },
+  mixins: [ ColorGeneratorMixin ],
+  components: { Tooltip },
   props: {
     member: { type: Object, required: true },
-    padded: { type: Boolean, default: false }
+    padRight: { type: Boolean, default: false },
+    useId: { type: Boolean, default: false }
+  },
+  computed: {
+    classes () {
+      return { 'is-padded-right': this.padRight }
+    },
+    styles () {
+      return { 'background-color': this.colorFromId(this.memberId) }
+    },
+    memberId () {
+      return this.useId ? this.member.id : this.member.user_id
+    },
+    memberIcon () {
+      return IconSet[this.memberId % IconSet.length]
+    }
   }
 }
 </script>
 
-<style lang="css">
+<style lang="sass">
+
+.member-bubble
+  display: inline-flex
+  justify-content: center
+  align-items: center
+  width: 2em
+  height: 2em
+  border-radius: 1em
+  text-transform: capitalize
+  vertical-align: middle
+  color: white
+  
+  &.is-padded-right
+    margin-right: 0.3em
+
 </style>

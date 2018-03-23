@@ -4,23 +4,18 @@
   @mouseover="$emit('focus', annotation)",
   @mouseleave="$emit('blur')"
 )
-  .level
-    .level-left
-      .level-item
-        p
-          name-bubble.is-size-5.is-size-6-mobile(
-            :name="annotation.creator.fullname",
-            :color-id="annotation.creator.user_id",
-            padded
-          )
-          span.is-size-4.is-size-4-mobile {{ annotation.creator.fullname }}
-          button.button.is-text.timestamp(@click="$emit('chosen', annotation)")
-            span.is-hidden-touch {{ annotation.start_interval | duration }} → {{ annotation.end_interval | duration }}
-            span.is-hidden-desktop {{ annotation.start_interval | duration }}
-    .level-right
-      .level-item.is-marginless(v-if="isOwner")
-        button.button.is-dark.is-rounded(@click="deleteSelf")
-          .icon: fa(icon="trash")
+  .columns.is-mobile
+    .column.info-column
+      member-bubble.is-size-5.is-size-6-mobile(
+        :member="annotation.creator", pad-right
+      )
+      span.is-size-4.is-size-4-mobile {{ annotation.creator.fullname }}
+      button.button.is-text.timestamp(@click="$emit('chosen', annotation)")
+        span.is-hidden-touch {{ annotation.start_interval | duration }} → {{ annotation.end_interval | duration }}
+        span.is-hidden-desktop {{ annotation.start_interval | duration }}
+    .column.is-narrow(v-if="isOwner")
+      button.button.is-dark.is-rounded(@click="deleteSelf")
+        .icon: fa(icon="trash")
   .columns.is-gapless
     .column
       p.is-size-5 {{ annotation.content }}
@@ -42,7 +37,7 @@ import TemporalMixin from '@/mixins/Temporal'
 import ApiWorkerMixin from '@/mixins/ApiWorker'
 import ColorGeneratorMixin from '@/mixins/ColorGenerator'
 
-import NameBubble from '@/components/utils/NameBubble'
+import MemberBubble from '@/components/utils/MemberBubble'
 import CommentSection from '@/components/comment/CommentSection'
 import { mapGetters } from 'vuex'
 
@@ -56,7 +51,7 @@ import { mapGetters } from 'vuex'
 
 export default {
   mixins: [ TemporalMixin, ApiWorkerMixin, ColorGeneratorMixin ],
-  components: { NameBubble, CommentSection },
+  components: { MemberBubble, CommentSection },
   props: {
     annotation: { type: Object, required: true },
     topics: { type: Array, required: false }
@@ -127,10 +122,12 @@ export default {
 <style lang="sass">
 
 .annotation-pill
-  // cursor: help
   > .comment-section
     margin-top: 1em
     border-top: 1px solid $grey
     padding-top: 1em
+  
+  .info-column > *
+      vertical-align: middle
 
 </style>

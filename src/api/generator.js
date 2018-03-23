@@ -4,7 +4,8 @@ import eases from 'eases'
 export const hasher = new Hashids('really_not_secret', 8)
 
 export const CURRENT_USER_ID = 99
-export const MOCK_DURATION = 3
+export const CONSENT_USER_ID = 101
+export const MOCK_DURATION = 1.53
 
 export const DUMMY_TOPICS = [
   'Introduction',
@@ -104,6 +105,7 @@ export const make = {
     let end = eases.quadInOut(id / count)
     return {
       ...make.topic(id, projectId),
+      topic_id: id,
       start_interval: start * duration,
       end_interval: end * duration
     }
@@ -134,7 +136,7 @@ export const make = {
   },
   consent (id) {
     return model('Consent', id, {
-      user: make.user(CURRENT_USER_ID),
+      user: make.user(CONSENT_USER_ID),
       project: make.project(1, 'private'),
       session: make.session(1, 1, 1),
       consent: 'none'

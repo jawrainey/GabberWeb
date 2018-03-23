@@ -73,6 +73,24 @@ export default {
     &.is-#{$name}
       border-left: 15px solid nth($pair, 1)
 
+.is-vertical-aligned
+  display: flex
+  align-items: center
+  justify-content: center
+
+.blockquote
+  background-color: $grey-dark
+  border-left: 3px solid $grey-lighter
+  padding: 0.5em 1em
+  border-radius: 0 0.3em 0.3em 0
+
+.bubble-list
+  .member-bubble:not(:last-child)
+    margin-right: 0.3em
+  
+  &.is-multiline .member-bubble
+    margin-bottom: 0.3em
+
 // Why would a css framework add a transition: all :S
 a, .button
   transition: none

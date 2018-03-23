@@ -5,30 +5,28 @@
   label-value(label="Description", :value="project.description")
   label-value(label="Creator")
     p.is-size-4
-      name-bubble.is-size-5(
-        :name="project.creator.fullname",
-        :color-id="project.creator.user_id",
-        padded
+      member-bubble.is-size-5(
+        :member="project.creator", pad-right
       )
       span {{ project.creator.fullname }}
   label-value(label="Project Members")
-    name-bubble.is-size-6(
-      v-for="member in project.members",
-      :key="member.id",
-      :name="member.fullname",
-      :color-id="member.user_id",
-      padded
-    )
+    .bubble-list
+      member-bubble.is-size-6(
+        v-for="member in project.members",
+        :key="member.id",
+        :member="member",
+        padded
+      )
 </template>
 
 <script>
 import moment from 'moment-mini'
 
-import NameBubble from '@/components/utils/NameBubble'
+import MemberBubble from '@/components/utils/MemberBubble'
 import LabelValue from '@/components/utils/LabelValue'
 
 export default {
-  components: { NameBubble, LabelValue },
+  components: { MemberBubble, LabelValue },
   props: {
     project: { type: Object, required: true }
   },

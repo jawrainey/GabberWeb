@@ -8,11 +8,16 @@ box-layout(v-else-if="!project || !user")
     message.is-danger(v-model="apiErrors")
 
 div(v-else-if="project && user")
-  .container
-    section.section
-      h1.title.has-text-grey-lighter.has-text-centered
-        | You have been invited to join a Gabber project!
-      project-pill(:project="project", readonly)
+  section.section
+    .container
+      .columns.is-centered.is-gapless
+        .column.is-half
+          h1.title Gabber Invite
+            h2.subtitle
+              | You have been invited to join this Gabber project!
+      .columns.is-centered.is-gapless
+        .column.is-two-thirds
+          project-pill(:project="project", readonly)
   
   box-layout.is-paddingless
     section.section

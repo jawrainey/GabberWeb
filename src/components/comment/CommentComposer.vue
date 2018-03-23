@@ -1,9 +1,8 @@
 <template lang="pug">
 article.comment-composer.media(v-if="user")
   .media-left
-    name-bubble(
-      :name="user.fullname",
-      :color-id="user.id"
+    member-bubble(
+      :member="user.fullname"
     )
   .media-content
     message.is-danger.is-small(v-model="apiErrors", clearable)
@@ -28,12 +27,12 @@ article.comment-composer.media(v-if="user")
 <script>
 import { ADD_COMMENTS } from '@/const/mutations'
 import ApiWorkerMixin from '@/mixins/ApiWorker'
-import NameBubble from '@/components/utils/NameBubble'
+import MemberBubble from '@/components/utils/MemberBubble'
 import Message from '@/components/utils/Message'
 
 export default {
   mixins: [ ApiWorkerMixin ],
-  components: { NameBubble, Message },
+  components: { MemberBubble, Message },
   props: {
     annotation: { type: Object, required: true },
     parent: { type: Object, default: null }

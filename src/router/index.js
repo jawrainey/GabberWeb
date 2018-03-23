@@ -18,7 +18,7 @@ import AcceptInvite from '../views/auth/AcceptInvite'
 import ProjectList from '../views/project/ProjectList'
 import SessionList from '../views/project/SessionList'
 import SessionDetail from '../views/project/SessionDetail'
-import Consent from '../views/project/Consent'
+import SessionConsent from '../views/project/SessionConsent'
 
 import * as ROUTES from '../const/routes'
 
@@ -132,7 +132,7 @@ const routes = [
   {
     path: '/consent/:token',
     name: ROUTES.CONSENT_ROUTE,
-    component: Consent
+    component: SessionConsent
   },
   
   // Only Project Members of Private projects can view sessions and playlists

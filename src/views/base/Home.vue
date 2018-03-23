@@ -1,10 +1,10 @@
 <template lang="pug">
 simple-layout
-  .container.home-page.vertical-aligned
+  .container.home-page.is-vertical-aligned
     .columns.is-gapless
       .column.is-one-third
         img.phone(src="https://gabber.audio/static/img/screen.gif")
-      .column.is-two-thirds.vertical-aligned
+      .column.is-two-thirds.is-vertical-aligned
         section.section
           h1.title
             | Your voice matters
@@ -29,11 +29,6 @@ export default {
 </script>
 
 <style lang="sass">
-
-.vertical-aligned
-  display: flex
-  align-items: center
-  justify-content: center
 
 .home-page
   flex: 1

@@ -2,22 +2,20 @@
 .session-info-sidebar
   h3.subtitle Gabber Info
   label-value(label="Created on", :value="sessionDate")
-  label-value(label="Creator")
+  label-value.creator(label="Creator")
     p.is-size-4
-      name-bubble.is-size-5(
-        :name="session.creator.fullname",
-        :color-id="session.creator.user_id",
-        padded
+      member-bubble.is-size-5(
+        :member="session.creator", pad-right
       )
       span {{ session.creator.fullname }}
   label-value(label="Participants")
-    name-bubble.is-size-6(
-      v-for="member in session.participants",
-      :key="member.id",
-      :name="member.fullname",
-      :color-id="member.user_id",
-      padded
-    )
+    .bubble-list
+      member-bubble.is-size-6(
+        v-for="member in session.participants",
+        :key="member.id",
+        :member="member",
+        pad-right
+      )
   .columns
     .column
       label-value(label="Topics", :value="session.topics.length")
@@ -28,11 +26,11 @@
 <script>
 import moment from 'moment-mini'
 
-import NameBubble from '@/components/utils/NameBubble'
+import MemberBubble from '@/components/utils/MemberBubble'
 import LabelValue from '@/components/utils/LabelValue'
 
 export default {
-  components: { NameBubble, LabelValue },
+  components: { MemberBubble, LabelValue },
   props: {
     session: { type: Object, required: true }
   },

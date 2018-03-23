@@ -9,7 +9,7 @@
         .control
           .button.is-static {{ index + 1 }}.
         .control.is-expanded
-          input.input(:value="member.fullname", readonly)
+          input.input(:value="memberInfo(member)", readonly)
         .control
           button.button.is-danger(@click="removeMember(member)", :disabled="apiInProgress")
             .icon: fa(icon="user-times")
@@ -79,6 +79,9 @@ export default {
         fullname: '',
         email: ''
       }
+    },
+    memberInfo (member) {
+      return `${member.fullname}`
     },
     async addMember () {
       if (this.apiInProgress) return

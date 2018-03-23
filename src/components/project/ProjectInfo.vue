@@ -4,13 +4,13 @@
     label-value.is-marginless(label="Description", :value="project.description")
   .column.members
     label-value.is-marginless(label="Members")
-      name-bubble(
-        v-for="member in project.members",
-        :key="member.id",
-        :name="member.fullname",
-        :color-id="member.user_id",
-        padded
-      )
+      .bubble-list
+        member-bubble(
+          v-for="member in project.members",
+          :key="member.id",
+          :member="member",
+          padded
+        )
   .column.is-narrow(v-if="!readonly")
     .buttons.is-right
       router-link.button.is-link.is-rounded(:to="sessionsRoute")
@@ -26,13 +26,11 @@ import { SESSION_LIST_ROUTE } from '@/const/routes'
 import ProjectPropMixin from '@/mixins/ProjectProp'
 
 import LabelValue from '@/components/utils/LabelValue'
-import NameBubble from '@/components/utils/NameBubble'
+import MemberBubble from '@/components/utils/MemberBubble'
 
 export default {
   mixins: [ ProjectPropMixin ],
-  components: {
-    LabelValue, NameBubble
-  },
+  components: { LabelValue, MemberBubble },
   props: {
     readonly: { type: Boolean, default: false }
   },
