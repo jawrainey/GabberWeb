@@ -1,13 +1,13 @@
 <template lang="pug">
 box-layout
-  section.section
+  section.section(v-if="!hasRegistered")
     h3.title Create a Gabber Account
-    h4.subtitle or
+    h4.subtitle() or
       router-link(:to="loginRoute")  log in to your account
     
-    message.is-danger(v-model="errors", clearable)
+    message.is-danger(v-model="apiErrors", clearable)
     
-    .login-form(v-if="!created")
+    .login-form
       .field
         label.label Full Name
         input.input(
@@ -43,30 +43,31 @@ box-layout
         button.button.is-success(
           @click="register", :disabled="!canRegister"
         ) Sign Up
-    template(v-else)
-      message.is-primary(
-        title="Account Created",
-        value="Your account has been created and you should shortly recieve a confirmation by email."
-      )
-      .buttons.is-right
-        router-link.button.is-success(:to="projectListRoute")
-          | Checkout some projects!
+  section.section.has-registered(v-else)
+    h2.title.is-2.has-text-centered
+      fa.email(icon="envelope-open", size="lg")
+      span Check your mail
+    .message.is-success.is-medium
+      .message-header Account Created!
+      .message-body.content
+        p We've created a brand new account just for you, we just need you to confirm your email address.
+        p You'll recieve an email shortly with a link to verify your account. Click that link and your good to Gabber!
 </template>
 
 <script>
-import { LOGIN_USER } from '@/const/mutations'
 import { TERMS_ROUTE, PRIVACY_ROUTE, PROJECT_LIST_ROUTE, LOGIN_ROUTE } from '@/const/routes'
+import ApiWorkerMixin from '@/mixins/ApiWorker'
 import BoxLayout from '@/layouts/BoxLayout'
 import Message from '@/components/utils/Message'
 
 export default {
+  mixins: [ ApiWorkerMixin ],
   components: { BoxLayout, Message },
   data: () => ({
     fullname: '',
     email: '',
     password: '',
-    created: false,
-    errors: [ ]
+    hasRegistered: false
   }),
   computed: {
     errorMessage () { return this.$store.getters.AUTH_ERROR },
@@ -81,24 +82,32 @@ export default {
         this.password !== ''
     }
   },
+  mounted () {
+    if (this.$store.getters.currentUser) {
+      this.$router.push(this.returnRoute)
+    }
+  },
   methods: {
     async register () {
-      if (!this.canRegister) return
-      this.errors = []
+      if (!this.canRegister || this.apiInProgress) return
+      this.startApiWork()
       
-      let { meta, data } = await this.$api.register(
+      let { meta } = await this.$api.register(
         this.fullname, this.email, this.password
       )
       
-      this.errors = meta.messages
+      this.hasRegistered = meta.success
       
-      if (meta.success) {
-        this.$store.commit(LOGIN_USER, data)
-        this.created = true
-      } else if (meta.messages.length === 0) {
-        this.errors.push('Registration failed, please try again')
-      }
+      this.endApiWork(meta, 'Registration failed, please try again')
     }
   }
 }
 </script>
+
+<style lang="sass">
+
+.has-registered
+  .email
+    margin-right: 0.3em
+
+</style>

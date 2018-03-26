@@ -1,10 +1,11 @@
 <template lang="pug">
 .columns.project-header
   .column
-    h3.title.is-43
+    h3.title.is-3
       span.icon-item: fa(v-if="projectIcon", :icon="projectIcon", transform="shrink-6")
       span  {{project.title}}
-      span.membership.is-size-5.has-text-grey-light(v-if="membershipType")  {{ membershipType }}
+      span.membership.is-size-5.has-text-grey-light(v-if="membershipType")
+        |  {{ membershipType }}
   
   .column.is-narrow(v-if="!readonly")
     .buttons.is-right
@@ -14,20 +15,20 @@
         icon="users",
         title="Members"
       )
-    
+      
       icon-button.is-dark.is-rounded(
         v-if="canEdit",
         @click="$emit('startEdit')",
         icon="cog",
         title="Edit"
       )
-    
+      
       icon-button.is-dark.is-rounded(
         v-if="isEditing",
         @click="$emit('stopEdit')",
         title="Close"
       )
-    
+      
       icon-button.is-dark.is-rounded(
         v-if="!isProjectMember && currentUser",
         icon="user-plus",
@@ -35,7 +36,7 @@
         :disabled="inProgress",
         title="Join"
       )
-    
+      
       icon-button.is-dark.is-rounded(
         v-if="isProjectMember && !isOwner",
         icon="user-times",

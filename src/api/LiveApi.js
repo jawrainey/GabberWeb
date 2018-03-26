@@ -91,10 +91,9 @@ export default class LiveApi extends ApiInterface {
   
   // users.register
   async register (fullname, email, password) {
-    let { meta, data } = await this.endpoint('post', 'auth/register', {
+    return this.endpoint('post', 'auth/register', {
       fullname, email, password
     })
-    return this.processAuth(meta, data)
   }
   
   // users.login

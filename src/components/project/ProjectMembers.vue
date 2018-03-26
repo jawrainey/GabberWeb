@@ -21,20 +21,18 @@
       template(v-if="newMember")
         .field
           label.label Full Name
-          .control
-            input.input(
-              type="text",
-              v-model="newMember.fullname",
-              placeholder="e.g. Kevin Smith"
-            )
+          input.input(
+            type="text",
+            v-model="newMember.fullname",
+            placeholder="e.g. Kevin Smith"
+          )
         .field
-          .control
-            label.label Email
-            input.input(
-              type="text",
-              v-model="newMember.email",
-              placeholder="e.g. kevin@gmail.com"
-            )
+          label.label Email
+          input.input(
+            type="text",
+            v-model="newMember.email",
+            placeholder="e.g. kevin@gmail.com"
+          )
         .field.is-grouped.is-grouped-centered
           .control
             button.button.is-danger(@click="newMember = null") Cancel

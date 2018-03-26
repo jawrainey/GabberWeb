@@ -19,12 +19,18 @@
         )
       .field
         label.label Privacy
-        .control
+        .control(v-if="!project.id || understoodPrivacy")
           span.select
             select(v-model="project.privacy", :disabled="disabled")
               option(value="public", default) Public
               option(value="private", default) Private
           .help {{ privacyMessage }}
+        .message.is-warning(v-else)
+          .message-header: p Warning!
+          .message-body
+            p Gabber will always respect a participant's consent so unless all participants have consented, a private Gabber cannot be made public.
+            .buttons.is-right
+              button.button.is-warning(@click="understoodPrivacy = true") I Understand
     .column
       topic-list-edit(v-model="project.topics", :is-editing="!!project.id")
   hr
@@ -52,6 +58,14 @@
 import ProjectPropMixin from '@/mixins/ProjectProp'
 import TopicListEdit from '@/components/topic/TopicListEdit'
 
+/* Emitted Events:
+
+@delete () -> when the user wants to delete the project
+@cancel () -> when the user wants to cancel editing
+@submit () -> when the user wants to submit changes
+
+*/
+
 export default {
   mixins: [ ProjectPropMixin ],
   components: { TopicListEdit },
@@ -60,6 +74,9 @@ export default {
     deletable: { type: Boolean, default: false },
     action: { type: String, default: 'Save' }
   },
+  data: () => ({
+    understoodPrivacy: false
+  }),
   computed: {
     canSubmit () {
       return !this.disabled &&

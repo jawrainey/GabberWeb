@@ -10,20 +10,21 @@ article.media.comment
         .column.is-narrow(v-if="isCreator && comment.is_active")
           button.delete(@click="deleteSelf", :disabled="apiInProgress") Delete
       .buttons
-        button.button.is-link.is-rounded.is-small(v-if="canReply", @click="toggleReplies")
+        button.button.is-link.is-rounded.is-small(v-if="canReply || hasReplies", @click="toggleReplies")
           span {{ toggleTitle }}
     h3.subtitle.has-text-centered(v-if="showReplies && apiInProgress")
       | Fetching Replies ...
     comment-section(
-      v-else-if="showReplies && canReply",
+      v-else-if="showReplies && (canReply || hasReplies)",
       :annotation="annotation",
       :comments="replies",
-      :parent="comment"
+      :parent="comment",
+      :can-reply="canReply"
     )
 </template>
 
 <script>
-import { ADD_COMMENTS, REMOVE_COMMENT } from '@/const/mutations'
+import { ADD_COMMENTS } from '@/const/mutations'
 import ApiWorkerMixin from '@/mixins/ApiWorker'
 import MemberBubble from '@/components/member/MemberBubble'
 import CommentSection from './CommentSection'
@@ -62,6 +63,7 @@ export default {
       return this.$store.getters.commentChildren(this.comment.id)
     },
     canReply () {
+      if (!this.comment.is_active) return false
       let depth = 0
       let parentId = this.comment.parent_id
       let current = null
@@ -90,7 +92,9 @@ export default {
       // If successfull, remove from the state
       if (meta.success) {
         // this.comment.content = '[deleted]'
-        this.$store.commit(REMOVE_COMMENT, this.comment.id)
+        this.$store.commit(ADD_COMMENTS, [
+          { ...this.comment, content: '[deleted]', is_active: false }
+        ])
       }
       
       // Re-enable the ui

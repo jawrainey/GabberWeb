@@ -50,6 +50,12 @@
   border-left: 3px solid $grey-lighter
   padding: 0.5em 1em
   border-radius: 0 0.3em 0.3em 0
+  
+  @each $name, $pair in $colors
+    &.is-#{$name}
+      color: nth($pair, 1)
+      border-left-color: nth($pair, 1)
+      background-color: transparentize(nth($pair, 1), 0.9)
 
 .bubble-list
   .member-bubble:not(:last-child)

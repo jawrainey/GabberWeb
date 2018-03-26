@@ -52,9 +52,5 @@ export default {
   +desktop
     .column.description
       padding-left: 2.6em
-  
-  +mobile
-    .column.members
-      display: none
 
 </style>

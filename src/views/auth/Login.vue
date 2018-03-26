@@ -68,6 +68,11 @@ export default {
     forgotRoute () { return { name: FORGOT_ROUTE } },
     errorMessage () { return this.$store.getters.AUTH_ERROR }
   },
+  mounted () {
+    if (this.$store.getters.currentUser) {
+      this.$router.push(this.returnRoute)
+    }
+  },
   methods: {
     async login () {
       if (!this.canLogin) return

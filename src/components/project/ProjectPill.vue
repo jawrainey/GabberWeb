@@ -11,24 +11,23 @@
     @join="joinProject",
     @leave="leaveProject"
   )
-  transition(name="fade-short", mode="out-in")
-    .editing-info(v-if="isEditingInfo")
-      message.is-danger(v-model="apiErrors", clearable)
-      project-edit(
-        :project="changes",
-        :disabled="apiInProgress",
-        :deletable="true",
-        action="Update",
-        @submit="saveEdit",
-        @cancel="cancelEdit",
-        @delete="deleteProject"
-      )
-    project-members(
-      v-else-if="isEditingMembers",
-      :project="project",
-      :disabled="apiInProgress"
+  .editing-info(v-if="isEditingInfo")
+    message.is-danger(v-model="apiErrors", clearable)
+    project-edit(
+      :project="changes",
+      :disabled="apiInProgress",
+      :deletable="true",
+      action="Update",
+      @submit="saveEdit",
+      @cancel="cancelEdit",
+      @delete="deleteProject"
     )
-    project-info(v-else, :project="project", :readonly="readonly")
+  project-members(
+    v-else-if="isEditingMembers",
+    :project="project",
+    :disabled="apiInProgress"
+  )
+  project-info(v-else, :project="project", :readonly="readonly")
 </template>
 
 <script>

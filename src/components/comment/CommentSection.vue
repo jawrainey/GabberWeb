@@ -7,9 +7,13 @@
     :annotation="annotation"
   )
   comment-composer(
+    v-if="canReply",
     :annotation="annotation",
     :parent="parent"
   )
+  template(v-else)
+    br
+    blockquote.blockquote.is-warning You cannot reply to this thread
   .buttons.is-centered(v-if="!$store.getters.currentUser")
     button.button.is-primary.is-rounded(@click="login")
       | Login to comment
@@ -25,7 +29,8 @@ export default {
   props: {
     annotation: { type: Object, required: true },
     comments: { type: Array, required: true },
-    parent: { type: Object, default: null }
+    parent: { type: Object, default: null },
+    canReply: { type: Boolean, default: true }
   },
   beforeCreate () {
     // We have to require it manually to fix the circular dependancy
