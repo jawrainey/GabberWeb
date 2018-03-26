@@ -1,3 +1,8 @@
+/*
+ * A mixin for components that want to generate a color based on an id
+ * - Uses a modulus function to generate colors for any number (a record id)
+ */
+
 const randomizer = 49
 
 export default {

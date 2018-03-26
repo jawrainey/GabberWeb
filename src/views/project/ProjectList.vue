@@ -12,13 +12,11 @@ full-layout.project-list-view
     sort-field(v-model="sortMode", label="Sort By")
   
   .main(slot="main")
-    .level.is-mobile
-      .level-left
-        .level-item
-          h1.title.is-1 Projects
-      .level-right(v-if="currentUser")
-        .level-item
-          add-cancel-button.is-medium(@click="toggleCreate", :toggled="!!newProject")
+    .columns.is-mobile
+      .column
+        h1.title.is-1 Projects
+      .column.is-narrow(v-if="currentUser")
+        add-cancel-button.is-medium(@click="toggleCreate", :toggled="!!newProject")
     
     .box.new-project(v-if="newProject")
       h3.subtitle.is-4 Create a new Project

@@ -1,3 +1,12 @@
+//
+// A script to build a docker image of the current repository
+// Uses the /REGISTRY file and the package.json version to tag the image
+//
+// Arguements
+// - "latest" -> Add the latest tag too
+// - "dry" -> Don't actually perform docker command
+//
+
 // Imports
 const fs = require('fs')
 const path = require('path')

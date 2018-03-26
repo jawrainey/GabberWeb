@@ -5,7 +5,7 @@ const ACCESS_TOKEN_KEY = 'gabber.access_token'
 const REFRESH_TOKEN_KEY = 'gabber.refresh_token'
 
 /**
- * An interface for interacting with the Gabber api
+ * The live implementation of ApiInterface using an axios agent
  */
 export default class LiveApi extends ApiInterface {
   constructor (base = '') {
@@ -15,11 +15,19 @@ export default class LiveApi extends ApiInterface {
     })
     this.checkAndSetTokens()
   }
+  
+  /*
+   * Api Utilities
+   */
+  
+  /** Set the tokens on our agent & store them in localStorage */
   setTokens (access, refresh) {
     this.agent.defaults.headers['Authorization'] = `Bearer ${access}`
     localStorage.setItem(ACCESS_TOKEN_KEY, access)
     localStorage.setItem(REFRESH_TOKEN_KEY, refresh)
   }
+  
+  /** Check if tokens are stored and if so apply them to our agent */
   checkAndSetTokens () {
     let access = localStorage.getItem(ACCESS_TOKEN_KEY)
     // let refresh = localStorage.getItem(REFRESH_TOKEN_KEY)
@@ -27,6 +35,8 @@ export default class LiveApi extends ApiInterface {
       this.agent.defaults.headers['Authorization'] = `Bearer ${access}`
     }
   }
+  
+  /** Make an api call & format the response in { meta, data} (never throws) */
   async endpoint (method, url, body = {}, query = {}) {
     try {
       url = url.replace(/\/?$/, '/')
@@ -52,11 +62,15 @@ export default class LiveApi extends ApiInterface {
       }
     }
   }
+  
+  /** Override the making of an envelope to localise error strings (wip) */
   makeEnvelope (...args) {
     let envelope = super.makeEnvelope(...args)
     // TODO: Translate the messages ...
     return envelope
   }
+  
+  /** Process an auth response, storing jwt tokens and returning the new user */
   processAuth (meta, data) {
     if (meta.success) {
       let tokens = data.tokens

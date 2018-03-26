@@ -1,3 +1,11 @@
+/*
+ * A mixin for components that want to talk to an api
+ * - Adds a flag to say if the api call is in progress or not
+ * - Adds an array to put api errors into
+ * - Adds semaphore-like methods to start/end api work
+ * - Adds a utility to merge multiple api meta blocks
+ */
+
 export default {
   data: () => ({
     apiErrors: [],

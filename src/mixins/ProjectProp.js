@@ -1,3 +1,7 @@
+/*
+ * A mixin for components that have a project as a prop with computed properties
+ */
+
 export default {
   props: {
     project: {
@@ -7,7 +11,6 @@ export default {
   },
   computed: {
     currentUser () {
-      // TODO: remove this
       return this.$store.getters.currentUser
     },
     currentUserId () {

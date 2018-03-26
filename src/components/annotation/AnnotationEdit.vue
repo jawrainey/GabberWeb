@@ -16,7 +16,6 @@
 </template>
 
 <script>
-import TemporalMixin from '@/mixins/Temporal'
 
 /* Emitted Events
 
@@ -25,7 +24,6 @@ import TemporalMixin from '@/mixins/Temporal'
 */
 
 export default {
-  mixins: [ TemporalMixin ],
   props: {
     annotation: { type: Object, required: true },
     disabled: { type: Boolean, default: false },

@@ -1,3 +1,11 @@
+/*
+ * A mixin for components that want to perform filtering of api models
+ * - A util to create a regex to query with
+ * - A method to filter by topics
+ * - A method to filter by a string query
+ * - A method to filter annotations by their topic using the start/end times
+ * - A method to sort models by a sort mode (newest|oldest)
+ */
 
 export default {
   methods: {
@@ -29,6 +37,7 @@ export default {
           return true
         }
       }
+      return false
     }
   }
 }

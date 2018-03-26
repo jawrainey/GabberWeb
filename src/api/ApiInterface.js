@@ -1,5 +1,5 @@
 /**
- * An interface for interacting with the Gabber api
+ * The interface for interacting with the Gabber Api
  */
 export default class ApiInterface {
   /** Creates a new Api */
@@ -179,12 +179,12 @@ export default class ApiInterface {
    * Consent
    */
   
-  // consent.show
+  // consent.show -> { User, Project, Session, consent }
   async getConsent (token) {
     this.notImplemented()
   }
   
-  // consent.create
+  // consent.create -> Void
   async sendConsent (token, consent) {
     this.notImplemented()
   }

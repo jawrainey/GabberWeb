@@ -1,9 +1,14 @@
+/*
+ * A mixin for components that want to format temporal data (dates / times)
+ */
+
 import moment from 'moment-mini'
 
 export default {
-  methods: { formatDuration }
+  methods: { formatDuration, formatDateLong }
 }
 
+// Format a duration – e.g. "01:32"
 export function formatDuration (seconds) {
   seconds = Math.max(0, seconds)
   
@@ -12,10 +17,12 @@ export function formatDuration (seconds) {
   return `${pad(mins, 2)}:${pad(secs, 2)}`
 }
 
+// Format a date – e.g. "5:32am, 15th March 2018"
 export function formatDateLong (date) {
   return moment(date).format('h:mma, do MMM YY')
 }
 
+// Pad a string with `n` preceeding zeros
 export function pad (number, width, padding = '0') {
   let string = String(number)
   return string.length >= width

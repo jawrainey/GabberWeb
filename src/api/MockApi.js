@@ -20,7 +20,9 @@ const mockIds = {
 // A very basic regex for emails
 const isEmail = /.+@.+\..+/
 
-/** An implementation of ApiInterface that mocks all responses */
+/**
+ * The mock implementation of ApiInterface
+ */
 export default class MockApi extends ApiInterface {
   /*
    * Mock Utils

@@ -1,13 +1,15 @@
+/*
+ * The names of the vue-router routes
+ * These are seperate exports so you get a compile-time error if you mistype it
+ */
 
-// Values set from original in router/index.js
-
-export const HOME_ROUTE = 'home'
-export const ABOUT_ROUTE = 'about'
+export const HOME_ROUTE = 'Home'
+export const ABOUT_ROUTE = 'About'
 export const PRIVACY_ROUTE = 'Privacy'
 export const TERMS_ROUTE = 'Terms'
 
-export const LOGIN_ROUTE = 'login'
-export const REGISTER_ROUTE = 'register'
+export const LOGIN_ROUTE = 'Login'
+export const REGISTER_ROUTE = 'Register'
 export const FORGOT_ROUTE = 'Forgot'
 export const RESET_ROUTE = 'Reset'
 export const VERIFY_ROUTE = 'Verify'
@@ -15,8 +17,6 @@ export const VERIFY_ROUTE = 'Verify'
 export const PROJECT_LIST_ROUTE = 'ProjectList'
 export const SESSION_LIST_ROUTE = 'SessionList'
 export const SESSION_DETAIL_ROUTE = 'Session'
-// export const PLAYLIST_LIST_ROUTE = 'ProjectPlaylist'
-// export const USER_PLAYLIST_ROUTE = 'UserPlaylist'
 export const CONSENT_ROUTE = 'Consent'
 
 export const ACCEPT_INVITE_ROUTE = 'AcceptInvite'

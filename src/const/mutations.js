@@ -1,3 +1,7 @@
+/*
+ * The mutations that can be performed on the vuex store
+ * These are seperate exports so you get a compile-time error if you mistype it
+ */
 
 export const LOGIN_USER = 'LoginUser'
 export const LOGOUT_USER = 'LogoutUser'

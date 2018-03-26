@@ -33,7 +33,6 @@
 <script>
 import { REMOVE_ANNOTATION } from '@/const/mutations'
 
-import TemporalMixin from '@/mixins/Temporal'
 import ApiWorkerMixin from '@/mixins/ApiWorker'
 import ColorGeneratorMixin from '@/mixins/ColorGenerator'
 
@@ -50,7 +49,7 @@ import { mapGetters } from 'vuex'
 */
 
 export default {
-  mixins: [ TemporalMixin, ApiWorkerMixin, ColorGeneratorMixin ],
+  mixins: [ ApiWorkerMixin, ColorGeneratorMixin ],
   components: { MemberBubble, CommentSection },
   props: {
     annotation: { type: Object, required: true },

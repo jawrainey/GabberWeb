@@ -1,3 +1,6 @@
+/**
+ * A set of methods for generating fack api data
+ */
 import Hashids from 'hashids'
 import eases from 'eases'
 

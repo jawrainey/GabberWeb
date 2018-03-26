@@ -1,12 +1,12 @@
+#!/usr/bin/env bash
 
-# Output in a json form
-# echo "{" > config.json
-# for KEY in $(echo $CONFIG_KEYS | sed "s/,/ /g")
-# do
-#   echo -n "\"$KEY\": \"`printenv $KEY`\"," >> config.json
-# done
-# sed -i '' 's/,$//' config.json
-# echo -n "}" >> config.json
+#
+# This script replaces the nginx:alpine's command inject a bit of custom logic.
+# - On start it injects your custom environment variables onto the js window
+# - It uses CONFIG_KEYS as the keys to lookup
+# - It injects a js script at the start of the compiled index.html
+#
+
 
 # Add to start of html file
 js="<head>"

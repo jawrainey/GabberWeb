@@ -6,7 +6,7 @@ span.member-bubble(:class="classes", :style="styles")
 <script>
 import ColorGeneratorMixin from '@/mixins/ColorGenerator'
 import Tooltip from '@/components/utils/Tooltip'
-import IconSet from '@/data/member-icons'
+import IconSet from '@/assets/json/member-icons'
 
 export default {
   mixins: [ ColorGeneratorMixin ],

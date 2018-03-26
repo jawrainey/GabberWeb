@@ -1,4 +1,8 @@
+/*
+ * Utility functions that the mutations share
+ */
 
+/** Merge an array (set) into another (target) by comparion each element.id */
 export function mergeIntoById (target, set) {
   set.forEach(model => {
     let index = target.findIndex(s => s.id === model.id)
@@ -7,6 +11,7 @@ export function mergeIntoById (target, set) {
   })
 }
 
+/** Find an element with an matching id */
 export function findById (set, id) {
   return set.find(item => item.id === id)
 }
