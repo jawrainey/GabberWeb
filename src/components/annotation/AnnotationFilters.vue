@@ -37,6 +37,16 @@
 </template>
 
 <script>
+
+/* Emitted Events
+
+@update:sortMode  -> enables :sortMode.sync
+@update:query     -> enables :query.sync
+@update:topics    -> enables :topics.sync
+@update:members   -> enables :members.sync
+
+ */
+
 import ColorGeneratorMixin from '@/mixins/ColorGenerator'
 import TopicOption from '@/components/topic/TopicOption'
 import MemberOption from '@/components/member/MemberOption'
@@ -68,7 +78,7 @@ export default {
   },
   methods: {
     selectTopic (topic) {
-      this.$emit('update:topics', this.topics.concat([ topic.topic_id ]))
+      this.$emit('update:topics', [ ...this.topics, topic.topic_id ])
     },
     deselectTopic (topic) {
       this.$emit('update:topics', this.topics.filter(tId =>
@@ -76,7 +86,7 @@ export default {
       ))
     },
     selectMember (member) {
-      this.$emit('update:members', this.members.concat([ member.user_id ]))
+      this.$emit('update:members', [ ...this.members, member.user_id ])
     },
     deselectMember (member) {
       this.$emit('update:members', this.members.filter(uId =>
@@ -88,11 +98,4 @@ export default {
 </script>
 
 <style lang="sass">
-
-.topics-field
-  .topic
-    color: white
-    border: none
-    display: block
-
 </style>

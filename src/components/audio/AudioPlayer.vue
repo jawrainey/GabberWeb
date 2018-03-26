@@ -67,6 +67,7 @@ export const PlayerState = {
 /* Emitted Events
 
 @progress (duration)  -> when the player position changed
+@seek (progress)      -> when the player position changed
 @finish ()            -> when playing finished
 @state ()             -> when the state changes
 @ready (length)       -> when the audio was loaded

@@ -16,6 +16,12 @@
 <script>
 import Draggable from './Draggable'
 
+/* Emitted Events:
+
+@change (left, right) -> when the user dragged the left or right bumper
+
+*/
+
 export default {
   components: { Draggable },
   props: {

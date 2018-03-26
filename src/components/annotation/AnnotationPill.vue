@@ -9,10 +9,13 @@
       member-bubble.is-size-5.is-size-6-mobile(
         :member="annotation.creator", pad-right
       )
-      span.is-size-4.is-size-4-mobile {{ annotation.creator.fullname }}
+      span.is-size-4
+        | {{ annotation.creator.fullname }}
       button.button.is-text.timestamp(@click="$emit('chosen', annotation)")
-        span.is-hidden-touch {{ annotation.start_interval | duration }} → {{ annotation.end_interval | duration }}
-        span.is-hidden-desktop {{ annotation.start_interval | duration }}
+        span.is-hidden-touch
+          | {{ startTime | duration }} → {{ endTime | duration }}
+        span.is-hidden-desktop
+          | {{ startTime | duration }}
     .column.is-narrow(v-if="isOwner")
       button.button.is-dark.is-rounded(@click="deleteSelf")
         .icon: fa(icon="trash")
@@ -22,7 +25,7 @@
     .column.is-narrow.has-text-right
       button.button.is-link.is-rounded(@click="toggleComments")
         | {{ commentTitle }}
-  transition(name="fade")
+  transition(name="slide")
     comment-section(
       v-if="showComments",
       :annotation="annotation",
@@ -89,7 +92,9 @@ export default {
         )
       }
       return styles
-    }
+    },
+    startTime () { return this.annotation.start_interval },
+    endTime () { return this.annotation.end_interval }
   },
   methods: {
     toggleComments () {

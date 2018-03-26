@@ -8,16 +8,21 @@
 
 <script>
 
+/* Emitted Events:
+
+@move (x, y) -> when the user dragged the element (the x & y difference)
+
+ */
+
 let currentDrag = null
 
+/** A global drag handler, which automatically is added/removed w/ hot reload */
 function globalDrag (e) {
-  // e.preventDefault()
-  
   if (currentDrag) {
-    // Get the last x position
-    let { x: prevX } = currentDrag
+    // Get the last positions
+    let { x: prevX, y: prevY } = currentDrag
     
-    // Process a the first touch if a TouchEvent
+    // Process the first touch if a TouchEvent
     if (e.type === 'touchmove') {
       currentDrag.x = e.changedTouches[0].clientX
       currentDrag.y = e.changedTouches[0].clientY
@@ -27,13 +32,17 @@ function globalDrag (e) {
       currentDrag.y = e.clientY
     }
     
-    currentDrag.vm.$emit('move', currentDrag.x - prevX)
+    // Emit the change x & y coord changes
+    currentDrag.vm.$emit(
+      'move',
+      currentDrag.x - prevX,
+      currentDrag.y - prevY
+    )
   }
 }
 
+/** A global drag up handler, also works with hot reloading */
 function globalUp (e) {
-  // e.preventDefault()
-  
   if (currentDrag) {
     currentDrag.vm.active = false
   }
@@ -41,6 +50,7 @@ function globalUp (e) {
   currentDrag = null
 }
 
+/** Remove previous handlers, if running with hot reloading */
 if (window.gabberDrag) {
   document.removeEventListener('mousemove', window.gabberDrag.ondrag)
   document.removeEventListener('mouseup', window.gabberDrag.onup)
@@ -48,11 +58,13 @@ if (window.gabberDrag) {
   document.removeEventListener('touchend', window.gabberDrag.onup)
 }
 
+// Create new handlers
 window.gabberDrag = window.gabberDrag = {
   ondrag: { handleEvent: e => globalDrag(e) },
   onup: { handleEvent: e => globalUp(e) }
 }
 
+// Add global handlers, so you can handle events outside Draggable components
 document.addEventListener('mousemove', window.gabberDrag.ondrag)
 document.addEventListener('mouseup', window.gabberDrag.onup)
 document.addEventListener('touchmove', window.gabberDrag.ondrag)

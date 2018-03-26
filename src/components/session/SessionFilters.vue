@@ -54,7 +54,7 @@ export default {
   computed: {
     uniqueParticipants () {
       let people = this.sessions.reduce((people, session) =>
-        people.concat(session.participants),
+        ([ ...people, ...session.participants, session.creator ]),
       [])
       
       return people.filter((person, index) =>

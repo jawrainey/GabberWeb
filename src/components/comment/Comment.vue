@@ -1,9 +1,7 @@
 <template lang="pug">
 article.media.comment
   .media-left
-    member-bubble.is-size-5(
-      :member="comment.creator"
-    )
+    member-bubble.is-size-5(:member="comment.creator")
   .media-content
     .content
       .columns.is-gapless.is-marginless.is-mobile

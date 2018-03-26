@@ -88,7 +88,9 @@ export default {
           session.creator.fullname, ...session.participants.map(p => p.fullname)
         ]
         let topicIds = session.topics.map(t => t.topic_id)
-        let participantIds = session.participants.map(p => p.user_id)
+        let participantIds = [
+          ...session.participants.map(p => p.user_id), session.creator.user_id
+        ]
         
         return this.queryFilter(this.query, queryValues) &&
           this.idListAndFilter(this.filterTopics, topicIds) &&

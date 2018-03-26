@@ -26,22 +26,12 @@
 export default {
   props: {
     annotation: { type: Object, required: true },
-    disabled: { type: Boolean, default: false },
-    audioProgress: { type: Number, required: true }
+    disabled: { type: Boolean, default: false }
   },
   computed: {
     canSubmit () { return !this.disabled && this.annotation.content !== '' }
   },
   methods: {
-    replayFromPosition () {
-      this.$emit('position', this.annotation.start_interval)
-    },
-    resetPositionToNow () {
-      let pos = Math.round(this.audioProgress)
-      
-      this.annotation.start_interval = pos
-      this.annotation.end_interval = pos + 1
-    },
     submit () {
       this.$emit('submit')
     }
@@ -50,5 +40,4 @@ export default {
 </script>
 
 <style lang="sass">
-.annotation-edit
 </style>

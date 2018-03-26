@@ -14,3 +14,9 @@
 .grow-enter, .grow-leave-to
   transform: scale(0.4)
   opacity: 0
+
+.slide-enter-active, .slide-leave-active
+  transition: transform $transition-duration, opacity $transition-duration
+.slide-enter, .slide-leave-to
+  transform: translateY(-15%)
+  opacity: 0

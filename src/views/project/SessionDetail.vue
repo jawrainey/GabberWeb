@@ -78,7 +78,6 @@ full-layout.session-detail(v-else-if="session")
         message.is-danger(v-model="newAnnotationErrors", clearable)
         annotation-edit(
           :annotation="newAnnotation",
-          :audio-progress="audioProgress",
           :disabled="isCreatingAnnotation",
           @position="t => seekTo(t)"
           @submit="createAnnotation",
