@@ -2,23 +2,24 @@
 .topic-option.is-block(
   :class="classes",
   :style="styles",
-  @click="toggleSelf",
+  @click="toggleSelection",
   v-text="topic.text"
 )
 </template>
 
 <script>
+import SelectableMixin from '@/mixins/Selectable'
 import ColorGeneratorMixin from '@/mixins/ColorGenerator'
+
 export default {
-  mixins: [ ColorGeneratorMixin ],
+  mixins: [ SelectableMixin, ColorGeneratorMixin ],
   props: {
     topic: { type: Object, required: true },
-    selected: { type: Boolean, default: false },
     colorId: { type: Number, default: null }
   },
   computed: {
     classes () {
-      return { 'is-selected': this.selected, 'is-colored': this.colorId !== null }
+      return { ...this.selectionClass, 'is-colored': this.colorId !== null }
     },
     styles () {
       let style = { }
@@ -29,11 +30,6 @@ export default {
         style['border-right'] = `2em solid ${this.colorFromId(this.colorId)}`
       }
       return style
-    }
-  },
-  methods: {
-    toggleSelf () {
-      this.$emit(this.selected ? 'deselect' : 'select')
     }
   }
 }

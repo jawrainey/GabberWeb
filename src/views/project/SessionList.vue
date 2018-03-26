@@ -10,8 +10,10 @@ full-layout.session-list-view(v-else-if="project")
   session-filters(
     slot="left",
     :project="project",
+    :sessions="sessions",
     :query.sync="query",
     :topics.sync="filterTopics",
+    :members.sync="filterMembers",
     :sortMode.sync="sortMode"
   )
   template(slot="main")
@@ -61,6 +63,7 @@ export default {
   data: () => ({
     query: '',
     filterTopics: [],
+    filterMembers: [],
     sortMode: 'newest'
   }),
   computed: {
@@ -85,9 +88,11 @@ export default {
           session.creator.fullname, ...session.participants.map(p => p.fullname)
         ]
         let topicIds = session.topics.map(t => t.topic_id)
+        let participantIds = session.participants.map(p => p.user_id)
         
         return this.queryFilter(this.query, queryValues) &&
-          this.topicsFilter(this.filterTopics, topicIds)
+          this.idListAndFilter(this.filterTopics, topicIds) &&
+          this.idListAndFilter(this.filterMembers, participantIds)
       }).sort(this.modelSorter(this.sortMode))
     }
   },

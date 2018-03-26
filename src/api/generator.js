@@ -57,7 +57,7 @@ export const make = {
     })
   },
   session (id, projectId, creatorId) {
-    let numTopics = pickBetween(3, 8)
+    let numTopics = pickBetween(2, 5)
     return model('Session', id, {
       id: hasher.encode(id),
       project_id: projectId,
@@ -65,7 +65,7 @@ export const make = {
       audio_url: '/static/audio/horse.mp3',
       participants: makeList(pickBetween(1, 7), make.participant),
       topics: makeList(numTopics, make.sessionTopic, projectId, numTopics, MOCK_DURATION),
-      user_annotations: makeList(pickBetween(2, 10), make.annotation, id, MOCK_DURATION)
+      num_user_annotations: pickBetween(2, 10)
     })
   },
   playlist (id, creatorId) {
@@ -98,7 +98,7 @@ export const make = {
       user_id: pickBetween(1, 9),
       comments: makeIds(pickBetween(2, 5)),
       content: pickFrom(DUMMY_COMMENTS),
-      creator: make.creator(CURRENT_USER_ID),
+      creator: make.creator(pickFrom([1, 2, 3, 4, 5, CURRENT_USER_ID])),
       start_interval: when,
       end_interval: 2
     })
@@ -138,10 +138,12 @@ export const make = {
     })
   },
   consent (id) {
+    let session = make.session(1, 1, 1)
+    session.participants.push({ user_id: CONSENT_USER_ID })
     return model('Consent', id, {
       user: make.user(CONSENT_USER_ID),
       project: make.project(1, 'private'),
-      session: make.session(1, 1, 1),
+      session: session,
       consent: 'none'
     })
   }
@@ -168,7 +170,10 @@ export function model (type, id, obj) {
   return Object.assign({
     _mocktype: type,
     id: parseInt(id),
-    created_on: new Date('2018-02-05T03:24:42'),
+    created_on: dateBetween(
+      new Date('2018-02-01T00:00:00'),
+      new Date('2018-02-07T23:59:59')
+    ),
     updated_on: new Date('2018-02-11T03:24:42')
   }, obj)
 }
@@ -179,6 +184,10 @@ export function pickBetween (from, to) {
 
 export function pickFrom (list) {
   return list[Math.floor(Math.random() * list.length)]
+}
+
+export function dateBetween (from, to) {
+  return new Date(pickBetween(from.getTime(), to.getTime()))
 }
 
 export function username (id, segment = 'User') {

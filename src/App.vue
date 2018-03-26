@@ -26,11 +26,11 @@ export default {
 </script>
 
 <style lang="sass">
-
+@import "~sass/transitions"
 @import "~bulma/bulma"
 @import "~bulmaswatch/darkly/_overrides.scss"
-@import "~sass/transitions"
 
+@import "~sass/transitions"
 @import "~sass/theme"
 
 </style>

@@ -8,3 +8,9 @@
   transition: opacity ($transition-duration * 0.66)
 .fade-short-enter, .fade-short-leave-to
   opacity: 0
+
+.grow-enter-active, .grow-leave-active
+  transition: transform $transition-duration, opacity $transition-duration
+.grow-enter, .grow-leave-to
+  transform: scale(0.4)
+  opacity: 0

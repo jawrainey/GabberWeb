@@ -27,7 +27,7 @@ article.media.comment
 <script>
 import { ADD_COMMENTS, REMOVE_COMMENT } from '@/const/mutations'
 import ApiWorkerMixin from '@/mixins/ApiWorker'
-import MemberBubble from '@/components/utils/MemberBubble'
+import MemberBubble from '@/components/member/MemberBubble'
 import CommentSection from './CommentSection'
 
 const NEST_LIMIT = 3

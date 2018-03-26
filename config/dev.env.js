@@ -4,6 +4,6 @@ const prodEnv = require('./prod.env')
 
 module.exports = merge(prodEnv, {
   NODE_ENV: '"development"',
-  MOCK_API: 'false',
+  MOCK_API: 'true',
   API_URL: '"http://localhost:5000/api"'
 })

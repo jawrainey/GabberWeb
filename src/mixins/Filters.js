@@ -12,14 +12,18 @@ export default {
     queryRegex (query) {
       return new RegExp(query, 'gi')
     },
-    topicsFilter (filterIds, ids) {
-      return filterIds.length === 0 ||
-        ids.some(id => filterIds.includes(id))
-    },
     queryFilter (query, strings) {
       if (query === '') return true
       let regex = this.queryRegex(query)
       return strings.some(str => regex.test(str))
+    },
+    idListAndFilter (filterIds, ids) {
+      return filterIds.length === 0 ||
+        filterIds.every(id => ids.includes(id))
+    },
+    idListOrFilter (filterIds, ids) {
+      return filterIds.length === 0 ||
+        ids.some(id => filterIds.includes(id))
     },
     modelSorter (mode) {
       return (a, b) => {

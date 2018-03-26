@@ -1,6 +1,10 @@
 <template lang="pug">
 .annotation-filters
   h3.subtitle Filter Annotations
+  sort-field(
+    :value="sortMode",
+    @input="v => $emit('update:sortMode', v)"
+  )
   .field
     label.label By message
     input.input.is-small(
@@ -19,30 +23,46 @@
       @select="selectTopic(topic)",
       @deselect="deselectTopic(topic)"
     )
-  sort-field(
-    :value="sortMode",
-    @input="v => $emit('update:sortMode', v)"
-  )
+  .field
+    label.label By participants
+    .bubble-list.is-multiline.is-size-3
+      member-option(
+        v-for="member in uniqueAnnotators",
+        :key="member.id",
+        :member="member",
+        :selected="members.includes(member.user_id)",
+        @select="selectMember(member)",
+        @deselect="deselectMember(member)"
+      )
 </template>
 
 <script>
 import ColorGeneratorMixin from '@/mixins/ColorGenerator'
 import TopicOption from '@/components/topic/TopicOption'
+import MemberOption from '@/components/member/MemberOption'
 import SortField from '@/components/utils/SortField'
 
 export default {
   mixins: [ ColorGeneratorMixin ],
-  components: { TopicOption, SortField },
+  components: { TopicOption, MemberOption, SortField },
   props: {
     session: { type: Object, required: true },
+    annotations: { type: Array, required: true },
     query: { type: String, required: true },
     topics: { type: Array, required: true },
+    members: { type: Array, required: true },
     sortMode: { type: String, required: true }
   },
   computed: {
     uniqueTopics () {
       return this.session.topics.filter((topic, index) =>
         index === this.session.topics.findIndex(t => t.topic_id === topic.topic_id)
+      )
+    },
+    uniqueAnnotators () {
+      let members = this.annotations.map(a => a.creator)
+      return members.filter((member, index) =>
+        index === members.findIndex(m => m.user_id === member.user_id)
       )
     }
   },
@@ -55,8 +75,13 @@ export default {
         tId !== topic.topic_id
       ))
     },
-    toggleTopic (topic) {
-      console.log('toggle', topic)
+    selectMember (member) {
+      this.$emit('update:members', this.members.concat([ member.user_id ]))
+    },
+    deselectMember (member) {
+      this.$emit('update:members', this.members.filter(uId =>
+        uId !== member.user_id
+      ))
     }
   }
 }

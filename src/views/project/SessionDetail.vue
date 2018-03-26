@@ -10,8 +10,10 @@ full-layout.session-detail(v-else-if="session")
   annotation-filters(
     slot="left",
     :session="session",
+    :annotations="annotations",
     :query.sync="query"
     :topics.sync="topicFilters",
+    :members.sync="memberFilters",
     :sortMode.sync="sortMode"
   )
   .main(slot="main")
@@ -148,6 +150,7 @@ export default {
     focusedAnnotation: null,
     query: '',
     topicFilters: [],
+    memberFilters: [],
     sortMode: 'newest'
   }),
   created () {
@@ -181,8 +184,10 @@ export default {
         let topicFilters = this.topicFilters.map(id =>
           this.session.topics.find(t => t.topic_id === id)
         )
+        let userIds = [ annotation.creator.user_id ]
         return this.queryFilter(this.query, searchKeys) &&
-          this.annotationTopicFilters(topicFilters, annotation)
+          this.annotationTopicFilters(topicFilters, annotation) &&
+          this.idListOrFilter(this.memberFilters, userIds)
       }).sort(this.modelSorter(this.sortMode))
     }
   },

@@ -43,29 +43,33 @@ full-layout(v-else-if="project && user")
       project-pill(:project="project", readonly)
     
     .field
-      label.label 3. This is how you'll appear
-      .user-appearance-field
-        transition(name="fade", mode="out-in")
-          p.is-size-4(v-if="consent !== 'none'")
-            member-bubble(:member="user", use-id)
-          blockquote.blockquote.is-size-5(v-else)
-            | You will not show up in Gabber around this session
-    
-    .field
-      label.label 4. These are your consent options
+      label.label 3. These are your consent options
       .box.consent-control.is-size-5
         label
           input(type="radio", v-model="consent", value="none")
           strong None
-          span – You will be removed from the project and only the other participants can listen.
+          span – Only the people in this conversation will be able to hear this recording.
         label(v-if="project.privacy === 'private'")
           input(type="radio", v-model="consent", value="private")
           strong Private
-          span – Only members of the project can see or listen to the recording.
+          span – Only people who are members of the project can find or listen to this recording.
         label
           input(type="radio", v-model="consent", value="public")
           strong Public
-          span – Anyone on Gabber can discover and listen to the audio
+          span – Anyone on Gabber can discover and listen to this audio
+    
+    .field
+      label.label 4. What this means
+      .user-appearance-field
+        .columns
+          .column
+            label-value(label="How you appear")
+              member-bubble.is-size-4(v-if="consent !== 'none'", :member="user", use-id)
+              blockquote.blockquote(v-else)
+                | You will not show up in Gabber
+          .column
+            label-value(label="Who has access")
+              ol: li(v-for="person in whoHasAccess", v-text="person")
     
     .field
       .buttons.is-centered
@@ -85,7 +89,7 @@ import LoadingFullLayout from '@/layouts/LoadingFullLayout'
 import Loading from '@/components/utils/Loading'
 import Message from '@/components/utils/Message'
 import LabelValue from '@/components/utils/LabelValue'
-import MemberBubble from '@/components/utils/MemberBubble'
+import MemberBubble from '@/components/member/MemberBubble'
 
 import ProjectPill from '@/components/project/ProjectPill'
 import AudioPlayer from '@/components/audio/AudioPlayer'
@@ -105,6 +109,17 @@ export default {
     sessionRoute () {
       let params = { project_id: this.project.id, session_id: this.session.id }
       return { name: SESSION_DETAIL_ROUTE, params }
+    },
+    whoHasAccess () {
+      let people = [
+        'The interviewer',
+        'Participants in this conversation'
+      ]
+      if (this.consent === 'none') return people
+      people.push('Members of this project')
+      if (this.consent === 'private') return people
+      people.push('Anyone on Gabber')
+      return people
     }
   },
   watch: {
@@ -185,5 +200,9 @@ export default {
       display: block
       > strong
         padding: 0 0.3em
+  
+  .user-appearance-field
+    ol li
+      margin-left: 1em
 
 </style>

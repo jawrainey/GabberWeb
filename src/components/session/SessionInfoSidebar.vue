@@ -26,7 +26,7 @@
 <script>
 import moment from 'moment-mini'
 
-import MemberBubble from '@/components/utils/MemberBubble'
+import MemberBubble from '@/components/member/MemberBubble'
 import LabelValue from '@/components/utils/LabelValue'
 
 export default {

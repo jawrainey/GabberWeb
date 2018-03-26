@@ -36,7 +36,7 @@ import { REMOVE_ANNOTATION } from '@/const/mutations'
 import ApiWorkerMixin from '@/mixins/ApiWorker'
 import ColorGeneratorMixin from '@/mixins/ColorGenerator'
 
-import MemberBubble from '@/components/utils/MemberBubble'
+import MemberBubble from '@/components/member/MemberBubble'
 import CommentSection from '@/components/comment/CommentSection'
 import { mapGetters } from 'vuex'
 

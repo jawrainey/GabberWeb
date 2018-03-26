@@ -109,15 +109,15 @@ export default {
     
     > .layout-left
       +panel-common
-      background-color: $grey-darker
+      background-color: $background
       grid-area: left
-      border-right: 1px solid $grey-dark
+      border-right: 1px solid $border
     
     > .layout-right
       +panel-common
-      background-color: $grey-darker
+      background-color: $background
       grid-area: right
-      border-left: 1px solid $grey-dark
+      border-left: 1px solid $border
 
 +touch
   .full-layout

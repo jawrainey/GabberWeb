@@ -53,7 +53,8 @@ const PLAYER_CONFIG = {
   scrollParent: true,
   minPxPerSec: 0,
   normalize: true,
-  responsive: true
+  responsive: true,
+  height: 84
 }
 
 export const PlayerState = {
@@ -210,6 +211,8 @@ export default {
 
 <style lang="sass">
 
+$player-height: 84px
+
 .audio-player
   
   .controls
@@ -222,7 +225,7 @@ export default {
       padding: 0 0.5em
   
   .player-wrapper
-    height: 128px
+    height: $player-height
     position: relative
     
     .player
@@ -233,7 +236,7 @@ export default {
     left: 0
     right: 0
     bottom: 0
-    line-height: 128px
-    height: 128px
+    line-height: $player-height
+    height: $player-height
 
 </style>

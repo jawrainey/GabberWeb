@@ -15,7 +15,7 @@
 <script>
 export default {
   props: {
-    label: { type: String, default: 'Sort By' },
+    label: { type: String, default: 'Sort by' },
     value: { type: String, required: true }
   },
   data: () => ({

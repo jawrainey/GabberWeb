@@ -10,7 +10,7 @@
       )
       span {{ project.creator.fullname }}
   label-value(label="Project Members")
-    .bubble-list
+    .bubble-list.is-multiline
       member-bubble.is-size-6(
         v-for="member in project.members",
         :key="member.id",
@@ -22,7 +22,7 @@
 <script>
 import moment from 'moment-mini'
 
-import MemberBubble from '@/components/utils/MemberBubble'
+import MemberBubble from '@/components/member/MemberBubble'
 import LabelValue from '@/components/utils/LabelValue'
 
 export default {

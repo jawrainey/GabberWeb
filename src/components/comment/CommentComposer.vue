@@ -27,7 +27,7 @@ article.comment-composer.media(v-if="user")
 <script>
 import { ADD_COMMENTS } from '@/const/mutations'
 import ApiWorkerMixin from '@/mixins/ApiWorker'
-import MemberBubble from '@/components/utils/MemberBubble'
+import MemberBubble from '@/components/member/MemberBubble'
 import Message from '@/components/utils/Message'
 
 export default {

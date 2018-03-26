@@ -26,7 +26,7 @@ import { SESSION_LIST_ROUTE } from '@/const/routes'
 import ProjectPropMixin from '@/mixins/ProjectProp'
 
 import LabelValue from '@/components/utils/LabelValue'
-import MemberBubble from '@/components/utils/MemberBubble'
+import MemberBubble from '@/components/member/MemberBubble'
 
 export default {
   mixins: [ ProjectPropMixin ],

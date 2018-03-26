@@ -1,10 +1,11 @@
 <template lang="pug">
-.session-pill.box(@click="$emit('view', session)")
+.session-pill.box(@click="$emit('view', session)", :style="pillStyle")
   fa.disclosure(icon="chevron-right", size="2x")
   .columns.is-multiline.is-mobile
     .column.is-half-mobile.is-third-tablet
       h1.title.main-title.is-4
-        fa(icon="microphone")
+        member-bubble.is-size-3(:member="session.creator", pad-right)
+          fa.mic-icon(icon="microphone", size="lg")
         span {{ ' ' + session.creator.fullname }}
       label-value(label="Participants")
         .bubble-list
@@ -31,16 +32,24 @@
 
 <script>
 import moment from 'moment-mini'
+import { ColorGenerator } from '@/mixins'
 import LabelValue from '@/components/utils/LabelValue'
-import MemberBubble from '@/components/utils/MemberBubble'
+import IconBubble from '@/components/utils/IconBubble'
+import MemberBubble from '@/components/member/MemberBubble'
 
 export default {
-  components: { LabelValue, MemberBubble },
+  mixins: [ ColorGenerator ],
+  components: { LabelValue, IconBubble, MemberBubble },
   props: {
     session: { type: Object, required: true },
     topicLimit: { type: Number, default: 3 }
   },
   computed: {
+    pillStyle () {
+      return {
+        'border-left-color': this.colorFromId(this.session.creator.user_id)
+      }
+    },
     formatedDate () {
       return moment(this.session.created_on).format('do MMM Y')
     },
@@ -63,6 +72,21 @@ export default {
   transition: border-color 0.3s, transform 0.3s
   padding-right: 3rem
   
+  // .session-icon
+  //   position: relative
+  //
+  //   > .mic-icon
+  //     position: absolute
+  //     background: white
+  //     width: 2em
+  //     height: 2em
+  //     border-radius: 1em
+  //     color: $grey-dark
+  //     padding: 0.25rem
+  //     font-size: 0.45em
+  //     right: 0
+  //     bottom: -50%
+  
   &:not(:last-child)
     margin-bottom: 1em
   
@@ -74,8 +98,9 @@ export default {
   
   +desktop
     &:hover
-      border-left-color: $primary
       transform: translateX(2px)
+    &:not(:hover)
+      border-left-color: $grey-light !important
   
   +mobile
     .label-value.num-annotations
