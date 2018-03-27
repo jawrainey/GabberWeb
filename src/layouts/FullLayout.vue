@@ -1,19 +1,20 @@
 <template lang="pug">
 .full-layout(:class="typeClass")
   site-header(:full-width="true")
-  //- nav.mobile-controls
-    .columns.is-gapless.is-mobile
-      .column.is-narrow
-        button.button.is-link(@click="toggleMobileLeft") L
-      .column
-      .column.is-narrow
-        button.button.is-link(@click="toggleMobileRight") R
-  aside.layout-left(v-if="$slots.left", :class="leftClasses")
-    slot(name="left")
-  main.layout-main
-    slot(name="main")
-  aside.layout-right(v-if="$slots.right", :class="rightClasses")
-    slot(name="right")
+  .full-items
+    //- nav.mobile-controls
+      .columns.is-gapless.is-mobile
+        .column.is-narrow
+          button.button.is-link(@click="toggleMobileLeft") L
+        .column
+        .column.is-narrow
+          button.button.is-link(@click="toggleMobileRight") R
+    aside.layout-left(v-if="$slots.left", :class="leftClasses")
+      slot(name="left")
+    main.layout-main
+      slot(name="main")
+    aside.layout-right(v-if="$slots.right", :class="rightClasses")
+      slot(name="right")
 </template>
 
 <script>
@@ -71,55 +72,43 @@ export default {
 
 <style lang="sass">
 
-=padded-panel
-  padding: 0.5em 1em
-
 =panel-common
+  padding: 0.5em 1em
+  max-height: 100%
   overflow-y: auto
   -webkit-overflow-scrolling: touch
-  +padded-panel
 
 +desktop
   .full-layout
-    display: grid
+    display: flex
+    flex-direction: column
     height: 100vh
-    grid-template-rows: 64px auto
+    
+    > .full-items
+      flex: 1
+      display: flex
+      
+      > .layout-main
+        +panel-common
+        flex: 0.8
+      
+      > .layout-left
+        +panel-common
+        flex: 0.2
+        border-right: 1px solid $border
+        background-color: $background
+      
+      > .layout-right
+        +panel-common
+        flex: 0.2
+        border-left: 1px solid $border
+        background-color: $background
+      
+    &.left-main-right .full-items
+      > .layout-main
+        flex: 0.6
 
-    &.left-main-right
-      grid-template-columns: 3fr 8fr 3fr
-      grid-template-areas: 'header header header' 'left main right'
-    &.left-main
-      grid-template-columns: 3fr 11fr
-      grid-template-areas: 'header header' 'left main'
-    &.main-right
-      grid-template-columns: 11fr 3fr
-      grid-template-areas: 'header header' 'main right'
-    &.only-main
-      grid-template-areas: 'header' 'main'
-    
-    > .mobile-controls
-      display: none
-
-    > header
-      grid-area: header
-    
-    > .layout-main
-      +panel-common
-      grid-area: main
-    
-    > .layout-left
-      +panel-common
-      background-color: $background
-      grid-area: left
-      border-right: 1px solid $border
-    
-    > .layout-right
-      +panel-common
-      background-color: $background
-      grid-area: right
-      border-left: 1px solid $border
-
-+touch
+// +touch
   .full-layout
     position: relative
     

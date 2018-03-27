@@ -1,10 +1,13 @@
 <template lang="pug">
 .annotation-filters
-  h3.subtitle Filter Annotations
+  h3.subtitle Sort Annotations
   sort-field(
     :value="sortMode",
-    @input="v => $emit('update:sortMode', v)"
+    @input="v => $emit('update:sortMode', v)",
+    label=""
   )
+  hr
+  h3.subtitle Filter Annotations
   .field
     label.label By message
     input.input.is-small(

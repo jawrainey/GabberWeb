@@ -1,10 +1,13 @@
 <template lang="pug">
 .session-filters
-  h3.subtitle Filter Gabbers
+  h3.subtitle Sort Gabbers
   sort-field(
     :value="sortMode",
-    @input="v => $emit('update:sortMode', v)"
+    @input="v => $emit('update:sortMode', v)",
+    label=""
   )
+  hr
+  h3.subtitle Filter Gabbers
   .field
     label.label By name
     input.input.is-small(

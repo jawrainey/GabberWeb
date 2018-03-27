@@ -120,7 +120,8 @@ export const make = {
       annotation_id: annotationId,
       parent_id: parentId,
       replies: makeIds(pickBetween(0, 2)),
-      user_id: pickBetween(1, 10)
+      user_id: pickBetween(1, 10),
+      is_active: 1
     })
   },
   detailedAnnotation (id, ...args) {

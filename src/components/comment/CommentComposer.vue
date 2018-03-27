@@ -67,6 +67,9 @@ export default {
       if (meta.success) {
         this.content = ''
         this.$store.commit(ADD_COMMENTS, [ data ])
+        if (this.parent) {
+          this.parent.replies.push(data.id)
+        }
       }
       
       this.endApiWork(meta, 'Could not make comment, please try again')

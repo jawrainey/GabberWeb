@@ -101,6 +101,7 @@ export default {
 
 .draggable-elem
   cursor: grab
+  user-select: none
   &.is-active
     box-shadow: 0 0 10px black
     cursor: grabbing

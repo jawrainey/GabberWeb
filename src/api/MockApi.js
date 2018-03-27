@@ -183,8 +183,8 @@ export default class MockApi extends ApiInterface {
    */
   async getChildComments (projectId, sessionId, annotationId, commentId) {
     const from = mockIds.comment
-    const pageSize = { from, to: from + 5 }
-    mockIds.comment += 5
+    const pageSize = { from, to: from + 2 }
+    mockIds.comment += 2
     return this.mock(
       makeList(pageSize, make.comment, annotationId, commentId)
     )

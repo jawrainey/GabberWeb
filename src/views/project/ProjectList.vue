@@ -2,6 +2,7 @@
 full-layout.project-list-view
   section.filter(slot="left")
     h2.subtitle Filter Projects
+    sort-field(v-model="sortMode")
     .field
       label.label Search for a project
       input.input.is-small(
@@ -9,7 +10,6 @@ full-layout.project-list-view
         v-model="query",
         placeholder="e.g. name / member / topic"
       )
-    sort-field(v-model="sortMode", label="Sort By")
   
   .main(slot="main")
     .columns.is-mobile

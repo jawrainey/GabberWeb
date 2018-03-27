@@ -67,7 +67,7 @@ full-layout.session-detail(v-else-if="session")
             h1.title Annotations
         .level-right
           add-cancel-button.is-medium(
-            v-if="currentUser",
+            v-if="currentUser && audioDuration",
             @click="toggleNewAnnotation",
             :toggled="!!newAnnotation",
             :disabled="apiInProgress || isCreatingAnnotation"

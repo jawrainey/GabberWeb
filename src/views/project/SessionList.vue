@@ -93,8 +93,8 @@ export default {
         ]
         
         return this.queryFilter(this.query, queryValues) &&
-          this.idListAndFilter(this.filterTopics, topicIds) &&
-          this.idListAndFilter(this.filterMembers, participantIds)
+          this.idListOrFilter(this.filterTopics, topicIds) &&
+          this.idListOrFilter(this.filterMembers, participantIds)
       }).sort(this.modelSorter(this.sortMode))
     }
   },

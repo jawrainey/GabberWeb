@@ -4,7 +4,7 @@
     label-value.is-marginless(label="Description", :value="project.description")
   .column.members
     label-value.is-marginless(label="Members")
-      .bubble-list
+      .bubble-list.is-multiline
         member-bubble(
           v-for="member in project.members",
           :key="member.id",

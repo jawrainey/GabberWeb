@@ -2,7 +2,7 @@
 .field.sorting-field
   label.label {{ label }}
   .buttons.has-addons
-    button.button.no-focus-effects.is-small(
+    button.button.no-focus-effects(
       v-for="mode in sortModes",
       @click="setMode(mode)",
       :class="modeClasses(mode)"
@@ -20,8 +20,8 @@ export default {
   },
   data: () => ({
     sortModes: [
-      { value: 'newest', label: 'Newest First', _icon: 'sort-numeric-down' },
-      { value: 'oldest', label: 'Oldest First', _icon: 'sort-numeric-up' }
+      { value: 'newest', label: 'Newest', icon: 'star' },
+      { value: 'oldest', label: 'Oldest', icon: 'clock' }
     ]
   }),
   methods: {

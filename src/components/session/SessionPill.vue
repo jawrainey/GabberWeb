@@ -1,5 +1,5 @@
 <template lang="pug">
-.session-pill.box(@click="$emit('view', session)", :style="pillStyle")
+.session-pill.box(@click.stop="$emit('view', session)", :style="pillStyle")
   fa.disclosure(icon="chevron-right", size="2x")
   .columns.is-multiline.is-mobile
     .column.is-half-mobile.is-third-tablet
@@ -8,7 +8,7 @@
           fa.mic-icon(icon="microphone", size="lg")
         span {{ ' ' + session.creator.fullname }}
       label-value(label="Participants")
-        .bubble-list
+        .bubble-list.is-multiline
           member-bubble(
             v-for="member in session.participants",
             :key="member.id",
