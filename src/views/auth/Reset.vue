@@ -13,7 +13,8 @@ box-layout
           input.input(
             type="password",
             v-model="password",
-            @keyup.enter="resetPassword"
+            @keyup.enter="resetPassword",
+            placeholder="e.g. ••••••••"
           )
         .control
           button.button.is-success(
