@@ -1,7 +1,7 @@
 <template lang="pug">
 .full-layout(:class="typeClass")
   site-header(:full-width="true")
-  .full-items
+  .full-layout-items
     //- nav.mobile-controls
       .columns.is-gapless.is-mobile
         .column.is-narrow
@@ -72,8 +72,11 @@ export default {
 
 <style lang="sass">
 
-=panel-common
+=padded-panel
   padding: 0.5em 1em
+  
+=panel-common
+  +padded-panel
   max-height: 100%
   overflow-y: auto
   -webkit-overflow-scrolling: touch
@@ -84,7 +87,7 @@ export default {
     flex-direction: column
     height: 100vh
     
-    > .full-items
+    > .full-layout-items
       flex: 1
       display: flex
       
@@ -104,42 +107,44 @@ export default {
         border-left: 1px solid $border
         background-color: $background
       
-    &.left-main-right .full-items
+    &.left-main-right .full-layout-items
       > .layout-main
         flex: 0.6
 
-// +touch
++touch
   .full-layout
-    position: relative
+    // position: relative
     
-    .mobile-controls
+    // .mobile-controls
       padding: 0.5em 0
       
       .button
         border-radius: 0
         font-size: 1.6rem
     
-    > .layout-main
-      +padded-panel
-    
-    > .layout-left
-      +padded-panel
-      &:not(.mobile-show)
-        display: none
-      &.mobile-show
-        position: absolute
-        left: 0
-        top: 0
-        right: 3em
-    
-    > .layout-right
-      +padded-panel
-      &:not(.mobile-show)
-        display: none
-      &.mobile-show
-        position: absolute
-        left: 3em
-        top: 0
-        right: 0
+    > .full-layout-items
+      
+      > .layout-main
+        +padded-panel
+      
+      > .layout-left
+        +padded-panel
+        &:not(.mobile-show)
+          display: none
+        &.mobile-show
+          position: absolute
+          left: 0
+          top: 0
+          right: 3em
+      
+      > .layout-right
+        +padded-panel
+        &:not(.mobile-show)
+          display: none
+        &.mobile-show
+          position: absolute
+          left: 3em
+          top: 0
+          right: 0
     
 </style>
