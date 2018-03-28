@@ -9,7 +9,8 @@ build_img:
   script:
     - if [ -z "$CI_COMMIT_TAG" ]; then exit 0; fi
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
-    - set VERSION=`echo "$CI_COMMIT_TAG" | sed -r -e "s/^v(.*)/\1/g"`
+    - export VERSION=`echo "$CI_COMMIT_TAG" | sed -r -e "s/^v(.*)/\1/g"`
+    - echo "Building image $CI_REGISTRY_IMAGE:$VERSION"
     - docker pull "$CI_REGISTRY_IMAGE"
     - docker build -t "$CI_REGISTRY_IMAGE:$VERSION" .
     - docker push "$CI_REGISTRY_IMAGE:$VERSION"
