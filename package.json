@@ -19,7 +19,7 @@
     "build": "node build/build.js",
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "lint": "eslint --ext .js,.vue src",
-    "postversion": "node tools/buildImage.js latest",
+    "x_postversion": "node tools/buildImage.js latest",
     "start": "npm run dev"
   },
   "dependencies": {
