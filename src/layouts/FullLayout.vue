@@ -143,7 +143,6 @@ export default {
   +sidebar-panel
   position: absolute
   width: calc(100vw - 1em)
-  // height: calc(100vh - 6em)
   top: 1em
   bottom: 0
   transition: $transition left, $transition right, $transition box-shadow
@@ -180,6 +179,7 @@ export default {
         top: 0
         bottom: 0
         overflow: auto
+        -webkit-overflow-scrolling: touch
         padding: 1em
       
       > .layout-left
