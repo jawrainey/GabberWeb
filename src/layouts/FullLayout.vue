@@ -1,14 +1,28 @@
 <template lang="pug">
 .full-layout(:class="typeClass")
   site-header(:full-width="true")
+  nav.mobile-controls(v-if="hasMobileControls")
+    .columns.is-gapless.is-mobile
+      .column.is-narrow
+        button.button.is-dark.no-focus-effects(
+          v-if="this.$slots.mobileLeft",
+          @click="toggleMobileLeft"
+        )
+          slot(v-if="mobileMode !== 'left'", name="mobileLeft")
+          template(v-else)
+            span.icon: fa(icon="arrow-left")
+            span Close
+      .column
+      .column.is-narrow
+        button.button.is-dark.no-focus-effects(
+          v-if="this.$slots.mobileRight",
+          @click="toggleMobileRight"
+        )
+          slot(v-if="mobileMode !== 'right'", name="mobileRight")
+          template(v-else)
+            span Close
+            span.icon: fa(icon="arrow-right")
   .full-layout-items
-    //- nav.mobile-controls
-      .columns.is-gapless.is-mobile
-        .column.is-narrow
-          button.button.is-link(@click="toggleMobileLeft") L
-        .column
-        .column.is-narrow
-          button.button.is-link(@click="toggleMobileRight") R
     aside.layout-left(v-if="$slots.left", :class="leftClasses")
       slot(name="left")
     main.layout-main
@@ -29,6 +43,12 @@ const MobileMode = {
 
 export default {
   components: { SiteHeader, SiteFooter },
+  // props: {
+  //   mobileLeftIcon: { type: String, default: null },
+  //   mobileLeftText: { type: String, default: null },
+  //   mobileRightIcon: { type: String, default: null },
+  //   mobileRightText: { type: String, default: null }
+  // },
   data () {
     return { typeClass: this.calcTypeClass(), mobileMode: MobileMode.SHOW_MAIN }
   },
@@ -41,6 +61,9 @@ export default {
     },
     rightClasses () {
       return { 'mobile-show': this.mobileMode === MobileMode.SHOW_RIGHT }
+    },
+    hasMobileControls () {
+      return this.$slots.mobileLeft || this.$slots.mobileRight
     }
   },
   methods: {
@@ -81,7 +104,14 @@ export default {
   overflow-y: auto
   -webkit-overflow-scrolling: touch
 
+=sidebar-panel
+  +panel-common
+  background-color: $background
+
 +desktop
+  .mobile-controls
+    display: none
+  
   .full-layout
     display: flex
     flex-direction: column
@@ -96,55 +126,74 @@ export default {
         flex: 0.8
       
       > .layout-left
-        +panel-common
+        +sidebar-panel
         flex: 0.2
         border-right: 1px solid $border
-        background-color: $background
       
       > .layout-right
-        +panel-common
+        +sidebar-panel
         flex: 0.2
         border-left: 1px solid $border
-        background-color: $background
       
     &.left-main-right .full-layout-items
       > .layout-main
         flex: 0.6
 
+=mobile-panel
+  +sidebar-panel
+  position: absolute
+  width: calc(100vw - 1em)
+  // height: calc(100vh - 6em)
+  top: 1em
+  bottom: 0
+  transition: $transition left, $transition right, $transition box-shadow
+  z-index: 10
+  box-shadow: 0 0 0 transparent
+  
+  &.mobile-show
+    box-shadow: 0 0 15px black
+
 +touch
   .full-layout
-    // position: relative
+    overflow: hidden
+    height: 100vh
+    display: flex
+    flex-direction: column
     
-    // .mobile-controls
-      padding: 0.5em 0
+    .mobile-controls
+      padding: 0.7em
+      background-color: lighten($background, 7%)
+      border-bottom: 1px solid $border
       
       .button
-        border-radius: 0
-        font-size: 1.6rem
+        font-size: 1.1rem
+        text-decoration: none
     
     > .full-layout-items
+      position: relative
+      flex: 1
       
       > .layout-main
-        +padded-panel
+        position: absolute
+        left: 0
+        right: 0
+        top: 0
+        bottom: 0
+        overflow: auto
+        padding: 1em
       
       > .layout-left
-        +padded-panel
+        +mobile-panel
         &:not(.mobile-show)
-          display: none
+          left: -100vw
         &.mobile-show
-          position: absolute
           left: 0
-          top: 0
-          right: 3em
       
       > .layout-right
-        +padded-panel
+        +mobile-panel
         &:not(.mobile-show)
-          display: none
+          right: -100vw
         &.mobile-show
-          position: absolute
-          left: 3em
-          top: 0
           right: 0
     
 </style>

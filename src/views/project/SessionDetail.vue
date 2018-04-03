@@ -16,6 +16,9 @@ full-layout.session-detail(v-else-if="session")
     :members.sync="memberFilters",
     :sortMode.sync="sortMode"
   )
+  template(slot="mobileLeft")
+    span.icon: fa(icon="filter")
+    span Filter
   .main(slot="main")
     breadcrumbs
     h1.title {{ session.creator.fullname }}'s Gabber
@@ -25,7 +28,6 @@ full-layout.session-detail(v-else-if="session")
         ref="audioPlayer",
         :session="session",
         @progress="onProgress",
-        @seek="onSeek",
         @ready="setAudioDuration"
       )
         transition(name="fade")
@@ -103,6 +105,10 @@ full-layout.session-detail(v-else-if="session")
     slot="right",
     :session="session"
   )
+  
+  template(slot="mobileRight")
+    span.icon: fa(icon="info")
+    span Gabber info
 </template>
 
 <script>
@@ -222,11 +228,6 @@ export default {
         this.audioProgress = progress
       }
     },
-    onSeek (progress) {
-      // if (this.newAnnotation) {
-      //   this.newAnnotation.start_interval = Math.round(progress)
-      // }
-    },
     pickTopic (topic) {
       // Seek to that point, plus a tiny bit because of float maths
       this.seekTo(topic.start_interval + 0.01)
@@ -250,18 +251,14 @@ export default {
       if (start) {
         this.newAnnotation.start_interval = Math.min(
           this.newAnnotation.end_interval - 0.5,
-          Math.max(
-            this.newAnnotation.start_interval + ratio * start,
-            0
-          )
+          Math.max(0, this.newAnnotation.start_interval + ratio * start)
         )
       }
       if (end) {
         this.newAnnotation.end_interval = Math.max(
           this.newAnnotation.start_interval + 0.5,
           Math.min(
-            this.newAnnotation.end_interval + ratio * end,
-            this.audioDuration
+            this.audioDuration, this.newAnnotation.end_interval + ratio * end
           )
         )
       }
@@ -272,7 +269,6 @@ export default {
         return
       }
       
-      // this.$refs.audioPlayer.pause()
       this.newAnnotation = {
         creator: this.currentUser,
         content: '',

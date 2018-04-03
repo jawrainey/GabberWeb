@@ -7,7 +7,7 @@
         member-bubble.is-size-3(:member="session.creator", pad-right)
           fa.mic-icon(icon="microphone", size="lg")
         span {{ ' ' + session.creator.fullname }}
-      label-value(label="Participants")
+      label-value.is-hidden-mobile(label="Participants")
         .bubble-list.is-multiline
           member-bubble(
             v-for="member in session.participants",

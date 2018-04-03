@@ -55,8 +55,8 @@ export default {
       if (this.showReplies) {
         return this.numReplies > 0 ? 'Collapse' : 'Cancel'
       } else {
-        let plural = this.numReplies === 1 ? 'reply' : 'Replies'
-        return this.numReplies > 0 ? `${this.numReplies} ${plural}` : `Add a Reply`
+        let plural = this.numReplies === 1 ? 'reply' : 'replies'
+        return this.numReplies > 0 ? `${this.numReplies} ${plural}` : `Add a reply`
       }
     },
     replies () {

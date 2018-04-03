@@ -3,7 +3,7 @@
   .controls
     .columns.is-mobile.is-gapless
       .column
-        p.has-text-right.is-time {{ current }}
+        p.has-text-left.is-time {{ current }}
       .column.is-narrow
         .buttons
           circle-button.is-link.no-focus-effects(
@@ -11,7 +11,7 @@
             @click="backwards",
             :disabled="!canPlay"
           )
-          circle-button.is-link.is-large.no-focus-effects(
+          circle-button.is-link.is-medium.no-focus-effects(
             :icon="toggleIcon",
             @click="toggle",
             :disabled="!canPlay"
@@ -22,7 +22,7 @@
             :disabled="!canPlay"
           )
       .column
-        p.has-text-left.is-time {{ remaining }}
+        p.has-text-right.is-time {{ remaining }}
   .player-wrapper
     template(v-if="!canPlay")
       .loading.has-text-centered.is-size-3(v-if="!failed")
@@ -221,9 +221,10 @@ $player-height: 84px
     
     .is-time
       line-height: 3.5rem
-      font-size: 1.5rem
       color: $grey-light
-      padding: 0 0.5em
+      
+      +tablet
+        font-size: 1.5rem
   
   .player-wrapper
     height: $player-height

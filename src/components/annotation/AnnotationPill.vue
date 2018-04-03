@@ -64,11 +64,11 @@ export default {
   computed: {
     ...mapGetters(['currentUser']),
     commentTitle () {
-      if (this.showComments) return 'Hide Comments'
+      if (this.showComments) return 'Hide comments'
       switch (this.comments.length) {
         case 0: return 'Add a comment'
-        case 1: return `1 Comment`
-        default: return `${this.comments.length} Comments`
+        case 1: return `1 comment`
+        default: return `${this.comments.length} comments`
       }
     },
     comments () {

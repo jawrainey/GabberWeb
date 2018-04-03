@@ -26,7 +26,17 @@ full-layout(v-else-if="project && user")
         blockquote.blockquote This is the only personal information we will store about your conversation and it will never be made public.
       label-value(label="Name", :value="user.fullname")
       label-value(label="Email", :value="user.email")
-    
+  
+  template(slot="mobileLeft")
+    span.icon: fa(icon="user")
+    span Your info
+  
+  session-info-sidebar(slot="right", :session="session")
+  
+  template(slot="mobileRight")
+    span.icon: fa(icon="microphone")
+    span Gabber info
+  
   section.consent-view(slot="main")
     .has-text-centered
       .hero-body
@@ -75,8 +85,6 @@ full-layout(v-else-if="project && user")
       .buttons.is-centered
         button.button.is-success.is-medium(@click="submit", :disabled="apiInProgress")
           | Submit Consent
-    
-  session-info-sidebar(slot="right", :session="session")
 </template>
 
 <script>
@@ -192,8 +200,10 @@ export default {
     margin-bottom: 2em
     > .label
       font-size: $size-5
-    > .label + *
-      margin-left: 1em
+    
+    +desktop
+      > .label + *
+        margin-left: 1em
   
   .consent-control
     > label

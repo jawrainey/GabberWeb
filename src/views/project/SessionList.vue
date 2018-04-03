@@ -16,6 +16,11 @@ full-layout.session-list-view(v-else-if="project")
     :members.sync="filterMembers",
     :sortMode.sync="sortMode"
   )
+  
+  template(slot="mobileLeft")
+    span.icon: fa(icon="filter")
+    span Filter
+  
   template(slot="main")
     breadcrumbs
     h1.title.is-1 Gabbers
@@ -29,10 +34,15 @@ full-layout.session-list-view(v-else-if="project")
       p.is-size-5(slot="content")
         span(v-if="sessions.length === 0") There are no gabbers available right now, why not record one in the app?
         span(v-else) No gabbers matched your query, try tweaking it using in the sidebar.
+  
   project-info-sidebar(
     slot="right",
     :project="project"
   )
+  
+  template(slot="mobileRight")
+    span.icon: fa(icon="info")
+    span Project info
 </template>
 
 <script>

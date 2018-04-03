@@ -11,6 +11,10 @@ full-layout.project-list-view
         placeholder="e.g. name / member / topic"
       )
   
+  template(slot="mobileLeft")
+    span.icon: fa(icon="filter")
+    span Filter
+  
   .main(slot="main")
     .columns.is-mobile
       .column
