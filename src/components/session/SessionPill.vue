@@ -1,10 +1,10 @@
 <template lang="pug">
 .session-pill.box(@click.stop="$emit('view', session)", :style="pillStyle")
   fa.disclosure(icon="chevron-right", size="2x")
-  .columns.is-multiline.is-mobile
-    .column.is-half-mobile.is-third-tablet
+  .columns.is-multiline
+    .column.is-third-tablet
       h1.title.main-title.is-4
-        member-bubble.is-size-3(:member="session.creator", pad-right)
+        member-bubble(:member="session.creator", pad-right)
           fa.mic-icon(icon="microphone", size="lg")
         span {{ ' ' + session.creator.fullname }}
       label-value.is-hidden-mobile(label="Participants")
@@ -14,11 +14,11 @@
             :key="member.id",
             :member="member"
           )
-    .column.is-half-mobile.is-third-tablet
+    .column.is-third-tablet
       label-value.is-primary.created-on(
         label="Recorded", :value="session.created_on | longDate"
       )
-      label-value.is-primary.num-annotations(
+      label-value.is-primary.num-annotations.is-hidden-mobile(
         label="Annotations", :value="session.num_user_annotations"
       )
     .column.is-third-tablet
@@ -72,26 +72,14 @@ export default {
   transition: border-color 0.3s, transform 0.3s
   padding-right: 3rem
   
-  // .session-icon
-  //   position: relative
-  //
-  //   > .mic-icon
-  //     position: absolute
-  //     background: white
-  //     width: 2em
-  //     height: 2em
-  //     border-radius: 1em
-  //     color: $grey-dark
-  //     padding: 0.25rem
-  //     font-size: 0.45em
-  //     right: 0
-  //     bottom: -50%
-  
   &:not(:last-child)
     margin-bottom: 1em
   
   .main-title
     margin-bottom: 0.3em
+    
+    .member-bubble
+      font-size: 1.1em
   
   .label-value:last-child
     margin-bottom: 0
@@ -103,8 +91,8 @@ export default {
       border-left-color: $grey-light !important
   
   +mobile
-    .label-value.num-annotations
-      display: none
+    .label-value
+      margin-bottom: 0
   
   .disclosure
     position: absolute

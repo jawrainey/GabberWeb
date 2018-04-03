@@ -2,7 +2,7 @@
 header.site-header.hero
   nav.navbar(role="navigation", aria-label="main navigation")
     .navbar-brand
-      .navbar-item.is-size-3.has-text-weight-bold
+      .navbar-item.is-size-3-desktop.has-text-weight-bold
         router-link.has-text-white(:to="homeRoute") Gabber
       .navbar-burger(@click="toggleMobileNav", :class="menuClasses")
         span
@@ -74,7 +74,6 @@ export default {
 .site-header
   nav
     border-bottom: 1px solid $border
-    height: 63px
     z-index: 100
   
   +touch

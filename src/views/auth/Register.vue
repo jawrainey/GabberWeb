@@ -19,7 +19,7 @@ box-layout
       .field
         label.label Email
         input.input(
-          type="text",
+          type="email",
           v-model="email",
           @keyup.enter="register",
           placeholder="e.g. jim@example.com"

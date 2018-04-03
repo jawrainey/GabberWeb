@@ -16,7 +16,7 @@
         :member="member",
         pad-right
       )
-  .columns
+  .columns.is-mobile
     .column
       label-value(label="Topics", :value="session.topics.length")
     .column

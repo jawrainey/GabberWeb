@@ -72,7 +72,7 @@ $bumper-width: 14px
   position: absolute
   top: 0
   bottom: 0
-  z-index: 200
+  z-index: 50
   pointer-events: none
   
   &.is-disabled

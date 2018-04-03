@@ -9,6 +9,7 @@ loading-full-layout(
 full-layout.session-detail(v-else-if="session")
   annotation-filters(
     slot="left",
+    v-if="annotations.length > 0"
     :session="session",
     :annotations="annotations",
     :query.sync="query"

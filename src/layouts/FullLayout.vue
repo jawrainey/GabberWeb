@@ -1,7 +1,9 @@
 <template lang="pug">
 .full-layout(:class="typeClass")
-  site-header(:full-width="true")
-  nav.mobile-controls(v-if="hasMobileControls")
+  site-header(:full-width="true", ref="header")
+  nav.mobile-controls(
+    v-if="hasControls", :style="controlsStyles", ref="controls"
+  )
     .columns.is-gapless.is-mobile
       .column.is-narrow
         button.button.is-dark.no-focus-effects(
@@ -22,10 +24,10 @@
           template(v-else)
             span Close
             span.icon: fa(icon="arrow-right")
-  .full-layout-items
+  .full-layout-items(:style="itemsStyles")
     aside.layout-left(v-if="$slots.left", :class="leftClasses")
       slot(name="left")
-    main.layout-main
+    main.layout-main(@scroll="onScroll")
       slot(name="main")
     aside.layout-right(v-if="$slots.right", :class="rightClasses")
       slot(name="right")
@@ -43,14 +45,12 @@ const MobileMode = {
 
 export default {
   components: { SiteHeader, SiteFooter },
-  // props: {
-  //   mobileLeftIcon: { type: String, default: null },
-  //   mobileLeftText: { type: String, default: null },
-  //   mobileRightIcon: { type: String, default: null },
-  //   mobileRightText: { type: String, default: null }
-  // },
   data () {
-    return { typeClass: this.calcTypeClass(), mobileMode: MobileMode.SHOW_MAIN }
+    return {
+      typeClass: this.calcTypeClass(),
+      mobileMode: MobileMode.SHOW_MAIN,
+      scrollOffset: 0
+    }
   },
   updated () {
     this.typeClass = this.calcTypeClass()
@@ -62,9 +62,29 @@ export default {
     rightClasses () {
       return { 'mobile-show': this.mobileMode === MobileMode.SHOW_RIGHT }
     },
-    hasMobileControls () {
+    hasControls () {
       return this.$slots.mobileLeft || this.$slots.mobileRight
+    },
+    fixControls () {
+      let headerHeight = this.$refs.header && this.$refs.header.$el.offsetHeight
+      return this.scrollOffset >= (headerHeight || 99999)
+    },
+    controlsStyles () {
+      return this.fixControls
+        ? { position: 'fixed', left: 0, right: 0, top: 0, 'z-index': 200 }
+        : {}
+    },
+    itemsStyles () {
+      return this.fixControls && this.$refs.controls
+        ? { 'margin-top': `${this.$refs.controls.offsetHeight}px` }
+        : {}
     }
+  },
+  mounted () {
+    window.addEventListener('scroll', this.onScroll)
+  },
+  destroyed () {
+    window.removeEventListener('scroll', this.onScroll)
   },
   methods: {
     calcTypeClass () {
@@ -88,6 +108,9 @@ export default {
         [MobileMode.SHOW_MAIN]: MobileMode.SHOW_RIGHT
       }
       this.mobileMode = transitions[this.mobileMode]
+    },
+    onScroll (e) {
+      this.scrollOffset = e.currentTarget.scrollY
     }
   }
 }
@@ -141,49 +164,41 @@ export default {
 
 =mobile-panel
   +sidebar-panel
-  position: absolute
+  position: fixed
   width: calc(100vw - 1em)
-  top: 1em
+  top: 7rem
   bottom: 0
   transition: $transition left, $transition right, $transition box-shadow
   z-index: 10
   box-shadow: 0 0 0 transparent
   
   &.mobile-show
-    box-shadow: 0 0 15px black
+    box-shadow: 0 0 30px black
 
 +touch
   .full-layout
     overflow: hidden
-    height: 100vh
-    display: flex
-    flex-direction: column
     
     .mobile-controls
-      padding: 0.7em
+      padding: 0.4em 1em
       background-color: lighten($background, 7%)
       border-bottom: 1px solid $border
       
       .button
-        font-size: 1.1rem
+        font-size: 0.9rem
         text-decoration: none
+        &:hover
+          background-color: $dark
     
     > .full-layout-items
       position: relative
-      flex: 1
       
       > .layout-main
-        position: absolute
-        left: 0
-        right: 0
-        top: 0
-        bottom: 0
-        overflow: auto
-        -webkit-overflow-scrolling: touch
         padding: 1em
       
       > .layout-left
         +mobile-panel
+        border-top-right-radius: 0.5em
         &:not(.mobile-show)
           left: -100vw
         &.mobile-show
@@ -191,6 +206,7 @@ export default {
       
       > .layout-right
         +mobile-panel
+        border-top-left-radius: 0.5em
         &:not(.mobile-show)
           right: -100vw
         &.mobile-show
