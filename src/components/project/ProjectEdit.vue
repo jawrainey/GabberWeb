@@ -39,7 +39,6 @@
     .control.is-expanded(v-if="isOwner && deletable")
       button.button.is-danger.is-rounded(@click="$emit('delete')", :disabled="disabled")
         .icon: fa(icon="trash")
-        span Delete Project
         
     .control
       button.button.is-link.is-rounded(
