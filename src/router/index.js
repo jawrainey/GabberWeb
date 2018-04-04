@@ -22,3 +22,10 @@ export const router = new VueRouter({
     { path: '*', component: NotFound }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title
+    ? `${to.meta.title} · Gabber`
+    : `Gabber`
+  next()
+})

@@ -26,8 +26,8 @@
       @select="selectTopic(topic)",
       @deselect="deselectTopic(topic)"
     )
-  .field
-    label.label By participants
+  .field(v-if="uniqueAnnotators.length > 0")
+    label.label By annotator
     .bubble-list.is-multiline.is-size-3
       member-option(
         v-for="member in uniqueAnnotators",

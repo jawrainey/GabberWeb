@@ -142,7 +142,11 @@ export const make = {
     let session = make.session(1, 1, 1)
     session.participants.push({ user_id: CONSENT_USER_ID })
     return model('Consent', id, {
-      user: make.user(CONSENT_USER_ID),
+      user: {
+        ...make.user(CONSENT_USER_ID),
+        registered: true,
+        verified: true
+      },
       project: make.project(1, 'private'),
       session: session,
       consent: 'none'

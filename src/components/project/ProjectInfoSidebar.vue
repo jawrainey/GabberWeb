@@ -16,6 +16,7 @@
         :key="member.id",
         :member="member"
       )
+  label-value(label="Gabbers", :value="sessions.length")
 </template>
 
 <script>
@@ -25,7 +26,8 @@ import LabelValue from '@/components/utils/LabelValue'
 export default {
   components: { MemberBubble, LabelValue },
   props: {
-    project: { type: Object, required: true }
+    project: { type: Object, required: true },
+    sessions: { type: Array, required: true }
   }
 }
 </script>

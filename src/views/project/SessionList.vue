@@ -37,7 +37,8 @@ full-layout.session-list-view(v-else-if="project")
   
   project-info-sidebar(
     slot="right",
-    :project="project"
+    :project="project",
+    :sessions="sessions"
   )
   
   template(slot="mobileRight")

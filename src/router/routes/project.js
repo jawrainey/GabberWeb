@@ -19,7 +19,8 @@ export default [
       {
         path: '',
         name: ROUTES.PROJECT_LIST_ROUTE,
-        component: ProjectList
+        component: ProjectList,
+        meta: { title: 'Projects' }
       },
       {
         path: ':project_id',
@@ -36,14 +37,16 @@ export default [
               {
                 path: '',
                 name: ROUTES.SESSION_LIST_ROUTE,
-                component: SessionList
+                component: SessionList,
+                meta: { title: 'Sessions' }
               },
               {
                 path: ':session_id',
                 name: ROUTES.SESSION_DETAIL_ROUTE,
                 component: SessionDetail,
                 meta: {
-                  crumb: 'Gabber'
+                  crumb: 'Gabber',
+                  title: 'Session'
                 }
               }
             ]

@@ -9,7 +9,7 @@
       member-bubble.is-size-5.is-size-6-mobile(
         :member="annotation.creator", pad-right
       )
-      span.is-size-4
+      //- span.is-size-4
         | {{ annotation.creator.fullname }}
       button.button.is-text.timestamp(@click="$emit('chosen', annotation)")
         span.is-hidden-touch

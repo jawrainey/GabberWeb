@@ -11,22 +11,26 @@ export default [
   {
     path: '/login',
     name: ROUTES.LOGIN_ROUTE,
-    component: Login
+    component: Login,
+    meta: { title: 'Log in' }
   },
   {
     path: '/register',
     name: ROUTES.REGISTER_ROUTE,
-    component: Register
+    component: Register,
+    meta: { title: 'Register' }
   },
   {
     path: '/forgot',
     name: ROUTES.FORGOT_ROUTE,
-    component: Forgot
+    component: Forgot,
+    meta: { title: 'Forgotten Password' }
   },
   {
     path: '/reset/:code',
     name: ROUTES.RESET_ROUTE,
-    component: Reset
+    component: Reset,
+    meta: { title: 'Reset Password' }
   },
   {
     path: '/verify/:token',

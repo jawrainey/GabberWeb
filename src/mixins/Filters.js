@@ -28,9 +28,9 @@ export default {
     modelSorter (mode) {
       return (a, b) => {
         if (mode === 'newest') {
-          return a.created_on < b.created_on
+          return new Date(a.created_on) < new Date(b.created_on)
         } else {
-          return a.created_on > b.created_on
+          return new Date(a.created_on) > new Date(b.created_on)
         }
       }
     },

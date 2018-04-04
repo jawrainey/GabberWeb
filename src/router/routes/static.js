@@ -9,21 +9,25 @@ export default [
   {
     path: '/',
     name: ROUTES.HOME_ROUTE,
-    component: Home
+    component: Home,
+    meta: { title: 'Home' }
   },
   {
     path: '/about',
     name: ROUTES.ABOUT_ROUTE,
-    component: About
+    component: About,
+    meta: { title: 'About' }
   },
   {
     path: '/privacy',
     name: ROUTES.PRIVACY_ROUTE,
-    component: Privacy
+    component: Privacy,
+    meta: { title: 'Privacy' }
   },
   {
     path: '/terms',
     name: ROUTES.TERMS_ROUTE,
-    component: Terms
+    component: Terms,
+    meta: { title: 'Terms' }
   }
 ]
