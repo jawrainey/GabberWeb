@@ -27,11 +27,9 @@ export default {
     },
     modelSorter (mode) {
       return (a, b) => {
-        if (mode === 'newest') {
-          return new Date(a.created_on) < new Date(b.created_on)
-        } else {
-          return new Date(a.created_on) > new Date(b.created_on)
-        }
+        return mode === 'newest'
+          ? new Date(a.created_on) - new Date(b.created_on)
+          : new Date(b.created_on) - new Date(a.created_on)
       }
     },
     annotationTopicFilters (filterIds, annotation) {
