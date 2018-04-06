@@ -1,5 +1,9 @@
 import ApiInterface from './ApiInterface'
 import axios from 'axios'
+import { i18n } from '@/i18n'
+import { removeDuplicates } from '@/mixins/RemoveDuplicates'
+
+console.log(i18n)
 
 const ACCESS_TOKEN_KEY = 'gabber.access_token'
 const REFRESH_TOKEN_KEY = 'gabber.refresh_token'
@@ -66,7 +70,17 @@ export default class LiveApi extends ApiInterface {
   /** Override the making of an envelope to localise error strings (wip) */
   makeEnvelope (...args) {
     let envelope = super.makeEnvelope(...args)
-    // TODO: Translate the messages ...
+    
+    let defaultError = i18n.t('api.general.UNKNOWN')
+    
+    let translated = envelope.meta.messages.map(code => {
+      let fullCode = `api.${code}`
+      let translation = i18n.t(fullCode)
+      return translation !== fullCode ? translation : defaultError
+    })
+    
+    envelope.meta.messages = removeDuplicates(translated)
+    
     return envelope
   }
   

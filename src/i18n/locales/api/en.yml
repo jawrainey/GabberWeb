@@ -1,0 +1,113 @@
+
+annotations:
+  CONTENT_KEY_REQUIRED: A content attribute is required.
+  CONTENT_IS_NOT_STRING: The content attribute must be a string.
+  CONTENT_IS_EMPTY: You have not provided any content for your annotation.
+  CONTENT_LENGTH_TOO_LONG: The length of content an annotation must not exceed 1024 characters.
+  START_INTERVAL_REQUIRED: A start_interval attribute is required.
+  START_INTERVAL_IS_NOT_INT: The start_interval attribute must be an integer.
+  START_INTERVAL_MUST_BE_POSITIVE_INT: The start_interval attribute must be a positive integer.
+  END_INTERVAL_REQUIRED: The end_interval attribute is required.
+  END_INTERVAL_IS_NOT_INT: The end_interval attribute must be an integer.
+  END_INTERVAL_MUST_BE_POSITIVE_INT: The end_interval attribute must be a positive integer.
+  START_BEFORE_END: The start_interval cannot be larger than the end_interval.
+  TAGS_IS_NOT_LIST: The tags attribute for an annotation must is required.
+  TAG_IS_NOT_INT: The tags attribute for an annotation must be a list of integers.
+  404: The annotation you tried to access does not exist.
+  NOT_CREATOR: You cannot delete or edit an annotation that you did not create.
+
+auth:
+  ALREADY_VERIFIED: the account has already been verified
+  ALREADY_REGISTERED: the account has already been confirmed and registered
+  FULLNAME_KEY_REQUIRED: A fullname attribute is required to register.
+  USER_404: There is no registered user with that email address
+  INVALID_PASSWORD: You have provided an incorrect password for that email
+  FULLNAME_IS_EMPTY: The attribute fullname must not be empty.
+  FULLNAME_IS_NOT_STRING: The attribute fullname must be a string.
+  EMAIL_DOES_NOT_EXIST: A user with that account does not exist.
+  EMAIL_EXISTS: A user with that account does not exist.
+  EMAIL_IS_EMPTY: The attribute email must not be empty.
+  EMAIL_IS_NOT_STRING: The attribute email must be a string.
+  EMAIL_INVALID: You have not provided a valid email address.
+  PASSWORD_KEY_REQUIRED: The password attribute is required.
+  PASSWORD_IS_EMPTY: The provided password attribute is empty.
+  PASSWORD_IS_NOT_STRING: The password attribute must be a string.
+  PASSWORD_LENGTH: The password must be at least twelve characters long
+
+comments:
+  404: The comment you tried to access does not exist.
+  NOT_IN_SESSION: That comment is not associated with that session.
+  CONTENT_KEY_REQUIRED: The content attribute is required.
+  CONTENT_IS_EMPTY: The contents of the content attribute must not be empty.
+  CONTENT_IS_NOT_STRING: The contents attribute must be a string.
+  CONTENT_LENGTH_TOO_LONG: The length of content a comment must not exceed 1024 characters.
+  NOT_CREATOR: You cannot delete or edit a comment that you did not create.
+
+consent:
+  KEY_REQUIRED: The consent attribute is required.
+  IS_EMPTY: The consent attribute is empty.
+  IS_NOT_STRING: The consent attribute must be a string.
+  INVALID_VALUE: The value provided for consent must be either (1) none (2) private or (3) public.
+
+general:
+  UNKNOWN: Something went wrong
+  TOKEN_EXPIRED: The token provided has expired; default length is one week. You need to re-authenticate
+  INVALID_JSON: The request is not valid JSON.
+  UNKNOWN_USER: The user making the request does not exist i.e. they are an unknown JWT user.
+  SESSION_NOT_IN_PROJECT: That session is not associated with that project
+  SESSION_404: The session you tried to view does not exist.
+  PROJECT_404: The project you tried to view does not exist.
+  PROJECT_UNAUTHORIZED: You are unauthorized to view this project.
+  COMMENT_404: The comment you tried to access does not exist
+  COMMENT_NOT_IN_SESSION: That comment is not associated with that session.
+
+jwt:
+  EXPIRED: The request has an expired JWT. Use a refresh token or re-authenticate.
+  INVALID: The request you made contains an invalid JWT
+  UNAUTHORIZED: You do not have access to view the content of your request.
+
+membership:
+  INVITE_UNAUTHORIZED: You are unauthorized to add/remove a member from a project
+  FULLNAME_KEY_REQUIRED: The fullname of a user to add to the project.
+  FULLNAME_IS_EMPTY: The fullname of the user provided was empty.
+  FULLNAME_IS_NOT_STRING: The fullname of a user must be a string
+  EMAIL_KEY_REQUIRED: An email is required of the user to add from the project.
+  EMAIL_IS_EMPTY: The email provided for the user to add to the project is empty.
+  EMAIL_IS_NOT_STRING: The email provided for the user to add to the project is not a string.
+  EMAIL_USER_404: The user you are trying to add to the project does not exist.
+  EMAIL_INVALID: The email you provided of the member to add is invalid.
+  MEMBER_EXISTS: A user with that email is already a member of the project.
+  NOT_EXISTS: The user you tried to remove is not a member of this project.
+  UNKNOWN: The user you tried to remove is not a project member.
+  USER_DEACTIVATED: The user you tried to remove has already been deleted.
+  EXISTS: You have tried to join a project that you are already a member of.
+  MEMBERSHIP_CONFIRMED: This user has already been confirmed as a member of this project.
+
+projects:
+  ID_KEY_REQUIRED: The id attribute is required i.e. the id of the project to update or delete.
+  ID_IS_NOT_INT: The id attribute must be an integer.
+  ID_404: The project ID provided in the request does not match the resource endpoint.
+  TITLE_EXISTS: A project with that title already exists.
+  TITLE_KEY_REQUIRED: The value for the title parameter is required.
+  TITLE_IS_NOT_STRING: The value for the title parameter must be a string.
+  TITLE_LENGTH_TOO_LONG: The title must be at most 64 characters
+  DESCRIPTION_KEY_REQUIRED: The value for the description parameter is required.
+  DESCRIPTION_IS_NOT_STRING: The value for the description parameter must be a string.
+  DESCRIPTION_LENGTH_TOO_LONG: The title must be at most 256 characters
+  PRIVACY_KEY_REQUIRED: The value for the privacy parameter is required.
+  PRIVACY_INVALID: The value for the privacy parameter is invalid which must be private or public.
+  PRIVACY_IS_NOT_STRING: The value for the privacy parameter must be a string.
+  TOPICS_KEY_REQUIRED: The value for the title parameter is required.
+  TOPIC_MUST_BE_LIST: The topics parameter must be of type list.
+  TOPIC_IS_NOT_STRING: The value for the privacy parameter must be a string.
+  TOPIC_IS_EMPTY: A topic provided is empty.
+  USER_NOT_FOUND: No user for the creator ID provided in the request exists.
+  TOPICS_IS_NOT_DICT: The value for the topics parameter must be a string.
+  TOPICS_IS_ACTIVE_KEY_404: An is_active key is missing from your topics array.
+  TOPICS_IS_ACTIVE_MUST_BE_INT: The value of is_active must be an integer.
+  TOPICS_IS_ACTIVE_MUST_BE_0_OR_1: The value of is_active must be either 0 (false) or 1 (true).
+  TOPICS_ID_NOT_PROJECT: The ID of a topic does not exist for this project.
+  TOPICS_TEXT_KEY_404: A text key is missing from your topics array.
+  TOPICS_TEXT_IS_NOT_STRING: The value of a text must be a string.
+  TOPICS_TEXT_LENGTH_TOO_LONG: The title must be at most 260 characters
+  DELETE_UNAUTHORIZED: You do not have permission to delete this project
