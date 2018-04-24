@@ -3,35 +3,35 @@ section.consent-form
   .has-text-centered
     .hero-body
       h1.title Gabber Consent
-      h2.subtitle You've been asked to provide consent for a Gabber you were in
-  
+      h2.subtitle You can review how you want the conversation to be used on Gabber
+
   .field
-    label.label 1. This is the recording that was made
+    label.label The conversation that was recorded
     .box
       audio-player(:session="session")
   
   .field
-    label.label 2. This is the project the Gabber was about
+    label.label The project associated with your conversation
     project-pill(:project="project", readonly)
   
   .field
-    label.label 3. These are your consent options
+    label.label Who would you like to have access to this conversation?
     .box.consent-control.is-size-5
       label
         input(type="radio", v-model="updatedConsent", value="none")
-        strong None
-        span – Only the people in this conversation will be able to hear this recording.
+        strong Participants
+        span – Only the people in this conversation will be able to listen to this conversation.
       label(v-if="project.privacy === 'private'")
         input(type="radio", v-model="updatedConsent", value="private")
-        strong Private
-        span – Only people who are members of the project can find or listen to this recording.
+        strong Members
+        span – Only people who are members of the project can discover or listen to this conversation.
       label
         input(type="radio", v-model="updatedConsent", value="public")
-        strong Public
-        span – Anyone on Gabber can discover and listen to this audio
   
+        strong Everyone
+        span – Anyone visiting Gabber can discover and listen to this audio.
   .field
-    label.label 4. What this means
+    label.label Review decision
     .user-appearance-field
       .columns
         .column
@@ -49,7 +49,7 @@ section.consent-form
     .buttons.is-centered
       button.button.is-success.is-medium(
         @click="onSubmit", :disabled="updatedConsent && disabled"
-      ) Submit Consent
+      ) Update Consent
 </template>
 
 <script>
@@ -104,7 +104,7 @@ export default {
       if (consent === 'none') return people
       people.push('Members of this project')
       if (consent === 'private') return people
-      people.push('Anyone on Gabber')
+      people.push('Anyone visiting the Gabber website')
       return people
     }
   },

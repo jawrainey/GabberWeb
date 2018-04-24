@@ -98,7 +98,7 @@ full-layout.session-detail(v-else-if="session")
       
       action-box(v-if="filteredAnnotations.length === 0", title="No annotations")
         p.is-size-5(slot="content")
-          span(v-if="annotations.length === 0") There aren't any annotations yet, why add one above?
+          span(v-if="annotations.length === 0") There aren't any annotations yet, why not add one?
           span(v-else) No annotations matched your query, try tweaking it in the sidebar
       
   session-info-sidebar(

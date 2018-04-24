@@ -12,17 +12,14 @@ div(v-else-if="project && user")
     .container
       .columns.is-centered.is-gapless
         .column.is-half
-          h1.title Gabber Invite
-            h2.subtitle
-              | You have been invited to join this Gabber project!
+          h1.title You have been invited to join this Gabber project
       .columns.is-centered.is-gapless
         .column.is-two-thirds
           project-pill(:project="project", readonly)
   
   box-layout.is-paddingless
     section.section
-      h1.title Join Project
-      h2.subtitle You have been invited to this project, sign up below
+      h1.title Sign up below to join project
       message.is-danger(v-model="apiErrors", clearable)
       .field
         label.label Email
@@ -47,7 +44,7 @@ div(v-else-if="project && user")
       hr
       .buttons.is-centered
         button.button.is-success(@click="submit", :disabled="!canSubmit")
-          span Join Project!
+          span Sign up
 </template>
 
 <script>

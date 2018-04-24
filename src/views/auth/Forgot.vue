@@ -1,9 +1,10 @@
 <template lang="pug">
 box-layout
   section.section
-    h1.title Forgotten password
-    h2.subtitle Send an email to you to reset your password
     
+    h1.title Reset Your Gabber Password
+    h2.subtitle Submit your email address and we'll send you a link to reset your password.
+
     .forgot-form(v-if="!sentCode")
       label.label Enter your email
       .field.is-grouped
@@ -25,14 +26,11 @@ box-layout
         title="Code Sent",
         :value="`We've sent a code to that ${email}, if it exists in our system, check your email to reset your password.`"
       )
-      .buttons.is-centered
-        button.button.is-primary(@click="sentCode = false")
-          | Try Again?
     hr
     .buttons
       router-link.button.is-link(:to="loginRoute")
         .icon: fa(icon="chevron-left")
-        span Back
+        span Login
 </template>
 
 <script>
