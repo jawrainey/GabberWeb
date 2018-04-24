@@ -1,19 +1,16 @@
 <template lang="pug">
 simple-layout
   .container.home-page.is-vertical-aligned
-    .columns.is-gapless
-      .column.is-one-third
-        img.phone(src="https://gabber.audio/static/img/screen.gif")
-      .column.is-two-thirds.is-vertical-aligned
+    .columns.is-gapless.is-centered
+      .column.is-two-fifths
         section.section
-          h1.title
-            | Your voice matters
-          h2.subtitle
-            | Record, publish, and collaboratively annotate audio interviews with Gabber
+          h1.title Structure and record audio conversations and directly annotate and discuss their content with others
           .buttons
             router-link.button.is-success.is-medium.is-rounded(:to="projectsRoute")
               span Explore Projects
               .icon: fa(icon="chevron-right")
+      .column.is-two-fifths
+        img(src="/static/img/gabber.png" width="450" height="450")
 </template>
 
 <script>

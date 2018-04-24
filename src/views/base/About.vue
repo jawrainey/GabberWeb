@@ -22,7 +22,7 @@ simple-layout
       .column.has-text-centered
         h2.title.is-spaced.has-text-primary
           img(src="/static/img/about_discuss.png" width="165" height="165")
-        h3.subtitle.is-3.has-text-white Collaboratively Discuss
+        h3.subtitle.is-3.has-text-white Create discussions
         p.has-text-grey-light Project members can listen and annotate the audio conversations directly and create comments on the media to form discussions with other members. These discussions are associated with regions of the audio and used to provide context for representation.
 </template>
 
