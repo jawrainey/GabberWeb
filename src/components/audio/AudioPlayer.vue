@@ -31,7 +31,7 @@
       message.is-warning(
         v-else,
         title="Audio Unavailable",
-        value="This Gabber is no longer available, please contact the interviewer for help."
+        value="This Recording is no longer available, please contact the creator for help."
       )
     .player(ref="player")
     slot
