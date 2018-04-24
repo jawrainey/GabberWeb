@@ -3,10 +3,10 @@ simple-layout
   section.hero.is-dark
     .hero-body
       .container
-        h1.title Privacy Policy
-        h2.subtitle The data we capture, why, and how it is used
+        h1.title.has-text-white Privacy Policy
+        h2.subtitle.has-text-grey-light The data we capture, why, and how it is used
   section.section
-    .container.content
+    .container.content.has-text-grey-light
       p University of Newcastle Upon Tyne (“Newcastle University”, “we”, “us”), the owner of [Gabber], (the “Site”, "App" or "Service"), recognizes the importance of your privacy. Therefore, we have created this Privacy Policy so that you know how we use and disclose your information when you make it available to us. This Privacy Policy applies solely to information collected at this Site. By using or accessing the Site, you signify your agreement to be bound by our Privacy Policy.
       p #[b IF YOU DO NOT AGREE TO THIS PRIVACY POLICY YOU MAY NOT ACCESS OR OTHERWISE USE OUR SITE].
       p Personal Information that we collect: We do not collect personal information from you unless you voluntarily provide it to us, such as when you register for the Site or submit a posting to the Classifieds (defined below).

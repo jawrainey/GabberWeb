@@ -3,10 +3,10 @@ simple-layout
   section.hero.is-dark
     .hero-body
       .container
-        h1.title Terms &amp; Conditions
-        h2.subtitle What you agree to when using our service (mobile application or website)
+        h1.title.has-text-white Terms &amp; Conditions
+        h2.subtitle.has-text-grey-light What you agree to when using our service (mobile application or website)
   section.section
-    .container.content
+    .container.content.has-text-grey-light
       p Please read these terms of use carefully before using the services offered by University of Newcastle Upon Tyne (“Newcastle University”, "University of Newcastle Upon Tyne", “we”, “us”). These terms of use set forth the legally binding terms and conditions for your use of the website (the "Service") and the services, features, content, applications or widgets offered by Newcastle University (collectively with the Service, the "Service" or "the App").
       p #[b Please read these Terms of Use carefully before using the Service. If you do not accept these Terms of Use, then you may not use the Service. These Terms of Use are subject to change by us at any time, effective when posted on the Service. Your continued use after such notice will constitute acceptance by you of such changes.]
       p These Terms of Use apply to all users of the Service, including, without limitation, users who are contributors of content, information, and other materials or services on the Service, individual users of the Service, venues that access the Service, and users that have a page on the Service. By using the Service you are agreeing to be bound by these Terms of Use.
@@ -60,9 +60,3 @@ export default {
   components: { SimpleLayout }
 }
 </script>
-
-<style lang="sass">
-  p
-    color: #C0C0C0
-</style>
-
