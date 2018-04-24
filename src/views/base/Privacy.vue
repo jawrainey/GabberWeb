@@ -38,8 +38,3 @@ export default {
   components: { SimpleLayout }
 }
 </script>
-
-<style lang="sass">
-  p
-    color: #C0C0C0
-</style>
