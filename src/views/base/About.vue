@@ -3,33 +3,27 @@ simple-layout
   section.hero.is-dark
     .hero-body
       .container
-        h1.title How it works
-        h2.subtitle Here's all the informtion you need about Gabber.
-  section.hero
-    .hero-body
-      .container
-        .columns
-          .column.has-text-centered
-            h2.title.is-spaced.has-text-primary
-              fa(:icon="['far', 'user']", size="2x")
-            h3.subtitle.is-4.has-text-white Find a friend
-            p Do you know someone with personal experiences of a topic you are interested in understanding and discussing with others?
-            
-          .column.has-text-centered
-            h2.title.is-spaced.has-text-primary
-              fa(:icon="['far', 'comments']", size="2x")
-            h3.subtitle.is-4.has-text-white Record an interview
-            p Download Gabber and record a set of interviews with others about aspects of a topic you have experiences with.
-            
-          .column.has-text-centered
-            h2.title.is-spaced.has-text-primary
-              fa(:icon="['far', 'edit']", size="2x")
-            h3.subtitle.is-4.has-text-white Collaboratively annotate
-            p Find your project, select the interview session, and discuss and annotate pieces of the audio interview using a novel interface
+        h1.title About
+        h2.subtitle How Gabber conversations are captured and used
   section.section
-    .container
-      p.has-text-grey-light.is-size-4
-        | Gabber is an ongoing exploratory research project that aims to understand the value of technologies for supporting the collection of speech data (interviews from Gabber), and interaction, consumption and collaborative interpretation of this data (using this website).
+    .columns
+      .column.has-text-centered
+        h2.title.is-spaced.has-text-primary
+          img(src="/static/img/about_capture.png" width="165" height="165")
+        h3.subtitle.is-4.has-text-white Record Conversations
+        p Anyone can create a project that represents topics that a community should use to structure conversations. Projects created through the website appear in the mobile application. Project topics are used to structure and tag the audio conversation as it is being recorded on the mobile device.
+
+      .column.has-text-centered
+        h2.title.is-spaced.has-text-primary
+          img(src="/static/img/about_structure.png" width="165" height="165")
+        h3.subtitle.is-4.has-text-white Structured Representation
+        p The tagged recording and who participated in the conversation are associated with the project and uploaded to the website. Participants of the conversation are notified to review consent for the recording; the recording belongs to them and they decide who can view it and how it is used.
+
+      .column.has-text-centered
+        h2.title.is-spaced.has-text-primary
+          img(src="/static/img/about_discuss.png" width="165" height="165")
+        h3.subtitle.is-4.has-text-white Collaboratively Discuss
+        p Project members can listen and annotate the audio conversations directly and create comments on the media to form discussions with other members. These discussions are associated with regions of the audio and used to provide context for representation.
 </template>
 
 <script>
