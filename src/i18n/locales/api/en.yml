@@ -33,6 +33,11 @@ auth:
   PASSWORD_IS_EMPTY: The provided password attribute is empty.
   PASSWORD_IS_NOT_STRING: The password attribute must be a string.
   PASSWORD_LENGTH: The password must be at least twelve characters long
+  RESET_TOKEN_USED: Your password has already been reset using this unique URL.
+  RESET_TOKEN_404: The URL you entered does not exist to reset a password.
+  RESET_TOKEN_EXPIRED: The URL has expired to reset your password.
+  AUTH_TOKEN_EXPIRED: The token used to verify your email address has expired.
+  AUTH_TOKEN_404: The token used to verify your email address does not exist.
 
 comments:
   404: The comment you tried to access does not exist.
