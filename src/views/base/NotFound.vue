@@ -1,15 +1,15 @@
 <template lang="pug">
 box-layout
   section.section.has-text-centered
-    h1.title Page Not Found
-    h2.subtitle Could not find the page you were looking for, check your url is correct.
+    h1.title {{ $t('views.base.not_found.title') }}
+    h2.subtitle {{ $t('views.base.not_found.subtitle') }}
     
     hr
     
     .buttons.is-centered
       router-link.button.is-success.is-rounded.is-medium(:to="homeRoute")
         .icon: fa(icon="home")
-        span Go Home
+        span {{ $t('views.base.not_found.back_action') }}
 </template>
 
 <script>

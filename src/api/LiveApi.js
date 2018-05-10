@@ -3,8 +3,6 @@ import axios from 'axios'
 import { i18n } from '@/i18n'
 import { removeDuplicates } from '@/mixins/RemoveDuplicates'
 
-console.log(i18n)
-
 const ACCESS_TOKEN_KEY = 'gabber.access_token'
 const REFRESH_TOKEN_KEY = 'gabber.refresh_token'
 

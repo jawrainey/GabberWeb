@@ -4,10 +4,10 @@ simple-layout
     .columns.is-gapless.is-centered
       .column.is-two-fifths
         section.section
-          h1.title Structure and record audio conversations and directly annotate and discuss their content with others
+          h1.title {{ $t('views.base.home.title') }}
           .buttons
             router-link.button.is-success.is-medium.is-rounded(:to="projectsRoute")
-              span Explore Projects
+              span {{ $t('views.base.home.action') }}
               .icon: fa(icon="chevron-right")
       .column.is-two-fifths
         img(src="/static/img/gabber.png" width="450" height="450")

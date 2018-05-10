@@ -2,16 +2,19 @@ import Vue from 'vue'
 import VueI18n from 'vue-i18n'
 
 import ApiEn from './locales/api/en.yml'
+import ViewsEn from './locales/views/en.yml'
 
 Vue.use(VueI18n)
 
 const messages = {
-  en: { api: ApiEn }
+  en: {
+    api: ApiEn,
+    view: ViewsEn
+  }
 }
 
-console.log(messages)
-
 export const i18n = new VueI18n({
-  locale: 'en',
+  locale: 'dev',
+  // locale: 'en',
   messages
 })
