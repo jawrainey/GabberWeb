@@ -134,15 +134,52 @@ project:
   project_list:
     title: Projects
     nav_title: Projects
+    filter_title: Filter Projects
+    filter_field:
+      label: Search for a project
+      placeholder: e.g. name / topic
+    mobile_filter_title: Filter
+    create_title: Create a new Project
+    create_action: Create
+    private_title: My Projects
+    public_title: Public Projects
+    authed_empty_body: You aren't on any projects ... yet. Why not create one above!
+    unauthed_empty_body: There are no public projects right now, why not sign up and create your own!
+    fetch_failed_body: Could not fetch projects, please reload
+    create_failed_body: Could not create project, please try again
+    
   session_consent:
-    title:
-    nav_title:
+    title: Gabber Consent
+    nav_title: Gabber Consent
+    loading_title: Fetching Consent Info
+    info_title: Your Information
+    privacy_body: This is the only personal information we will store about you and it will never be made public
+    info_name_label: Name
+    info_email_label: Email
+    mobile_info_title: Your info
+    failed_body: Something went wrong, check the link in your email.
+  
   session_detail:
-    title:
-    nav_title:
+    title: "{name}'s Gabber"
+    nav_title: sasd
+    mobile_filter_title: Filter
+    mobile_info_title: Gabber info
+    topic_title: Topic
+    annotations_title: Annotations
+    no_annotations: There aren't any annotations yet, why not add one?
+    no_filtered_annotations: No annotations matched your query, try tweaking it in the sidebar
+    fetch_failed_body: Couldn't find that Gabber or it doesn't exist
+    create_failed_body: Failed to create annotation, please try again
+  
   session_list:
-    title:
-    nav_title:
+    title: Gabbers
+    nav_title: Gabbers
+    loading_title: Fetching Project's Gabbers
+    mobile_filter_title: Filter
+    no_sessions: There are no gabbers available right now, why not record one in the app?
+    no_filtered_sessions: No gabbers matched your query, try tweaking it using in the sidebar.
+    mobile_project_title: Project info
+    not_found: Project not found, check your url
 
 # * * * * * * * * * * * * * * * * * * * * * * * * * * *
 # * = = = = = = = =  COMPONENTS = = = = = = = = = = = *

@@ -219,7 +219,9 @@ export default {
         this.$store.commit(ADD_COMMENTS, comments)
       }
       
-      this.endApiWork(meta, 'Gabber not found')
+      this.endApiWork(
+        meta, this.$t('view.project.session_detail.fetch_failed_body')
+      )
     },
     onProgress (progress) {
       if (this.newAnnotation && progress > this.newAnnotation.end_interval) {
@@ -295,7 +297,9 @@ export default {
         this.$store.commit(ADD_ANNOTATIONS, [ data ])
         this.newAnnotation = null
       } else if (this.newAnnotationErrors.length === 0) {
-        this.newAnnotationErrors.push('Failed to create annotation, please try again')
+        this.newAnnotationErrors.push(
+          this.$t('view.project.session_detail.create_failed_body')
+        )
       }
       
       this.isCreatingAnnotation = false

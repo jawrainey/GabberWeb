@@ -1,7 +1,7 @@
 <template lang="pug">
 loading-full-layout(
   v-if="apiInProgress || apiErrors.length > 0",
-  loading-message="Fetching Consent Info",
+  :loading-message="$t('view.project.session_consent.loading_title')",
   :is-loading="apiInProgress",
   :errors="apiErrors"
 )
@@ -14,21 +14,27 @@ consent-success(
 full-layout(v-else-if="project && user && consent")
   div(slot="left")
     template(v-if="user")
-      h3.subtitle Your information
+      h3.subtitle {{$t('view.project.session_consent.info_title')}}
       .field
-        blockquote.blockquote This is the only personal information we will store about your conversation and it will never be made public.
-      label-value(label="Name", :value="user.fullname")
-      label-value(label="Email", :value="user.email")
+        blockquote.blockquote {{$t('view.project.session_consent.privacy_body')}}
+      label-value(
+        :label="$t('view.project.session_consent.info_name_label')",
+        :value="user.fullname"
+      )
+      label-value(
+        :label="$t('view.project.session_consent.info_email_label')",
+        :value="user.email"
+      )
   
   template(slot="mobileLeft")
     span.icon: fa(icon="user")
-    span Your info
+    span {{$t('view.project.session_consent.mobile_info_title')}}
   
   session-info-sidebar(slot="right", :session="session")
   
   template(slot="mobileRight")
     span.icon: fa(icon="microphone")
-    span Gabber info
+    span {{$t('view.project.session_consent.title')}}
   
   consent-form(
     slot="main",
@@ -91,7 +97,7 @@ export default {
         this.consent = data.consent
       }
       
-      this.endApiWork(meta, 'Invalid consent token')
+      this.endApiWork(meta, this.$t('view.project.session_consent.failed_body'))
     },
     async submit (consent) {
       if (this.apiInProgress) return
@@ -103,7 +109,7 @@ export default {
       
       this.hasSubmitted = meta.success
       
-      this.endApiWork(meta)
+      this.endApiWork(meta, this.$t('view.project.session_consent.failed_body'))
     }
   }
 }

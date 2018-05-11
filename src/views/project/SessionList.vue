@@ -1,7 +1,7 @@
 <template lang="pug">
 loading-full-layout(
   v-if="sessions.length === 0 && (apiInProgress || apiErrors.length > 0)",
-  loading-message="Fetching Project's Gabbers",
+  :loading-message="$t('view.project.session_list.loading_title')",
   :is-loading="apiInProgress",
   :errors="apiErrors",
   :back-route="projectListRoute"
@@ -19,11 +19,11 @@ full-layout.session-list-view(v-else-if="project")
   
   template(slot="mobileLeft")
     span.icon: fa(icon="filter")
-    span Filter
+    span {{$t('view.project.session_list.mobile_filter_title')}}
   
   template(slot="main")
     breadcrumbs
-    h1.title.is-1 Gabbers
+    h1.title.is-1 {{$t('view.project.session_list.title')}}
     session-pill(
       v-for="session in filteredSessions",
       :key="session.id",
@@ -32,8 +32,8 @@ full-layout.session-list-view(v-else-if="project")
     )
     action-box(v-if="filteredSessions.length === 0", title="No gabbers")
       p.is-size-5(slot="content")
-        span(v-if="sessions.length === 0") There are no gabbers available right now, why not record one in the app?
-        span(v-else) No gabbers matched your query, try tweaking it using in the sidebar.
+        span(v-if="sessions.length === 0") {{$t('view.project.session_list.no_sessions')}}
+        span(v-else) {{$t('view.project.session_list.no_filtered_sessions')}}
   
   project-info-sidebar(
     slot="right",
@@ -43,7 +43,7 @@ full-layout.session-list-view(v-else-if="project")
   
   template(slot="mobileRight")
     span.icon: fa(icon="info")
-    span Project info
+    span {{$t('view.project.session_list.mobile_project_title')}}
 </template>
 
 <script>
@@ -135,7 +135,7 @@ export default {
         this.$store.commit(ADD_SESSIONS, sessionsRes.data || [])
       }
       
-      this.endApiWork(meta, 'Project Not Found')
+      this.endApiWork(meta, this.$t('view.project.session_list.not_found'))
     },
     viewSession (session) {
       const params = { project_id: this.project.id, session_id: session.id }

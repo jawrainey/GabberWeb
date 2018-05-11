@@ -34,7 +34,7 @@ export default {
   computed: { },
   watch: { },         // Try to avoid using watches, $route.params.____ is ok
   mounted () { },     // The lifecycle hooks around here, earliest first
-  methods () { }      // Then your custom methods
+  methods: { }        // Then your custom methods
 }
 ```
 
