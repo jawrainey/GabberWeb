@@ -1,48 +1,51 @@
 <template lang="pug">
 box-layout
   section.section
-    h1.title Login in to Gabber
-    h4.subtitle or
-      router-link(:to="registerRoute")  create an account
+    h1.title {{$t('view.auth.login.title')}}
+    h4.subtitle {{$t('misc.words.or')}}
+      router-link(:to="registerRoute")  {{$t('view.auth.login.signup_action')}}
     
     message.is-danger(v-model="errors", clearable)
     
     .field
-      label.label Email
+      label.label {{$t('view.auth.login.email_field.label')}}
       input.input(
         type="email",
         v-model="email",
         @keyup.enter="login",
-        placeholder="e.g. jim@example.com"
+        :placeholder="$t('view.auth.login.email_field.placeholder')"
       )
     .field
       label.label
-        span.has-text-white.has-text-left Password
+        span.has-text-white.has-text-left {{$t('view.auth.login.pass_field.label')}}
       input.input(
         type="password",
         v-model="password",
         @keyup.enter="login",
-        placeholder="e.g. ••••••••"
+        :placeholder="$t('view.auth.login.pass_field.placeholder')"
       )
     
     p
       router-link(:to="forgotRoute", tabindex="100")
-        | Forgot your password?
+        | {{$t('view.auth.login.forgot_action')}}
     
     br
     
     .buttons.is-centered
-      router-link.button.is-link(:to="returnRoute") Cancel
-      button.button.is-success(
-        @click="login", :disabled="!canLogin") Log In
+      router-link.button.is-link(:to="returnRoute")
+        | {{$t('view.auth.login.cancel_action')}}
+      button.button.is-success(@click="login", :disabled="!canLogin")
+        | {{$t('view.auth.login.submit_action')}}
       
     hr
     
     .columns
       .column
-        h3.is-size-4.has-text-grey-lighter Don't already have an account?
+        h3.is-size-4.has-text-grey-lighter
+          | {{$t('view.auth.login.signup_body')}}
       .column.is-narrow
-        router-link.button.is-success(:to="registerRoute") Sign Up!
+        router-link.button.is-success(:to="registerRoute")
+          | {{$t('view.auth.register.nav_title')}}
 </template>
 
 <script>
@@ -86,7 +89,7 @@ export default {
       } else {
         this.errors = meta.messages
         if (meta.messages.length === 0) {
-          this.errors.push('Invalid login, please try again')
+          this.errors.push(this.$t('view.auth.login.failed_body'))
         }
       }
     }

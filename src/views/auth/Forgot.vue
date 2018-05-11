@@ -2,35 +2,35 @@
 box-layout
   section.section
     
-    h1.title Reset Your Gabber Password
-    h2.subtitle Submit your email address and we'll send you a link to reset your password.
+    h1.title {{$t('view.auth.forgot.title')}}
+    h2.subtitle {{$t('view.auth.forgot.subtitle')}}
 
     .forgot-form(v-if="!sentCode")
-      label.label Enter your email
+      label.label {{$t('view.auth.forgot.email_field.label')}}
       .field.is-grouped
         .control.is-expanded
           input.input(
             type="text",
             v-model="email",
             @keyup.enter="sendCode",
-            placeholder="pam@example.com"
+            :placeholder="$t('view.auth.forgot.email_field.placeholder')"
           )
         .control
           button.button.is-success(
             @click="sendCode",
             :disabled="!canSend"
-          ) Send
+          ) {{$t('view.auth.forgot.email_field.label')}}
     
     template(v-else)
       message.is-success(
-        title="Code Sent",
-        :value="`We've sent a code to that ${email}, if it exists in our system, check your email to reset your password.`"
+        :title="$t('view.auth.forgot.success_title')",
+        :value="$t('view.auth.forgot.success_body', { email })"
       )
     hr
     .buttons
       router-link.button.is-link(:to="loginRoute")
         .icon: fa(icon="chevron-left")
-        span Login
+        span {{$t('view.auth.login.nav_title')}}
 </template>
 
 <script>

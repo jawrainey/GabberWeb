@@ -1,7 +1,7 @@
 <template lang="pug">
 box-layout
   section.section
-    h1.title Verifying
+    h1.title {{$t('view.auth.verify.title')}}
     message.is-danger(v-model="apiErrors")
 </template>
 
@@ -36,7 +36,7 @@ export default {
         this.$router.push({ name: PROJECT_LIST_ROUTE })
       }
       
-      this.endApiWork(meta, 'Verification failed')
+      this.endApiWork(meta, this.$t('view.auth.verify.failed_body'))
     }
   }
 }

@@ -60,5 +60,6 @@ export default {
     * :arrow_up: `:arrow_up:` when upgrading dependencies
     * :arrow_down: `:arrow_down:` when downgrading dependencies
     * :shirt: `:shirt:` when removing linter warnings
+    * :globe_with_meridians: `:globe_with_meridians:` when changing localisation
 
 > This is a simplified version of [Atom's Contribution Guide](https://github.com/atom/atom/blob/master/CONTRIBUTING.md)

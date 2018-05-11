@@ -1,50 +1,56 @@
 <template lang="pug">
 box-layout(v-if="apiInProgress")
-  loading(label="Fetching your invite")
+  loading(:label="$t('view.auth.accept_invite.loading_title')")
 
 box-layout(v-else-if="!project || !user")
   section.section
-    h1.title Invalid Token
+    h1.title {{ $t('view.auth.accept_invite.bad_token_title') }}
     message.is-danger(v-model="apiErrors")
 
 div(v-else-if="project && user")
   section.section
     .container
       .columns.is-centered.is-gapless
-        .column.is-half
-          h1.title You have been invited to join this Gabber project
+        .column.is-half.has-text-centered
+          h1.title {{ $t('view.auth.accept_invite.title') }}
       .columns.is-centered.is-gapless
         .column.is-two-thirds
           project-pill(:project="project", readonly)
   
   box-layout.is-paddingless
     section.section
-      h1.title Sign up below to join project
+      h1.title {{ $t('view.auth.accept_invite.subtitle') }}
+      h2.subtitle {{ $t('view.auth.accept_invite.info') }}
       message.is-danger(v-model="apiErrors", clearable)
       .field
-        label.label Email
-        input.input(type="text", :value="user.email", disabled)
+        label.label {{ $t('view.auth.accept_invite.email_field.label') }}
+        input.input(
+          type="text",
+          :value="user.email",
+          :placeholder="$t('view.auth.accept_invite.email_field.placeholder')"
+          disabled
+        )
       .field
-        label.label Full Name
+        label.label {{ $t('view.auth.accept_invite.name_field.label') }}
         input.input(
           type="text",
           v-model="fullname",
           :disabled="!canSubmit",
-          placeholder="e.g. Stanley Hudson"
+          :placeholder="$t('view.auth.accept_invite.name_field.placeholder')"
         )
       .field
-        label.label Password
+        label.label {{ $t('view.auth.accept_invite.pass_field.label') }}
         input.input(
           type="password",
           v-model="password",
           :disabled="!canSubmit",
-          placeholder="e.g. ••••••••",
+          :placeholder="$t('view.auth.accept_invite.pass_field.placeholder')",
           @keyup.enter="submit"
         )
       hr
       .buttons.is-centered
         button.button.is-success(@click="submit", :disabled="!canSubmit")
-          span Sign up
+          span {{ $t('view.auth.accept_invite.submit_action') }}
 </template>
 
 <script>

@@ -1,35 +1,36 @@
 <template lang="pug">
 box-layout
   section.section
-    h1.title Reset password
-    h2.subtitle Reset your password using this form
+    h1.title {{$t('view.auth.reset.title')}}
+    h2.subtitle {{$t('view.auth.reset.subtitle')}}
     
     .reset-form(v-if="!passwordReset")
       message.is-danger(v-model="errors", clearable)
     
-      label.label New Password
+      label.label {{$t('view.auth.reset.pass_field.label')}}
       .field.has-addons
         .control.is-expanded
           input.input(
             type="password",
             v-model="password",
             @keyup.enter="resetPassword",
-            placeholder="e.g. ••••••••"
+            :placeholder="$t('view.auth.reset.pass_field.placeholder')"
           )
         .control
           button.button.is-success(
             @click="resetPassword",
-            :disabled="!canReset"
-          ) Reset
+            :disabled="!canReset",
+            v-text="$t('view.auth.reset.submit_action')"
+          )
     
     .success(v-else)
       message.is-info(
-        title="Password Reset",
-        value="Your password has been reset"
+        :title="$t('view.auth.reset.success_title')",
+        :value="$t('view.auth.reset.success_body')"
       )
       .buttons.is-centered
         router-link.button.is-success(:to="projectListRoute")
-          span Projects
+          span {{$t('view.project.project_list.nav_title')}}
 </template>
 
 <script>
@@ -63,12 +64,12 @@ export default {
       if (meta.success) {
         this.$store.commit(LOGIN_USER, data)
       } else if (meta.messages.length === 0) {
-        this.errors.push('Password reset failed, please try again')
+        this.errors.push(this.$t('view.auth.reset.failed_body'))
       }
     }
   }
 }
 </script>
 
-<style lang="css">
+<style lang="sass">
 </style>

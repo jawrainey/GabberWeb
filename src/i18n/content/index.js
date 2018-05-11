@@ -4,5 +4,8 @@ export default {
   },
   terms: {
     en: () => import(/* webpackChunkName: 'en' */ './terms/en.md')
+  },
+  registered: {
+    en: () => import(/* webpackChunkName: 'en' */ './registered/en.md')
   }
 }

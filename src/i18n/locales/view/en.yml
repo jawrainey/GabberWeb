@@ -1,0 +1,163 @@
+
+#
+# * * Auth Views * *
+#
+auth:
+  accept_invite:
+    title: You're invited to join a project on Gabber
+    nav_title: Accept Invite
+    loading_title: Fetching your invite
+    bad_token_title: Invalid Token
+    subtitle: Sign up below to join project
+    info: Gabber lets you record and annotate structured interviews
+    email_field:
+      label: Email
+      placeholder: me@example.com
+    name_field:
+      label: Full Name
+      placeholder: e.g. Stanley Hudson
+    pass_field:
+      label: Password
+      placeholder: e.g. ••••••••
+    submit_action: Submit
+
+  forgot:
+    title: Reset Your Gabber Password
+    nav_title: Forgotten Password
+    subtitle: Submit your email address and we'll send you a link to reset your password.
+    email_field:
+      label: Enter your email
+      placeholder: pam@example.com
+    send_action: Send
+    success_title: Code Sent
+    success_body: We've sent a code to {email}, if it exists in our system, click the link in your email to reset your password.
+
+  login:
+    title: Login in to Gabber
+    nav_title: Login
+    or: or
+    signup_action: create an account
+    email_field:
+      label: Email
+      placeholder: e.g. jim@example.com
+    pass_field:
+      label: Password
+      placeholder: e.g. ••••••••
+    forgot_action: Forgot your password?
+    cancel_action: Cancel
+    submit_action: Log In
+    signup_body: Don't already have an account?
+    failed_body: Invalid login, please try again
+
+  register:
+    title: Create a Gabber Account
+    nav_title: Sign Up!
+    login_action: log in to your account
+    name_field:
+      label: Full Name
+      placeholder: e.g. Jim Halpert
+    email_field:
+      label: Email
+      placeholder: e.g. jim@example.com
+    pass_field:
+      label: Password
+      placeholder: e.g. ••••••••
+    terms_body: By signing up, you agree to our
+    cancel_action: Cancel
+    submit_action: Sign up
+    success_title: Check your mail
+    success_subtitle: Account Created!
+    failed_body: Registration failed, please try again
+
+  reset:
+    title: Reset password
+    nav_title: Reset your password using this form
+    pass_field:
+      label: New Password
+      placeholder: e.g. ••••••••
+    submit_action: Reset
+    success_title: Password Reset
+    success_body: Your password has been reset
+    failed_body: Password reset failed, please try again
+
+  verify:
+    title: Verifying
+    nav_title: Verifying
+    failed_body: Verification failed, please check the link you were sent
+
+#
+# Base Views
+#
+base:
+  about:
+    title: About
+    nav_title: About
+    subtitle: How Gabber conversations are captured and used
+    col_1:
+      title: Record Conversations
+      body: Anyone can create a project that represents topics that a community should use to structure conversations. Projects created through the website appear in the mobile application. Project topics are used to structure and tag the audio conversation as it is being recorded on the mobile device.
+    col_2:
+      title: Structured Representation
+      body: The tagged recording and who participated in the conversation are associated with the project and uploaded to the website. Participants of the conversation are notified to review consent for the recording; the recording belongs to them and they decide who can view it and how it is used.
+    col_3:
+      title: Create discussions
+      body: Project members can listen and annotate the audio conversations directly and create comments on the media to form discussions with other members. These discussions are associated with regions of the audio and used to provide context for representation.
+
+  holder:
+    # ...
+
+  home:
+    title: Structure and record audio conversations and directly annotate and discuss their content with others
+    nav_title: Home
+    action: Explore Projects
+
+  not_found:
+    title: Page Not Found
+    subtitle: Could not find the page you were looking for, check your url is correct.
+    nav_title: Not Found
+    back_action: Go Home
+
+  privacy:
+    title: Our Privacy Policy
+    nav_title: Privacy Policy
+    subtitle: The data we capture, why, and how it is used
+
+  terms:
+    title: Terms & Conditions
+    nav_title: Terms of Service
+    subtitle: What you agree to when using our service (mobile application or website)
+  
+#
+# Project Views
+#
+project:
+  project_list:
+    title: Projects
+    nav_title: Projects
+  session_consent:
+    title:
+    nav_title:
+  session_detail:
+    title:
+    nav_title:
+  session_list:
+    title:
+    nav_title:
+
+# * * * * * * * * * * * * * * * * * * * * * * * * * * *
+# * = = = = = = = =  COMPONENTS = = = = = = = = = = = *
+# * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+# components:
+#   annotation:
+#   audio:
+#   comment:
+#   consent:
+#   member:
+#   project:
+#   session:
+#   shared:
+#   topic:
+#   util:
+
+misc:

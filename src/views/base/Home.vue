@@ -4,10 +4,10 @@ simple-layout
     .columns.is-gapless.is-centered
       .column.is-two-fifths
         section.section
-          h1.title {{ $t('views.base.home.title') }}
+          h1.title {{ $t('view.base.home.title') }}
           .buttons
             router-link.button.is-success.is-medium.is-rounded(:to="projectsRoute")
-              span {{ $t('views.base.home.action') }}
+              span {{ $t('view.base.home.action') }}
               .icon: fa(icon="chevron-right")
       .column.is-two-fifths
         img(src="/static/img/gabber.png" width="450" height="450")

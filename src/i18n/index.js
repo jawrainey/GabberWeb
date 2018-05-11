@@ -2,14 +2,16 @@ import Vue from 'vue'
 import VueI18n from 'vue-i18n'
 
 import ApiEn from './locales/api/en.yml'
-import ViewsEn from './locales/views/en.yml'
+import ViewsEn from './locales/view/en.yml'
+import MiscEn from './locales/misc/en.yml'
 
 Vue.use(VueI18n)
 
 const messages = {
   en: {
     api: ApiEn,
-    view: ViewsEn
+    view: ViewsEn,
+    misc: MiscEn
   }
 }
 
