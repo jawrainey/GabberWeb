@@ -68,7 +68,4 @@ npm run lint
 # - Uses the REGISTRY & the package's version to tag the image
 npm version # (patch|minor|major|...) or --help
 
-# Force the docker version (if you really need to)
-npm run postversion
-
 ```
