@@ -1,14 +1,21 @@
 <template lang="pug">
 #app-wrapper
-  router-view(v-if="!apiInProgress")
+  coming-soon(v-if="isComingSoon")
+  router-view(v-else-if="!apiInProgress")
 </template>
 
 <script>
 import { LOGIN_USER } from './const/mutations'
 import ApiWorkerMixin from './mixins/ApiWorker'
+import ComingSoon from './views/base/ComingSoon'
+import { getConfig } from './mixins/Config'
 
 export default {
   mixins: [ ApiWorkerMixin ],
+  components: { ComingSoon },
+  computed: {
+    isComingSoon () { return getConfig('COMING_SOON') }
+  },
   created () {
     this.checkLogin()
   },

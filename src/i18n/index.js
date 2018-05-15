@@ -9,8 +9,6 @@ const messages = {
   en: { api: ApiEn }
 }
 
-console.log(messages)
-
 export const i18n = new VueI18n({
   locale: 'en',
   messages
