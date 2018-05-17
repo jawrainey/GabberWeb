@@ -9,13 +9,11 @@
       member-bubble.is-size-5.is-size-6-mobile(
         :member="annotation.creator", pad-right
       )
-      //- span.is-size-4
-        | {{ annotation.creator.fullname }}
       button.button.is-text.timestamp(@click="$emit('chosen', annotation)")
         span.is-hidden-touch
-          | {{ startTime | duration }} → {{ endTime | duration }}
+          | {{$t('comp.annotation.annotation_pill.desktop_duration', { start, end })}}
         span.is-hidden-desktop
-          | {{ startTime | duration }}
+          | {{ start }}
     .column.is-narrow(v-if="isOwner")
       button.button.is-dark.is-rounded(@click="deleteSelf")
         .icon: fa(icon="trash")
@@ -38,6 +36,7 @@ import { REMOVE_ANNOTATION } from '@/const/mutations'
 
 import ApiWorkerMixin from '@/mixins/ApiWorker'
 import ColorGeneratorMixin from '@/mixins/ColorGenerator'
+import { formatDuration } from '@/mixins/Temporal'
 
 import MemberBubble from '@/components/member/MemberBubble'
 import CommentSection from '@/components/comment/CommentSection'
@@ -93,8 +92,8 @@ export default {
       }
       return styles
     },
-    startTime () { return this.annotation.start_interval },
-    endTime () { return this.annotation.end_interval }
+    start () { return formatDuration(this.annotation.start_interval) },
+    end () { return formatDuration(this.annotation.end_interval) }
   },
   methods: {
     toggleComments () {

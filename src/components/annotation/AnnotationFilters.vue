@@ -1,22 +1,24 @@
 <template lang="pug">
 .annotation-filters
-  h3.subtitle Sort Annotations
+  h3.subtitle {{$t('comp.annotation.annotation_filter.sort_title')}}
   sort-field(
     :value="sortMode",
     @input="v => $emit('update:sortMode', v)",
     label=""
   )
   hr
-  h3.subtitle Filter Annotations
+  h3.subtitle {{$t('comp.annotation.annotation_filter.filter_title')}}
   .field
-    label.label By message
+    label.label
+      | {{$t('comp.annotation.annotation_filter.message_field.label')}}
     input.input.is-small(
       :value="query",
       @input="e => $emit('update:query', e.target.value)",
-      placeholder="e.g. The bit about ..."
+      :placeholder="$t('comp.annotation.annotation_filter.message_field.placeholder')"
     )
   .field
-    label.label By topic
+    label.label
+      | {{$t('comp.annotation.annotation_filter.topic_field.label')}}
     topic-option(
       v-for="topic in uniqueTopics",
       :key="topic.id",
@@ -27,7 +29,8 @@
       @deselect="deselectTopic(topic)"
     )
   .field(v-if="uniqueAnnotators.length > 0")
-    label.label By annotator
+    label.label
+      | {{$t('comp.annotation.annotation_filter.annotator_field.label')}}
     .bubble-list.is-multiline.is-size-3
       member-option(
         v-for="member in uniqueAnnotators",

@@ -1,58 +1,118 @@
 annotation:
   annotation_edit:
+    label: Annotation – {start} → {end}
+    create_action: Create
+    placeholder: I think that ...
+  
   annotation_filter:
+    sort_title: Sort Annotations
+    filter_title: Filter Annotations
+    message_field:
+      label: By message
+      placeholder: e.g. The bit about ...
+    topic_field:
+      label: By topic
+    annotator_field:
+      label: By annotator
+  
   annotation_pill:
+    desktop_duration: '{start} → {end}'
+  
   annotation_range:
-  Draggable:
+  
+  draggable:
+
+
 
 audio:
   audio_player:
 
+
+
 comment:
   comment:
-  comment_Composer:
+  
+  comment_composer:
+  
   comment_section:
+
+
 
 consent:
   consent_form:
+  
   consent_success:
+
+
 
 member:
   member_bubble:
+  
   member_option:
+
+
 
 project:
   project_edit:
+  
   project_header:
+  
   project_info:
+  
   project_info_sidebar:
+  
   project_members:
+  
   project_pill:
+
+
 
 session:
   session_filters:
+  
   session_info_sidebar:
+  
   session_pill:
+
+
 
 shared:
   site_footer:
+  
   site_header:
+
+
 
 topic:
   topic_list_edit:
+  
   topic_option:
+  
   topics_bar:
+  
   topic_segment:
+
+
 
 utils:
   action_box:
+  
   add_cancel_button:
+  
   breadcrumbs:
+  
   circle_button:
+  
   icon_bubble:
+  
   label_value:
+  
   loading:
+  
   markdown:
+  
   message:
+  
   sort_field:
+  
   tooltip:
