@@ -33,7 +33,7 @@ export default {
         this.content = await fetchContent()
       } catch (error) {
         console.log('Failed to load content')
-        this.content = `content.${this.name}.${this.$i18n.locale}.md`
+        this.content = `@content.${this.name}.${this.$i18n.locale}.md`
       }
     }
   }
