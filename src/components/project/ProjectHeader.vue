@@ -13,20 +13,20 @@
         v-if="canEdit",
         @click="$emit('editMembers')",
         icon="users",
-        title="Members"
+        :title="$t('comp.project.project_header.members_action')"
       )
       
       icon-button.is-dark.is-rounded(
         v-if="canEdit",
         @click="$emit('startEdit')",
         icon="cog",
-        title="Edit"
+        :title="$t('comp.project.project_header.edit_action')"
       )
       
       icon-button.is-dark.is-rounded(
         v-if="isEditing",
         @click="$emit('stopEdit')",
-        title="Close"
+        :title="$t('comp.project.project_header.close_action')"
       )
       
       icon-button.is-dark.is-rounded(
@@ -34,7 +34,7 @@
         icon="user-plus",
         @click="$emit('join')",
         :disabled="inProgress",
-        title="Join"
+        :title="$t('comp.project.project_header.join_action')"
       )
       
       icon-button.is-dark.is-rounded(
@@ -42,7 +42,7 @@
         icon="user-times",
         @click="$emit('leave')",
         :disabled="inProgress",
-        title="Leave"
+        :title="$t('comp.project.project_header.leave_action')"
       )
 </template>
 

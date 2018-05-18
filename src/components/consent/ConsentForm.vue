@@ -2,54 +2,54 @@
 section.consent-form
   .has-text-centered
     .hero-body
-      h1.title Gabber Consent
-      h2.subtitle You can review how you want the conversation to be used on Gabber
+      h1.title {{$t('comp.consent.consent_form.title')}}
+      h2.subtitle {{$t('comp.consent.consent_form.subtitle')}}
 
   .field
-    label.label The conversation that was recorded
+    label.label {{$t('comp.consent.consent_form.session_title')}}
     .box
       audio-player(:session="session")
   
   .field
-    label.label The project associated with your conversation
+    label.label {{$t('comp.consent.consent_form.project_title')}}
     project-pill(:project="project", readonly)
   
   .field
-    label.label Who would you like to have access to this conversation?
+    label.label {{$t('comp.consent.consent_form.perms_title')}}
     .box.consent-control.is-size-5
       label
         input(type="radio", v-model="updatedConsent", value="none")
-        strong Participants
-        span – Only the people in this conversation will be able to listen to this conversation.
+        strong {{$t('comp.consent.consent_form.hidden_title')}}
+        span {{$t('comp.consent.consent_form.hidden_body')}}
       label(v-if="project.privacy === 'private'")
         input(type="radio", v-model="updatedConsent", value="private")
-        strong Members
-        span – Only people who are members of the project can discover or listen to this conversation.
+        strong {{$t('comp.consent.consent_form.private_title')}}
+        span {{$t('comp.consent.consent_form.private_body')}}
       label
         input(type="radio", v-model="updatedConsent", value="public")
+        strong {{$t('comp.consent.consent_form.public_title')}}
+        span {{$t('comp.consent.consent_form.public_body')}}
   
-        strong Everyone
-        span – Anyone visiting Gabber can discover and listen to this audio.
   .field
-    label.label Review decision
+    label.label {{$t('comp.consent.consent_form.review_title')}}
     .user-appearance-field
       .columns
         .column
-          label-value(label="How you appear")
+          label-value(:label="$t('comp.consent.consent_form.appearance_label')")
             member-bubble.is-size-4(
               v-if="updatedConsent !== 'none'", :member="user", use-id
             )
             blockquote.blockquote(v-else)
-              | You will not show up in Gabber
+              | {{$t('comp.consent.consent_form.no_show')}}
         .column
-          label-value(label="Who has access")
+          label-value(:label="$t('comp.consent.consent_form.access_label')")
             ol: li(v-for="person in whoHasAccess", v-text="person")
   
   .field
     .buttons.is-centered
       button.button.is-success.is-medium(
         @click="onSubmit", :disabled="updatedConsent && disabled"
-      ) Update Consent
+      ) {{$t('comp.consent.consent_form.submit_action')}}
 </template>
 
 <script>
@@ -95,16 +95,17 @@ export default {
     }
   },
   computed: {
+    // TODO: ...
     whoHasAccess () {
       let consent = this.updatedConsent || this.consent
       let people = [
-        'The interviewer',
-        'Participants in this conversation'
+        this.$t('comp.consent.consent_form.people.interviewer'),
+        this.$t('comp.consent.consent_form.people.participant')
       ]
       if (consent === 'none') return people
-      people.push('Members of this project')
+      people.push(this.$t('comp.consent.consent_form.people.member'))
       if (consent === 'private') return people
-      people.push('Anyone visiting the Gabber website')
+      people.push(this.$t('comp.consent.consent_form.people.public'))
       return people
     }
   },

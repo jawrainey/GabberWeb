@@ -1,23 +1,23 @@
 <template lang="pug">
 box-layout
   section.section
-    h1.title Consent submitted
-    h2.subtitle Your consent has been submitted
+    h1.title {{$t('comp.consent.consent_success.title')}}
+    h2.subtitle {{$t('comp.consent.consent_success.subtitle')}}
     message.is-info(
-      title="Success",
-      value="Thank your for submitting your consent for this Gabber, you can now view and start annotating it."
+      :title="$t('comp.consent.consent_success.message_title')",
+      :value="$t('comp.consent.consent_success.message_body')"
     )
     hr
     .buttons.is-centered
       router-link.button.is-success.is-medium(
         v-if="currentUser", :to="sessionRoute"
       )
-        span View Session
+        span {{$t('comp.consent.consent_success.session_action')}}
         span.icon: fa(icon="chevron-right")
       button.button.is-success(v-else-if="isRegistered", @click="login")
-        span Login
+        span {{$t('view.auth.login.nav_title')}}
       button.button.is-success(v-else, @click="register")
-        span Register
+        span {{$t('view.auth.register.nav_title')}}
 </template>
 
 <script>

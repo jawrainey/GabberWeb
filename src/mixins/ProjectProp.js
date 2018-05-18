@@ -30,9 +30,11 @@ export default {
     },
     membershipType () {
       if (!this.isProjectMember) return null
-      if (this.isOwner) return 'Owner'
+      if (this.isOwner) return this.$t('misc.project_membership.owner')
       let membership = this.currentMembership
-      return membership.role === 'admin' ? 'Admin' : 'Member'
+      return membership.role === 'admin'
+        ? this.$t('misc.project_membership.admin')
+        : this.$t('misc.project_membership.member')
     }
   }
 }

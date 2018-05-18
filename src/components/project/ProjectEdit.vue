@@ -3,36 +3,44 @@
   .columns
     .column
       .field
-        label.label Name
+        label.label {{$t('comp.project.project_edit.name_field.label')}}
         input.input(
           type="text",
           v-model="project.title",
           :disabled="disabled",
-          placeholder="e.g. My Awesome Project"
+          :placeholder="$t('comp.project.project_edit.name_field.label')"
         )
       .field
-        label.label Description
+        label.label {{$t('comp.project.project_edit.info_field.label')}}
         textarea.textarea(
           v-model="project.description",
           :disabled="disabled",
-          placeholder="This project is ..."
+          :placeholder="$t('comp.project.project_edit.info_field.placeholder')"
         )
       .field
-        label.label Privacy
+        label.label {{$t('comp.project.project_edit.perms_field.label')}}
         .control(v-if="!project.id || understoodPrivacy")
           span.select
             select(v-model="project.privacy", :disabled="disabled")
-              option(value="public", default) Public
-              option(value="private", default) Private
+              option(value="public", default)
+                | {{$t('comp.project.project_edit.perms_field.public')}}
+              option(value="private", default)
+                | {{$t('comp.project.project_edit.perms_field.private')}}
           .help {{ privacyMessage }}
         .message.is-warning(v-else)
-          .message-header: p Warning!
+          .message-header: p {{$t('comp.project.project_edit.perms_warn.title')}}
           .message-body
-            p Gabber will always respect a participant's consent so unless all participants have consented, a private Gabber cannot be made public.
+            p {{$t('comp.project.project_edit.perms_warn.body')}}
             .buttons.is-right
-              button.button.is-warning(@click="understoodPrivacy = true") I Understand
+              button.button.is-warning(
+                @click="understoodPrivacy = true",
+                v-text="$t('comp.project.project_edit.perms_warn.action')"
+              )
     .column
-      topic-list-edit(v-model="project.topics", :is-editing="!!project.id")
+      topic-list-edit(
+        v-model="project.topics",
+        :is-editing="!!project.id"
+      )
   hr
   .field.is-grouped.is-grouped-right
     
@@ -44,13 +52,13 @@
       button.button.is-link.is-rounded(
         @click="cancel",
         :disabled="disabled"
-      ) Cancel
+      ) {{$t('comp.project.project_edit.cancel_action')}}
     
     .control
       button.button.is-success.is-rounded(
         @click="submit",
         :disabled="!canSubmit"
-      ) {{ action }}
+      ) {{ action || $t('comp.project.project_edit.default_submit_action') }}
 </template>
 
 <script>
@@ -71,7 +79,7 @@ export default {
   props: {
     disabled: { type: Boolean, required: true },
     deletable: { type: Boolean, default: false },
-    action: { type: String, default: 'Save' }
+    action: { type: String, default: null }
   },
   data: () => ({
     understoodPrivacy: false
@@ -86,8 +94,8 @@ export default {
     },
     privacyMessage () {
       return this.project.privacy === 'private'
-        ? 'Only you and invited participants will see your project'
-        : 'Anyone on Gabber will see and be able to join your project'
+        ? this.$t('comp.project.project_edit.private_body')
+        : this.$t('comp.project.project_edit.public_body')
     }
   },
   methods: {

@@ -17,7 +17,7 @@
       :project="changes",
       :disabled="apiInProgress",
       :deletable="true",
-      action="Update",
+      :action="this.$t('comp.project.project_pill.update_action')",
       @submit="saveEdit",
       @cancel="cancelEdit",
       @delete="deleteProject"
@@ -83,10 +83,10 @@ export default {
         this.isEditingInfo = false
       }
       
-      this.endApiWork(meta, 'Could not save project, try again?')
+      this.endApiWork(meta, this.$t('comp.project.project_pill.update_failed'))
     },
     async deleteProject () {
-      let message = 'Are you sure you want to delete this project? This action cannot be undone'
+      let message = this.$t('comp.project.project_pill.delete_confirm')
       if (this.apiInProgress || !confirm(message)) return
       this.startApiWork()
       
@@ -96,10 +96,10 @@ export default {
         this.$store.commit(DELETE_PROJECT, this.project.id)
       }
       
-      this.endApiWork(meta, 'Failed to delete project, please try again')
+      this.endApiWork(meta, this.$t('comp.project.project_pill.delete_failed'))
     },
     async joinProject () {
-      let message = 'Are you sure you want to join this project?'
+      let message = this.$t('comp.project.project_pill.join_confirm')
       if (this.apiInProgress || !confirm(message)) return
       this.startApiWork()
       
@@ -112,12 +112,12 @@ export default {
         })
       }
       
-      this.endApiWork(meta, 'Failed to join project, please try again')
+      this.endApiWork(meta, this.$t('comp.project.project_pill.join_failed'))
     },
     async leaveProject () {
       let member = this.currentMembership
       
-      let message = 'Are you sure you want to leave this project?'
+      let message = this.$t('comp.project.project_pill.leave_confirm')
       if (!member || this.apiInProgress || !confirm(message)) return
       this.startApiWork()
       
@@ -132,7 +132,7 @@ export default {
         })
       }
       
-      this.endApiWork(meta, 'Failed to leave project, please try again')
+      this.endApiWork(meta, this.$t('comp.project.project_pill.leave_failed'))
     }
   }
 }

@@ -4,7 +4,7 @@
   message.is-success(title="Success", v-model="confirmations", decay)
   .columns
     .column
-      h3.subtitle Project Members
+      h3.subtitle {{$t('comp.project.project_members.members_title')}}
       .field.has-addons(v-for="member, index in membersWithoutCreator")
         .control
           .button.is-static {{ index + 1 }}.
@@ -15,34 +15,37 @@
             .icon: fa(icon="user-times")
       p.is-size-5.has-text-grey-lighter(
         v-if="membersWithoutCreator.length === 0"
-      ) No members yet, why not add some?
+      ) {{$t('comp.project.project_members.no_members')}}
+    
     .column
-      h3.subtitle Add Member
+      h3.subtitle {{$t('comp.project.project_members.add_title')}}
       template(v-if="newMember")
         .field
-          label.label Full Name
+          label.label {{$t('comp.project.project_members.name_field.label')}}
           input.input(
             type="text",
             v-model="newMember.fullname",
-            placeholder="e.g. Kevin Smith"
+            :placeholder="$t('comp.project.project_members.name_field.placeholder')"
           )
         .field
-          label.label Email
+          label.label {{$t('comp.project.project_members.email_field.label')}}
           input.input(
             type="text",
             v-model="newMember.email",
-            placeholder="e.g. kevin@gmail.com"
+            :placeholder="$t('comp.project.project_members.email_field.placeholder')"
           )
         .field.is-grouped.is-grouped-centered
           .control
-            button.button.is-danger(@click="newMember = null") Cancel
+            button.button.is-danger(@click="newMember = null")
+              | {{$t('comp.project.project_members.cancel_action')}}
           .control
-            button.button.is-success(@click="addMember", :disabled="!canCreateMember") Add
+            button.button.is-success(@click="addMember", :disabled="!canCreateMember")
+              | {{$t('comp.project.project_members.submit_action')}}
       template(v-else)
         .buttons.is-centered
           button.button.is-primary.is-rounded(@click="startNewMember")
             .icon: fa(icon="user-plus")
-            span Add Member
+            span {{$t('comp.project.project_members.start_action')}}
 </template>
 
 <script>
@@ -94,14 +97,18 @@ export default {
           projectId: this.project.id,
           member: data
         })
-        this.confirmations.push(`${this.newMember.fullname} was added`)
+        this.confirmations.push(
+          this.$t('comp.project.project_members.was_added', {
+            name: this.newMember.fullname
+          })
+        )
         this.newMember = null
       }
       
       this.endApiWork(meta)
     },
     async removeMember (member) {
-      let msg = 'Are you sure you want to remove this member?'
+      let msg = this.$t('comp.project.project_members.delete_confirm')
       if (this.apiInProgress || !confirm(msg)) return
       this.startApiWork()
       
@@ -114,7 +121,11 @@ export default {
           projectId: this.project.id,
           memberId: member.id
         })
-        this.confirmations.push(`${member.fullname} was removed`)
+        this.confirmations.push(
+          this.$t('comp.project.project_members.was_removed', {
+            name: member.fullname
+          })
+        )
       }
       
       this.endApiWork(meta)

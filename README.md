@@ -96,7 +96,7 @@ which falls back to using `process.env` (where webpack config is placed).
 ```yml
 environment:
   CONFIG_KEYS: MOCK_API,API_URL
-  API_URL: https://api.thinkactive.io
+  API_URL: https://api.gabber.audio
   MOCK_API: true
 ```
 
