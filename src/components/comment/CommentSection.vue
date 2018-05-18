@@ -13,10 +13,10 @@
   )
   template(v-else)
     br
-    blockquote.blockquote.is-warning You cannot reply to this thread
+    blockquote.blockquote.is-warning {{$t('comp.comment.comment_section.blocked_body')}}
   .buttons.is-centered(v-if="!$store.getters.currentUser")
     button.button.is-primary.is-rounded(@click="login")
-      | Login to comment
+      | {{$t('comp.comment.comment_section.login_action')}}
 </template>
 
 <script>

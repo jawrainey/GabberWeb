@@ -53,10 +53,9 @@ export default {
     },
     toggleTitle () {
       if (this.showReplies) {
-        return this.numReplies > 0 ? 'Collapse' : 'Cancel'
+        return this.$tc('comp.comment.comment.collapse_action', this.numReplies)
       } else {
-        let plural = this.numReplies === 1 ? 'reply' : 'replies'
-        return this.numReplies > 0 ? `${this.numReplies} ${plural}` : `Add a reply`
+        return this.$tc('comp.comment.comment.replies_action', this.numReplies)
       }
     },
     replies () {
@@ -77,7 +76,7 @@ export default {
   },
   methods: {
     async deleteSelf () {
-      let msg = 'Are you sure you want to delete your comment? This cannot be undone'
+      let msg = this.$t('comp.comment.comment.delete_body')
       if (!this.isCreator || this.apiInProgress || !confirm(msg)) return
       this.startApiWork()
       
@@ -93,7 +92,11 @@ export default {
       if (meta.success) {
         // this.comment.content = '[deleted]'
         this.$store.commit(ADD_COMMENTS, [
-          { ...this.comment, content: '[deleted]', is_active: false }
+          {
+            ...this.comment,
+            content: this.$t('comp.comment.comment.deleted_title'),
+            is_active: false
+          }
         ])
       }
       

@@ -27,11 +27,11 @@
     template(v-if="!canPlay")
       .loading.has-text-centered.is-size-3(v-if="!failed")
         fa(icon="circle-notch", spin)
-        span &nbsp;Loading Audio
+        span  {{$t('comp.audio.audio_player.loading')}}
       message.is-warning(
         v-else,
-        title="Audio Unavailable",
-        value="This Recording is no longer available, please contact the creator for help."
+        :title="$t('comp.audio.audio_player.fail_title')",
+        :value="$t('comp.audio.audio_player.fail_body')"
       )
     .player(ref="player")
     slot

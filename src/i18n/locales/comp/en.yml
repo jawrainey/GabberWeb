@@ -26,15 +26,28 @@ annotation:
 
 audio:
   audio_player:
+    loading: Loading Audio
+    fail_title: Audio Unavailable
+    fail_body: This Recording is no longer available, please contact the creator for help.
 
 
 
 comment:
   comment:
+    delete_action: Delete
+    collapse_action: Cancel | Collapse
+    replies_action: Add a reply | 1 reply | {count} replies
+    delete_body: Are you sure you want to delete your comment? This cannot be undone
+    deleted_title: '[deleted]'
   
   comment_composer:
+    action: Comment
+    placeholder: I think that ...
+    fail_body: Could not make your comment, please try again
   
   comment_section:
+    blocked_body: You cannot reply to this thread
+    login_action: Login to comment
 
 
 

@@ -11,16 +11,16 @@ article.comment-composer.media(v-if="user")
         textarea.textarea(
           v-model="content",
           :disabled="!canType",
-          placeholder="I think that ..."
+          :placeholder="$t('comp.comment.comment_composer.placeholder')"
           @keyup.enter.prevent="submit",
           rows="2"
         )
-      .controlx
+      .control
         button.button.is-primary(
           @click="submit",
           :disabled="!canSubmit",
         )
-          span.is-hidden-mobile Comment
+          span.is-hidden-mobile {{$t('comp.comment.comment_composer.action')}}
           fa.is-hidden-tablet(icon="paper-plane")
 </template>
 
@@ -72,7 +72,7 @@ export default {
         }
       }
       
-      this.endApiWork(meta, 'Could not make comment, please try again')
+      this.endApiWork(meta, this.$t('comp.comment.comment_composer.fail_body'))
     }
   }
 }
