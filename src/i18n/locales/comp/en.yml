@@ -17,6 +17,8 @@ annotation:
   
   annotation_pill:
     desktop_duration: '{start} → {end}'
+    hide_action: Hide comments
+    comment_action: Add a comment | 1 comment | {count} comments
   
   annotation_range:
   
@@ -183,6 +185,10 @@ session:
   
   session_pill:
     more: more
+    member_label: Participants
+    when_label: Recorded
+    annotation_label: Annotations
+    topic_label: Topics
 
 
 

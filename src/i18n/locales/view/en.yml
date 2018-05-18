@@ -160,7 +160,7 @@ project:
     failed_body: Something went wrong, check the link in your email.
   
   session_detail:
-    title: "{name}'s Session"
+    title: "{name}'s session"
     nav_title: Session Detail
     mobile_filter_title: Filter
     mobile_info_title: Session info

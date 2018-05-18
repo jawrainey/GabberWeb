@@ -63,12 +63,9 @@ export default {
   computed: {
     ...mapGetters(['currentUser']),
     commentTitle () {
-      if (this.showComments) return 'Hide comments'
-      switch (this.comments.length) {
-        case 0: return 'Add a comment'
-        case 1: return `1 comment`
-        default: return `${this.comments.length} comments`
-      }
+      return this.showComments
+        ? this.$t('comp.annotation.annotation_pill.hide_action')
+        : this.$tc('comp.annotation.annotation_pill.comment_action', this.comments.length)
     },
     comments () {
       return this.$store.getters.commentsForAnnotation(this.annotation.id)

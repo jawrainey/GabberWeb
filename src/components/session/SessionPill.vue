@@ -7,7 +7,9 @@
         member-bubble(:member="session.creator", pad-right)
           fa.mic-icon(icon="microphone", size="lg")
         span {{ ' ' + session.creator.fullname }}
-      label-value.is-hidden-mobile(label="Participants")
+      label-value.is-hidden-mobile(
+        :label="$t('comp.session.session_pill.member_label')"
+      )
         .bubble-list.is-multiline
           member-bubble(
             v-for="member in session.participants",
@@ -16,13 +18,15 @@
           )
     .column.is-third-tablet
       label-value.is-primary.created-on(
-        label="Recorded", :value="session.created_on | longDate"
+        :label="$t('comp.session.session_pill.when_label')"
+        :value="session.created_on | longDate"
       )
       label-value.is-primary.num-annotations.is-hidden-mobile(
-        label="Annotations", :value="session.num_user_annotations"
+        :label="$t('comp.session.session_pill.annotation_label')"
+        :value="session.num_user_annotations"
       )
     .column.is-third-tablet
-      label-value(label="Topics")
+      label-value(:label="$t('comp.session.session_pill.topic_label')")
         .tags
           .tag(v-for="topic in limitedTopics")
             | {{trim(topic.text, 60)}}
