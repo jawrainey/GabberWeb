@@ -31,6 +31,22 @@ linted with [ESLint](https://eslint.org/), built with
 
 The entrypoint to the app is `/src/main.js`, if you follow the dependancies from there you should work out structure of the app.
 
+## Dev commands
+
+```bash
+# install dependencies
+npm install
+
+# serve with hot reload at localhost:8080
+npm run dev
+
+# build for production with minification
+npm run build
+
+# build for production and view the bundle analyzer report
+npm run build --report
+```
+
 ## Api Integration
 
 The app uses an [ApiInterface](/src/api/ApiInterface) to interact with a live/mock api so they can easily be switch out for testing.
@@ -38,37 +54,52 @@ It uses the `MOCK_API` and `API_URL` config variables to decide if it is using t
 
 ## Deployment
 
-The app uses Docker to deploy the app. When you set the version using `npm version ...`
-it will automatically build and push a new version of the app to the docker registry.
-To do this is uses the [Dockerfile](/Dockerfile) to build the assets and then a slightly modified version of [Nginx](https://www.nginx.com/) to server the generated files.
+The app uses Docker to build & deploy the application.
+It uses the [Dockerfile](/Dockerfile) to build the assets and then a slightly modified version of [Nginx](https://www.nginx.com/) to serve the generated files.
 
-The image is setup to allow custom variables to be passed in to your container.
-To do this set the `CONFIG_KEYS` environment variable as a csv of other environment variables keys (without whitespace).
-Then it will create & inject those variables onto a `window.CONFIG` object,
-e.g. for `CONFIG_KEYS=API_URL` it will inject `window.CONFG.API_URL` for you to use.
+### Deployment Build
 
-For more info about config explore [startup.sh](/nginx/startup.sh)
-
-## Dev Commands
+This repo uses a CI to build the web into a docker image, ready to be deployed.
+Whenever a commit is pushed with an git tag it builds an image for that commit.
+To tag the commit, use the `npm version ...` command which updates the package
+version and commits the `package.json` tagged with the new version.
 
 ```bash
-
-# Install dependancies
-npm install
-
-# Run the dev build
-# - Spin up a local server on http://localhost:8080 with hot reloading
-npm run dev
-
-# Manually lint code (if you don't have an ide-based eslint-er)
-npm run lint
-
-# Publish a new version
-# - Builds a new docker image of the new version and pushes to the registry
-# - Uses the REGISTRY & the package's version to tag the image
-npm version # (patch|minor|major|...) or --help
-
-# Force the docker version (if you really need to)
-npm run postversion
-
+# Update the npm version
+# > Make sure to run without unstaged changes
+npm version # patch | minor | major | prepatch | preminor | prerelease
 ```
+
+**Extras**
+
+```bash
+# If using a dist-tag i.e. beta, use `npm prerelease` to increment subversions
+npm version 1.0.0-beta.1  # 1.0.0-beta.1
+npm version prerelease    # 1.0.0-beta.2
+
+# To experiment with npm version
+mkdir test_dir
+cd test_dir
+npm init -y
+npm version # ...
+```
+
+### Deployment Config
+
+To configure the deployment, use the `CONFIG_KEYS` environment variable.
+Which should be a csv of environment variables you want inserted,
+the variables are inserted at `window.CONFIG.YOUR_VAR`.
+
+You should use the [Config Mixin](/src/mixins/Config.js) to access variables
+which falls back to using `process.env` (where webpack config is placed).
+
+```yml
+environment:
+  CONFIG_KEYS: MOCK_API,API_URL
+  API_URL: https://api.thinkactive.io
+  MOCK_API: true
+```
+
+---
+
+For a detailed explanation on how the project was setup, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
