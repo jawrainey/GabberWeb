@@ -11,20 +11,21 @@ header.site-header.hero
     .navbar-menu.has-text-centered-mobile(:class="menuClasses")
       .navbar-end
         router-link.navbar-item(:to="homeRoute", :class="routeClass(homeRoute)")
-          span Home
+          span {{$t('view.base.home.nav_title')}}
         router-link.navbar-item(:to="projectsRoute", :class="routeClass(projectsRoute)")
-          span Projects
+          span {{$t('view.project.project_list.nav_title')}}
         router-link.navbar-item(:to="aboutRoute", :class="routeClass(aboutRoute)")
-          span About
+          span {{$t('view.base.about.nav_title')}}
         
         template(v-if="!isLoggedIn")
           a.navbar-item(@click.prevent="pushLogin", :class="routeClass(loginRoute)")
-            span Log In
+            span {{$t('view.auth.login.nav_title')}}
           .navbar-item
             a.button.is-success(@click.prevent="pushRegister")
-              span Sign Up!
+              span {{$t('view.auth.register.nav_title')}}
         .navbar-item(v-else)
-          button.button.is-dark(@click="logout") Logout
+          button.button.is-dark(@click="logout")
+            | {{$t('comp.shared.site_header.logout_action')}}
 </template>
 
 <script>

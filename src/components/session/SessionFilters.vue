@@ -1,22 +1,22 @@
 <template lang="pug">
 .session-filters
-  h3.subtitle Sort Gabbers
+  h3.subtitle {{$t('comp.session.session_filters.sort_title')}}
   sort-field(
     :value="sortMode",
     @input="v => $emit('update:sortMode', v)",
     label=""
   )
   hr
-  h3.subtitle Filter Gabbers
+  h3.subtitle {{$t('comp.session.session_filters.filter_title')}}
   .field
-    label.label By name
+    label.label {{$t('comp.session.session_filters.name_field.label')}}
     input.input.is-small(
       :value="query",
       @input="e => $emit('update:query', e.target.value)",
-      placeholder="e.g. Ron Johnson"
+      :placeholder="$t('comp.session.session_filters.name_field.placeholder')"
     )
   .field
-    label.label By topics
+    label.label {{$t('comp.session.session_filters.topic_field.label')}}
     topic-option(
       v-for="topic in project.topics",
       :key="topic.id",
@@ -26,7 +26,7 @@
       @deselect="deselectTopic(topic)"
     )
   .field.members-field
-    label.label By participant
+    label.label {{$t('comp.session.session_filters.member_field.label')}}
     .bubble-list.is-multiline.is-size-3
       member-option(
         v-for="member in uniqueParticipants",

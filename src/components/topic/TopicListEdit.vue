@@ -1,9 +1,11 @@
 <template lang="pug">
 .topic-list-edit
-  label.label Topics
+  label.label {{$t('comp.topic.topic_list_edit.title')}}
   p.help(v-if="isEditing")
-    | WARNING &ndash; Editing these topics will update the topics for existing gabbers
-  p.help(v-else) Add topics for people to discuss in their Gabbers
+    | {{$t('comp.topic.topic_list_edit.warn_title')}}
+    | &nbsp;&ndash;&nbsp;
+    | {{$t('comp.topic.topic_list_edit.warn_body')}}
+  p.help(v-else) {{$t('comp.topic.topic_list_edit.help_body')}}
   .field.has-addons(v-for="topic, index in value", :class="topicClasses(topic)")
     .control
       div.button.is-static(tabindex="-1") {{ index + 1 }}.
@@ -15,7 +17,7 @@
         @keyup.enter="addAnotherIfLast",
         @keyup.up.prevent.stop="navUp",
         @keyup.down.prevent.stop="navDown",
-        placeholder="A topic about ..."
+        :placeholder="$t('comp.topic.topic_list_edit.placeholder')"
       )
     .control.toggle-control
       template(v-if="topic.is_active === 1")
@@ -30,7 +32,7 @@
   .buttons.is-centered
     button.button.is-primary.is-rounded(@click="addTopic")
       .icon: fa(icon="plus")
-      span Add Topic
+      span {{$t('comp.topic.topic_list_edit.add_action')}}
 </template>
 
 <script>

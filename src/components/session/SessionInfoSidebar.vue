@@ -1,14 +1,22 @@
 <template lang="pug">
 .session-info-sidebar
-  h3.subtitle Gabber Info
-  label-value(label="Created on", :value="sessionDate")
-  label-value.creator(label="Creator")
+  h3.subtitle {{$t('comp.session.session_info_sidebar.title')}}
+  label-value(
+    :label="$t('comp.session.session_info_sidebar.created_label')",
+    :value="sessionDate"
+  )
+  label-value.creator(
+    :label="$t('comp.session.session_info_sidebar.creator_label')"
+  )
     p.is-size-4
       member-bubble.is-size-5(
-        :member="session.creator", pad-right
+        :member="session.creator",
+        pad-right
       )
       span {{ session.creator.fullname }}
-  label-value(label="Participants")
+  label-value(
+    :label="$t('comp.session.session_info_sidebar.members_label')"
+  )
     .bubble-list
       member-bubble.is-size-6(
         v-for="member in session.participants",
@@ -18,9 +26,15 @@
       )
   .columns.is-mobile
     .column
-      label-value(label="Topics", :value="session.topics.length")
+      label-value(
+        :label="$t('comp.session.session_info_sidebar.topics_label')",
+        :value="session.topics.length"
+      )
     .column
-      label-value(label="Annotations", :value="numAnnotations")
+      label-value(
+        :label="$t('comp.session.session_info_sidebar.annotations_label')",
+        :value="numAnnotations"
+      )
 </template>
 
 <script>
@@ -37,7 +51,7 @@ export default {
   computed: {
     sessionDate () {
       return moment(this.session.created_on)
-        .format('h:mm a MMMM Do YYYY')
+        .format(this.$t('comp.session.session_info_sidebar.date_format'))
     },
     numAnnotations () {
       return this.$store.getters.annotationsForSession(this.session.id).length

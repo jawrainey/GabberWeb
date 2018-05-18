@@ -19,13 +19,15 @@ footer.hero.is-dark.is-small
                     v-text="locale.name"
                   )
           .level-item
-            router-link.button.is-text(:to="privacyRoute") Privacy
+            router-link.button.is-text(:to="privacyRoute")
+              | {{$t('view.base.privacy.nav_title')}}
           .level-item
-            router-link.button.is-text(:to="termsRoute") Terms
+            router-link.button.is-text(:to="termsRoute")
+              | {{$t('view.base.terms.nav_title')}}
         .level-right
           .level-item
             p.has-text-grey
-              | Gabber &copy; &mdash; A research project at
+              | Gabber &copy; &mdash; {{$t('comp.shared.site_footer.copyright')}}
               |
               b: a(href="https://openlab.ncl.ac.uk", target="_blank")
                 | Open Lab

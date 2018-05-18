@@ -25,9 +25,10 @@
       label-value(label="Topics")
         .tags
           .tag(v-for="topic in limitedTopics")
-            | {{topic.text}}
+            | {{trim(topic.text, 60)}}
           .tag(v-if="session.topics.length > topicLimit")
-            | +{{session.topics.length - topicLimit}} more
+            | +{{session.topics.length - topicLimit}}
+            | {{$t('comp.session.session_pill.more')}}
 </template>
 
 <script>
@@ -58,6 +59,13 @@ export default {
     },
     limitedTopics () {
       return this.session.topics.slice(0, this.topicLimit)
+    }
+  },
+  methods: {
+    trim (string, length) {
+      return string.length > length
+        ? `${string.slice(0, length - 1)}…`
+        : string
     }
   }
 }

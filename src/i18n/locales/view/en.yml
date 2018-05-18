@@ -160,10 +160,10 @@ project:
     failed_body: Something went wrong, check the link in your email.
   
   session_detail:
-    title: "{name}'s Gabber"
-    nav_title: sasd
+    title: "{name}'s Session"
+    nav_title: Session Detail
     mobile_filter_title: Filter
-    mobile_info_title: Gabber info
+    mobile_info_title: Session info
     topic_title: Topic
     annotations_title: Annotations
     no_annotations: There aren't any annotations yet, why not add one?
@@ -172,12 +172,12 @@ project:
     create_failed_body: Failed to create annotation, please try again
   
   session_list:
-    title: Gabbers
-    nav_title: Gabbers
-    loading_title: Fetching Project's Gabbers
+    title: Sessions
+    nav_title: Sessions
+    loading_title: Fetching Project's Sessions
     mobile_filter_title: Filter
-    no_sessions: There are no gabbers available right now, why not record one in the app?
-    no_filtered_sessions: No gabbers matched your query, try tweaking it using in the sidebar.
+    no_sessions: There are no sessions available right now, why not record one in the app?
+    no_filtered_sessions: No sessions matched your query, try tweaking it using in the sidebar.
     mobile_project_title: Project info
     not_found: Project not found, check your url
 

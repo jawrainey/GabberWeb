@@ -18,12 +18,22 @@ export default {
     label: { type: String, default: 'Sort by' },
     value: { type: String, required: true }
   },
-  data: () => ({
-    sortModes: [
-      { value: 'newest', label: 'Newest', icon: 'star' },
-      { value: 'oldest', label: 'Oldest', icon: 'clock' }
-    ]
-  }),
+  computed: {
+    sortModes () {
+      return [
+        {
+          value: 'newest',
+          label: this.$t('comp.utils.sort_field.newest_label'),
+          icon: 'star'
+        },
+        {
+          value: 'oldest',
+          label: this.$t('comp.utils.sort_field.oldest_label'),
+          icon: 'clock'
+        }
+      ]
+    }
+  },
   methods: {
     modeClasses (mode) {
       return {

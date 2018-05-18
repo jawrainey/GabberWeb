@@ -10,7 +10,7 @@ simple-layout
               span {{ $t('view.base.home.action') }}
               .icon: fa(icon="chevron-right")
       .column.is-two-fifths
-        img(src="/static/img/gabber.png" width="450" height="450")
+        img.people(src="/static/img/gabber.png" width="450" height="450")
 </template>
 
 <script>
@@ -26,8 +26,8 @@ export default {
 </script>
 
 <style lang="sass">
-
 .home-page
   flex: 1
-
+  img.people
+    width: 450px
 </style>

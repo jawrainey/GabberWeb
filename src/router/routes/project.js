@@ -30,7 +30,7 @@ export default [
             path: 'sessions',
             component: Holder,
             meta: {
-              crumb: 'Gabbers',
+              crumb: 'Sessions',
               holderFor: ROUTES.SESSION_LIST_ROUTE
             },
             children: [
@@ -45,7 +45,7 @@ export default [
                 name: ROUTES.SESSION_DETAIL_ROUTE,
                 component: SessionDetail,
                 meta: {
-                  crumb: 'Gabber',
+                  crumb: 'View Session',
                   title: 'Session'
                 }
               }

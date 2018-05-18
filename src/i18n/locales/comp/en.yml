@@ -162,22 +162,47 @@ project:
 
 session:
   session_filters:
+    sort_title: Sort Sessions
+    filter_title: Filter Sessions
+    name_field:
+      label: By name
+      placeholder: e.g. Ron Johnson
+    topic_field:
+      label: By topics
+    member_field:
+      label: By participant
   
   session_info_sidebar:
+    title: Session Info
+    created_label: Created on
+    creator_label: Creator
+    members_label: Participants
+    topics_label: Topics
+    annotations_label: Annotations
+    date_format: h:mm a MMMM Do YYYY
   
   session_pill:
+    more: more
 
 
 
 shared:
   site_footer:
+    copyright: A research project at
   
   site_header:
+    logout_action: Logout
 
 
 
 topic:
   topic_list_edit:
+    title: Topics
+    warn_title: WARNGING
+    warn_body: Editing these topics will update the topics for existing gabbers
+    help_body: Add topics for people to discuss in their Gabbers
+    placeholder: e.g. A topic about ...
+    add_action: Add Topic
   
   topic_option:
   
@@ -201,11 +226,14 @@ utils:
   label_value:
   
   loading:
+    default_label: Loading
   
   markdown:
   
   message:
   
   sort_field:
+    newest_label: Newest
+    oldest_label: Oldest
   
   tooltip:
