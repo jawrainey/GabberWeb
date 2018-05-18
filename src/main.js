@@ -4,12 +4,14 @@
 
 import Vue from 'vue'
 import App from './App.vue'
+import VueAnalytics from 'vue-analytics'
 import { store } from './store/index'
 import { router } from './router'
 import { i18n } from './i18n'
 
 import './api'
 import { formatDuration, formatDateLong } from './mixins/Temporal'
+import { getConfig } from './mixins/Config'
 
 import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 import fontawesome from '@fortawesome/fontawesome'
@@ -26,6 +28,11 @@ Vue.config.productionTip = false
 // Add custom filters
 Vue.filter('duration', formatDuration)
 Vue.filter('longDate', formatDateLong)
+
+let gaId = getConfig('ANALYTICS_ID')
+if (gaId) {
+  Vue.use(VueAnalytics, { id: gaId, router })
+}
 
 /* eslint-disable no-new */
 // Create the webapp and mount on the #app element
