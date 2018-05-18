@@ -29,9 +29,21 @@ Vue.config.productionTip = false
 Vue.filter('duration', formatDuration)
 Vue.filter('longDate', formatDateLong)
 
+// Setup analytics if the id is set
 let gaId = getConfig('ANALYTICS_ID')
 if (gaId) {
   Vue.use(VueAnalytics, { id: gaId, router })
+}
+
+let docHead = document.querySelector('head')
+
+// Add the app smart banner if the id is set
+let iOSAppId = getConfig('IOS_APP_ID')
+if (docHead && iOSAppId) {
+  let itunesTag = document.createElement('meta')
+  itunesTag.setAttribute('name', 'apple-itunes-app')
+  itunesTag.setAttribute('content', `app-id=${iOSAppId}`)
+  docHead.appendChild(itunesTag)
 }
 
 /* eslint-disable no-new */
