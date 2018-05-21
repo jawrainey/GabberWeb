@@ -27,7 +27,7 @@ auth:
     subtitle: Submit your email address and we'll send you a link to reset your password.
     email_field:
       label: Enter your email
-      placeholder: pam@example.com
+      placeholder: e.g. pam@example.com
     send_action: Send
     success_title: Code Sent
     success_body: We've sent a code to {email}, if it exists in our system, click the link in your email to reset your password.
@@ -90,24 +90,24 @@ auth:
 #
 base:
   about:
-    title: About
+    title: What is it?
     nav_title: About
-    subtitle: How Gabber conversations are captured and used
+    subtitle: Gabber lets engage with your community to share and understand your shared experiences
     col_1:
-      title: Record Conversations
-      body: Anyone can create a project that represents topics that a community should use to structure conversations. Projects created through the website appear in the mobile application. Project topics are used to structure and tag the audio conversation as it is being recorded on the mobile device.
+      title: Structure
+      body: Create a project and structure it around the topics you want to be discussed. Then download the Gabber app.
     col_2:
-      title: Structured Representation
-      body: The tagged recording and who participated in the conversation are associated with the project and uploaded to the website. Participants of the conversation are notified to review consent for the recording; the recording belongs to them and they decide who can view it and how it is used.
+      title: Record
+      body: Use the app to record conversations with your community and tag them with your topics. Once your conversation is uploaded, all participants can review and consent to the how recording is used.
     col_3:
-      title: Create discussions
-      body: Project members can listen and annotate the audio conversations directly and create comments on the media to form discussions with other members. These discussions are associated with regions of the audio and used to provide context for representation.
+      title: Annotate
+      body: Listen to and annotate your conversations to create discussions with other community members.
 
   holder:
     # ...
 
   home:
-    title: Structure and record audio conversations and directly annotate and discuss their content with others
+    title: Structure, record and annotate audio conversations
     nav_title: Home
     action: Explore Projects
 

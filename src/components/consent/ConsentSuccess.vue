@@ -3,7 +3,7 @@ box-layout
   section.section
     h1.title {{$t('comp.consent.consent_success.title')}}
     h2.subtitle {{$t('comp.consent.consent_success.subtitle')}}
-    message.is-info(
+    message.is-success(
       :title="$t('comp.consent.consent_success.message_title')",
       :value="$t('comp.consent.consent_success.message_body')"
     )

@@ -61,7 +61,7 @@ consent:
     project_title: The project associated with your conversation
     perms_title: Who would you like to have access to this conversation?
     hidden_title: Participants
-    hidden_body: – Only the people in this conversation will be able to listen to this conversation.
+    hidden_body: – Only the project administrators and people in this conversation will be able to listen to this conversation.
     private_title: Members
     private_body: – Only people who are members of the project can discover or listen to this conversation.
     public_title: Everyone
@@ -73,15 +73,16 @@ consent:
     submit_action: Update Consent
     people:
       interviewer: The interviewer
+      administrators: Project administrators
       participant: Participants in this conversation
       member: Members of this project
       public: Anyone visiting the Gabber website
   
   consent_success:
-    title: Consent submitted
-    subtitle: Your consent has been submitted
+    title: Consent Updated
+    subtitle: You can review and update it at any time
     message_title: Success
-    message_body: Thank your for submitting your consent for this Gabber, you can now view and start annotating it.
+    message_body: Thank you for updating your consent for this conversation. You can now view and start annotating it. You can always come back and update your consent at any time.
     session_action: View Session
 
 
@@ -204,8 +205,8 @@ shared:
 topic:
   topic_list_edit:
     title: Topics
-    warn_title: WARNGING
-    warn_body: Editing these topics will update the topics for existing gabbers
+    warn_title: WARNING
+    warn_body: Changing these topics will update existing conversations
     help_body: Add topics for people to discuss in their Gabbers
     placeholder: e.g. A topic about ...
     add_action: Add Topic

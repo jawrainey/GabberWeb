@@ -100,6 +100,7 @@ export default {
       let consent = this.updatedConsent || this.consent
       let people = [
         this.$t('comp.consent.consent_form.people.interviewer'),
+        this.$t('comp.consent.consent_form.people.administrators'),
         this.$t('comp.consent.consent_form.people.participant')
       ]
       if (consent === 'none') return people
