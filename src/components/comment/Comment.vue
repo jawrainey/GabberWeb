@@ -53,9 +53,13 @@ export default {
     },
     toggleTitle () {
       if (this.showReplies) {
-        return this.$tc('comp.comment.comment.collapse_action', this.numReplies)
+        return this.$tc('comp.comment.comment.collapse_action', this.numReplies, {
+          count: this.numReplies
+        })
       } else {
-        return this.$tc('comp.comment.comment.replies_action', this.numReplies)
+        return this.$tc('comp.comment.comment.replies_action', this.numReplies, {
+          count: this.numReplies
+        })
       }
     },
     replies () {

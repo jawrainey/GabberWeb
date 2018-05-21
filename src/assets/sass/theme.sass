@@ -58,8 +58,11 @@
       background-color: transparentize(nth($pair, 1), 0.9)
 
 .bubble-list
+  .member-bubble
+    border: 2px solid $grey-dark
+  
   .member-bubble:not(:last-child)
-    margin-right: 0.3em
+    margin-right: -0.4em
   
   &.is-multiline .member-bubble
     margin-bottom: 0.3em

@@ -65,7 +65,9 @@ export default {
     commentTitle () {
       return this.showComments
         ? this.$t('comp.annotation.annotation_pill.hide_action')
-        : this.$tc('comp.annotation.annotation_pill.comment_action', this.comments.length)
+        : this.$tc('comp.annotation.annotation_pill.comment_action', this.comments.length, {
+          count: this.comments.length
+        })
     },
     comments () {
       return this.$store.getters.commentsForAnnotation(this.annotation.id)
