@@ -177,8 +177,8 @@ export function model (type, id, obj) {
     id: parseInt(id),
     created_on: dateBetween(
       new Date('2018-02-01T00:00:00'),
-      new Date('2018-02-07T23:59:59')
-    ),
+      new Date('2018-02-01T23:59:59')
+    ).toISOString(),
     updated_on: new Date('2018-02-11T03:24:42')
   }, obj)
 }

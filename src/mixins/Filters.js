@@ -26,10 +26,11 @@ export default {
         ids.some(id => filterIds.includes(id))
     },
     modelSorter (mode) {
+      const toTime = str => (new Date(str)).getTime()
       return (a, b) => {
         return mode === 'newest'
-          ? new Date(a.created_on) - new Date(b.created_on)
-          : new Date(b.created_on) - new Date(a.created_on)
+          ? toTime(b.created_on) - toTime(a.created_on)
+          : toTime(a.created_on) - toTime(b.created_on)
       }
     },
     annotationTopicFilters (filterIds, annotation) {

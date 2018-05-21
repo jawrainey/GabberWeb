@@ -20,6 +20,7 @@ export function formatDuration (seconds) {
 // Format a date – e.g. "5:32am, 15th March 2018"
 export function formatDateLong (date) {
   return moment(date).format('h:mma, Do MMM YY')
+  // return moment(date).format('kk:mm, DD/MM/YY')
 }
 
 // Pad a string with `n` preceeding zeros
