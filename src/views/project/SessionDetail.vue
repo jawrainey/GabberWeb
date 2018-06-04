@@ -76,9 +76,9 @@ full-layout.session-detail(v-else-if="session")
           )
       
       .box.is-pill.is-success.new-annotation(v-if="newAnnotation")
-        h3.subtitle.is-4 Add an annotation
         message.is-danger(v-model="newAnnotationErrors", clearable)
         annotation-edit(
+          :codebook="project.codebook[0] || {}",
           :annotation="newAnnotation",
           :disabled="isCreatingAnnotation",
           @position="t => seekTo(t)"
@@ -112,7 +112,7 @@ full-layout.session-detail(v-else-if="session")
 </template>
 
 <script>
-import { ADD_SESSIONS, ADD_ANNOTATIONS, ADD_COMMENTS } from '@/const/mutations'
+import { ADD_SESSIONS, ADD_ANNOTATIONS, ADD_COMMENTS, SAVE_PROJECT } from '@/const/mutations'
 import { SESSION_LIST_ROUTE } from '@/const/routes'
 import { AuthEvents } from '@/events'
 
@@ -176,6 +176,7 @@ export default {
     projectId () { return parseInt(this.$route.params.project_id) },
     sessionId () { return this.$route.params.session_id },
     session () { return this.$store.getters.sessionById(this.sessionId) },
+    project () { return this.$store.getters.projectById(this.projectId) },
     annotations () { return this.$store.getters.annotationsForSession(this.sessionId) },
     currentTopic () {
       return this.session.topics.find(topic =>
@@ -199,14 +200,15 @@ export default {
   methods: {
     async fetchGabber () {
       this.startApiWork()
-      
-      let [ sessionRes, annotationsRes ] = await Promise.all([
+
+      let [ projectRes, sessionRes, annotationsRes ] = await Promise.all([
+        this.$api.getProject(this.projectId),
         this.$api.getSession(this.sessionId, this.projectId),
         this.$api.getSessionAnnotations(this.sessionId, this.projectId)
       ])
-      
-      let meta = this.mergeMetaBlocks(sessionRes.meta, annotationsRes.meta)
-      
+
+      let meta = this.mergeMetaBlocks(projectRes.meta, sessionRes.meta, annotationsRes.meta)
+
       let sessions = [ sessionRes.data ]
       let annotations = annotationsRes.data || []
       let comments = annotations.reduce((comments, annotation) => {
@@ -214,6 +216,7 @@ export default {
       }, [])
       
       if (meta.success) {
+        this.$store.commit(SAVE_PROJECT, projectRes.data)
         this.$store.commit(ADD_SESSIONS, sessions)
         this.$store.commit(ADD_ANNOTATIONS, annotations)
         this.$store.commit(ADD_COMMENTS, comments)
@@ -272,6 +275,7 @@ export default {
       this.newAnnotation = {
         creator: this.currentUser,
         content: '',
+        tags: [],
         start_interval: Math.max(this.audioProgress - 10, 0),
         end_interval: Math.min(this.audioProgress + 10, this.audioDuration)
       }
@@ -283,6 +287,7 @@ export default {
       
       let { meta, data } = await this.$api.createAnnotation(
         this.newAnnotation.content,
+        this.newAnnotation.tags,
         this.newAnnotation.start_interval,
         this.newAnnotation.end_interval,
         this.sessionId,
@@ -307,8 +312,8 @@ export default {
 <style lang="sass">
 
 .session-detail
-  
-  .topic-tags .tag
+
+  .topic-tags .tag, .annotation-edit .tags .tag
     cursor: pointer
   
   .current-topic-name
