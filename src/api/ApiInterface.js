@@ -152,7 +152,7 @@ export default class ApiInterface {
   }
   
   // projects.sessions.annotations.create -> Annotation
-  async createAnnotation (content, start, end, sId, pId) {
+  async createAnnotation (content, tags, start, end, sId, pId) {
     this.notImplemented()
   }
   

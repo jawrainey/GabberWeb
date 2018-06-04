@@ -78,7 +78,7 @@ full-layout.session-detail(v-else-if="session")
       .box.is-pill.is-success.new-annotation(v-if="newAnnotation")
         message.is-danger(v-model="newAnnotationErrors", clearable)
         annotation-edit(
-          :codebook="project.codebook[0] || {}",
+          :codebook="project.codebook",
           :annotation="newAnnotation",
           :disabled="isCreatingAnnotation",
           @position="t => seekTo(t)"
@@ -313,7 +313,7 @@ export default {
 
 .session-detail
 
-  .topic-tags .tag, .annotation-edit .tags .tag
+  .topic-tags .tag
     cursor: pointer
   
   .current-topic-name

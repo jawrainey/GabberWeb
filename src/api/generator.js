@@ -27,6 +27,13 @@ export const DUMMY_COMMENTS = [
   'I do not agree, I think that ...'
 ]
 
+export const DUMMY_LABELS = [
+  'Label A',
+  'Label B',
+  'Label C',
+  'Label D'
+]
+
 export const make = {
   user (id) {
     return model('User', id, {
@@ -46,7 +53,10 @@ export const make = {
       members: memberships,
       privacy,
       creator: make.creator(creatorId),
-      topics: makeList(5, make.topic, id)
+      topics: makeList(5, make.topic, id),
+      codebook: {
+        tags: DUMMY_LABELS.map((text, id) => ({ id, text }))
+      }
     })
   },
   topic (id, projectId) {
@@ -97,6 +107,7 @@ export const make = {
       session_id: sessionId,
       user_id: pickBetween(1, 9),
       comments: makeIds(pickBetween(2, 5)),
+      labels: makeList(3, make.label),
       content: pickFrom(DUMMY_COMMENTS),
       creator: make.creator(pickFrom([1, 2, 3, 4, 5, CURRENT_USER_ID])),
       start_interval: when,
@@ -150,6 +161,11 @@ export const make = {
       project: make.project(1, 'private'),
       session: session,
       consent: 'none'
+    })
+  },
+  label (id) {
+    return model('Label', id, {
+      text: DUMMY_LABELS[id % DUMMY_LABELS.length]
     })
   }
 }

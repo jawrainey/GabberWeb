@@ -9,8 +9,6 @@
       member-bubble.is-size-5.is-size-6-mobile(
         :member="annotation.creator", pad-right
       )
-      //- span.is-size-4
-        | {{ annotation.creator.fullname }}
       button.button.is-text.timestamp(@click="$emit('chosen', annotation)")
         span.is-hidden-touch
           | {{ startTime | duration }} → {{ endTime | duration }}
@@ -21,10 +19,9 @@
         .icon: fa(icon="trash")
   .columns.is-gapless
     .column
-      ul(class="tags" v-if="annotation.labels.length > 0")
-        template(v-for="item in annotation.labels")
-          li(class="tag")
-            span(v-text="item.text" v-bind:key="item.id")
+      ul.tags(v-if="annotation.labels.length > 0")
+        li.tag(v-for="item in annotation.labels")
+          span(v-text="item.text" v-bind:key="item.id")
       p.is-size-5 {{ annotation.content }}
     .column.is-narrow.has-text-right
       button.button.is-link.is-rounded(@click="toggleComments")

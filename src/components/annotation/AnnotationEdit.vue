@@ -5,20 +5,19 @@
       .level
         .level-left
           .level-item
-            h3.subtitle.is-4(v-if="codebook.tags") Select tag and add comment
-            h3.subtitle.is-4(v-else) Add comment
+            h3.subtitle.is-4(v-if="codebook") Select tags and add a comment
+            h3.subtitle.is-4(v-else) Add a comment
         .level-right
           .level-item
             label.label
               | Annotation – {{ annotation.start_interval | duration }} → {{ annotation.end_interval | duration }}
-      ul(class="tags" v-if="codebook.tags")
-        template(v-for="tag in codebook.tags")
-          li(
-            class="tag",
-            :class="{ 'is-primary': selectedTags.includes(tag.id) }",
-            @click="toggle(tag.id)"
-          )
-            span(v-text="tag.text" v-bind:key="tag.id")
+      ul.tags(v-if="codebook && codebook.tags")
+        li.tag.is-medium(
+          v-for="tag in codebook.tags",
+          :class="tagClass(tag.id)",
+          @click="toggle(tag.id)"
+        )
+          span {{ tag.text }}
       .field
         textarea.textarea(
           type="text",
@@ -42,14 +41,15 @@
 
 /* Emitted Events
 
-@submit -> When the user changed the position of their annotation
+@submit -> When the user submits the annotation
+@cancel -> When the user cancels creating their annotation
 
 */
 
 export default {
   props: {
-    codebook: { type: Object, required: false },
     annotation: { type: Object, required: true },
+    codebook: { type: Object, required: false },
     disabled: { type: Boolean, default: false }
   },
   data: () => ({
@@ -59,10 +59,17 @@ export default {
     canSubmit () { return !this.disabled && this.annotation.content !== '' }
   },
   methods: {
-    toggle (tagID) {
-      if (this.selectedTags.includes(tagID)) this.selectedTags = this.selectedTags.filter(t => t !== tagID)
-      else this.selectedTags.push(tagID)
+    toggle (tagId) {
+      if (this.selectedTags.includes(tagId)) {
+        this.selectedTags = this.selectedTags.filter(t => t !== tagId)
+      } else {
+        this.selectedTags.push(tagId)
+      }
       this.annotation.tags = this.selectedTags
+    },
+    tagClass (tagId) {
+      return this.selectedTags.includes(tagId)
+        ? 'is-primary' : 'is-dark'
     },
     cancel () {
       this.$emit('cancel')
@@ -75,4 +82,7 @@ export default {
 </script>
 
 <style lang="sass">
+.annotation-edit
+  .tags .tag
+    cursor: pointer
 </style>
