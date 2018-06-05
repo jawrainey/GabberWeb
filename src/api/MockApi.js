@@ -168,11 +168,12 @@ export default class MockApi extends ApiInterface {
   async deleteAnnotation (projectId, sessionId, annotationId) {
     return this.mock(null)
   }
-  async createAnnotation (content, start, end, sId, pId) {
+  async createAnnotation (content, tags, start, end, sId, pId) {
     if (content === MOCK.FAIL_TOKEN) return this.mock(null, false)
     return this.mock({
       ...make.annotation(mockIds.annotation++, sId),
       content,
+      tags,
       start_interval: start,
       end_interval: end
     })

@@ -19,6 +19,9 @@
         .icon: fa(icon="trash")
   .columns.is-gapless
     .column
+      ul.tags(v-if="annotation.labels.length > 0")
+        li.tag(v-for="item in annotation.labels")
+          span(v-text="item.text" v-bind:key="item.id")
       p.is-size-5 {{ annotation.content }}
     .column.is-narrow.has-text-right
       button.button.is-link.is-rounded(@click="toggleComments")
