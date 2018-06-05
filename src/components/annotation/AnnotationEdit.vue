@@ -5,8 +5,8 @@
       .level
         .level-left
           .level-item
-            h3.subtitle.is-4(v-if="codebook") Select tags and add a comment
-            h3.subtitle.is-4(v-else) Add a comment
+            h3.subtitle.is-4(v-if="codebook") {{ $t('comp.annotation.annotation_title.with_tags') }}
+            h3.subtitle.is-4(v-else) {{ $t('comp.annotation.annotation_title.without_tags') }}
         .level-right
           .level-item
             label.label
@@ -30,7 +30,7 @@
   .field.is-grouped.is-grouped-right
     .control
       button.button.is-link.is-rounded(@click="cancel")
-        | Cancel
+        | {{$t('comp.annotation.annotation_edit.cancel_action')}}
 
     .control
       button.button.is-success.is-rounded(@click="submit", :disabled="!canSubmit")

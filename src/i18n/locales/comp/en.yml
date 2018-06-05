@@ -1,6 +1,11 @@
 annotation:
+  annotation_title:
+    with_tags: Select tags and add a comment
+    without_tags: Add a comment
+
   annotation_edit:
     label: Annotation – {start} → {end}
+    cancel_action: Cancel
     create_action: Create
     placeholder: I think that ...
   
