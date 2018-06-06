@@ -6,7 +6,7 @@ auth:
   accept_invite:
     title: You're invited to join a project on Gabber
     nav_title: Accept Invite
-    loading_title: Fetching your invite
+    loading_title: Authenticating
     bad_token_title: Invalid Token
     subtitle: Sign up below to join project
     info: Gabber lets you record and annotate structured interviews

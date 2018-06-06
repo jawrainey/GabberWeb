@@ -1,0 +1,201 @@
+
+#
+# * * Auth Views * *
+#
+auth:
+  accept_invite:
+    title: Sei invitato ad unirti a un progetto su Gabber
+    nav_title: Accettare l'invito
+    loading_title: Autenticazione
+    bad_token_title: Token non valido
+    subtitle: Iscriviti qui sotto per unirti al progetto
+    info: Gabber ti consente di registrare e annotare interviste strutturate
+    email_field:
+      label: Email
+      placeholder: es. me@example.com
+    name_field:
+      label: Nome e cognome
+      placeholder: es. Stanley Hudson
+    pass_field:
+      label: Password
+      placeholder: es. ••••••••
+    submit_action: Sottoscrivi
+
+  forgot:
+    title: Reimposta la tua password di Gabber
+    nav_title: password dimenticata
+    subtitle: Invia il tuo indirizzo email e ti invieremo un link per resettare la tua password.
+    email_field:
+      label: Inserisci il tuo indirizzo email
+      placeholder: es. me@example.com
+    send_action: Invia
+    success_title: Codice inviato
+    success_body: Abbiamo inviato un codice a {email}, se esiste nel nostro sistema, fai clic sul link nella tua email per reimpostare la password.
+
+  login:
+    title: Accedi a Gabber
+    nav_title: Accedi
+    or: o
+    signup_action: crea un account
+    email_field:
+      label: Email
+      placeholder: es. me@example.com
+    pass_field:
+      label: Password
+      placeholder: es. ••••••••
+    forgot_action: Hai dimenticato la password?
+    cancel_action: Annulla
+    submit_action: Accedi
+    signup_body: Non hai già un account?
+    failed_body: Login invalido, per favore riprovare
+
+  register:
+    title: Crea un account Gabber
+    nav_title: Iscriviti!
+    login_action: Accedi al tuo account
+    name_field:
+      label: Nome e cognome
+      placeholder: es. Jim Halpert
+    email_field:
+      label: Email
+      placeholder: es. me@example.com
+    pass_field:
+      label: Password
+      placeholder: es. ••••••••
+    terms_body: Iscrivendoti, accetti i nostri
+    cancel_action: Annulla
+    submit_action: Iscriviti
+    success_title: Controlla la tua posta
+    success_subtitle: Account creato!
+    failed_body: Registrazione fallita, per favore riprova
+
+  reset:
+    title: Resetta la password
+    nav_title: Reimposta la tua password utilizzando questo modulo
+    pass_field:
+      label: Nuova password
+      placeholder: es. ••••••••
+    submit_action: Reset
+    success_title: Reimpostazione della password
+    success_body: la tua password è stata resettata
+    failed_body: Reimpostazione della password fallita, per favore riprova
+
+  verify:
+    title: Verifying
+    nav_title: Verifica
+    failed_body: Verifica fallita, controlla il link che ti è stato inviato
+
+#
+# Base Views
+#
+base:
+  about:
+    title: Che cos'è?
+    nav_title: Info
+    subtitle: Gabber consente di coinvolgere la tua comunità per condividere e comprendere le tue esperienze condivise
+    col_1:
+      title: Struttura
+      body: Crea un progetto e strutturalo attorno agli argomenti che desideri siano discussi. Quindi scarica l'app Gabber.
+    col_2:
+      title: Registra
+      body: Usa l'app per registrare le conversazioni con la tua comunità e taggarle con i tuoi argomenti. Una volta caricata la tua conversazione, tutti i partecipanti possono rivedere e accettare il modo in cui viene utilizzata la registrazione
+    col_3:
+      title: Annota
+      body: Ascolta e annota le tue conversazioni per creare discussioni con altri membri della comunità.
+
+  holder:
+    # ...
+
+  home:
+    title: Struttura, registra ed annota conversazioni audio
+    nav_title: Home
+    action: Esplora progetti
+
+  not_found:
+    title: Pagina non trovata
+    subtitle: Impossibile trovare la pagina che stavi cercando, controlla che l'URL sia corretto.
+    nav_title: Non trovato
+    back_action: vai alla Homepage
+
+  privacy:
+    title: La nostra politica sulla privacy
+    nav_title: Politica sulla Privacy
+    subtitle: I dati che catturiamo, perché e come vengono utilizzati
+
+  terms:
+    title: Termini & Condizioni
+    nav_title: Termini di servizio
+    subtitle: Cosa accetti quando utilizzi il nostro servizio (applicazione mobile o sito Web)
+
+#
+# Project Views
+#
+project:
+  project_list:
+    title: Progetti
+    nav_title: Progetti
+    filter_title: Filtra Progetti
+    filter_field:
+      label: Cerca un progetto
+      placeholder: es. Nome / Progetto
+    mobile_filter_title: Filtro
+    create_title: Crea un nuovo progetto
+    create_action: Creare
+    private_title: I miei progetti
+    public_title: Progetti pubblici
+    authed_empty_body: Non sei ancora in nessun progetto ... Perché non crearne uno di sopra!
+    unauthed_empty_body: Al momento non ci sono progetti pubblici, perché non registrarti e crearne uno tuo!
+    fetch_failed_body: Impossibile recuperare i progetti, si prega di ricaricare
+    create_failed_body: Impossibile creare un progetto, per favore riprova
+
+  session_consent:
+    title: Consenso di Gabber
+    nav_title: Consenso di Gabber
+    loading_title: Recupero delle informazioni di consenso
+    info_title: Le tue informazione
+    privacy_body: Questa è l'unica informazione personale che memorizzeremo su di te e non sarà mai resa pubblica
+    info_name_label: Nome
+    info_email_label: Email
+    mobile_info_title: Le tue informazioni
+    failed_body: Qualcosa è andato storto, controlla il link nella tua email.
+
+  session_detail:
+    title: "{name}'s sessione"
+    nav_title: Dettaglio della sessione
+    mobile_filter_title: Filtro
+    mobile_info_title: Informazioni sulla sessione
+    topic_title: Argomento
+    annotations_title: Annotazioni
+    no_annotations_title: Nessuna annotazione
+    no_annotations: Non ci sono ancora annotazioni, perché non aggiungerne una?
+    no_filtered_annotations: Nessuna annotazione corrisponde alla tua ricerca, prova a modificarla nella barra laterale
+    fetch_failed_body: Gabber non è stato trovato o non esiste
+    create_failed_body: Impossibile creare annotazioni, riprova
+
+  session_list:
+    title: Sessioni
+    nav_title: Sessioni
+    loading_title: Recupero delle sessioni del progetto
+    mobile_filter_title: Filtro
+    no_sessions: Non ci sono sessioni disponibili al momento, perché non registrarne una nell'app?
+    no_filtered_sessions: Nessuna sessione corrisponde alla tua ricerca, prova a modificarla utilizzando la barra laterale.
+    mobile_project_title: Informazioni sul progetto
+    not_found: Progetto non trovato, controlla il tuo indirizzo
+
+# * * * * * * * * * * * * * * * * * * * * * * * * * * *
+# * = = = = = = = =  COMPONENTS = = = = = = = = = = = *
+# * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+# components:
+#   annotation:
+#   audio:
+#   comment:
+#   consent:
+#   member:
+#   project:
+#   session:
+#   shared:
+#   topic:
+#   util:
+
+misc:
