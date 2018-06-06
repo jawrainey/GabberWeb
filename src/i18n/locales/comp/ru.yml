@@ -1,0 +1,251 @@
+annotation:
+  annotation_title:
+    with_tags: Выберите теги и добавьте комментарий
+    without_tags: Добавить комментарий
+
+  annotation_edit:
+    label: Аннотирование – {start} → {end}
+    cancel_action: Отмена
+    create_action: Создать
+    placeholder: Я думаю, что
+
+  annotation_filter:
+    sort_title: Отсортировать аннотации
+    filter_title: Отфильтровать Аннотации
+    message_field:
+      label: По сообщениям
+      placeholder: 'например: Немного о ...'
+    topic_field:
+      label: По темам
+    annotator_field:
+      label: По Аннотаторам
+
+  annotation_pill:
+    desktop_duration: '{start} → {end}'
+    hide_action: Скрыть комментарии
+    comment_action: Добавить комментарий | 1 комментарий | {count} Комментарии
+
+  annotation_range:
+
+  draggable:
+
+
+
+audio:
+  audio_player:
+    loading: Загрузка аудиозаписи
+    fail_title: Аудиозапись(си) недоступно(ы)
+    fail_body: Эта запись больше не доступна, обратитесь за помощью к ее создателю.
+
+
+
+comment:
+  comment:
+    delete_action: Удалить
+    collapse_action: Отменить | Свернуть
+    replies_action: Добавить ответ | 1 Ответ | {count} Ответа
+    delete_body: Вы уверены, что хотите удалить свой комментарий? Это не может быть отменено
+    deleted_title: '[Удаленно]'
+
+  comment_composer:
+    action: комментарий
+    placeholder: Я думаю, что
+    fail_body: Не удалось добавить ваш комментарий, повторите попытку.
+
+  comment_section:
+    blocked_body: Вы не можете ответить в этой теме
+    login_action: Войдите, чтобы прокомментировать
+
+
+
+consent:
+  consent_form:
+    title: Согласие Gabber
+    subtitle: Решите, как вы хотите, чтобы ваш разговор использовался в Gabber
+    session_title: Разговор, который был записан
+    project_title: Проект, связанный с вашей беседой
+    perms_title: Кому вы хотели бы иметь доступ к этому разговору?
+    hidden_title: Участники
+    hidden_body: – Только администраторы проекта и люди в этом разговоре смогут прослушать этот разговор.
+    private_title: Члены
+    private_body: – Только люди, которые являются членами проекта, могут обнаружить или послушать этот разговор.
+    public_title: Все
+    public_body: – Любой, кто посетит Gabber, сможет прослушать данную аудиозапись.
+    review_title: Пересмотреть решение
+    no_show: Скрыть вас в Gabber
+    appearance_label: Ваша видимость
+    access_label: У кого есть доступ
+    submit_action: Обновить согласие
+    people:
+      interviewer: Интервьюер
+      administrators: Администраторы проекта
+      participant: Участники этого разговора
+      member: Участники проекта
+      public: Любой, кто посетит Gabber
+
+  consent_success:
+    title: Согласие обновлено
+    subtitle: Вы можете пересмотреть его в любое время
+    message_title: Успех
+    message_body: Благодарим вас за то, что вы подтвердили свое согласие на этот разговор. Теперь вы можете начать аннотацию. Вы сможете вернуться и обновить свое согласие в любое время.
+    session_action: Просмотреть сессию
+
+
+
+member:
+  member_bubble:
+
+  member_option:
+
+
+
+project:
+  project_edit:
+    name_field:
+      label: Имя
+      placeholder: 'например: Мой великолепный проект'
+    info_field:
+      label: Описание
+      placeholder: 'например: Этот проект посвящен ...'
+    perms_field:
+      label: Конфиденциальность
+      public: Публичный
+      private: Приватный
+    perms_warn:
+      title: Предупреждение!
+      body: Gabber уважает согласие участника, поэтому, если все участники не выразили свое согласие, приватный Gabber не может стать публичным.
+      action: Я понимаю
+    cancel_action: Отмена
+    default_submit_action: Сохранить
+    private_body: Только вы и приглашенные участники увидите ваш проект
+    public_body: Любой человек из Габбера увидит и сможет присоединиться к вашему проекту
+
+  project_header:
+    members_action: Члены
+    edit_action: Редактировать
+    close_action: Закрыть
+    join_action: Закрыть
+    leave_action: Выйти
+
+  project_info:
+    info_label: Описание
+    members_label: Члены
+    sessions_action: Сессии
+    playlists_action: Плейлисты
+
+  project_info_sidebar:
+    info_label: Описание
+    members_label: Члены
+    owner_label: Создатель
+    sessions_label: Сессии
+
+  project_members:
+    members_title: Участники проекта
+    add_title: Добавить участников
+    no_members: Пока нет участников, почему бы не добавить их?
+    name_field:
+      label: Полное имя
+      placeholder: 'например: Вася Пупкин'
+    email_field:
+      label: Эл. адрес
+      placeholder: 'например: vasya.pupkin@gmail.com'
+    cancel_action: Отмена
+    submit_action: Добавить
+    start_action: Добавить участников
+    was_added: '{name} был добавлен'
+    delete_confirm: Вы действительно хотите удалить этого члена(участника)?
+    was_removed: '{name} был удален'
+
+  project_pill:
+    update_action: Обновить
+    update_failed: Не удалось сохранить проект, повторите попытку?
+    delete_confirm: Не удалось сохранить проект, повторите попытку?
+    delete_failed: Не удалось удалить проект, повторите попытку.
+    join_confirm: Вы действительно хотите присоединиться к этому проекту?
+    join_failed: Не удалось присоединиться к проекту, пожалуйста повторите попытку.
+    leave_confirm: Вы действительно хотите покинуть этот проект?
+    leave_failed: Не удалось покинуть проект, пожалуйста повторите попытку.
+
+
+
+session:
+  session_filters:
+    sort_title: Отсортировать сессии
+    filter_title: Отфильтровать сессии
+    name_field:
+      label: По имени
+      placeholder: 'например: Ron Johnson'
+    topic_field:
+      label: По темам
+    member_field:
+      label: По участникам
+
+  session_info_sidebar:
+    title: Информация о сессии
+    created_label: Создано
+    creator_label: Создатель
+    members_label: Участники
+    topics_label: Темы
+    annotations_label: Аннотации
+    date_format: h:mm a MMMM Do YYYY
+
+  session_pill:
+    more: Больше
+    member_label: Участники
+    when_label: Записано
+    annotation_label: Аннотации
+    topic_label: Темы
+
+
+
+shared:
+  site_footer:
+    copyright: Исследовательский проект в
+
+  site_header:
+    logout_action: Выйти
+
+
+
+topic:
+  topic_list_edit:
+    title: Темы
+    warn_title: Предупреждение
+    warn_body: Изменение данных тем обновит существующие разговоры
+    help_body: Добавить темы для обсуждения людьми в их Gabber
+    placeholder: 'например: Тема о ...'
+    add_action: Добавить тему
+
+  topic_option:
+
+  topics_bar:
+
+  topic_segment:
+
+
+
+utils:
+  action_box:
+
+  add_cancel_button:
+
+  breadcrumbs:
+
+  circle_button:
+
+  icon_bubble:
+
+  label_value:
+
+  loading:
+    default_label: погрузка
+
+  markdown:
+
+  message:
+
+  sort_field:
+    newest_label: Новые
+    oldest_label: Ранние
+
+  tooltip:

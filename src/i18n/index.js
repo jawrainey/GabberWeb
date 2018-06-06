@@ -6,6 +6,10 @@ import ViewsEn from './locales/view/en.yml'
 import MiscEn from './locales/misc/en.yml'
 import ComponentsEn from './locales/comp/en.yml'
 
+import ViewsRu from './locales/view/ru.yml'
+import MiscRu from './locales/misc/ru.yml'
+import ComponentsRu from './locales/comp/ru.yml'
+
 Vue.use(VueI18n)
 
 const messages = {
@@ -14,11 +18,16 @@ const messages = {
     view: ViewsEn,
     misc: MiscEn,
     comp: ComponentsEn
+  },
+  ru: {
+    api: ApiEn,
+    view: ViewsRu,
+    misc: MiscRu,
+    comp: ComponentsRu
   }
 }
 
 export const i18n = new VueI18n({
-  // locale: 'dev',
   locale: 'en',
   messages
 })

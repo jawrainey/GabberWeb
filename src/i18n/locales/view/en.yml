@@ -27,7 +27,7 @@ auth:
     subtitle: Submit your email address and we'll send you a link to reset your password.
     email_field:
       label: Enter your email
-      placeholder: e.g. pam@example.com
+      placeholder: e.g. me@example.com
     send_action: Send
     success_title: Code Sent
     success_body: We've sent a code to {email}, if it exists in our system, click the link in your email to reset your password.
@@ -39,7 +39,7 @@ auth:
     signup_action: create an account
     email_field:
       label: Email
-      placeholder: e.g. jim@example.com
+      placeholder: e.g. me@example.com
     pass_field:
       label: Password
       placeholder: e.g. ••••••••
@@ -58,7 +58,7 @@ auth:
       placeholder: e.g. Jim Halpert
     email_field:
       label: Email
-      placeholder: e.g. jim@example.com
+      placeholder: e.g. me@example.com
     pass_field:
       label: Password
       placeholder: e.g. ••••••••

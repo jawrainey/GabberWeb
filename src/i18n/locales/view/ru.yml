@@ -1,0 +1,201 @@
+
+#
+# * * Auth Views * *
+#
+auth:
+  accept_invite:
+    title: Приглашаем вас присоединиться к проекту в Gabber
+    nav_title: Принять приглашение
+    loading_title: Получение приглашения
+    bad_token_title: Недопустимый токен
+    subtitle: Зарегистрируйтесь, чтобы присоединиться к проекту
+    info: Gabber позволяет записывать и аннотировать структурированные интервью
+    email_field:
+      label: Эл. адрес
+      placeholder: 'например: me@example.com'
+    name_field:
+      label: Полное имя
+      placeholder: 'например: Stanley Hudson'
+    pass_field:
+      label: Пароль
+      placeholder: 'например: ••••••••'
+    submit_action: Отправить
+
+  forgot:
+    title: Сбросить пароль Gabber
+    nav_title: Забыл(а) пароль
+    subtitle: Отправьте свой адрес электронной почты, и мы вышлем вам ссылку для сброса и обноалнея пароля.
+    email_field:
+      label: Введите адрес электронной почты
+      placeholder: e.g. pam@example.com
+    send_action: Отправить
+    success_title: Код отправлен
+    success_body: Мы отправили код {email}, если он существует в нашей системе, нажмите ссылку в своем письме, чтобы сбросить и обновить пароль.
+
+  login:
+    title: Войти в Gabber
+    nav_title: Войти
+    or: или
+    signup_action: Создать аккаунт
+    email_field:
+      label: Эл. адрес
+      placeholder: 'например: me@example.com'
+    pass_field:
+      label: Пароль
+      placeholder: 'например: ••••••••'
+    forgot_action: Забыли пароль?
+    cancel_action: Отмена
+    submit_action: Войти
+    signup_body: У вас еще нет учетной записи?
+    failed_body: неверныйй логин или пароль, повторите попытку.
+
+  register:
+    title: Создание учетной записи Gabber
+    nav_title: Зарегистрироваться!
+    login_action: Войдите в свою учетную запись
+    name_field:
+      label: Полное имя
+      placeholder: 'например: Jim Halpert'
+    email_field:
+      label: Эл. адрес
+      placeholder: 'например: jim@example.com'
+    pass_field:
+      label: Пароль
+      placeholder: 'например: ••••••••'
+    terms_body: Зарегистрировавшись, вы соглашаетесь с нашими
+    cancel_action: Отмена
+    submit_action: Зарегистрироваться
+    success_title: Проверь почту
+    success_subtitle: Аккаунт создан!
+    failed_body: Ошибка регистрации, повторите попытку
+
+  reset:
+    title: Сброс пароля
+    nav_title: Сбросьте пароль, используя эту форму
+    pass_field:
+      label: новый пароль
+      placeholder: 'например: ••••••••'
+    submit_action: Сброс
+    success_title: Сброс пароля
+    success_body: Ваш пароль был сброшен
+    failed_body: Ошибка сброса пароля, повторите попытку
+
+  verify:
+    title: Проверка
+    nav_title: Проверка
+    failed_body: Не удалось произвести проверку, пожалуйста проверьте правильость сслыки которую вам отправили
+
+#
+# Base Views
+#
+base:
+  about:
+    title: Что это?
+    nav_title: О приложении
+    subtitle: Gabber позволяет взаимодействовать с вашим сообществом/коммьюнити, для обсуждения и понимания общего опыта
+    col_1:
+      title: Структура
+      body: Создайте проект и структурируйте его вокруг тем, которые вы хотите обсудить. Затем загрузите приложение Gabber.
+    col_2:
+      title: запись
+      body: Используйте приложение для записи разговоров и пометки их темами. После того, как ваш разговор будет загружен в систему, все участники могут прослушать его и дать согласие на способ его использования и сткперь публичности.
+    col_3:
+      title: Аннотировать
+      body: Слушайте и комментируйте(создпвайте аннотации) своих бесед, чтобы обсудить их с другими членами сообщества.
+
+  holder:
+    # ...
+
+  home:
+    title: Структурировать, записать и аннотировать аудиозаписи
+    nav_title: Главная
+    action: Обзор проектов
+
+  not_found:
+    title: Страница не найдена
+    subtitle: Не удалось найти страницу, которую вы искали, проверьте правильность вашего URL-адреса.
+    nav_title: Не найдено
+    back_action: Перейти на Главную
+
+  privacy:
+    title: Наша Политика конфиденциальности
+    nav_title: Политика Конфиденциальности
+    subtitle: Данные которые мы собираем, почему и как они используются
+
+  terms:
+    title: Условия и положения
+    nav_title: Условия использования
+    subtitle: С чем вы соглашаетесь при использовании нашего сервиса (мобильного приложения или веб-сайта)
+
+#
+# Project Views
+#
+project:
+  project_list:
+    title: Проекты
+    nav_title: Проекты
+    filter_title: Отфильтровать проекты
+    filter_field:
+      label: Поиск проекта
+      placeholder: 'например: Имя // Проект'
+    mobile_filter_title: Фильтр
+    create_title: Создать новый проект
+    create_action: Создайте
+    private_title: Мои проекты
+    public_title: Публичные проекты
+    authed_empty_body: Вы не на каких-либо проектах ... пока. Почему бы не создать один выше!
+    unauthed_empty_body: Сейчас нет публичных проектов, почему бы не зарегистрироваться и не создать свой собственный!
+    fetch_failed_body: Не удалось получить проекты, пожалуйста, попробуйте снова
+    create_failed_body: Не удалось создать проект, повторите попытку.
+
+  session_consent:
+    title: Gabber согласие
+    nav_title: Gabber согласие
+    loading_title: Получение информации о согласии
+    info_title: Ваша информация
+    privacy_body: Это единственная личная информация, которую мы будем хранить о вас, и она никогда не будет опубликована
+    info_name_label: Имя
+    info_email_label: Эл. адрес
+    mobile_info_title: Ваша информация
+    failed_body: Что-то пошло не так, проверьте ссылку в вашем письме.
+
+  session_detail:
+    title: "{name}'s Сессия"
+    nav_title: Детали сеанса
+    mobile_filter_title: Фильтр
+    mobile_info_title: Информация о сеансе
+    topic_title: Тема
+    annotations_title: Аннотации
+    no_annotations_title: нет Аннотации
+    no_annotations: Пока нет комментариев, почему бы не добавить их?
+    no_filtered_annotations: Нет аннотаций соответствующих вашему запросу, попробуйте модифицировать запрос в боковой панели
+    fetch_failed_body: Не удалось найти Gabber или его не существует
+    create_failed_body: Не удалось создать аннотацию, повторите попытку.
+
+  session_list:
+    title: Сессии
+    nav_title: Сессии
+    loading_title: Получение сессий проекта
+    mobile_filter_title: Фильтр
+    no_sessions: Доступных сессий Сейчас нет сеансов, почему бы не записать их в приложении?
+    no_filtered_sessions: Сессии соответствующие вашему запросу не найдены, попробуйте модифировать запрос в боковой панели
+    mobile_project_title: Информация о проекте
+    not_found: Проект не найден, проверьте свой URL-адрес
+
+# * * * * * * * * * * * * * * * * * * * * * * * * * * *
+# * = = = = = = = =  COMPONENTS = = = = = = = = = = = *
+# * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+# components:
+#   annotation:
+#   audio:
+#   comment:
+#   consent:
+#   member:
+#   project:
+#   session:
+#   shared:
+#   topic:
+#   util:
+
+misc:
