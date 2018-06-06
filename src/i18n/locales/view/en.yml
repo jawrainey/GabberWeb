@@ -166,6 +166,7 @@ project:
     mobile_info_title: Session info
     topic_title: Topic
     annotations_title: Annotations
+    no_annotations_title: No Annotations
     no_annotations: There aren't any annotations yet, why not add one?
     no_filtered_annotations: No annotations matched your query, try tweaking it in the sidebar
     fetch_failed_body: Couldn't find that Gabber or it doesn't exist

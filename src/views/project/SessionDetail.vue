@@ -97,11 +97,12 @@ full-layout.session-detail(v-else-if="session")
         @blur="annot => focusedAnnotation = null",
       )
       
-      action-box(v-if="filteredAnnotations.length === 0", title="No annotations")
+
+      action-box(v-if="filteredAnnotations.length === 0", :title="$t('view.project.session_detail.no_annotations_title')")
         p.is-size-5(slot="content")
-          span(v-if="annotations.length === 0") There aren't any annotations yet, why not add one?
-          span(v-else) No annotations matched your query, try tweaking it in the sidebar
       
+          span(v-if="annotations.length === 0") {{$t('view.project.session_detail.no_annotations')}}
+          span(v-else) {{$t('view.project.session_detail.no_filtered_annotations')}}
   session-info-sidebar(
     slot="right",
     :session="session"
