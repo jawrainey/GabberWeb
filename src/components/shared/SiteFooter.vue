@@ -38,6 +38,7 @@ import { PRIVACY_ROUTE, TERMS_ROUTE } from '@/const/routes'
 
 const availableLocales = [
   { key: 'en', name: 'English' },
+  { key: 'fr', name: 'French' },
   { key: 'ru', name: 'Russian' }
 ]
 

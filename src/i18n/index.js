@@ -6,6 +6,10 @@ import ViewsEn from './locales/view/en.yml'
 import MiscEn from './locales/misc/en.yml'
 import ComponentsEn from './locales/comp/en.yml'
 
+import ViewsFr from './locales/view/fr.yml'
+import MiscFr from './locales/misc/fr.yml'
+import ComponentsFr from './locales/comp/fr.yml'
+
 import ViewsRu from './locales/view/ru.yml'
 import MiscRu from './locales/misc/ru.yml'
 import ComponentsRu from './locales/comp/ru.yml'
@@ -18,6 +22,12 @@ const messages = {
     view: ViewsEn,
     misc: MiscEn,
     comp: ComponentsEn
+  },
+  fr: {
+    api: ApiEn,
+    view: ViewsFr,
+    misc: MiscFr,
+    comp: ComponentsFr
   },
   ru: {
     api: ApiEn,

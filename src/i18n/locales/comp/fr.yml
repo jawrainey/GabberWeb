@@ -1,0 +1,251 @@
+annotation:
+  annotation_title:
+    with_tags: Sélectionner des tags et Ajouter un commentaire
+    without_tags: Ajouter un commentaire
+
+  annotation_edit:
+    label: Annotation – {start} → {end}
+    cancel_action: Annuler
+    create_action: Créer
+    placeholder: Je pense que …
+
+  annotation_filter:
+    sort_title: Trier les annotations
+    filter_title: Filtrer les annotations
+    message_field:
+      label: Par message
+      placeholder: 'Par exemple: La partie à propos de...'
+    topic_field:
+      label: Par sujet
+    annotator_field:
+      label: Par annotateur
+
+  annotation_pill:
+    desktop_duration: '{start} → {end}'
+    hide_action: Cacher les commentaires
+    comment_action: Ajouter un commentaire | 1 commentaire | {count} commentaires
+
+  annotation_range:
+
+  draggable:
+
+
+
+audio:
+  audio_player:
+    loading: Chargement de l'audio
+    fail_title: Audio non disponible
+    fail_body: Cet enregistrement n'est plus disponible, veuillez contacter le créateur pour obtenir l'aide nécéssaire.
+
+
+
+comment:
+  comment:
+    delete_action: Effacer
+    collapse_action: Annuler | Effondrer
+    replies_action: Ajouter une réponse | 1 réponse | {count} réponses
+    delete_body: Êtes-vous sûr de vouloir supprimer votre commentaire? Votre action ne pourra pas être annulé aprés
+    deleted_title: '[supprimé]'
+
+  comment_composer:
+    action: Comment
+    placeholder: Je pense que …
+    fail_body: Impossible de lire votre commentaire, veuillez réessayer
+
+  comment_section:
+    blocked_body: Vous ne pouvez pas répondre à cette conversation
+    login_action: Se connecter pour commenter
+
+
+
+consent:
+  consent_form:
+    title: Consentement Gabber
+    subtitle: Revoyez comment vous voulez que votre conversation soit utilisée sur Gabber
+    session_title: La conversation qui a été enregistrée
+    project_title: Le projet associé à votre conversation
+    perms_title: Qui aimeriez-vous avoir accès à cette conversation?
+    hidden_title: Participants
+    hidden_body: – Seuls les administrateurs du projet et les personnes qui ont participé à cette conversation pourront écouter cette conversation.
+    private_title: Membres
+    private_body: – Seules les personnes qui sont membres du projet peuvent découvrir ou écouter cette conversation.
+    public_title: Toutes les personnes
+    public_body: – Toute personne visitant Gabber peut découvrir et écouter cet enregistrement audio.
+    review_title: Décision de révision
+    no_show: Vous ne serez pas visible à Gabber
+    appearance_label: Comment vous apparaissez
+    access_label: Qui a accès
+    submit_action: Mettre à jour le consentement
+    people:
+      interviewer: L'intervieweur
+      administrators: Administrateurs du projet
+      participant: Participants à cette conversation
+      member: Les membres de ce projet
+      public: Toute personne visitant le site Web de Gabber
+
+  consent_success:
+    title: Consentement mis à jour
+    subtitle: Vous pouvez le consulter et le mettre à jour à tout moment
+    message_title: Succès
+    message_body: Merci d'avoir mis  à jour votre consentement pour cette conversation. Vous pouvez maintenant voir et commencer à l'annoter. Vous pouvez toujours revenir et mettre à jour votre consentement à tout moment.
+    session_action: Voir la session
+
+
+
+member:
+  member_bubble:
+
+  member_option:
+
+
+
+project:
+  project_edit:
+    name_field:
+      label: Nom
+      placeholder: 'Par exemple:  Mon Projet Impressionnant'
+    info_field:
+      label: La description
+      placeholder: 'Par exemple: Ce projet concerne ...'
+    perms_field:
+      label: Privacy
+      public: Publique
+      private: Privé
+    perms_warn:
+      title: Attention!
+      body: Gabber respectera toujours le consentement d'un participant, donc à moins que tous les participants n'y aient consenti, un Gabber privé ne peut pas être rendu public.
+      action: Je comprends
+    cancel_action: Annuler
+    default_submit_action: Sauvegarder
+    private_body: Seuls vous et les participants invités verront votre projet
+    public_body: N'importe qui sur Gabber verra et sera en mesure de rejoindre votre projet
+
+  project_header:
+    members_action: Membres
+    edit_action: Modifier
+    close_action: Fermer
+    join_action: Joindre
+    leave_action: Quitter
+
+  project_info:
+    info_label: La description
+    members_label: Membres
+    sessions_action: Sessions
+    playlists_action: Playlists
+
+  project_info_sidebar:
+    info_label: La description
+    members_label: Members
+    owner_label: Créateur
+    sessions_label: Sessions
+
+  project_members:
+    members_title: Les membres du projet
+    add_title: Ajouter un membre
+    no_members: Pas de membres, pourquoi ne pas en ajouter?
+    name_field:
+      label: Nom complet
+      placeholder: 'Par exemple: Kevin Malone'
+    email_field:
+      label: Email
+      placeholder: 'Par exemple:  kevin.smith@gmail.com'
+    cancel_action: Annuler
+    submit_action: Ajouter
+    start_action: Ajouter un membre
+    was_added: '{name} a été ajouté'
+    delete_confirm: Êtes-vous sûr de vouloir supprimer ce membre?
+    was_removed: '{name} a été supprimé'
+
+  project_pill:
+    update_action: Mettre à jour
+    update_failed: Impossible d'enregistrer le projet, réessayez?
+    delete_confirm: Êtes-vous sûr de vouloir supprimer ce projet? Cette action ne peut pas être annulée
+    delete_failed: Échec de la suppression du projet. Veuillez réessayer.
+    join_confirm: Êtes-vous sûr de vouloir rejoindre ce projet?
+    join_failed: Impossible de rejoindre le projet, veuillez réessayer
+    leave_confirm: Êtes-vous sûr de vouloir quitter ce projet?
+    leave_failed: Impossible de quitter le projet, veuillez réessayer
+
+
+
+session:
+  session_filters:
+    sort_title: Trier les sessions
+    filter_title: Filtrer les sessions
+    name_field:
+      label: Par nom
+      placeholder: 'Par exemple: Ron Johnson'
+    topic_field:
+      label: Par thèmes/Rubriques
+    member_field:
+      label: Par participant
+
+  session_info_sidebar:
+    title: Informations sur la session
+    created_label: Créé le
+    creator_label: Créateur
+    members_label: Participants
+    topics_label: Les Rubriques
+    annotations_label: Annotations
+    date_format: h:mm a MMMM Do YYYY
+
+  session_pill:
+    more: Plus
+    member_label: Participants
+    when_label: Enregistré
+    annotation_label: Annotations
+    topic_label: Les Rubriques
+
+
+
+shared:
+  site_footer:
+    copyright: Un projet de recherche à
+
+  site_header:
+    logout_action: Logout
+
+
+
+topic:
+  topic_list_edit:
+    title: les Rubriques
+    warn_title: Attention
+    warn_body: La modification de ces rubriques mettra à jour les conversations existantes
+    help_body: Ajoutez des sujets pour les personnes à discuter dans leurs Gabbers
+    placeholder: Par Exemple. Un sujet à propos de ...
+    add_action: Ajouter une rubrique
+
+  topic_option:
+
+  topics_bar:
+
+  topic_segment:
+
+
+
+utils:
+  action_box:
+
+  add_cancel_button:
+
+  breadcrumbs:
+
+  circle_button:
+
+  icon_bubble:
+
+  label_value:
+
+  loading:
+    default_label: Chargement
+
+  markdown:
+
+  message:
+
+  sort_field:
+    newest_label: Plus récent
+    oldest_label: Plus ancien
+
+  tooltip:

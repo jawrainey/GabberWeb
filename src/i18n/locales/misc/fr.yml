@@ -1,0 +1,8 @@
+words:
+  or: ou
+  and: et
+
+project_membership:
+  owner: Propriétaire
+  admin: Administrateur
+  member: Membre
