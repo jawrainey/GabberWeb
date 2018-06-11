@@ -1,0 +1,251 @@
+annotation:
+  annotation_title:
+    with_tags: Seleccionar etiquetas y añadir un comentario
+    without_tags: Añadir un comentario
+
+  annotation_edit:
+    label: Anotación – {start} → {end}
+    cancel_action: Cancelar
+    create_action: Crear
+    placeholder: Creo que ...
+
+  annotation_filter:
+    sort_title: Ordenar anotaciones
+    filter_title: Anotaciones de filtro
+    message_field:
+      label: Por mensaje
+      placeholder: p.ej. El poco sobre ...
+    topic_field:
+      label: Por tema
+    annotator_field:
+      label: Por anotador
+
+  annotation_pill:
+    desktop_duration: '{start} → {end}'
+    hide_action: Ocultar comentarios
+    comment_action: Añadir un comentario | 1 comentario | {count} Comentarios
+
+  annotation_range:
+
+  draggable:
+
+
+
+audio:
+  audio_player:
+    loading: Cargando audio
+    fail_title: Audio no disponible
+    fail_body: Esta grabación ya no está disponible, póngase en contacto con el creador para obtener ayuda.
+
+
+
+comment:
+  comment:
+    delete_action: Borrar
+    collapse_action: Cancelar | Colapso
+    replies_action: Añadir una respuesta | 1 respuesta | {count} respuestas
+    delete_body: ¿Seguro que quieres eliminar tu comentario? Esto no se podrá deshacer
+    deleted_title: '[borrado]'
+
+  comment_composer:
+    action: Comentario
+    placeholder: Creo que ...
+    fail_body: No se pudo hacer tu comentario, por favor vuelve a intentarlo
+
+  comment_section:
+    blocked_body: No puedes responder a este hilo
+    login_action: Inicia sesión para comentar
+
+
+
+consent:
+  consent_form:
+    title: Consentimiento de Gabber
+    subtitle: Revisa cómo quieres que tu conversación se use en Gabber
+    session_title: La conversación ha sido grabada
+    project_title: El proyecto asociado a tu conversación
+    perms_title: ¿Te gustaría tener acceso a esta conversación?
+    hidden_title: Participantes
+    hidden_body: – Solo los administradores del proyecto y las personas en esta conversación podrán escuchar esta conversación.
+    private_title: Miembros
+    private_body: – Solo las personas que son miembros del proyecto pueden escuchar esta conversación.
+    public_title: Todo el mundo
+    public_body: – Cualquiera que visite Gabber puede escuchar este audio.
+    review_title: Decisión de revisión
+    no_show: No aparecerás en Gabber
+    appearance_label: Cómo apareces
+    access_label: Quién tiene acceso
+    submit_action: Actualizar el consentimiento
+    people:
+      interviewer: El entrevistador
+      administrators: Administradores de proyectos
+      participant: Participantes en esta conversación
+      member: Miembros de este proyecto
+      public: Cualquiera que visite el sitio web de Gabber
+
+  consent_success:
+    title: Consentimiento actualizado
+    subtitle: Puedes revisarlo y actualizarlo en cualquier momento
+    message_title: Éxito
+    message_body: Gracias por actualizar su consentimiento para esta conversación. Ahora puedes ver las conversaciones y comenzar a anotar. Siempre puede volver y actualizar su consentimiento en cualquier momento.
+    session_action: Ver sesión
+
+
+
+member:
+  member_bubble:
+
+  member_option:
+
+
+
+project:
+  project_edit:
+    name_field:
+      label: Nombre
+      placeholder: p.ej. Mi increíble proyecto
+    info_field:
+      label: Descripción
+      placeholder: p.ej. Este proyecto es sobre ...
+    perms_field:
+      label: Privacidad
+      public: Público
+      private: Privado
+    perms_warn:
+      title: Advertencia!
+      body: Gabber siempre respetará el consentimiento de un participante, de modo que a menos que todos los participantes hayan dado su consentimiento, un Gabber privado no podrá hacerse público.
+      action: Entiendo
+    cancel_action: Cancelar
+    default_submit_action: Salvar
+    private_body: Solo tu y los participantes invitados verán su proyecto
+    public_body: Cualquier persona en Gabber verá y podrá unirse a tu proyecto
+
+  project_header:
+    members_action: Miembros
+    edit_action: Editar
+    close_action: Cerca
+    join_action: Unirse
+    leave_action: Salir
+
+  project_info:
+    info_label: Descripción
+    members_label: Miembros
+    sessions_action: Sesiones
+    playlists_action: Listas de reproducción
+
+  project_info_sidebar:
+    info_label: Descripción
+    members_label: Miembros
+    owner_label: Creador
+    sessions_label: Sesiones
+
+  project_members:
+    members_title: Miembros del proyecto
+    add_title: Añadir miembro
+    no_members: Todavía no hay miembros, ¿por qué no agregar algunos?
+    name_field:
+      label: Nombre completo
+      placeholder: p.ej. Kevin Malone
+    email_field:
+      label: Email
+      placeholder: p.ej. kevin.smith@gmail.com
+    cancel_action: Cancelar
+    submit_action: Añadir
+    start_action: Añadir miembro
+    was_added: '{name} fue agregado'
+    delete_confirm: ¿Seguro que quieres eliminar a este miembro?
+    was_removed: '{name} fue eliminado'
+
+  project_pill:
+    update_action: Actualizar
+    update_failed: No se pudo guardar el proyecto, intente de nuevo?
+    delete_confirm: ¿Seguro que quieres eliminar este proyecto? Esta acción no se puede deshacer
+    delete_failed: Error al eliminar el proyecto, por favor intente de nuevo
+    join_confirm: ¿Estás seguro de que quieres unirte a este proyecto?
+    join_failed: No se pudo unir al proyecto, por favor intente de nuevo
+    leave_confirm: ¿Estás seguro de que quieres abandonar este proyecto?
+    leave_failed: Error al salir del proyecto, por favor intente de nuevo
+
+
+
+session:
+  session_filters:
+    sort_title: Clasificar Sesiones
+    filter_title: Sesiones de filtro
+    name_field:
+      label: Por nombre
+      placeholder: p.ej. Ron Johnson
+    topic_field:
+      label: Por temas
+    member_field:
+      label: Por participante
+
+  session_info_sidebar:
+    title: Información de la sesión
+    created_label: Creado en
+    creator_label: Creador
+    members_label: Participantes
+    topics_label: Temas
+    annotations_label: Anotaciones
+    date_format: h:mm a MMMM Do YYYY
+
+  session_pill:
+    more: más
+    member_label: Participantes
+    when_label: Grabado
+    annotation_label: Anotaciones
+    topic_label: Temas
+
+
+
+shared:
+  site_footer:
+    copyright: Un proyecto de investigación en
+
+  site_header:
+    logout_action: Cerrar sesión
+
+
+
+topic:
+  topic_list_edit:
+    title: Temas
+    warn_title: Advertencia
+    warn_body: Cambiar estos temas actualizará las conversaciones existentes
+    help_body: Agregue temas para que las personas discutan en sus Gabbers
+    placeholder: p.ej. Un tema sobre ...
+    add_action: Agregar tema
+
+  topic_option:
+
+  topics_bar:
+
+  topic_segment:
+
+
+
+utils:
+  action_box:
+
+  add_cancel_button:
+
+  breadcrumbs:
+
+  circle_button:
+
+  icon_bubble:
+
+  label_value:
+
+  loading:
+    default_label: Cargando
+
+  markdown:
+
+  message:
+
+  sort_field:
+    newest_label: El más nuevo
+    oldest_label: Más antiguo
+
+  tooltip:

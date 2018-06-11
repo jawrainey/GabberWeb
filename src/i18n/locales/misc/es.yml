@@ -1,0 +1,8 @@
+words:
+  or: o
+  and: y
+
+project_membership:
+  owner: Propietario
+  admin: Administración
+  member: Miembro

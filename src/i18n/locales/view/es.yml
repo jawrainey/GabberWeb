@@ -1,0 +1,201 @@
+
+#
+# * * Auth Views * *
+#
+auth:
+  accept_invite:
+    title: Estás invitado a unirte a un proyecto en Gabber
+    nav_title: Aceptar invitación
+    loading_title: Autentificando
+    bad_token_title: simbolo no valido
+    subtitle: Regístrese abajo para unirse al proyecto
+    info: Gabber te permite grabar y anotar entrevistas estructuradas
+    email_field:
+      label: Email
+      placeholder: p.ej. me@example.com
+    name_field:
+      label: Nombre completo
+      placeholder: p.ej. Stanley Hudson
+    pass_field:
+      label: Contraseña
+      placeholder: p.ej. ••••••••
+    submit_action: Enviar
+
+  forgot:
+    title: Restablece tu contraseña de Gabber
+    nav_title: Contraseña olvidada
+    subtitle: Envíe su dirección de correo electrónico y le enviaremos un enlace para restablecer su contraseña.
+    email_field:
+      label: Introduce tu correo electrónico
+      placeholder: p.ej. me@example.com
+    send_action: Enviar
+    success_title: Código enviado
+    success_body: Hemos enviado un código a {email}, si está en nuestro sistema, haga clic en el enlace de su correo electrónico para restablecer su contraseña.
+
+  login:
+    title: Inicia sesión en Gabber
+    nav_title: Iniciar sesión
+    or: o
+    signup_action: crea una cuenta
+    email_field:
+      label: Email
+      placeholder: p.ej. me@example.com
+    pass_field:
+      label: Contraseña
+      placeholder: p.ej. ••••••••
+    forgot_action: ¿Olvidaste tu contraseña?
+    cancel_action: Cancelar
+    submit_action: Iniciar sesión
+    signup_body: ¿Todavía no tienes una cuenta?
+    failed_body: Inicio de sesión no válido, por favor, inténtalo de nuevo
+
+  register:
+    title: Crea una cuenta de Gabber
+    nav_title: ¡Regístrate!
+    login_action: Ingrese a su cuenta
+    name_field:
+      label: Nombre completo
+      placeholder: p.ej. Jim Halpert
+    email_field:
+      label: Email
+      placeholder: p.ej. me@example.com
+    pass_field:
+      label: Contraseña
+      placeholder: p.ej. ••••••••
+    terms_body: Al registrarte, aceptas nuestra
+    cancel_action: Cancelar
+    submit_action: Regístrate
+    success_title: Revisa tu correo
+    success_subtitle: ¡Cuenta creada!
+    failed_body: Registro fallido, por favor intente de nuevo
+
+  reset:
+    title: Restablecer la contraseña
+    nav_title: Restablece tu contraseña usando este formulario
+    pass_field:
+      label: Nueva contraseña
+      placeholder: p.ej. ••••••••
+    submit_action: Reiniciar
+    success_title: Restablecimiento de contraseña
+    success_body: Tu contraseña ha sido restablecida
+    failed_body: Se produjo un error al restablecer su contraseña, por favor intente de nuevo.
+
+  verify:
+    title: Verificando
+    nav_title: Verificando
+    failed_body: La verificación falló, por favor revise el enlace que le enviaron
+
+#
+# Base Views
+#
+base:
+  about:
+    title: ¿Qué es?
+    nav_title: Acerca de
+    subtitle: Gabber permite interactuar con su comunidad para compartir y comprender sus experiencias compartidas
+    col_1:
+      title: Estructura
+      body: Crea un proyecto y estructuralo alrededor de los temas que deseas que se discutan. Luego descarga la aplicación Gabber.
+    col_2:
+      title: Grabar
+      body: Usa la aplicación para grabar conversaciones con tu comunidad y etiquetarlas con tus temas. Una vez que tu conversación es cargada, todos los participantes pueden revisar y dar su consentimiento a cómo se va a usar la grabación.
+    col_3:
+      title: Anotar
+      body: Escuche y anote sus conversaciones para crear discusiones con otros miembros de la comunidad.
+
+  holder:
+    # ...
+
+  home:
+    title: Estructura, graba y anota conversaciones de audio
+    nav_title: Casa
+    action: Explora proyectos
+
+  not_found:
+    title: Página no encontrada
+    subtitle: No se pudo encontrar la página que estabas buscando, verifica que tu URL sea correcta.
+    nav_title: Extraviado
+    back_action: Vete a casa
+
+  privacy:
+    title: Nuestra política de privacidad
+    nav_title: Política de privacidad
+    subtitle: Los datos que capturamos, por qué y cómo se usan
+
+  terms:
+    title: Términos y condiciones
+    nav_title: Términos de servicio
+    subtitle: Lo que acepta cuando utiliza nuestro servicio (aplicación móvil o sitio web)
+
+#
+# Project Views
+#
+project:
+  project_list:
+    title: Proyectos
+    nav_title: Proyectos
+    filter_title: Filtrar proyectos
+    filter_field:
+      label: Buscar un proyecto
+      placeholder: p.ej. Nombre // Proyecto
+    mobile_filter_title: Filtrar
+    create_title: Crea un nuevo proyecto
+    create_action: Crear
+    private_title: Mis proyectos
+    public_title: Proyectos públicos
+    authed_empty_body: No estás en ningún proyecto ... todavía. ¿Por qué no creas uno arriba?
+    unauthed_empty_body: No hay proyectos públicos en este momento, ¿por qué no suscribirse y crear el suyo propio?
+    fetch_failed_body: No se pudieron recuperar los proyectos, por favor recarga la pagina
+    create_failed_body: No se pudo crear el proyecto, inténtelo de nuevo
+
+  session_consent:
+    title: Consentimiento de Gabber
+    nav_title: Consentimiento de Gabber
+    loading_title: Obteniendo información de consentimiento
+    info_title: Tu información
+    privacy_body: Esta es la única información personal que almacenaremos sobre usted y nunca se hará pública
+    info_name_label: Nombre
+    info_email_label: Email
+    mobile_info_title: Tu información
+    failed_body: Algo salió mal, revisa el enlace en tu correo electrónico.
+
+  session_detail:
+    title: "{name}'s sesión"
+    nav_title: Detalle de la sesión
+    mobile_filter_title: Filtrar
+    mobile_info_title: Información de la sesión
+    topic_title: Tema
+    annotations_title: Anotaciones
+    no_annotations_title: No hay anotaciones
+    no_annotations: Todavía no hay anotaciones, ¿por qué no agregar una?
+    no_filtered_annotations: No hay anotaciones que coincidan con su consulta, cambia el criterío de busqueda en la barra lateral
+    fetch_failed_body: No se ha podido encontrar a ese Gabber o no exist
+    create_failed_body: Error al crear la anotación, por favor intente de nuevo
+
+  session_list:
+    title: Sesiones
+    nav_title: Sesiones
+    loading_title: Cómo obtener sesiones del proyecto
+    mobile_filter_title: Filtrar
+    no_sessions: No hay sesiones disponibles en este momento, ¿por qué no grabar una en la aplicación?
+    no_filtered_sessions: No hay sesiones que coincidan con su consulta, cambia el criterío de busqueda en la barra lateral
+    mobile_project_title: Información del proyecto
+    not_found: Proyecto no encontrado, revisa tu URL
+
+# * * * * * * * * * * * * * * * * * * * * * * * * * * *
+# * = = = = = = = =  COMPONENTS = = = = = = = = = = = *
+# * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+# components:
+#   annotation:
+#   audio:
+#   comment:
+#   consent:
+#   member:
+#   project:
+#   session:
+#   shared:
+#   topic:
+#   util:
+
+misc:

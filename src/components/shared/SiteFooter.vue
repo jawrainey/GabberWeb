@@ -38,9 +38,10 @@ import { PRIVACY_ROUTE, TERMS_ROUTE } from '@/const/routes'
 
 const availableLocales = [
   { key: 'en', name: 'English' },
-  { key: 'fr', name: 'French' },
-  { key: 'it', name: 'Italian' },
-  { key: 'ru', name: 'Russian' }
+  { key: 'es', name: 'Español' },
+  { key: 'fr', name: 'Français' },
+  { key: 'it', name: 'Italiano' },
+  { key: 'ru', name: 'Русский' }
 ]
 
 export default {
@@ -68,4 +69,7 @@ export default {
 </script>
 
 <style lang="sass">
+  a.dropdown-item:hover, a.dropdown-item.is-active
+    background-color: #1abc9c
+    color: white
 </style>
