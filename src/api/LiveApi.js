@@ -188,7 +188,8 @@ export default class LiveApi extends ApiInterface {
   
   // project.invites.accept
   async acceptInvite (token, fullname, password) {
-    return this.endpoint('put', `projects/invites/${token}`, { fullname, password })
+    let { meta, data } = await this.endpoint('put', `projects/invites/${token}`, { fullname, password })
+    return this.processAuth(meta, data)
   }
   
   /*
