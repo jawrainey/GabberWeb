@@ -127,6 +127,11 @@ base:
     nav_title: Termini di servizio
     subtitle: Cosa accetti quando utilizzi il nostro servizio (applicazione mobile o sito Web)
 
+  research:
+    title: Research
+    nav_title: Reseach
+    subtitle: How the use of Gabber informs research
+
 #
 # Project Views
 #

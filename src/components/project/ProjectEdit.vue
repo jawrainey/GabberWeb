@@ -19,7 +19,6 @@
         )
       .field
         label.label {{ $t('comp.project.project_edit.org_field.label') }}
-        p {{ project.organisation }}
         .control
           span.select
             select(v-model="project.organisation.id")

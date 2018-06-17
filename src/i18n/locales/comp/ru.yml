@@ -65,8 +65,14 @@ consent:
     session_title: Разговор, который был записан
     project_title: Проект, связанный с вашей беседой
     perms_title: Кому вы хотели бы иметь доступ к этому разговору?
+    research:
+      title: How your conversation will be used for research
+      body: Your recording and the associated metadata (who took part, when, what topics were discussed, etc) will be accessible by research staff and used to help understand how digital tools can support yourself and other citizens engaging in qualitative research practices and how audio can make these more accessible. Any published work resulting from data captured through Gabber will never include details that could be used to identify yourself or other participants.
+      statement: For more details, including how to opt-out, please review our
+      link: research statement.
+      embargo: 'Note: your conversation will undergo a 24-hour embargo where only participants of the conversation can listen. After this period, the audio conversation will be available based on the consent you choose below.'
     hidden_title: Участники
-    hidden_body: – Только администраторы проекта и люди в этом разговоре смогут прослушать этот разговор.
+    hidden_body: – Только администраторы проекта, исследователи и люди в этом разговоре смогут прослушать этот разговор.
     private_title: Члены
     private_body: – Только люди, которые являются членами проекта, могут обнаружить или послушать этот разговор.
     public_title: Все
@@ -77,6 +83,7 @@ consent:
     access_label: У кого есть доступ
     submit_action: Обновить согласие
     people:
+      researcher: Project researchers
       interviewer: Интервьюер
       administrators: Администраторы проекта
       participant: Участники этого разговора
@@ -107,6 +114,16 @@ project:
     info_field:
       label: Описание
       placeholder: 'например: Этот проект посвящен ...'
+    org_field:
+      label: Will this project be used by an organisation?
+      options:
+        individual: No. I will use this project as an individual.
+        ifrc: International Federation of Red Cross and Red Crescent Societies
+        fl: Fulfilling Lives
+        other: Other
+    contact:
+      before_link: Contact us
+      after_link: if you would like your organisation to appear as an option.
     perms_field:
       label: Конфиденциальность
       public: Публичный
@@ -138,6 +155,7 @@ project:
     members_label: Члены
     owner_label: Создатель
     sessions_label: Сессии
+    researchers_label: Researchers
 
   project_members:
     members_title: Участники проекта
@@ -149,6 +167,13 @@ project:
     email_field:
       label: Эл. адрес
       placeholder: 'например: vasya.pupkin@gmail.com'
+    role_title: What role should this member have?
+    options:
+      participant: Can access their own and public conversations.
+      researcher: Can access every conversations for your project.
+      administrator: Has full administrative access to the entire project.
+    edit_success: '{fullname}s role was changed from {old_role} to {new_role}'
+    others_changed: 'Note: {name} was not changed to.'
     cancel_action: Отмена
     submit_action: Добавить
     start_action: Добавить участников
@@ -185,6 +210,9 @@ session:
     created_label: Создано
     creator_label: Создатель
     members_label: Участники
+    researchers:
+      title: Researchers
+      description: There are currently no researchers involved in this project.
     topics_label: Темы
     annotations_label: Аннотации
     date_format: h:mm a MMMM Do YYYY

@@ -65,8 +65,14 @@ consent:
     session_title: La conversazione che è stata registrata
     project_title: Il progetto associato alla tua conversazione
     perms_title: Chi vorresti avesse accesso a questa conversazione?
+    research:
+      title: How your conversation will be used for research
+      body: Your recording and the associated metadata (who took part, when, what topics were discussed, etc) will be accessible by research staff and used to help understand how digital tools can support yourself and other citizens engaging in qualitative research practices and how audio can make these more accessible. Any published work resulting from data captured through Gabber will never include details that could be used to identify yourself or other participants.
+      statement: For more details, including how to opt-out, please review our
+      link: research statement.
+      embargo: 'Note: your conversation will undergo a 24-hour embargo where only participants of the conversation can listen. After this period, the audio conversation will be available based on the consent you choose below.'
     hidden_title: Partecipanti
-    hidden_body: – Solo gli amministratori del progetto e le persone in questa conversazione saranno in grado di ascoltare questa conversazione.
+    hidden_body: – Solo gli amministratori, ricercatori, del progetto e le persone in questa conversazione saranno in grado di ascoltare questa conversazione.
     private_title: Utenti
     private_body: – Solo le persone che sono membri del progetto possono scoprire o ascoltare questa conversazione.
     public_title: Tutti
@@ -77,6 +83,7 @@ consent:
     access_label: Chi ha accesso
     submit_action: Aggiorna il consenso
     people:
+      researcher: Project researchers
       interviewer: L'intervistatore
       administrators: Amministratori del progetto
       participant: Partecipanti a questa conversazione
@@ -107,6 +114,16 @@ project:
     info_field:
       label: Descrizione
       placeholder: es. Questo progetto riguarda ...
+    org_field:
+      label: Will this project be used by an organisation?
+      options:
+        individual: No. I will use this project as an individual.
+        ifrc: International Federation of Red Cross and Red Crescent Societies
+        fl: Fulfilling Lives
+        other: Other
+    contact:
+      before_link: Contact us
+      after_link: if you would like your organisation to appear as an option.
     perms_field:
       label: Privacy
       public: Pubblico
@@ -138,6 +155,7 @@ project:
     members_label: Utenti
     owner_label: Creatore
     sessions_label: sessioni
+    researchers_label: Researchers
 
   project_members:
     members_title: Membri del progetto
@@ -149,6 +167,13 @@ project:
     email_field:
       label: Email
       placeholder: es. kevin.smith@gmail.com
+    role_title: What role should this member have?
+    options:
+      participant: Can access their own and public conversations.
+      researcher: Can access every conversations for your project.
+      administrator: Has full administrative access to the entire project.
+    edit_success: '{fullname}s role was changed from {old_role} to {new_role}'
+    others_changed: 'Note: {name} was not changed to.'
     cancel_action: Annulla
     submit_action: Inserisci
     start_action: Aggiungi membro
@@ -185,6 +210,9 @@ session:
     created_label: Creato
     creator_label: Creatore
     members_label: Partecipanti
+    researchers:
+      title: Researchers
+      description: There are currently no researchers involved in this project.
     topics_label: Argomenti
     annotations_label: annotazioni
     date_format: h:mm a MMMM Do YYYY
