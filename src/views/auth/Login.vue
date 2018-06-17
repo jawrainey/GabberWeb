@@ -11,7 +11,7 @@ box-layout
       label.label {{$t('view.auth.login.email_field.label')}}
       input.input(
         type="email",
-        v-model="email",
+        v-model.trim="email",
         @keyup.enter="login",
         :placeholder="$t('view.auth.login.email_field.placeholder')"
       )
