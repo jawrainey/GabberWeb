@@ -119,13 +119,13 @@ base:
 
   privacy:
     title: Our Privacy Policy
-    nav_title: Privacy Policy
+    nav_title: Privacy
     subtitle: The data we capture, why, and how it is used
 
   terms:
-    title: Terms & Conditions
-    nav_title: Terms of Service
-    subtitle: What you agree to when using our service (mobile application or website)
+    title: Terms of Use
+    nav_title: Terms
+    subtitle: What you agree to when using this service
 
   research:
     title: Research
