@@ -104,10 +104,15 @@ export default class ApiInterface {
   }
   
   // projects.invites.create -> Membership
-  async inviteToProject (projectId, fullname, email) {
+  async inviteToProject (projectId, fullname, email, role) {
     this.notImplemented()
   }
-  
+
+  // projects.invites.edit -> Membership
+  async EditMembership (projectId, id, role) {
+    this.notImplemented()
+  }
+
   // projects.invites.destroy -> Void
   async removeFromProject (projectId, memberId) {
     this.notImplemented()
