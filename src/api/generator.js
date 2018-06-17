@@ -81,7 +81,7 @@ export const make = {
   playlist (id, creatorId) {
     return model('Playlist', id, { name: `Playlist ${id}` })
   },
-  membership (id, role = 'participant') {
+  membership (id, role = pickFrom(['participant', 'researcher', 'administrator'])) {
     return model('Membership', id, {
       user_id: id,
       fullname: username(id, 'User'),
