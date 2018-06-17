@@ -19,5 +19,12 @@ export default {
     fr: () => import(/* webpackChunkName: 'fr' */ './registered/fr.md'),
     it: () => import(/* webpackChunkName: 'it' */ './registered/it.md'),
     ru: () => import(/* webpackChunkName: 'ru' */ './registered/ru.md')
+  },
+  research: {
+    en: () => import(/* webpackChunkName: 'en' */ './research/en.md'),
+    es: () => import(/* webpackChunkName: 'es' */ './research/en.md'),
+    fr: () => import(/* webpackChunkName: 'fr' */ './research/en.md'),
+    it: () => import(/* webpackChunkName: 'it' */ './research/en.md'),
+    ru: () => import(/* webpackChunkName: 'ru' */ './research/en.md')
   }
 }

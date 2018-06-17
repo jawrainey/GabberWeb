@@ -24,6 +24,9 @@ footer.hero.is-dark.is-small
           .level-item
             router-link.button.is-text(:to="termsRoute")
               | {{$t('view.base.terms.nav_title')}}
+          .level-item
+            router-link.button.is-text(:to="researchRoute")
+              | {{$t('view.base.research.nav_title')}}
         .level-right
           .level-item
             p.has-text-grey
@@ -34,7 +37,7 @@ footer.hero.is-dark.is-small
 </template>
 
 <script>
-import { PRIVACY_ROUTE, TERMS_ROUTE } from '@/const/routes'
+import { PRIVACY_ROUTE, TERMS_ROUTE, RESEARCH_ROUTE } from '@/const/routes'
 
 const availableLocales = [
   { key: 'en', name: 'English' },
@@ -49,6 +52,7 @@ export default {
   computed: {
     privacyRoute () { return { name: PRIVACY_ROUTE } },
     termsRoute () { return { name: TERMS_ROUTE } },
+    researchRoute () { return { name: RESEARCH_ROUTE } },
     currentLocale () {
       return availableLocales.find(l => l.key === this.$i18n.locale)
     },

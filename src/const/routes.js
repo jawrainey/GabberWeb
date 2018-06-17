@@ -7,6 +7,7 @@ export const HOME_ROUTE = 'Home'
 export const ABOUT_ROUTE = 'About'
 export const PRIVACY_ROUTE = 'Privacy'
 export const TERMS_ROUTE = 'Terms'
+export const RESEARCH_ROUTE = 'Research'
 
 export const LOGIN_ROUTE = 'Login'
 export const REGISTER_ROUTE = 'Register'

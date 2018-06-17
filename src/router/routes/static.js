@@ -4,6 +4,7 @@ import Home from '@/views/base/Home'
 import About from '@/views/base/About'
 import Terms from '@/views/base/Terms'
 import Privacy from '@/views/base/Privacy'
+import Research from '@/views/base/Research'
 
 export default [
   {
@@ -29,5 +30,11 @@ export default [
     name: ROUTES.TERMS_ROUTE,
     component: Terms,
     meta: { title: 'Terms' }
+  },
+  {
+    path: '/research',
+    name: ROUTES.RESEARCH_ROUTE,
+    component: Research,
+    meta: { title: 'Research' }
   }
 ]

@@ -126,7 +126,12 @@ base:
     title: Terms & Conditions
     nav_title: Terms of Service
     subtitle: What you agree to when using our service (mobile application or website)
-  
+
+  research:
+    title: Research
+    nav_title: Reseach
+    subtitle: How the use of Gabber informs research
+
 #
 # Project Views
 #
