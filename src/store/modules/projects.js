@@ -29,6 +29,12 @@ const mutations = {
   [MUTATIONS.DELETE_PROJECT]: (state, projectId) => {
     state.allProjects = state.allProjects.filter(p => p.id !== projectId)
   },
+  [MUTATIONS.EDIT_MEMBER_ON_PROJECT]: (state, { projectId, member }) => {
+    let project = state.allProjects.find(p => p.id === projectId)
+    if (!project) return
+    let existing = project.members.find(m => m.user_id === member.user_id)
+    Object.assign(existing, member)
+  },
   [MUTATIONS.ADD_MEMBER_TO_PROJECT]: (state, { projectId, member }) => {
     let project = state.allProjects.find(p => p.id === projectId)
     if (!project) return

@@ -149,6 +149,13 @@ project:
     email_field:
       label: Email
       placeholder: e.g. kevin.smith@gmail.com
+    role_title: What role should this member have?
+    options:
+      participant: Can access their own and public conversations.
+      researcher: Can access every conversations for your project.
+      administrator: Has full administrative access to the entire project.
+    edit_success: '{fullname}s role was changed from {old_role} to {new_role}'
+    others_changed: 'Note: {name} was not changed to.'
     cancel_action: Cancel
     submit_action: Add
     start_action: Add Member

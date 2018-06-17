@@ -10,6 +10,7 @@ export const SET_PROJECTS = 'SetProjects'
 export const SAVE_PROJECT = 'SaveProject'
 export const DELETE_PROJECT = 'DeleteProject'
 export const ADD_MEMBER_TO_PROJECT = 'AddMemberToProject'
+export const EDIT_MEMBER_ON_PROJECT = 'EditMemberOnProject'
 export const REMOVE_MEMBER_FROM_PROJECT = 'RemoveMemberFromProject'
 
 export const ADD_SESSIONS = 'AddSessions'

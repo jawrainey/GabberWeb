@@ -197,12 +197,18 @@ export default class LiveApi extends ApiInterface {
    */
   
   // projects.members.invites.create
-  async inviteToProject (pId, fullname, email) {
+  async inviteToProject (pId, fullname, email, role) {
     return this.endpoint('post', `projects/${pId}/membership/invites`, {
-      fullname, email
+      fullname, email, role
     })
   }
-  
+
+  async EditMembership (pId, id, role) {
+    return this.endpoint('put', `projects/${pId}/membership/invites`, {
+      id, role
+    })
+  }
+
   // projects.members.invites.destroy
   async removeFromProject (pId, mId) {
     return this.endpoint('delete', `projects/${pId}/membership/invites/${mId}`)
