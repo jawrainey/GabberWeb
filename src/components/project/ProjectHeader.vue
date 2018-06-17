@@ -72,7 +72,7 @@ export default {
   computed: {
     ...mapGetters([ 'currentUser' ]),
     projectIcon () {
-      return this.project.privacy === 'public' ? '' : 'lock'
+      return this.project.privacy === 'public' ? 'unlock' : 'lock'
     },
     canEdit () {
       return this.isOwner && !this.isEditing

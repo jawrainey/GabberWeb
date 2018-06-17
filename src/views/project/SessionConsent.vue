@@ -29,9 +29,9 @@ full-layout(v-else-if="project && user && consent")
   template(slot="mobileLeft")
     span.icon: fa(icon="user")
     span {{$t('view.project.session_consent.mobile_info_title')}}
-  
-  session-info-sidebar(slot="right", :session="session")
-  
+
+  session-info-sidebar(slot="right", :session="session", :project="project")
+
   template(slot="mobileRight")
     span.icon: fa(icon="microphone")
     span {{$t('view.project.session_consent.title')}}

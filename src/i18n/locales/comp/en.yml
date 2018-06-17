@@ -65,18 +65,25 @@ consent:
     session_title: The conversation that was recorded
     project_title: The project associated with your conversation
     perms_title: Who would you like to have access to this conversation?
+    research:
+      title: How your conversation will be used for research
+      body: Your recording and the associated metadata (who took part, when, what topics were discussed, etc) will be accessible by research staff and used to help understand how digital tools can support yourself and other citizens engaging in qualitative research practices and how audio can make these more accessible. Any published work resulting from data captured through Gabber will never include details that could be used to identify yourself or other participants.
+      statement: For more details, including how to opt-out, please review our
+      link: research statement.
+      embargo: 'Note: your conversation will undergo a 24-hour embargo where only participants of the conversation can listen. After this period, the audio conversation will be available based on the consent you choose below.'
     hidden_title: Participants
-    hidden_body: – Only the project administrators and people in this conversation will be able to listen to this conversation.
+    hidden_body: Only the project administrators, researchers, and participants in this conversation will be able to listen to this conversation.
     private_title: Members
-    private_body: – Only people who are members of the project can discover or listen to this conversation.
-    public_title: Everyone
-    public_body: – Anyone visiting Gabber can discover and listen to this audio.
+    private_body: Only people who are members of the project can discover or listen to this conversation.
+    public_title: Anyone
+    public_body: Anyone visiting Gabber can discover and listen to this audio.
     review_title: Review decision
     no_show: You will not show up in Gabber
     appearance_label: How you appear
     access_label: Who has access
     submit_action: Update Consent
     people:
+      researcher: Project researchers
       interviewer: The interviewer
       administrators: Project administrators
       participant: Participants in this conversation
@@ -192,6 +199,9 @@ session:
     created_label: Created on
     creator_label: Creator
     members_label: Participants
+    researchers:
+      title: Researchers
+      description: There are currently no researchers involved in this project.
     topics_label: Topics
     annotations_label: Annotations
     date_format: h:mm a MMMM Do YYYY

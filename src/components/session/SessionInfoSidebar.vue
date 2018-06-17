@@ -24,6 +24,14 @@
         :member="member",
         pad-right
       )
+  label-value(v-if="project",
+  :label="$t('comp.session.session_info_sidebar.researchers.title')"
+  )
+    p.is-size-4(v-if="projectResearchers.length > 0", v-for="researcher in projectResearchers")
+      member-bubble.is-size-6(:member="researcher", pad-right)
+      span {{ researcher.fullname }}
+    .field(v-if="projectResearchers.length <= 0")
+      blockquote.blockquote {{ $t('comp.session.session_info_sidebar.researchers.description') }}
   .columns.is-mobile
     .column
       label-value(
@@ -46,6 +54,8 @@ import LabelValue from '@/components/utils/LabelValue'
 export default {
   components: { MemberBubble, LabelValue },
   props: {
+    // Used to obtain the project members; optional as to not show researchers on /session/N
+    project: { type: Object, required: false },
     session: { type: Object, required: true }
   },
   computed: {
@@ -55,6 +65,9 @@ export default {
     },
     numAnnotations () {
       return this.$store.getters.annotationsForSession(this.session.id).length
+    },
+    projectResearchers () {
+      return this.project.members.filter(m => m.role === 'researcher')
     }
   }
 }
