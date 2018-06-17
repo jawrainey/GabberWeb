@@ -30,7 +30,7 @@
     p.is-size-4(v-if="projectResearchers.length > 0", v-for="researcher in projectResearchers")
       member-bubble.is-size-6(:member="researcher", pad-right)
       span {{ researcher.fullname }}
-    .field(v-if="projectResearchers.length <= 0")
+    p.field(v-else)
       blockquote.blockquote {{ $t('comp.session.session_info_sidebar.researchers.description') }}
   .columns.is-mobile
     .column

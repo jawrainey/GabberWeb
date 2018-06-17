@@ -114,6 +114,16 @@ project:
     info_field:
       label: Description
       placeholder: e.g. This project is about ...
+    org_field:
+      label: Will this project be used by an organisation?
+      options:
+        individual: No. I will use this project as an individual.
+        ifrc: International Federation of Red Cross and Red Crescent Societies
+        fl: Fulfilling Lives
+        other: Other
+    contact:
+      before_link: Contact us
+      after_link: if you would like your organisation to appear as an option.
     perms_field:
       label: Privacy
       public: Public
@@ -145,7 +155,8 @@ project:
     members_label: Members
     owner_label: Creator
     sessions_label: Sessions
-  
+    researchers_label: Researchers
+
   project_members:
     members_title: Project Members
     add_title: Add Member

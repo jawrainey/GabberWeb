@@ -13,7 +13,7 @@
       input.input.topic-input(
         ref="inputs",
         type="text",
-        v-model="topic.text",
+        v-model.trim="topic.text",
         @keyup.enter="addAnotherIfLast",
         @keyup.up.prevent.stop="navUp",
         @keyup.down.prevent.stop="navDown",

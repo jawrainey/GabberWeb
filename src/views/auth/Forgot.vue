@@ -11,7 +11,7 @@ box-layout
         .control.is-expanded
           input.input(
             type="text",
-            v-model="email",
+            v-model.trim="email",
             @keyup.enter="sendCode",
             :placeholder="$t('view.auth.forgot.email_field.placeholder')"
           )

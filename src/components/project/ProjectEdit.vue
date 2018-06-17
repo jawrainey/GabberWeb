@@ -6,17 +6,35 @@
         label.label {{$t('comp.project.project_edit.name_field.label')}}
         input.input(
           type="text",
-          v-model="project.title",
+          v-model.trim="project.title",
           :disabled="disabled",
           :placeholder="$t('comp.project.project_edit.name_field.label')"
         )
       .field
         label.label {{$t('comp.project.project_edit.info_field.label')}}
         textarea.textarea(
-          v-model="project.description",
+          v-model.trim="project.description",
           :disabled="disabled",
           :placeholder="$t('comp.project.project_edit.info_field.placeholder')"
         )
+      .field
+        label.label {{ $t('comp.project.project_edit.org_field.label') }}
+        p {{ project.organisation }}
+        .control
+          span.select
+            select(v-model="project.organisation.id")
+              option(value="null")
+                | {{ $t('comp.project.project_edit.org_field.options.individual') }}
+              option(value="1")
+                | {{ $t('comp.project.project_edit.org_field.options.ifrc') }}
+              option(value="2")
+                | {{ $t('comp.project.project_edit.org_field.options.fl') }}
+              option(value="3")
+                | {{ $t('comp.project.project_edit.org_field.options.other') }}
+          .help
+            b: a(href="mailto:admin@gabber.audio")
+              |  {{ $t('comp.project.project_edit.contact.before_link') }}
+            |  {{ $t('comp.project.project_edit.contact.after_link') }}
       .field
         label.label {{$t('comp.project.project_edit.perms_field.label')}}
         .control(v-if="!project.id || understoodPrivacy")

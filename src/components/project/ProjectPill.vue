@@ -75,7 +75,8 @@ export default {
         this.changes.title,
         this.changes.description,
         this.changes.topics,
-        this.changes.privacy
+        this.changes.privacy,
+        this.changes.organisation
       )
       
       if (meta.success) {

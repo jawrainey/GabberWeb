@@ -82,6 +82,7 @@ membership:
   EMAIL_USER_404: The user you are trying to add to the project does not exist.
   EMAIL_INVALID: The email you provided of the member to add is invalid.
   MEMBER_EXISTS: A user with that email is already a member of the project.
+  INVALID_ROLE: The role must be one of the following (1) participant, (2) researcher, (3) administrator
   NOT_EXISTS: The user you tried to remove is not a member of this project.
   UNKNOWN: The user you tried to remove is not a project member.
   USER_DEACTIVATED: The user you tried to remove has already been deleted.
