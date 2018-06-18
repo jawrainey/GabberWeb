@@ -152,7 +152,7 @@ export default {
       if (this.apiInProgress) return
       this.startApiWork()
 
-      let { meta, data } = await this.$api.EditMembership(
+      let { meta, data } = await this.$api.editMembership(
         this.project.id, member.id, member.role
       )
 

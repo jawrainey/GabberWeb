@@ -127,7 +127,7 @@ export default class MockApi extends ApiInterface {
       ...make.membership(mockIds.membership++, 'user'), fullname, role
     })
   }
-  async EditMembership (projectId, id, role) {
+  async editMembership (projectId, id, role) {
     let project = make.project(projectId)
     let member = project.members.find(m => m.user_id === id)
     return this.mock({

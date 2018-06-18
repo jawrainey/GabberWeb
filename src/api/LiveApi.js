@@ -203,7 +203,7 @@ export default class LiveApi extends ApiInterface {
     })
   }
 
-  async EditMembership (pId, id, role) {
+  async editMembership (pId, id, role) {
     return this.endpoint('put', `projects/${pId}/membership/invites`, {
       id, role
     })

@@ -109,7 +109,7 @@ export default class ApiInterface {
   }
 
   // projects.invites.edit -> Membership
-  async EditMembership (projectId, id, role) {
+  async editMembership (projectId, id, role) {
     this.notImplemented()
   }
 
