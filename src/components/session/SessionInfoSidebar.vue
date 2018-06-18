@@ -27,11 +27,11 @@
   label-value(v-if="project",
   :label="$t('comp.session.session_info_sidebar.researchers.title')"
   )
-    p.is-size-4(v-if="projectResearchers.length > 0", v-for="researcher in projectResearchers")
+    p(v-if="showResearchDescription", v-for="researcher in projectResearchers").is-size-4
       member-bubble.is-size-6(:member="researcher", pad-right)
       span {{ researcher.fullname }}
-    p.field(v-else)
-      blockquote.blockquote {{ $t('comp.session.session_info_sidebar.researchers.description') }}
+    blockquote(v-if="!showResearchDescription").blockquote
+      | {{ $t('comp.session.session_info_sidebar.researchers.description') }}
   .columns.is-mobile
     .column
       label-value(
@@ -62,6 +62,9 @@ export default {
     sessionDate () {
       return moment(this.session.created_on)
         .format(this.$t('comp.session.session_info_sidebar.date_format'))
+    },
+    showResearchDescription () {
+      return this.projectResearchers.length > 0
     },
     numAnnotations () {
       return this.$store.getters.annotationsForSession(this.session.id).length
