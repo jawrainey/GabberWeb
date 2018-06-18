@@ -103,7 +103,7 @@ export default {
       )
       if (newValue !== 'private') {
         this.project.members.push({
-          role: 'user',
+          role: 'participant',
           user_id: this.user.id
         })
       }

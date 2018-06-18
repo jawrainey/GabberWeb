@@ -113,7 +113,7 @@ export default class MockApi extends ApiInterface {
    */
   async joinProject (id) {
     return this.mock({
-      ...make.membership(CURRENT_USER_ID, 'user'),
+      ...make.membership(CURRENT_USER_ID, 'participant'),
       project_id: id
     })
   }
@@ -124,7 +124,7 @@ export default class MockApi extends ApiInterface {
   }
   async inviteToProject (projectId, fullname, email, role) {
     return this.mock({
-      ...make.membership(mockIds.membership++, 'user'), fullname, role
+      ...make.membership(mockIds.membership++, 'participant'), fullname, role
     })
   }
   async editMembership (projectId, id, role) {

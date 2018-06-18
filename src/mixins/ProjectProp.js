@@ -18,7 +18,7 @@ export default {
     },
     isOwner () {
       return this.project.creator.user_id === this.currentUserId ||
-        (this.project.members || []).some(m => m.user_id === this.currentUserId && m.role === 'admin')
+        (this.project.members || []).some(m => m.user_id === this.currentUserId && m.role === 'administrator')
     },
     currentMembership () {
       return this.project.members.find(m => m.user_id === this.currentUserId)
@@ -32,7 +32,7 @@ export default {
       if (!this.isProjectMember) return null
       if (this.isOwner) return this.$t('misc.project_membership.owner')
       let membership = this.currentMembership
-      return membership.role === 'admin'
+      return membership.role === 'administrator'
         ? this.$t('misc.project_membership.admin')
         : this.$t('misc.project_membership.member')
     }

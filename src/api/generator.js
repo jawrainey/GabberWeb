@@ -43,7 +43,7 @@ export const make = {
   },
   project (id, privacy = 'public') {
     const creatorId = privacy === 'public' ? 1 : CURRENT_USER_ID
-    const memberships = [ make.membership(creatorId, 'admin') ]
+    const memberships = [ make.membership(creatorId, 'administrator') ]
       .concat(makeList({ from: 2, to: 9 }, make.membership))
     
     return model('Project', id, {
