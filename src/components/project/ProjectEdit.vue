@@ -22,13 +22,13 @@
         .control
           span.select
             select(v-model="project.organisation.id")
-              option(value="null")
+              option(:value="0")
                 | {{ $t('comp.project.project_edit.org_field.options.individual') }}
-              option(value="1")
+              option(:value="1")
                 | {{ $t('comp.project.project_edit.org_field.options.ifrc') }}
-              option(value="2")
+              option(:value="2")
                 | {{ $t('comp.project.project_edit.org_field.options.fl') }}
-              option(value="3")
+              option(:value="3")
                 | {{ $t('comp.project.project_edit.org_field.options.other') }}
           .help
             b: a(href="mailto:admin@gabber.audio")

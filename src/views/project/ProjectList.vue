@@ -127,7 +127,7 @@ export default {
           description: '',
           privacy: 'public',
           creator: this.currentUser,
-          organisation: {id: null, description: null, name: null},
+          organisation: {id: 0, description: null, name: null},
           topics: []
         }
       }
