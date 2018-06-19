@@ -5,6 +5,7 @@ import About from '@/views/base/About'
 import Terms from '@/views/base/Terms'
 import Privacy from '@/views/base/Privacy'
 import Research from '@/views/base/Research'
+import Cookies from '@/views/base/Cookies'
 
 export default [
   {
@@ -36,5 +37,11 @@ export default [
     name: ROUTES.RESEARCH_ROUTE,
     component: Research,
     meta: { title: 'Research' }
+  },
+  {
+    path: '/cookies',
+    name: ROUTES.COOKIES_ROUTE,
+    component: Cookies,
+    meta: { title: 'Cookies' }
   }
 ]

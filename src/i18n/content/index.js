@@ -26,5 +26,12 @@ export default {
     fr: () => import(/* webpackChunkName: 'fr' */ './research/en.md'),
     it: () => import(/* webpackChunkName: 'it' */ './research/en.md'),
     ru: () => import(/* webpackChunkName: 'ru' */ './research/en.md')
+  },
+  cookies: {
+    en: () => import(/* webpackChunkName: 'en' */ './cookies/en.md'),
+    es: () => import(/* webpackChunkName: 'es' */ './cookies/en.md'),
+    fr: () => import(/* webpackChunkName: 'fr' */ './cookies/en.md'),
+    it: () => import(/* webpackChunkName: 'it' */ './cookies/en.md'),
+    ru: () => import(/* webpackChunkName: 'ru' */ './cookies/en.md')
   }
 }

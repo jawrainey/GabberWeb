@@ -18,6 +18,8 @@ import fontawesome from '@fortawesome/fontawesome'
 import solidIcons from '@fortawesome/fontawesome-free-solid'
 import regularIcons from '@fortawesome/fontawesome-free-regular'
 
+import { configureCookieConsent } from './cookies'
+
 // Add Fontawesome libraries
 fontawesome.library.add(solidIcons, regularIcons)
 Vue.component('fa', FontAwesomeIcon)
@@ -28,12 +30,6 @@ Vue.config.productionTip = false
 // Add custom filters
 Vue.filter('duration', formatDuration)
 Vue.filter('longDate', formatDateLong)
-
-// Setup analytics if the id is set
-let gaId = getConfig('ANALYTICS_ID')
-if (gaId) {
-  Vue.use(VueAnalytics, { id: gaId, router })
-}
 
 let docHead = document.querySelector('head')
 
@@ -46,6 +42,17 @@ if (docHead && iOSAppId) {
   docHead.appendChild(itunesTag)
 }
 
+let gaId = getConfig('ANALYTICS_ID')
+
+if (gaId) {
+  Vue.use(VueAnalytics, {
+    id: gaId,
+    disabled: true,
+    router,
+    set: [ { field: 'anonymizeIp', value: 'true' } ]
+  })
+}
+
 /* eslint-disable no-new */
 // Create the webapp and mount on the #app element
 new Vue({
@@ -55,3 +62,5 @@ new Vue({
   i18n,
   render: h => h(App)
 })
+
+configureCookieConsent()

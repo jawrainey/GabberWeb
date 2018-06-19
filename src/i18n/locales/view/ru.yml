@@ -132,6 +132,11 @@ base:
     nav_title: Reseach
     subtitle: How the use of Gabber informs research
 
+  cookies:
+    title: Cookies
+    nav_title: Cookies
+    subtitle: How Gabber uses cookies
+
 #
 # Project Views
 #
