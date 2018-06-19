@@ -52,6 +52,7 @@ export const make = {
       description: 'Aenean lacinia bibendum nulla sed consectetur',
       members: memberships,
       privacy,
+      organisation: {id: pickBetween(0, 3), description: null, name: null},
       creator: make.creator(creatorId),
       topics: makeList(5, make.topic, id),
       codebook: {
