@@ -107,9 +107,10 @@ base:
     # ...
 
   home:
-    title: Structure, record and annotate audio conversations
+    title: Structure, Record and Tag Audio Conversations
+    subtitle: Listen, annotate and collaboratively discuss recorded conversations
     nav_title: Home
-    action: Explore Projects
+    action: Explore Conversations
 
   not_found:
     title: Page Not Found

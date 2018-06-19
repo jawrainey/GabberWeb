@@ -108,6 +108,7 @@ base:
 
   home:
     title: Структурировать, записать и аннотировать аудиозаписи
+    subtitle: Listen, annotate and collaboratively discuss recorded conversations
     nav_title: Главная
     action: Обзор проектов
 

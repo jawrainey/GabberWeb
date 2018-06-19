@@ -108,8 +108,9 @@ base:
 
   home:
     title: Estructura, graba y anota conversaciones de audio
+    subtitle: Listen, annotate and collaboratively discuss recorded conversations
     nav_title: Casa
-    action: Explora proyectos
+    action: Explora Conversaciones
 
   not_found:
     title: Página no encontrada

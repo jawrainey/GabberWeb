@@ -5,8 +5,17 @@ simple-layout
       .column.is-two-fifths
         section.section
           h1.title {{ $t('view.base.home.title') }}
-          .buttons
-            router-link.button.is-success.is-medium.is-rounded(:to="projectsRoute")
+          .columns.is-mobile
+            .column.is-half.has-text-centered
+              a(:href='androidURL')
+                img(src="/static/img/play-store.png" width="150" height="50")
+            .column.is-half.has-text-centered
+              a(:href="iOSURL")
+                img(src="/static/img/app-store.png" width="150" height="50")
+          hr
+          h2.subtitle.is-italic {{ $t('view.base.home.subtitle') }}
+          .buttons.is-centered
+            router-link.button.is-success.is-medium(:to="projectsRoute")
               span {{ $t('view.base.home.action') }}
               .icon: fa(icon="chevron-right")
       .column.is-two-fifths
@@ -16,11 +25,14 @@ simple-layout
 <script>
 import { PROJECT_LIST_ROUTE } from '@/const/routes'
 import SimpleLayout from '@/layouts/SimpleLayout'
+import { getConfig } from '../../mixins/Config'
 
 export default {
   components: { SimpleLayout },
   computed: {
-    projectsRoute () { return { name: PROJECT_LIST_ROUTE } }
+    projectsRoute () { return { name: PROJECT_LIST_ROUTE } },
+    androidURL () { return `https://play.google.com/store/apps/details?id=${getConfig('ANDROID_URL')}` },
+    iOSURL () { return `https://itunes.apple.com/us/app/${getConfig('IOS_URL')}` }
   }
 }
 </script>
