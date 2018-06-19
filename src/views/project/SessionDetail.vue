@@ -97,7 +97,7 @@ full-layout.session-detail(v-else-if="session")
         @blur="annot => focusedAnnotation = null",
       )
       
-      action-box(v-if="filteredAnnotations.length === 0", :title="$t('view.project.session_detail.no_annotations_title')")
+      action-box(v-if="!newAnnotation && filteredAnnotations.length === 0", :title="$t('view.project.session_detail.no_annotations_title')")
         p.is-size-5(slot="content")
       
           span(v-if="annotations.length === 0") {{$t('view.project.session_detail.no_annotations')}}
