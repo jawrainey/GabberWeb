@@ -65,6 +65,7 @@ general:
   PROJECT_UNAUTHORIZED: You are unauthorized to view this project.
   COMMENT_404: The comment you tried to access does not exist
   COMMENT_NOT_IN_SESSION: That comment is not associated with that session.
+  EMBARGO: This session is currently undergoing a 24-hour embargo. Check back soon.
 
 jwt:
   EXPIRED: The request has an expired JWT. Use a refresh token or re-authenticate.
