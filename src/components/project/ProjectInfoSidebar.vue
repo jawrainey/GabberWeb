@@ -28,15 +28,13 @@
   :label="$t('comp.project.project_info_sidebar.researchers_label')"
   )
     p.is-size-4(v-if="projectResearchers.length > 0", v-for="member in projectResearchers")
-      i {{ member }} wut
       member-bubble.is-size-5(
       :key="member.id",
       :member="member",
       pad-right
       )
       span {{ member.fullname }}
-    p.field(v-else)
-      blockquote.blockquote {{ $t('comp.session.session_info_sidebar.researchers.description') }}
+    p(v-if="projectResearchers.length <= 0").blockquote {{ $t('comp.session.session_info_sidebar.researchers.description') }}
   label-value(
     :label="$t('comp.project.project_info_sidebar.sessions_label')",
     :value="sessions.length"
