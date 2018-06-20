@@ -1,0 +1,279 @@
+annotation:
+  annotation_title:
+    with_tags: حدد علامات و اضف تعليق
+    without_tags: اضف تعليق
+
+  annotation_edit:
+    label: حاشية - {start} → {end}
+    cancel_action: إلغاء
+    create_action: خلق
+    placeholder: اعتقد انه ...
+
+  annotation_filter:
+    sort_title: فرز التعليقات التوضيحية
+    filter_title: تصفية التعليقات التوضيحية
+    message_field:
+      label: بالرسالة
+      placeholder: مثلا قليلا عن ...
+    topic_field:
+      label: حسب الموضوع
+    annotator_field:
+      label: من جانب المعلق
+
+  annotation_pill:
+    desktop_duration: '{start} → {end}'
+    hide_action: إخفاء التعليقات
+    comment_action: تعليق | تعليق واحد | {count} تعليقات
+
+  annotation_range:
+
+  draggable:
+
+
+
+audio:
+  audio_player:
+    loading: تحميل الصوت
+    fail_title: الصوت غير متوفر
+    fail_body: لم يعد هذا التسجيل متاحًا ، يرجى الاتصال بمنشئ المحتوى للحصول على المساعدة.
+
+
+
+comment:
+  comment:
+    delete_action: حذف
+    collapse_action: الغاء | انهدام
+    replies_action: '{count} الردود| 1 رد | أضف الرد'
+    delete_body: هل أنت متأكد من أنك تريد حذف تعليقك؟ لا يمكن التراجع عنها
+    deleted_title: '[تم الحذف]'
+
+  comment_composer:
+    action: تعليق
+    placeholder: اعتقد انه ...
+    fail_body: لا يمكن التعليق ، يرجى المحاولة مرة أخرى
+
+  comment_section:
+    blocked_body: لا يمكنك الرد على هذا الموضوع
+    login_action: تسجيل الدخول للتعليق
+
+
+
+consent:
+  consent_form:
+    title: موافقة جابر
+    subtitle: راجع كيف تريد استخدام المحادثة الخاصة بك على Gabber
+    session_title: المحادثة التي تم تسجيلها
+    project_title: يرتبط المشروع بمحادثتك
+    perms_title: من تود الوصول إلى هذه المحادثة؟
+    research:
+      title: How your conversation will be used for research
+      body: Your recording and the associated metadata (who took part, when, what topics were discussed, etc) will be accessible by research staff and used to help understand how digital tools can support yourself and other citizens engaging in qualitative research practices and how audio can make these more accessible. Any published work resulting from data captured through Gabber will never include details that could be used to identify yourself or other participants.
+      statement: For more details, including how to opt-out, please review our
+      link: research statement.
+      embargo: 'Note: your conversation will undergo a 24-hour embargo where only participants of the conversation can listen. After this period, the audio conversation will be available based on the consent you choose below.'
+    hidden_title: المشاركين
+    hidden_body: لن يتمكن سوى مدراء المشروع والأشخاص في هذه المحادثة من الاستماع إلى هذه المحادثة.
+    private_title: أفراد
+    private_body: يمكن فقط للأشخاص الذين هم أعضاء في المشروع اكتشاف أو الاستماع إلى هذه المحادثة.
+    public_title: كل واحد
+    public_body: يمكن لأي شخص يزور Gabber اكتشاف هذا الصوت والاستماع إليه.
+    review_title: مراجعة القرار
+    no_show: لن تظهر في جابر
+    appearance_label: كيف تظهر
+    access_label: من لديه الوصول
+    submit_action: تحديث الموافقة
+    people:
+      researcher: Project researchers
+      interviewer: المحاور
+      administrators: مديري المشروع
+      participant: المشاركون في هذه المحادثة
+      member: أعضاء هذا المشروع
+      public: أي شخص يزور موقع جابر
+
+  consent_success:
+    title: الموافقة المحدثة
+    subtitle: يمكنك مراجعته وتحديثه في أي وقت
+    message_title: نجاح
+    message_body: نشكرك على تحديث موافقتك لهذه المحادثة. يمكنك الآن عرض وبدء التعليق عتيها. يمكنك دائمًا العودة وتحديث موافقتك في أي وقت.
+    session_action: عرض الجلسة
+
+
+
+member:
+  member_bubble:
+
+  member_option:
+
+
+
+project:
+  project_edit:
+    name_field:
+      label: اسم
+      placeholder: مثلا مشروعي الرائع
+    info_field:
+      label: وصف
+      placeholder: مثلا هذا المشروع يدور حول ...
+    org_field:
+      label: Will this project be used by an organisation?
+      options:
+        individual: No. I will use this project as an individual.
+        ifrc: International Federation of Red Cross and Red Crescent Societies
+        fl: Fulfilling Lives
+        other: Other
+    contact:
+      before_link: Contact us
+      after_link: if you would like your organisation to appear as an option.
+    perms_field:
+      label: الخصوصية
+      public: عامة
+      private: خاص
+    perms_warn:
+      title: تحذير
+      body: سيحترم Gabber دائمًا موافقة المشارك لذلك ، ما لم يوافق جميع المشاركين ، لا يمكن نشر جابر خاص.
+      action: أفهم
+    cancel_action: إلغاء
+    default_submit_action: حفظ
+    private_body: سوف ترى أنت والمشاركين المدعوين فقط مشروعك
+    public_body: سيشاهد أي شخص في Gabber ويكون قادرًا على الانضمام إلى مشروعك
+
+  project_header:
+    members_action: أفراد
+    edit_action: تصحيح
+    close_action: قريب
+    join_action: انضم
+    leave_action: غادر
+
+  project_info:
+    info_label: وصف
+    members_label: أفراد
+    sessions_action: جلسات
+    playlists_action: قوائم التشغيل
+
+  project_info_sidebar:
+    info_label: وصف
+    members_label: أفراد
+    owner_label: المنشئ
+    sessions_label: جلسات
+    researchers_label: Researchers
+
+  project_members:
+    members_title: أعضاء المشروع
+    add_title: إضافة عضو
+    no_members: لا أعضاء بعد ، لماذا لا تضيف بعض؟
+    name_field:
+      label: الاسم الكامل
+      placeholder: مثلا كيفن مالون
+    email_field:
+      label: البريد الإلكتروني
+      placeholder: مثلا kevin.smith@gmail.com
+    role_title: What role should this member have?
+    options:
+      participant: Can access their own and public conversations.
+      researcher: Can access every conversations for your project.
+      administrator: Has full administrative access to the entire project.
+    edit_success: '{fullname}s role was changed from {old_role} to {new_role}'
+    others_changed: 'Note: {name} was not changed to.'
+    cancel_action: إلغاء
+    submit_action: إضافة
+    start_action: إضافة عضو
+    was_added: 'تمت إضافة {name}'
+    delete_confirm: هل أنت متأكد من أنك تريد إزالة هذا العضو؟
+    was_removed: 'تمت إزالة {name}'
+
+  project_pill:
+    update_action: تحديث
+    update_failed: لا يمكن حفظ المشروع ، حاول مرة أخرى؟
+    delete_confirm: هل أنت متأكد من أنك تريد حذف هذا المشروع؟ لا يمكن التراجع عن هذا الإجراء
+    delete_failed: فشل حذف المشروع ، يرجى المحاولة مرة أخرى
+    join_confirm: هل أنت متأكد من أنك تريد الانضمام إلى هذا المشروع؟
+    join_failed: فشل الانضمام إلى المشروع ، يرجى المحاولة مرة أخرى
+    leave_confirm: هل أنت متأكد من أنك تريد مغادرة هذا المشروع؟
+    leave_failed: فشل في مغادرة المشروع ، يرجى المحاولة مرة أخرى
+
+
+
+session:
+  session_filters:
+    sort_title: فرز الجلسات
+    filter_title: تصفية الدورات
+    name_field:
+      label: بالاسم
+      placeholder: مثلا رون جونسون
+    topic_field:
+      label: حسب المواضيع
+    member_field:
+      label: من قبل مشارك
+
+  session_info_sidebar:
+    title: معلومات الجلسة
+    created_label: تم إنشاؤها على
+    creator_label: المنشئ
+    members_label: المشاركين
+    researchers:
+      title: Researchers
+      description: There are currently no researchers involved in this project.
+    topics_label: المواضيع
+    annotations_label: الشروح
+    date_format: h:mm a MMMM Do YYYY
+
+  session_pill:
+    more: أكثر
+    member_label: المشاركين
+    when_label: مسجل
+    annotation_label: الشروح
+    topic_label: المواضيع
+
+
+
+shared:
+  site_footer:
+    copyright: مشروع بحثي في
+
+  site_header:
+    logout_action: مشروع بحثي في
+
+
+
+topic:
+  topic_list_edit:
+    title: المواضيع
+    warn_title: تحذير
+    warn_body: سيؤدي تغيير هذه الموضوعات إلى تحديث المحادثات الحالية
+    help_body: إضافة مواضيع للناس تمناقشتها في جابرالخاص بهم
+    placeholder: مثلا موضوع حول ...
+    add_action: أضف موضوع
+
+  topic_option:
+
+  topics_bar:
+
+  topic_segment:
+
+
+
+utils:
+  action_box:
+
+  add_cancel_button:
+
+  breadcrumbs:
+
+  circle_button:
+
+  icon_bubble:
+
+  label_value:
+
+  loading:
+    default_label: جار التحميل
+
+  markdown:
+
+  message:
+
+  sort_field:
+    newest_label: الأحدث
+    oldest_label: أقدم
+
+  tooltip:

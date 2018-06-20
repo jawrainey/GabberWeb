@@ -43,6 +43,7 @@ footer.hero.is-dark.is-small
 import { PRIVACY_ROUTE, TERMS_ROUTE, RESEARCH_ROUTE, COOKIES_ROUTE } from '@/const/routes'
 
 const availableLocales = [
+  { key: 'ar', name: 'العربية' },
   { key: 'en', name: 'English' },
   { key: 'es', name: 'Español' },
   { key: 'fr', name: 'Français' },

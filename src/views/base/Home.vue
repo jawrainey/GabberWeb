@@ -7,11 +7,11 @@ simple-layout
           h1.title {{ $t('view.base.home.title') }}
           .columns.is-mobile
             .column.is-half.has-text-centered
-              a(:href='androidURL')
-                img(src="/static/img/play-store.png" width="150" height="50")
-            .column.is-half.has-text-centered
               a(:href="iOSURL")
-                img(src="/static/img/app-store.png" width="150" height="50")
+                img(:src='iosBadge' width="140" height="50")
+            .column.is-half.has-text-centered
+              a(:href='androidURL')
+                img(:src='androidBadge' width="150" height="50")
           hr
           h2.subtitle.is-italic {{ $t('view.base.home.subtitle') }}
           .buttons.is-centered
@@ -32,7 +32,9 @@ export default {
   computed: {
     projectsRoute () { return { name: PROJECT_LIST_ROUTE } },
     androidURL () { return `https://play.google.com/store/apps/details?id=${getConfig('ANDROID_URL')}` },
-    iOSURL () { return `https://itunes.apple.com/us/app/${getConfig('IOS_URL')}` }
+    iOSURL () { return `https://itunes.apple.com/us/app/${getConfig('IOS_URL')}` },
+    androidBadge () { return `/static/img/google/${this.$i18n.locale}.png` },
+    iosBadge () { return `/static/img/ios/${this.$i18n.locale}.svg` }
   }
 }
 </script>

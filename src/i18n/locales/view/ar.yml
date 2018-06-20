@@ -1,0 +1,211 @@
+
+#
+# * * Auth Views * *
+#
+auth:
+  accept_invite:
+    title: أنت مدعو للانضمام إلى مشروع على Gabber
+    nav_title: قبول دعوة
+    loading_title: مصادقة
+    bad_token_title: رمز غير صالح
+    subtitle: اشترك أدناه للانضمام إلى المشروع
+    info: يتيح لك Gabber تسجيل المقابلات المنظمة وتوضيحها
+    email_field:
+      label: البريد الإلكتروني
+      placeholder: me@example.com
+    name_field:
+      label: الاسم الكامل
+      placeholder: مثلا Stanley Hudson
+    pass_field:
+      label: كلمه السر
+      placeholder: مثلا ••••••••
+    submit_action: قدِم
+
+  forgot:
+    title: إعادة تعيين كلمة السر الخاصة بك
+    nav_title: كلمة سر منسية
+    subtitle: أرسل عنوان بريدك الإلكتروني وسنرسل لك رابطًا لإعادة تعيين كلمة المرور الخاصة بك.
+    email_field:
+      label: أدخل بريدك الإلكتروني
+      placeholder: مثلا me@example.com
+    send_action: إرسال
+    success_title: تم ارسال الرمز
+    success_body: لقد أرسلنا رمزًا إلى {email} ، إذا كان موجودًا في نظامنا ، فانقر على الرابط في بريدك الإلكتروني لإعادة تعيين كلمة المرور.
+
+  login:
+    title: تسجيل الدخول إلى Gabber
+    nav_title: تسجيل الدخول
+    or: أو
+    signup_action: انشئ حساب
+    email_field:
+      label: البريد الإلكتروني
+      placeholder: مثلا me@example.com
+    pass_field:
+      label: كلمه السر
+      placeholder: مثلا ••••••••
+    forgot_action: نسيت رقمك السري؟
+    cancel_action: إلغاء
+    submit_action: تسجيل الدخول
+    signup_body: ليس لديك حساب بالفعل؟
+    failed_body: تسجيل الدخول غير صالح ، يرجى المحاولة مرة أخرى
+
+  register:
+    title: قم بإنشاء حساب جابر
+    nav_title: سجل!
+    login_action: تسجيل الدخول إلى حسابك
+    name_field:
+      label: الاسم الكامل
+      placeholder: مثلا Jim Halpert
+    email_field:
+      label: الاسم الكامل
+      placeholder: مثلا me@example.com
+    pass_field:
+      label: كلمه السر
+      placeholder: مثلا ••••••••
+    terms_body: من خلال التوقيع ، فإنك توافق على موقعنا
+    cancel_action: إلغاء
+    submit_action: سجل
+    success_title: راجع بريدك
+    success_subtitle: تم إنشاء الحساب!
+    failed_body: فشل التسجيل ، يرجى المحاولة مرة أخرى
+
+  reset:
+    title: إعادة تعيين كلمة المرور
+    nav_title: إعادة تعيين كلمة المرور الخاصة بك باستخدام هذا النموذج
+    pass_field:
+      label: كلمة السر الجديدة
+      placeholder: مثلا ••••••••
+    submit_action: إعادة ضبط
+    success_title: إعادة ضبط كلمة المرور
+    success_body: تم إعادة ضبط كلمة المرور الخاصة بك
+    failed_body: تعذّر إعادة ضبط كلمة المرور ، يرجى المحاولة مرة أخرى
+
+  verify:
+    title: التحقق
+    nav_title: التحقق
+    failed_body: فشل التحقق ، يرجى التحقق من الرابط الذي تم إرساله
+
+#
+# Base Views
+#
+base:
+  about:
+    title: ما هذا؟
+    nav_title: حول
+    subtitle: يتيح Gabber التفاعل مع مجتمعك لمشاركة تجاربك المشتركة وفهمها
+    col_1:
+      title: بناء
+      body: إنشاء مشروع وتكوينه حول الموضوعات التي تريد مناقشتها. ثم قم بتنزيل تطبيق Gabber.
+    col_2:
+      title: سجل
+      body: استخدم التطبيق لتسجيل المحادثات مع مجتمعك ووسمها بموضوعاتك. بمجرد تحميل محادثتك ، يمكن لجميع المشاركين مراجعة كيفية استخدام التسجيل والموافقة عليه
+    col_3:
+      title: علق
+      body: .استمع إلى محادثاتك وأشرحها لتكوين مناقشات مع أعضاء المجتمع الآخرين
+
+  holder:
+    # ...
+
+  home:
+    title: هيكل وتسجيل وتعليق المحادثات الصوتية
+    subtitle: Listen, annotate and collaboratively discuss recorded conversations
+    nav_title: الصفحة الرئيسية
+    action: Explore Conversations
+
+  not_found:
+    title: الصفحة غير موجودة
+    subtitle: تعذر العثور على الصفحة التي كنت تبحث عنها ، تحقق من صحة عنوان url الخاص بك.
+    nav_title: غير موجود
+    back_action: اذهب الصفحه الرئيسيه
+
+  privacy:
+    title: سياسة الخصوصية الخاصة بنا
+    nav_title: الخصوصية
+    subtitle: البيانات التي نلتقطها ولماذا وكيف يتم استخدامها
+
+  terms:
+    title: تعليمات الاستخدام
+    nav_title: شروط
+    subtitle: ما الذي توافق عليه عند استخدام خدمتنا
+
+  research:
+    title: Research
+    nav_title: Reseach
+    subtitle: How the use of Gabber informs research
+
+  cookies:
+    title: Cookies
+    nav_title: Cookies
+    subtitle: How Gabber uses cookies
+#
+# Project Views
+#
+project:
+  project_list:
+    title: مشاريع
+    nav_title: مشاريع
+    filter_title: تصفية المشاريع
+    filter_field:
+      label: ابحث عن مشروع
+      placeholder: مثلا الاسم // المشروع
+    mobile_filter_title: منقي
+    create_title: قم بإنشاء مشروع جديد
+    create_action: إنشاء
+    private_title: مشاريعي
+    public_title: مشاريع عامة
+    authed_empty_body: أنت لست في أي مشروع ... حتى الآن. لماذا لا تنشئ واحدة فوق!
+    unauthed_empty_body: لا توجد مشاريع عامة الآن ، لماذا لا تقوم بالتسجيل وإنشاء مشروع خاص بك!
+    fetch_failed_body: تعذر جلب المشاريع ، يرجى إعادة التحميل
+    create_failed_body: لا يمكن إنشاء مشروع ، يرجى المحاولة مرة أخرى
+
+  session_consent:
+    title: موافقة جابر
+    nav_title: موافقة جابر
+    loading_title: إحضار معلومات الموافقة
+    info_title: معلوماتك
+    privacy_body: هذه هي المعلومات الشخصية الوحيدة التي سنقوم بتخزينها عنك ولن يتم نشرها على الملأ
+    info_name_label: اسم
+    info_email_label: البريد الإلكتروني
+    mobile_info_title: معلوماتك
+    failed_body: حدث خطأ ما ، تحقق من الرابط في بريدك الإلكتروني.
+
+  session_detail:
+    title: "{name} جلسة"
+    nav_title: تفاصيل الجلسة
+    mobile_filter_title: منقي
+    mobile_info_title: معلومات الجلسة
+    topic_title: موضوع
+    annotations_title: الشروح
+    no_annotations_title: لا الشروح
+    no_annotations: لا توجد أي تعليقات توضيحية حتى الآن ، فلماذا لا تضيف واحدة؟
+    no_filtered_annotations: لا توجد تعليقات توضيحية تطابق بحثك ، حاول تعديله في الشريط الجانبي
+    fetch_failed_body: لا يمكن أن تجد أن جاببر أو أنها غير موجودة
+    create_failed_body: أخفق إنشاء التعليق التوضيحي ، يرجى المحاولة مرة أخرى
+
+  session_list:
+    title: جلسات
+    nav_title: جلسات
+    loading_title: جلب جلسات المشروع
+    mobile_filter_title: منقي
+    no_sessions: لا توجد جلسات متاحة الآن ، لماذا لا تسجل واحدة في التطبيق؟
+    no_filtered_sessions: لم تتطابق أي جلسات مع طلب البحث ، و حاول تعديله باستخدام الشريط الجانبي.
+    mobile_project_title: معلومات المشروع
+    not_found: لم يتم العثور على المشروع ، تحقق من عنوان url الخاص بك
+
+# * * * * * * * * * * * * * * * * * * * * * * * * * * *
+# * = = = = = = = =  COMPONENTS = = = = = = = = = = = *
+# * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+# components:
+#   annotation:
+#   audio:
+#   comment:
+#   consent:
+#   member:
+#   project:
+#   session:
+#   shared:
+#   topic:
+#   util:
+
+misc:
