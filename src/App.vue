@@ -1,5 +1,6 @@
 <template lang="pug">
 #app-wrapper
+  dev-banner(v-if="isDevMode")
   coming-soon(v-if="isComingSoon")
   router-view(v-else-if="!apiInProgress")
 </template>
@@ -8,12 +9,14 @@
 import { LOGIN_USER } from './const/mutations'
 import ApiWorkerMixin from './mixins/ApiWorker'
 import ComingSoon from './views/base/ComingSoon'
+import DevBanner from './views/base/DevBanner'
 import { getConfig } from './mixins/Config'
 
 export default {
   mixins: [ ApiWorkerMixin ],
-  components: { ComingSoon },
+  components: { ComingSoon, DevBanner },
   computed: {
+    isDevMode () { return getConfig('DEV_MODE') },
     isComingSoon () { return getConfig('COMING_SOON') }
   },
   created () {

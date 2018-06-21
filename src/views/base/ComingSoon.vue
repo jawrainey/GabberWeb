@@ -8,7 +8,7 @@ section.coming-soon.is-vertical-aligned
         .message-header
           p Coming soon!
         .message-body
-          p Gabber lets you structure and record audio converstations then directly annotate and discuss their content with others.
+          p Gabber lets you structure and record audio conversations then directly annotate and discuss their content with others.
 </template>
 
 <script>
