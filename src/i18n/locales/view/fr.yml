@@ -108,7 +108,7 @@ base:
 
   home:
     title: Structurer, enregistrer et annoter les conversations audio
-    subtitle: Listen, annotate and collaboratively discuss recorded conversations
+    subtitle: Écoutez, annotez et discutez ensemble les  conversations enregistrées
     nav_title: Accueil
     action: Explorer Conversations
 
@@ -129,14 +129,14 @@ base:
     subtitle: Ce que vous acceptez  en utilisant notre service (application mobile ou site web)
 
   research:
-    title: Research
-    nav_title: Research
-    subtitle: How the use of Gabber informs research
+    title: Recherche
+    nav_title: Recherche
+    subtitle: Comment Gabber est utilisé pour la recherche
 
   cookies:
     title: Cookies
     nav_title: Cookies
-    subtitle: How Gabber uses cookies
+    subtitle: Comment Gabber utilise les cookies
 
 #
 # Project Views

@@ -115,15 +115,15 @@ project:
       label: Descripción
       placeholder: p.ej. Este proyecto es sobre ...
     org_field:
-      label: Will this project be used by an organisation?
+      label: ¿Va a ser este proyecto utilizado  por una organización?
       options:
-        individual: No. I will use this project as an individual.
+        individual: No. Solo yo.
         ifrc: International Federation of Red Cross and Red Crescent Societies
         fl: Fulfilling Lives
-        other: Other
+        other: Otro
     contact:
-      before_link: Contact us
-      after_link: if you would like your organisation to appear as an option.
+      before_link: Póngase en contacto
+      after_link: con nosotros si desea que su organización aparezca como una opción.
     perms_field:
       label: Privacidad
       public: Público
@@ -167,11 +167,11 @@ project:
     email_field:
       label: Email
       placeholder: p.ej. kevin.smith@gmail.com
-    role_title: What role should this member have?
+    role_title: ¿Qué papel debe tener este miembro?
     options:
-      participant: Can access their own and public conversations.
-      researcher: Can access every conversations for your project.
-      administrator: Has full administrative access to the entire project.
+      participant: Puede acceder a sus conversaciones propias o públicas.
+      researcher: Puede acceder a todas las conversaciones para su proyecto.
+      administrator: Tiene acceso administrativo completo a todo el proyecto.
     edit_success: '{fullname}s role was changed from {old_role} to {new_role}'
     others_changed: 'Note: {name} was not changed to.'
     cancel_action: Cancelar

@@ -108,9 +108,9 @@ base:
 
   home:
     title: هيكل وتسجيل وتعليق المحادثات الصوتية
-    subtitle: Listen, annotate and collaboratively discuss recorded conversations
+    subtitle: الاستماع والتعليق على المحادثات المسجلة ومناقشتها بشكل تعاوني
     nav_title: الصفحة الرئيسية
-    action: Explore Conversations
+    action: استكشف المحادثات
 
   not_found:
     title: الصفحة غير موجودة
@@ -129,14 +129,14 @@ base:
     subtitle: ما الذي توافق عليه عند استخدام خدمتنا
 
   research:
-    title: Research
-    nav_title: Research
-    subtitle: How the use of Gabber informs research
+    title: ابحاث
+    nav_title: ابحاث
+    subtitle: كيف يتم استخدام جابر للأبحاث
 
   cookies:
-    title: Cookies
-    nav_title: Cookies
-    subtitle: How Gabber uses cookies
+    title: اتفاقية ملفات تعريف الارتباط
+    nav_title: اتفاقية ملفات تعريف الارتباط
+    subtitle: كيف تستخدم جابر ملفات تعريف الارتباط
 #
 # Project Views
 #
