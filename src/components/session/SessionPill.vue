@@ -21,10 +21,17 @@
         :label="$t('comp.session.session_pill.when_label')"
         :value="session.created_on | longDate"
       )
-      label-value.is-primary.num-annotations.is-hidden-mobile(
-        :label="$t('comp.session.session_pill.annotation_label')"
-        :value="session.num_user_annotations"
-      )
+      .columns.is-hidden-mobile
+        .column.is-half-tablet
+          label-value.is-primary.is-hidden-mobile(
+            label="Duration"
+            :value="duration"
+          )
+        .column.is-half-tablet
+          label-value.is-primary.is-hidden-mobile(
+            :label="$t('comp.session.session_pill.annotation_label')"
+            :value="session.num_user_annotations"
+          )
     .column.is-third-tablet
       label-value(:label="$t('comp.session.session_pill.topic_label')")
         .tags
@@ -54,6 +61,9 @@ export default {
       return {
         'border-left-color': this.colorFromId(this.session.creator.user_id)
       }
+    },
+    duration () {
+      return this.$options.filters.duration(this.session.topics[this.session.topics.length - 1].end_interval)
     },
     formatedDate () {
       return moment(this.session.created_on).format('do MMM Y')

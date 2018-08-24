@@ -32,6 +32,10 @@
       span {{ researcher.fullname }}
     blockquote(v-if="!showResearchDescription").blockquote
       | {{ $t('comp.session.session_info_sidebar.researchers.description') }}
+  label-value(
+    label="Duration",
+    :value="duration"
+    )
   .columns.is-mobile
     .column
       label-value(
@@ -65,6 +69,9 @@ export default {
     },
     showResearchDescription () {
       return this.projectResearchers.length > 0
+    },
+    duration () {
+      return this.$options.filters.duration(this.session.topics[this.session.topics.length - 1].end_interval)
     },
     numAnnotations () {
       return this.$store.getters.annotationsForSession(this.session.id).length
