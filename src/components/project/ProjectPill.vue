@@ -72,6 +72,7 @@ export default {
       
       let { meta, data } = await this.$api.editProject(
         this.project.id,
+        this.changes.image,
         this.changes.title,
         this.changes.description,
         this.changes.topics,

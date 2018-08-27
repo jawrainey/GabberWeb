@@ -170,9 +170,9 @@ export default class LiveApi extends ApiInterface {
   }
   
   // projects.update
-  async editProject (id, title, description, topics, privacy, organisation) {
+  async editProject (id, image, title, description, topics, privacy, organisation) {
     return this.endpoint('put', `projects/${id}`, {
-      title, description, privacy, topics, organisation
+      image, title, description, privacy, topics, organisation
     })
   }
   

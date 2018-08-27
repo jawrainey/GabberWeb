@@ -2,21 +2,28 @@
 .project-edit-form
   .columns
     .column
-      .field
+      .column.is-narrow
         label.label {{$t('comp.project.project_edit.name_field.label')}}
-        input.input(
+          input.input(
           type="text",
           v-model.trim="project.title",
           :disabled="disabled",
           :placeholder="$t('comp.project.project_edit.name_field.label')"
-        )
-      .field
-        label.label {{$t('comp.project.project_edit.info_field.label')}}
-        textarea.textarea(
-          v-model.trim="project.description",
-          :disabled="disabled",
-          :placeholder="$t('comp.project.project_edit.info_field.placeholder')"
-        )
+          )
+        .columns.is-vcentered
+          .column
+            input.file-input.is-invisible(type='file', ref="fileInput", @change="assignImageAsBase64")
+            figure.image.is-96x96
+              img#project-photo.is-rounded(:src="project.image", @click="showPicker")
+            p#instructions.label.is-size-7.is-italic.has-text-centered.has-text-weight-light Click to change
+          .column.is-three-quarters
+            .field
+              label.label {{$t('comp.project.project_edit.info_field.label')}}
+              textarea.textarea(
+                v-model.trim="project.description",
+                :disabled="disabled",
+                :placeholder="$t('comp.project.project_edit.info_field.placeholder')"
+              )
       .field
         label.label {{ $t('comp.project.project_edit.org_field.label') }}
         .control
@@ -104,6 +111,7 @@ export default {
   computed: {
     canSubmit () {
       return !this.disabled &&
+        this.project.image !== '' &&
         this.project.title !== '' &&
         this.project.description !== '' &&
         this.project.topics.length > 0 &&
@@ -116,6 +124,14 @@ export default {
     }
   },
   methods: {
+    showPicker () {
+      this.$refs.fileInput.click()
+    },
+    assignImageAsBase64 (ev) {
+      const reader = new FileReader()
+      reader.onload = e => { this.project.image = e.target.result }
+      reader.readAsDataURL(ev.target.files[0])
+    },
     cancel () {
       this.$emit('cancel')
     },
@@ -128,4 +144,8 @@ export default {
 </script>
 
 <style lang="sass">
+  #photo-instructions
+    display: flex
+    align-items: center
+    text-align: center
 </style>
