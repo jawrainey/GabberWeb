@@ -21,7 +21,11 @@ export default class ApiInterface {
       data: payload
     }
   }
-  
+  /** Remove encoding type [data:image/png;base64] */
+  removeBase64 (image) {
+    return image.split(',')[1]
+  }
+
   /*
    * Auth Endpoints
    */
