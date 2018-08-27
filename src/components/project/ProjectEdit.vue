@@ -11,24 +11,24 @@
           :placeholder="$t('comp.project.project_edit.name_field.label')"
           )
       .field
-        label.label Photo
-        p.is-italic.is-size-7 This photo will help others identify your project. Upload your own photo or search by keyword to find one.
+        label.label {{$t('comp.project.project_edit.photo_field.label')}}
+        p.is-italic.is-size-7 {{$t('comp.project.project_edit.photo_field.instructions')}}
         br
         .columns
           .column.is-one-quarter
             input.file-input.is-invisible(type='file', ref="fileInput", @change="assignImageAsBase64")
             figure.image.pointer
               img.project-photo.is-rounded(:src="project.image", @click="showPicker")
-            p#instructions.label.is-size-7.is-italic.has-text-centered.has-text-weight-light Click to upload
+            p#instructions.label.is-size-7.is-italic.has-text-centered.has-text-weight-light {{$t('comp.project.project_edit.photo_field.upload')}}
 
           .column.is-three-quarters
             .field
               .control(:class="{'is-loading': this.loading }")
-                input.input.is-small(v-model="keywords", @keyup.enter="doSearch", placeholder="Search for photos by keyword")
+                input.input.is-small(v-model="keywords", @keyup.enter="doSearch", :placeholder="$t('comp.project.project_edit.photo_field.search.placeholder')")
                 .images-container(v-if="photos.length > 0")
                   figure.image.image-card.pointer(v-for="photo in photos")
                     img.project-photo.is-rounded(crossOrigin="Anonymous", :src="photo", @click="assignPhoto")
-                p(v-else-if="noresults") No results found. Try a different keyword.
+                p(v-else-if="noresults") {{$t('comp.project.project_edit.photo_field.search.no_results')}}
       .field
         label.label {{$t('comp.project.project_edit.info_field.label')}}
         textarea.textarea(

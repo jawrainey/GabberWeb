@@ -114,6 +114,13 @@ project:
     info_field:
       label: Description
       placeholder: e.g. This project is about ...
+    photo_field:
+      label: Photo
+      instructions: This photo will help others identify your project. Upload your own photo or search by keyword to find one.
+      upload: Click to upload
+      search:
+        placeholder: Search for photos by keyword
+        no_results: No results found. Try a different keyword.
     org_field:
       label: Will this project be used by an organisation?
       options:

@@ -114,6 +114,13 @@ project:
     info_field:
       label: Descrizione
       placeholder: es. Questo progetto riguarda ...
+    photo_field:
+      label: Foto
+      instructions: questa foto aiuterà gli altri a identificare il tuo progetto. Carica la tua foto o cerca per parola chiave per trovarne una.
+      upload: Clicca per caricare
+      search:
+        placeholder: Ricerca di foto per parola chiave
+        no_results: Nessun risultato trovato. Prova una parola chiave diversa.
     org_field:
       label: Questo progetto sarà utilizzato da un'organizzazione?
       options:
