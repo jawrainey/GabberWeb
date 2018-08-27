@@ -158,9 +158,9 @@ export default class LiveApi extends ApiInterface {
   }
   
   // projects.create
-  async createProject (title, description, topics, privacy, organisation) {
+  async createProject (image, title, description, topics, privacy, organisation) {
     return this.endpoint('post', 'projects', {
-      title, description, topics, privacy, organisation
+      image, title, description, topics, privacy, organisation
     })
   }
   

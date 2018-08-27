@@ -1,8 +1,8 @@
 <template lang="pug">
 .project-edit-form
   .columns
-    .column
-      .column.is-narrow
+    .column.is-half
+      .field
         label.label {{$t('comp.project.project_edit.name_field.label')}}
           input.input(
           type="text",
@@ -10,20 +10,32 @@
           :disabled="disabled",
           :placeholder="$t('comp.project.project_edit.name_field.label')"
           )
-        .columns.is-vcentered
-          .column
+      .field
+        label.label Photo
+        p.is-italic.is-size-7 This photo will help others identify your project. Upload your own photo or search by keyword to find one.
+        br
+        .columns
+          .column.is-one-quarter
             input.file-input.is-invisible(type='file', ref="fileInput", @change="assignImageAsBase64")
-            figure.image.is-96x96
-              img#project-photo.is-rounded(:src="project.image", @click="showPicker")
-            p#instructions.label.is-size-7.is-italic.has-text-centered.has-text-weight-light Click to change
+            figure.image.pointer
+              img.project-photo.is-rounded(:src="project.image", @click="showPicker")
+            p#instructions.label.is-size-7.is-italic.has-text-centered.has-text-weight-light Click to upload
+
           .column.is-three-quarters
             .field
-              label.label {{$t('comp.project.project_edit.info_field.label')}}
-              textarea.textarea(
-                v-model.trim="project.description",
-                :disabled="disabled",
-                :placeholder="$t('comp.project.project_edit.info_field.placeholder')"
-              )
+              .control(:class="{'is-loading': this.loading }")
+                input.input.is-small(v-model="keywords", @keyup.enter="doSearch", placeholder="Search for photos by keyword")
+                .images-container(v-if="photos.length > 0")
+                  figure.image.image-card.pointer(v-for="photo in photos")
+                    img.project-photo.is-rounded(crossOrigin="Anonymous", :src="photo", @click="assignPhoto")
+                p(v-else-if="noresults") No results found. Try a different keyword.
+      .field
+        label.label {{$t('comp.project.project_edit.info_field.label')}}
+        textarea.textarea(
+          v-model.trim="project.description",
+          :disabled="disabled",
+          :placeholder="$t('comp.project.project_edit.info_field.placeholder')"
+        )
       .field
         label.label {{ $t('comp.project.project_edit.org_field.label') }}
         .control
@@ -88,6 +100,8 @@
 <script>
 import ProjectPropMixin from '@/mixins/ProjectProp'
 import TopicListEdit from '@/components/topic/TopicListEdit'
+import Unsplash, { toJson } from 'unsplash-js'
+import { getConfig } from '../../mixins/Config'
 
 /* Emitted Events:
 
@@ -106,7 +120,12 @@ export default {
     action: { type: String, default: null }
   },
   data: () => ({
-    understoodPrivacy: false
+    understoodPrivacy: false,
+    keywords: '',
+    previousSearch: '',
+    loading: false,
+    noresults: false,
+    photos: []
   }),
   computed: {
     canSubmit () {
@@ -124,6 +143,35 @@ export default {
     }
   },
   methods: {
+    assignPhoto (img) {
+      let photo = img.path[0]
+      let canvas = document.createElement('canvas')
+      canvas.width = photo.naturalWidth
+      canvas.height = photo.naturalHeight
+      canvas.getContext('2d').drawImage(photo, 0, 0)
+      this.project.image = canvas.toDataURL('image/png')
+    },
+    async doSearch () {
+      if (this.previousSearch !== this.keywords) {
+        this.loading = true
+        const unsplash = new Unsplash({
+          applicationId: getConfig('UNSPLASH_APP_ID'),
+          secret: getConfig('UNSPLASH_SECRET'),
+          callbackUrl: 'https://api.unsplash.com/search/photos'
+        })
+
+        this.photos = []
+
+        unsplash.search.photos(this.keywords, 1)
+          .then(toJson)
+          .then(data => {
+            this.photos = data.results.map(a => a.urls.thumb)
+            this.loading = false
+            this.noresults = this.photos.length <= 0
+          })
+        this.previousSearch = this.keywords
+      }
+    },
     showPicker () {
       this.$refs.fileInput.click()
     },
@@ -144,6 +192,22 @@ export default {
 </script>
 
 <style lang="sass">
+  .images-container
+    display: flex
+    flex-wrap: nowrap
+    overflow-x: auto
+
+    .image-card
+      flex: 0 0 auto
+      padding: .5em
+
+      .project-photo
+        height: 64px !important
+        width: 64px !important
+
+  .pointer
+    cursor: pointer
+
   #photo-instructions
     display: flex
     align-items: center

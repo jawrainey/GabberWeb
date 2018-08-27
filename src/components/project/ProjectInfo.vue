@@ -2,7 +2,7 @@
 .columns.project-info
   .column.is-narrow.is-hidden-mobile
     figure.image.is-96x96
-      img#project-photo.is-rounded(:src="project.image")
+      img.project-photo.is-rounded(:src="project.image")
 
   .column.description
     label-value.is-marginless(
@@ -59,8 +59,7 @@ export default {
     .column.description
       padding-left: 2.6em
 
-#project-photo
-  width: auto
-  height: 100%
-  cursor: pointer
+.project-photo
+  width: 96px !important
+  height: 96px !important
 </style>
