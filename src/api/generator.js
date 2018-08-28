@@ -48,7 +48,7 @@ export const make = {
     
     return model('Project', id, {
       slug: `project-${id}`,
-      image: 'https://gabber-ncl.s3.amazonaws.com/main/dev/static/default',
+      image: '/static/img/logo.png',
       title: `Project ${id}`,
       description: 'Aenean lacinia bibendum nulla sed consectetur',
       members: memberships,

@@ -123,7 +123,7 @@ export default {
         this.newProject = null
       } else {
         this.newProject = {
-          image: '/static/img/favicon.png',
+          image: '/static/img/logo.png',
           title: '',
           description: '',
           privacy: 'public',
