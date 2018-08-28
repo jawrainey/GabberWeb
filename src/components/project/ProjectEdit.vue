@@ -21,14 +21,16 @@
               img.project-photo.is-rounded(:src="project.image", @click="showPicker")
             p#instructions.label.is-size-7.is-italic.has-text-centered.has-text-weight-light {{$t('comp.project.project_edit.photo_field.upload')}}
 
-          .column.is-three-quarters
-            .field
-              .control(:class="{'is-loading': this.loading }")
-                input.input.is-small(v-model="keywords", @keyup.enter="doSearch", :placeholder="$t('comp.project.project_edit.photo_field.search.placeholder')")
-                .images-container(v-if="photos.length > 0")
-                  figure.image.image-card.pointer(v-for="photo in photos")
-                    img.project-photo.is-rounded(crossOrigin="Anonymous", :src="photo", @click="assignPhoto")
-                p(v-else-if="noresults") {{$t('comp.project.project_edit.photo_field.search.no_results')}}
+          .column.is-three-quarters.no-left-pad
+            .field.has-addons.search
+              .control.is-expanded(:class="{'is-loading': this.loading }")
+                input.input(v-model="keywords", @keyup.enter="doSearch", :placeholder="$t('comp.project.project_edit.photo_field.search.placeholder')")
+              .control
+                a.button.is-info.icon.pointer: fa(icon="search", @click="doSearch")
+            .images-container(v-if="photos.length > 0")
+              figure.image.image-card.pointer(v-for="photo in photos")
+                img.project-photo.is-rounded(crossOrigin="Anonymous", :src="photo", @click="assignPhoto")
+            p.search-error(v-else-if="noresults") {{$t('comp.project.project_edit.photo_field.search.no_results')}}
       .field
         label.label {{$t('comp.project.project_edit.info_field.label')}}
         textarea.textarea(
@@ -192,6 +194,16 @@ export default {
 </script>
 
 <style lang="sass">
+  +desktop
+    .no-left-pad
+      padding-left: 0 !important
+
+  .search
+    margin-bottom: 0 !important
+
+    .search-error
+      margin-top: .5em !important
+
   .images-container
     display: flex
     flex-wrap: nowrap
@@ -204,6 +216,11 @@ export default {
       .project-photo
         height: 64px !important
         width: 64px !important
+
+
+  +mobile
+    .project-photo
+      margin: 0 auto
 
   .pointer
     cursor: pointer
