@@ -1,5 +1,9 @@
 <template lang="pug">
 .columns.project-info
+  .column.is-narrow.is-hidden-mobile
+    figure.image.is-96x96
+      img.project-photo.is-rounded(:src="project.image")
+
   .column.description
     label-value.is-marginless(
       :label="$t('comp.project.project_info.info_label')",
@@ -47,13 +51,15 @@ export default {
 </script>
 
 <style lang="sass">
-
 .project-info
   border-top: 1px solid $border
   padding-top: 0.6em
-  
+
   +desktop
     .column.description
       padding-left: 2.6em
 
+.project-photo
+  width: 96px !important
+  height: 96px !important
 </style>

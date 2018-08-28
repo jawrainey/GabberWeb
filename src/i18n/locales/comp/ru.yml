@@ -114,6 +114,13 @@ project:
     info_field:
       label: Описание
       placeholder: 'например: Этот проект посвящен ...'
+    photo_field:
+      label: Фото
+      instructions: эта фотография поможет другим определить ваш проект. Загрузите собственную фотографию или найдите по ключевому слову, чтобы найти ее.
+      upload: Нажмите, чтобы загрузить
+      search:
+        placeholder: поиск фотографий по ключевому слову
+        no_results: Результаты не найдены. Попробуйте другое ключевое слово.
     org_field:
       label: Will this project be used by an organisation?
       options:

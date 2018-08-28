@@ -123,6 +123,7 @@ export default {
         this.newProject = null
       } else {
         this.newProject = {
+          image: '/static/img/logo.png',
           title: '',
           description: '',
           privacy: 'public',
@@ -150,7 +151,8 @@ export default {
       let topics = this.newProject.topics.map(p => p.text)
       
       let { meta, data } = await this.$api.createProject(
-        this.newProject.title, this.newProject.description, topics, this.newProject.privacy, this.newProject.organisation
+        this.newProject.image, this.newProject.title,
+        this.newProject.description, topics, this.newProject.privacy, this.newProject.organisation
       )
       
       if (meta.success) {

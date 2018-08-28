@@ -66,7 +66,7 @@ consent:
     project_title: Le projet associé à votre conversation
     perms_title: Qui aimeriez-vous avoir accès à cette conversation?
     research:
-      title: How your conversation will be used for research
+      title: Comment votre conversation sera utilisée pour la recherche
       body: Your recording and the associated metadata (who took part, when, what topics were discussed, etc) will be accessible by research staff and used to help understand how digital tools can support yourself and other citizens engaging in qualitative research practices and how audio can make these more accessible. Any published work resulting from data captured through Gabber will never include details that could be used to identify yourself or other participants.
       statement: For more details, including how to opt-out, please review our
       link: research statement.
@@ -114,16 +114,23 @@ project:
     info_field:
       label: La description
       placeholder: 'Par exemple: Ce projet concerne ...'
+    photo_field:
+      label: Photo
+      instructions: Cette photo aidera les autres à identifier votre projet. Téléchargez votre propre photo ou effectuez une recherche par mot-clé pour en trouver un.
+      upload: Cliquez pour télécharger
+      search:
+        placeholder: Recherche de photos par mot-clé
+        no_results: Aucun résultat trouvé. Essayez un mot-clé différent.
     org_field:
-      label: Will this project be used by an organisation?
+      label: Ce projet sera-t-il utilisé par une organisation?
       options:
-        individual: No. I will use this project as an individual.
+        individual: Non. Seulement moi.
         ifrc: International Federation of Red Cross and Red Crescent Societies
         fl: Fulfilling Lives
-        other: Other
+        other: Autre
     contact:
-      before_link: Contact us
-      after_link: if you would like your organisation to appear as an option.
+      before_link: Contactez-nous
+      after_link: si vous souhaitez que votre organisation apparaisse comme option.
     perms_field:
       label: Privacy
       public: Publique
@@ -167,11 +174,11 @@ project:
     email_field:
       label: Email
       placeholder: 'Par exemple:  kevin.smith@gmail.com'
-    role_title: What role should this member have?
+    role_title: Quel rôle devrait  ce membre avoir?
     options:
-      participant: Can access their own and public conversations.
-      researcher: Can access every conversations for your project.
-      administrator: Has full administrative access to the entire project.
+      participant: Peuvent accéder leurs propres conversations et les conversations publiques.
+      researcher: Peuvent  accéder  toutes les conversations de votre projet.
+      administrator: A un accès administratif absolu du projet.
     edit_success: '{fullname}s role was changed from {old_role} to {new_role}'
     others_changed: 'Note: {name} was not changed to.'
     cancel_action: Annuler

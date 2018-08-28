@@ -48,6 +48,7 @@ export const make = {
     
     return model('Project', id, {
       slug: `project-${id}`,
+      image: '/static/img/logo.png',
       title: `Project ${id}`,
       description: 'Aenean lacinia bibendum nulla sed consectetur',
       members: memberships,

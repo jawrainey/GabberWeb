@@ -1,15 +1,36 @@
 <template lang="pug">
 .project-edit-form
   .columns
-    .column
+    .column.is-half
       .field
         label.label {{$t('comp.project.project_edit.name_field.label')}}
-        input.input(
+          input.input(
           type="text",
           v-model.trim="project.title",
           :disabled="disabled",
           :placeholder="$t('comp.project.project_edit.name_field.label')"
-        )
+          )
+      .field
+        label.label {{$t('comp.project.project_edit.photo_field.label')}}
+        p.is-italic.is-size-7 {{$t('comp.project.project_edit.photo_field.instructions')}}
+        br
+        .columns
+          .column.is-one-quarter
+            input.file-input.is-invisible(type='file', ref="fileInput", @change="assignImageAsBase64")
+            figure.image.pointer
+              img.project-photo.is-rounded(:src="project.image", @click="showPicker")
+            p#instructions.label.is-size-7.is-italic.has-text-centered.has-text-weight-light {{$t('comp.project.project_edit.photo_field.upload')}}
+
+          .column.is-three-quarters.no-left-pad
+            .field.has-addons.search
+              .control.is-expanded(:class="{'is-loading': this.loading }")
+                input.input(v-model="keywords", @keyup.enter="doSearch", :placeholder="$t('comp.project.project_edit.photo_field.search.placeholder')")
+              .control
+                a.button.is-info.icon.pointer: fa(icon="search", @click="doSearch")
+            .images-container(v-if="photos.length > 0")
+              figure.image.image-card.pointer(v-for="photo in photos")
+                img.project-photo.is-rounded(crossOrigin="Anonymous", :src="photo", @click="assignPhoto")
+            p.search-error(v-else-if="noresults") {{$t('comp.project.project_edit.photo_field.search.no_results')}}
       .field
         label.label {{$t('comp.project.project_edit.info_field.label')}}
         textarea.textarea(
@@ -81,6 +102,8 @@
 <script>
 import ProjectPropMixin from '@/mixins/ProjectProp'
 import TopicListEdit from '@/components/topic/TopicListEdit'
+import Unsplash, { toJson } from 'unsplash-js'
+import { getConfig } from '../../mixins/Config'
 
 /* Emitted Events:
 
@@ -99,11 +122,17 @@ export default {
     action: { type: String, default: null }
   },
   data: () => ({
-    understoodPrivacy: false
+    understoodPrivacy: false,
+    keywords: '',
+    previousSearch: '',
+    loading: false,
+    noresults: false,
+    photos: []
   }),
   computed: {
     canSubmit () {
       return !this.disabled &&
+        this.project.image !== '' &&
         this.project.title !== '' &&
         this.project.description !== '' &&
         this.project.topics.length > 0 &&
@@ -116,6 +145,43 @@ export default {
     }
   },
   methods: {
+    assignPhoto (img) {
+      let photo = img.path[0]
+      let canvas = document.createElement('canvas')
+      canvas.width = photo.naturalWidth
+      canvas.height = photo.naturalHeight
+      canvas.getContext('2d').drawImage(photo, 0, 0)
+      this.project.image = canvas.toDataURL('image/png')
+    },
+    async doSearch () {
+      if (this.previousSearch !== this.keywords) {
+        this.loading = true
+        const unsplash = new Unsplash({
+          applicationId: getConfig('UNSPLASH_APP_ID'),
+          secret: getConfig('UNSPLASH_SECRET'),
+          callbackUrl: 'https://api.unsplash.com/search/photos'
+        })
+
+        this.photos = []
+
+        unsplash.search.photos(this.keywords, 1)
+          .then(toJson)
+          .then(data => {
+            this.photos = data.results.map(a => a.urls.thumb)
+            this.loading = false
+            this.noresults = this.photos.length <= 0
+          })
+        this.previousSearch = this.keywords
+      }
+    },
+    showPicker () {
+      this.$refs.fileInput.click()
+    },
+    assignImageAsBase64 (ev) {
+      const reader = new FileReader()
+      reader.onload = e => { this.project.image = e.target.result }
+      reader.readAsDataURL(ev.target.files[0])
+    },
     cancel () {
       this.$emit('cancel')
     },
@@ -128,4 +194,39 @@ export default {
 </script>
 
 <style lang="sass">
+  +desktop
+    .no-left-pad
+      padding-left: 0 !important
+
+  .search
+    margin-bottom: 0 !important
+
+    .search-error
+      margin-top: .5em !important
+
+  .images-container
+    display: flex
+    flex-wrap: nowrap
+    overflow-x: auto
+
+    .image-card
+      flex: 0 0 auto
+      padding: .5em
+
+      .project-photo
+        height: 64px !important
+        width: 64px !important
+
+
+  +mobile
+    .project-photo
+      margin: 0 auto
+
+  .pointer
+    cursor: pointer
+
+  #photo-instructions
+    display: flex
+    align-items: center
+    text-align: center
 </style>

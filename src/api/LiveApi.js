@@ -158,9 +158,10 @@ export default class LiveApi extends ApiInterface {
   }
   
   // projects.create
-  async createProject (title, description, topics, privacy, organisation) {
+  async createProject (image, title, description, topics, privacy, organisation) {
+    image = this.removeBase64(image)
     return this.endpoint('post', 'projects', {
-      title, description, topics, privacy, organisation
+      image, title, description, topics, privacy, organisation
     })
   }
   
@@ -170,9 +171,10 @@ export default class LiveApi extends ApiInterface {
   }
   
   // projects.update
-  async editProject (id, title, description, topics, privacy, organisation) {
+  async editProject (id, image, title, description, topics, privacy, organisation) {
+    image = this.removeBase64(image)
     return this.endpoint('put', `projects/${id}`, {
-      title, description, privacy, topics, organisation
+      image, title, description, privacy, topics, organisation
     })
   }
   

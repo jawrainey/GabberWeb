@@ -1,4 +1,3 @@
-# Cookie Policy
 To make this site work properly, we sometimes place small data files called cookies on your device. Most big websites do this too.
 
 ### What are cookies?
