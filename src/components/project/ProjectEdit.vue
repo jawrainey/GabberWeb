@@ -81,17 +81,17 @@
       )
   hr
   .field.is-grouped.is-grouped-right
-    
+
     .control.is-expanded(v-if="isOwner && deletable")
       button.button.is-danger.is-rounded(@click="$emit('delete')", :disabled="disabled")
         .icon: fa(icon="trash")
-        
+
     .control
       button.button.is-link.is-rounded(
         @click="cancel",
         :disabled="disabled"
       ) {{$t('comp.project.project_edit.cancel_action')}}
-    
+
     .control
       button.button.is-success.is-rounded(
         @click="submit",
@@ -216,7 +216,6 @@ export default {
       .project-photo
         height: 64px !important
         width: 64px !important
-
 
   +mobile
     .project-photo
