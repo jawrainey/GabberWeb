@@ -284,3 +284,19 @@ utils:
     oldest_label: أقدم
 
   tooltip:
+
+pre_register:
+  action_button:
+    text: Join now
+    url: https://docs.google.com/forms/d/e/1FAIpQLSeGdyPM7zYKgKQZBs7ydIydk-0QC--VzYJJE9IYTBFQEZnEdg/viewform
+  tagline: Starting on September 2018, TalkFutures is an online engagement conducted through a digital platform, exploring how the Red Cross and Red Crescent could thrive as an organization in a rapidly changing world.
+  capturing:
+    header: Gathering Local Perspectives
+    content: Through a mobile application, participants will capture conversations with other volunteers and staff within their National Society on how the Red Cross and Red Crescent could adapt to the issues of the future. There are nine topics they can explore in their conversations.
+  sensemaking:
+    header: Highlight Interesting Ideas
+    content: All the conversations will be available online, where participants can listen to viewpoints of their peers around the world. People can comment and react to interesting segments of each conversation.
+  reuse:
+    header: Ideas Shared Globally
+    content: The best ten ideas will be featured on social media and online blogs! All the ideas discussed in TalkFutures will help the development of Strategy 2030.
+

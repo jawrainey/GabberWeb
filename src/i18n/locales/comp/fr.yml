@@ -284,3 +284,18 @@ utils:
     oldest_label: Plus ancien
 
   tooltip:
+
+pre_register:
+  action_button:
+    text: Inscrivez-vous maintenant!
+    url: https://docs.google.com/forms/d/e/1FAIpQLSc_2-Us8rbUuLFslG7W1jsRrFuel_jgGUBOkanVfGbdmTfe_A/viewform
+  tagline: À partir de septembre 2018, TalkFutures est un engagement en ligne mené par le biais d'une plate-forme numérique, explorant comment la Croix-Rouge et le Croissant-Rouge pourraient se développer dans un monde en rapide évolution.
+  capturing:
+    title: Rassembler les perspectives locales
+    content: Grâce à une application mobile, les participants pourront échanger avec d’autres volontaires et membres du personnel de leur Société Nationale sur la manière dont la Croix-Rouge et le Croissant-Rouge pourraient s’adapter aux problèmes du futur. Ils peuvent explorer neuf sujets dans leurs conversations.
+  sensemaking:
+    title: Mettre en évidence des idées intéressantes
+    content: Toutes les conversations seront disponibles en ligne, où les participants pourront écouter les points de vue de leurs pairs du monde entier. Les participants peuvent commenter et réagir à des segments intéressants de chaque conversation.
+  reuse:
+    title: Des idées partagées à l'échelle mondiale
+    content: Toutes les conversations seront disponibles en ligne, où les participants pourront écouter les points de vue de leurs pairs du monde entier. Les participants peuvent commenter et réagir à des segments intéressants de chaque conversation.

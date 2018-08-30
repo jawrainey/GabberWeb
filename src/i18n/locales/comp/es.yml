@@ -284,3 +284,19 @@ utils:
     oldest_label: Más antiguo
 
   tooltip:
+
+pre_register:
+  action_button:
+    text: Únase ahora
+    url: https://docs.google.com/forms/d/e/1FAIpQLSdWN4Zuqj3lA5XPfBhAXg_he9bOyHFw0T0l_jMh48g322g_fw/viewform
+  tagline: A partir de septiembre de 2018, TalkFutures es un compromiso en línea realizado a través de una plataforma digital, que explora cómo la Cruz Roja y la Media Luna Roja podrían prosperar como organización en un mundo que cambia rápidamente.
+  capturing:
+    title: Recopilación de perspectivas locales
+    content: A través de una aplicación móvil, los participantes captarán las conversaciones con otros voluntarios y el personal dentro de su Sociedad Nacional sobre cómo la Cruz Roja y la Media Luna Roja podrían adaptarse a los problemas del futuro. Hay nueve temas que pueden explorar en sus conversaciones.
+  sensemaking:
+    title: Resalte las ideas interesantes
+    content: Todas las conversaciones estarán disponibles en línea, donde los participantes pueden escuchar los puntos de vista de sus pares de todo el mundo. La gente puede comentar y reaccionar a segmentos interesantes de cada conversación.
+  reuse:
+    title: Ideas compartidas globalmente
+    content: Las mejores diez ideas se mostrarán en las redes sociales y los blogs en línea. Todas las ideas discutidas en TalkFutures ayudarán al desarrollo de la Estrategia 2030.
+
