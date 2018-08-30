@@ -287,16 +287,16 @@ utils:
 
 pre_register:
   action_button:
-    text: Join now
+    text: انضم(ي) الان
     url: https://docs.google.com/forms/d/e/1FAIpQLSeGdyPM7zYKgKQZBs7ydIydk-0QC--VzYJJE9IYTBFQEZnEdg/viewform
-  tagline: Starting on September 2018, TalkFutures is an online engagement conducted through a digital platform, exploring how the Red Cross and Red Crescent could thrive as an organization in a rapidly changing world.
+  tagline: إبتداءًا من أيلول(سبتمبر)  2018 ، ستطلق TalkFutures  التي تتضمن مشاركة إلكترونية من خلال منصة رقمية ،  هدفها  الإستطلاع على وسائل تؤدي إلى إزدهار و تطور منظمة الصليب الأحمر و الهلال الأحمر في هذا العالم السريع التغير. سيقوم المشاركين بتسجيل محادثات شيقة  تتناول  تسع مواضيع توثر على عمل المنظمة في السنوات العشر القادمة.
   capturing:
-    header: Gathering Local Perspectives
-    content: Through a mobile application, participants will capture conversations with other volunteers and staff within their National Society on how the Red Cross and Red Crescent could adapt to the issues of the future. There are nine topics they can explore in their conversations.
+    title: جمع وجهات النظر المحلية
+    content: من خلال تطبيق على الهاتف المحمول ، سيقوم المشاركون بتسجيل محادثات مع متطوعين وموظفين آخرين داخل الجمعية الوطنية حول آليات يمكن للصليب الأحمر والهلال الأحمر اعتمادها للتكيّف مع قضايا المستقبل. هناك تسعة مواضيع يمكن تناوله في المحادثات .
   sensemaking:
-    header: Highlight Interesting Ideas
-    content: All the conversations will be available online, where participants can listen to viewpoints of their peers around the world. People can comment and react to interesting segments of each conversation.
+    title: تسليط الضوء على أفكار مثيرة للاهتمام
+    content: ستكون جميع المحادثات متاحة على الإنترنت ، حيث يمكن للمشاركين الاستماع إلى وجهات نظر زملائهم حول العالم. يمكن للافراد التعليق والرد على أجزاء المحادثة التي تثير اهتمامهم.
   reuse:
-    header: Ideas Shared Globally
-    content: The best ten ideas will be featured on social media and online blogs! All the ideas discussed in TalkFutures will help the development of Strategy 2030.
+    title: الأفكار المشتركة على مستوى العالم
+    content: سيتم عرض أفضل عشر أفكار على مواقع التواصل الاجتماعي والمدونات الإلكترونية! إن جميع الأفكار التي نوقشت في TalkFutures ستساعد على تطوير إستراتيجية 2030.
 

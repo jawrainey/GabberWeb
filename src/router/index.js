@@ -25,7 +25,7 @@ export const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   document.title = to.meta.title
-    ? `${to.meta.title} · Gabber`
-    : `Gabber`
+    ? `${to.meta.title} · Talk Futures`
+    : `Talk Futures`
   next()
 })

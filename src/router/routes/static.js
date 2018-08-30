@@ -12,7 +12,7 @@ export default [
     path: '/',
     name: ROUTES.HOME_ROUTE,
     component: Home,
-    meta: { title: 'Home' }
+    meta: { title: 'The Voice of Volunteers' }
   },
   {
     path: '/about',

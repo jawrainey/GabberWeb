@@ -17,7 +17,7 @@ export default {
   components: { ComingSoon, DevBanner },
   computed: {
     isDevMode () { return getConfig('DEV_MODE') },
-    isComingSoon () { return true },
+    isComingSoon () { return getConfig('COMING_SOON') },
     notOnRoute () {
       return ['Privacy', 'Terms', 'Research', 'Cookies'].indexOf(this.$route.name) > -1
     }
