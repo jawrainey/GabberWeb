@@ -40,15 +40,19 @@ section.side-padding
         hr.remove-margin-bottom
       footer
         nav.level.add-margin
-          router-link.level-item.is-text(:to="cookiesRoute")
-              | {{$t('view.base.cookies.nav_title')}}
-          router-link.level-item.is-text(:to="privacyRoute")
+          .level-item
+            router-link.is-text(:to="cookiesRoute")
+                | {{$t('view.base.cookies.nav_title')}}
+          .level-item
+            router-link.is-text(:to="privacyRoute")
               | {{$t('view.base.privacy.nav_title')}}
           a.level-item.ifrc-logo(href="http://media.ifrc.org/innovation/", target="_blank")
             img(src="/static/img/talkfutures/ifrc.png")
-          router-link.level-item.is-text(:to="researchRoute")
+          .level-item
+            router-link.is-text(:to="researchRoute")
               | {{$t('view.base.research.nav_title')}}
-          router-link.level-item.is-text(:to="termsRoute")
+          .level-item
+            router-link.is-text(:to="termsRoute")
               | {{$t('view.base.terms.nav_title')}}
         hr.remove-top-margin
 </template>
@@ -80,6 +84,11 @@ export default {
 }
 </script>
 
+<style lang="sass">
+.cc-window
+  border-top: 1px solid #4C5759
+</style>
+
 <style lang="sass" scoped>
 .ifrc-logo
   height: 20px
@@ -97,7 +106,7 @@ export default {
 .remove-margin-bottom
   margin-bottom: 0
 
-.level-item
+.level-item, .level-item > a
   color: #FFF
 
 a:hover, a.is-active
