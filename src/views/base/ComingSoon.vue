@@ -38,24 +38,19 @@ section.side-padding
           .column
             img.branding(src="/static/img/talkfutures/sharing.png")
         hr.remove-margin-bottom
-      footer.add-margin-bottom
+      footer
         nav.level.add-margin
           router-link.level-item.is-text(:to="cookiesRoute")
               | {{$t('view.base.cookies.nav_title')}}
           router-link.level-item.is-text(:to="privacyRoute")
               | {{$t('view.base.privacy.nav_title')}}
+          a.level-item.ifrc-logo(href="http://media.ifrc.org/innovation/", target="_blank")
+            img(src="/static/img/talkfutures/ifrc.png")
           router-link.level-item.is-text(:to="researchRoute")
               | {{$t('view.base.research.nav_title')}}
           router-link.level-item.is-text(:to="termsRoute")
               | {{$t('view.base.terms.nav_title')}}
         hr.remove-top-margin
-        nav.level.is-mobile
-          .level-left
-            .level-item
-              img.bottom.branding.partners(src="/static/img/talkfutures/ifrc.png")
-          .level-right
-            .level-item
-              img.branding.partners.fixed-height(src="/static/img/talkfutures/solferino.png")
 </template>
 
 <script>
@@ -86,10 +81,17 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+.ifrc-logo
+  height: 20px
+  width: 20px
+.ifrc-logo:hover
+  border-bottom: none
+.ifrc-logo > img
+  width: 65px
+  height: 65px
+
 .add-margin
   margin: 1rem auto 0 auto
-.add-margin-bottom
-  margin-bottom: .6em
 .remove-top-margin
   margin-top: 1em
 .remove-margin-bottom
@@ -138,11 +140,15 @@ a:hover, a.is-active
     flex-direction: column-reverse
 
   .partners
-    max-height: 50px !important
+    max-height: 40px !important
     max-width: 175px !important
 
   .fixed-height
     max-height: 30px !important
+
+  .ifrc-logo
+    width: 100%
+    height: 100%
 
 +tablet
   .fixed-height
