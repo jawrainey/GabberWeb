@@ -11,7 +11,7 @@ section.side-padding
       main(:style="{ direction: setTextDirection }")
         .columns
           .column.has-text-centered
-            img.branding.logo(src="/static/img/logo-with-text.png")
+            img.branding.logo(src="/static/img/logo-with-text-s.png")
             p.strapline.is-size-5.is-size-6-mobile {{$t('comp.pre_register.tagline')}}
         section.has-text-centered
           a.button.is-large.is-outlined(:href="$t('comp.pre_register.action_button.url')") {{$t('comp.pre_register.action_button.text')}}
@@ -22,11 +22,11 @@ section.side-padding
               span {{$t('comp.pre_register.capturing.title')}}
             p.is-5.is-size-7-mobile {{$t('comp.pre_register.capturing.content')}}
           .column
-            img.branding(src="/static/img/talkfutures/capturing.png")
+            img.branding(src="/static/img/talkfutures/capturing-s.png")
         hr
         .columns.is-vcentered.reverse-on-mobile
           .column.is-half
-            img.branding(src="/static/img/talkfutures/highlighting.png")
+            img.branding(src="/static/img/talkfutures/highlighting-s.png")
           .column
             .title.is-4.is-size-5-mobile.has-text-weight-semibold {{$t('comp.pre_register.sensemaking.title')}}
             p.is-5.is-size-7-mobile {{$t('comp.pre_register.sensemaking.content')}}
@@ -36,7 +36,7 @@ section.side-padding
             .title.is-4.is-size-5-mobile.has-text-weight-semibold {{$t('comp.pre_register.reuse.title')}}
             p.is-5.is-size-7-mobile {{$t('comp.pre_register.reuse.content')}}
           .column
-            img.branding(src="/static/img/talkfutures/sharing.png")
+            img.branding(src="/static/img/talkfutures/sharing-s.png")
         hr.remove-margin-bottom
       footer
         nav.level.add-margin
@@ -47,7 +47,7 @@ section.side-padding
             router-link.is-text(:to="privacyRoute")
               | {{$t('view.base.privacy.nav_title')}}
           a.level-item.ifrc-logo(href="http://media.ifrc.org/innovation/", target="_blank")
-            img(src="/static/img/talkfutures/ifrc.png")
+            img(src="/static/img/talkfutures/ifrc-s.png")
           .level-item
             router-link.is-text(:to="researchRoute")
               | {{$t('view.base.research.nav_title')}}
