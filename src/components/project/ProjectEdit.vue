@@ -216,8 +216,7 @@ export default {
       .project-photo
         height: 64px !important
         width: 64px !important
-
-
+        
   +mobile
     .project-photo
       margin: 0 auto
