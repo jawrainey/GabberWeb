@@ -2,6 +2,7 @@
 // The entrypoint to the web app, sets up Vue with the api, router & store
 //
 
+import '@babel/polyfill'
 import Vue from 'vue'
 import App from './App.vue'
 import VueAnalytics from 'vue-analytics'
