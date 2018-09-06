@@ -36,11 +36,11 @@ box-layout
           :placeholder="$t('view.auth.register.pass_field.placeholder')"
         )
       .field
-        label.label Preferred spoken language
+        label.label {{$t('view.auth.register.language.title')}}
+        p.is-size-7.is-italic {{$t('view.auth.register.language.description')}}
         .control
           span.select.is-fullwidth
             select(v-model="lang")
-              option(disabled selected value) Preferred spoken language
               option(:value="locale.id", v-for="locale in availableLocales") {{ locale.name }}
       p
         | {{$t('view.auth.register.terms_body')}}

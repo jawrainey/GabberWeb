@@ -62,6 +62,9 @@ auth:
     pass_field:
       label: Password
       placeholder: es. ••••••••
+    language:
+      title: Preferred spoken language
+      description: This will also used in future communications with you.
     terms_body: Iscrivendoti, accetti i nostri
     cancel_action: Annulla
     submit_action: Iscriviti
