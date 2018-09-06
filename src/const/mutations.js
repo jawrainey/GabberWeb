@@ -20,3 +20,5 @@ export const REMOVE_COMMENT = 'RemoveComment'
 export const REMOVE_ANNOTATION = 'RemoveAnnotation'
 
 export const LOGIN_RETURN_ROUTE = 'LoginReturnRoute'
+
+export const SET_SUPPORTED_LANGUAGES = 'SetSupportedLanguages'

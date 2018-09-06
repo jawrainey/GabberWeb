@@ -100,7 +100,11 @@ export default class LiveApi extends ApiInterface {
   async getSelf () {
     return this.endpoint('get', 'auth/me')
   }
-  
+
+  async getSupportedLanguages () {
+    return this.endpoint('get', 'help/languages')
+  }
+
   // users.register
   async register (fullname, email, password, lang) {
     return this.endpoint('post', 'auth/register', {

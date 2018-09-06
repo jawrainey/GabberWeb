@@ -33,7 +33,12 @@ export default class ApiInterface {
   async getSelf () {
     this.notImplemented()
   }
-  
+
+  // help.languages -> Dict
+  async getSupportedLanguages () {
+    return this.notImplemented()
+  }
+
   // users.register -> Boolean
   async register (fullname, email, password, lang) {
     this.notImplemented()

@@ -9,11 +9,13 @@ import projects from './modules/projects'
 import sessions from './modules/sessions'
 import annotations from './modules/annotations'
 import comments from './modules/comments'
+import languages from './modules/languages'
 
 Vue.use(Vuex)
 
 export const store = new Vuex.Store({
   modules: {
+    languages,
     auth,
     projects,
     sessions,

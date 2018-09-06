@@ -41,7 +41,7 @@ box-layout
         .control
           span.select.is-fullwidth
             select(v-model="lang")
-              option(:value="locale.id", v-for="locale in availableLocales") {{ locale.name }}
+              option(:value="locale.id", v-for="locale in availableLocales") {{ locale.endonym }}
       p
         | {{$t('view.auth.register.terms_body')}}
         router-link(:to="termsRoute", target="_blank")
@@ -73,21 +73,10 @@ import BoxLayout from '@/layouts/BoxLayout'
 import Message from '@/components/utils/Message'
 import Markdown from '@/components/utils/Markdown'
 
-// TODO: make request to server and have this in store?
-const availableLocales = [
-  { key: 'ar', name: 'العربية', id: 4 },
-  { key: 'en', name: 'English', id: 1 },
-  { key: 'es', name: 'Español', id: 6 },
-  { key: 'fr', name: 'Français', id: 5 },
-  { key: 'it', name: 'Italiano', id: 2 },
-  { key: 'ru', name: 'Русский', id: 5 }
-]
-
 export default {
   mixins: [ ApiWorkerMixin ],
   components: { BoxLayout, Message, Markdown },
   data: () => ({
-    availableLocales,
     fullname: '',
     email: '',
     password: '',
@@ -101,6 +90,7 @@ export default {
     projectListRoute () { return { name: PROJECT_LIST_ROUTE } },
     loginRoute () { return { name: LOGIN_ROUTE } },
     returnRoute () { return this.$store.getters.returnRoute || this.projectListRoute },
+    availableLocales () { return this.$store.getters.availableLanguages },
     canRegister () {
       return this.fullname !== '' &&
         this.email !== '' &&
