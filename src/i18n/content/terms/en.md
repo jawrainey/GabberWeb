@@ -1,4 +1,4 @@
-Please read these Terms of Use carefully before using the services offered by Open Lab, University of Newcastle Upon Tyne (“Open Lab, Newcastle University”, "Open Lab, University of Newcastle Upon Tyne", “we”, “us”). These terms of use set forth the legally binding terms and conditions for your use of the website, subdomains and/or apps at [https://gabber.audio](https://gabber.audio) (the "Service") and the services, features, content, applications or widgets offered by Open Lab, Newcastle University (collectively with the Service, the "Service").
+Please read these Terms of Use carefully before using the services offered by Open Lab, University of Newcastle Upon Tyne (“Open Lab, Newcastle University”, "Open Lab, University of Newcastle Upon Tyne", “we”, “us”). These terms of use set forth the legally binding terms and conditions for your use of the website, subdomains and/or apps at [https://talk.future-rcrc.com](https://talk.future-rcrc.com) (the "Service") and the services, features, content, applications or widgets offered by Open Lab, Newcastle University (collectively with the Service, the "Service").
 
 If you do not accept these Terms of Use, then you may not use the Service. These Terms of Use are subject to change by us at any time, effective when posted on the Service. Your continued use after such notice will constitute acceptance by you of such changes.
 
@@ -45,7 +45,7 @@ We are under no obligation to screen or monitor Content, but may review Content 
 In addition to any right or remedy that may be available to us under these Terms of Use or applicable law, we may suspend, limit or terminate all or a portion of your access to the Service, at any time with or without notice and with or without cause. In addition, we may refer any information on illegal activities, including your identity, to the proper authorities.
 
 ### Privacy:
-The privacy of your personally identifiable information is very important to us. For more information on what information we collect and how we use such information, please read our Privacy Policy at [https://gabber.audio/privacy](https://gabber.audio/privacy)
+The privacy of your personally identifiable information is very important to us. For more information on what information we collect and how we use such information, please read our Privacy Policy at [https://talk.future-rcrc.com/privacy](https://talk.future-rcrc.com/privacy)
 
 ### Links:
 This Service may contain links to other web sites not maintained by us (including without limitation Facebook, Twitter and other social media platforms). We encourage you to be aware when you leave our Service and to read the terms and conditions and privacy statements of each and every web site that you visit. We are not responsible for the practices or the content of such other web sites or services.

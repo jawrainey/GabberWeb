@@ -131,12 +131,12 @@ base:
   research:
     title: Recherche
     nav_title: Recherche
-    subtitle: Comment Gabber est utilisé pour la recherche
+    subtitle: Comment TalkFutures est utilisé pour la recherche
 
   cookies:
     title: Cookies
     nav_title: Cookies
-    subtitle: Comment Gabber utilise les cookies
+    subtitle: Comment TalkFutures utilise les cookies
 
 #
 # Project Views
