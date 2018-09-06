@@ -5,11 +5,11 @@ footer.hero.is-dark.is-small
       .level
         .level-left
           .level-item
-            .dropdown.is-up(:class="dropdownClasses")
+            .dropdown.is-up(:class="dropdownClasses", v-if="availableLocales && availableLocales.length > 0")
               .dropdown-trigger
                 button.button.is-small(aria-haspopup="true", aria-controls="dropdown-menu", @click="showLocaleDropdown = !showLocaleDropdown")
                   .icon: fa(icon="globe")
-                  span {{ currentLocale.name }}
+                  span {{ currentLocale.endonym }}
               #dropdown-menu.dropdown-menu(role="menu")
                 .dropdown-content
                   a.dropdown-item(

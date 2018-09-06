@@ -6,7 +6,21 @@ import { store } from '../store'
 const MOCK = {
   SPEED: 300,
   LOGGED_IN: true,
-  FAIL_TOKEN: 'fail'
+  FAIL_TOKEN: 'fail',
+  LANGUAGES: [
+    {
+      'code': 'en',
+      'endonym': 'English',
+      'id': 1,
+      'iso_name': 'English'
+    },
+    {
+      'code': 'ar',
+      'endonym': 'العربية',
+      'id': 4,
+      'iso_name': 'Arabic'
+    }
+  ]
 }
 
 // Auto incrementing ids for mocking
@@ -44,7 +58,7 @@ export default class MockApi extends ApiInterface {
       : this.mock(null, false)
   }
   async getSupportedLanguages () {
-    return {}
+    return this.mock(MOCK.LANGUAGES)
   }
   async register (fullname, email, password, lang) {
     return this.mock(null, isEmail.test(email))
