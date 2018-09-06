@@ -11,7 +11,7 @@ section.side-padding
       main(:style="{ direction: setTextDirection }")
         .columns
           .column.has-text-centered
-            img.branding.logo(src="/static/img/logo-with-text-s.png")
+            img.branding.logo(src="/static/img/logo-with-text-s.png", alt="TalkFutures logo")
             p.strapline.is-size-5.is-size-6-mobile {{$t('comp.pre_register.tagline')}}
         section.has-text-centered
           a.button.is-large.is-outlined(:href="$t('comp.pre_register.action_button.url')") {{$t('comp.pre_register.action_button.text')}}
@@ -22,11 +22,13 @@ section.side-padding
               span {{$t('comp.pre_register.capturing.title')}}
             p.is-5.is-size-7-mobile {{$t('comp.pre_register.capturing.content')}}
           .column
-            img.branding(src="/static/img/talkfutures/capturing-s.png")
+            img.branding(src="/static/img/talkfutures/capturing-s.png",
+            alt="Capture conversations with TalkFutures mobile application.")
         hr
         .columns.is-vcentered.reverse-on-mobile
           .column.is-half
-            img.branding(src="/static/img/talkfutures/highlighting-s.png")
+            img.branding(src="/static/img/talkfutures/highlighting-s.png",
+            alt="Listen and tag TalkFutures conversations.")
           .column
             .title.is-4.is-size-5-mobile.has-text-weight-semibold {{$t('comp.pre_register.sensemaking.title')}}
             p.is-5.is-size-7-mobile {{$t('comp.pre_register.sensemaking.content')}}
@@ -36,7 +38,8 @@ section.side-padding
             .title.is-4.is-size-5-mobile.has-text-weight-semibold {{$t('comp.pre_register.reuse.title')}}
             p.is-5.is-size-7-mobile {{$t('comp.pre_register.reuse.content')}}
           .column
-            img.branding(src="/static/img/talkfutures/sharing-s.png")
+            img.branding(src="/static/img/talkfutures/sharing-s.png",
+            alt="Share your favourite TalkFutures conversations with the world.")
         hr.remove-margin-bottom
       footer
         nav.level.add-margin
@@ -46,8 +49,8 @@ section.side-padding
           .level-item
             router-link.is-text(:to="privacyRoute")
               | {{$t('view.base.privacy.nav_title')}}
-          a.level-item.ifrc-logo(href="http://media.ifrc.org/innovation/", target="_blank")
-            img(src="/static/img/talkfutures/ifrc-s.png")
+          a.level-item.ifrc-logo(href="http://media.ifrc.org/innovation/", target="_blank", rel="noopener")
+            img(:src="ifrcLogo", alt="International Federation of Red Cross and Red Crescent Societies")
           .level-item
             router-link.is-text(:to="researchRoute")
               | {{$t('view.base.research.nav_title')}}
@@ -75,6 +78,7 @@ export default {
     termsRoute () { return { name: TERMS_ROUTE } },
     researchRoute () { return { name: RESEARCH_ROUTE } },
     cookiesRoute () { return { name: COOKIES_ROUTE } },
+    ifrcLogo () { return `/static/img/talkfutures/ifrc-logo/${this.$i18n.locale}.png` },
     setTextDirection () { return this.$i18n.locale === 'ar' ? 'rtl' : 'ltr' }
   },
   methods: {
