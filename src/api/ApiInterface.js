@@ -35,7 +35,7 @@ export default class ApiInterface {
   }
   
   // users.register -> Boolean
-  async register (fullname, email, password) {
+  async register (fullname, email, password, lang) {
     this.notImplemented()
   }
   

@@ -43,7 +43,7 @@ export default class MockApi extends ApiInterface {
       ? this.mock(make.user(CURRENT_USER_ID))
       : this.mock(null, false)
   }
-  async register (fullname, email, password) {
+  async register (fullname, email, password, lang) {
     return this.mock(null, isEmail.test(email))
   }
   async verify (token) {

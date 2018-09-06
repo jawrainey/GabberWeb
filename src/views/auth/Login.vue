@@ -6,25 +6,28 @@ box-layout
       router-link(:to="registerRoute")  {{$t('view.auth.login.signup_action')}}
     
     message.is-danger(v-model="errors", clearable)
-    
-    .field
-      label.label {{$t('view.auth.login.email_field.label')}}
-      input.input(
-        type="email",
-        v-model.trim="email",
-        @keyup.enter="login",
-        :placeholder="$t('view.auth.login.email_field.placeholder')"
-      )
-    .field
-      label.label
-        span.has-text-white.has-text-left {{$t('view.auth.login.pass_field.label')}}
-      input.input(
-        type="password",
-        v-model="password",
-        @keyup.enter="login",
-        :placeholder="$t('view.auth.login.pass_field.placeholder')"
-      )
-    
+
+    form
+      .field
+        label.label {{$t('view.auth.login.email_field.label')}}
+        input.input(
+          type="email",
+          autocomplete="email",
+          v-model.trim="email",
+          @keyup.enter="login",
+          :placeholder="$t('view.auth.login.email_field.placeholder')"
+        )
+      .field
+        label.label
+          span.has-text-white.has-text-left {{$t('view.auth.login.pass_field.label')}}
+        input.input(
+          type="password",
+          autocomplete="current-password",
+          v-model="password",
+          @keyup.enter="login",
+          :placeholder="$t('view.auth.login.pass_field.placeholder')"
+        )
+
     p
       router-link(:to="forgotRoute", tabindex="100")
         | {{$t('view.auth.login.forgot_action')}}
