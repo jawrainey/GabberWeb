@@ -38,6 +38,7 @@ auth:
   RESET_TOKEN_EXPIRED: The URL has expired to reset your password.
   AUTH_TOKEN_EXPIRED: The token used to verify your email address has expired.
   AUTH_TOKEN_404: The token used to verify your email address does not exist.
+  LANG_KEY_REQUIRED: You must select a language to register.
 
 comments:
   404: The comment you tried to access does not exist.

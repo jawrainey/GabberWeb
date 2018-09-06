@@ -62,6 +62,9 @@ auth:
     pass_field:
       label: Password
       placeholder: e.g. ••••••••
+    language:
+      title: Preferred spoken language
+      description: This will also used in future communications with you.
     terms_body: By signing up, you agree to our
     cancel_action: Cancel
     submit_action: Sign up

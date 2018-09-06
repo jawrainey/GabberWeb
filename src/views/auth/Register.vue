@@ -12,6 +12,7 @@ box-layout
         label.label {{$t('view.auth.register.name_field.label')}}
         input.input(
           type="text",
+          autocomplete='name',
           v-model="fullname",
           @keyup.enter="register",
           :placeholder="$t('view.auth.register.name_field.placeholder')"
@@ -20,6 +21,7 @@ box-layout
         label.label {{$t('view.auth.register.email_field.label')}}
         input.input(
           type="email",
+          autocomplete="email",
           v-model.trim="email",
           @keyup.enter="register",
           :placeholder="$t('view.auth.register.email_field.placeholder')"
@@ -28,10 +30,18 @@ box-layout
         label.label {{$t('view.auth.register.pass_field.label')}}
         input.input(
           type="password",
+          autocomplete="current-password",
           v-model="password",
           @keyup.enter="register",
           :placeholder="$t('view.auth.register.pass_field.placeholder')"
         )
+      .field
+        label.label {{$t('view.auth.register.language.title')}}
+        p.is-size-7.is-italic {{$t('view.auth.register.language.description')}}
+        .control
+          span.select.is-fullwidth
+            select(v-model="lang")
+              option(:value="locale.id", v-for="locale in availableLocales") {{ locale.endonym }}
       p
         | {{$t('view.auth.register.terms_body')}}
         router-link(:to="termsRoute", target="_blank")
@@ -70,6 +80,7 @@ export default {
     fullname: '',
     email: '',
     password: '',
+    lang: null,
     hasRegistered: false
   }),
   computed: {
@@ -79,10 +90,12 @@ export default {
     projectListRoute () { return { name: PROJECT_LIST_ROUTE } },
     loginRoute () { return { name: LOGIN_ROUTE } },
     returnRoute () { return this.$store.getters.returnRoute || this.projectListRoute },
+    availableLocales () { return this.$store.getters.availableLanguages },
     canRegister () {
       return this.fullname !== '' &&
         this.email !== '' &&
-        this.password !== ''
+        this.password !== '' &&
+        this.lang !== null
     }
   },
   mounted () {
@@ -96,7 +109,7 @@ export default {
       this.startApiWork()
       
       let { meta } = await this.$api.register(
-        this.fullname, this.email, this.password
+        this.fullname, this.email, this.password, this.lang
       )
       
       this.hasRegistered = meta.success
