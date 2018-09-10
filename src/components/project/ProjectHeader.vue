@@ -3,7 +3,7 @@
   .column
     h3.title.is-3
       span.icon-item: fa(v-if="projectIcon", :icon="projectIcon", transform="shrink-6")
-      span  {{project.title}}
+      span  {{project.content['en'].title}}
       span.membership.is-size-5.has-text-grey-light(v-if="membershipType")
         |  {{ membershipType }}
   

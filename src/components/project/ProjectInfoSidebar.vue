@@ -1,6 +1,6 @@
 <template lang="pug">
 .project-detail
-  h3.title.is-3 {{ project.title }}
+  h3.title.is-3 {{ project.content['en'].title }}
   p.subtitle {{ project.created_on | longDate }}
   label-value(
     :label="$t('comp.project.project_info_sidebar.info_label')",

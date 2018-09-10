@@ -47,15 +47,25 @@ export const make = {
       .concat(makeList({ from: 2, to: 9 }, make.membership))
     
     return model('Project', id, {
-      slug: `project-${id}`,
       image: '/static/img/logo.png',
-      title: `Project ${id}`,
-      description: 'Aenean lacinia bibendum nulla sed consectetur',
+      content: {
+        'en': {
+          'title': `Project ${id}`,
+          'slug': `project-${id}`,
+          'description': 'lol',
+          topics: makeList(5, make.topic, id)
+        },
+        'it': {
+          'title': `Project ${id}`,
+          'slug': `project-${id}`,
+          'description': 'noooo',
+          topics: makeList(5, make.topic, id)
+        }
+      },
       members: memberships,
       privacy,
       organisation: {id: pickBetween(0, 3), description: null, name: null},
       creator: make.creator(creatorId),
-      topics: makeList(5, make.topic, id),
       codebook: {
         tags: DUMMY_LABELS.map((text, id) => ({ id, text }))
       }

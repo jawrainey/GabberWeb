@@ -110,11 +110,8 @@ export default {
     filterProjects (projects, query) {
       return projects.filter(project => {
         return this.queryFilter(this.query, [
-          project.title,
           project.creator.fullname,
-          project.description,
-          ...project.members.map(m => m.fullname),
-          ...project.topics.map(m => m.text)
+          ...project.members.map(m => m.fullname)
         ])
       }).sort(this.modelSorter(this.sortMode))
     },
@@ -124,12 +121,17 @@ export default {
       } else {
         this.newProject = {
           image: '/static/img/logo.png',
-          title: '',
-          description: '',
+          content: {
+            // By default we will create English
+            'en': {
+              title: '',
+              description: '',
+              topics: []
+            }
+          },
           privacy: 'public',
           creator: this.currentUser,
-          organisation: {id: 0, description: null, name: null},
-          topics: []
+          organisation: {id: 0, description: null, name: null}
         }
       }
     },
@@ -147,12 +149,9 @@ export default {
     async createProject () {
       if (this.apiInProgress) return
       this.startApiWork()
-      
-      let topics = this.newProject.topics.map(p => p.text)
-      
+
       let { meta, data } = await this.$api.createProject(
-        this.newProject.image, this.newProject.title,
-        this.newProject.description, topics, this.newProject.privacy, this.newProject.organisation
+        this.newProject.image, this.newProject.content, this.newProject.privacy, this.newProject.organisation
       )
       
       if (meta.success) {

@@ -18,7 +18,7 @@
   .field
     label.label {{$t('comp.session.session_filters.topic_field.label')}}
     topic-option(
-      v-for="topic in project.topics",
+      v-for="topic in project.content['en'].topics",
       :key="topic.id",
       :topic="topic",
       :selected="topics.includes(topic.id)",

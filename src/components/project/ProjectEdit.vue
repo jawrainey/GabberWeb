@@ -6,7 +6,7 @@
         label.label {{$t('comp.project.project_edit.name_field.label')}}
           input.input(
           type="text",
-          v-model.trim="project.title",
+          v-model.trim="project.content['en'].title",
           :disabled="disabled",
           :placeholder="$t('comp.project.project_edit.name_field.label')"
           )
@@ -34,7 +34,7 @@
       .field
         label.label {{$t('comp.project.project_edit.info_field.label')}}
         textarea.textarea(
-          v-model.trim="project.description",
+          v-model.trim="project.content['en'].description",
           :disabled="disabled",
           :placeholder="$t('comp.project.project_edit.info_field.placeholder')"
         )
@@ -76,7 +76,7 @@
               )
     .column
       topic-list-edit(
-        v-model="project.topics",
+        v-model="project.content['en'].topics",
         :is-editing="!!project.id"
       )
   hr
@@ -133,10 +133,10 @@ export default {
     canSubmit () {
       return !this.disabled &&
         this.project.image !== '' &&
-        this.project.title !== '' &&
-        this.project.description !== '' &&
-        this.project.topics.length > 0 &&
-        this.project.topics.some(p => p.is_active !== 0)
+        this.project.content['en'].title !== '' &&
+        this.project.content['en'].description !== '' &&
+        this.project.content['en'].topics.length > 0 &&
+        this.project.content['en'].topics.some(p => p.is_active !== 0)
     },
     privacyMessage () {
       return this.project.privacy === 'private'
