@@ -84,12 +84,12 @@ export default class ApiInterface {
   }
   
   // projects.create -> Project
-  async createProject (image, title, description, tags, privacy, organisation) {
+  async createProject (image, content, privacy, organisation) {
     this.notImplemented()
   }
   
   // projects.update -> Project
-  async editProject (id, image, title, description, topics, privacy, organisation) {
+  async editProject (id, image, content, privacy, organisation) {
     this.notImplemented()
   }
   
