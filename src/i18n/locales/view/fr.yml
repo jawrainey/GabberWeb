@@ -63,8 +63,8 @@ auth:
       label: Mot de Passe
       placeholder: 'Par exemple: ••••••••'
     language:
-      title: Preferred spoken language
-      description: This will also used in future communications with you.
+      title: Langue parlée préférée
+      description: Cela sera également utilisé dans les communications futures avec vous.
     terms_body: En vous inscrivant, vous acceptez notre
     cancel_action: Annuler
     submit_action: S'inscrire!

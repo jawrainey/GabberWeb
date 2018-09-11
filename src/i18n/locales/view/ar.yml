@@ -63,8 +63,8 @@ auth:
       label: كلمه السر
       placeholder: مثلا ••••••••
     language:
-      title: Preferred spoken language
-      description: This will also used in future communications with you.
+      title: اللغة المحكية المفضلة
+      description: اسوف يستخدم أيضا في الاتصالات المستقبلية معك.
     terms_body: من خلال التوقيع ، فإنك توافق على موقعنا
     cancel_action: إلغاء
     submit_action: سجل

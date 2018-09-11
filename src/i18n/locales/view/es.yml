@@ -63,8 +63,8 @@ auth:
       label: Contraseña
       placeholder: p.ej. ••••••••
     language:
-      title: Preferred spoken language
-      description: This will also used in future communications with you.
+      title: Idioma preferido
+      description: Estos datos también se usarán en futuras comunicaciones con usted.
     terms_body: Al registrarte, aceptas nuestra
     cancel_action: Cancelar
     submit_action: Regístrate
