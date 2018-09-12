@@ -106,9 +106,9 @@ export default class LiveApi extends ApiInterface {
   }
 
   // users.register
-  async register (fullname, email, password, lang) {
+  async register (fullname, email, password, lang, age, gender, role, society, custom) {
     return this.endpoint('post', 'auth/register', {
-      fullname, email, password, lang
+      fullname, email, password, lang, age, gender, role, society, custom
     })
   }
   

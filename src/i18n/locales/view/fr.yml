@@ -62,6 +62,12 @@ auth:
     pass_field:
       label: Mot de Passe
       placeholder: 'Par exemple: ••••••••'
+    age: Âge
+    gender:
+      title: Genre
+      custom: Quel est ton genre?
+    society: Société Nationale
+    role: Votre rôle dans la Croix-Rouge et le Croissant-Rouge
     language:
       title: Langue parlée préférée
       description: Cela sera également utilisé dans les communications futures avec vous.
