@@ -66,11 +66,11 @@ consent:
     project_title: يرتبط المشروع بمحادثتك
     perms_title: من تود الوصول إلى هذه المحادثة؟
     research:
-      title: How your conversation will be used for research
-      body: Your recording and the associated metadata (who took part, when, what topics were discussed, etc) will be accessible by research staff and used to help understand how digital tools can support yourself and other citizens engaging in qualitative research practices and how audio can make these more accessible. Any published work resulting from data captured through Gabber will never include details that could be used to identify yourself or other participants.
-      statement: For more details, including how to opt-out, please review our
-      link: research statement.
-      embargo: 'Note: your conversation will undergo a 24-hour embargo where only participants of the conversation can listen. After this period, the audio conversation will be available based on the consent you choose below.'
+      title: كيف سيتم استخدام محادثتك للبحث
+      body: سيكون بإمكانك الوصول إلى التسجيل الخاص بك والبيانات الوصفية المقترنة به (من شارك ومتى وما هي المواضيع التي تمت مناقشتها وما إلى ذلك) من قبل فريق البحث لفهم كيف يمكن للأدوات الرقمية أن تدعمك والمواطنين الآخرين المشاركين في البحوث النوعية  وكيفية جعلها اسهل من خلال التسجيل الصوتي. لن يتضمن أي عمل منشور ناتج عن البيانات التي تم التقاطها عبر Gabber تفاصيل تعرفعنك او عن غيرك من المشاركين.
+      statement: لمزيد من التفاصيل ، بما في ذلك كيفية الانسحاب ، يرجى مراجعة موقعنا
+      link: بيان البحوث.
+      embargo: 'ملاحظة: ستخضع محادثتك لفرض حظر لمدة 24 ساعة حيث لا يمكن سوى للمشاركين في المحادثة الاستماع. بعد هذه الفترة ، ستكون المحادثة الصوتية متاحة بناءً على الموافقة التي تختارها أدناه.'
     hidden_title: المشاركين
     hidden_body: لن يتمكن سوى مدراء المشروع والأشخاص في هذه المحادثة من الاستماع إلى هذه المحادثة.
     private_title: أفراد
@@ -83,7 +83,7 @@ consent:
     access_label: من لديه الوصول
     submit_action: تحديث الموافقة
     people:
-      researcher: Project researchers
+      researcher: الباحثين المشروع
       interviewer: المحاور
       administrators: مديري المشروع
       participant: المشاركون في هذه المحادثة
@@ -162,7 +162,7 @@ project:
     members_label: أفراد
     owner_label: المنشئ
     sessions_label: جلسات
-    researchers_label: Researchers
+    researchers_label: الباحثين
 
   project_members:
     members_title: أعضاء المشروع
@@ -218,8 +218,8 @@ session:
     creator_label: المنشئ
     members_label: المشاركين
     researchers:
-      title: Researchers
-      description: There are currently no researchers involved in this project.
+      title: الباحثين
+      description: لا يوجد حاليا باحثون مشاركون في هذا المشروع
     topics_label: المواضيع
     annotations_label: الشروح
     date_format: h:mm a MMMM Do YYYY

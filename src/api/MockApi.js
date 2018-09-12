@@ -6,7 +6,21 @@ import { store } from '../store'
 const MOCK = {
   SPEED: 300,
   LOGGED_IN: true,
-  FAIL_TOKEN: 'fail'
+  FAIL_TOKEN: 'fail',
+  LANGUAGES: [
+    {
+      'code': 'en',
+      'endonym': 'English',
+      'id': 1,
+      'iso_name': 'English'
+    },
+    {
+      'code': 'ar',
+      'endonym': 'العربية',
+      'id': 4,
+      'iso_name': 'Arabic'
+    }
+  ]
 }
 
 // Auto incrementing ids for mocking
@@ -43,7 +57,10 @@ export default class MockApi extends ApiInterface {
       ? this.mock(make.user(CURRENT_USER_ID))
       : this.mock(null, false)
   }
-  async register (fullname, email, password) {
+  async getSupportedLanguages () {
+    return this.mock(MOCK.LANGUAGES)
+  }
+  async register (fullname, email, password, lang) {
     return this.mock(null, isEmail.test(email))
   }
   async verify (token) {
@@ -82,15 +99,16 @@ export default class MockApi extends ApiInterface {
       ? this.mock(make.project(id, id % 2 ? 'public' : 'private'))
       : this.mock(null, false)
   }
-  async createProject (image, title, description, topics, privacy, organisation) {
+  async createProject (image, content, privacy, organisation) {
     let id = mockIds.project++
-    return this.editProject(id, image, title, description, topics, privacy, organisation)
+    return this.editProject(id, image, content, privacy, organisation)
   }
-  async editProject (id, image, title, description, topics, privacy, organisation) {
-    if (title === MOCK.FAIL_TOKEN) return this.mock(null, false)
-    
+  async editProject (id, image, content, privacy, organisation) {
+    let lang = MOCK.LANGUAGES[0].code
+    if (content[lang].title === MOCK.FAIL_TOKEN) return this.mock(null, false)
+
     // Process new topics into models
-    topics = topics.map((t, i) => {
+    content[lang].topics = content[lang].topics.map((t, i) => {
       return {
         ...make.topic(i + 1, id),
         text: t.text,
@@ -101,7 +119,7 @@ export default class MockApi extends ApiInterface {
     let creator = make.user(CURRENT_USER_ID)
     return this.mock(Object.assign(
       make.project(id, privacy),
-      { image, title, description, creator, topics }
+      { image, content, creator }
     ))
   }
   async deleteProject (id) {

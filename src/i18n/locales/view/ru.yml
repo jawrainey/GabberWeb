@@ -62,6 +62,9 @@ auth:
     pass_field:
       label: Пароль
       placeholder: 'например: ••••••••'
+    language:
+      title: Preferred spoken language
+      description: This will also used in future communications with you.
     terms_body: Зарегистрировавшись, вы соглашаетесь с нашими
     cancel_action: Отмена
     submit_action: Зарегистрироваться

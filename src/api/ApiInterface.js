@@ -33,9 +33,14 @@ export default class ApiInterface {
   async getSelf () {
     this.notImplemented()
   }
-  
+
+  // help.languages -> Dict
+  async getSupportedLanguages () {
+    return this.notImplemented()
+  }
+
   // users.register -> Boolean
-  async register (fullname, email, password) {
+  async register (fullname, email, password, lang) {
     this.notImplemented()
   }
   
@@ -79,12 +84,12 @@ export default class ApiInterface {
   }
   
   // projects.create -> Project
-  async createProject (image, title, description, tags, privacy, organisation) {
+  async createProject (image, content, privacy, organisation) {
     this.notImplemented()
   }
   
   // projects.update -> Project
-  async editProject (id, image, title, description, topics, privacy, organisation) {
+  async editProject (id, image, content, privacy, organisation) {
     this.notImplemented()
   }
   

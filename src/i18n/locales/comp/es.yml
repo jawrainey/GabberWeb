@@ -66,11 +66,11 @@ consent:
     project_title: El proyecto asociado a tu conversación
     perms_title: ¿Te gustaría tener acceso a esta conversación?
     research:
-      title: How your conversation will be used for research
-      body: Your recording and the associated metadata (who took part, when, what topics were discussed, etc) will be accessible by research staff and used to help understand how digital tools can support yourself and other citizens engaging in qualitative research practices and how audio can make these more accessible. Any published work resulting from data captured through Gabber will never include details that could be used to identify yourself or other participants.
-      statement: For more details, including how to opt-out, please review our
-      link: research statement.
-      embargo: 'Note: your conversation will undergo a 24-hour embargo where only participants of the conversation can listen. After this period, the audio conversation will be available based on the consent you choose below.'
+      title: ¿Cómo se usará su conversación para la investigación?
+      body: Su grabación y los metadatos asociados (quién participó, cuándo, qué temas se discutieron, etc.) estarán disponibles para el personal de investigación y se utilizarán para ayudar a comprender cómo las herramientas digitales pueden ayudarlo a usted y a otros ciudadanos que participan en prácticas de investigación cualitativa, utilizando el audio para hacer estas aproximaciones más accesibles. Cualquier trabajo publicado como resultado de los datos capturados a través de TalkFutures nunca incluirá detalles que podrían usarse para identificarlo a usted o a otros participantes.
+      statement: Para obtener más información, incluida la opción de exclusión, revise nuestra
+      link: Declaración de investigación.
+      embargo: 'Nota: su conversación se someterá a un embargo de 24 horas donde solo los participantes de la conversación pueden escuchar. Después de este período, la conversación de audio estará disponible según el consentimiento que elija a continuación.'
     hidden_title: Participantes
     hidden_body: – Solo los administradores del proyecto, investigadores, y las personas en esta conversación podrán escuchar esta conversación.
     private_title: Miembros
@@ -162,7 +162,7 @@ project:
     members_label: Miembros
     owner_label: Creador
     sessions_label: Sesiones
-    researchers_label: Researchers
+    researchers_label: Investigadores
 
   project_members:
     members_title: Miembros del proyecto
@@ -218,8 +218,8 @@ session:
     creator_label: Creador
     members_label: Participantes
     researchers:
-      title: Researchers
-      description: There are currently no researchers involved in this project.
+      title: Investigadores
+      description: Actualmente no hay investigadores involucrados en este proyecto
     topics_label: Temas
     annotations_label: Anotaciones
     date_format: h:mm a MMMM Do YYYY

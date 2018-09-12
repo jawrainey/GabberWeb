@@ -38,6 +38,7 @@ auth:
   RESET_TOKEN_EXPIRED: The URL has expired to reset your password.
   AUTH_TOKEN_EXPIRED: The token used to verify your email address has expired.
   AUTH_TOKEN_404: The token used to verify your email address does not exist.
+  LANG_KEY_REQUIRED: You must select a language to register.
 
 comments:
   404: The comment you tried to access does not exist.
@@ -100,11 +101,11 @@ projects:
   TITLE_LENGTH_TOO_LONG: The title must be at most 64 characters
   DESCRIPTION_KEY_REQUIRED: The value for the description parameter is required.
   DESCRIPTION_IS_NOT_STRING: The value for the description parameter must be a string.
-  DESCRIPTION_LENGTH_TOO_LONG: The title must be at most 256 characters
+  DESCRIPTION_LENGTH_TOO_LONG: The description must be at most 256 characters
   PRIVACY_KEY_REQUIRED: The value for the privacy parameter is required.
   PRIVACY_INVALID: The value for the privacy parameter is invalid which must be private or public.
   PRIVACY_IS_NOT_STRING: The value for the privacy parameter must be a string.
-  TOPICS_KEY_REQUIRED: The value for the title parameter is required.
+  TOPICS_KEY_REQUIRED: The value for the topic key parameter is required.
   TOPIC_MUST_BE_LIST: The topics parameter must be of type list.
   TOPIC_IS_NOT_STRING: The value for the privacy parameter must be a string.
   TOPIC_IS_EMPTY: A topic provided is empty.
@@ -116,5 +117,6 @@ projects:
   TOPICS_ID_NOT_PROJECT: The ID of a topic does not exist for this project.
   TOPICS_TEXT_KEY_404: A text key is missing from your topics array.
   TOPICS_TEXT_IS_NOT_STRING: The value of a text must be a string.
-  TOPICS_TEXT_LENGTH_TOO_LONG: The title must be at most 260 characters
+  TOPICS_TEXT_LENGTH_TOO_LONG: The topics text must be at most 260 characters
   DELETE_UNAUTHORIZED: You do not have permission to delete this project
+  UNSUPPORTED_LANGUAGE: The language for the project you tried to create is not supported.

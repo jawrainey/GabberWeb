@@ -7,7 +7,7 @@
   .column.description
     label-value.is-marginless(
       :label="$t('comp.project.project_info.info_label')",
-      :value="project.description"
+      :value="project.content['en'].description"
     )
   .column.members
     label-value.is-marginless(:label="$t('comp.project.project_info.members_label')")

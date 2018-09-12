@@ -62,6 +62,9 @@ auth:
     pass_field:
       label: Mot de Passe
       placeholder: 'Par exemple: ••••••••'
+    language:
+      title: Langue parlée préférée
+      description: Cela sera également utilisé dans les communications futures avec vous.
     terms_body: En vous inscrivant, vous acceptez notre
     cancel_action: Annuler
     submit_action: S'inscrire!

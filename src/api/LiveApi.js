@@ -100,11 +100,15 @@ export default class LiveApi extends ApiInterface {
   async getSelf () {
     return this.endpoint('get', 'auth/me')
   }
-  
+
+  async getSupportedLanguages () {
+    return this.endpoint('get', 'help/languages')
+  }
+
   // users.register
-  async register (fullname, email, password) {
+  async register (fullname, email, password, lang) {
     return this.endpoint('post', 'auth/register', {
-      fullname, email, password
+      fullname, email, password, lang
     })
   }
   
@@ -158,10 +162,10 @@ export default class LiveApi extends ApiInterface {
   }
   
   // projects.create
-  async createProject (image, title, description, topics, privacy, organisation) {
+  async createProject (image, content, privacy, organisation) {
     image = this.removeBase64(image)
     return this.endpoint('post', 'projects', {
-      image, title, description, topics, privacy, organisation
+      image, content, privacy, organisation
     })
   }
   
@@ -171,10 +175,10 @@ export default class LiveApi extends ApiInterface {
   }
   
   // projects.update
-  async editProject (id, image, title, description, topics, privacy, organisation) {
+  async editProject (id, image, content, privacy, organisation) {
     image = this.removeBase64(image)
     return this.endpoint('put', `projects/${id}`, {
-      image, title, description, privacy, topics, organisation
+      image, content, privacy, organisation
     })
   }
   

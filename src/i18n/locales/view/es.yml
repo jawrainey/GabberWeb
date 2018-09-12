@@ -62,6 +62,9 @@ auth:
     pass_field:
       label: Contraseña
       placeholder: p.ej. ••••••••
+    language:
+      title: Idioma preferido
+      description: Estos datos también se usarán en futuras comunicaciones con usted.
     terms_body: Al registrarte, aceptas nuestra
     cancel_action: Cancelar
     submit_action: Regístrate
