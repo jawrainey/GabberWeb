@@ -204,6 +204,8 @@ session:
   session_filters:
     sort_title: فرز الجلسات
     filter_title: تصفية الدورات
+    language_title:
+      label: حسب اللغة
     name_field:
       label: بالاسم
       placeholder: مثلا رون جونسون

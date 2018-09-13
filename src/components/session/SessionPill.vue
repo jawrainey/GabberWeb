@@ -29,9 +29,13 @@
           )
         .column.is-half-tablet
           label-value.is-primary.is-hidden-mobile(
-            :label="$t('comp.session.session_pill.annotation_label')"
+          :label="$t('comp.session.session_pill.annotation_label')"
             :value="session.num_user_annotations"
           )
+      label-value.is-primary.is-hidden-mobile(
+        label="Language"
+        :value="language.endonym"
+      )
     .column.is-third-tablet
       label-value(:label="$t('comp.session.session_pill.topic_label')")
         .tags
@@ -64,6 +68,9 @@ export default {
     },
     duration () {
       return this.$options.filters.duration(this.session.topics[this.session.topics.length - 1].end_interval)
+    },
+    language () {
+      return this.$store.getters.languageById(this.session.lang_id)
     },
     formatedDate () {
       return moment(this.session.created_on).format('do MMM Y')
