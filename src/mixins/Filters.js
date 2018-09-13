@@ -21,6 +21,9 @@ export default {
       return filterIds.length === 0 ||
         filterIds.every(id => ids.includes(id))
     },
+    idInListOrFilter (filterIDs, id) {
+      filterIDs.length === 0 || filterIDs.includes(id)
+    },
     idListOrFilter (filterIds, ids) {
       return filterIds.length === 0 ||
         ids.some(id => filterIds.includes(id))

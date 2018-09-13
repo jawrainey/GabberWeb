@@ -5,7 +5,8 @@ const state = {
 }
 
 const getters = {
-  availableLanguages: state => state.availableLocales
+  availableLanguages: state => state.availableLocales,
+  languageById: state => id => state.availableLocales.find(l => l.id === id)
 }
 
 const mutations = {

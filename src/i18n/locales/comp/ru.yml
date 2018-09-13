@@ -204,6 +204,8 @@ session:
   session_filters:
     sort_title: Отсортировать сессии
     filter_title: Отфильтровать сессии
+    language_title:
+      label: По языку
     name_field:
       label: По имени
       placeholder: 'например: Ron Johnson'

@@ -12,6 +12,7 @@ full-layout.session-list-view(v-else-if="project")
     :project="project",
     :sessions="sessions",
     :query.sync="query",
+    :languages.sync="filterLanguages",
     :topics.sync="filterTopics",
     :members.sync="filterMembers",
     :sortMode.sync="sortMode"
@@ -73,6 +74,7 @@ export default {
   },
   data: () => ({
     query: '',
+    filterLanguages: [],
     filterTopics: [],
     filterMembers: [],
     sortMode: 'newest'
@@ -105,7 +107,8 @@ export default {
         
         return this.queryFilter(this.query, queryValues) &&
           this.idListOrFilter(this.filterTopics, topicIds) &&
-          this.idListOrFilter(this.filterMembers, participantIds)
+          this.idListOrFilter(this.filterMembers, participantIds) &&
+          this.idInListOrFilter(this.filterLanguages, session.lang_id)
       }).sort(this.modelSorter(this.sortMode))
     }
   },

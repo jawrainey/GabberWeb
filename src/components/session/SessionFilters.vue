@@ -16,6 +16,16 @@
       :placeholder="$t('comp.session.session_filters.name_field.placeholder')"
     )
   .field
+    label.label {{$t('comp.session.session_filters.language_title.label')}}
+    language-filter(
+      v-for="lang in availableLanguages",
+      :key="lang.id",
+      :language="lang",
+      :selected="languages.includes(lang.id)",
+      @select="selectLang(lang)",
+      @deselect="deselectLang(lang)"
+    )
+  .field
     label.label {{$t('comp.session.session_filters.topic_field.label')}}
     topic-option(
       v-for="topic in project.content['en'].topics",
@@ -40,21 +50,24 @@
 
 <script>
 import TopicOption from '@/components/topic/TopicOption'
+import LanguageFilter from '@/components/session/LanguageFilter'
 import MemberOption from '@/components/member/MemberOption'
 import SortField from '@/components/utils/SortField'
 import MemberBubble from '@/components/member/MemberBubble'
 
 export default {
-  components: { TopicOption, MemberOption, SortField, MemberBubble },
+  components: { TopicOption, LanguageFilter, MemberOption, SortField, MemberBubble },
   props: {
     project: { type: Object, required: true },
     sessions: { type: Array, required: true },
     query: { type: String, required: true },
+    languages: { type: Array, required: true },
     topics: { type: Array, required: true },
     members: { type: Array, required: true },
     sortMode: { type: String, required: true }
   },
   computed: {
+    availableLanguages () { return this.$store.getters.availableLanguages },
     uniqueParticipants () {
       let people = this.sessions.reduce((people, session) =>
         ([ ...people, ...session.participants, session.creator ]),
@@ -66,6 +79,14 @@ export default {
     }
   },
   methods: {
+    selectLang (lang) {
+      this.$emit('update:languages', this.languages.concat([ lang.id ]))
+    },
+    deselectLang (lang) {
+      this.$emit('update:languages', this.languages.filter(tId =>
+        tId !== lang.id
+      ))
+    },
     selectTopic (topic) {
       this.$emit('update:topics', this.topics.concat([ topic.id ]))
     },

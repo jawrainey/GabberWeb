@@ -204,6 +204,8 @@ session:
   session_filters:
     sort_title: Sort Sessions
     filter_title: Filter Sessions
+    language_title:
+      label: By language
     name_field:
       label: By name
       placeholder: e.g. Ron Johnson
