@@ -16,6 +16,16 @@
       :placeholder="$t('comp.session.session_filters.name_field.placeholder')"
     )
   .field
+    label.label {{$t('comp.session.session_filters.language_title.label')}}
+    topic-option(
+      v-for="lang in availableLanguages",
+      :key="lang.id",
+      :topic="lang",
+      :selected="languages.includes(lang.id)",
+      @select="selectLang(lang)",
+      @deselect="deselectLang(lang)"
+    )
+  .field
     label.label {{$t('comp.session.session_filters.topic_field.label')}}
     topic-option(
       v-for="topic in project.content['en'].topics",
@@ -50,11 +60,19 @@ export default {
     project: { type: Object, required: true },
     sessions: { type: Array, required: true },
     query: { type: String, required: true },
+    languages: { type: Array, required: true },
     topics: { type: Array, required: true },
     members: { type: Array, required: true },
     sortMode: { type: String, required: true }
   },
   computed: {
+    availableLanguages () {
+      let languages = this.$store.getters.availableLanguages
+      for (let i = 0; i < languages.length; i++) {
+        languages[i]['text'] = languages[i]['endonym']
+      }
+      return languages
+    },
     uniqueParticipants () {
       let people = this.sessions.reduce((people, session) =>
         ([ ...people, ...session.participants, session.creator ]),
@@ -66,6 +84,14 @@ export default {
     }
   },
   methods: {
+    selectLang (lang) {
+      this.$emit('update:languages', this.languages.concat([ lang.id ]))
+    },
+    deselectLang (lang) {
+      this.$emit('update:languages', this.languages.filter(tId =>
+        tId !== lang.id
+      ))
+    },
     selectTopic (topic) {
       this.$emit('update:topics', this.topics.concat([ topic.id ]))
     },
