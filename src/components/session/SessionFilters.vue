@@ -17,10 +17,10 @@
     )
   .field
     label.label {{$t('comp.session.session_filters.language_title.label')}}
-    language-filter(
+    topic-option(
       v-for="lang in availableLanguages",
       :key="lang.id",
-      :language="lang",
+      :topic="lang",
       :selected="languages.includes(lang.id)",
       @select="selectLang(lang)",
       @deselect="deselectLang(lang)"
@@ -50,13 +50,12 @@
 
 <script>
 import TopicOption from '@/components/topic/TopicOption'
-import LanguageFilter from '@/components/session/LanguageFilter'
 import MemberOption from '@/components/member/MemberOption'
 import SortField from '@/components/utils/SortField'
 import MemberBubble from '@/components/member/MemberBubble'
 
 export default {
-  components: { TopicOption, LanguageFilter, MemberOption, SortField, MemberBubble },
+  components: { TopicOption, MemberOption, SortField, MemberBubble },
   props: {
     project: { type: Object, required: true },
     sessions: { type: Array, required: true },
@@ -67,7 +66,13 @@ export default {
     sortMode: { type: String, required: true }
   },
   computed: {
-    availableLanguages () { return this.$store.getters.availableLanguages },
+    availableLanguages () {
+      let languages = this.$store.getters.availableLanguages
+      for (let i = 0; i < languages.length; i++) {
+        languages[i]['text'] = languages[i]['endonym']
+      }
+      return languages
+    },
     uniqueParticipants () {
       let people = this.sessions.reduce((people, session) =>
         ([ ...people, ...session.participants, session.creator ]),

@@ -108,7 +108,7 @@ export default {
         return this.queryFilter(this.query, queryValues) &&
           this.idListOrFilter(this.filterTopics, topicIds) &&
           this.idListOrFilter(this.filterMembers, participantIds) &&
-          this.idInListOrFilter(this.filterLanguages, session.lang_id)
+          (this.filterLanguages.length === 0 || this.filterLanguages.includes(session.lang_id))
       }).sort(this.modelSorter(this.sortMode))
     }
   },
