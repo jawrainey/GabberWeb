@@ -9,32 +9,19 @@
   hr
   h3.subtitle {{$t('comp.session.session_filters.filter_title')}}
   .field
-    label.label {{$t('comp.session.session_filters.name_field.label')}}
-    input.input.is-small(
-      :value="query",
-      @input="e => $emit('update:query', e.target.value)",
-      :placeholder="$t('comp.session.session_filters.name_field.placeholder')"
-    )
-  .field
-    label.label {{$t('comp.session.session_filters.language_title.label')}}
-    topic-option(
-      v-for="lang in availableLanguages",
-      :key="lang.id",
-      :topic="lang",
-      :selected="languages.includes(lang.id)",
-      @select="selectLang(lang)",
-      @deselect="deselectLang(lang)"
-    )
+    label.label By Language
+    .control
+      span.select.is-fullwidth
+        select(v-model="selectedLanguage", @change="langChanged")
+          option(value="-1", selected="selected") All Languages
+          option(:value="lang.id", v-for="lang in availableLanguages") {{ lang.text }}
   .field
     label.label {{$t('comp.session.session_filters.topic_field.label')}}
-    topic-option(
-      v-for="topic in project.content['en'].topics",
-      :key="topic.id",
-      :topic="topic",
-      :selected="topics.includes(topic.id)",
-      @select="selectTopic(topic)",
-      @deselect="deselectTopic(topic)"
-    )
+    .control
+      span.select.is-fullwidth
+        select(v-model="selectedTopic", @change="selectTopic")
+          option(value="-1", selected="selected") All Topics
+          option(:value="topic.id", v-for="topic in project.content['en'].topics") {{ topic.text }}
   .field.members-field
     label.label {{$t('comp.session.session_filters.member_field.label')}}
     .bubble-list.is-multiline.is-size-3
@@ -54,8 +41,39 @@ import MemberOption from '@/components/member/MemberOption'
 import SortField from '@/components/utils/SortField'
 import MemberBubble from '@/components/member/MemberBubble'
 
+export const GENDERS = {
+  'ar': [
+    {'id': 0, 'text': 'إناثا'},
+    {'id': 1, 'text': 'الذكر'},
+    {'id': 2, 'text': 'يرجى التحديد'},
+    {'id': 3, 'text': 'الأفضل أن لا يقال'}
+  ],
+  'en': [
+    {'id': 0, 'text': 'Female'},
+    {'id': 1, 'text': 'Male'},
+    {'id': 2, 'text': 'Please Specify'},
+    {'id': 3, 'text': 'Rather not say'}
+  ],
+  'es': [
+    {'id': 0, 'text': 'Femenino'},
+    {'id': 1, 'text': 'Masculino'},
+    {'id': 2, 'text': 'Por favor especifica'},
+    {'id': 3, 'text': 'Prefiero no decirlo'}
+  ],
+  'fr': [
+    {'id': 0, 'text': 'Femelle'},
+    {'id': 1, 'text': 'Mâle'},
+    {'id': 2, 'text': 'Veuillez préciser'},
+    {'id': 3, 'text': 'Plutôt pas dire'}
+  ]
+}
+
 export default {
   components: { TopicOption, MemberOption, SortField, MemberBubble },
+  data: () => ({
+    selectedLanguage: -1,
+    selectedTopic: -1
+  }),
   props: {
     project: { type: Object, required: true },
     sessions: { type: Array, required: true },
@@ -77,28 +95,28 @@ export default {
       let people = this.sessions.reduce((people, session) =>
         ([ ...people, ...session.participants, session.creator ]),
       [])
-      
+
       return people.filter((person, index) =>
         index === people.findIndex(p => p.user_id === person.user_id)
       )
     }
   },
   methods: {
-    selectLang (lang) {
-      this.$emit('update:languages', this.languages.concat([ lang.id ]))
+    langChanged () {
+      if (this.selectedLanguage < 0) {
+        this.$emit('update:languages', this.languages.splice(0, 0))
+      } else {
+        this.$emit('update:languages', this.languages.splice(0, this.languages.length))
+        this.$emit('update:languages', this.languages.concat([ this.selectedLanguage ]))
+      }
     },
-    deselectLang (lang) {
-      this.$emit('update:languages', this.languages.filter(tId =>
-        tId !== lang.id
-      ))
-    },
-    selectTopic (topic) {
-      this.$emit('update:topics', this.topics.concat([ topic.id ]))
-    },
-    deselectTopic (topic) {
-      this.$emit('update:topics', this.topics.filter(tId =>
-        tId !== topic.id
-      ))
+    selectTopic () {
+      if (this.selectedTopic < 0) {
+        this.$emit('update:topics', this.topics.splice(0, 0))
+      } else {
+        this.$emit('update:topics', this.topics.splice(0, this.topics.length))
+        this.$emit('update:topics', this.topics.concat([ this.selectedTopic ]))
+      }
     },
     selectMember (member) {
       this.$emit('update:members', this.members.concat([ member.user_id ]))
