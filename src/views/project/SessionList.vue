@@ -13,6 +13,7 @@ full-layout.session-list-view(v-else-if="project")
     :sessions="sessions",
     :query.sync="query",
     :languages.sync="filterLanguages",
+    :genders.sync="filterGender",
     :topics.sync="filterTopics",
     :members.sync="filterMembers",
     :sortMode.sync="sortMode"
@@ -74,6 +75,7 @@ export default {
   },
   data: () => ({
     query: '',
+    filterGender: [],
     filterLanguages: [],
     filterTopics: [],
     filterMembers: [],
@@ -105,9 +107,11 @@ export default {
           ...session.participants.map(p => p.user_id), session.creator.user_id
         ]
         
+        let genderIds = session.participants.map(p => p.gender)
         return this.queryFilter(this.query, queryValues) &&
           this.idListOrFilter(this.filterTopics, topicIds) &&
           this.idListOrFilter(this.filterMembers, participantIds) &&
+          this.idListOrFilter(this.filterGender, genderIds) &&
           (this.filterLanguages.length === 0 || this.filterLanguages.includes(session.lang_id))
       }).sort(this.modelSorter(this.sortMode))
     }

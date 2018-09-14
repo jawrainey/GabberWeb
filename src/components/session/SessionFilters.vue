@@ -16,6 +16,14 @@
           option(value="-1", selected="selected") All Languages
           option(:value="lang.id", v-for="lang in availableLanguages") {{ lang.text }}
   .field
+    label.label Gender
+    .control
+      span.select.is-fullwidth
+        select(v-model="selectedGender", @change="genderChanged")
+          option(value="-1", selected="selected") All Genders
+          option(:value="gender.id", v-for="gender in genderByLanguage") {{ gender.text }}
+
+  .field
     label.label {{$t('comp.session.session_filters.topic_field.label')}}
     .control
       span.select.is-fullwidth
@@ -72,18 +80,21 @@ export default {
   components: { TopicOption, MemberOption, SortField, MemberBubble },
   data: () => ({
     selectedLanguage: -1,
-    selectedTopic: -1
+    selectedTopic: -1,
+    selectedGender: -1
   }),
   props: {
     project: { type: Object, required: true },
     sessions: { type: Array, required: true },
     query: { type: String, required: true },
+    genders: { type: Array, required: true },
     languages: { type: Array, required: true },
     topics: { type: Array, required: true },
     members: { type: Array, required: true },
     sortMode: { type: String, required: true }
   },
   computed: {
+    genderByLanguage () { return GENDERS[this.$i18n.locale] },
     availableLanguages () {
       let languages = this.$store.getters.availableLanguages
       for (let i = 0; i < languages.length; i++) {
@@ -102,6 +113,18 @@ export default {
     }
   },
   methods: {
+    genderChanged () {
+      if (this.selectedGender < 0) {
+        this.$emit('update:genders', this.genders.splice(0, 0))
+      } else {
+        this.$emit('update:genders', this.genders.splice(0, this.genders.length))
+        if (this.selectedGender >= 2) {
+          this.$emit('update:genders', this.genders.concat([ 2, 3 ]))
+        } else {
+          this.$emit('update:genders', this.genders.concat([ this.selectedGender ]))
+        }
+      }
+    },
     langChanged () {
       if (this.selectedLanguage < 0) {
         this.$emit('update:languages', this.languages.splice(0, 0))

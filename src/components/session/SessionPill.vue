@@ -16,26 +16,30 @@
             :key="member.id",
             :member="member"
           )
+            span {{ genderById(member) }}
     .column.is-third-tablet
       label-value.is-primary.created-on(
-        :label="$t('comp.session.session_pill.when_label')"
+        :label="$t('comp.session.session_pill.when_label')",
         :value="session.created_on | longDate"
       )
       .columns.is-hidden-mobile
         .column.is-half-tablet
           label-value.is-primary.is-hidden-mobile(
-            label="Duration"
-            :value="duration"
+          label="Duration",
+          :value="duration"
           )
         .column.is-half-tablet
           label-value.is-primary.is-hidden-mobile(
-          :label="$t('comp.session.session_pill.annotation_label')"
-            :value="session.num_user_annotations"
+          :label="$t('comp.session.session_pill.annotation_label')",
+          :value="session.num_user_annotations"
           )
-      label-value.is-primary.is-hidden-mobile(
-        label="Language"
-        :value="language.endonym"
-      )
+      .columns.is-hidden-mobile
+        .column.is-half-tablet
+          label-value.is-primary.is-hidden-mobile(
+            v-if="language",
+            label="Language",
+            :value="language.endonym"
+          )
     .column.is-third-tablet
       label-value(:label="$t('comp.session.session_pill.topic_label')")
         .tags
@@ -53,6 +57,33 @@ import LabelValue from '@/components/utils/LabelValue'
 import IconBubble from '@/components/utils/IconBubble'
 import MemberBubble from '@/components/member/MemberBubble'
 
+export const GENDERS = {
+  'ar': [
+    {'id': 0, 'text': 'إناثا'},
+    {'id': 1, 'text': 'الذكر'},
+    {'id': 2, 'text': 'يرجى التحديد'},
+    {'id': 3, 'text': 'الأفضل أن لا يقال'}
+  ],
+  'en': [
+    {'id': 0, 'text': 'Female'},
+    {'id': 1, 'text': 'Male'},
+    {'id': 2, 'text': 'Please Specify'},
+    {'id': 3, 'text': 'Rather not say'}
+  ],
+  'es': [
+    {'id': 0, 'text': 'Femenino'},
+    {'id': 1, 'text': 'Masculino'},
+    {'id': 2, 'text': 'Por favor especifica'},
+    {'id': 3, 'text': 'Prefiero no decirlo'}
+  ],
+  'fr': [
+    {'id': 0, 'text': 'Femelle'},
+    {'id': 1, 'text': 'Mâle'},
+    {'id': 2, 'text': 'Veuillez préciser'},
+    {'id': 3, 'text': 'Plutôt pas dire'}
+  ]
+}
+
 export default {
   mixins: [ ColorGenerator ],
   components: { LabelValue, IconBubble, MemberBubble },
@@ -69,6 +100,9 @@ export default {
     duration () {
       return this.$options.filters.duration(this.session.topics[this.session.topics.length - 1].end_interval)
     },
+    genders () {
+      return this.session.participants.map(p => GENDERS[this.$i18n.locale][p.gender].text)
+    },
     language () {
       return this.$store.getters.languageById(this.session.lang_id)
     },
@@ -83,6 +117,8 @@ export default {
     }
   },
   methods: {
+    // ageOfMember (member) { return AGES[this.$i18n.locale][member.age].text },
+    genderById (member) { return GENDERS[this.$i18n.locale][member.gender].text },
     trim (string, length) {
       return string.length > length
         ? `${string.slice(0, length - 1)}…`
