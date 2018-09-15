@@ -12,6 +12,11 @@ full-layout.session-list-view(v-else-if="project")
     :project="project",
     :sessions="sessions",
     :query.sync="query",
+    :societies.sync="filterSocieties",
+    :ages.sync="filterAges",
+    :languages.sync="filterLanguages",
+    :genders.sync="filterGender",
+    :roles.sync="filterRoles",
     :topics.sync="filterTopics",
     :members.sync="filterMembers",
     :sortMode.sync="sortMode"
@@ -23,7 +28,7 @@ full-layout.session-list-view(v-else-if="project")
   
   template(slot="main")
     breadcrumbs
-    h1.title.is-1 {{$t('view.project.session_list.title')}}
+    h1.title.is-1 {{$t('view.project.session_list.title')}} ({{ filteredSessions.length }})
     session-pill(
       v-for="session in filteredSessions",
       :key="session.id",
@@ -73,6 +78,11 @@ export default {
   },
   data: () => ({
     query: '',
+    filterGender: [],
+    filterSocieties: [],
+    filterAges: [],
+    filterLanguages: [],
+    filterRoles: [],
     filterTopics: [],
     filterMembers: [],
     sortMode: 'newest'
@@ -103,9 +113,19 @@ export default {
           ...session.participants.map(p => p.user_id), session.creator.user_id
         ]
         
+        let genderIds = session.participants.map(p => p.gender)
+        let societyIds = session.participants.map(p => p.society)
+        let filterIds = session.participants.map(p => p.age)
+        let roleIds = session.participants.map(p => p.m_role)
+
         return this.queryFilter(this.query, queryValues) &&
           this.idListOrFilter(this.filterTopics, topicIds) &&
-          this.idListOrFilter(this.filterMembers, participantIds)
+          this.idListOrFilter(this.filterMembers, participantIds) &&
+          this.idListOrFilter(this.filterGender, genderIds) &&
+          this.idListOrFilter(this.filterSocieties, societyIds) &&
+          this.idListOrFilter(this.filterAges, filterIds) &&
+          this.idListOrFilter(this.filterRoles, roleIds) &&
+          (this.filterLanguages.length === 0 || this.filterLanguages.includes(session.lang_id))
       }).sort(this.modelSorter(this.sortMode))
     }
   },

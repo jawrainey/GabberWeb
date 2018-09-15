@@ -204,6 +204,25 @@ session:
   session_filters:
     sort_title: Trier les sessions
     filter_title: Filtrer les sessions
+    filters:
+      language:
+        title: Par Langue
+        default: Toutes Les Langues
+      society:
+        title: Société Nationale
+        default: Toutes les sociétés nationales
+      role:
+        title: Par rôle
+        default: Tous les rôles
+      gender:
+        title: Par genre
+        default: Tous les genres
+      age:
+        title: Par âge
+        default: Tous les âges
+      topic:
+        title: Par sujet
+        default: Tous les sujets
     name_field:
       label: Par nom
       placeholder: 'Par exemple: Ron Johnson'
@@ -230,7 +249,8 @@ session:
     when_label: Enregistré
     annotation_label: Annotations
     topic_label: Les Rubriques
-
+    language: Langue
+    duration: Durée
 
 
 shared:

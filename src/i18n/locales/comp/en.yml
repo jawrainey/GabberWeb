@@ -204,11 +204,28 @@ session:
   session_filters:
     sort_title: Sort Sessions
     filter_title: Filter Sessions
+    filters:
+      language:
+        title: By Language
+        default: All Languages
+      society:
+        title: By National Society
+        default: All National Societies
+      role:
+        title: By Role
+        default: All Roles
+      gender:
+        title: By Gender
+        default: All Genders
+      age:
+        title: By Age
+        default: All Ages
+      topic:
+        title: By Topic
+        default: All Topics
     name_field:
       label: By name
       placeholder: e.g. Ron Johnson
-    topic_field:
-      label: By topics
     member_field:
       label: By participant
   
@@ -230,7 +247,8 @@ session:
     when_label: Recorded
     annotation_label: Annotations
     topic_label: Topics
-
+    language: Language
+    duration: Duration
 
 
 shared:

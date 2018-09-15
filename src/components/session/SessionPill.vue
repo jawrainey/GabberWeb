@@ -7,34 +7,42 @@
         member-bubble(:member="session.creator", pad-right)
           fa.mic-icon(icon="microphone", size="lg")
         span {{ ' ' + session.creator.fullname }}
-      label-value.is-hidden-mobile(
+      label-value(
         :label="$t('comp.session.session_pill.member_label')"
       )
         .bubble-list.is-multiline
-          member-bubble(
-            v-for="member in session.participants",
-            :key="member.id",
-            :member="member"
-          )
+          .person(v-for="member in session.participants")
+            .first
+              member-bubble(:key="member.id", :member="member")
+              p.society {{ societyById(member) }}
+            .second
+              span.meta.is-size-7.is-italic  {{ roleById(member) }} | {{ genderById(member) }} | {{ ageOfMember(member) }}
     .column.is-third-tablet
       label-value.is-primary.created-on(
-        :label="$t('comp.session.session_pill.when_label')"
+        :label="$t('comp.session.session_pill.when_label')",
         :value="session.created_on | longDate"
       )
       .columns.is-hidden-mobile
         .column.is-half-tablet
           label-value.is-primary.is-hidden-mobile(
-            label="Duration"
-            :value="duration"
+          :label="$t('comp.session.session_pill.duration')",
+          :value="duration"
           )
         .column.is-half-tablet
           label-value.is-primary.is-hidden-mobile(
-            :label="$t('comp.session.session_pill.annotation_label')"
-            :value="session.num_user_annotations"
+          :label="$t('comp.session.session_pill.annotation_label')",
+          :value="session.num_user_annotations"
           )
-    .column.is-third-tablet
+      .columns.is-hidden-mobile
+        .column.is-half-tablet
+          label-value.is-primary.is-hidden-mobile(
+            v-if="language",
+            :label="$t('comp.session.session_pill.language')",
+            :value="language.endonym"
+          )
+    .column.is-third-tablet.is-clipped
       label-value(:label="$t('comp.session.session_pill.topic_label')")
-        .tags
+        .tags.is-clipped
           .tag(v-for="topic in limitedTopics")
             | {{trim(topic.text, 60)}}
           .tag(v-if="session.topics.length > topicLimit")
@@ -48,9 +56,10 @@ import { ColorGenerator } from '@/mixins'
 import LabelValue from '@/components/utils/LabelValue'
 import IconBubble from '@/components/utils/IconBubble'
 import MemberBubble from '@/components/member/MemberBubble'
+import DataMixin from '@/mixins/Data'
 
 export default {
-  mixins: [ ColorGenerator ],
+  mixins: [ ColorGenerator, DataMixin ],
   components: { LabelValue, IconBubble, MemberBubble },
   props: {
     session: { type: Object, required: true },
@@ -65,6 +74,12 @@ export default {
     duration () {
       return this.$options.filters.duration(this.session.topics[this.session.topics.length - 1].end_interval)
     },
+    genders () {
+      return this.session.participants.map(p => this.GENDERS[this.$i18n.locale][p.gender].text)
+    },
+    language () {
+      return this.$store.getters.languageById(this.session.lang_id)
+    },
     formatedDate () {
       return moment(this.session.created_on).format('do MMM Y')
     },
@@ -76,6 +91,10 @@ export default {
     }
   },
   methods: {
+    ageOfMember (member) { return this.AGES.find(s => s.id === member.age).text },
+    roleById (member) { return this.ROLES[this.$i18n.locale][member.m_role].title },
+    genderById (member) { return this.GENDERS[this.$i18n.locale][member.gender].text },
+    societyById (member) { return this.NATIONAL_SOCS.find(s => s.id === member.society).name },
     trim (string, length) {
       return string.length > length
         ? `${string.slice(0, length - 1)}…`
@@ -86,6 +105,21 @@ export default {
 </script>
 
 <style lang="sass">
+.first, .second
+  display: inline-flex
+  align-items: center
+
+.society
+  font-size: .75em !important
+  padding-left: .75em
+.meta
+  padding-left: .5em
+
+.bubble-list
+  margin-bottom: 0
+
+.person:first-child
+  margin-bottom: .5em
 
 .session-pill
   border-left: 15px solid $grey-light

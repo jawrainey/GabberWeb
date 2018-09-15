@@ -12,6 +12,8 @@ annotation:
   annotation_filter:
     sort_title: Ordina annotazioni
     filter_title: Fitra annotazioni
+    language_title:
+      label: Per lingua
     message_field:
       label: Per messaggio
       placeholder: es. la parte riguardo ...

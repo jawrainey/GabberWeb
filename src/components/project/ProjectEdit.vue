@@ -48,8 +48,6 @@
               option(:value="1")
                 | {{ $t('comp.project.project_edit.org_field.options.ifrc') }}
               option(:value="2")
-                | {{ $t('comp.project.project_edit.org_field.options.fl') }}
-              option(:value="3")
                 | {{ $t('comp.project.project_edit.org_field.options.other') }}
           .help
             b: a(href="mailto:admin@gabber.audio")
