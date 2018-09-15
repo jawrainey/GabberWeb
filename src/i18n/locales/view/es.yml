@@ -4,12 +4,12 @@
 #
 auth:
   accept_invite:
-    title: Estás invitado a unirte a un proyecto en Gabber
+    title: Estás invitado a unirte a un proyecto en TalkFutures
     nav_title: Aceptar invitación
     loading_title: Autentificando
     bad_token_title: simbolo no valido
-    subtitle: Regístrese abajo para unirse al proyecto
-    info: Gabber te permite grabar y anotar entrevistas estructuradas
+    subtitle: Regístrese abajo para unirse al tema
+    info: TalkFutures te permite grabar y comentarista entrevistas estructuradas
     email_field:
       label: Email
       placeholder: p.ej. me@example.com
@@ -22,7 +22,7 @@ auth:
     submit_action: Enviar
 
   forgot:
-    title: Restablece tu contraseña de Gabber
+    title: Restablece tu contraseña de TalkFutures
     nav_title: Contraseña olvidada
     subtitle: Envíe su dirección de correo electrónico y le enviaremos un enlace para restablecer su contraseña.
     email_field:
@@ -33,8 +33,8 @@ auth:
     success_body: Hemos enviado un código a {email}, si está en nuestro sistema, haga clic en el enlace de su correo electrónico para restablecer su contraseña.
 
   login:
-    title: Inicia sesión en Gabber
-    nav_title: Iniciar sesión
+    title: Inicia conversacion en TalkFutures
+    nav_title: Iniciar conversacion
     or: o
     signup_action: crea una cuenta
     email_field:
@@ -45,12 +45,12 @@ auth:
       placeholder: p.ej. ••••••••
     forgot_action: ¿Olvidaste tu contraseña?
     cancel_action: Cancelar
-    submit_action: Iniciar sesión
+    submit_action: Iniciar conversacion
     signup_body: ¿Todavía no tienes una cuenta?
-    failed_body: Inicio de sesión no válido, por favor, inténtalo de nuevo
+    failed_body: Inicio de conversacion no válido, por favor, inténtalo de nuevo
 
   register:
-    title: Crea una cuenta de Gabber
+    title: Crea una cuenta de TalkFutures
     nav_title: ¡Regístrate!
     login_action: Ingrese a su cuenta
     name_field:
@@ -101,23 +101,23 @@ base:
   about:
     title: ¿Qué es?
     nav_title: Acerca de
-    subtitle: Gabber permite interactuar con su comunidad para compartir y comprender sus experiencias compartidas
+    subtitle: TalkFutures permite interactuar con su comunidad para compartir y comprender sus experiencias compartidas
     col_1:
       title: Estructura
-      body: Crea un proyecto y estructuralo alrededor de los temas que deseas que se discutan. Luego descarga la aplicación Gabber.
+      body: Crea un tema y estructuralo alrededor de los temas que deseas que se discutan. Luego descarga la aplicación TalkFutures.
     col_2:
       title: Grabar
       body: Usa la aplicación para grabar conversaciones con tu comunidad y etiquetarlas con tus temas. Una vez que tu conversación es cargada, todos los participantes pueden revisar y dar su consentimiento a cómo se va a usar la grabación.
     col_3:
-      title: Anotar
-      body: Escuche y anote sus conversaciones para crear discusiones con otros miembros de la comunidad.
+      title: Comentarista
+      body: Escuche y comentario sus conversaciones para crear discusiones con otros miembros de la comunidad.
 
   holder:
     # ...
 
   home:
-    title: Estructura, graba y anota conversaciones de audio
-    subtitle: Escucha, anota y discute en colaboración las conversaciones grabadas
+    title: Estructura, graba y comentario conversaciones de audio
+    subtitle: Escucha, comentario y discute en colaboración las conversaciones grabadas
     nav_title: Casa
     action: Explora Conversaciones
 
@@ -152,25 +152,25 @@ base:
 #
 project:
   project_list:
-    title: Proyectos
-    nav_title: Proyectos
-    filter_title: Filtrar proyectos
+    title: Temas
+    nav_title: Temas
+    filter_title: Filtrar ttemas
     filter_field:
-      label: Buscar un proyecto
-      placeholder: p.ej. Nombre // Proyecto
+      label: Buscar un tema
+      placeholder: p.ej. Nombre // tema
     mobile_filter_title: Filtrar
-    create_title: Crea un nuevo proyecto
+    create_title: Crea un nuevo tema
     create_action: Crear
-    private_title: Mis proyectos
-    public_title: Proyectos públicos
-    authed_empty_body: No estás en ningún proyecto ... todavía. ¿Por qué no creas uno arriba?
-    unauthed_empty_body: No hay proyectos públicos en este momento, ¿por qué no suscribirse y crear el suyo propio?
-    fetch_failed_body: No se pudieron recuperar los proyectos, por favor recarga la pagina
-    create_failed_body: No se pudo crear el proyecto, inténtelo de nuevo
+    private_title: Mis temas
+    public_title: Temas públicos
+    authed_empty_body: No estás en ningún tema ... todavía. ¿Por qué no creas uno arriba?
+    unauthed_empty_body: No hay temas públicos en este momento, ¿por qué no suscribirse y crear el suyo propio?
+    fetch_failed_body: No se pudieron recuperar los temas, por favor recarga la pagina
+    create_failed_body: No se pudo crear el tema, inténtelo de nuevo
 
   session_consent:
-    title: Consentimiento de Gabber
-    nav_title: Consentimiento de Gabber
+    title: Consentimiento de TalkFutures
+    nav_title: Consentimiento de TalkFutures
     loading_title: Obteniendo información de consentimiento
     info_title: Tu información
     privacy_body: Esta es la única información personal que almacenaremos sobre usted y nunca se hará pública
@@ -180,27 +180,27 @@ project:
     failed_body: Algo salió mal, revisa el enlace en tu correo electrónico.
 
   session_detail:
-    title: "{name}'s sesión"
-    nav_title: Detalle de la sesión
+    title: "{name}'s conversacion"
+    nav_title: Detalle de la conversacion
     mobile_filter_title: Filtrar
-    mobile_info_title: Información de la sesión
+    mobile_info_title: Información de la conversacion
     topic_title: Tema
-    annotations_title: Anotaciones
-    no_annotations_title: No hay anotaciones
-    no_annotations: Todavía no hay anotaciones, ¿por qué no agregar una?
-    no_filtered_annotations: No hay anotaciones que coincidan con su consulta, cambia el criterío de busqueda en la barra lateral
-    fetch_failed_body: No se ha podido encontrar a ese Gabber o no exist
-    create_failed_body: Error al crear la anotación, por favor intente de nuevo
+    annotations_title: Comentarios
+    no_annotations_title: No hay comentarios
+    no_annotations: Todavía no hay comentarios, ¿por qué no agregar una?
+    no_filtered_annotations: No hay comentarios que coincidan con su consulta, cambia el criterío de busqueda en la barra lateral
+    fetch_failed_body: No se ha podido encontrar a ese TalkFutures o no exist
+    create_failed_body: Error al crear la comentario, por favor intente de nuevo
 
   session_list:
-    title: Sesiones
-    nav_title: Sesiones
-    loading_title: Cómo obtener sesiones del proyecto
+    title: Conversaciones
+    nav_title: Conversaciones
+    loading_title: Cómo obtener conversaciones del tema
     mobile_filter_title: Filtrar
-    no_sessions: No hay sesiones disponibles en este momento, ¿por qué no grabar una en la aplicación?
-    no_filtered_sessions: No hay sesiones que coincidan con su consulta, cambia el criterío de busqueda en la barra lateral
-    mobile_project_title: Información del proyecto
-    not_found: Proyecto no encontrado, revisa tu URL
+    no_sessions: No hay conversaciones disponibles en este momento, ¿por qué no grabar una en la aplicación?
+    no_filtered_sessions: No hay conversaciones que coincidan con su consulta, cambia el criterío de busqueda en la barra lateral
+    mobile_project_title: Información del tema
+    not_found: Tema no encontrado, revisa tu URL
 
 # * * * * * * * * * * * * * * * * * * * * * * * * * * *
 # * = = = = = = = =  COMPONENTS = = = = = = = = = = = *

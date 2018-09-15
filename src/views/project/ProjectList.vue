@@ -10,18 +10,18 @@ full-layout.project-list-view
         v-model="query",
         :placeholder="$t('view.project.project_list.filter_field.placeholder')"
       )
-  
+
   template(slot="mobileLeft")
     span.icon: fa(icon="filter")
     span {{$t('view.project.project_list.mobile_filter_title')}}
-  
+
   .main(slot="main")
     .columns.is-mobile
       .column
         h1.title.is-1 {{$t('view.project.project_list.title')}}
       .column.is-narrow(v-if="currentUser")
         add-cancel-button.is-medium(@click="toggleCreate", :toggled="!!newProject")
-    
+
     .box.new-project(v-if="newProject")
       h3.subtitle.is-4 {{$t('view.project.project_list.create_title')}}
       message.is-danger(v-model="apiErrors", clearable)
@@ -33,7 +33,7 @@ full-layout.project-list-view
         @cancel="toggleCreate"
       )
     message.is-danger(v-else, v-model="apiErrors")
-    
+
     section.project-group(v-if="filteredPersonalProjects.length > 0")
       h4.is-size-4.has-text-grey-light {{$t('view.project.project_list.private_title')}}
       project-pill(
@@ -41,7 +41,7 @@ full-layout.project-list-view
         :key="project.id",
         :project="project"
       )
-      
+
     section.project-group(v-if="filteredPublicProjects.length > 0")
       h4.is-size-4.has-text-grey-light {{$t('view.project.project_list.public_title')}}
       project-pill(
@@ -49,8 +49,8 @@ full-layout.project-list-view
         :key="project.id",
         :project="project"
       )
-    
-    action-box(v-if="noProjects && !newProject && !apiInProgress", title="No projects")
+
+    action-box(v-if="noProjects && !newProject && !apiInProgress", title="No themes")
       p.is-size-5(slot="content")
         span(v-if="currentUser") {{$t('view.project.project_list.unauthed_empty_body')}}
         span(v-else) {{$t('view.project.project_list.authed_empty_body')}}
@@ -137,13 +137,13 @@ export default {
     },
     async fetchProjects () {
       this.startApiWork()
-      
+
       let { meta, data } = await this.$api.listProjects()
-      
+
       if (meta.success) {
         this.$store.commit(SET_PROJECTS, data)
       }
-      
+
       this.endApiWork(meta, this.$t('view.project.project_list.fetch_failed_body'))
     },
     async createProject () {
@@ -153,12 +153,12 @@ export default {
       let { meta, data } = await this.$api.createProject(
         this.newProject.image, this.newProject.content, this.newProject.privacy, this.newProject.organisation
       )
-      
+
       if (meta.success) {
         this.$store.commit(SAVE_PROJECT, data)
         this.newProject = null
       }
-      
+
       this.endApiWork(meta, this.$t('view.project.project_list.create_failed_body'))
     }
   }
@@ -166,15 +166,15 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-  
+
 .project-list-view
   .main
     max-width: $desktop
-  
+
   .new-project
     border-left: 15px solid $green
-  
+
   .project-group:not(:last-child)
     margin-bottom: 3em
-  
+
 </style>

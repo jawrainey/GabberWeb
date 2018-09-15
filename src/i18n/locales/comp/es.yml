@@ -4,21 +4,21 @@ annotation:
     without_tags: Añadir un comentario
 
   annotation_edit:
-    label: Anotación – {start} → {end}
+    label: Comentario – {start} → {end}
     cancel_action: Cancelar
     create_action: Crear
     placeholder: Creo que ...
 
   annotation_filter:
-    sort_title: Ordenar anotaciones
-    filter_title: Anotaciones de filtro
+    sort_title: Ordenar comentarios
+    filter_title: Comentarios de filtro
     message_field:
       label: Por mensaje
       placeholder: p.ej. El poco sobre ...
     topic_field:
       label: Por tema
     annotator_field:
-      label: Por anotador
+      label: Por comentarista
 
   annotation_pill:
     desktop_duration: '{start} → {end}'
@@ -54,16 +54,16 @@ comment:
 
   comment_section:
     blocked_body: No puedes responder a este hilo
-    login_action: Inicia sesión para comentar
+    login_action: Inicia conversacion para comentar
 
 
 
 consent:
   consent_form:
-    title: Consentimiento de Gabber
-    subtitle: Revisa cómo quieres que tu conversación se use en Gabber
+    title: Consentimiento de TalkFutures
+    subtitle: Revisa cómo quieres que tu conversación se use en TalkFutures
     session_title: La conversación ha sido grabada
-    project_title: El proyecto asociado a tu conversación
+    project_title: El tema asociado a tu conversación
     perms_title: ¿Te gustaría tener acceso a esta conversación?
     research:
       title: ¿Cómo se usará su conversación para la investigación?
@@ -72,30 +72,30 @@ consent:
       link: Declaración de investigación.
       embargo: 'Nota: su conversación se someterá a un embargo de 24 horas donde solo los participantes de la conversación pueden escuchar. Después de este período, la conversación de audio estará disponible según el consentimiento que elija a continuación.'
     hidden_title: Participantes
-    hidden_body: – Solo los administradores del proyecto, investigadores, y las personas en esta conversación podrán escuchar esta conversación.
+    hidden_body: – Solo los administradores del tema, investigadores, y las personas en esta conversación podrán escuchar esta conversación.
     private_title: Miembros
-    private_body: – Solo las personas que son miembros del proyecto pueden escuchar esta conversación.
+    private_body: – Solo las personas que son miembros del tema pueden escuchar esta conversación.
     public_title: Todo el mundo
-    public_body: – Cualquiera que visite Gabber puede escuchar este audio.
+    public_body: – Cualquiera que visite TalkFutures puede escuchar este audio.
     review_title: Decisión de revisión
-    no_show: No aparecerás en Gabber
+    no_show: No aparecerás en TalkFutures
     appearance_label: Cómo apareces
     access_label: Quién tiene acceso
     submit_action: Actualizar el consentimiento
     people:
       researcher: Project researchers
       interviewer: El entrevistador
-      administrators: Administradores de proyectos
+      administrators: Administradores de temas
       participant: Participantes en esta conversación
-      member: Miembros de este proyecto
-      public: Cualquiera que visite el sitio web de Gabber
+      member: Miembros de este tema
+      public: Cualquiera que visite el sitio web de TalkFutures
 
   consent_success:
     title: Consentimiento actualizado
     subtitle: Puedes revisarlo y actualizarlo en cualquier momento
     message_title: Éxito
-    message_body: Gracias por actualizar su consentimiento para esta conversación. Ahora puedes ver las conversaciones y comenzar a anotar. Siempre puede volver y actualizar su consentimiento en cualquier momento.
-    session_action: Ver sesión
+    message_body: Gracias por actualizar su consentimiento para esta conversación. Ahora puedes ver las conversaciones y comenzar a comentarista. Siempre puede volver y actualizar su consentimiento en cualquier momento.
+    session_action: Ver conversacion
 
 
 
@@ -110,19 +110,19 @@ project:
   project_edit:
     name_field:
       label: Nombre
-      placeholder: p.ej. Mi increíble proyecto
+      placeholder: p.ej. Mi increíble tema
     info_field:
       label: Descripción
-      placeholder: p.ej. Este proyecto es sobre ...
+      placeholder: p.ej. Este tema es sobre ...
     photo_field:
       label: Foto
-      instructions: esta foto ayudará a otros a identificar su proyecto. Cargue su propia foto o busque por palabra clave para encontrar una.
+      instructions: esta foto ayudará a otros a identificar su tema. Cargue su propia foto o busque por palabra clave para encontrar una.
       upload: Haga clic para cargar
       search:
         placeholder: Buscar fotos por palabra clave
         no_results: No se encontraron resultados. Pruebe con una palabra clave diferente.
     org_field:
-      label: ¿Va a ser este proyecto utilizado  por una organización?
+      label: ¿Va a ser este tema utilizado  por una organización?
       options:
         individual: No. Solo yo.
         ifrc: International Federation of Red Cross and Red Crescent Societies
@@ -137,12 +137,12 @@ project:
       private: Privado
     perms_warn:
       title: Advertencia!
-      body: Gabber siempre respetará el consentimiento de un participante, de modo que a menos que todos los participantes hayan dado su consentimiento, un Gabber privado no podrá hacerse público.
+      body: TalkFutures siempre respetará el consentimiento de un participante, de modo que a menos que todos los participantes hayan dado su consentimiento, un TalkFutures privado no podrá hacerse público.
       action: Entiendo
     cancel_action: Cancelar
     default_submit_action: Salvar
-    private_body: Solo tu y los participantes invitados verán su proyecto
-    public_body: Cualquier persona en Gabber verá y podrá unirse a tu proyecto
+    private_body: Solo tu y los participantes invitados verán su tema
+    public_body: Cualquier persona en TalkFutures verá y podrá unirse a tu tema
 
   project_header:
     members_action: Miembros
@@ -154,18 +154,18 @@ project:
   project_info:
     info_label: Descripción
     members_label: Miembros
-    sessions_action: Sesiones
+    sessions_action: Conversaciones
     playlists_action: Listas de reproducción
 
   project_info_sidebar:
     info_label: Descripción
     members_label: Miembros
     owner_label: Creador
-    sessions_label: Sesiones
+    sessions_label: Conversaciones
     researchers_label: Investigadores
 
   project_members:
-    members_title: Miembros del proyecto
+    members_title: Miembros del tema
     add_title: Añadir miembro
     no_members: Todavía no hay miembros, ¿por qué no agregar algunos?
     name_field:
@@ -177,8 +177,8 @@ project:
     role_title: ¿Qué papel debe tener este miembro?
     options:
       participant: Puede acceder a sus conversaciones propias o públicas.
-      researcher: Puede acceder a todas las conversaciones para su proyecto.
-      administrator: Tiene acceso administrativo completo a todo el proyecto.
+      researcher: Puede acceder a todas las conversaciones para su tema.
+      administrator: Tiene acceso administrativo completo a todo el tema.
     edit_success: '{fullname}s role was changed from {old_role} to {new_role}'
     others_changed: 'Note: {name} was not changed to.'
     cancel_action: Cancelar
@@ -190,20 +190,20 @@ project:
 
   project_pill:
     update_action: Actualizar
-    update_failed: No se pudo guardar el proyecto, intente de nuevo?
-    delete_confirm: ¿Seguro que quieres eliminar este proyecto? Esta acción no se puede deshacer
-    delete_failed: Error al eliminar el proyecto, por favor intente de nuevo
-    join_confirm: ¿Estás seguro de que quieres unirte a este proyecto?
-    join_failed: No se pudo unir al proyecto, por favor intente de nuevo
-    leave_confirm: ¿Estás seguro de que quieres abandonar este proyecto?
-    leave_failed: Error al salir del proyecto, por favor intente de nuevo
+    update_failed: No se pudo guardar el tema, intente de nuevo?
+    delete_confirm: ¿Seguro que quieres eliminar este tema? Esta acción no se puede deshacer
+    delete_failed: Error al eliminar el tema, por favor intente de nuevo
+    join_confirm: ¿Estás seguro de que quieres unirte a este tema?
+    join_failed: No se pudo unir al tema, por favor intente de nuevo
+    leave_confirm: ¿Estás seguro de que quieres abandonar este tema?
+    leave_failed: Error al salir del tema, por favor intente de nuevo
 
 
 
 session:
   session_filters:
-    sort_title: Clasificar Sesiones
-    filter_title: Sesiones de filtro
+    sort_title: Clasificar Conversaciones
+    filter_title: Conversaciones de filtro
     filters:
       language:
         title: Por idioma
@@ -231,22 +231,22 @@ session:
       label: Por participante
 
   session_info_sidebar:
-    title: Información de la sesión
+    title: Información de la conversacion
     created_label: Creado en
     creator_label: Creador
     members_label: Participantes
     researchers:
       title: Investigadores
-      description: Actualmente no hay investigadores involucrados en este proyecto
+      description: Actualmente no hay investigadores involucrados en este tema
     topics_label: Temas
-    annotations_label: Anotaciones
+    annotations_label: Comentarios
     date_format: h:mm a MMMM Do YYYY
 
   session_pill:
     more: más
     member_label: Participantes
     when_label: Grabado
-    annotation_label: Anotaciones
+    annotation_label: Comentarios
     topic_label: Temas
     language: Idioma
     duration: Duración
@@ -254,10 +254,10 @@ session:
 
 shared:
   site_footer:
-    copyright: Un proyecto de investigación en
+    copyright: Un tema de investigación en
 
   site_header:
-    logout_action: Cerrar sesión
+    logout_action: Cerrar conversacion
 
 
 
@@ -266,7 +266,7 @@ topic:
     title: Temas
     warn_title: Advertencia
     warn_body: Cambiar estos temas actualizará las conversaciones existentes
-    help_body: Agregue temas para que las personas discutan en sus Gabbers
+    help_body: Agregue temas para que las personas discutan en sus conversaciones
     placeholder: p.ej. Un tema sobre ...
     add_action: Agregar tema
 

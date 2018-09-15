@@ -18,14 +18,6 @@ import ViewsFr from './locales/view/fr.yml'
 import MiscFr from './locales/misc/fr.yml'
 import ComponentsFr from './locales/comp/fr.yml'
 
-import ViewsIt from './locales/view/it.yml'
-import MiscIt from './locales/misc/it.yml'
-import ComponentsIt from './locales/comp/it.yml'
-
-import ViewsRu from './locales/view/ru.yml'
-import MiscRu from './locales/misc/ru.yml'
-import ComponentsRu from './locales/comp/ru.yml'
-
 Vue.use(VueI18n)
 
 const messages = {
@@ -52,18 +44,6 @@ const messages = {
     view: ViewsFr,
     misc: MiscFr,
     comp: ComponentsFr
-  },
-  it: {
-    api: ApiEn,
-    view: ViewsIt,
-    misc: MiscIt,
-    comp: ComponentsIt
-  },
-  ru: {
-    api: ApiEn,
-    view: ViewsRu,
-    misc: MiscRu,
-    comp: ComponentsRu
   }
 }
 

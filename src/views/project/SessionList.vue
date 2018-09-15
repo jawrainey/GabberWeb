@@ -21,13 +21,12 @@ full-layout.session-list-view(v-else-if="project")
     :members.sync="filterMembers",
     :sortMode.sync="sortMode"
   )
-  
+
   template(slot="mobileLeft")
     span.icon: fa(icon="filter")
     span {{$t('view.project.session_list.mobile_filter_title')}}
-  
+
   template(slot="main")
-    breadcrumbs
     h1.title.is-1 {{$t('view.project.session_list.title')}} ({{ filteredSessions.length }})
     session-pill(
       v-for="session in filteredSessions",
@@ -39,13 +38,13 @@ full-layout.session-list-view(v-else-if="project")
       p.is-size-5(slot="content")
         span(v-if="sessions.length === 0") {{$t('view.project.session_list.no_sessions')}}
         span(v-else) {{$t('view.project.session_list.no_filtered_sessions')}}
-  
+
   project-info-sidebar(
     slot="right",
     :project="project",
     :sessions="sessions"
   )
-  
+
   template(slot="mobileRight")
     span.icon: fa(icon="info")
     span {{$t('view.project.session_list.mobile_project_title')}}
@@ -112,7 +111,7 @@ export default {
         let participantIds = [
           ...session.participants.map(p => p.user_id), session.creator.user_id
         ]
-        
+
         let genderIds = session.participants.map(p => p.gender)
         let societyIds = session.participants.map(p => p.society)
         let filterIds = session.participants.map(p => p.age)
@@ -142,19 +141,19 @@ export default {
   methods: {
     async fetchSessions () {
       this.startApiWork()
-      
+
       let [ projectRes, sessionsRes ] = await Promise.all([
         this.$api.getProject(this.projectId),
         this.$api.getProjectSessions(this.projectId)
       ])
-      
+
       let meta = this.mergeMetaBlocks(projectRes.meta, sessionsRes.meta)
-      
+
       if (meta.success) {
         this.$store.commit(SAVE_PROJECT, projectRes.data)
         this.$store.commit(ADD_SESSIONS, sessionsRes.data || [])
       }
-      
+
       this.endApiWork(meta, this.$t('view.project.session_list.not_found'))
     },
     viewSession (session) {

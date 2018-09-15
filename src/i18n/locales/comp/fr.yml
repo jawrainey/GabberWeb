@@ -4,21 +4,21 @@ annotation:
     without_tags: Ajouter un commentaire
 
   annotation_edit:
-    label: Annotation – {start} → {end}
+    label: commentaire – {start} → {end}
     cancel_action: Annuler
     create_action: Créer
     placeholder: Je pense que …
 
   annotation_filter:
-    sort_title: Trier les annotations
-    filter_title: Filtrer les annotations
+    sort_title: Trier les commentaires
+    filter_title: Filtrer les commentaires
     message_field:
       label: Par message
       placeholder: 'Par exemple: La partie à propos de...'
     topic_field:
       label: Par sujet
     annotator_field:
-      label: Par annotateur
+      label: Par commentateur
 
   annotation_pill:
     desktop_duration: '{start} → {end}'
@@ -63,18 +63,18 @@ consent:
     title: Consentement Gabber
     subtitle: Revoyez comment vous voulez que votre conversation soit utilisée sur Gabber
     session_title: La conversation qui a été enregistrée
-    project_title: Le projet associé à votre conversation
+    project_title: Le thème associé à votre conversation
     perms_title: Qui aimeriez-vous avoir accès à cette conversation?
     research:
-      title: Il n'y a actuellement aucun chercheur impliqué dans ce projet
+      title: Il n'y a actuellement aucun chercheur impliqué dans ce thème
       body: Votre enregistrement et les métadonnées associées (qui a pris part, quand, quels sujets ont été abordés, etc.) seront accessibles au personnel de recherche et aideront à comprendre comment les outils numériques peuvent vous et les autres citoyens vous aider à vous intérésser à la recherche qualitative et comment les fichiers audio peuvent la rendre plus accessible. Tout travail publié résultant de données capturées via Gabber n'inclura jamais de détails pouvant être utilisés pour vous identifier ou identifier d'autres participants.
       statement: Pour plus de détails, y compris comment vous désinscrire, veuillez consulter notre
       link: Rapport de recherche.
       embargo: 'Remarque: votre conversation sera soumise à un embargo de 24 heures où seuls les participants à la conversation pourront écouter. Après cette période, la conversation audio sera disponible sur la base du consentement que vous aurez choisi ci-dessous.'
     hidden_title: Participants
-    hidden_body: – Seuls les administrateurs du projet, chercheurs, et les personnes qui ont participé à cette conversation pourront écouter cette conversation.
+    hidden_body: – Seuls les administrateurs du thème, chercheurs, et les personnes qui ont participé à cette conversation pourront écouter cette conversation.
     private_title: Membres
-    private_body: – Seules les personnes qui sont membres du projet peuvent découvrir ou écouter cette conversation.
+    private_body: – Seules les personnes qui sont membres du thème peuvent découvrir ou écouter cette conversation.
     public_title: Toutes les personnes
     public_body: – Toute personne visitant Gabber peut découvrir et écouter cet enregistrement audio.
     review_title: Décision de révision
@@ -85,9 +85,9 @@ consent:
     people:
       researcher: Project researchers
       interviewer: L'intervieweur
-      administrators: Administrateurs du projet
+      administrators: Administrateurs du thème
       participant: Participants à cette conversation
-      member: Les membres de ce projet
+      member: Les membres de ce thème
       public: Toute personne visitant le site Web de Gabber
 
   consent_success:
@@ -95,7 +95,7 @@ consent:
     subtitle: Vous pouvez le consulter et le mettre à jour à tout moment
     message_title: Succès
     message_body: Merci d'avoir mis  à jour votre consentement pour cette conversation. Vous pouvez maintenant voir et commencer à l'annoter. Vous pouvez toujours revenir et mettre à jour votre consentement à tout moment.
-    session_action: Voir la session
+    session_action: Voir la conversation
 
 
 
@@ -110,19 +110,19 @@ project:
   project_edit:
     name_field:
       label: Nom
-      placeholder: 'Par exemple:  Mon Projet Impressionnant'
+      placeholder: 'Par exemple:  Mon thème Impressionnant'
     info_field:
       label: La description
-      placeholder: 'Par exemple: Ce projet concerne ...'
+      placeholder: 'Par exemple: Ce thème concerne ...'
     photo_field:
       label: Photo
-      instructions: Cette photo aidera les autres à identifier votre projet. Téléchargez votre propre photo ou effectuez une recherche par mot-clé pour en trouver un.
+      instructions: Cette photo aidera les autres à identifier votre thème. Téléchargez votre propre photo ou effectuez une recherche par mot-clé pour en trouver un.
       upload: Cliquez pour télécharger
       search:
         placeholder: Recherche de photos par mot-clé
         no_results: Aucun résultat trouvé. Essayez un mot-clé différent.
     org_field:
-      label: Ce projet sera-t-il utilisé par une organisation?
+      label: Ce thème sera-t-il utilisé par une organisation?
       options:
         individual: Non. Seulement moi.
         ifrc: International Federation of Red Cross and Red Crescent Societies
@@ -141,8 +141,8 @@ project:
       action: Je comprends
     cancel_action: Annuler
     default_submit_action: Sauvegarder
-    private_body: Seuls vous et les participants invités verront votre projet
-    public_body: N'importe qui sur Gabber verra et sera en mesure de rejoindre votre projet
+    private_body: Seuls vous et les participants invités verront votre thème
+    public_body: N'importe qui sur Gabber verra et sera en mesure de rejoindre votre thème
 
   project_header:
     members_action: Membres
@@ -154,18 +154,18 @@ project:
   project_info:
     info_label: La description
     members_label: Membres
-    sessions_action: Sessions
+    sessions_action: Conversations
     playlists_action: Playlists
 
   project_info_sidebar:
     info_label: La description
     members_label: Members
     owner_label: Créateur
-    sessions_label: Sessions
+    sessions_label: Conversations
     researchers_label: Chercheurs
 
   project_members:
-    members_title: Les membres du projet
+    members_title: Les membres du thème
     add_title: Ajouter un membre
     no_members: Pas de membres, pourquoi ne pas en ajouter?
     name_field:
@@ -177,8 +177,8 @@ project:
     role_title: Quel rôle devrait  ce membre avoir?
     options:
       participant: Peuvent accéder leurs propres conversations et les conversations publiques.
-      researcher: Peuvent  accéder  toutes les conversations de votre projet.
-      administrator: A un accès administratif absolu du projet.
+      researcher: Peuvent  accéder  toutes les conversations de votre thème.
+      administrator: A un accès administratif absolu du thème.
     edit_success: '{fullname}s role was changed from {old_role} to {new_role}'
     others_changed: 'Note: {name} was not changed to.'
     cancel_action: Annuler
@@ -190,20 +190,20 @@ project:
 
   project_pill:
     update_action: Mettre à jour
-    update_failed: Impossible d'enregistrer le projet, réessayez?
-    delete_confirm: Êtes-vous sûr de vouloir supprimer ce projet? Cette action ne peut pas être annulée
-    delete_failed: Échec de la suppression du projet. Veuillez réessayer.
-    join_confirm: Êtes-vous sûr de vouloir rejoindre ce projet?
-    join_failed: Impossible de rejoindre le projet, veuillez réessayer
-    leave_confirm: Êtes-vous sûr de vouloir quitter ce projet?
-    leave_failed: Impossible de quitter le projet, veuillez réessayer
+    update_failed: Impossible d'enregistrer le thème, réessayez?
+    delete_confirm: Êtes-vous sûr de vouloir supprimer ce thème? Cette action ne peut pas être annulée
+    delete_failed: Échec de la suppression du thème. Veuillez réessayer.
+    join_confirm: Êtes-vous sûr de vouloir rejoindre ce thème?
+    join_failed: Impossible de rejoindre le thème, veuillez réessayer
+    leave_confirm: Êtes-vous sûr de vouloir quitter ce thème?
+    leave_failed: Impossible de quitter le thème, veuillez réessayer
 
 
 
 session:
   session_filters:
-    sort_title: Trier les sessions
-    filter_title: Filtrer les sessions
+    sort_title: Trier les conversations
+    filter_title: Filtrer les conversations
     filters:
       language:
         title: Par Langue
@@ -232,22 +232,22 @@ session:
       label: Par participant
 
   session_info_sidebar:
-    title: Informations sur la session
+    title: Informations sur la conversation
     created_label: Créé le
     creator_label: Créateur
     members_label: Participants
     researchers:
       title: Chercheurs
-      description: Il n'y a actuellement aucun chercheur impliqué dans ce projet
+      description: Il n'y a actuellement aucun chercheur impliqué dans ce thème
     topics_label: Les Rubriques
-    annotations_label: Annotations
+    annotations_label: Commentaires
     date_format: h:mm a MMMM Do YYYY
 
   session_pill:
     more: Plus
     member_label: Participants
     when_label: Enregistré
-    annotation_label: Annotations
+    annotation_label: Commentaires
     topic_label: Les Rubriques
     language: Langue
     duration: Durée
@@ -255,7 +255,7 @@ session:
 
 shared:
   site_footer:
-    copyright: Un projet de recherche à
+    copyright: Un thème de recherche à
 
   site_header:
     logout_action: Logout

@@ -1,10 +1,12 @@
 <template lang="pug">
 simple-layout
-  .container.home-page.is-vertical-aligned
-    .columns.is-gapless.is-centered
-      .column.is-two-fifths
-        section.section
-          h1.title {{ $t('view.base.home.title') }}
+  section.side-padding
+    .columns.is-centered
+      .column.is-three-fifths
+        main
+          .video-container
+            iframe(src='https://www.youtube.com/embed/mIbTK3wOwD4', frameborder='0', allowfullscreen='')
+          p.strapline.is-size-5.is-size-6-mobile {{$t('comp.pre_register.tagline')}}
           .columns.is-mobile
             .column.is-half.has-text-centered
               a(:href="iOSURL")
@@ -13,13 +15,31 @@ simple-layout
               a(:href='androidURL')
                 img(:src='androidBadge' width="150" height="50")
           hr
-          h2.subtitle.is-italic {{ $t('view.base.home.subtitle') }}
-          .buttons.is-centered
-            router-link.button.is-success.is-medium(:to="projectsRoute")
-              span {{ $t('view.base.home.action') }}
-              .icon: fa(icon="chevron-right")
-      .column.is-two-fifths
-        img.people(src="/static/img/gabber.png" width="450" height="450")
+          .columns.is-vcentered
+            .column.is-half
+              .title.is-4.is-size-5-mobile.has-text-weight-semibold
+                span {{$t('comp.pre_register.capturing.title')}}
+              p.is-5.is-size-7-mobile {{$t('comp.pre_register.capturing.content')}}
+            .column
+              img.branding(src="/static/img/talkfutures/capturing-s.png",
+              alt="Capture conversations with TalkFutures mobile application.")
+          hr
+          .columns.is-vcentered.reverse-on-mobile
+            .column.is-half
+              img.branding(src="/static/img/talkfutures/highlighting-s.png",
+              alt="Listen and tag TalkFutures conversations.")
+            .column
+              .title.is-4.is-size-5-mobile.has-text-weight-semibold {{$t('comp.pre_register.sensemaking.title')}}
+              p.is-5.is-size-7-mobile {{$t('comp.pre_register.sensemaking.content')}}
+          hr
+          .columns.is-vcentered
+            .column.is-half
+              .title.is-4.is-size-5-mobile.has-text-weight-semibold {{$t('comp.pre_register.reuse.title')}}
+              p.is-5.is-size-7-mobile {{$t('comp.pre_register.reuse.content')}}
+            .column
+              img.branding(src="/static/img/talkfutures/sharing-s.png",
+              alt="Share your favourite TalkFutures conversations with the world.")
+          hr.remove-margin-bottom
 </template>
 
 <script>
@@ -40,6 +60,99 @@ export default {
 </script>
 
 <style lang="sass">
+  .cc-window
+    border-top: 1px solid #4C5759
+</style>
+
+<style lang="sass" scoped>
+.video-container
+  position: relative
+  width: 420px
+  height: 234px
+  overflow: hidden
+  margin: 1em auto
+
+.video-container
+  iframe, object, embed
+    position: absolute
+    top: 0
+    left: 0
+    width: 420px
+    height: 234px
+
+.ifrc-logo
+  height: 20px
+  width: 20px
+.ifrc-logo:hover
+  border-bottom: none
+.ifrc-logo > img
+  width: 65px
+  height: 65px
+
+.add-margin
+  margin: 1rem auto 0 auto
+.remove-top-margin
+  margin-top: 1em
+.remove-margin-bottom
+  margin-bottom: 0
+
+.level-item, .level-item > a
+  color: #FFF
+
+a:hover, a.is-active
+  color: #FFF
+  border-bottom: 1px solid #E21E26
+
+.button:focus
+  color: whitesmoke
+
+.button:hover
+  border-color: #E21E26
+
+.logo
+  width: 144px
+  height: 144px
+  margin: 2em 0 1.25em 0 !important
+
+.strapline
+  font-size: 22px
+  margin-bottom: 1em
+
+.branding
+  max-height: 200px
+  max-width: 100%
+  margin: 0 auto
+
+.column
+  text-align: center
+
+.partners
+  max-height: 90px
+  max-width: 240px
+  margin: 0 auto
+
+  +mobile
+    .side-padding
+      padding: 0 1.6em
+
+    .reverse-on-mobile
+      display: flex
+      flex-direction: column-reverse
+
+    .partners
+      max-height: 40px !important
+      max-width: 175px !important
+
+    .fixed-height
+      max-height: 30px !important
+
+    .ifrc-logo
+      width: 100%
+      height: 100%
+
+  +tablet
+    .fixed-height
+      max-height: 40px !important
 .home-page
   flex: 1
   img.people

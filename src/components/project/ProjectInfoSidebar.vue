@@ -4,7 +4,7 @@
   p.subtitle {{ project.created_on | longDate }}
   label-value(
     :label="$t('comp.project.project_info_sidebar.info_label')",
-    :value="project.description"
+    :value="project.content['en'].description"
   )
   label-value(
     :label="$t('comp.project.project_info_sidebar.owner_label')"

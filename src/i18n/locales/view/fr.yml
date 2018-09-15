@@ -4,12 +4,12 @@
 #
 auth:
   accept_invite:
-    title: Vous êtes invité à rejoindre un projet sur Gabber
+    title: Vous êtes invité à rejoindre un thème sur Gabber
     nav_title: Accepter l'invitation
     loading_title: Récupération de votre invitation
     bad_token_title: Jeton invalide
-    subtitle: Inscrivez-vous ci-dessous pour rejoindre le projet
-    info: Gabber vous permet d'enregistrer et d'annoter des interviews structurées
+    subtitle: Inscrivez-vous ci-dessous pour rejoindre le thème
+    info: Gabber vous permet d'enregistrer et d'commentateur des interviews structurées
     email_field:
       label: Email
       placeholder: me@example.com
@@ -104,7 +104,7 @@ base:
     subtitle: Gabber vous permet de vous engager avec votre communauté pour partager et comprendre vos expériences
     col_1:
       title: Structure
-      body: Créez un projet et structurez-le autour des rubriques que vous souhaitez aborder. Ensuite, téléchargez l'application Gabber.
+      body: Créez un thème et structurez-le autour des rubriques que vous souhaitez aborder. Ensuite, téléchargez l'application Gabber.
     col_2:
       title: Enregistrer
       body: Utilisez l'application pour enregistrer des conversations avec votre communauté et marquez-les avec vos rubriques. Une fois votre conversation téléchargée, tous les participants peuvent revoir et fournir leur consentement pour l'utilisation de l'enregistrement
@@ -152,21 +152,21 @@ base:
 #
 project:
   project_list:
-    title: Projets
-    nav_title: Projets
-    filter_title: Filtrer les projets
+    title: Thèmes
+    nav_title: Thèmes
+    filter_title: Filtrer les thèmes
     filter_field:
-      label: Rechercher un projet
-      placeholder: 'Par exemple: Nom // Projet'
+      label: Rechercher un thème
+      placeholder: 'Par exemple: Nom // Thème'
     mobile_filter_title: Filtrer
-    create_title: Créer un nouveau projet
+    create_title: Créer un nouveau thème
     create_action: Créer
-    private_title: Mes projets
-    public_title: Projets Publics
-    authed_empty_body: Vous n'êtes pas sur un projet ... pour le moment. Pourquoi ne pas en créer un ci-dessus!
-    unauthed_empty_body: Il n'y a pas de projets publics en ce moment, pourquoi ne pas vous inscrire et créer le vôtre!
-    fetch_failed_body: Impossible de récupérer les projets, rechargez-les
-    create_failed_body: Impossible de créer le projet. Veuillez réessayer.
+    private_title: Mes thèmes
+    public_title: Thèmes Publics
+    authed_empty_body: Vous n'êtes pas sur un thème ... pour le moment. Pourquoi ne pas en créer un ci-dessus!
+    unauthed_empty_body: Il n'y a pas de thèmes publics en ce moment, pourquoi ne pas vous inscrire et créer le vôtre!
+    fetch_failed_body: Impossible de récupérer les thèmes, rechargez-les
+    create_failed_body: Impossible de créer le thème. Veuillez réessayer.
 
   session_consent:
     title: Consentement de Gabber
@@ -180,27 +180,27 @@ project:
     failed_body: Quelque chose s'est mal passé, vérifiez le lien dans votre email.
 
   session_detail:
-    title: "{name}'s session"
-    nav_title: Détails de la session
+    title: "{name}'s conversation"
+    nav_title: Détails de la conversation
     mobile_filter_title: Filtrer
-    mobile_info_title: Info de la session
+    mobile_info_title: Info de la conversation
     topic_title: Rubrique
-    annotations_title: Annotations
-    no_annotations_title: Pas d'annotations
-    no_annotations: Il n'y a pas d'annotations à ce moment, voulez vous ajouter une annotation?
-    no_filtered_annotations: Aucune annotation ne correspond à votre requête, essayez de l'ajuster dans la barre latérale
+    annotations_title: Commentaires
+    no_annotations_title: Pas d'commentaires
+    no_annotations: Il n'y a pas d'commentaires à ce moment, voulez vous ajouter une commentaire?
+    no_filtered_annotations: Aucune commentaire ne correspond à votre requête, essayez de l'ajuster dans la barre latérale
     fetch_failed_body: Ce  Gabber n'est pas retrouvé ou ça n'existe pas
-    create_failed_body: Impossible de créer une annotation. Veuillez réessayer.
+    create_failed_body: Impossible de créer une commentaire. Veuillez réessayer.
 
   session_list:
-    title: Sessions
-    nav_title: Sessions
-    loading_title: Récupération des sessions du projet
+    title: Conversations
+    nav_title: Conversations
+    loading_title: Récupération des conversations du thème
     mobile_filter_title: Filtrer
-    no_sessions: Il n'y a pas de sessions disponibles en ce moment, pourquoi ne pas en enregistrer une dans l'application?
-    no_filtered_sessions: Aucune session ne correspond à votre requête, essayez de la rafiner à l'aide de la barre latérale.
-    mobile_project_title: Info du Projet
-    not_found: le Projet n'est pas retrouvé, veuillez revoir votre URL
+    no_sessions: Il n'y a pas de conversation disponibles en ce moment, pourquoi ne pas en enregistrer une dans l'application?
+    no_filtered_sessions: Aucune conversation ne correspond à votre requête, essayez de la rafiner à l'aide de la barre latérale.
+    mobile_project_title: Info du thème
+    not_found: le thème n'est pas retrouvé, veuillez revoir votre URL
 
 # * * * * * * * * * * * * * * * * * * * * * * * * * * *
 # * = = = = = = = =  COMPONENTS = = = = = = = = = = = *

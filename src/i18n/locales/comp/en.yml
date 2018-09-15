@@ -4,29 +4,29 @@ annotation:
     without_tags: Add a comment
 
   annotation_edit:
-    label: Annotation – {start} → {end}
+    label: Comment – {start} → {end}
     cancel_action: Cancel
     create_action: Create
     placeholder: I think that ...
-  
+
   annotation_filter:
-    sort_title: Sort Annotations
-    filter_title: Filter Annotations
+    sort_title: Sort Comments
+    filter_title: Filter Comments
     message_field:
       label: By message
       placeholder: e.g. The bit about ...
     topic_field:
       label: By topic
     annotator_field:
-      label: By annotator
-  
+      label: By commenter
+
   annotation_pill:
     desktop_duration: '{start} → {end}'
     hide_action: Hide comments
     comment_action: Add a comment | 1 comment | {count} comments
-  
+
   annotation_range:
-  
+
   draggable:
 
 
@@ -46,12 +46,12 @@ comment:
     replies_action: Add a reply | 1 reply | {count} replies
     delete_body: Are you sure you want to delete your comment? This cannot be undone
     deleted_title: '[deleted]'
-  
+
   comment_composer:
     action: Comment
     placeholder: I think that ...
     fail_body: Could not make your comment, please try again
-  
+
   comment_section:
     blocked_body: You cannot reply to this thread
     login_action: Login to comment
@@ -60,36 +60,36 @@ comment:
 
 consent:
   consent_form:
-    title: Gabber Consent
-    subtitle: Review how you want your conversation to be used on Gabber
+    title: TalkFutures Consent
+    subtitle: Review how you want your conversation to be used on TalkFutures
     session_title: The conversation that was recorded
-    project_title: The project associated with your conversation
+    project_title: The theme associated with your conversation
     perms_title: Who would you like to have access to this conversation?
     research:
       title: How your conversation will be used for research
-      body: Your recording and the associated metadata (who took part, when, what topics were discussed, etc) will be accessible by research staff and used to help understand how digital tools can support yourself and other citizens engaging in qualitative research practices and how audio can make these more accessible. Any published work resulting from data captured through Gabber will never include details that could be used to identify yourself or other participants.
+      body: Your recording and the associated metadata (who took part, when, what topics were discussed, etc) will be accessible by research staff and used to help understand how digital tools can support yourself and other citizens engaging in qualitative research practices and how audio can make these more accessible. Any published work resulting from data captured through TalkFutures will never include details that could be used to identify yourself or other participants.
       statement: For more details, including how to opt-out, please review our
       link: research statement.
       embargo: 'Note: your conversation will undergo a 24-hour embargo where only participants of the conversation can listen. After this period, the audio conversation will be available based on the consent you choose below.'
     hidden_title: Participants
-    hidden_body: Only the project administrators, researchers, and participants in this conversation will be able to listen to this conversation.
+    hidden_body: Only the theme administrators, researchers, and participants in this conversation will be able to listen to this conversation.
     private_title: Members
-    private_body: Only people who are members of the project can discover or listen to this conversation.
+    private_body: Only people who are members of the theme can discover or listen to this conversation.
     public_title: Anyone
-    public_body: Anyone visiting Gabber can discover and listen to this audio.
+    public_body: Anyone visiting TalkFutures can discover and listen to this audio.
     review_title: Review decision
-    no_show: You will not show up in Gabber
+    no_show: You will not show up in TalkFutures
     appearance_label: How you appear
     access_label: Who has access
     submit_action: Update Consent
     people:
-      researcher: Project researchers
+      researcher: Researchers
       interviewer: The interviewer
-      administrators: Project administrators
+      administrators: Administrators
       participant: Participants in this conversation
-      member: Members of this project
-      public: Anyone visiting the Gabber website
-  
+      member: Members
+      public: Anyone visiting the TalkFutures website
+
   consent_success:
     title: Consent Updated
     subtitle: You can review and update it at any time
@@ -101,7 +101,7 @@ consent:
 
 member:
   member_bubble:
-  
+
   member_option:
 
 
@@ -110,21 +110,21 @@ project:
   project_edit:
     name_field:
       label: Name
-      placeholder: e.g. My Awesome Project
+      placeholder: e.g. My Awesome theme
     info_field:
       label: Description
-      placeholder: e.g. This project is about ...
+      placeholder: e.g. This theme is about ...
     photo_field:
       label: Photo
-      instructions: This photo will help others identify your project. Upload your own photo or search by keyword to find one.
+      instructions: This photo will help others identify your theme. Upload your own photo or search by keyword to find one.
       upload: Click to upload
       search:
         placeholder: Search for photos by keyword
         no_results: No results found. Try a different keyword.
     org_field:
-      label: Will this project be used by an organisation?
+      label: Will this theme be used by an organisation?
       options:
-        individual: No. I will use this project as an individual.
+        individual: No. I will use this theme as an individual.
         ifrc: International Federation of Red Cross and Red Crescent Societies
         fl: Fulfilling Lives
         other: Other
@@ -137,35 +137,35 @@ project:
       private: Private
     perms_warn:
       title: Warning!
-      body: Gabber will always respect a participant's consent so unless all participants have consented, a private Gabber cannot be made public.
+      body: TalkFutures will always respect a participant's consent so unless all participants have consented, a private TalkFutures cannot be made public.
       action: I Understand
     cancel_action: Cancel
     default_submit_action: Save
-    private_body: Only you and invited participants will see your project
-    public_body: Anyone on Gabber will see and be able to join your project
-  
+    private_body: Only you and invited participants will see your theme
+    public_body: Anyone on TalkFutures will see and be able to join your theme
+
   project_header:
     members_action: Members
     edit_action: Edit
     close_action: Close
     join_action: Join
     leave_action: Leave
-  
+
   project_info:
     info_label: Description
     members_label: Members
-    sessions_action: Sessions
+    sessions_action: Conversations
     playlists_action: Playlists
-  
+
   project_info_sidebar:
     info_label: Description
     members_label: Members
     owner_label: Creator
-    sessions_label: Sessions
+    sessions_label: Conversations
     researchers_label: Researchers
 
   project_members:
-    members_title: Project Members
+    members_title: Members
     add_title: Add Member
     no_members: No members yet, why not add some?
     name_field:
@@ -177,8 +177,8 @@ project:
     role_title: What role should this member have?
     options:
       participant: Can access their own and public conversations.
-      researcher: Can access every conversations for your project.
-      administrator: Has full administrative access to the entire project.
+      researcher: Can access every conversations for your theme.
+      administrator: Has full administrative access to the entire theme.
     edit_success: '{fullname}s role was changed from {old_role} to {new_role}'
     others_changed: 'Note: {name} was not changed to.'
     cancel_action: Cancel
@@ -187,23 +187,23 @@ project:
     was_added: '{name} was added'
     delete_confirm: Are you sure you want to remove this member?
     was_removed: '{name} was removed'
-  
+
   project_pill:
     update_action: Update
-    update_failed: Could not save project, try again?
-    delete_confirm: Are you sure you want to delete this project? This action cannot be undone
-    delete_failed: Failed to delete project, please try again
-    join_confirm: Are you sure you want to join this project?
-    join_failed: Failed to join project, please try again
-    leave_confirm: Are you sure you want to leave this project?
-    leave_failed: Failed to leave project, please try again
+    update_failed: Could not save theme, try again?
+    delete_confirm: Are you sure you want to delete this theme? This action cannot be undone
+    delete_failed: Failed to delete theme, please try again
+    join_confirm: Are you sure you want to join this theme?
+    join_failed: Failed to join theme, please try again
+    leave_confirm: Are you sure you want to leave this theme?
+    leave_failed: Failed to leave theme, please try again
 
 
 
 session:
   session_filters:
-    sort_title: Sort Sessions
-    filter_title: Filter Sessions
+    sort_title: Sort Conversations
+    filter_title: Filter Conversations
     filters:
       language:
         title: By Language
@@ -228,7 +228,7 @@ session:
       placeholder: e.g. Ron Johnson
     member_field:
       label: By participant
-  
+
   session_info_sidebar:
     title: Session Info
     created_label: Created on
@@ -236,16 +236,16 @@ session:
     members_label: Participants
     researchers:
       title: Researchers
-      description: There are currently no researchers involved in this project.
+      description: There are currently no researchers involved in this theme.
     topics_label: Topics
-    annotations_label: Annotations
+    annotations_label: Comments
     date_format: h:mm a MMMM Do YYYY
-  
+
   session_pill:
     more: more
     member_label: Participants
     when_label: Recorded
-    annotation_label: Annotations
+    annotation_label: Comments
     topic_label: Topics
     language: Language
     duration: Duration
@@ -254,7 +254,7 @@ session:
 shared:
   site_footer:
     copyright: A research project at
-  
+
   site_header:
     logout_action: Logout
 
@@ -265,42 +265,42 @@ topic:
     title: Topics
     warn_title: WARNING
     warn_body: Changing these topics will update existing conversations
-    help_body: Add topics for people to discuss in their Gabbers
+    help_body: Add topics for people to discuss
     placeholder: e.g. A topic about ...
     add_action: Add Topic
-  
+
   topic_option:
-  
+
   topics_bar:
-  
+
   topic_segment:
 
 
 
 utils:
   action_box:
-  
+
   add_cancel_button:
-  
+
   breadcrumbs:
-  
+
   circle_button:
-  
+
   icon_bubble:
-  
+
   label_value:
-  
+
   loading:
     default_label: Loading
-  
+
   markdown:
-  
+
   message:
-  
+
   sort_field:
     newest_label: Newest
     oldest_label: Oldest
-  
+
   tooltip:
 
 pre_register:

@@ -2,21 +2,37 @@
 header.site-header.hero
   nav.navbar(role="navigation", aria-label="main navigation")
     .navbar-brand
-      .navbar-item.is-size-3-desktop.has-text-weight-bold
-        router-link.has-text-white(:to="homeRoute") Gabber
+      router-link.navbar-item(:to="homeRoute")
+        img(src="/static/img/logo.png" width="36" height="42")
       .navbar-burger(@click="toggleMobileNav", :class="menuClasses")
         span
         span
         span
     .navbar-menu.has-text-centered-mobile(:class="menuClasses")
       .navbar-end
+        .navbar-item
+          .dropdown(:class="dropdownClasses", v-if="availableLocales && availableLocales.length > 0")
+            .dropdown-trigger
+              button.button.is-small(
+                aria-haspopup="true",
+                aria-controls="dropdown-menu",
+                @click="showLocaleDropdown = !showLocaleDropdown"
+              )
+                .icon: fa(icon="globe")
+                span {{ currentLocale.endonym }}
+            #dropdown-menu.dropdown-menu(role="menu")
+              .dropdown-content
+                a.dropdown-item(
+                v-for="locale in availableLocales",
+                @click.prevent="setLocale(locale)",
+                :class="localeClasses(locale)"
+                v-text="locale.endonym")
         router-link.navbar-item(:to="homeRoute", :class="routeClass(homeRoute)")
           span {{$t('view.base.home.nav_title')}}
         router-link.navbar-item(:to="projectsRoute", :class="routeClass(projectsRoute)")
           span {{$t('view.project.project_list.nav_title')}}
         router-link.navbar-item(:to="aboutRoute", :class="routeClass(aboutRoute)")
           span {{$t('view.base.about.nav_title')}}
-        
         template(v-if="!isLoggedIn")
           a.navbar-item(@click.prevent="pushLogin", :class="routeClass(loginRoute)")
             span {{$t('view.auth.login.nav_title')}}
@@ -42,9 +58,13 @@ export default {
     fullWidth: { type: Boolean, default: false }
   },
   data: () => ({
-    mobileNav: false
+    mobileNav: false,
+    showLocaleDropdown: false
   }),
   computed: {
+    availableLocales () { return this.$store.getters.availableLanguages },
+    currentLocale () { return this.availableLocales.find(l => l.code === this.$i18n.locale) },
+    dropdownClasses () { return { 'is-active': this.showLocaleDropdown } },
     isLoggedIn () { return this.$store.getters.currentUser },
     homeRoute () { return { name: HOME_ROUTE } },
     aboutRoute () { return { name: ABOUT_ROUTE } },
@@ -57,6 +77,11 @@ export default {
       await this.$api.logout()
       this.$store.commit(LOGOUT_USER)
       AuthEvents.$emit('logout')
+    },
+    localeClasses (locale) { return { 'is-active': this.$i18n.locale === locale.key } },
+    setLocale (locale) {
+      this.$i18n.locale = locale.code
+      this.showLocaleDropdown = false
     },
     routeClass (route) {
       return {
@@ -71,12 +96,15 @@ export default {
 </script>
 
 <style lang="sass">
+a.dropdown-item:hover, a.dropdown-item.is-active
+  background-color: #1abc9c
+  color: white
 
 .site-header
   nav
     border-bottom: 1px solid $border
     z-index: 100
-  
+
   +touch
     .navbar .navbar-menu
       background: $grey-darker

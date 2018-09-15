@@ -120,7 +120,7 @@ export default {
 
 =padded-panel
   padding: 0.5em 1em
-  
+
 =panel-common
   +padded-panel
   max-height: 100%
@@ -134,30 +134,30 @@ export default {
 +desktop
   .mobile-controls
     display: none
-  
+
   .full-layout
     display: flex
     flex-direction: column
     height: 100vh
-    
+
     > .full-layout-items
       flex: 1
       display: flex
-      
+
       > .layout-main
         +panel-common
         flex: 0.8
-      
+
       > .layout-left
         +sidebar-panel
         flex: 0.2
         border-right: 1px solid $border
-      
+
       > .layout-right
         +sidebar-panel
         flex: 0.2
         border-left: 1px solid $border
-      
+
     &.left-main-right .full-layout-items
       > .layout-main
         flex: 0.6
@@ -171,31 +171,31 @@ export default {
   transition: $transition left, $transition right, $transition box-shadow
   z-index: 10
   box-shadow: 0 0 0 transparent
-  
+
   &.mobile-show
     box-shadow: 0 0 30px black
 
 +touch
   .full-layout
     overflow: hidden
-    
+
     .mobile-controls
       padding: 0.4em 1em
       background-color: lighten($background, 7%)
       border-bottom: 1px solid $border
-      
+
       .button
         font-size: 0.9rem
         text-decoration: none
         &:hover
           background-color: $dark
-    
+
     > .full-layout-items
       position: relative
-      
+
       > .layout-main
         padding: 1em
-      
+
       > .layout-left
         +mobile-panel
         border-top-right-radius: 0.5em
@@ -203,7 +203,7 @@ export default {
           left: -100vw
         &.mobile-show
           left: 0
-      
+
       > .layout-right
         +mobile-panel
         border-top-left-radius: 0.5em
@@ -211,5 +211,5 @@ export default {
           right: -100vw
         &.mobile-show
           right: 0
-    
+
 </style>

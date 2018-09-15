@@ -4,12 +4,12 @@
 #
 auth:
   accept_invite:
-    title: You're invited to join a project on Gabber
+    title: You're invited to join a theme on TalkFutures
     nav_title: Accept Invite
     loading_title: Authenticating
     bad_token_title: Invalid Token
-    subtitle: Sign up below to join project
-    info: Gabber lets you record and annotate structured interviews
+    subtitle: Sign up below to join
+    info: TalkFutures lets you record and annotate structured interviews
     email_field:
       label: Email
       placeholder: me@example.com
@@ -22,7 +22,7 @@ auth:
     submit_action: Submit
 
   forgot:
-    title: Reset Your Gabber Password
+    title: Reset Your TalkFutures Password
     nav_title: Forgotten Password
     subtitle: Submit your email address and we'll send you a link to reset your password.
     email_field:
@@ -33,7 +33,7 @@ auth:
     success_body: We've sent a code to {email}, if it exists in our system, click the link in your email to reset your password.
 
   login:
-    title: Login in to Gabber
+    title: Login in to TalkFutures
     nav_title: Login
     or: or
     signup_action: create an account
@@ -50,7 +50,7 @@ auth:
     failed_body: Invalid login, please try again
 
   register:
-    title: Create a Gabber Account
+    title: Create a TalkFutures Account
     nav_title: Sign Up!
     login_action: log in to your account
     name_field:
@@ -100,11 +100,11 @@ auth:
 base:
   about:
     title: What is it?
-    nav_title: About
-    subtitle: Gabber lets engage with your community to share and understand your shared experiences
+    nav_title: FAQ
+    subtitle: TalkFutures lets engage with your community to share and understand your shared experiences
     col_1:
       title: Structure
-      body: Create a project and structure it around the topics you want to be discussed. Then download the Gabber app.
+      body: Create a theme and structure it around the topics you want to be discussed. Then download the TalkFutures app.
     col_2:
       title: Record
       body: Use the app to record conversations with your community and tag them with your topics. Once your conversation is uploaded, all participants can review and consent to the how recording is used.
@@ -140,36 +140,36 @@ base:
   research:
     title: Research
     nav_title: Research
-    subtitle: How Gabber is used for research
+    subtitle: How TalkFutures is used for research
 
   cookies:
     title: Cookies
     nav_title: Cookies
-    subtitle: How Gabber uses cookies
+    subtitle: How TalkFutures uses cookies
 #
 # Project Views
 #
 project:
   project_list:
-    title: Projects
-    nav_title: Projects
-    filter_title: Filter Projects
+    title: Themes
+    nav_title: Themes
+    filter_title: Filter Themes
     filter_field:
-      label: Search for a project
+      label: Search for a theme
       placeholder: e.g. name / topic
     mobile_filter_title: Filter
-    create_title: Create a new Project
+    create_title: Create a new Theme
     create_action: Create
-    private_title: My Projects
-    public_title: Public Projects
-    authed_empty_body: You aren't on any projects ... yet. Why not create one above!
-    unauthed_empty_body: There are no public projects right now, why not sign up and create your own!
-    fetch_failed_body: Could not fetch projects, please reload
-    create_failed_body: Could not create project, please try again
-    
+    private_title: My Themes
+    public_title: Public Themes
+    authed_empty_body: You aren't on any themes ... yet. Why not create one above!
+    unauthed_empty_body: There are no public themes right now, why not sign up and create your own!
+    fetch_failed_body: Could not fetch themes, please reload
+    create_failed_body: Could not create theme, please try again
+
   session_consent:
-    title: Gabber Consent
-    nav_title: Gabber Consent
+    title: TalkFutures Consent
+    nav_title: TalkFutures Consent
     loading_title: Fetching Consent Info
     info_title: Your Information
     privacy_body: This is the only personal information we will store about you and it will never be made public
@@ -177,29 +177,29 @@ project:
     info_email_label: Email
     mobile_info_title: Your info
     failed_body: Something went wrong, check the link in your email.
-  
+
   session_detail:
-    title: "{name}'s session"
-    nav_title: Session Detail
+    title: "{name}'s conversation"
+    nav_title: Conversation Detail
     mobile_filter_title: Filter
-    mobile_info_title: Session info
+    mobile_info_title: Conversation info
     topic_title: Topic
-    annotations_title: Annotations
-    no_annotations_title: No Annotations
-    no_annotations: There aren't any annotations yet, why not add one?
-    no_filtered_annotations: No annotations matched your query, try tweaking it in the sidebar
-    fetch_failed_body: Couldn't find that Gabber or it doesn't exist
-    create_failed_body: Failed to create annotation, please try again
-  
+    annotations_title: Comments
+    no_annotations_title: No Comments
+    no_annotations: There aren't any comments yet, why not add one?
+    no_filtered_annotations: No comments matched your query, try tweaking it in the sidebar
+    fetch_failed_body: Couldn't find that TalkFutures or it doesn't exist
+    create_failed_body: Failed to create comment, please try again
+
   session_list:
-    title: Sessions
-    nav_title: Sessions
-    loading_title: Fetching Project's Sessions
+    title: Conversations
+    nav_title: Conversations
+    loading_title: Fetching theme's Conversations
     mobile_filter_title: Filter
-    no_sessions: There are no sessions available right now, why not record one in the app?
-    no_filtered_sessions: No sessions matched your query, try tweaking it using in the sidebar.
-    mobile_project_title: Project info
-    not_found: Project not found, check your url
+    no_sessions: There are no conversations available right now, why not record one in the app?
+    no_filtered_sessions: No conversations matched your query, try tweaking it using in the sidebar.
+    mobile_project_title: Theme info
+    not_found: Theme not found, check your url
 
 # * * * * * * * * * * * * * * * * * * * * * * * * * * *
 # * = = = = = = = =  COMPONENTS = = = = = = = = = = = *
