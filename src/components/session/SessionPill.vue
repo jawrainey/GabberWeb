@@ -7,16 +7,16 @@
         member-bubble(:member="session.creator", pad-right)
           fa.mic-icon(icon="microphone", size="lg")
         span {{ ' ' + session.creator.fullname }}
-      label-value.is-hidden-mobile(
+      label-value(
         :label="$t('comp.session.session_pill.member_label')"
       )
         .bubble-list.is-multiline
-          member-bubble(
-            v-for="member in session.participants",
-            :key="member.id",
-            :member="member"
-          )
-            span {{ genderById(member) }}
+          .person(v-for="member in session.participants")
+            .first
+              member-bubble(:key="member.id", :member="member")
+              p.society.is-size-7.padding-left {{ societyById(member) }}
+            .second
+              span.meta.is-size-7.is-italic  {{ roleById(member) }} | {{ genderById(member) }} | {{ ageOfMember(member) }}
     .column.is-third-tablet
       label-value.is-primary.created-on(
         :label="$t('comp.session.session_pill.when_label')",
@@ -56,36 +56,10 @@ import { ColorGenerator } from '@/mixins'
 import LabelValue from '@/components/utils/LabelValue'
 import IconBubble from '@/components/utils/IconBubble'
 import MemberBubble from '@/components/member/MemberBubble'
-
-export const GENDERS = {
-  'ar': [
-    {'id': 0, 'text': 'إناثا'},
-    {'id': 1, 'text': 'الذكر'},
-    {'id': 2, 'text': 'يرجى التحديد'},
-    {'id': 3, 'text': 'الأفضل أن لا يقال'}
-  ],
-  'en': [
-    {'id': 0, 'text': 'Female'},
-    {'id': 1, 'text': 'Male'},
-    {'id': 2, 'text': 'Please Specify'},
-    {'id': 3, 'text': 'Rather not say'}
-  ],
-  'es': [
-    {'id': 0, 'text': 'Femenino'},
-    {'id': 1, 'text': 'Masculino'},
-    {'id': 2, 'text': 'Por favor especifica'},
-    {'id': 3, 'text': 'Prefiero no decirlo'}
-  ],
-  'fr': [
-    {'id': 0, 'text': 'Femelle'},
-    {'id': 1, 'text': 'Mâle'},
-    {'id': 2, 'text': 'Veuillez préciser'},
-    {'id': 3, 'text': 'Plutôt pas dire'}
-  ]
-}
+import DataMixin from '@/mixins/Data'
 
 export default {
-  mixins: [ ColorGenerator ],
+  mixins: [ ColorGenerator, DataMixin ],
   components: { LabelValue, IconBubble, MemberBubble },
   props: {
     session: { type: Object, required: true },
@@ -101,7 +75,7 @@ export default {
       return this.$options.filters.duration(this.session.topics[this.session.topics.length - 1].end_interval)
     },
     genders () {
-      return this.session.participants.map(p => GENDERS[this.$i18n.locale][p.gender].text)
+      return this.session.participants.map(p => this.GENDERS[this.$i18n.locale][p.gender].text)
     },
     language () {
       return this.$store.getters.languageById(this.session.lang_id)
@@ -117,8 +91,10 @@ export default {
     }
   },
   methods: {
-    // ageOfMember (member) { return AGES[this.$i18n.locale][member.age].text },
-    genderById (member) { return GENDERS[this.$i18n.locale][member.gender].text },
+    ageOfMember (member) { return this.AGES.find(s => s.id === member.age).text },
+    roleById (member) { return this.ROLES[this.$i18n.locale][member.m_role].title },
+    genderById (member) { return this.GENDERS[this.$i18n.locale][member.gender].text },
+    societyById (member) { return this.NATIONAL_SOCS.find(s => s.id === member.society).name },
     trim (string, length) {
       return string.length > length
         ? `${string.slice(0, length - 1)}…`
@@ -129,6 +105,25 @@ export default {
 </script>
 
 <style lang="sass">
+.first, .second
+  display: inline-flex
+  align-items: center
+
+  .society
+    text-overflow: ellipsis
+    font-size: 1em !important
+
+  .meta
+    padding-left: .5em
+
+  .bubble-list
+    margin-bottom: 0
+
+  .person:first-child
+    margin-bottom: .5em
+
+.padding-left
+  padding-left: .75em
 
 .session-pill
   border-left: 15px solid $grey-light

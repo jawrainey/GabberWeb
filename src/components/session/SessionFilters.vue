@@ -16,18 +16,38 @@
           option(value="-1", selected="selected") All Languages
           option(:value="lang.id", v-for="lang in availableLanguages") {{ lang.text }}
   .field
+    label.label National Society
+    .control
+      span.select.is-fullwidth
+        select(v-model="selectedSociety", @change="societyChanged")
+          option(value="-1", selected="selected") All National Societies
+          option(:value="ns.id", v-for="ns in societiesLOL") {{ ns.name }}
+  .field
+    label.label Role
+    .control
+      span.select.is-fullwidth
+        select(v-model="selectedRole", @change="roleChanged")
+          option(value="-1", selected="selected") All Roles
+          option(:value="role.id", v-for="role in roleByLanguage") {{ role.title }}
+  .field
     label.label Gender
     .control
       span.select.is-fullwidth
         select(v-model="selectedGender", @change="genderChanged")
           option(value="-1", selected="selected") All Genders
           option(:value="gender.id", v-for="gender in genderByLanguage") {{ gender.text }}
-
+  .field
+    label.label Age
+    .control
+      span.select.is-fullwidth
+        select(v-model="selectedAge", @change="ageChanged")
+          option(value="-1", selected="selected") All Range
+          option(:value="age.id", v-for="age in agesP") {{ age.text }}
   .field
     label.label {{$t('comp.session.session_filters.topic_field.label')}}
     .control
       span.select.is-fullwidth
-        select(v-model="selectedTopic", @change="selectTopic")
+        select(v-model="selectedTopic", @change="topicChanged")
           option(value="-1", selected="selected") All Topics
           option(:value="topic.id", v-for="topic in project.content['en'].topics") {{ topic.text }}
   .field.members-field
@@ -48,53 +68,37 @@ import TopicOption from '@/components/topic/TopicOption'
 import MemberOption from '@/components/member/MemberOption'
 import SortField from '@/components/utils/SortField'
 import MemberBubble from '@/components/member/MemberBubble'
-
-export const GENDERS = {
-  'ar': [
-    {'id': 0, 'text': 'إناثا'},
-    {'id': 1, 'text': 'الذكر'},
-    {'id': 2, 'text': 'يرجى التحديد'},
-    {'id': 3, 'text': 'الأفضل أن لا يقال'}
-  ],
-  'en': [
-    {'id': 0, 'text': 'Female'},
-    {'id': 1, 'text': 'Male'},
-    {'id': 2, 'text': 'Please Specify'},
-    {'id': 3, 'text': 'Rather not say'}
-  ],
-  'es': [
-    {'id': 0, 'text': 'Femenino'},
-    {'id': 1, 'text': 'Masculino'},
-    {'id': 2, 'text': 'Por favor especifica'},
-    {'id': 3, 'text': 'Prefiero no decirlo'}
-  ],
-  'fr': [
-    {'id': 0, 'text': 'Femelle'},
-    {'id': 1, 'text': 'Mâle'},
-    {'id': 2, 'text': 'Veuillez préciser'},
-    {'id': 3, 'text': 'Plutôt pas dire'}
-  ]
-}
+import DataMixin from '@/mixins/Data'
 
 export default {
+  mixins: [ DataMixin ],
   components: { TopicOption, MemberOption, SortField, MemberBubble },
   data: () => ({
     selectedLanguage: -1,
     selectedTopic: -1,
-    selectedGender: -1
+    selectedGender: -1,
+    selectedSociety: -1,
+    selectedAge: -1,
+    selectedRole: -1
   }),
   props: {
     project: { type: Object, required: true },
     sessions: { type: Array, required: true },
     query: { type: String, required: true },
+    ages: { type: Array, required: true },
     genders: { type: Array, required: true },
+    roles: { type: Array, required: true },
+    societies: { type: Array, required: true },
     languages: { type: Array, required: true },
     topics: { type: Array, required: true },
     members: { type: Array, required: true },
     sortMode: { type: String, required: true }
   },
   computed: {
-    genderByLanguage () { return GENDERS[this.$i18n.locale] },
+    societiesLOL () { return this.NATIONAL_SOCS },
+    agesP () { return this.AGES },
+    genderByLanguage () { return this.GENDERS[this.$i18n.locale] },
+    roleByLanguage () { return this.ROLES[this.$i18n.locale] },
     availableLanguages () {
       let languages = this.$store.getters.availableLanguages
       for (let i = 0; i < languages.length; i++) {
@@ -113,6 +117,30 @@ export default {
     }
   },
   methods: {
+    roleChanged () {
+      if (this.selectedRole < 0) {
+        this.$emit('update:roles', this.roles.splice(0, 0))
+      } else {
+        this.$emit('update:roles', this.roles.splice(0, this.roles.length))
+        this.$emit('update:roles', this.roles.concat([ this.selectedRole ]))
+      }
+    },
+    ageChanged () {
+      if (this.selectedAge < 0) {
+        this.$emit('update:ages', this.ages.splice(0, 0))
+      } else {
+        this.$emit('update:ages', this.ages.splice(0, this.ages.length))
+        this.$emit('update:ages', this.ages.concat([ this.selectedAge ]))
+      }
+    },
+    societyChanged () {
+      if (this.selectedSociety < 0) {
+        this.$emit('update:societies', this.societies.splice(0, 0))
+      } else {
+        this.$emit('update:societies', this.societies.splice(0, this.societies.length))
+        this.$emit('update:societies', this.societies.concat([ this.selectedSociety ]))
+      }
+    },
     genderChanged () {
       if (this.selectedGender < 0) {
         this.$emit('update:genders', this.genders.splice(0, 0))
@@ -133,7 +161,7 @@ export default {
         this.$emit('update:languages', this.languages.concat([ this.selectedLanguage ]))
       }
     },
-    selectTopic () {
+    topicChanged () {
       if (this.selectedTopic < 0) {
         this.$emit('update:topics', this.topics.splice(0, 0))
       } else {
