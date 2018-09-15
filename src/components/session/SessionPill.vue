@@ -14,7 +14,7 @@
           .person(v-for="member in session.participants")
             .first
               member-bubble(:key="member.id", :member="member")
-              p.society.is-size-7.padding-left {{ societyById(member) }}
+              p.society {{ societyById(member) }}
             .second
               span.meta.is-size-7.is-italic  {{ roleById(member) }} | {{ genderById(member) }} | {{ ageOfMember(member) }}
     .column.is-third-tablet
@@ -25,7 +25,7 @@
       .columns.is-hidden-mobile
         .column.is-half-tablet
           label-value.is-primary.is-hidden-mobile(
-          label="Duration",
+          :label="$t('comp.session.session_pill.duration')",
           :value="duration"
           )
         .column.is-half-tablet
@@ -37,7 +37,7 @@
         .column.is-half-tablet
           label-value.is-primary.is-hidden-mobile(
             v-if="language",
-            label="Language",
+            :label="$t('comp.session.session_pill.language')",
             :value="language.endonym"
           )
     .column.is-third-tablet.is-clipped
@@ -109,21 +109,17 @@ export default {
   display: inline-flex
   align-items: center
 
-  .society
-    text-overflow: ellipsis
-    font-size: 1em !important
-
-  .meta
-    padding-left: .5em
-
-  .bubble-list
-    margin-bottom: 0
-
-  .person:first-child
-    margin-bottom: .5em
-
-.padding-left
+.society
+  font-size: .75em !important
   padding-left: .75em
+.meta
+  padding-left: .5em
+
+.bubble-list
+  margin-bottom: 0
+
+.person:first-child
+  margin-bottom: .5em
 
 .session-pill
   border-left: 15px solid $grey-light

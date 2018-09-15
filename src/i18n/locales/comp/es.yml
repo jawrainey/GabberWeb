@@ -204,13 +204,29 @@ session:
   session_filters:
     sort_title: Clasificar Sesiones
     filter_title: Sesiones de filtro
-    language_title:
-      label: Por idioma
+    filters:
+      language:
+        title: Por idioma
+        default: Todos los idiomas
+      society:
+        title: Por Sociedad Nacional
+        default: Todas las Sociedades Nacionales
+      role:
+        title: Por Rol
+        default: Todas las funciones
+      gender:
+        title: Por género
+        default: Todos los géneros
+      age:
+        title: Por Años
+        default: Todas las años
+      topic:
+        title: Por Tema
+        default: Todos los temas
     name_field:
       label: Por nombre
       placeholder: p.ej. Ron Johnson
-    topic_field:
-      label: Por temas
+
     member_field:
       label: Por participante
 
@@ -232,7 +248,8 @@ session:
     when_label: Grabado
     annotation_label: Anotaciones
     topic_label: Temas
-
+    language: Idioma
+    duration: Duración
 
 
 shared:

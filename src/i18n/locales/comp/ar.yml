@@ -204,13 +204,28 @@ session:
   session_filters:
     sort_title: فرز الجلسات
     filter_title: تصفية الدورات
-    language_title:
-      label: حسب اللغة
+    filters:
+      language:
+        title: حسب اللغة
+        default: كل اللغات
+      society:
+        title: من قبل الجمعية الوطنية
+        default: جميع الجمعيات الوطنية
+      role:
+        title: حسب الدور
+        default: جميع الأدوار
+      gender:
+        title: حسب الجنس
+        default: جميع الجنسين
+      age:
+        title: حسب العمر
+        default: كل الأعمار
+      topic:
+        title: حسب الموضوع
+        default: كل المواضيع
     name_field:
       label: بالاسم
       placeholder: مثلا رون جونسون
-    topic_field:
-      label: حسب المواضيع
     member_field:
       label: من قبل مشارك
 
@@ -232,7 +247,8 @@ session:
     when_label: مسجل
     annotation_label: الشروح
     topic_label: المواضيع
-
+    language: لغة
+    duration: المدة الزمنية
 
 
 shared:

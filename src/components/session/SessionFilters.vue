@@ -6,49 +6,48 @@
     @input="v => $emit('update:sortMode', v)",
     label=""
   )
-  hr
   h3.subtitle {{$t('comp.session.session_filters.filter_title')}}
   .field
-    label.label By Language
+    label.label {{$t('comp.session.session_filters.filters.language.title')}}
     .control
       span.select.is-fullwidth
         select(v-model="selectedLanguage", @change="langChanged")
-          option(value="-1", selected="selected") All Languages
+          option(value="-1", selected="selected") {{$t('comp.session.session_filters.filters.language.default')}}
           option(:value="lang.id", v-for="lang in availableLanguages") {{ lang.text }}
   .field
-    label.label National Society
+    label.label {{$t('comp.session.session_filters.filters.society.title')}}
     .control
       span.select.is-fullwidth
         select(v-model="selectedSociety", @change="societyChanged")
-          option(value="-1", selected="selected") All National Societies
+          option(value="-1", selected="selected") {{$t('comp.session.session_filters.filters.society.default')}}
           option(:value="ns.id", v-for="ns in societiesLOL") {{ ns.name }}
   .field
-    label.label Role
+    label.label {{$t('comp.session.session_filters.filters.role.title')}}
     .control
       span.select.is-fullwidth
         select(v-model="selectedRole", @change="roleChanged")
-          option(value="-1", selected="selected") All Roles
+          option(value="-1", selected="selected") {{$t('comp.session.session_filters.filters.role.default')}}
           option(:value="role.id", v-for="role in roleByLanguage") {{ role.title }}
   .field
-    label.label Gender
+    label.label {{$t('comp.session.session_filters.filters.gender.title')}}
     .control
       span.select.is-fullwidth
         select(v-model="selectedGender", @change="genderChanged")
-          option(value="-1", selected="selected") All Genders
+          option(value="-1", selected="selected") {{$t('comp.session.session_filters.filters.gender.default')}}
           option(:value="gender.id", v-for="gender in genderByLanguage") {{ gender.text }}
   .field
-    label.label Age
+    label.label {{$t('comp.session.session_filters.filters.age.title')}}
     .control
       span.select.is-fullwidth
         select(v-model="selectedAge", @change="ageChanged")
-          option(value="-1", selected="selected") All Range
+          option(value="-1", selected="selected") {{$t('comp.session.session_filters.filters.age.default')}}
           option(:value="age.id", v-for="age in agesP") {{ age.text }}
   .field
-    label.label {{$t('comp.session.session_filters.topic_field.label')}}
+    label.label {{$t('comp.session.session_filters.filters.topic.title')}}
     .control
       span.select.is-fullwidth
         select(v-model="selectedTopic", @change="topicChanged")
-          option(value="-1", selected="selected") All Topics
+          option(value="-1", selected="selected") {{$t('comp.session.session_filters.filters.topic.default')}}
           option(:value="topic.id", v-for="topic in project.content['en'].topics") {{ topic.text }}
   .field.members-field
     label.label {{$t('comp.session.session_filters.member_field.label')}}
