@@ -3,7 +3,7 @@
   .column
     h3.title.is-3
       span.icon-item: fa(v-if="projectIcon", :icon="projectIcon", transform="shrink-6")
-      span  {{project.content['en'].title}}
+      span  {{ projectContent.title }}
       span.membership.is-size-5.has-text-grey-light(v-if="membershipType")
         |  {{ membershipType }}
   
@@ -71,12 +71,9 @@ export default {
   },
   computed: {
     ...mapGetters([ 'currentUser' ]),
-    projectIcon () {
-      return this.project.privacy === 'public' ? 'unlock' : 'lock'
-    },
-    canEdit () {
-      return this.isOwner && !this.isEditing
-    }
+    projectContent () { return this.$store.getters.projectContentByLanguage(this.project) },
+    projectIcon () { return this.project.privacy === 'public' ? 'unlock' : 'lock' },
+    canEdit () { return this.isOwner && !this.isEditing }
   }
 }
 </script>

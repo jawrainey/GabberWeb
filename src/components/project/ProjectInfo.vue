@@ -7,7 +7,7 @@
   .column.description
     label-value.is-marginless(
       :label="$t('comp.project.project_info.info_label')",
-      :value="project.content['en'].description"
+      :value="projectContent.description"
     )
   .column.members
     label-value.is-marginless(:label="$t('comp.project.project_info.members_label')")
@@ -42,6 +42,7 @@ export default {
     readonly: { type: Boolean, default: false }
   },
   computed: {
+    projectContent () { return this.$store.getters.projectContentByLanguage(this.project) },
     sessionsRoute () {
       const params = { project_id: this.project.id }
       return { name: SESSION_LIST_ROUTE, params }

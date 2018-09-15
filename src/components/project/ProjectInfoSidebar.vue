@@ -1,10 +1,10 @@
 <template lang="pug">
 .project-detail
-  h3.title.is-3 {{ project.content['en'].title }}
+  h3.title.is-3 {{ projectContent.title }}
   p.subtitle {{ project.created_on | longDate }}
   label-value(
     :label="$t('comp.project.project_info_sidebar.info_label')",
-    :value="project.content['en'].description"
+    :value="projectContent.description"
   )
   label-value(
     :label="$t('comp.project.project_info_sidebar.owner_label')"
@@ -52,9 +52,8 @@ export default {
     sessions: { type: Array, required: true }
   },
   computed: {
-    projectResearchers () {
-      return this.project.members.filter(m => m.role === 'researcher')
-    }
+    projectContent () { return this.$store.getters.projectContentByLanguage(this.project) },
+    projectResearchers () { return this.project.members.filter(m => m.role === 'researcher') }
   }
 }
 </script>
