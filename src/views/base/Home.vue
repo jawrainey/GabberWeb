@@ -1,6 +1,6 @@
 <template lang="pug">
 simple-layout
-  section.side-padding
+  section
     .columns.is-centered
       .column.is-three-fifths
         main
@@ -15,7 +15,7 @@ simple-layout
               a(:href='androidURL')
                 img(:src='androidBadge' width="150" height="50")
           hr
-          .columns.is-vcentered
+          .columns.is-vcentered.side-padding
             .column.is-half
               .title.is-4.is-size-5-mobile.has-text-weight-semibold
                 span {{$t('comp.pre_register.capturing.title')}}
@@ -24,7 +24,7 @@ simple-layout
               img.branding(src="/static/img/talkfutures/capturing-s.png",
               alt="Capture conversations with TalkFutures mobile application.")
           hr
-          .columns.is-vcentered.reverse-on-mobile
+          .columns.is-vcentered.reverse-on-mobile.side-padding
             .column.is-half
               img.branding(src="/static/img/talkfutures/highlighting-s.png",
               alt="Listen and tag TalkFutures conversations.")
@@ -32,14 +32,13 @@ simple-layout
               .title.is-4.is-size-5-mobile.has-text-weight-semibold {{$t('comp.pre_register.sensemaking.title')}}
               p.is-5.is-size-7-mobile {{$t('comp.pre_register.sensemaking.content')}}
           hr
-          .columns.is-vcentered
+          .columns.is-vcentered.side-padding
             .column.is-half
               .title.is-4.is-size-5-mobile.has-text-weight-semibold {{$t('comp.pre_register.reuse.title')}}
               p.is-5.is-size-7-mobile {{$t('comp.pre_register.reuse.content')}}
             .column
               img.branding(src="/static/img/talkfutures/sharing-s.png",
               alt="Share your favourite TalkFutures conversations with the world.")
-          hr.remove-margin-bottom
 </template>
 
 <script>
@@ -65,73 +64,77 @@ export default {
 </style>
 
 <style lang="sass" scoped>
-.video-container
-  position: relative
-  width: 420px
-  height: 234px
-  overflow: hidden
-  margin: 1em auto
-
-.video-container
-  iframe, object, embed
-    position: absolute
-    top: 0
-    left: 0
+  .video-container
+    position: relative
     width: 420px
     height: 234px
+    overflow: hidden
+    margin: 1em auto
+    padding: 0 1em !important
 
-.ifrc-logo
-  height: 20px
-  width: 20px
-.ifrc-logo:hover
-  border-bottom: none
-.ifrc-logo > img
-  width: 65px
-  height: 65px
+  .video-container
+    iframe, object, embed
+      position: absolute
+      top: 0
+      left: 0
+      width: 420px
+      height: 234px
 
-.add-margin
-  margin: 1rem auto 0 auto
-.remove-top-margin
-  margin-top: 1em
-.remove-margin-bottom
-  margin-bottom: 0
+  .ifrc-logo
+    height: 20px
+    width: 20px
+  .ifrc-logo:hover
+    border-bottom: none
+  .ifrc-logo > img
+    width: 65px
+    height: 65px
 
-.level-item, .level-item > a
-  color: #FFF
+  .add-margin
+    margin: 1rem auto 0 auto
+  .remove-top-margin
+    margin-top: 1em
+  .remove-margin-bottom
+    margin-bottom: 0
 
-a:hover, a.is-active
-  color: #FFF
-  border-bottom: 1px solid #E21E26
+  .level-item, .level-item > a
+    color: #FFF
 
-.button:focus
-  color: whitesmoke
+  a:hover, a.is-active
+    color: #FFF
+    border-bottom: 1px solid #E21E26
 
-.button:hover
-  border-color: #E21E26
+  .button:focus
+    color: whitesmoke
 
-.logo
-  width: 144px
-  height: 144px
-  margin: 2em 0 1.25em 0 !important
+  .button:hover
+    border-color: #E21E26
 
-.strapline
-  font-size: 22px
-  margin-bottom: 1em
+  .logo
+    width: 144px
+    height: 144px
+    margin: 2em 0 1.25em 0 !important
 
-.branding
-  max-height: 200px
-  max-width: 100%
-  margin: 0 auto
+  .strapline
+    font-size: 22px
+    margin-bottom: 1em
 
-.column
-  text-align: center
+  .branding
+    max-height: 200px
+    max-width: 100%
+    margin: 0 auto
 
-.partners
-  max-height: 90px
-  max-width: 240px
-  margin: 0 auto
+  .column
+    text-align: center
+
+  .partners
+    max-height: 90px
+    max-width: 240px
+    margin: 0 auto
 
   +mobile
+    .video-container, .video-container iframe, object, embed
+      width: 320px
+      height: 180px
     .side-padding
       padding: 0 1.6em
 
@@ -153,8 +156,4 @@ a:hover, a.is-active
   +tablet
     .fixed-height
       max-height: 40px !important
-.home-page
-  flex: 1
-  img.people
-    width: 450px
 </style>

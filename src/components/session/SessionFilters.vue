@@ -20,7 +20,7 @@
       span.select.is-fullwidth
         select(v-model="selectedSociety", @change="societyChanged")
           option(value="-1", selected="selected") {{$t('comp.session.session_filters.filters.society.default')}}
-          option(:value="ns.id", v-for="ns in societiesLOL") {{ ns.name }}
+          option(:value="ns.id", v-for="ns in nationalSocieties") {{ ns.name }}
   .field
     label.label {{$t('comp.session.session_filters.filters.role.title')}}
     .control
@@ -41,14 +41,14 @@
       span.select.is-fullwidth
         select(v-model="selectedAge", @change="ageChanged")
           option(value="-1", selected="selected") {{$t('comp.session.session_filters.filters.age.default')}}
-          option(:value="age.id", v-for="age in agesP") {{ age.text }}
+          option(:value="age.id", v-for="age in ageRanges") {{ age.text }}
   .field
     label.label {{$t('comp.session.session_filters.filters.topic.title')}}
     .control
       span.select.is-fullwidth
         select(v-model="selectedTopic", @change="topicChanged")
           option(value="-1", selected="selected") {{$t('comp.session.session_filters.filters.topic.default')}}
-          option(:value="topic.id", v-for="topic in project.content['en'].topics") {{ topic.text }}
+          option(:value="topic.id", v-for="topic in projectContent.topics") {{ topic.text }}
   .field.members-field
     label.label {{$t('comp.session.session_filters.member_field.label')}}
     .bubble-list.is-multiline.is-size-3
@@ -94,8 +94,9 @@ export default {
     sortMode: { type: String, required: true }
   },
   computed: {
-    societiesLOL () { return this.NATIONAL_SOCS },
-    agesP () { return this.AGES },
+    projectContent () { return this.$store.getters.projectContentByLanguage(this.project) },
+    nationalSocieties () { return this.NATIONAL_SOCS },
+    ageRanges () { return this.AGES },
     genderByLanguage () { return this.GENDERS[this.$i18n.locale] },
     roleByLanguage () { return this.ROLES[this.$i18n.locale] },
     availableLanguages () {

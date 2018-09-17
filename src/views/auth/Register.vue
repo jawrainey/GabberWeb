@@ -40,7 +40,7 @@ box-layout.boxer
         .control
           span.select.is-fullwidth
             select(v-model="age")
-              option(:value="age.id", v-for="age in ages") {{ age.title }}
+              option(:value="age.id", v-for="age in ages") {{ age.text }}
       .field
         label.label {{$t('view.auth.register.gender.title')}}
         .control

@@ -18,24 +18,24 @@
             .second
               span.meta.is-size-7.is-italic  {{ roleById(member) }} | {{ genderById(member) }} | {{ ageOfMember(member) }}
     .column.is-third-tablet
-      label-value.is-primary.created-on(
+      label-value.is-link.created-on(
         :label="$t('comp.session.session_pill.when_label')",
         :value="session.created_on | longDate"
       )
       .columns.is-hidden-mobile
         .column.is-half-tablet
-          label-value.is-primary.is-hidden-mobile(
+          label-value.is-link.is-hidden-mobile(
           :label="$t('comp.session.session_pill.duration')",
           :value="duration"
           )
         .column.is-half-tablet
-          label-value.is-primary.is-hidden-mobile(
+          label-value.is-link.is-hidden-mobile(
           :label="$t('comp.session.session_pill.annotation_label')",
           :value="session.num_user_annotations"
           )
       .columns.is-hidden-mobile
         .column.is-half-tablet
-          label-value.is-primary.is-hidden-mobile(
+          label-value.is-link.is-hidden-mobile(
             v-if="language",
             :label="$t('comp.session.session_pill.language')",
             :value="language.endonym"
@@ -93,7 +93,11 @@ export default {
   methods: {
     ageOfMember (member) { return this.AGES.find(s => s.id === member.age).text },
     roleById (member) { return this.ROLES[this.$i18n.locale][member.m_role].title },
-    genderById (member) { return this.GENDERS[this.$i18n.locale][member.gender].text },
+    genderById (member) {
+      let gender = member.gender
+      if (gender === 2) return member.custom
+      else return this.GENDERS[this.$i18n.locale][gender].text
+    },
     societyById (member) { return this.NATIONAL_SOCS.find(s => s.id === member.society).name },
     trim (string, length) {
       return string.length > length

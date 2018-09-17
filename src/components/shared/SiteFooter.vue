@@ -1,19 +1,21 @@
 <template lang="pug">
-footer.hero.is-dark.is-small
-  .container.has-text-centered
-      .nav.level.add-margin-mixed
-        .level-item
-          router-link.button.is-text(:to="privacyRoute")
-            | {{$t('view.base.privacy.nav_title')}}
-        .level-item
-          router-link.button.is-text(:to="termsRoute")
-            | {{$t('view.base.terms.nav_title')}}
-        .level-item
-          router-link.button.is-text(:to="researchRoute")
-            | {{$t('view.base.research.nav_title')}}
-        .level-item
-          router-link.button.is-text(:to="cookiesRoute")
-            | {{$t('view.base.cookies.nav_title')}}
+footer
+  hr
+  nav.level
+    .level-item
+      router-link.is-text(:to="cookiesRoute")
+        | {{$t('view.base.cookies.nav_title')}}
+    .level-item
+      router-link.is-text(:to="privacyRoute")
+        | {{$t('view.base.privacy.nav_title')}}
+    a.level-item.ifrc-logo(href="http://media.ifrc.org/innovation/", target="_blank", rel="noopener")
+      img(:src="ifrcLogo", alt="International Federation of Red Cross and Red Crescent Societies")
+    .level-item
+      router-link.is-text(:to="researchRoute")
+        | {{$t('view.base.research.nav_title')}}
+    .level-item
+      router-link.is-text(:to="termsRoute")
+        | {{$t('view.base.terms.nav_title')}}
 </template>
 
 <script>
@@ -21,6 +23,7 @@ import { PRIVACY_ROUTE, TERMS_ROUTE, RESEARCH_ROUTE, COOKIES_ROUTE } from '@/con
 
 export default {
   computed: {
+    ifrcLogo () { return `/static/img/talkfutures/ifrc-logo/${this.$i18n.locale}.png` },
     privacyRoute () { return { name: PRIVACY_ROUTE } },
     termsRoute () { return { name: TERMS_ROUTE } },
     researchRoute () { return { name: RESEARCH_ROUTE } },
@@ -29,10 +32,25 @@ export default {
 }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
+  .ifrc-logo
+    height: 20px
+    width: 20px
+  .add-margin
+    margin: 1rem auto 0 auto
+  .ifrc-logo:hover
+    border-bottom: none
+  .ifrc-logo > img
+    width: 65px
+    height: 65px
   .add-margin-mixed
     margin: 1em 0 !important
   a.dropdown-item:hover, a.dropdown-item.is-active
-    background-color: #1abc9c
+    background-color: #E21E26
     color: white
+
+  +mobile
+    .ifrc-logo
+      width: 100%
+      height: 100%
 </style>

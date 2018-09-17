@@ -1,31 +1,26 @@
 <template lang="pug">
-.columns.project-info
+.columns.is-multiline.project-info
   .column.is-narrow.is-hidden-mobile
     figure.image.is-96x96
       img.project-photo.is-rounded(:src="project.image")
 
-  .column.description
+  .column.is-half.description
     label-value.is-marginless(
       :label="$t('comp.project.project_info.info_label')",
       :value="projectContent.description"
     )
-  .column.members
-    label-value.is-marginless(:label="$t('comp.project.project_info.members_label')")
-      .bubble-list.is-multiline
-        member-bubble(
-          v-for="member in project.members",
-          :key="member.id",
-          :member="member",
-          padded
-        )
-  .column.is-narrow(v-if="!readonly")
-    .buttons.is-right
-      router-link.button.is-link.is-rounded(:to="sessionsRoute")
-        .icon: fa(icon="microphone")
-        span {{$t('comp.project.project_info.sessions_action')}}
-      //- router-link.button.is-link.is-rounded(:to="playlistsRoute")
-        .icon: fa(icon="headphones")
-        span {{$t('comp.project.project_info.playlists_action')}}
+  .column.is-multiline(v-if="!readonly")
+    .columns
+      .column.is-half-tablet
+        label-value.is-marginless(:label="$t('comp.project.project_info.members_label')")
+          .bubble-list.is-multiline
+            member-bubble(v-for="member in project.members",
+            :key="member.id", :member="member", padded)
+      .column.is-half-tablet
+        .buttons.is-right
+          router-link.button.is-link.is-rounded(:to="sessionsRoute")
+            .icon: fa(icon="microphone")
+            span {{$t('comp.project.project_info.sessions_action')}}
 </template>
 
 <script>
@@ -55,6 +50,9 @@ export default {
 .project-info
   border-top: 1px solid $border
   padding-top: 0.6em
+
+  .column.description
+    font-size: .8em
 
   +desktop
     .column.description

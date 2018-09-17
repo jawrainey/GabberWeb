@@ -13,7 +13,7 @@ header.site-header.hero
         .navbar-item
           .dropdown(:class="dropdownClasses", v-if="availableLocales && availableLocales.length > 0")
             .dropdown-trigger
-              button.button.is-small(
+              button.button.is-small.make-red(
                 aria-haspopup="true",
                 aria-controls="dropdown-menu",
                 @click="showLocaleDropdown = !showLocaleDropdown"
@@ -37,7 +37,7 @@ header.site-header.hero
           a.navbar-item(@click.prevent="pushLogin", :class="routeClass(loginRoute)")
             span {{$t('view.auth.login.nav_title')}}
           .navbar-item
-            a.button.is-success(@click.prevent="pushRegister")
+            a.button.is-success-red(@click.prevent="pushRegister")
               span {{$t('view.auth.register.nav_title')}}
         .navbar-item(v-else)
           button.button.is-dark(@click="logout")
@@ -62,6 +62,7 @@ export default {
     showLocaleDropdown: false
   }),
   computed: {
+    availableLocales () { return this.$store.getters.availableLanguages },
     currentLocale () { return this.$store.getters.currentLocale },
     dropdownClasses () { return { 'is-active': this.showLocaleDropdown } },
     isLoggedIn () { return this.$store.getters.currentUser },
@@ -95,8 +96,14 @@ export default {
 </script>
 
 <style lang="sass">
+.is-success-red
+  background-color: #ED4E56
+  border-color: transparent
+  color: white
+a.navbar-item:hover, a.navbar-item.is-active, .make-red:focus
+  color: #ED4E56 !important
 a.dropdown-item:hover, a.dropdown-item.is-active
-  background-color: #1abc9c
+  background-color: #ED4E56
   color: white
 
 .site-header
