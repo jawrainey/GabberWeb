@@ -19,7 +19,7 @@ export default {
     isDevMode () { return getConfig('DEV_MODE') },
     isComingSoon () { return getConfig('COMING_SOON') },
     notOnRoute () {
-      return ['Privacy', 'Terms', 'Research', 'Cookies'].indexOf(this.$route.name) > -1
+      return ['Privacy', 'Terms', 'Research', 'Cookies', 'ProjectList', 'Session', 'SessionList'].indexOf(this.$route.name) > -1
     }
   },
   created () {
