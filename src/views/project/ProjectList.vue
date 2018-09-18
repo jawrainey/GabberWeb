@@ -16,11 +16,11 @@ full-layout.project-list-view
     span {{$t('view.project.project_list.mobile_filter_title')}}
 
   .main(slot="main")
-    .columns.is-mobile
-      .column
-        h1.title.is-1 {{$t('view.project.project_list.title')}}
-      .column.is-narrow(v-if="currentUser")
-        add-cancel-button.is-medium(@click="toggleCreate", :toggled="!!newProject")
+    <!--.columns.is-mobile-->
+      <!--.column-->
+        <!--h1.title.is-1 {{$t('view.project.project_list.title')}}-->
+      <!--.column.is-narrow(v-if="currentUser")-->
+        <!--add-cancel-button.is-medium(@click="toggleCreate", :toggled="!!newProject")-->
 
     .box.new-project(v-if="newProject")
       h3.subtitle.is-4 {{$t('view.project.project_list.create_title')}}
