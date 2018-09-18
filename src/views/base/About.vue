@@ -9,7 +9,8 @@ simple-layout
             p.strapline.is-size-5.is-size-6-mobile {{$t('view.base.about.content.strapline')}}
         .columns.is-mobile
           .column.is-half.has-text-centered
-            a(:href="iOSURL")
+            p.is-italic.is-4 {{$t('view.base.about.no_ios')}}
+            a.is-hidden
               img(:src='iosBadge' width="140" height="50")
           .column.is-half.has-text-centered
             a(:href='androidURL')
