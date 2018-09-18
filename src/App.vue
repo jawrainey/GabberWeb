@@ -1,8 +1,8 @@
 <template lang="pug">
 #app-wrapper
   dev-banner(v-if="isDevMode")
-  coming-soon(v-if="isComingSoon && !notOnRoute")
-  router-view(v-else-if="!apiInProgress || isComingSoon && notOnRoute")
+  coming-soon(v-if="isComingSoon")
+  router-view(v-else-if="!apiInProgress")
 </template>
 
 <script>
@@ -17,10 +17,7 @@ export default {
   components: { ComingSoon, DevBanner },
   computed: {
     isDevMode () { return getConfig('DEV_MODE') },
-    isComingSoon () { return getConfig('COMING_SOON') },
-    notOnRoute () {
-      return ['Privacy', 'Terms', 'Research', 'Cookies', 'ProjectList', 'Session', 'SessionList'].indexOf(this.$route.name) > -1
-    }
+    isComingSoon () { return getConfig('COMING_SOON') }
   },
   created () {
     this.checkLogin()
