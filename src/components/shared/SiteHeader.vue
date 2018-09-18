@@ -10,23 +10,6 @@ header.site-header.hero
         span
     .navbar-menu.has-text-centered-mobile(:class="menuClasses")
       .navbar-end
-        .navbar-item
-          .dropdown(:class="dropdownClasses", v-if="availableLocales && availableLocales.length > 0")
-            .dropdown-trigger
-              button.button.is-small.make-red(
-                aria-haspopup="true",
-                aria-controls="dropdown-menu",
-                @click="showLocaleDropdown = !showLocaleDropdown"
-              )
-                .icon: fa(icon="globe")
-                span {{ currentLocale.endonym }}
-            #dropdown-menu.dropdown-menu(role="menu")
-              .dropdown-content
-                a.dropdown-item(
-                v-for="locale in availableLocales",
-                @click.prevent="setLocale(locale)",
-                :class="localeClasses(locale)"
-                v-text="locale.endonym")
         router-link.navbar-item(:to="homeRoute", :class="routeClass(homeRoute)")
           span {{$t('view.base.home.nav_title')}}
         router-link.navbar-item(:to="projectsRoute", :class="routeClass(projectsRoute)")
@@ -42,6 +25,23 @@ header.site-header.hero
         .navbar-item(v-else)
           button.button.is-dark(@click="logout")
             | {{$t('comp.shared.site_header.logout_action')}}
+        .navbar-item
+          .dropdown(:class="dropdownClasses", v-if="availableLocales && availableLocales.length > 0")
+            .dropdown-trigger
+              button.button.is-small.make-red(
+              aria-haspopup="true",
+              aria-controls="dropdown-menu",
+              @click="showLocaleDropdown = !showLocaleDropdown"
+              )
+                .icon: fa(icon="globe")
+                span {{ currentLocale.endonym }}
+            #dropdown-menu.dropdown-menu(role="menu")
+              .dropdown-content
+                a.dropdown-item(
+                v-for="locale in availableLocales",
+                @click.prevent="setLocale(locale)",
+                :class="localeClasses(locale)"
+                v-text="locale.endonym")
 </template>
 
 <script>
