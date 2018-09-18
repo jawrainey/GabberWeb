@@ -80,8 +80,11 @@ export default {
     },
     localeClasses (locale) { return { 'is-active': this.$i18n.locale === locale.key } },
     setLocale (locale) {
-      this.$i18n.locale = locale.code
       this.showLocaleDropdown = false
+      this.$i18n.locale = locale.code
+      const html = document.documentElement
+      html.setAttribute('lang', this.$i18n.locale)
+      html.setAttribute('dir', locale.code === 'ar' ? 'rtl' : 'ltr')
     },
     routeClass (route) {
       return {
