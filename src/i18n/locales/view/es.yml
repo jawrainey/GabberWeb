@@ -102,15 +102,27 @@ base:
     title: ¿Qué es?
     nav_title: Acerca de
     subtitle: TalkFutures permite interactuar con su comunidad para compartir y comprender sus experiencias compartidas
-    col_1:
-      title: Estructura
-      body: Crea un tema y estructuralo alrededor de los temas que deseas que se discutan. Luego descarga la aplicación TalkFutures.
-    col_2:
-      title: Grabar
-      body: Usa la aplicación para grabar conversaciones con tu comunidad y etiquetarlas con tus temas. Una vez que tu conversación es cargada, todos los participantes pueden revisar y dar su consentimiento a cómo se va a usar la grabación.
-    col_3:
-      title: Comentarista
-      body: Escuche y comentario sus conversaciones para crear discusiones con otros miembros de la comunidad.
+    content:
+      strapline: TalkFutures ayuda a estructurar y grabar conversaciones sobre cómo la Cruz Roja y la Media Luna Roja pueden adaptarse a los desafíos del futuro. Las conversaciones grabadas aparecen en el sitio web donde las personas pueden comentar, destacar y compartir sus discusiones.
+      prepare:
+        title: ¡Involucrado!
+        theme:
+          title: Elige un tema del que te gustaría charlar
+          subtitle: Cada tema cuenta con una descripción corta. Te recomendamos revisar los temas con las personas que tendrás la conversación.
+      record:
+        title: Graba una conversación
+        subtitle: Haga clic en un punto de discusión para comenzar a grabar. No hay límite de tiempo. Cada que la discusión cambie a un punto distinto, asegúrate de dar clic en la caja que lo contiene en la aplicación.
+      add_people:
+        title: Añade a los participantes
+        subtitle: Registra los datos de las personas que serán parte de la conversación y acepta la forma de consentimiento.
+      upload:
+        title: Sube tu conversación
+        subtitle: Aquí puedes subir grabaciones al sitio web para que otros las escuchen. Una vez que su conversación ha sido cargada, todos los participantes son notificados y pueden revisar el consentimiento.
+      invite:
+        title: Invita a tus amigos y amigas a escuchar tu conversación
+        subtitle: Personas de todo el mundo escucharán, comentarán y destacarán las partes que les gusten de tu conversación. Escucha lo que otros dicen y deja un comentario en sus grabaciones.
+      contact:
+        action: ¿Tienes alguna pregunta?
 
   holder:
     # ...

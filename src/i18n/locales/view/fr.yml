@@ -102,15 +102,28 @@ base:
     title: Qu'Est-ce que c'est?
     nav_title: A propos
     subtitle: Gabber vous permet de vous engager avec votre communauté pour partager et comprendre vos expériences
-    col_1:
-      title: Structure
-      body: Créez un thème et structurez-le autour des rubriques que vous souhaitez aborder. Ensuite, téléchargez l'application Gabber.
-    col_2:
-      title: Enregistrer
-      body: Utilisez l'application pour enregistrer des conversations avec votre communauté et marquez-les avec vos rubriques. Une fois votre conversation téléchargée, tous les participants peuvent revoir et fournir leur consentement pour l'utilisation de l'enregistrement
-    col_3:
-      title: Annoter
-      body: Écoutez et annotez vos conversations pour créer des discussions avec d'autres membres de la communauté.
+    content:
+      strapline: TalkFutures aide à structurer et à enregistrer des conversations sur la manière dont la Croix-Rouge et le Croissant-Rouge peuvent s'adapter aux défis du futur. Les conversations enregistrées apparaissent sur le site Web où les gens peuvent commenter, mettre en évidence et partager leurs discussions.
+      prepare:
+        title: Être impliqué!
+        theme:
+          title: Choisissez un sujet de discussion.
+          subtitle: Chaque sujet a suggéré des points de conversation.
+      record:
+        title: Enregistrer une conversation
+        subtitle: Cliquez sur un point de discussion pour commencer l'enregistrement. Il n'y a pas de limite de temps Assurez-vous de lire les chansons lorsque votre conversation change.
+      add_people:
+        title: Ajouter les participants
+        subtitle: Enregistrez les données des personnes qui feront partie de la conversation et acceptez la forme de concentimiento.
+      upload:
+        title: Téléchargez votre conversation
+        subtitle: Ici, vous pouvez télécharger des enregistrements sur le site Web pour que d'autres puissent les écouter.
+      invite:
+        title:  Invitez vos amis à écouter votre conversation
+        subtitle: À ifrc.org/talkfutures, les gens du monde entier écoutent, commentent et mettent en évidence les parties qu'ils aiment dans votre conversation. Découvrez ce que les autres disent et laissez un commentaire sur leurs enregistrements.
+      contact:
+        action: Avez-vous des questions?
+
 
   holder:
     # ...

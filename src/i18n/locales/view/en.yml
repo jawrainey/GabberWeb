@@ -102,15 +102,30 @@ base:
     title: What is it?
     nav_title: FAQ
     subtitle: TalkFutures lets engage with your community to share and understand your shared experiences
-    col_1:
-      title: Structure
-      body: Create a theme and structure it around the topics you want to be discussed. Then download the TalkFutures app.
-    col_2:
-      title: Record
-      body: Use the app to record conversations with your community and tag them with your topics. Once your conversation is uploaded, all participants can review and consent to the how recording is used.
-    col_3:
-      title: Annotate
-      body: Listen to and annotate your conversations to create discussions with other community members.
+    content:
+      strapline: TalkFutures helps structure and record conversations about how the Red Cross and Red Crescent can adapt to the challenges of the future. Recorded conversations appear on the website where people can comment on, highlight and share your discussions.
+      prepare:
+        title: Getting Involved
+        theme:
+          title: Choose a theme to talk about
+          subtitle: Go through the description of the theme with the people you’re having the conversation with.
+      record:
+        title: Record your Conversation
+        subtitle: Click on a discussion point to start recording. There’s no time limit. Be sure to tap the topics as your conversation changes.
+      add_people:
+        title: Add participants
+        subtitle: Fill in the details of people taking part in the conversation and agree on the consent form.
+      upload:
+        title: Upload your conversation
+        subtitle: Here you can upload recordings to the website for other to listen to. Once your conversation has been uploaded, all participants are notified and can review the consent.
+      invite:
+        title: Invite your friends to listen to your conversations
+        subtitle: People all over the world will listen, comment and highlight parts they like about your conversation. Check out what others are saying and leave a comment on their recordings.
+      contact:
+        action: Do you have any questions? Email us
+
+
+
 
   holder:
     # ...
