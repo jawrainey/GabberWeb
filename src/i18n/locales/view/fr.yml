@@ -99,6 +99,7 @@ auth:
 #
 base:
   about:
+    no_ios: La version iOS de Talk Futures est en cours de révision par Apple et sera prête très bientôt.
     title: Qu'Est-ce que c'est?
     nav_title: A propos
     subtitle: Gabber vous permet de vous engager avec votre communauté pour partager et comprendre vos expériences

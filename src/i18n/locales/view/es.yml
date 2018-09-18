@@ -99,6 +99,7 @@ auth:
 #
 base:
   about:
+    no_ios: La versión iOS de TalkFutures está siendo revisada por Apple y estará lista muy pronto.
     title: ¿Qué es?
     nav_title: Acerca de
     subtitle: TalkFutures permite interactuar con su comunidad para compartir y comprender sus experiencias compartidas

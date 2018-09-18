@@ -99,6 +99,7 @@ auth:
 #
 base:
   about:
+    no_ios: The iOS version of TalkFutures is under review by Apple and will be ready in the coming days.
     title: What is it?
     nav_title: FAQ
     subtitle: TalkFutures lets engage with your community to share and understand your shared experiences

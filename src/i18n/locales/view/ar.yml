@@ -99,6 +99,7 @@ auth:
 #
 base:
   about:
+    no_ios: نسخة iOS من TalkFutures قيد المراجعة من قبل Apple وستكون جاهزة قريباً جداً.
     title: ما هذا؟
     nav_title: حول
     subtitle: يتيح Gabber التفاعل مع مجتمعك لمشاركة تجاربك المشتركة وفهمها
