@@ -1,7 +1,7 @@
 <template lang="pug">
 loading-full-layout(
   v-if="apiInProgress || apiErrors.length > 0"
-  loading-message="Fetching Gabber Session",
+  loading-message="Fetching TalkFutures Conversation",
   :is-loading="apiInProgress",
   :errors="apiErrors",
   :back-route="sessionListRoute"
@@ -11,7 +11,7 @@ full-layout.session-detail(v-else-if="session")
     slot="left",
     :session="session",
     :annotations="annotations",
-    :query.sync="query"
+    :query.sync="query",
     :topics.sync="topicFilters",
     :members.sync="memberFilters",
     :sortMode.sync="sortMode"
@@ -108,7 +108,7 @@ full-layout.session-detail(v-else-if="session")
 
   template(slot="mobileRight")
     span.icon: fa(icon="info")
-    span Gabber info
+    span TalkFutures info
 </template>
 
 <script>

@@ -197,7 +197,7 @@ project:
     join_failed: No se pudo unir al tema, por favor intente de nuevo
     leave_confirm: ¿Estás seguro de que quieres abandonar este tema?
     leave_failed: Error al salir del tema, por favor intente de nuevo
-
+    link_future: Consulta más información acerca de
 
 
 session:
@@ -257,7 +257,7 @@ shared:
     copyright: Un tema de investigación en
 
   site_header:
-    logout_action: Cerrar conversacion
+    logout_action: Cerrar conversación
 
 
 
@@ -310,11 +310,11 @@ pre_register:
     url: https://docs.google.com/forms/d/e/1FAIpQLSdWN4Zuqj3lA5XPfBhAXg_he9bOyHFw0T0l_jMh48g322g_fw/viewform
   tagline: A partir de septiembre 2018, TalkFutures es una actividad que se llevará a cabo en una plataforma digital, que explora cómo las organizaciones de la Cruz Roja y de la Media Luna Roja podrían prosperar en un mundo que cambia constantemente.
   capturing:
-    title: Capturando perspectivas locales
+    title: Comparte perspectivas locales
     content: A través de una aplicación móvil, los participantes grabarán conversaciones de audio con expertos externos y personal de su Sociedad Nacional sobre cómo la Cruz Roja y la Media Luna Roja podrían adaptarse a los problemas del futuro. Hay nueve temáticas que pueden abordar en sus conversaciones.
   sensemaking:
-    title: Identifique ideas interesantes
+    title: Identifica ideas interesantes
     content: Todas las conversaciones estarán disponibles en una plataforma digital, donde los participantes pueden escuchar puntos de vista alrededor del mundo sobre los nueve temas. La gente puede comentar y resaltar segmentos que le parecen interesantes de cada conversación.
   reuse:
-    title: Tu voz será escuchada en todo el mundo
+    title: Tu voz se escuchará en todo el mundo
     content: Las diez ideas más comentadas y votadas se publicarán en redes sociales y artículos digitales. Todas las ideas discutidas formarán parte del proceso de consulta sobre la Estrategia 2030.

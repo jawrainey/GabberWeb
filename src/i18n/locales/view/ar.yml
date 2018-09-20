@@ -4,12 +4,12 @@
 #
 auth:
   accept_invite:
-    title: أنت مدعو للانضمام إلى مشروع على Gabber
+    title: أنت مدعو للانضمام إلى مشروع على TalkFutures
     nav_title: قبول دعوة
     loading_title: مصادقة
     bad_token_title: رمز غير صالح
     subtitle: اشترك أدناه للانضمام إلى المشروع
-    info: يتيح لك Gabber تسجيل المقابلات المنظمة وتوضيحها
+    info: يتيح لك TalkFutures تسجيل المقابلات المنظمة وتوضيحها
     email_field:
       label: البريد الإلكتروني
       placeholder: me@example.com
@@ -33,7 +33,7 @@ auth:
     success_body: لقد أرسلنا رمزًا إلى {email} ، إذا كان موجودًا في نظامنا ، فانقر على الرابط في بريدك الإلكتروني لإعادة تعيين كلمة المرور.
 
   login:
-    title: تسجيل الدخول إلى Gabber
+    title: تسجيل الدخول إلى TalkFutures
     nav_title: تسجيل الدخول
     or: أو
     signup_action: انشئ حساب
@@ -102,7 +102,7 @@ base:
     no_ios: نسخة iOS من TalkFutures قيد المراجعة من قبل Apple وستكون جاهزة قريباً جداً.
     title: ما هذا؟
     nav_title: حول
-    subtitle: يتيح Gabber التفاعل مع مجتمعك لمشاركة تجاربك المشتركة وفهمها
+    subtitle: يتيح TalkFutures التفاعل مع مجتمعك لمشاركة تجاربك المشتركة وفهمها
     content:
       strapline: يساعد TalkFutures في بناء وتسجيل المحادثات حول كيفية تمكن الصليب الأحمر والهلال الأحمر من مواجهة تحديات المستقبل. تظهر المحادثات المسجلة على موقع الانترنت حيث يمكن للأشخاص التعليق على مناقشاتك وإلقاء الضوء عليها ومشاركتها.
       prepare:

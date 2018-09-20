@@ -197,6 +197,7 @@ project:
     join_failed: Failed to join theme, please try again
     leave_confirm: Are you sure you want to leave this theme?
     leave_failed: Failed to leave theme, please try again
+    link_future: Find out more about
 
 
 

@@ -4,7 +4,7 @@
     :in-progress="apiInProgress",
     :is-editing="isEditingInfo || isEditingMembers",
     :project="project",
-    :readonly="readonly"
+    :readonly="readonly",
     @startEdit="startEdit",
     @stopEdit="cancelEdit",
     @editMembers="isEditingMembers = true",
@@ -28,6 +28,10 @@
     :disabled="apiInProgress"
   )
   project-info(v-else, :project="project", :readonly="readonly")
+  .columns
+    .column.border-top
+      h4.title.is-7 {{ $t('comp.project.project_pill.link_future') }}&nbsp;
+        a(:href="url", target="_blank").has-text-weight-normal {{ projectContent.title }}
 </template>
 
 <script>
@@ -41,6 +45,63 @@ import ProjectMembers from './ProjectMembers'
 import ProjectInfo from './ProjectInfo'
 import { mapGetters } from 'vuex'
 
+export const URLS = {
+  5: {
+    'ar': 'https://future-rcrc.com/2018/08/21/future-of-work/?lang=ar',
+    'en': 'https://future-rcrc.com/2018/05/03/future-of-work/',
+    'es': 'https://future-rcrc.com/2018/05/31/labor-futura/',
+    'fr': 'https://future-rcrc.com/2018/07/24/lavenir-du-travail/'
+  },
+  6: {
+    'ar': 'https://future-rcrc.com/2018/08/21/health-of-the-future/?lang=ar',
+    'en': 'https://future-rcrc.com/2018/05/03/health-of-the-future/',
+    'es': 'https://future-rcrc.com/2018/05/31/salud-en-el-futuro/',
+    'fr': 'https://future-rcrc.com/2018/07/24/lavenir-de-la-sante/'
+  },
+  7: {
+    'ar': 'https://future-rcrc.com/2018/08/20/natural-disasters-climate-change-and-depletion-of-resources/?lang=ar',
+    'en': 'https://future-rcrc.com/2018/05/03/natural-disasters-climate-change-and-depletion-of-resources/',
+    'es': 'https://future-rcrc.com/2018/05/31/desastres-naturales-cambio-climatico-y-agotamiento-de-recursos/?lang=es',
+    'fr': 'https://future-rcrc.com/2018/07/24/catastrophes-et-changements-climatiques/?lang=fr'
+  },
+  8: {
+    'ar': 'https://future-rcrc.com/2018/08/21/conflict-and-poverty/?lang=ar',
+    'en': 'https://future-rcrc.com/2018/05/03/fragility-conflict-violence-and-development/',
+    'es': 'https://future-rcrc.com/2018/05/31/fragilidad-conflicto-violencia-y-desarrollo/?lang=es',
+    'fr': 'https://future-rcrc.com/2018/07/24/conflits-et-pauvrete/?lang=fr'
+  },
+  9: {
+    'ar': 'https://future-rcrc.com/2018/08/21/new-communities/?lang=ar',
+    'en': 'https://future-rcrc.com/2018/05/31/nuevas-comunidades/?lang=es',
+    'es': 'https://future-rcrc.com/2018/05/31/poder-y-gobierno/',
+    'fr': 'https://future-rcrc.com/2018/07/24/nouvelles-communautes-et-villes/?lang=fr'
+  },
+  10: {
+    'ar': 'https://future-rcrc.com/2018/08/21/new-communities/?lang=ar',
+    'en': 'https://future-rcrc.com/2018/05/03/new-communities/',
+    'es': 'https://future-rcrc.com/2018/05/31/nuevas-comunidades/?lang=es',
+    'fr': 'https://future-rcrc.com/2018/07/24/nouvelles-communautes-et-villes/?lang=fr'
+  },
+  11: {
+    'ar': 'https://future-rcrc.com/2018/08/21/new-technologies/?lang=ar',
+    'en': 'https://future-rcrc.com/2018/05/03/adapting-to-and-experimenting-with-new-technologies-and-dynamics/',
+    'es': 'https://future-rcrc.com/2018/05/31/adaptacion-y-experimentacion-con-nuevas-tecnologias-y-dinamicas/?lang=es',
+    'fr': 'https://future-rcrc.com/2018/07/24/technologies-emergentes/?lang=fr'
+  },
+  12: {
+    'ar': 'https://future-rcrc.com/2018/08/21/future-of-financing/',
+    'en': 'http://future-rcrc.com/2018/05/03/financing-growing-humanitarian-and-development-needs/',
+    'es': 'http://future-rcrc.com/2018/05/31/financiacion-de-la-atencion-de-crecientes-necesidades-humanitarias-y-de-desarrollo/',
+    'fr': 'https://future-rcrc.com/2018/08/21/future-of-financing/'
+  },
+  13: {
+    'ar': 'https://future-rcrc.com/2018/08/21/participation-and-engagement/?lang=ar',
+    'en': 'https://future-rcrc.com/2018/05/03/participation-and-engagement/',
+    'es': 'https://future-rcrc.com/2018/05/31/participacion-y-colaboracion-en-eso-estamos-todos/?lang=es',
+    'fr': 'https://future-rcrc.com/2018/07/24/participation-et-mobilisation/?lang=fr'
+  }
+}
+
 export default {
   mixins: [ ProjectPropMixin, ApiWorkerMixin ],
   components: { Message, ProjectHeader, ProjectEdit, ProjectMembers, ProjectInfo },
@@ -50,11 +111,13 @@ export default {
   data: () => ({
     isEditingInfo: false,
     isEditingMembers: false,
-    changes: {}
+    changes: {},
+    URLS
   }),
   computed: {
     ...mapGetters(['currentUser']),
-    canDelete () { return this.isOwner && !this.apiInProgress }
+    url () { return this.URLS[this.project.id][this.$store.getters.currentLocale.code] },
+    projectContent () { return this.$store.getters.projectContentByLanguage(this.project) }
   },
   methods: {
     startEdit () {
@@ -139,6 +202,9 @@ export default {
 </script>
 
 <style lang="sass">
+
+.border-top
+  border-top: 1px solid #5E6D6F
 
 .project-item
   &:not(:last-child)

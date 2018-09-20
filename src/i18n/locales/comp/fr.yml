@@ -60,14 +60,14 @@ comment:
 
 consent:
   consent_form:
-    title: Consentement Gabber
-    subtitle: Revoyez comment vous voulez que votre conversation soit utilisée sur Gabber
+    title: Consentement TalkFutures
+    subtitle: Revoyez comment vous voulez que votre conversation soit utilisée sur TalkFutures
     session_title: La conversation qui a été enregistrée
     project_title: Le thème associé à votre conversation
     perms_title: Qui aimeriez-vous avoir accès à cette conversation?
     research:
       title: Il n'y a actuellement aucun chercheur impliqué dans ce thème
-      body: Votre enregistrement et les métadonnées associées (qui a pris part, quand, quels sujets ont été abordés, etc.) seront accessibles au personnel de recherche et aideront à comprendre comment les outils numériques peuvent vous et les autres citoyens vous aider à vous intérésser à la recherche qualitative et comment les fichiers audio peuvent la rendre plus accessible. Tout travail publié résultant de données capturées via Gabber n'inclura jamais de détails pouvant être utilisés pour vous identifier ou identifier d'autres participants.
+      body: Votre enregistrement et les métadonnées associées (qui a pris part, quand, quels sujets ont été abordés, etc.) seront accessibles au personnel de recherche et aideront à comprendre comment les outils numériques peuvent vous et les autres citoyens vous aider à vous intérésser à la recherche qualitative et comment les fichiers audio peuvent la rendre plus accessible. Tout travail publié résultant de données capturées via TalkFutures n'inclura jamais de détails pouvant être utilisés pour vous identifier ou identifier d'autres participants.
       statement: Pour plus de détails, y compris comment vous désinscrire, veuillez consulter notre
       link: Rapport de recherche.
       embargo: 'Remarque: votre conversation sera soumise à un embargo de 24 heures où seuls les participants à la conversation pourront écouter. Après cette période, la conversation audio sera disponible sur la base du consentement que vous aurez choisi ci-dessous.'
@@ -76,9 +76,9 @@ consent:
     private_title: Membres
     private_body: – Seules les personnes qui sont membres du thème peuvent découvrir ou écouter cette conversation.
     public_title: Toutes les personnes
-    public_body: – Toute personne visitant Gabber peut découvrir et écouter cet enregistrement audio.
+    public_body: – Toute personne visitant TalkFutures peut découvrir et écouter cet enregistrement audio.
     review_title: Décision de révision
-    no_show: Vous ne serez pas visible à Gabber
+    no_show: Vous ne serez pas visible à TalkFutures
     appearance_label: Comment vous apparaissez
     access_label: Qui a accès
     submit_action: Mettre à jour le consentement
@@ -88,7 +88,7 @@ consent:
       administrators: Administrateurs du thème
       participant: Participants à cette conversation
       member: Les membres de ce thème
-      public: Toute personne visitant le site Web de Gabber
+      public: Toute personne visitant le site Web de TalkFutures
 
   consent_success:
     title: Consentement mis à jour
@@ -137,12 +137,12 @@ project:
       private: Privé
     perms_warn:
       title: Attention!
-      body: Gabber respectera toujours le consentement d'un participant, donc à moins que tous les participants n'y aient consenti, un Gabber privé ne peut pas être rendu public.
+      body: TalkFutures respectera toujours le consentement d'un participant, donc à moins que tous les participants n'y aient consenti, un Gabber privé ne peut pas être rendu public.
       action: Je comprends
     cancel_action: Annuler
     default_submit_action: Sauvegarder
     private_body: Seuls vous et les participants invités verront votre thème
-    public_body: N'importe qui sur Gabber verra et sera en mesure de rejoindre votre thème
+    public_body: N'importe qui sur TalkFutures verra et sera en mesure de rejoindre votre thème
 
   project_header:
     members_action: Membres
@@ -197,7 +197,7 @@ project:
     join_failed: Impossible de rejoindre le thème, veuillez réessayer
     leave_confirm: Êtes-vous sûr de vouloir quitter ce thème?
     leave_failed: Impossible de quitter le thème, veuillez réessayer
-
+    link_future: En savoir plus sur
 
 
 session:
@@ -267,7 +267,7 @@ topic:
     title: les Rubriques
     warn_title: Attention
     warn_body: La modification de ces rubriques mettra à jour les conversations existantes
-    help_body: Ajoutez des sujets pour les personnes à discuter dans leurs Gabbers
+    help_body: Ajoutez des sujets pour les personnes à discuter dans leurs TalkFutures
     placeholder: Par Exemple. Un sujet à propos de ...
     add_action: Ajouter une rubrique
 

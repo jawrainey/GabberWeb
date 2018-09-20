@@ -4,12 +4,12 @@
 #
 auth:
   accept_invite:
-    title: Vous êtes invité à rejoindre un thème sur Gabber
+    title: Vous êtes invité à rejoindre un thème sur TalkFutures
     nav_title: Accepter l'invitation
     loading_title: Récupération de votre invitation
     bad_token_title: Jeton invalide
     subtitle: Inscrivez-vous ci-dessous pour rejoindre le thème
-    info: Gabber vous permet d'enregistrer et d'commentateur des interviews structurées
+    info: TalkFutures vous permet d'enregistrer et d'commentateur des interviews structurées
     email_field:
       label: Email
       placeholder: me@example.com
@@ -22,7 +22,7 @@ auth:
     submit_action: Soumettre
 
   forgot:
-    title: Réinitialiser votre mot de passe Gabber
+    title: Réinitialiser votre mot de passe TalkFutures
     nav_title: Mot de Passe oublié
     subtitle: Soumettez votre adresse e-mail et nous vous enverrons un lien pour réinitialiser votre mot de passe.
     email_field:
@@ -33,7 +33,7 @@ auth:
     success_body: Nous avons envoyé un code à {email}, s'il existe dans notre système, cliquez sur le lien dans votre e-mail pour réinitialiser votre mot de passe.
 
   login:
-    title: Connexion à Gabber
+    title: Connexion à TalkFutures
     nav_title: S'identifier
     or: ou
     signup_action: créer un compte
@@ -50,7 +50,7 @@ auth:
     failed_body: Connexion non valide, veuillez réessayer
 
   register:
-    title: Créer un compte Gabber
+    title: Créer un compte TalkFutures
     nav_title: S'inscrire!
     login_action: Connectez-vous à votre compte
     name_field:
@@ -102,7 +102,7 @@ base:
     no_ios: La version iOS de Talk Futures est en cours de révision par Apple et sera prête très bientôt.
     title: Qu'Est-ce que c'est?
     nav_title: A propos
-    subtitle: Gabber vous permet de vous engager avec votre communauté pour partager et comprendre vos expériences
+    subtitle: TalkFutures vous permet de vous engager avec votre communauté pour partager et comprendre vos expériences
     content:
       strapline: TalkFutures aide à structurer et à enregistrer des conversations sur la manière dont la Croix-Rouge et le Croissant-Rouge peuvent s'adapter aux défis du futur. Les conversations enregistrées apparaissent sur le site Web où les gens peuvent commenter, mettre en évidence et partager leurs discussions.
       prepare:
@@ -183,8 +183,8 @@ project:
     create_failed_body: Impossible de créer le thème. Veuillez réessayer.
 
   session_consent:
-    title: Consentement de Gabber
-    nav_title: Consentement de Gabber
+    title: Consentement de TalkFutures
+    nav_title: Consentement de TalkFutures
     loading_title: Récupération des informations de consentement
     info_title: Votre info
     privacy_body: Ce sont les seules informations personnelles que nous sauvegardons à votre sujet et elles ne seront jamais rendues publiques
@@ -203,7 +203,7 @@ project:
     no_annotations_title: Pas d'commentaires
     no_annotations: Il n'y a pas d'commentaires à ce moment, voulez vous ajouter une commentaire?
     no_filtered_annotations: Aucune commentaire ne correspond à votre requête, essayez de l'ajuster dans la barre latérale
-    fetch_failed_body: Ce  Gabber n'est pas retrouvé ou ça n'existe pas
+    fetch_failed_body: Ce TalkFutures n'est pas retrouvé ou ça n'existe pas
     create_failed_body: Impossible de créer une commentaire. Veuillez réessayer.
 
   session_list:

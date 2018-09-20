@@ -3,11 +3,7 @@
      "apps": [],
      "details": [
        {
-         "appID": "J3676MPZ85.uk.ac.ncl.openlab.gabber",
-         "paths": ["/verify/*"]
-       },
-       {
-         "appID": "J3676MPZ85.uk.ac.ncl.openlab.ifrc.gabber",
+         "appID": "J3676MPZ85.uk.ac.ncl.openlab.talkfutures",
          "paths": ["/verify/*"]
        }
      ]

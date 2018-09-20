@@ -67,7 +67,7 @@ auth:
       title: Género
       custom: ¿Cuál es su género?
     society: Sociedad Nacional
-    role: Tu papel en la Cruz Roja y de la Media
+    role: Cuál es tu puesto en la Cruz Roja y la Media Luna Roja
     language:
       title: Idioma preferido
       description: Estos datos también se usarán en futuras comunicaciones con usted.
@@ -106,7 +106,7 @@ base:
     content:
       strapline: TalkFutures ayuda a estructurar y grabar conversaciones sobre cómo la Cruz Roja y la Media Luna Roja pueden adaptarse a los desafíos del futuro. Las conversaciones grabadas aparecen en el sitio web donde las personas pueden comentar, destacar y compartir sus discusiones.
       prepare:
-        title: ¡Involucrado!
+        title: ¿Cómo participar?
         theme:
           title: Elige un tema del que te gustaría charlar
           subtitle: Cada tema cuenta con una descripción corta. Te recomendamos revisar los temas con las personas que tendrás la conversación.
@@ -131,14 +131,14 @@ base:
   home:
     title: Estructura, graba y comentario conversaciones de audio
     subtitle: Escucha, comentario y discute en colaboración las conversaciones grabadas
-    nav_title: Casa
+    nav_title: Inicio
     action: Explora Conversaciones
 
   not_found:
     title: Página no encontrada
     subtitle: No se pudo encontrar la página que estabas buscando, verifica que tu URL sea correcta.
     nav_title: Extraviado
-    back_action: Vete a casa
+    back_action: Vete a Inicio
 
   privacy:
     title: Nuestra política de privacidad

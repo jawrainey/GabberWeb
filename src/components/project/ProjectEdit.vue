@@ -50,7 +50,7 @@
               option(:value="2")
                 | {{ $t('comp.project.project_edit.org_field.options.other') }}
           .help
-            b: a(href="mailto:admin@gabber.audio")
+            b: a(href="mailto:admin@future-rcrc.com")
               |  {{ $t('comp.project.project_edit.contact.before_link') }}
             |  {{ $t('comp.project.project_edit.contact.after_link') }}
       .field
