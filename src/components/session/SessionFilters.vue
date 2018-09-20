@@ -94,7 +94,11 @@ export default {
     sortMode: { type: String, required: true }
   },
   computed: {
-    projectContent () { return this.$store.getters.projectContentByLanguage(this.project) },
+    projectContent () {
+      let project = this.$store.getters.projectContentByLanguage(this.project)
+      project.topics = project.topics.filter(p => p.is_active)
+      return project
+    },
     nationalSocieties () { return this.NATIONAL_SOCS },
     ageRanges () { return this.AGES },
     genderByLanguage () { return this.GENDERS[this.$i18n.locale] },
