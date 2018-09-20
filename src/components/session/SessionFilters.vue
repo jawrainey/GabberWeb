@@ -49,7 +49,7 @@
         select(v-model="selectedTopic", @change="topicChanged")
           option(value="-1", selected="selected") {{$t('comp.session.session_filters.filters.topic.default')}}
           option(:value="topic.id", v-for="topic in projectContent.topics") {{ topic.text }}
-  .field.members-field
+  .field.members-field(v-if="uniqueParticipants.length > 0")
     label.label {{$t('comp.session.session_filters.member_field.label')}}
     .bubble-list.is-multiline.is-size-3
       member-option(
