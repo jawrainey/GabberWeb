@@ -134,6 +134,7 @@ base:
     subtitle: Écoutez, annotez et discutez ensemble les  conversations enregistrées
     nav_title: Accueil
     action: Explorer Conversations
+    welcome: Bienvenue à TalkFutures
 
   not_found:
     title: Page non trouvée

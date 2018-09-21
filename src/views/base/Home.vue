@@ -4,13 +4,16 @@ simple-layout
     .columns.is-centered
       .column.is-three-fifths
         main
+          .columns.is-mobile
+            .column.has-text-centered
+              .title.is-2.is-size-3-mobile.has-text-weight-semibold.pad-top
+                | {{$t('view.base.home.welcome')}}
+              p.strapline.is-size-5.is-size-6-mobile {{$t('view.base.about.content.strapline')}}
           .video-container
             iframe(src='https://www.youtube.com/embed/mIbTK3wOwD4', frameborder='0', allowfullscreen='')
-          p.strapline.is-size-5.is-size-6-mobile {{$t('comp.pre_register.tagline')}}
           .columns.is-mobile
             .column.is-half.has-text-centered
-              p.is-italic.is-4 {{$t('view.base.about.no_ios')}}
-              a.is-hidden
+              a(:href='iOSURL')
                 img(:src='iosBadge' width="140" height="50")
             .column.is-half.has-text-centered
               a(:href='androidURL')
@@ -70,7 +73,7 @@ export default {
     width: 420px
     height: 234px
     overflow: hidden
-    margin: 1em auto
+    margin: 1em auto 2em auto
     padding: 0 1em !important
 
   .video-container
@@ -81,6 +84,8 @@ export default {
       width: 420px
       height: 234px
 
+  .pad-top
+    padding-top: 1em
   .ifrc-logo
     height: 20px
     width: 20px
@@ -117,7 +122,6 @@ export default {
 
   .strapline
     font-size: 22px
-    margin-bottom: 1em
 
   .branding
     max-height: 200px

@@ -1,24 +1,9 @@
 <template lang="pug">
 simple-layout
   main.padding
-    .columns.is-mobile.is-centered.no-bottom
-      .column.is-two-thirds.no-bottom
-        .columns.is-vcentered
-          .column.has-text-centered
-            img.branding.logo(src="/static/img/logo-with-text-s.png", alt="TalkFutures logo")
-            p.strapline.is-size-5.is-size-6-mobile {{$t('view.base.about.content.strapline')}}
-        .columns.is-mobile
-          .column.is-half.has-text-centered
-            p.is-italic.is-4 {{$t('view.base.about.no_ios')}}
-            a.is-hidden
-              img(:src='iosBadge' width="140" height="50")
-          .column.is-half.has-text-centered
-            a(:href='androidURL')
-              img(:src='androidBadge' width="150" height="50")
-        hr
     .columns.is-mobile.is-centered
       .column.is-two-thirds
-        .title.is-2.is-size-5-mobile.has-text-weight-semibold
+        .title.is-2.is-size-3-mobile.has-text-weight-semibold
           | {{$t('view.base.about.content.prepare.title')}}
         hr
         .columns.is-vcentered

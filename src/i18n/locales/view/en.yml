@@ -136,6 +136,7 @@ base:
     subtitle: Listen, annotate and collaboratively discuss recorded conversations
     nav_title: Home
     action: Explore Conversations
+    welcome: Welcome to TalkFutures
 
   not_found:
     title: Page Not Found

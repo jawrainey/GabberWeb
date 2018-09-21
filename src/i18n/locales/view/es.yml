@@ -133,6 +133,7 @@ base:
     subtitle: Escucha, comentario y discute en colaboración las conversaciones grabadas
     nav_title: Inicio
     action: Explora Conversaciones
+    welcome: Bienvenido a TalkFutures
 
   not_found:
     title: Página no encontrada
