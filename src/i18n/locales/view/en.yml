@@ -163,6 +163,9 @@ base:
     title: Cookies
     nav_title: Cookies
     subtitle: How TalkFutures uses cookies
+
+  contact:
+    title: Contact Us
 #
 # Project Views
 #

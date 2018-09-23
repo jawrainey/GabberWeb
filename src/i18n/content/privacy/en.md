@@ -68,19 +68,7 @@ Use of this Site is governed by, and subject to, our [Terms of Use](/terms). Thi
 Transfers of Personal Data Outside the EEA: The personal data that we collect from you may be transferred to, and stored at, a destination outside the European Economic Area ("EEA"). It may also be processed by staff operating outside the EEA who work for us or for one of our suppliers. By submitting your personal data, you agree to this transfer, storing or processing. We will take all steps reasonably necessary to ensure that your data is treated securely and in accordance with this privacy policy.
 
 ### Contact Information:
-Should you have any questions, contact us:
-
-**Address**:  
-Open Lab  
-Floor 1  
-Urban Sciences Building  
-1 Science Square  
-Science Central  
-Newcastle Upon Tyne  
-NE4 5TG  
-
-**Phone**: +44 191 20  84642 | 84630  
-**Email**: openlab-admin@newcastle.ac.uk  
+Should you have any questions, then email us [innovation.team@ifrc.org](mailto:innovation.team@ifrc.org)
 
 ### Effective Date:
 May 25, 2018

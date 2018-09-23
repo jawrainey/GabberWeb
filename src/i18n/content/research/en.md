@@ -10,19 +10,7 @@ other citizens engaging in qualitative research practices and how audio can make
 
 ### Contact Information:
 
-If you have any questions about our research in relation to TalkFutures, including how you can withdraw your data, then please contact us:
-
-**Address**:  
-Open Lab  
-Floor 1  
-Urban Sciences Building  
-1 Science Square  
-Science Central  
-Newcastle Upon Tyne  
-NE4 5TG  
-
-**Phone**: +44 191 20  84642 | 84630  
-**Email**: openlab-admin@newcastle.ac.uk  
+If you have any questions about our research in relation to TalkFutures, including how you can withdraw your consent, then please email us [talk@future-rcrc.com](mailto:talk@future-rcrc.com)
 
 ### Effective Date:
 May 25, 2018

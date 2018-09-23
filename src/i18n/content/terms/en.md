@@ -84,19 +84,7 @@ The failure by us to partially or fully exercise any rights or the waiver of any
 Any and all notices to be given by either one of us to the other pursuant to or in connection with these Terms of Use shall be deemed sufficiently given when forwarded by e-mail in each case addressed to you at the e-mail address you have given us or to us at the e-mail address displayed on the Service.
 
 ### Contact Information:
-Should you have any questions, contact us:
-
-**Address**:  
-Open Lab  
-Floor 1  
-Urban Sciences Building  
-1 Science Square  
-Science Central  
-Newcastle Upon Tyne  
-NE4 5TG  
-
-**Phone**: +44 191 20  84642 | 84630  
-**Email**: openlab-admin@newcastle.ac.uk  
+Should you have any questions, then email us [innovation.team@ifrc.org](mailto:innovation.team@ifrc.org)
 
 ### Effective Date:
 May 25, 2018

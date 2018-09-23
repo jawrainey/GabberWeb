@@ -16,6 +16,8 @@ header.site-header.hero
           span {{$t('view.project.project_list.nav_title')}}
         router-link.navbar-item(:to="aboutRoute", :class="routeClass(aboutRoute)")
           span {{$t('view.base.about.nav_title')}}
+        a.navbar-item(href="mailto:innovation.team@ifrc.org")
+          span {{$t('view.base.contact.title')}}
         template(v-if="!isLoggedIn")
           a.navbar-item(@click.prevent="pushLogin", :class="routeClass(loginRoute)")
             span {{$t('view.auth.login.nav_title')}}
