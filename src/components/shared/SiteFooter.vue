@@ -1,6 +1,5 @@
 <template lang="pug">
-footer
-  hr
+footer.container.column.is-three-fifths.add-borders
   nav.level
     .level-item
       router-link.is-text(:to="cookiesRoute")
@@ -33,6 +32,16 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+  .add-borders
+      border-top: 1px solid #282f2f
+      border-bottom: 1px solid #282f2f
+      padding: 1em 0
+      margin: 1em auto
+  a:hover, a.is-active
+    color: #FFF
+    border-bottom: 1px solid #E21E26
+  .level-item, .level-item > a
+    color: #FFF
   .ifrc-logo
     height: 20px
     width: 20px
