@@ -48,7 +48,7 @@ const PLAYER_CONFIG = {
   // cursorColor: '#38597E',
   cursorColor: '#fff',
   cursorWidth: 2,
-  progressColor: '#1BBC9C',
+  progressColor: '#ED4E56',
   waveColor: '#5E6D6E',
   scrollParent: true,
   minPxPerSec: 0,
