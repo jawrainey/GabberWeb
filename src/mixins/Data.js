@@ -457,7 +457,7 @@ export const NATIONAL_SOCS = [
   },
   {
     'id': 113,
-    'name': 'Red Crescent Society of the Islamic Republic of Iran'
+    'name': 'Iranian Red Crescent Society'
   },
   {
     'id': 114,
@@ -637,75 +637,75 @@ export const NATIONAL_SOCS = [
   },
   {
     'id': 158,
-    'name': 'The Barbados Red Cross Society'
+    'name': 'Barbados Red Cross Society'
   },
   {
     'id': 159,
-    'name': 'The Canadian Red Cross Society'
+    'name': 'Canadian Red Cross'
   },
   {
     'id': 160,
-    'name': 'The Comoros Red Crescent'
+    'name': 'Comoros Red Crescent'
   },
   {
     'id': 161,
-    'name': 'The Gambia Red Cross Society'
+    'name': 'Gambia Red Cross Society'
   },
   {
     'id': 162,
-    'name': 'The Guyana Red Cross Society'
+    'name': 'Guyana Red Cross Society'
   },
   {
     'id': 163,
-    'name': 'The Netherlands Red Cross'
+    'name': 'Netherlands Red Cross'
   },
   {
     'id': 164,
-    'name': 'The Palestine Red Crescent Society'
+    'name': 'Palestine Red Crescent Society'
   },
   {
     'id': 165,
-    'name': 'The Red Cross of Serbia'
+    'name': 'Red Cross of Serbia'
   },
   {
     'id': 166,
-    'name': 'The Red Cross of The Former Yugoslav Republic of Macedonia'
+    'name': 'Red Cross of The Former Yugoslav Republic of Macedonia'
   },
   {
     'id': 167,
-    'name': 'The Red Cross Society of Bosnia and Herzegovina'
+    'name': 'Red Cross Society of Bosnia and Herzegovina'
   },
   {
     'id': 168,
-    'name': 'The Republic of Korea National Red Cross'
+    'name': 'Republic of Korea National Red Cross'
   },
   {
     'id': 169,
-    'name': 'The Russian Red Cross Society'
+    'name': 'Russian Red Cross Society'
   },
   {
     'id': 170,
-    'name': 'The Solomon Islands Red Cross'
+    'name': 'Solomon Islands Red Cross'
   },
   {
     'id': 171,
-    'name': 'The South African Red Cross Society'
+    'name': 'South African Red Cross Society'
   },
   {
     'id': 172,
-    'name': 'The Sudanese Red Crescent'
+    'name': 'Sudanese Red Crescent'
   },
   {
     'id': 173,
-    'name': 'The Thai Red Cross Society'
+    'name': 'Thai Red Cross Society'
   },
   {
     'id': 174,
-    'name': 'The Trinidad and Tobago Red Cross Society'
+    'name': 'Trinidad and Tobago Red Cross Society'
   },
   {
     'id': 175,
-    'name': 'The Uganda Red Cross Society'
+    'name': 'Uganda Red Cross Society'
   },
   {
     'id': 176,
@@ -767,7 +767,7 @@ export const NATIONAL_SOCS = [
     'id': 190,
     'name': 'Was your society not listed? Select this and we will be in touch.'
   }
-]
+].sort((a, b) => a.name.localeCompare(b.name))
 
 export const ROLES = {
   'ar': [
