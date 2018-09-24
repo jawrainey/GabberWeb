@@ -101,7 +101,7 @@ base:
   about:
     no_ios: La version iOS de Talk Futures est en cours de révision par Apple et sera prête très bientôt.
     title: Qu'Est-ce que c'est?
-    nav_title: A propos
+    nav_title: À propos
     subtitle: TalkFutures vous permet de vous engager avec votre communauté pour partager et comprendre vos expériences
     content:
       strapline: TalkFutures aide à structurer et à enregistrer des conversations sur la manière dont la Croix-Rouge et le Croissant-Rouge peuvent s'adapter aux défis du futur. Les conversations enregistrées apparaissent sur le site Web où les gens peuvent commenter, mettre en évidence et partager leurs discussions.

@@ -1,12 +1,12 @@
 <template lang="pug">
 simple-layout
-  main.padding
-    .columns.is-mobile.is-centered
+  main.padding.set-bg
+    .columns.is-mobile.is-centered.set-bg
       .column.is-two-thirds
         .title.is-2.is-size-3-mobile.has-text-weight-semibold
           | {{$t('view.base.about.content.prepare.title')}}
         hr
-        .columns.is-vcentered
+        .columns.is-vcentered.set-bg
           .column.is-mobile.is-centered
             .columns.is-half.has-text-centered.is-vcentered
               .column.has-text-centered
@@ -17,7 +17,7 @@ simple-layout
                 p.is-5.is-size-7-mobile
                   | {{$t('view.base.about.content.prepare.theme.subtitle')}}
         hr
-        .columns.is-vcentered
+        .columns.is-vcentered.set-bg
           .column.has-text-centered
             .columns.is-vcentered
               .column.is-half.has-text-centered
@@ -28,7 +28,7 @@ simple-layout
               .column.is-half.has-text-centered
                 img.branding(src="/static/img/talkfutures/add.png")
         hr
-        .columns.is-vcentered
+        .columns.is-vcentered.set-bg
           .column.has-text-centered
             .columns.is-vcentered
               .column.is-half.has-text-centered
@@ -39,7 +39,7 @@ simple-layout
                 p.is-5.is-size-7-mobile
                   | {{$t('view.base.about.content.record.subtitle')}}
         hr
-        .columns.is-vcentered
+        .columns.is-vcentered.set-bg
           .column.has-text-centered
             .columns.is-vcentered
               .column.is-half.has-text-centered
@@ -50,7 +50,7 @@ simple-layout
               .column.is-half.has-text-centered
                 img.branding(src="/static/img/talkfutures/upload.png")
         hr
-        .columns.is-vcentered
+        .columns.is-vcentered.set-bg
           .column.has-text-centered
             .columns.is-vcentered
               .column.is-half.has-text-centered
@@ -61,7 +61,7 @@ simple-layout
                 p.is-5.is-size-7-mobile
                   | {{$t('view.base.about.content.invite.subtitle')}}
         hr
-        .columns
+        .columns.set-bg
           .column
             a.button.is-large.is-outlined.action(href="mailto:innovation.team@ifrc.org")
               | {{ $t('view.base.about.content.contact.action') }}
@@ -88,7 +88,8 @@ export default {
   margin-bottom: 0
 .padding
   padding: 2em 0 0 0
-
+.set-bg
+  background-color: #1F2424
 .branding
   max-height: 200px
   max-width: 100%
