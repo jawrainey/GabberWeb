@@ -205,7 +205,7 @@ project:
     topic_title: Rubrique
     annotations_title: Commentaires
     no_annotations_title: Pas d'commentaires
-    no_annotations: Il n'y a pas d'commentaires à ce moment, voulez vous ajouter une commentaire?
+    no_annotations: Inscrivez-vous pour commenter
     no_filtered_annotations: Aucune commentaire ne correspond à votre requête, essayez de l'ajuster dans la barre latérale
     fetch_failed_body: Ce TalkFutures n'est pas retrouvé ou ça n'existe pas
     create_failed_body: Impossible de créer une commentaire. Veuillez réessayer.

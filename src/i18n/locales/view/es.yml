@@ -204,7 +204,7 @@ project:
     topic_title: Tema
     annotations_title: Comentarios
     no_annotations_title: No hay comentarios
-    no_annotations: Todavía no hay comentarios, ¿por qué no agregar una?
+    no_annotations: Regístrese para comentar
     no_filtered_annotations: No hay comentarios que coincidan con su consulta, cambia el criterío de busqueda en la barra lateral
     fetch_failed_body: No se ha podido encontrar a ese TalkFutures o no exist
     create_failed_body: Error al crear la comentario, por favor intente de nuevo

@@ -204,7 +204,7 @@ project:
     topic_title: موضوع
     annotations_title: الشروح
     no_annotations_title: لا الشروح
-    no_annotations: لا توجد أي تعليقات توضيحية حتى الآن ، فلماذا لا تضيف واحدة؟
+    no_annotations: لسجل للتعليق
     no_filtered_annotations: لا توجد تعليقات توضيحية تطابق بحثك ، حاول تعديله في الشريط الجانبي
     fetch_failed_body: لا يمكن أن تجد أن جاببر أو أنها غير موجودة
     create_failed_body: أخفق إنشاء التعليق التوضيحي ، يرجى المحاولة مرة أخرى
