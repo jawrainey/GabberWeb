@@ -20,7 +20,8 @@ full-layout.session-detail(v-else-if="session")
     span.icon: fa(icon="filter")
     span Filter
   .main(slot="main")
-    h1.title {{$t('view.project.session_detail.title', {name: session.creator.fullname})}}
+    h1.title {{ projectContent.title }}
+    h2.subtitle {{$t('view.project.session_detail.title', {name: session.creator.fullname})}}
 
     .box
       audio-player(
@@ -173,6 +174,7 @@ export default {
   computed: {
     ...mapGetters([ 'currentUser' ]),
     sessionListRoute () { return { name: SESSION_LIST_ROUTE } },
+    projectContent () { return this.$store.getters.projectContentByLanguage(this.project) },
     projectId () { return parseInt(this.$route.params.project_id) },
     sessionId () { return this.$route.params.session_id },
     session () { return this.$store.getters.sessionById(this.sessionId) },
