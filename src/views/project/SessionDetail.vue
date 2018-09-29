@@ -99,9 +99,8 @@ full-layout.session-detail(v-else-if="session")
 
       action-box(v-if="!newAnnotation && filteredAnnotations.length === 0", :title="$t('view.project.session_detail.no_annotations_title')")
         p.is-size-5.has-text-centered.current-topic-name(slot="content")
-          span(v-if="annotations.length === 0")
-            a.button.is-success-red(@click.prevent="pushRegister")
-              span {{$t('comp.comment.comment_section.login_action')}}
+          router-link.button.is-success-red(:to="registerRoute" v-if="annotations.length === 0")
+            span {{$t('view.project.session_detail.no_annotations')}}
           span(v-else) {{$t('view.project.session_detail.no_filtered_annotations')}}
   session-info-sidebar(
     slot="right",
@@ -115,9 +114,8 @@ full-layout.session-detail(v-else-if="session")
 
 <script>
 import { ADD_SESSIONS, ADD_ANNOTATIONS, ADD_COMMENTS, SAVE_PROJECT } from '@/const/mutations'
-import { SESSION_LIST_ROUTE } from '@/const/routes'
+import { SESSION_LIST_ROUTE, REGISTER_ROUTE } from '@/const/routes'
 import { AuthEvents } from '@/events'
-
 import { mapGetters } from 'vuex'
 
 import ApiWorkerMixin from '@/mixins/ApiWorker'
@@ -174,6 +172,7 @@ export default {
   },
   computed: {
     ...mapGetters([ 'currentUser' ]),
+    registerRoute () { return { name: REGISTER_ROUTE } },
     sessionListRoute () { return { name: SESSION_LIST_ROUTE } },
     projectContent () { return this.$store.getters.projectContentByLanguage(this.project) },
     projectId () { return parseInt(this.$route.params.project_id) },
