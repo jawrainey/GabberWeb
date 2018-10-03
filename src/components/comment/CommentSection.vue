@@ -14,7 +14,7 @@
   template(v-else)
     br
     blockquote.blockquote.is-warning {{$t('comp.comment.comment_section.blocked_body')}}
-  .buttons.is-centered(v-if="!$store.getters.currentUser")
+  .buttons.is-centered.add-top-spacing(v-if="!$store.getters.currentUser && !parent")
     button.button.is-primary.is-rounded(@click="login")
       | {{$t('comp.comment.comment_section.login_action')}}
 </template>
@@ -48,5 +48,6 @@ export default {
 </script>
 
 <style lang="sass">
-
+.add-top-spacing
+  padding-top: 1em
 </style>
