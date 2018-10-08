@@ -13,8 +13,8 @@ full-layout.session-detail(v-else-if="session")
     span.has-text-weight-semibold Conversation Info
 
   .main.center(slot="main")
-    h1.title {{ projectContent.title }}
-    h2.subtitle {{$t('view.project.session_detail.title', {name: session.creator.fullname})}}
+    h1.title.is-size-4-mobile {{ projectContent.title }}
+    h2.subtitle.is-size-6-mobile {{$t('view.project.session_detail.title', {name: session.creator.fullname})}}
     .box
       audio-player(
         ref="audioPlayer",
@@ -48,7 +48,7 @@ full-layout.session-detail(v-else-if="session")
         @over="t => highlightTopic = t",
         @leave="highlightTopic = null"
       )
-      p.is-size-4.is-size-5-mobile.current-topic-name(v-if="currentTopic")
+      p.is-size-4.is-size-6-mobile.is-italic.current-topic-name(v-if="currentTopic")
         span {{ currentTopic.text }}
         span(v-if="highlightTopic && currentTopic.id !== highlightTopic.id")
           span  → {{highlightTopic.text}}
@@ -57,7 +57,7 @@ full-layout.session-detail(v-else-if="session")
       .level.is-mobile
         .level-left
           .level-item
-            h1.title {{$t('view.project.session_detail.annotations_title')}}
+            h1.title.is-size-4-mobile {{$t('view.project.session_detail.annotations_title')}}
         .level-right
           add-cancel-button.is-medium(
             v-if="currentUser && audioDuration",

@@ -1,20 +1,20 @@
 <template lang="pug">
 a.recommendation.box(:href="url")
   .columns.no-bottom
-    .column.is-narrow.no-padding-bottom.is-hidden-mobile
+    .column.is-narrow.no-padding-bottom.is-hidden-mobile.logo-column
       img.project-logo(:src="session.image")
-    .columns.is-text-overflow
+    .is-text-overflow
       .column.has-text-left.is-clipped
-        .columns.no-bottom.is-vertical-aligned.has-text-center-mobile
+        .columns.no-bottom.is-vertical-aligned
           .column.no-padding-bottom
-            h3.project-title.is-size-4.has-text-weight-bold {{ sessionTitle }}
-        p.is-size-6.subtitle.is-text-overflow.right-pad.is-italic.has-padding-left-right-mobile {{ societies }}
+            h3.project-title.is-size-4.has-text-weight-bold.is-size-6-mobile {{ sessionTitle }}
+        p.is-size-6.subtitle.is-text-overflow.right-pad.is-italic.is-size-7-mobile {{ societies }}
   .level.is-mobile
     .level-left.is-size-7
       .level-item.is-2
         .icon: fa(icon="comment")
         span {{ session.comments }} {{$t('view.project.session_detail.annotations_title')}}
-      .level-item.is-2
+      .level-item.is-2.is-hidden-mobile
         .icon: fa(icon="users")
         span {{ session.participants }} {{$t('comp.session.session_info_sidebar.members_label')}}
       .level-item.is-2
@@ -40,16 +40,6 @@ export default {
 </script>
 
 <style scoped lang="sass">
-
-+mobile
-  .has-text-center-mobile
-    text-align: center
-  .has-padding-left-right-mobile
-    padding: 0 2em
-
-.recommendation:hover
-  border: 0 !important
-
 .right-pad
   padding-right: 1em
 
@@ -64,6 +54,10 @@ export default {
 
 .project-title
   padding-top: .25em
+
+.logo-column
+  padding: 1em 0 0 1em
+
 .project-logo
   max-width: 55px
   max-height: 55px
@@ -76,4 +70,9 @@ export default {
 .recommendation
   -webkit-transition: width 2s
   padding: .5em !important
+
+.recommendation:hover
+  border: 0 !important
+  transform: scale(1.015)
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,.5))
 </style>

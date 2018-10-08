@@ -21,11 +21,12 @@ full-layout.session-list-view(v-else-if="sessions")
     span {{$t('view.project.session_list.mobile_filter_title')}}
 
   template(slot="main")
-    h1.title.is-1.no-bottom.is-inline {{ sessionsCount }} {{$t('view.project.session_list.title')}}
+    h1.title.is-1.is-inline.is-size-4-mobile {{ sessionsCount }} {{$t('view.project.session_list.title')}}
     | &nbsp;
-    span.subtitle.margin-top.is-italic.is-inline(v-if="isLoading") {{$t('view.project.session_list.loading_title')}}
+    br.is-hidden-tablet
+    span.subtitle.margin-top.is-italic.is-inline.is-size-6-mobile(v-if="isLoading") {{$t('view.project.session_list.loading_title')}}
     .columns.is-multiline.add-padding
-      session-pill.column.is-half.add-margin(
+      session-pill.column.is-half.is-45(
         v-for="session in filteredSessions",
         :key="session.id",
         :session="session",
@@ -121,24 +122,24 @@ export default {
   methods: {
     async fetchSessions () {
       this.startApiWork()
+
       let { meta, data } = await this.$api.listProjects()
+
       if (meta.success) {
         data.forEach(project => this.$store.commit(SAVE_PROJECT, project || []))
+
+        if (this.$store.getters.allSessions.length > 0) return
+        let projects = this.$store.getters.allProjects
+        projects.forEach(async project => {
+          // Only request for the sessions if they exist
+          if (project.sessions > 0) {
+            let {meta, data} = await this.$api.getProjectSessions(project.id)
+            if (meta.success) this.$store.commit(ADD_SESSIONS, data || [])
+          }
+        })
       }
-      // We do not care if there are issues fetching
-      // await this.fetchSessionsForProjects()
-      this.endApiWork(meta, this.$t('view.project.session_list.not_found'))
-    },
-    async fetchSessionsForProjects () {
-      // This way we fire multiple requests and load as they respond
-      this.$store.getters.allProjects.forEach(async project => {
-        // Only request for the sessions if they exist
-        if (project.sessions > 0) {
-          let { meta, data } = await this.$api.getProjectSessions(project.id)
-          // We do not care if an error occurred
-          if (meta.success) this.$store.commit(ADD_SESSIONS, data || [])
-        }
-      })
+
+      this.endApiWork(meta)
     },
     viewSession (session) {
       const params = { project_id: session.project_id, session_id: session.id }
@@ -149,19 +150,15 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.no-bottom
-  margin-bottom: 0
-.margin-top
-  padding: 1em 0 0 0
-  margin: 0
 +tablet
-  .add-margin:nth-child(odd)
-    margin-left: -1em
-    margin-right: 1em
-  .add-margin:last-child()
+  .is-45
+    width: 47.5%
+  .is-45:nth-child(odd)
+    margin-right: 2.5%
+  .is-45:last-child()
     margin-bottom: 1em
 .add-padding
-  padding: 2em
+  padding: 1.5em 1em 1em 1em
 .session-list-view
   .main
     max-width: $desktop

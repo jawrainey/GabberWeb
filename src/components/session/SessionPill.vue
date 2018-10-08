@@ -1,10 +1,10 @@
 <template lang="pug">
 .session-pill.box(@click.stop="$emit('view', session)", :style="pillStyle")
   fa.disclosure(icon="chevron-right", size="2x")
-  p.title.is-4.border-bottom {{ projectContent.title }}
+  p.title.is-4.is-5.is-size-6-mobile.border-bottom {{ projectContent.title }}
   .columns.is-multiline
     .column.participants.is-third-tablet
-      h1.title.main-title.is-5
+      h1.title.main-title.is-5.is-size-6-mobile
         member-bubble(:member="session.creator", pad-right)
           fa.mic-icon(icon="microphone", size="lg")
         span {{ forename }}
@@ -161,5 +161,4 @@ export default {
     top: 50%
     transform: translateY(-50%)
     color: $grey
-
 </style>
