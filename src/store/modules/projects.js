@@ -13,6 +13,7 @@ const getters = {
   publicProjects: (state, getters) => state.allProjects.filter(proj =>
     !getters.personalProjects.includes(proj)
   ),
+  allProjects: state => state.allProjects || [],
   projectById: state => id => state.allProjects.find(p => p.id === id),
   projectContentByLanguage: (state, getters) => {
     return function (project) {

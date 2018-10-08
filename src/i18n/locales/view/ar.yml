@@ -133,8 +133,10 @@ base:
     title: هيكل وتسجيل وتعليق المحادثات الصوتية
     subtitle: الاستماع والتعليق على المحادثات المسجلة ومناقشتها بشكل تعاوني
     nav_title: الصفحة الرئيسية
-    action: استكشف المحادثات
+    action: استمع إلى ما قاله الآخرون
     welcome: مرحبا بكم في TalkFutures
+    features:
+          title: محادثات مميزة
 
   not_found:
     title: الصفحة غير موجودة
@@ -169,9 +171,9 @@ base:
 #
 project:
   project_list:
-    title: مشاريع
-    nav_title: مشاريع
-    filter_title: تصفية المشاريع
+    title: المحادثات
+    nav_title: المحادثات
+    filter_title: تصفية المحادثات
     filter_field:
       label: ابحث عن مشروع
       placeholder: مثلا الاسم // المشروع

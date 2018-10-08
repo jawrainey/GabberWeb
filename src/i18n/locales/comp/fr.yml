@@ -205,6 +205,9 @@ session:
     sort_title: Trier les conversations
     filter_title: Filtrer les conversations
     filters:
+      theme:
+        title: Par thème
+        default: Tous les thèmes
       language:
         title: Par Langue
         default: Toutes Les Langues

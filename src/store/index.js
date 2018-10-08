@@ -10,6 +10,7 @@ import sessions from './modules/sessions'
 import annotations from './modules/annotations'
 import comments from './modules/comments'
 import languages from './modules/languages'
+import recommendations from './modules/recommendations'
 
 Vue.use(Vuex)
 
@@ -20,6 +21,7 @@ export const store = new Vuex.Store({
     projects,
     sessions,
     annotations,
-    comments
+    comments,
+    recommendations
   }
 })

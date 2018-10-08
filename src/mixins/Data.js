@@ -835,5 +835,20 @@ export const AGES = [
 ]
 
 export default {
-  data: () => ({ GENDERS, NATIONAL_SOCS, ROLES, AGES })
+  data: () => ({ GENDERS, NATIONAL_SOCS, ROLES, AGES }),
+  methods: {
+    ageOfMember (member) { return this.AGES.find(s => s.id === member.age).text },
+    roleById (member) { return this.ROLES[this.$i18n.locale][member.m_role].title },
+    genderById (member) {
+      let gender = member.gender
+      if (gender === 2) return member.custom
+      else return this.GENDERS[this.$i18n.locale][gender].text
+    },
+    societyById (member) { return this.NATIONAL_SOCS.find(s => s.id === member.society).name },
+    societiesForSessionAsString (session) {
+      let socs = this.NATIONAL_SOCS.filter(s => session.societies.includes(s.id)).map(p => p.name)
+      let last = socs.pop()
+      return socs.length >= 1 ? socs.join(', ') + ' and ' + last : last
+    }
+  }
 }

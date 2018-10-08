@@ -205,6 +205,9 @@ session:
     sort_title: Clasificar Conversaciones
     filter_title: Conversaciones de filtro
     filters:
+      theme:
+        title: Por tema
+        default: Todos los temas
       language:
         title: Por idioma
         default: Todos los idiomas

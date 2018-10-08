@@ -205,6 +205,9 @@ session:
     sort_title: فرز الجلسات
     filter_title: تصفية الدورات
     filters:
+      theme:
+        title: حسب الموضوع
+        default: كل الموضوعات
       language:
         title: حسب اللغة
         default: كل اللغات

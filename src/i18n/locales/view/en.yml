@@ -135,8 +135,10 @@ base:
     title: Structure, Record and Tag Audio Conversations
     subtitle: Listen, annotate and collaboratively discuss recorded conversations
     nav_title: Home
-    action: Explore Conversations
+    action: Listen to what others have said
     welcome: Welcome to TalkFutures
+    features:
+      title: Featured Conversations
 
   not_found:
     title: Page Not Found
@@ -171,9 +173,9 @@ base:
 #
 project:
   project_list:
-    title: Themes
-    nav_title: Themes
-    filter_title: Filter Themes
+    title: Conversations
+    nav_title: Conversations
+    filter_title: Filter Conversations
     filter_field:
       label: Search for a theme
       placeholder: e.g. name / topic

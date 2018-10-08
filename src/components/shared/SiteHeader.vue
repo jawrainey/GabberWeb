@@ -12,7 +12,7 @@ header.site-header.hero
       .navbar-end
         router-link.navbar-item(:to="homeRoute", :class="routeClass(homeRoute)")
           span {{$t('view.base.home.nav_title')}}
-        router-link.navbar-item(:to="projectsRoute", :class="routeClass(projectsRoute)")
+        router-link.navbar-item(:to="conversationsRoute", :class="routeClass(conversationsRoute)")
           span {{$t('view.project.project_list.nav_title')}}
         router-link.navbar-item(:to="aboutRoute", :class="routeClass(aboutRoute)")
           span {{$t('view.base.about.nav_title')}}
@@ -48,7 +48,7 @@ header.site-header.hero
 
 <script>
 import {
-  HOME_ROUTE, ABOUT_ROUTE, PROJECT_LIST_ROUTE, LOGIN_ROUTE
+  HOME_ROUTE, ABOUT_ROUTE, CONVERSATION_LIST_ROUTE, LOGIN_ROUTE
 } from '@/const/routes'
 import { LOGOUT_USER } from '@/const/mutations'
 import { AuthEvents } from '@/events'
@@ -70,7 +70,7 @@ export default {
     isLoggedIn () { return this.$store.getters.currentUser },
     homeRoute () { return { name: HOME_ROUTE } },
     aboutRoute () { return { name: ABOUT_ROUTE } },
-    projectsRoute () { return { name: PROJECT_LIST_ROUTE } },
+    conversationsRoute () { return { name: CONVERSATION_LIST_ROUTE } },
     loginRoute () { return { name: LOGIN_ROUTE } },
     menuClasses () { return { 'is-active': this.mobileNav } }
   },

@@ -5,6 +5,7 @@ import ProjectList from '@/views/project/ProjectList'
 import SessionList from '@/views/project/SessionList'
 import SessionDetail from '@/views/project/SessionDetail'
 import SessionConsent from '@/views/project/SessionConsent'
+import ConversationList from '@/views/base/ConversationList'
 
 export default [
   {
@@ -59,5 +60,17 @@ export default [
     path: '/consent/:token',
     name: ROUTES.CONSENT_ROUTE,
     component: SessionConsent
+  },
+  {
+    path: '/conversations',
+    name: ROUTES.CONVERSATION_LIST_ROUTE,
+    component: ConversationList,
+    meta: { title: 'Conversations' }
+  },
+  {
+    path: '/conversation/:session_id',
+    name: ROUTES.CONVERSATION_ROUTE,
+    component: SessionDetail,
+    meta: { title: 'Conversations' }
   }
 ]

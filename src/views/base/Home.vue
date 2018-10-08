@@ -1,59 +1,53 @@
 <template lang="pug">
 simple-layout
-  section
-    .columns.is-centered
-      .column.is-three-fifths
-        main
-          .columns.is-mobile
-            .column.has-text-centered
-              .title.is-2.is-size-3-mobile.has-text-weight-semibold.pad-top
-                | {{$t('view.base.home.welcome')}}
-              p.strapline.is-size-5.is-size-6-mobile {{$t('view.base.about.content.strapline')}}
-          .video-container
-            iframe(src='https://www.youtube.com/embed/mIbTK3wOwD4', frameborder='0', allowfullscreen='')
+  main.home-page
+    .columns
+      .column.is-two-fifths
+        section.section
+          h1.title.has-text-weight-bold {{$t('view.base.home.welcome')}}
+          p.strapline.is-size-5.is-size-6-mobile {{$t('view.base.about.content.strapline')}}
+          hr
           .columns.is-mobile
             .column.is-half.has-text-centered
-              a(:href='iOSURL')
-                img(:src='iosBadge' width="140" height="50")
+              a.no-border(:href="iOSURL")
+                img(:src='iosBadge' width="140" height="50", alt="Download TalkFutures for iOS")
             .column.is-half.has-text-centered
-              a(:href='androidURL')
-                img(:src='androidBadge' width="150" height="50")
+              a.no-border(:href='androidURL')
+                img(:src='androidBadge' width="150" height="50", alt="Download TalkFutures for Android")
+      .column.is-two-fifths
+        section.section.featured
+          h2.title.has-text-weight-bold {{$t('view.base.home.features.title')}}
+          .recommendations(v-if="recommendedSessions.length <= 0")
+            recommendation-loader.box
+            recommendation-loader.box
+            recommendation-loader.box
+          .recommendations(v-else)
+            recommendation.recommendation(
+              v-for="session in recommendedSessions",
+              :key="session.id",
+              :session="session")
           hr
-          .columns.is-vcentered.side-padding
-            .column.is-half
-              .title.is-4.is-size-5-mobile.has-text-weight-semibold
-                span {{$t('comp.pre_register.capturing.title')}}
-              p.is-5.is-size-7-mobile {{$t('comp.pre_register.capturing.content')}}
-            .column
-              img.branding(src="/static/img/talkfutures/capturing-s.png",
-              alt="Capture conversations with TalkFutures mobile application.")
-          hr
-          .columns.is-vcentered.reverse-on-mobile.side-padding
-            .column.is-half
-              img.branding(src="/static/img/talkfutures/highlighting-s.png",
-              alt="Listen and tag TalkFutures conversations.")
-            .column
-              .title.is-4.is-size-5-mobile.has-text-weight-semibold {{$t('comp.pre_register.sensemaking.title')}}
-              p.is-5.is-size-7-mobile {{$t('comp.pre_register.sensemaking.content')}}
-          hr
-          .columns.is-vcentered.side-padding
-            .column.is-half
-              .title.is-4.is-size-5-mobile.has-text-weight-semibold {{$t('comp.pre_register.reuse.title')}}
-              p.is-5.is-size-7-mobile {{$t('comp.pre_register.reuse.content')}}
-            .column
-              img.branding(src="/static/img/talkfutures/sharing-s.png",
-              alt="Share your favourite TalkFutures conversations with the world.")
+          .is-centered
+            router-link.button.is-success-red.is-medium(:to="conversationsRoute")
+              span {{ $t('view.base.home.action') }}
+              .icon: fa(icon="chevron-right")
 </template>
 
 <script>
-import { PROJECT_LIST_ROUTE } from '@/const/routes'
+import { CONVERSATION_LIST_ROUTE } from '@/const/routes'
+
 import SimpleLayout from '@/layouts/SimpleLayout'
+import Recommendation from '../../components/conversations/Recommendation'
+import RecommendationLoader from '../../components/conversations/RecommendationLoader'
+
+import { ContentLoader } from 'vue-content-loader'
 import { getConfig } from '../../mixins/Config'
 
 export default {
-  components: { SimpleLayout },
+  components: { RecommendationLoader, SimpleLayout, Recommendation, ContentLoader },
   computed: {
-    projectsRoute () { return { name: PROJECT_LIST_ROUTE } },
+    recommendedSessions () { return this.$store.getters.sessionsRecommendations },
+    conversationsRoute () { return { name: CONVERSATION_LIST_ROUTE } },
     androidURL () { return `https://play.google.com/store/apps/details?id=${getConfig('ANDROID_URL')}` },
     iOSURL () { return `https://itunes.apple.com/us/app/${getConfig('IOS_URL')}` },
     androidBadge () { return `/static/img/google/${this.$i18n.locale}.png` },
@@ -68,42 +62,21 @@ export default {
 </style>
 
 <style lang="sass" scoped>
-  .video-container
-    position: relative
-    width: 420px
-    height: 234px
-    overflow: hidden
-    margin: 1em auto 2em auto
-    padding: 0 1em !important
-
-  .video-container
-    iframe, object, embed
-      position: absolute
-      top: 0
-      left: 0
-      width: 420px
-      height: 234px
-
-  .pad-top
-    padding-top: 1em
-  .ifrc-logo
-    height: 20px
-    width: 20px
-  .ifrc-logo:hover
+  .centered
+    align-items: center
+    display: flex
+    justify-content: center
+  .fake-recs
+    height: 92px
+  .recommendations
+    height: 320px
+  .featured
+    padding-top: .5em
+  .no-border > img:hover, .recommendation:hover
+    transform: scale(1.025)
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,.5))
+  .no-border:hover
     border-bottom: none
-  .ifrc-logo > img
-    width: 65px
-    height: 65px
-
-  .add-margin
-    margin: 1rem auto 0 auto
-  .remove-top-margin
-    margin-top: 1em
-  .remove-margin-bottom
-    margin-bottom: 0
-
-  .level-item, .level-item > a
-    color: #FFF
 
   a:hover, a.is-active
     color: #FFF
@@ -121,7 +94,7 @@ export default {
     margin: 2em 0 1.25em 0 !important
 
   .strapline
-    font-size: 22px
+    font-size: .75em
 
   .branding
     max-height: 200px
@@ -143,6 +116,9 @@ export default {
     .side-padding
       padding: 0 1.6em
 
+    .section
+      padding-bottom: 0
+
     .reverse-on-mobile
       display: flex
       flex-direction: column-reverse
@@ -161,4 +137,14 @@ export default {
   +tablet
     .fixed-height
       max-height: 40px !important
+
+    .home-page
+      display: flex
+      justify-content: center
+      height: 80vh !important
+
+      .columns
+        display: flex
+        align-items: center
+        justify-content: center
 </style>

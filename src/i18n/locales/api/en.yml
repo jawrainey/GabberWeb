@@ -57,6 +57,7 @@ consent:
 
 general:
   UNKNOWN: Something went wrong
+  UNKNOWN_TOKEN: The URL you visited does not exist
   TOKEN_EXPIRED: The token provided has expired; default length is one week. You need to re-authenticate
   INVALID_JSON: The request is not valid JSON.
   UNKNOWN_USER: The user making the request does not exist i.e. they are an unknown JWT user.

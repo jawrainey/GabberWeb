@@ -206,6 +206,9 @@ session:
     sort_title: Sort Conversations
     filter_title: Filter Conversations
     filters:
+      theme:
+        title: By theme
+        default: All themes
       language:
         title: By Language
         default: All Languages

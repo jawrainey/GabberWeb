@@ -133,8 +133,10 @@ base:
     title: Structurer, enregistrer et annoter les conversations audio
     subtitle: Écoutez, annotez et discutez ensemble les  conversations enregistrées
     nav_title: Accueil
-    action: Explorer Conversations
+    action: Écoutez ce que d'autres ont dit
     welcome: Bienvenue à TalkFutures
+    features:
+      title: Conversations en vedette
 
   not_found:
     title: Page non trouvée
@@ -170,9 +172,9 @@ base:
 #
 project:
   project_list:
-    title: Thèmes
-    nav_title: Thèmes
-    filter_title: Filtrer les thèmes
+    title: Conversations
+    nav_title: Conversations
+    filter_title: Filtrer les Conversations
     filter_field:
       label: Rechercher un thème
       placeholder: 'Par exemple: Nom // Thème'

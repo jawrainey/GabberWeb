@@ -1,12 +1,19 @@
 <template lang="pug">
 .session-filters
-  h3.subtitle {{$t('comp.session.session_filters.sort_title')}}
+  h2.is-size-4.has-text-weight-semibold.margin-bottom {{$t('comp.session.session_filters.sort_title')}}
   sort-field(
     :value="sortMode",
     @input="v => $emit('update:sortMode', v)",
     label=""
   )
-  h3.subtitle {{$t('comp.session.session_filters.filter_title')}}
+  h2.is-size-4.has-text-weight-semibold.margin-bottom {{$t('comp.session.session_filters.filter_title')}}
+  .field
+    label.label {{$t('comp.session.session_filters.filters.theme.title')}}
+    .control
+      span.select.is-fullwidth
+        select(v-model="selectedTheme", @change="themeChanged")
+          option(value="-1", selected="selected") {{$t('comp.session.session_filters.filters.theme.default')}}
+          option(:value="theme.id", v-for="theme in availableThemes") {{ theme.text }}
   .field
     label.label {{$t('comp.session.session_filters.filters.language.title')}}
     .control
@@ -42,24 +49,6 @@
         select(v-model="selectedAge", @change="ageChanged")
           option(value="-1", selected="selected") {{$t('comp.session.session_filters.filters.age.default')}}
           option(:value="age.id", v-for="age in ageRanges") {{ age.text }}
-  .field
-    label.label {{$t('comp.session.session_filters.filters.topic.title')}}
-    .control
-      span.select.is-fullwidth
-        select(v-model="selectedTopic", @change="topicChanged")
-          option(value="-1", selected="selected") {{$t('comp.session.session_filters.filters.topic.default')}}
-          option(:value="topic.id", v-for="topic in projectContent.topics") {{ topic.text }}
-  .field.members-field(v-if="uniqueParticipants.length > 0")
-    label.label {{$t('comp.session.session_filters.member_field.label')}}
-    .bubble-list.is-multiline.is-size-3
-      member-option(
-        v-for="member in uniqueParticipants",
-        :key="member.id",
-        :member="member",
-        :selected="members.includes(member.user_id)",
-        @select="selectMember(member)",
-        @deselect="deselectMember(member)"
-      )
 </template>
 
 <script>
@@ -78,10 +67,10 @@ export default {
     selectedGender: -1,
     selectedSociety: -1,
     selectedAge: -1,
-    selectedRole: -1
+    selectedRole: -1,
+    selectedTheme: -1
   }),
   props: {
-    project: { type: Object, required: true },
     sessions: { type: Array, required: true },
     query: { type: String, required: true },
     ages: { type: Array, required: true },
@@ -90,21 +79,24 @@ export default {
     societies: { type: Array, required: true },
     languages: { type: Array, required: true },
     topics: { type: Array, required: true },
+    themes: { type: Array, required: true },
     members: { type: Array, required: true },
     sortMode: { type: String, required: true }
   },
   computed: {
-    projectContent () {
-      let project = this.$store.getters.projectContentByLanguage(this.project)
-      project.topics = project.topics.filter(p => p.is_active)
-      return project
-    },
     nationalSocieties () { return this.NATIONAL_SOCS },
     ageRanges () { return this.AGES },
     genderByLanguage () { return this.GENDERS[this.$i18n.locale] },
     roleByLanguage () { return this.ROLES[this.$i18n.locale] },
+    availableThemes () {
+      let data = []
+      let projects = this.$store.getters.allProjects
+      projects.forEach(p => data.push({'id': p.id, 'text': this.$store.getters.projectContentByLanguage(p).title}))
+      return data
+    },
     availableLanguages () {
       let languages = this.$store.getters.availableLanguages
+      if (!languages) return []
       for (let i = 0; i < languages.length; i++) {
         languages[i]['text'] = languages[i]['endonym']
       }
@@ -121,6 +113,14 @@ export default {
     }
   },
   methods: {
+    themeChanged () {
+      if (this.selectedTheme < 0) {
+        this.$emit('update:themes', this.themes.splice(0, 0))
+      } else {
+        this.$emit('update:themes', this.themes.splice(0, this.themes.length))
+        this.$emit('update:themes', this.themes.concat([ this.selectedTheme ]))
+      }
+    },
     roleChanged () {
       if (this.selectedRole < 0) {
         this.$emit('update:roles', this.roles.splice(0, 0))
@@ -164,26 +164,12 @@ export default {
         this.$emit('update:languages', this.languages.splice(0, this.languages.length))
         this.$emit('update:languages', this.languages.concat([ this.selectedLanguage ]))
       }
-    },
-    topicChanged () {
-      if (this.selectedTopic < 0) {
-        this.$emit('update:topics', this.topics.splice(0, 0))
-      } else {
-        this.$emit('update:topics', this.topics.splice(0, this.topics.length))
-        this.$emit('update:topics', this.topics.concat([ this.selectedTopic ]))
-      }
-    },
-    selectMember (member) {
-      this.$emit('update:members', this.members.concat([ member.user_id ]))
-    },
-    deselectMember (member) {
-      this.$emit('update:members', this.members.filter(uId =>
-        uId !== member.user_id
-      ))
     }
   }
 }
 </script>
 
 <style lang="sass">
+.margin-bottom
+  margin-bottom: .5em
 </style>

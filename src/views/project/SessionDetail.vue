@@ -7,22 +7,14 @@ loading-full-layout(
   :back-route="sessionListRoute"
 )
 full-layout.session-detail(v-else-if="session")
-  annotation-filters(
-    slot="left",
-    :session="session",
-    :annotations="annotations",
-    :query.sync="query",
-    :topics.sync="topicFilters",
-    :members.sync="memberFilters",
-    :sortMode.sync="sortMode"
-  )
+  session-info-sidebar(slot="left", :session="session", :project="project")
   template(slot="mobileLeft")
-    span.icon: fa(icon="filter")
-    span Filter
-  .main(slot="main")
+    span.icon: fa(icon="info")
+    span.has-text-weight-semibold Conversation Info
+
+  .main.center(slot="main")
     h1.title {{ projectContent.title }}
     h2.subtitle {{$t('view.project.session_detail.title', {name: session.creator.fullname})}}
-
     .box
       audio-player(
         ref="audioPlayer",
@@ -37,7 +29,7 @@ full-layout.session-detail(v-else-if="session")
             :start="newAnnotation.start_interval",
             :end="newAnnotation.end_interval",
             :disabled="isCreatingAnnotation",
-            :editable="true"
+            :editable="true",
             @change="updateRange"
           )
         transition(name="fade")
@@ -56,10 +48,8 @@ full-layout.session-detail(v-else-if="session")
         @over="t => highlightTopic = t",
         @leave="highlightTopic = null"
       )
-      p.is-size-4.current-topic-name(v-if="currentTopic")
-        span.is-size-5.has-text-grey-light
-          | {{$t('view.project.session_detail.topic_title')}}
-        span  {{ currentTopic.text }}
+      p.is-size-4.is-size-5-mobile.current-topic-name(v-if="currentTopic")
+        span {{ currentTopic.text }}
         span(v-if="highlightTopic && currentTopic.id !== highlightTopic.id")
           span  → {{highlightTopic.text}}
 
@@ -102,14 +92,6 @@ full-layout.session-detail(v-else-if="session")
           router-link.button.is-success-red(:to="registerRoute" v-if="annotations.length === 0")
             span {{$t('view.project.session_detail.no_annotations')}}
           span(v-else) {{$t('view.project.session_detail.no_filtered_annotations')}}
-  session-info-sidebar(
-    slot="right",
-    :session="session"
-  )
-
-  template(slot="mobileRight")
-    span.icon: fa(icon="info")
-    span TalkFutures info
 </template>
 
 <script>
@@ -177,7 +159,10 @@ export default {
     projectContent () { return this.$store.getters.projectContentByLanguage(this.project) },
     projectId () { return parseInt(this.$route.params.project_id) },
     sessionId () { return this.$route.params.session_id },
-    session () { return this.$store.getters.sessionById(this.sessionId) },
+    session () {
+      // TODO: we must set the session topics to local language
+      return this.$store.getters.sessionById(this.sessionId)
+    },
     project () { return this.$store.getters.projectById(this.projectId) },
     annotations () { return this.$store.getters.annotationsForSession(this.sessionId) },
     currentTopic () {
@@ -317,8 +302,10 @@ export default {
 
 <style lang="sass">
 
-.session-detail
+.layout-main
+  margin: 0 auto !important
 
+.session-detail
   .topic-tags .tag
     cursor: pointer
 

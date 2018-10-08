@@ -1,52 +1,23 @@
 <template lang="pug">
 .session-info-sidebar
-  h3.subtitle {{$t('comp.session.session_info_sidebar.title')}}
+  h2.title.is-size-5.is-sidebar-heading {{ projectContent.title }}
+  h2.title.is-size-7.is-inline.is-italic {{ projectContent.description }}
+  hr.is-white
+  h2.title.is-size-5 {{$t('comp.session.session_info_sidebar.title')}}
   label-value(
     :label="$t('comp.session.session_info_sidebar.created_label')",
     :value="sessionDate"
   )
-  label-value.creator(
-    :label="$t('comp.session.session_info_sidebar.creator_label')"
-  )
-    p.is-size-4
-      member-bubble.is-size-5(
-        :member="session.creator",
-        pad-right
-      )
-      span {{ session.creator.fullname }}
   label-value(
-    :label="$t('comp.session.session_info_sidebar.members_label')"
+    :label="participantsTitle"
   )
-    .bubble-list
-      member-bubble.is-size-6(
-        v-for="member in session.participants",
-        :key="member.id",
-        :member="member",
-        pad-right
-      )
-  label-value(v-if="project",
-  :label="$t('comp.session.session_info_sidebar.researchers.title')"
-  )
-    p(v-if="showResearchDescription", v-for="researcher in projectResearchers").is-size-4
-      member-bubble.is-size-6(:member="researcher", pad-right)
-      span {{ researcher.fullname }}
-    blockquote(v-if="!showResearchDescription").blockquote
-      | {{ $t('comp.session.session_info_sidebar.researchers.description') }}
-  label-value(
-    label="Duration",
-    :value="duration"
-    )
-  .columns.is-mobile
-    .column
-      label-value(
-        :label="$t('comp.session.session_info_sidebar.topics_label')",
-        :value="session.topics.length"
-      )
-    .column
-      label-value(
-        :label="$t('comp.session.session_info_sidebar.annotations_label')",
-        :value="numAnnotations"
-      )
+    .bubble-list.is-multiline
+      .person(v-for="member in session.participants")
+        .first
+          member-bubble(:key="member.id", :member="member")
+          p.society {{ societyById(member) }}
+        .second
+          span.meta.is-size-7.is-italic  {{ roleById(member) }} | {{ genderById(member) }} | {{ ageOfMember(member) }}
 </template>
 
 <script>
@@ -54,8 +25,10 @@ import moment from 'moment-mini'
 
 import MemberBubble from '@/components/member/MemberBubble'
 import LabelValue from '@/components/utils/LabelValue'
+import DataMixin from '@/mixins/Data'
 
 export default {
+  mixins: [ DataMixin ],
   components: { MemberBubble, LabelValue },
   props: {
     // Used to obtain the project members; optional as to not show researchers on /session/N
@@ -63,6 +36,12 @@ export default {
     session: { type: Object, required: true }
   },
   computed: {
+    participantsTitle () {
+      return `${this.$t('comp.session.session_info_sidebar.members_label')} (${this.session.participants.length})`
+    },
+    projectContent () {
+      return this.$store.getters.projectContentByLanguage(this.project)
+    },
     sessionDate () {
       return moment(this.session.created_on)
         .format(this.$t('comp.session.session_info_sidebar.date_format'))
@@ -84,4 +63,27 @@ export default {
 </script>
 
 <style lang="sass">
+.is-sidebar-heading
+  padding: 1em 0 0 0
+
+.is-white
+  background-color: white
+
+.border-bottom
+  margin-bottom: .5em !important
+  padding-bottom: 3px
+  border-bottom: 1px solid #ED4E56
+
+.first, .second
+  display: inline-flex
+  align-items: center
+
+.society
+  font-size: 1em !important
+  padding-left: 1em
+.meta
+  padding: 0 0 .5em 1em
+
+.bubble-list
+  margin-bottom: 0
 </style>

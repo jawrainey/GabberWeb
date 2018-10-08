@@ -18,6 +18,8 @@ export const VERIFY_ROUTE = 'Verify'
 
 export const PROJECT_LIST_ROUTE = 'ProjectList'
 export const SESSION_LIST_ROUTE = 'SessionList'
+export const CONVERSATION_ROUTE = 'Conversation'
+export const CONVERSATION_LIST_ROUTE = 'ConversationList'
 export const SESSION_DETAIL_ROUTE = 'Session'
 export const CONSENT_ROUTE = 'Consent'
 

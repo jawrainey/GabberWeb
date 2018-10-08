@@ -132,8 +132,10 @@ base:
     title: Estructura, graba y comentario conversaciones de audio
     subtitle: Escucha, comentario y discute en colaboración las conversaciones grabadas
     nav_title: Inicio
-    action: Explora Conversaciones
+    action: escuchar lo que otros han dicho
     welcome: Bienvenido a TalkFutures
+    features:
+      title: Conversaciones destacadas
 
   not_found:
     title: Página no encontrada
@@ -169,9 +171,9 @@ base:
 #
 project:
   project_list:
-    title: Temas
-    nav_title: Temas
-    filter_title: Filtrar ttemas
+    title: Conversaciones
+    nav_title: Conversaciones
+    filter_title: Filtrar Conversaciones
     filter_field:
       label: Buscar un tema
       placeholder: p.ej. Nombre // tema

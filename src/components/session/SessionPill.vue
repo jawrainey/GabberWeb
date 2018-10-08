@@ -1,12 +1,13 @@
 <template lang="pug">
 .session-pill.box(@click.stop="$emit('view', session)", :style="pillStyle")
   fa.disclosure(icon="chevron-right", size="2x")
+  p.title.is-4.border-bottom {{ projectContent.title }}
   .columns.is-multiline
-    .column.is-third-tablet
-      h1.title.main-title.is-4
+    .column.participants.is-third-tablet
+      h1.title.main-title.is-5
         member-bubble(:member="session.creator", pad-right)
           fa.mic-icon(icon="microphone", size="lg")
-        span {{ ' ' + session.creator.fullname }}
+        span {{ forename }}
       label-value(
         :label="$t('comp.session.session_pill.member_label')"
       )
@@ -15,21 +16,21 @@
             .first
               member-bubble(:key="member.id", :member="member")
               p.society {{ societyById(member) }}
-            .second
+            .second.is-hidden-mobile.is-hidden-tablet-only
               span.meta.is-size-7.is-italic  {{ roleById(member) }} | {{ genderById(member) }} | {{ ageOfMember(member) }}
-    .column.is-third-tablet
-      label-value.is-link.created-on(
+    .column.meta-details.is-third-tablet
+      label-value.is-link.created-on.is-hidden-mobile(
         :label="$t('comp.session.session_pill.when_label')",
         :value="session.created_on | longDate"
       )
-      .columns.is-hidden-mobile
-        .column.is-half-tablet
-          label-value.is-link.is-hidden-mobile(
+      .columns.is-mobile
+        .column.is-half-mobile
+          label-value.is-link(
           :label="$t('comp.session.session_pill.duration')",
           :value="duration"
           )
-        .column.is-half-tablet
-          label-value.is-link.is-hidden-mobile(
+        .column.is-half-mobile
+          label-value.is-link(
           :label="$t('comp.session.session_pill.annotation_label')",
           :value="session.num_user_annotations"
           )
@@ -40,14 +41,6 @@
             :label="$t('comp.session.session_pill.language')",
             :value="language.endonym"
           )
-    .column.is-third-tablet.is-clipped
-      label-value(:label="$t('comp.session.session_pill.topic_label')")
-        .tags.is-clipped
-          .tag(v-for="topic in limitedTopics")
-            | {{trim(topic.text, 60)}}
-          .tag(v-if="session.topics.length > topicLimit")
-            | +{{session.topics.length - topicLimit}}
-            | {{$t('comp.session.session_pill.more')}}
 </template>
 
 <script>
@@ -71,11 +64,19 @@ export default {
         'border-left-color': this.colorFromId(this.session.creator.user_id)
       }
     },
+    forename () {
+      return this.session.creator.fullname.split(' ')[0] || this.session.creator.fullname
+    },
     duration () {
+      if (this.session.topics[this.session.topics.length - 1] === undefined) return 0
       return this.$options.filters.duration(this.session.topics[this.session.topics.length - 1].end_interval)
     },
     genders () {
       return this.session.participants.map(p => this.GENDERS[this.$i18n.locale][p.gender].text)
+    },
+    projectContent () {
+      let proj = this.$store.getters.projectById(this.session.project_id)
+      return this.$store.getters.projectContentByLanguage(proj)
     },
     language () {
       return this.$store.getters.languageById(this.session.lang_id)
@@ -91,14 +92,6 @@ export default {
     }
   },
   methods: {
-    ageOfMember (member) { return this.AGES.find(s => s.id === member.age).text },
-    roleById (member) { return this.ROLES[this.$i18n.locale][member.m_role].title },
-    genderById (member) {
-      let gender = member.gender
-      if (gender === 2) return member.custom
-      else return this.GENDERS[this.$i18n.locale][gender].text
-    },
-    societyById (member) { return this.NATIONAL_SOCS.find(s => s.id === member.society).name },
     trim (string, length) {
       return string.length > length
         ? `${string.slice(0, length - 1)}…`
@@ -109,6 +102,11 @@ export default {
 </script>
 
 <style lang="sass">
+.border-bottom
+  margin-bottom: .5em !important
+  padding-bottom: 3px
+  border-bottom: 1px solid #ED4E56
+
 .first, .second
   display: inline-flex
   align-items: center
@@ -131,29 +129,32 @@ export default {
   position: relative
   transition: border-color 0.3s, transform 0.3s
   padding-right: 3rem
-  
+
   &:not(:last-child)
     margin-bottom: 1em
-  
+
   .main-title
     margin-bottom: 0.3em
-    
+
     .member-bubble
       font-size: 1.1em
-  
+
   .label-value:last-child
     margin-bottom: 0
-  
+
   +desktop
     &:hover
       transform: translateX(2px)
     &:not(:hover)
       border-left-color: $grey-light !important
-  
+
   +mobile
     .label-value
       margin-bottom: 0
-  
+    .meta-details
+      padding: 1em 1em 0 1em !important
+    .participants
+      padding-bottom: 0 !important
   .disclosure
     position: absolute
     right: 0.5em

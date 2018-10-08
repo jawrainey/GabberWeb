@@ -23,7 +23,7 @@
           )
       .column
         p.has-text-right.is-time {{ remaining }}
-  .player-wrapper
+  .player-wrapper.is-clipped
     template(v-if="!canPlay")
       .loading.has-text-centered.is-size-3(v-if="!failed")
         fa(icon="circle-notch", spin)
@@ -212,7 +212,7 @@ export default {
 
 <style lang="sass">
 
-$player-height: 84px
+$player-height: 42px
 
 .audio-player
   

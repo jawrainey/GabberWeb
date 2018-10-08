@@ -243,7 +243,12 @@ export default class LiveApi extends ApiInterface {
   async getSession (sId, pId) {
     return this.endpoint('get', `projects/${pId}/sessions/${sId}`)
   }
-  
+
+  // GET: sessions.recommendations.show
+  async getSessionsRecommendations () {
+    return this.endpoint('get', `sessions/recommendations`)
+  }
+
   /*
    * Annotations
    */
