@@ -32,11 +32,10 @@ full-layout.session-list-view(v-else-if="sessions")
         :session="session",
         @view="viewSession"
       )
-    action-box(v-if="filteredSessions.length === 0 && !isLoading", title="")
-      p.is-size-5(slot="content")
-        span(v-if="sessionsCount === 0") {{$t('view.project.session_list.no_sessions')}}
-        span(v-else) {{$t('view.project.session_list.no_filtered_sessions')}}
-
+    <!--action-box(v-if="filteredSessions.length === 0 && !isLoading", title="")-->
+      <!--p.is-size-5(slot="content")-->
+        <!--span(v-if="sessionsCount === 0") {{$t('view.project.session_list.no_sessions')}}-->
+        <!--span(v-else) {{$t('view.project.session_list.no_filtered_sessions')}}-->
 </template>
 
 <script>
