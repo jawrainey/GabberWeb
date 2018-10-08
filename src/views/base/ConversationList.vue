@@ -128,7 +128,6 @@ export default {
       if (meta.success) {
         data.forEach(project => this.$store.commit(SAVE_PROJECT, project || []))
 
-        if (this.$store.getters.allSessions.length > 0) return
         let projects = this.$store.getters.allProjects
         projects.forEach(async project => {
           // Only request for the sessions if they exist
