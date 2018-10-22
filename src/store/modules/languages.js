@@ -8,7 +8,9 @@ const state = {
 const getters = {
   availableLanguages: state => state.availableLocales || [],
   // TODO: current locale should be based on users preference?!
-  currentLocale: state => state.availableLocales.find(l => l.code === i18n.locale),
+  currentLocale: state => {
+    return (!state.availableLocales) ? 'en' : state.availableLocales.find(l => l.code === i18n.locale)
+  },
   languageById: state => id => state.availableLocales.find(l => l.id === id)
 }
 
