@@ -105,8 +105,9 @@ base:
     subtitle: TalkFutures vous permet de vous engager avec votre communauté pour partager et comprendre vos expériences
     content:
       strapline: TalkFutures aide à structurer et à enregistrer des conversations sur la manière dont la Croix-Rouge et le Croissant-Rouge peuvent s'adapter aux défis du futur. Les conversations enregistrées apparaissent sur le site Web où les gens peuvent commenter, mettre en évidence et partager leurs discussions.
+      started: Commencez avec TalkFutures
       prepare:
-        title: Être impliqué!
+        title: Enregistrement de conversations à l'aide de l'application TalkFutures
         theme:
           title: Choisissez un sujet de discussion.
           subtitle: Chaque sujet a suggéré des points de conversation.

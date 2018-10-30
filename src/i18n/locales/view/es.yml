@@ -105,8 +105,9 @@ base:
     subtitle: TalkFutures permite interactuar con su comunidad para compartir y comprender sus experiencias compartidas
     content:
       strapline: TalkFutures ayuda a estructurar y grabar conversaciones sobre cómo la Cruz Roja y la Media Luna Roja pueden adaptarse a los desafíos del futuro. Las conversaciones grabadas aparecen en el sitio web donde las personas pueden comentar, destacar y compartir sus discusiones.
+      started: Comience con TalkFutures
       prepare:
-        title: ¿Cómo participar?
+        title: Grabando conversaciones usando la aplicación TalkFutures
         theme:
           title: Elige un tema del que te gustaría charlar
           subtitle: Cada tema cuenta con una descripción corta. Te recomendamos revisar los temas con las personas que tendrás la conversación.

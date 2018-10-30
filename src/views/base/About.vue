@@ -3,19 +3,14 @@ simple-layout
   main.padding.set-bg
     .columns.is-mobile.is-centered.set-bg
       .column.is-two-thirds
-        .top.click-to-show(@click="showVideo = !showVideo")
-          .title.is-2.is-size-3-mobile.has-text-weight-semibold
-            | {{$t('view.base.about.content.prepare.title')}}
-          span.is-4.is-size-6-mobile.pulled-right (Click to show/hide video)
-        iframe.about-video(
-          v-show="showVideo"
-          width="640"
-          height="360"
-          frameborder="0",
-          :src="aboutVideoURL",
-          webkitallowfullscreen
-          mozallowfullscreen
-          allowfullscreen)
+        .title.is-2.is-size-3-mobile.has-text-weight-semibold
+          | {{$t('view.base.about.content.started')}}
+        hr
+        .video-container
+          iframe(src='https://www.youtube.com/embed/XTCTzBb4Ih4', frameborder='0', allowfullscreen='')
+        hr
+        .title.is-3.is-size-3-mobile.has-text-weight-semibold
+          | {{$t('view.base.about.content.prepare.title')}}
         hr
         .columns.is-vcentered.set-bg
           .column.is-mobile.is-centered
@@ -84,14 +79,7 @@ import { getConfig } from '../../mixins/Config'
 
 export default {
   components: { SimpleLayout },
-  data: () => ({
-    showVideo: true
-  }),
   computed: {
-    aboutVideoURL () {
-      let aboutVideoURL = this.$store.getters.currentLocale.code === 'fr' ? '292270631' : '292084565'
-      return `https://player.vimeo.com/video/${aboutVideoURL}`
-    },
     androidURL () { return `https://play.google.com/store/apps/details?id=${getConfig('ANDROID_URL')}` },
     iOSURL () { return `https://itunes.apple.com/us/app/${getConfig('IOS_URL')}` },
     androidBadge () { return `/static/img/google/${this.$i18n.locale}.png` },
@@ -103,8 +91,19 @@ export default {
 <style lang="sass" scoped>
 .click-to-show
   cursor: pointer
-.about-video
-  padding-top: 1.6em
+.video-container
+  position: relative
+  width: 420px
+  height: 234px
+  overflow: hidden
+  margin: 1em auto 0 auto
+  padding: 0 1em !important
+.video-container iframe, object, embed
+  position: absolute
+  top: 0
+  left: 0
+  width: 420px
+  height: 234px
 .no-bottom
   padding-bottom: 0
   margin-bottom: 0
@@ -132,6 +131,9 @@ export default {
   margin-bottom: 2rem
 
 +mobile
+  .video-container, .video-container iframe, object, embed
+    width: 320px
+    height: 180px
   .side-padding
     padding: 0 1.6em
 

@@ -105,8 +105,9 @@ base:
     subtitle: TalkFutures lets engage with your community to share and understand your shared experiences
     content:
       strapline: TalkFutures helps structure and record conversations about how the Red Cross and Red Crescent can adapt to the challenges of the future. Recorded conversations appear on the website where people can comment on, highlight and share your discussions.
+      started: Get started with TalkFutures
       prepare:
-        title: Getting Involved
+        title: Recording conversations using the TalkFutures app
         theme:
           title: Choose a theme to talk about
           subtitle: Go through the description of the theme with the people you’re having the conversation with.
