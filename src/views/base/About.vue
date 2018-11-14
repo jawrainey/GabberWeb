@@ -1,8 +1,8 @@
 <template lang="pug">
 simple-layout
   main.padding.set-bg
-    .columns.is-mobile.is-centered.set-bg
-      .column.is-two-thirds
+    .columns.with-padding.is-centered.set-bg
+      .column.is-desktop.is-two-thirds
         .title.is-2.is-size-3-mobile.has-text-weight-semibold
           | {{ $t('view.base.about.campaign.title') }}
         hr
@@ -164,8 +164,20 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.m-top
-  padding-top: 1em
+.with-padding
+  padding: 1em
+  margin: 0
++desktop
+  p
+    padding: 0 3.2em
+
+  .tf-instructions
+    width: 90%
+    padding: 0 0 1em 8em
+    text-align: left
+
+p
+  margin-bottom: 1.6em
 
 a
   color: white
@@ -177,14 +189,9 @@ a
   margin: 0
   display: inline
 
-p
-  margin-bottom: 1.6em
-  padding: 0 3.2em
+.m-top
+  padding-top: 1em
 
-.tf-instructions
-  width: 90%
-  padding: 0 0 1em 8em
-  text-align: left
 
 .click-to-show
   cursor: pointer
