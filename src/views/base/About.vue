@@ -4,68 +4,147 @@ simple-layout
     .columns.is-mobile.is-centered.set-bg
       .column.is-two-thirds
         .title.is-2.is-size-3-mobile.has-text-weight-semibold
-          | {{$t('view.base.about.content.started')}}
+          | {{ $t('view.base.about.campaign.title') }}
         hr
-        .video-container
-          iframe(src='https://www.youtube.com/embed/XTCTzBb4Ih4', frameborder='0', allowfullscreen='')
-        hr
-        .title.is-3.is-size-3-mobile.has-text-weight-semibold
-          | {{$t('view.base.about.content.prepare.title')}}
-        hr
-        .columns.is-vcentered.set-bg
-          .column.is-mobile.is-centered
-            .columns.is-half.has-text-centered.is-vcentered
-              .column.has-text-centered
-                img.branding(src="/static/img/talkfutures/theme-desc.png")
-              .column.has-text-centered
-                .title.is-4.is-size-5-mobile.has-text-weight-semibold
-                  | {{$t('view.base.about.content.prepare.theme.title')}}
-                p.is-5.is-size-7-mobile
-                  | {{$t('view.base.about.content.prepare.theme.subtitle')}}
-        hr
-        .columns.is-vcentered.set-bg
-          .column.has-text-centered
-            .columns.is-vcentered
-              .column.is-half.has-text-centered
-                .title.is-4.is-size-5-mobile.has-text-weight-semibold
-                  | {{$t('view.base.about.content.add_people.title')}}
-                p.is-5.is-size-7-mobile
-                  | {{$t('view.base.about.content.add_people.subtitle')}}
-              .column.is-half.has-text-centered
-                img.branding(src="/static/img/talkfutures/add.png")
-        hr
-        .columns.is-vcentered.set-bg
-          .column.has-text-centered
-            .columns.is-vcentered
-              .column.is-half.has-text-centered
-                img.branding(src="/static/img/talkfutures/themes.png")
-              .column.is-half.has-text-centered
-                .title.is-4.is-size-5-mobile.has-text-weight-semibold
-                  | {{$t('view.base.about.content.record.title')}}
-                p.is-5.is-size-7-mobile
-                  | {{$t('view.base.about.content.record.subtitle')}}
-        hr
-        .columns.is-vcentered.set-bg
-          .column.has-text-centered
-            .columns.is-vcentered
-              .column.is-half.has-text-centered
-                .title.is-4.is-size-5-mobile.has-text-weight-semibold
-                  | {{$t('view.base.about.content.upload.title')}}
-                p.is-5.is-size-7-mobile
-                  | {{$t('view.base.about.content.upload.subtitle')}}
-              .column.is-half.has-text-centered
-                img.branding(src="/static/img/talkfutures/upload.png")
-        hr
-        .columns.is-vcentered.set-bg
-          .column.has-text-centered
-            .columns.is-vcentered
-              .column.is-half.has-text-centered
-                img.branding(src="/static/img/talkfutures/highlighting-s.png")
-              .column.is-half.has-text-centered
-                .title.is-4.is-size-5-mobile.has-text-weight-semibold
-                  | {{$t('view.base.about.content.invite.title')}}
-                p.is-5.is-size-7-mobile
-                  | {{$t('view.base.about.content.invite.subtitle')}}
+        p.has-text-justified(v-html="$t('view.base.about.campaign.tagline')")
+        img(src="/static/img/talkfutures/overview-en.jpg")
+
+        a(v-html="$t('view.base.about.campaign.ic.title')", id="#InnovationCorrespondent").title.is-3.is-size-4-mobile.has-text-weight-semibold
+        .innovation-correspondent
+          p.has-text-justified(v-html="$t('view.base.about.campaign.ic.content_1')")
+          p.has-text-justified(v-html="$t('view.base.about.campaign.ic.content_2')")
+          p.content.is-small.is-italic(v-html="$t('view.base.about.campaign.ic.content_3')")
+
+        a(id="#Support").subtitle.is-4.is-size-5-mobile.has-text-weight-semibold.has-text-left
+          | {{ $t('view.base.about.campaign.ic_1.title') }}
+        .one-on-one
+          p.has-text-justified(v-html="$t('view.base.about.campaign.ic_1.content_1')")
+          p.content.is-small.is-italic(v-html="$t('view.base.about.campaign.ic_1.content_2')")
+
+        a(id="#WhatsApp").subtitle.is-4.is-size-5-mobile.has-text-weight-semibold.has-text-left
+          | {{ $t('view.base.about.campaign.ic_2.title') }}
+        p.has-text-justified(v-html="$t('view.base.about.campaign.ic_2.content')")
+
+        a(id="#RecordingInterviews").subtitle.is-4.is-size-5-mobile.has-text-weight-semibold.has-text-left
+          | {{ $t('view.base.about.campaign.ic_3.title') }}
+        .recording-interviews
+          p.has-text-justified(v-html="$t('view.base.about.campaign.ic_3.content_1')")
+          p.has-text-justified(v-html="$t('view.base.about.campaign.ic_3.content_2')")
+          ol.tf-instructions
+            li(v-html="$t('view.base.about.campaign.ic_3.content_li_1')")
+            li(v-html="$t('view.base.about.campaign.ic_3.content_li_2')")
+            li(v-html="$t('view.base.about.campaign.ic_3.content_li_3')")
+            li(v-html="$t('view.base.about.campaign.ic_3.content_li_4')")
+            li(v-html="$t('view.base.about.campaign.ic_3.content_li_5')")
+            li(v-html="$t('view.base.about.campaign.ic_3.content_li_6')")
+
+        a(id="#TFProcess").subtitle.is-4.is-size-5-mobile.has-text-weight-semibold.has-text-left
+          | {{ $t('view.base.about.campaign.ic_4.title') }}
+          .video-container
+            iframe(src='https://www.youtube.com/embed/XTCTzBb4Ih4', frameborder='0', allowfullscreen='')
+
+        a(id="#InterviewQuestions").title.is-4.is-size-5-mobile.has-text-weight-semibold.m-top.has-text-left
+          | {{ $t('view.base.about.campaign.ic_interview_questions.title') }}
+        .iq
+          p.has-text-justified(v-html="$t('view.base.about.campaign.ic_interview_questions.content_1')")
+          p.has-text-justified(v-html="$t('view.base.about.campaign.ic_interview_questions.content_2')")
+
+        a(id="#InterviewQuestions-1").title.is-5.is-size-6-mobile.has-text-weight-semibold.has-text-left
+          | {{ $t('view.base.about.campaign.ic_interview_questions.iq_1.title') }}
+        .iq-1
+          p.has-text-justified(v-html="$t('view.base.about.campaign.ic_interview_questions.iq_1.content_1')")
+          p.has-text-justified(v-html="$t('view.base.about.campaign.ic_interview_questions.iq_1.content_2')")
+          p.content.is-small.is-italic(v-html="$t('view.base.about.campaign.ic_interview_questions.iq_1.content_3')")
+
+        a(id="#InterviewQuestions-2").title.is-5.is-size-6-mobile.has-text-weight-semibold.has-text-left
+          | {{ $t('view.base.about.campaign.ic_interview_questions.iq_2.title') }}
+        .iq-1
+          p.has-text-justified(v-html="$t('view.base.about.campaign.ic_interview_questions.iq_2.content_1')")
+          p.content.is-small.is-italic(v-html="$t('view.base.about.campaign.ic_interview_questions.iq_2.content_2')")
+
+        a(id="#InterviewQuestions-3").title.is-5.is-size-6-mobile.has-text-weight-semibold.has-text-left
+          | {{ $t('view.base.about.campaign.ic_interview_questions.iq_3.title') }}
+        .iq-1
+          p.has-text-justified(v-html="$t('view.base.about.campaign.ic_interview_questions.iq_3.content_1')")
+          p.content.is-small.is-italic(v-html="$t('view.base.about.campaign.ic_interview_questions.iq_3.content_2')")
+
+        a(id="#InterviewQuestions-4").title.is-5.is-size-6-mobile.has-text-weight-semibold.has-text-left
+          | {{ $t('view.base.about.campaign.ic_interview_questions.iq_4.title') }}
+        .iq-1
+          p.has-text-justified(v-html="$t('view.base.about.campaign.ic_interview_questions.iq_4.content_1')")
+          p.content.is-small.is-italic(v-html="$t('view.base.about.campaign.ic_interview_questions.iq_4.content_2')")
+
+        a(id="#InterviewQuestions-5").title.is-5.is-size-6-mobile.has-text-weight-semibold.has-text-left
+          | {{ $t('view.base.about.campaign.ic_interview_questions.iq_5.title') }}
+        .iq-1
+          p.has-text-justified(v-html="$t('view.base.about.campaign.ic_interview_questions.iq_5.content_1')")
+          p.content.is-small.is-italic(v-html="$t('view.base.about.campaign.ic_interview_questions.iq_5.content_2')")
+
+        a(id="#InterviewTips").title.is-4.is-size-5-mobile.has-text-weight-semibold.has-text-left
+          | {{ $t('view.base.about.campaign.ic_6.title') }}
+        .tips
+          p.has-text-justified(v-html="$t('view.base.about.campaign.ic_6.content')")
+          ol.tf-instructions
+            li(v-html="$t('view.base.about.campaign.ic_6.instructions.content_li_1')")
+            li(v-html="$t('view.base.about.campaign.ic_6.instructions.content_li_2')")
+            li(v-html="$t('view.base.about.campaign.ic_6.instructions.content_li_3')")
+            li(v-html="$t('view.base.about.campaign.ic_6.instructions.content_li_4')")
+            li(v-html="$t('view.base.about.campaign.ic_6.instructions.content_li_5')")
+            li(v-html="$t('view.base.about.campaign.ic_6.instructions.content_li_6')")
+            li(v-html="$t('view.base.about.campaign.ic_6.instructions.content_li_7')")
+            li(v-html="$t('view.base.about.campaign.ic_6.instructions.content_li_8')")
+            li(v-html="$t('view.base.about.campaign.ic_6.instructions.content_li_9')")
+
+        a(v-html="$t('view.base.about.campaign.ra.title')", id="#RA").title.is-3.is-size-4-mobile.has-text-weight-semibold
+        .ra
+          p.has-text-justified(v-html="$t('view.base.about.campaign.ra.content_1')")
+          p.has-text-justified(v-html="$t('view.base.about.campaign.ra.content_2')")
+
+        a(id="#RA-Analysis").title.is-4.is-size-5-mobile.has-text-weight-semibold.has-text-left
+          | {{ $t('view.base.about.campaign.ra_1.title') }}
+        .ra-1
+          p.has-text-justified(v-html="$t('view.base.about.campaign.ra_1.content_1')")
+          p.has-text-justified(v-html="$t('view.base.about.campaign.ra_1.content_2')")
+
+        a(id="#RA-ThoughtPieces").title.is-4.is-size-5-mobile.has-text-weight-semibold.has-text-left
+          | {{ $t('view.base.about.campaign.ra_2.title') }}
+        .ra-2
+          p.has-text-justified(v-html="$t('view.base.about.campaign.ra_2.content_1')")
+          p.has-text-justified(v-html="$t('view.base.about.campaign.ra_2.content_2')")
+          p.has-text-justified(v-html="$t('view.base.about.campaign.ra_2.content_3')")
+
+        a(v-html="$t('view.base.about.campaign.ca.title')", id="#CA").title.is-3.is-size-4-mobile.has-text-weight-semibold
+        .ca
+          p.has-text-justified(v-html="$t('view.base.about.campaign.ca.content')")
+
+        a(id="#CA-Feedback").title.is-4.is-size-5-mobile.has-text-weight-semibold.has-text-left
+          | {{ $t('view.base.about.campaign.ca_1.title') }}
+        .ca-1
+          p.has-text-justified(v-html="$t('view.base.about.campaign.ca_1.content')")
+
+        a(id="#CA-Producing").title.is-4.is-size-5-mobile.has-text-weight-semibold.has-text-left
+          | {{ $t('view.base.about.campaign.ca_2.title') }}
+        .ca-2
+          p.has-text-justified(v-html="$t('view.base.about.campaign.ca_2.content')")
+
+        a(id="#TY").title.is-3.is-size-4-mobile.has-text-weight-semibold
+          | {{ $t('view.base.about.campaign.thanks.title') }}
+        .ca-3
+          p.has-text-justified {{ $t('view.base.about.campaign.thanks.content') }}
+
+        a(id="#TY-Certificate").title.is-4.is-size-5-mobile.has-text-weight-semibold.has-text-left
+          | {{ $t('view.base.about.campaign.certification.title') }}
+        .ca-4
+          p.has-text-justified {{ $t('view.base.about.campaign.certification.content') }}
+
+        a(id="#TY-Reference").title.is-4.is-size-5-mobile.has-text-weight-semibold.has-text-left
+          | {{ $t('view.base.about.campaign.reference.title') }}
+        .reference
+          p.has-text-justified {{ $t('view.base.about.campaign.reference.content') }}
+          ol.tf-instructions.has-text-left
+            li {{ $t('view.base.about.campaign.reference.options.first') }}
+            li {{ $t('view.base.about.campaign.reference.options.second') }}
+
         hr
         .columns.set-bg
           .column
@@ -89,6 +168,28 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+.m-top
+  padding-top: 1em
+
+a
+  color: white
+  display: block
+  margin-top: 1em
+
+.non
+  color: #ED4E56
+  margin: 0
+  display: inline
+
+p
+  margin-bottom: 1.6em
+  padding: 0 3.2em
+
+.tf-instructions
+  width: 90%
+  padding: 0 0 1em 8em
+  text-align: left
+
 .click-to-show
   cursor: pointer
 .video-container
@@ -96,7 +197,7 @@ export default {
   width: 420px
   height: 234px
   overflow: hidden
-  margin: 1em auto 0 auto
+  margin: 1em auto
   padding: 0 1em !important
 .video-container iframe, object, embed
   position: absolute

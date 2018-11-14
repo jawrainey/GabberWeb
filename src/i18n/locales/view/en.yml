@@ -125,9 +125,119 @@ base:
         subtitle: People all over the world will listen, comment and highlight parts they like about your conversation. Check out what others are saying and leave a comment on their recordings.
       contact:
         action: Do you have any questions? Email us
+    campaign:
+      title: Future Red Cross Red Crescent
+      tagline: <a href="https://ifrc.org/s2030" class="non">Strategy 2030</a> is a vision for how the Red Cross and Red Crescent should change over the next 10 years in response to global challenges (e.g. climate change) and opportunities (e.g. new technologies). We need your help to interview leaders, staff, volunteers or external experts to capture their visions on how the organization can be ready for the future. Your interviews will be transformed into podcasts where people can continue the discussion online and included in the analysis for Strategy 2030.
+      ic:
+        title: 1. Innovation Correspondent&colon; role and responsibilities
+        content_1: Strategy 2030 is a global consultation process that will benefit from the experiences and visions of local members. As Innovation Correspondent, your interviews will capture your National Society’s challenges, opportunities, needs, and visions; and will provide recommendations on how to better address them over the next ten years.
+        content_2: You will take the lead on sourcing and conducting interviews with Red Cross Red Crescent volunteers, leaders and external experts on specific topics. Your interviews will be transformed into professional communications materials, such as podcasts, to reflect the key issues and potential solutions discussed. You can also get involved in this creative process by becoming a Communications Assistant.
+        content_3: We’ve developed TalkFutures, a mobile application to help structure, record and listen to interviews. <br>Read more on how to record your interviews using TalkFutures.
+      ic_1:
+        title: 1.1 One-on-one support from the IFRC Innovation Team
+        content_1: We provide one-on-one support to ensure you get familiar with the questions that will give structure to your interviews and the Strategy 2030 process.  A member from the Global IFRC innovation team will give guidance and support through small WhatsApp groups where you’ll chat with other Innovation Correspondents from around the world.
+        content_2: Email us any question the <a class="non" href="mailto:innovation.team@ifrc.org">IFRC Innovation Team</a> and we will come back to you as soon as possible.
+      ic_2:
+        title: 1.2 Communicating on WhatsApp
+        content: Once you have registered interest and selected your roles through email, we would like to add you to a WhatsApp group with other members who have the same role from around the world. This will help create more discussions between members from different countries and regions, simplify how we distribute support, and help build small communities around each role. This is also where we can provide instructions for how to get started.
+      ic_3:
+        title: 1.3 Recording interviews using TalkFutures
+        content_1: To help structure globally distributed interviews we have designed a mobile application, TalkFutures, that shows all users the same set of <b>interview questions</b>. This tool shares your interviews to a website, allowing other people around the world to listen, comment and share more visions on them.
+        content_2: Before using <b>TalkFutures</b>, you need to organize a time and quiet place to record your interviews. Once you have your interviews lined-up, using TalkFutures only takes a few simple steps&colon;
+        content_li_1: Download TalkFutures on the Apple Store or Google Play and create your account.
+        content_li_2: Tap on the theme called “The Future Red Cross Red Crescent”
+        content_li_3: Add your interviewee as a participant. This lets them access the recording afterwards and notifies them if anyone comments on their conversation.
+        content_li_4: Consent for the recording to be used in research and how it should be made available (e.g. to the public so anyone on the website can listen to your interview)
+        content_li_5: The list of interview questions will appear. Start recording by tapping on the first question. Tap a different interview question in the mobile application before you pose it to your interviewee, this helps visualize the audio on the website.
+        content_li_6: Tap the stop button to finish your conversation.
+      ic_4:
+        title: 1.4 The TalkFutures Process
+      ic_interview_questions:
+        title: 1.5 Interview Questions in TalkFutures
+        content_1: Your role as an <b>Innovation Correspondent</b> will be to interview local Red Cross and Red Crescent volunteers, managers, leaders and/or external experts about the Future Red Cross Red Crescent. We have developed <b>four key questions</b> to guide interviews to keep the content consistent across the globe. There is also an extra question that you can use if you want to make the conversation more personal or have your own ideas! Once you feel comfortable with the guide below feel free to run your interviews in however way you want.
+        content_2: We will now outline <b>why</b> we are asking each question to help you understand the context and make the interviewing process smoother. It is critical that you understand these questions before conducting an interview. Each question is linked to the previous, so we suggest that you use each consecutively. We have written recommendations for you to read and reflect on before recording an interview so that you are prepared to guide the interviewee if they get stuck on a question.
 
+        iq_1:
+          title: 1.5.1. What trends in your country will affect most people in the next 10 years?
+          content_1: This question is used to build rapport with your participant as this question draws from local knowledge and experience by focusing on the interviewees’ country and the effect of global trends on it. This also starts to make the interviewee familiar with future forecasting&colon; considering how something will change in the coming years.
+          content_2: When we talk about trends, we mean some of the 5 identified through Strategy 2030’s work, e.g. <b>Volunteering, Trust and Integrity, Financing, New Technologies, Organizational Model and Culture </b>. As an example, a trend (and major concern) for Lebanon is the stability of their financial market, which concerns locals as it will have an effect on local jobs and will lead citizens to emigration to other countries for work.
+          content_3: <b>Recommendation&colon;</b> think about the trends affecting your country to tailor and help the interviewee if they get stuck with this question.
 
+        iq_2:
+          title: 1.5.2. How will these trends impact the Red Cross Red Crescent?
+          content_1: We have previously discussed the trends, now we are interested in how those will directly impact (affect positively and/or negatively) the Red Cross and Red Crescent. You can talk about the participants’ national society, but we are also curious about how they think these trends will have a broader, international impact on the Red Cross and Red Crescent as a network.
+          content_2: <b>Recommendation&colon;</b> think about how the previous trends you have thought about are impacting (positively and/or negatively) the Red Cross Red Crescent.
 
+        iq_3:
+          title: 1.5.3. What practical steps should your national society take in response to these trends?
+          content_1: Based on your previous discussion about the trends affecting the interviewees’ local community and the impact these are having on the Red Cross and Red Crescent, we are especially interested in potential solutions to the previously discussed trends and their impacts. It is important that you prompt the interviewee to discuss details of their practical suggestions. For example, if they mention that they would use emerging technologies and say nothing else, prompt them to consider how technology could be used and the steps needed to utilise it.
+          content_2: <b>Recommendation&colon;</b> prompt the interviewee to consider it from a different perspective, i.e. if they were the lead of their national society or if they had control to change any or every aspect of their national society.
+
+        iq_4:
+          title: 1.5.4 What would be your vision of the Red Cross Red Crescent in 2030?
+          content_1: This question aims to move the discussion from the practical solutions at a national to an international level. What should the role be of other national societies? How can these trends be used to support working together? How should the current organisation change to support the interviewees’ vision?
+          content_2: <b>Recommendation&colon;</b> you should prompt the interviewee to not only discuss what Red Cross and Red Crescent could look like in their vision, but to think about practical steps for it to achieve that vision.
+
+        iq_5:
+          title: 1.5.5. Ask your own questions
+          content_1: If you want to know details about what an interviewee has said, or think the world should hear an idea (or a practical solution to a problem they have solved in the Red Cross and Red Crescent), then tap this interview question. This lets you have more control over the interview. If your interviewee is talking off-topic, we recommend that you tap/select this topic to help Research Assistants skip content.
+          content_2: <b>Recommendation&colon;</b> you can ask your own questions at any time, between (or during) any of the other interview questions. Always try to focus on the interviewees’ local experience and knowledge and how this can be used to inform Strategy 2030.
+      ic_6:
+        title: 1.6 Tips to record a high-quality interview
+        content: Recording an interview requires knowing the subject and making your interviewee comfortable so that they easily share their experiences and ideas. We have created the 10 interview tips that will ensure your interview is high quality, insightful, and meaningful to the interviewee. They have taken the time to share their ideas with you, so you want to ensure that they understand the impact that their interview will have.
+        instructions:
+          content_li_1: Understand the context and interview questions before recording;
+          content_li_2: Introduce the context and interview goals to the interviewee before starting;
+          content_li_3: Find a quiet space to record your interview to produce a higher-quality recording;
+          content_li_4: Let the interviewee do most of the talking;
+          content_li_5: Embrace pause and silence to support the interviewee continuing to speak;
+          content_li_6: Use open-ended questions to get the most from the interviewee;
+          content_li_7: Probe the interviewee by asking them how or/and why they said
+          content_li_8: Avoid asking one-word responses [closed-questions];
+          content_li_9: Ask the interviewee to expand on their ideas when they offer one-word responses;
+
+      ra:
+        title: 2. Research Assistant&colon; role and responsibilities
+        content_1: As a Research Assistant, we need your help to identify interesting and insightful visions that you think will have the most impact on the RCRC. This involves listening to interviews created by our Innovation Correspondents using TalkFutures and creating comments where to identify insights, ask questions, or create a discussion with the interview participants and our community.
+        content_2: After listening to interviews you will become familiar with the emerging themes and visions from across interviews. We will support you created a thought piece that brings together these insights and analysis and will published on the <a href="https://future-rcrc.com/" class="non">futures website</a> for the world to read and discuss. Your analysis (comments and thought piece) will also help Communication Assistants when they produce communications material (e.g. posters, podcasts, etc.) that we will promote through email, social media and our futures website to showcase your insights and the visions identified through this process.
+
+      ra_1:
+        title: 2.1 Listening & Highlighting insights in TalkFutures
+        content_1: TalkFutures helps structure interviews to keep them consistent across our network of Innovation Correspondents and brings all the recordings in one place to make them easy to access. The audio recordings and who took part appear as a list on the <a href="https://talk.future-rcrc.com/conversations/" class="non">conversations page of TalkFutures</a>. You can see an overview of each interview before choosing the one you want to listen to as this helps you filter the list based on language, national society, etc.
+        content_2: You can listen to the visions from internal and external experts by playing the audio interview. Creating comments lets you select a snippet of audio that you think is insightful and that you will possibly use on your thought piece. Once you highlight a snippet of audio and create your comment, other Research Assistants will be able to view and respond to it, which creates a collaborative analysis process with other Research Assistants. Participants of the interview will be notified through email and the TalkFutures mobile application to inform them that you have commented so that they can respond to your comment and provide more advise.
+
+      ra_2:
+        title: 2.2 Creating and Publishing your Thought-Pieces
+        content_1: After you have listened to at least 5 interviews, you will have a broad idea of the visions that have been discussed from different regions around the world. We would like you to then write a thought-piece that showcases your findings from listening to these interviews. The structure of a thought piece is flexible, but good thought pieces contrast visions from multiple interviews, add their own interpretation to the vision, and perhaps share your own knowledge/experience to provide perspective that will make the thought piece unique and interesting to readers.
+        content_2: Your thought-pieces will be published on our futures website where anyone can read and comment on your ideas to create more discussion around the Future Red Cross Red Crescent. You can view the current <a href="https://future-rcrc.com/thought-pieces/" class="non">Thought Pieces</a> online to gain inspiration.
+        content_3: We recommend that once you have an idea or structure for your thought pieces that you share it with this group and we can all discuss it and provide feedback. Finally, once you would like it to be published to our website, email <a href="mailto:innovation.team@ifrc.org" class="non">IFRC Innovation Team</a> and we will upload it to our website within a couple of days. Once it is published, we will send the URL to the group that you can share with others on WhatsApp.
+
+      ca:
+        title: 3. Communication Assistant&colon; roles and responsibilities
+        content: As a Communication Assistant, we need your help to use the material created by our Innovation Correspondents and Research Assistants to produce powerful messages about the visions of our members that we can publish and share with the world. This involves becoming familiar with Strategy 2030, the content created, and applying your creativity to design materials that we can use to promote these visions. You have full creative control over what you produce, which could range from a data visualisation poster of quotes from across all countries, to producing a podcast to showcase the authentic voice of our volunteers. We will provide support and connect you with other Communication Assistants where you can discuss your creative ideas and potentially collaborate on your creative output.
+
+      ca_1:
+        title: 3.1 Creative Peer Discussion & Feedback
+        content: As described above, we will add you to a WhatsApp group with other Communication Assistant where you can discuss how you might represent a high-level overview of the interviews and Research Assistants insights. We recommend that you familiarise yourself with existing media (textual comments, audio interviews) to help you consider how you might represent those. <a href="https://talk.future-rcrc.com/themes/14/conversations/0560bac7727a421a96f3b2d03f074a27"" class="non">Here’s one interview that has comments to help you get started.</a>
+
+      ca_2:
+        title: 3.2 Producing creative materials from TalkFutures Interviews
+        content: The key outcome of participating as a Communication Assistant is the production of communication materials that showcase the visions of our members. This can take many forms and we recommend discussing these with other Communication Assistants. We can provide technical advice and support if you plan to produce a podcast from the material.
+
+      thanks:
+        title: 4. Our thanks for your help
+        content: We appreciate and value your participation in helping to shape Strategy 2030, and want to provide evidence that you can use to showcase your involvement with the world. Depending on your participation and roles, we offer two possibilities&colon;
+
+      certification:
+        title: 4.1 Certificate of Participation
+        content: When an Innovation Correspondent records 3 interviews the Global IFRC innovation team will send a certificate of participation signed by the head of the Global IFRC innovation team.
+
+      reference:
+        title: 4.2 Letter of Reference
+        content: If you pursue a Research or/and Communications Assistant role, the IFRC innovation and futures team can provide a letter of reference from the head of innovation and futures.
+        options:
+          first: To receive this as a Research Assistant you must produce at least one thought piece by listening to at least 3 interviews and creating comments to demonstrate your analysis process.
+          second: To receive this as a Communications Assistant you must participate in the production of creative material to showcase the analysis and insights from our other members.
 
   holder:
     # ...

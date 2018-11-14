@@ -8,13 +8,6 @@
   )
   h2.is-size-4.has-text-weight-semibold.margin-bottom {{$t('comp.session.session_filters.filter_title')}}
   .field
-    label.label {{$t('comp.session.session_filters.filters.theme.title')}}
-    .control
-      span.select.is-fullwidth
-        select(v-model="selectedTheme", @change="themeChanged")
-          option(value="-1", selected="selected") {{$t('comp.session.session_filters.filters.theme.default')}}
-          option(:value="theme.id", v-for="theme in availableThemes") {{ theme.text }}
-  .field
     label.label {{$t('comp.session.session_filters.filters.language.title')}}
     .control
       span.select.is-fullwidth
