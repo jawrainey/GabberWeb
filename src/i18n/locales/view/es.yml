@@ -125,6 +125,120 @@ base:
         subtitle: Personas de todo el mundo escucharán, comentarán y destacarán las partes que les gusten de tu conversación. Escucha lo que otros dicen y deja un comentario en sus grabaciones.
       contact:
         action: ¿Tienes alguna pregunta?
+    campaign:
+      title: La Cruz Roja Media y la Luna Roja del Futuro
+      tagline: <a href="https://ifrc.org/s2030" class="non">La Estrategia 2030</a> es una visión de cómo la Cruz Roja y la Media Luna Roja deberían cambiar en los próximos 10 años en respuesta a los desafíos globales (por ejemplo, el cambio climático) y las oportunidades (por ejemplo, las nuevas tecnologías). Necesitamos tu ayuda para entrevistar a líderes, personal, voluntarios y voluntarias o expertos y expertas externas para capturar sus visiones sobre cómo la organización puede estar lista para el futuro. Tus entrevistas se transformarán en grabaciones multimedia donde las personas pueden continuar la discusión en línea e incluirse en el análisis de la Estrategia 2030.
+      ic:
+        title: 1. Corresponsal de Innovación&colon; rol y responsabilidades
+        content_1: La Estrategia 2030 es un proceso de consulta global que se beneficiará de las experiencias y visiones de los miembros locales. Como Corresponsal de Innovación, tus entrevistas capturarán los desafíos, oportunidades, necesidades y visiones de tu Sociedad Nacional; y brindará recomendaciones sobre cómo aborarlos mejor en los próximos diez años.
+        content_2: Asumirás el liderazgo en la organización y la realización de entrevistas con voluntarios y voluntarias, líderes y miembros de la Cruz Roja y de la Media Luna Roja, así como expertos y expertas externas en temas específicos. Tus entrevistas se transformarán en materiales de comunicaciones profesionales, como emisiones multimedia, para reflejar los problemas clave y las posibles soluciones discutidas. También puedes involucrarte en este proceso creativo convirtiéndose en un Asistente de Comunicaciones.
+        content_3: Hemos desarrollado TalkFutures, una aplicación móvil para ayudar a estructurar, grabar y escuchar entrevistas. Lea más sobre cómo grabar sus entrevistas usando TalkFutures.
+      ic_1:
+        title: 1.1 Soporte personalizado del Equipo de Innovación de la Federación
+        content_1: Brindamos asistencia personalizada para asegurarnos de que te familiarices con las preguntas que estructurarán tus entrevistas y el proceso de la Estrategia 2030. Un miembro del equipo de innovación de Global de la Federación te brindará orientación y apoyo a través de pequeños grupos de WhatsApp donde conversarás con otros Corresponsales de Innovación de todo el mundo.
+        content_2: Envíanos un correo electrónico con cualquier pregunta a <a class="non" href="mailto:innovation.team@ifrc.org">innovation.team@ifrc.org</a> y te responderemos lo antes posible.
+      ic_2:
+        title: 1.2 Formación del grupo WhatsApp
+        content: Una vez que hayas expresado tu interés y hayas seleccionado tu(s) rol(es) a través del correo electrónico, nos gustaría agregarte a un grupo de WhatsApp con otros miembros que tengan el mismo rol en todo el mundo. Esto ayudará a crear más discusiones entre miembros de diferentes países y regiones, simplificará la forma en que distribuimos el apoyo y ayudará a construir pequeñas comunidades en torno a cada función. Aquí también es donde proporcionaremos instrucciones sobre cómo comenzar.
+      ic_3:
+        title: 1.3 Grabación de entrevistas utilizando TalkFutures
+        content_1: Para ayudar a estructurar las entrevistas al rededor del mundo, hemos diseñado una aplicación móvil llamada TalkFutures, que muestra a todos los usuarios las mismas preguntas de entrevista. Esta herramienta sube tus entrevistas a un sitio web, lo que permite a otras personas de todo el mundo escuchar, comentar y compartir más visiones sobre ellas.
+        content_2: Antes de usar <b>TalkFutures</b>, debes localizar un lugar tranquilo y un momento oportuno para grabar tus entrevistas. Una vez que tengas tus entrevistas programadas, usar TalkFutures solo toma unos momentos, sigue los siguientes pasos&colon;
+        content_li_1: Descarga TalkFutures en Apple Store o Google Play y crea tu cuenta.
+        content_li_2: Da clic en el tema “El futuro de la Cruz Roja y la Media Luna Roja”
+        content_li_3: Agregua a tu entrevistado o entrevistada como participante. Esto les permite acceder a la grabación después y les notificará cuando alguien escriba un comentario.
+        content_li_4: Deben dar consentimiento para que su grabación se utilice con propósitos de investigación. A su vez, deben decidir sobre la disponibilidad de su entrevista, por ejemplo, hacerla pública para que cualquier persona en el sitio web pueda escuchar su entrevista.
+        content_li_5: Una vez dado el concentimiento, aparecerán las preguntas de entrevista. Presiona alguna de las preguntas para comenzar a grabar.  Antes de hacer una nueva pregunta a tu entrevistada o entrevistado debes presionarla en la aplicación, esto ayuda a visualizar el audio en el sitio web.
+        content_li_6: Toque el botón en la parte baja de la pantalla para terminar tu conversación.
+      ic_4:
+        title: 1.4 Proceso de TalkFutures
+      ic_interview_questions:
+        title: 1.5 Preguntas de la entrevista en TalkFutures
+        content_1: Tu papel como <b>Corresponsal de Innovación<b> será entrevistar a voluntarios y voluntarias, miembros, líderes y / o expertos y expertas locales de la Cruz Roja y de la Media Luna Roja sobre el futuro de la organización. Hemos desarrollado cuatro preguntas clave para guiar tus entrevistas y mantener el contenido consistente en todo el mundo. También hay una pregunta adicional que puedes usar si deseas que la conversación sea más personal o que incluya visiones distintas a las planteadas. Una vez que comprendas la guía que se presenta a continuación, siéntete libre de realizar tus entrevistas de la forma que mejor te acomode.
+        content_2: Ahora explicaremos el trasfondo de cada pregunta para que puedas comprender mejor el contexto y facilitarte el proceso de entrevistas. Es fundamental que entiendas estas preguntas antes de realizar una entrevista. Cada pregunta está vinculada a la anterior, por lo que sugerimos que las utilices de forma consecutiva. Cada pregunta cuenta con una recomendación que te ayudará a guiar la entrevista.
+
+        iq_1:
+          title: 1.5.1. ¿Qué tendencias afectarán a la mayoría de las personas de tu país en los próximos 10 años?
+          content_1: Esta pregunta se utiliza para establecer una buena relación con tu entrevistado o entrevistada, ya que se basa en sus conocimientos y experiencias locales. Esta pregunta establece el contexto de la entrevista al cuestionar tendencias globales que afectan a comunidades locales,  orillando al participante a cuestionarse pronósticos futuros.
+          content_2: Cuando hablamos de tendencias, nos referimos a una de las cinco áreas estratégicas identificadas a través de las consultas de la Estrategia 2030. Por ejemplo, Voluntariado, Integridad y Confianza, Financiación Sustentable, Transformación Digital y Modelo Organizacional y Cultura. Como ejemplo, una tendencia (y una gran preocupación) para Líbano es la estabilidad de su mercado financiero, que afecta a los locales, ya que tendrá un efecto en los empleos locales y llevará a los ciudadanos a emigrar a otros países en busca de nuevas oportunidades laborales.
+          content_3: <b>Recomendación&colon;</b> piensa en las tendencias que afectan a tu país, así podrás adaptar y ayudar al entrevistado o entrevistada si se atasca con esta pregunta.
+
+        iq_2:
+          title: 1.5.2. ¿Cómo afectarán estas tendencias a la Cruz Roja y a la Media Luna Roja?
+          content_1: Anteriormente hemos discutido las tendencias, ahora estamos interesados ​​en cómo impactarán directamente (ya sea positiva y / o negativamente) a la Cruz Roja y a la Media Luna Roja. Pueden hablar sobre la Sociedad Nacional, pero también nos gustaría saber más acerca de cómo creen que estas tendencias impactarán a un nivel internacional a la red de la Cruz Roja y de la Media Luna Roja.
+          content_2: <b>Recomendación&colon;</b> piensa en cómo las tendencias anteriores en las que pensaste están impactando (tanto positivamente como negativamente) a la red de la Cruz Roja y de la Media Luna Roja.
+
+        iq_3:
+          title: 1.5.3. ¿Qué medidas prácticas debería tomar tu Sociedad Nacional en respuesta a estas tendencias?
+          content_1: Con base en las dos preguntas anteriores, tendencias que afectan a comunidades locales y el impacto que éstas tienen en la red de la Cruz Roja y la Media Luna Roja, estamos especialmente interesados ​​en escuchar posibles soluciones para abordar dichas tendencias. Es importante que solicite al entrevistado o entrevistada describa puntualmente medidas prácticas y realistas para abordar las tendencias discutidas. Por ejemplo, si mencionan que se deben aprovechar tecnologías emergentes, pregúntale cómo se podrían integrar nuevas tecnologías y las medidas necesarias para utilizarla.
+          content_2: <b>Recomendación&colon;</b> pedir al entrevistado o entrevistada que considere esta pregunta desde una perspectiva diferente, es decir, si fuera el o la líder de su Sociedad Nacional o si tuviera el control para cambiar cualquiera o todos los aspectos de su Sociedad Nacional.
+
+        iq_4:
+          title: 1.5.4 ¿Cuál es tu visión de la Cruz Roja y de la Media Luna Roja en 2030?
+          content_1: Esta pregunta apunta a mover la discusión de las soluciones prácticas a nivel nacional a internacional. ¿Cuál debería ser el papel de otras sociedades nacionales? ¿Cómo pueden usarse estas tendencias para apoyar el trabajo conjunto? ¿Cómo debería cambiar la organización actual para apoyar la visión de los entrevistados?
+          content_2: <b>Recomendación&colon;</b> debe hacer que el entrevistado no solo discuta qué aspecto podrían tener la Cruz Roja y la Media Luna Roja en su visión, sino que piense en los pasos prácticos para lograr esa visión.
+
+        iq_5:
+          title: 1.5.5. Haz tus propias preguntas
+          content_1: Si desea conocer detalles sobre lo que ha dicho un entrevistado, o si piensa que el mundo debería escuchar una idea (o una solución práctica a un problema que han resuelto en la Cruz Roja y la Media Luna Roja), toque esta pregunta de la entrevista. Esto te permite tener más control sobre la entrevista. Si su entrevistado está hablando fuera de tema, le recomendamos que toque / seleccione este tema para ayudar a los Asistentes de Investigación a omitir el contenido.
+          content_2: <b>Recomendación&colon;</b> puede hacer sus propias preguntas en cualquier momento, entre (o durante) cualquiera de las otras preguntas de la entrevista. Trate siempre de concentrarse en la experiencia y el conocimiento local de los entrevistados y cómo se puede utilizar para informar la Estrategia 2030.
+
+      ic_6:
+        title: 1.6 Consejos para grabar una entrevista de alta calidad
+        content: Grabar una entrevista requiere conocer el tema y hacer que su entrevistado se sienta cómodo para que puedan compartir fácilmente sus experiencias e ideas. Hemos creado los 10 consejos de entrevistas que asegurarán que su entrevista sea de alta calidad, perspicaz y significativa para el entrevistado. Se tomaron el tiempo para compartir sus ideas con usted, por lo que usted quiere asegurarse de que entiendan el impacto que tendrá su entrevista.
+        instructions:
+          content_li_1: Comprender el contexto y las preguntas de la entrevista antes de grabar;
+          content_li_2: Introduzca el contexto y los objetivos de la entrevista al entrevistado antes de comenzar;
+          content_li_3: Encuentre un espacio tranquilo para grabar su entrevista para producir una grabación de mayor calidad;
+          content_li_4: Deje que el entrevistado haga la mayor parte de la conversación;
+          content_li_5: Abrazar la pausa y el silencio para ayudar al entrevistado a continuar hablando;
+          content_li_6: Utilice preguntas abiertas para obtener el máximo provecho del entrevistado;
+          content_li_7: Indague al entrevistado preguntándoles cómo y por qué dijeron.
+          content_li_8: Evite hacer respuestas de una sola palabra [preguntas cerradas];
+          content_li_9: Pídale al entrevistado que amplíe sus ideas cuando ofrezca respuestas de una palabra;
+
+      ra:
+        title: 2. Asistente de investigación&colon; rol y responsabilidades
+        content_1: Como asistente de investigación, necesitamos su ayuda para identificar visiones interesantes y perspicaces que piensen que tendrán el mayor impacto en el RCRC. Esto implica escuchar entrevistas creadas por nuestros Corresponsales de Innovación utilizando TalkFutures y creando comentarios donde identificar ideas, hacer preguntas o crear una discusión con los participantes de la entrevista y nuestra comunidad.
+        content_2: Después de escuchar las entrevistas, se familiarizará con los temas y visiones emergentes de todas las entrevistas. Le ayudaremos a crear una pieza de pensamiento que reúna estos conocimientos y análisis, y que se publicará en el sitio <a href="https://future-rcrc.com/" class="non">web de futuros</a> para que el mundo lo lea y lo discuta. Su análisis (comentarios y material de reflexión) también ayudará a los Asistentes de comunicación cuando produzcan material de comunicación (p. Ej., Carteles, podcasts, etc.) que promoveremos a través del correo electrónico, las redes sociales y nuestro sitio web de futuros para mostrar sus ideas y las visiones identificadas a través de este proceso.
+
+      ra_1:
+        title: 2.1 Conocimientos de escucha y resaltado en TalkFutures
+        content_1: TalkFutures ayuda a estructurar las entrevistas para mantenerlas coherentes en toda nuestra red de Corresponsales de Innovación y reúne todas las grabaciones en un solo lugar para facilitar el acceso. Las grabaciones de audio y quiénes participaron aparecen como una lista en la <a href="https://talk.future-rcrc.com/conversations/" class="non">página de conversaciones de TalkFutures</a>. Puede ver un resumen de cada entrevista antes de elegir la que desea escuchar&colon; esto le ayuda a filtrar la lista según el idioma, la sociedad nacional, etc.
+        content_2: You can listen to the visions from internal and external experts by playing the audio interview. Creating comments lets you select a snippet of audio that you think is insightful and that you will possibly use on your thought piece. Once you highlight a snippet of audio and create your comment, other Research Assistants will be able to view and respond to it, which creates a collaborative analysis process with other Research Assistants. Participants of the interview will be notified through email and the TalkFutures mobile application to inform them that you have commented so that they can respond to your comment and provide more advise.
+
+      ra_2:
+        title: 2.2 Creando y publicando tus piezas de pensamiento
+        content_1: Después de haber escuchado al menos 5 entrevistas, tendrá una idea general de las visiones que se han discutido en diferentes regiones del mundo. Nos gustaría que luego escribiera un artículo de reflexión que muestre sus hallazgos al escuchar estas entrevistas. La estructura de una pieza de pensamiento es flexible, pero las buenas reflexiones contrastan las visiones de múltiples entrevistas, agregan su propia interpretación a la visión y tal vez compartan su propio conocimiento / experiencia para brindar una perspectiva que haga que la pieza de pensamiento sea única e interesante para los lectores.
+        content_2: Sus pensamientos se publicarán en nuestro sitio web de futuros, donde cualquier persona puede leer y comentar sus ideas para crear más debates sobre la futura Cruz Roja y la Media Luna Roja. Puedes ver las <a href="https://future-rcrc.com/thought-pieces/" class="non">piezas de pensamiento actuales</a> en línea para ganar inspiración.
+        content_3: Recomendamos que una vez que tenga una idea o estructura para sus pensamientos, la comparta con este grupo y todos podamos analizarla y proporcionarle retroalimentación. Finalmente, una vez que desee que se publique en nuestro sitio web, envíe un correo electrónico a <a href="mailto:innovation.team@ifrc.org" class="non">innovation.team@ifrc.org</a> y lo subiremos a nuestro sitio web en un par de días. Una vez que se publique, enviaremos la URL al grupo que puede compartir con otros en WhatsApp.
+
+      ca:
+        title: 3. Asistente de comunicación&colon; roles y responsabilidades
+        content: Como Asistente de Comunicación, necesitamos su ayuda para utilizar el material creado por nuestros Corresponsales de Innovación y Asistentes de Investigación para producir mensajes poderosos sobre las visiones de nuestros miembros que podemos publicar y compartir con el mundo. Esto implica familiarizarse con la Estrategia 2030, el contenido creado y aplicar su creatividad para diseñar materiales que podamos utilizar para promover estas visiones. Usted tiene un control creativo completo sobre lo que produce, que puede abarcar desde un póster de citas de visualización de datos de todos los países, hasta la producción de un podcast para mostrar la voz auténtica de nuestros voluntarios. Le brindaremos apoyo y lo conectaremos con otros Asistentes de comunicación donde podrá discutir sus ideas creativas y, posiblemente, colaborar en su producción creativa.
+
+      ca_1:
+        title: 3.1 Discusión de pares creativos y comentarios
+        content: Como se describió anteriormente, lo agregaremos a un grupo de WhatsApp con otro Asistente de comunicación donde podrá analizar cómo puede representar una descripción general de alto nivel de las entrevistas y las perspectivas de los Asistentes de investigación. Le recomendamos que se familiarice con los medios existentes (comentarios textuales, entrevistas en audio) para ayudarlo a considerar cómo puede representarlos. <a href="https://talk.future-rcrc.com/themes/14/conversations/0560bac7727a421a96f3b2d03f074a27" class="non">Aquí hay una entrevista que tiene comentarios para ayudarte a comenzar</a>.
+
+      ca_2:
+        title: 3.2 Producción de materiales creativos a partir de entrevistas de TalkFutures
+        content: El resultado clave de participar como asistente de comunicación es la producción de materiales de comunicación que muestran las visiones de nuestros miembros. Esto puede tomar muchas formas y recomendamos discutir esto con otros Asistentes de Comunicación. Podemos proporcionarle asesoramiento técnico y asistencia si planea producir un podcast a partir del material.
+
+      thanks:
+        title: 4. Nuestro agradecimiento por tu ayuda
+        content: Apreciamos y valoramos su participación en ayudar a dar forma a la Estrategia 2030, y queremos proporcionar pruebas que pueda utilizar para mostrar su participación en el mundo. Dependiendo de su participación y roles, ofrecemos dos posibilidades.
+
+      certification:
+        title: 4.1 Certificado de Participación
+        content: Cuando un Corresponsal de Innovación registra 3 entrevistas, el equipo de innovación de Global IFRC enviará un certificado de participación firmado por el jefe del equipo de innovación de Global IFRC.
+
+      reference:
+        title: 4.2 Carta de Referencia
+        content: Si tiene un puesto de Asistente de Investigación y / o Comunicaciones, el equipo de innovación y futuros de la FICR puede proporcionar una carta de referencia del jefe de innovación y futuros.
+        options:
+          first: Para recibir esto como Asistente de investigación, debe producir al menos una pieza de pensamiento al escuchar al menos 3 entrevistas y crear comentarios para demostrar su proceso de análisis.
+          second: Para recibir esto como Asistente de Comunicaciones, debe participar en la producción de material creativo para mostrar el análisis y las opiniones de nuestros otros miembros.
 
   holder:
     # ...

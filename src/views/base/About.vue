@@ -7,7 +7,7 @@ simple-layout
           | {{ $t('view.base.about.campaign.title') }}
         hr
         p.has-text-justified(v-html="$t('view.base.about.campaign.tagline')")
-        img(src="/static/img/talkfutures/overview-en.jpg")
+        img(:src="instructions")
 
         a(v-html="$t('view.base.about.campaign.ic.title')", id="#InnovationCorrespondent").title.is-3.is-size-4-mobile.has-text-weight-semibold
         .innovation-correspondent
@@ -154,15 +154,11 @@ simple-layout
 
 <script>
 import SimpleLayout from '@/layouts/SimpleLayout'
-import { getConfig } from '../../mixins/Config'
 
 export default {
   components: { SimpleLayout },
   computed: {
-    androidURL () { return `https://play.google.com/store/apps/details?id=${getConfig('ANDROID_URL')}` },
-    iOSURL () { return `https://itunes.apple.com/us/app/${getConfig('IOS_URL')}` },
-    androidBadge () { return `/static/img/google/${this.$i18n.locale}.png` },
-    iosBadge () { return `/static/img/ios/${this.$i18n.locale}.svg` }
+    instructions () { return `/static/img/talkfutures/overview-${this.$i18n.locale}.jpg` }
   }
 }
 </script>
