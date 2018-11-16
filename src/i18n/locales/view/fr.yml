@@ -125,7 +125,119 @@ base:
         subtitle: À ifrc.org/talkfutures, les gens du monde entier écoutent, commentent et mettent en évidence les parties qu'ils aiment dans votre conversation. Découvrez ce que les autres disent et laissez un commentaire sur leurs enregistrements.
       contact:
         action: Avez-vous des questions?
+    campaign:
+      title: Future Croix-Rouge et Croissant-Rouge
+      tagline: <a href="https://ifrc.org/s2030" class="non">La Stratégie 2030</a> décrit comment la Croix-Rouge et le Croissant-Rouge devraient évoluer au cours des 10 prochaines années en réponse aux défis mondiaux (par exemple, le changement climatique) et aux opportunités (par exemple, les nouvelles technologies). Nous avons besoin de votre aide pour interroger des dirigeants, des membres du personnel, des volontaires ou des experts externes afin de recueillir leurs visions sur la manière dont l’organisation peut être prête pour l’avenir. Vos entretiens seront transformés en podcasts permettant aux personnes de poursuivre la discussion en ligne et inclus dans l'analyse de la Stratégie 2030.
+      ic:
+        title: 1. Correspondant d’ Innovation&colon; rôle et responsabilités
+        content_1: La stratégie 2030 est un processus de consultation mondial qui va refléter des expériences et des visions des membres locaux. En tant que correspondant d’innovation, vos entretiens aborderont les défis, opportunités, besoins et visions de votre Société Nationale; et fournira des recommandations sur la meilleure façon de les résoudre au cours des dix prochaines années.
+        content_2: Vous prendrez l’initiative de recruter et de mener des entretiens avec des volontaires, des dirigeants et des experts externes de la Croix-Rouge et du Croissant-Rouge sur des thèmes spécifiques. Vos entretiens seront transformés en supports de communication professionnels, tels que des podcasts, afin de refléter les problèmes clés et les solutions potentielles discutées. Vous pouvez également participer à ce processus de création en devenant assistant de communication.
+        content_3: Nous avons développé TalkFutures, une application mobile permettant de structurer, d’enregistrer et d’écouter des entretiens. Découvrez comment enregistrer vos entretiens à l'aide de TalkFutures.
+      ic_1:
+        title: 1.1 Soutien individuel de l'équipe d'innovation de la FICR
+        content_1: Nous fournissons un soutien personnalisé afin que vous vous familiarisez avec les questions qui structureront vos entretiens et le processus de la Stratégie 2030. Un membre de l’équipe d’innovation mondiale de la FICR guidera et soutiendra les petits groupes WhatsApp où vous pourrez discuter avec d’autres correspondants de l’innovation du monde entier.
+        content_2: Envoyez-nous une question à <a class="non" href="mailto:innovation.team@ifrc.org">innovation.team@ifrc.org</a> et nous répondrons dès que possible.
+      ic_2:
+        title: 1.2 Formation de groupe WhatsApp
+        content: Une fois que vous avez enregistré votre intérêt et sélectionné vos rôles par courrier électronique, nous aimerions vous ajouter à un groupe WhatsApp avec d'autres membres ayant le même rôle dans le monde entier. Cela aidera à créer plus de discussions entre les membres de différents pays et régions, simplifiera la répartition de notre soutien et aidera à créer de petites communautés autour de chaque rôle. C’est également dans ce groupe  que nous pouvons vous donner des instructions pour commencer.
+      ic_3:
+        title: 1.3 Enregistrement d'entretiens  à l'aide de TalkFutures
+        content_1: Pour aider à structurer les entretiens autour du monde,, nous avons conçu une application mobile, TalkFutures, qui montre à tous les utilisateurs le même ensemble de questions d’entretien. Cet outil permet de partager vos entretiens sur un site Web, permettant ainsi à d’autres personnes du monde entier de les écouter, de commenter et de partager leurs opinions.
+        content_2: Avant d'utiliser <b>TalkFutures</b>, vous devez organiser un lieu calme et silencieux pour enregistrer vos entretiens. Une fois que vous avez organisez  vos entretiens, utiliser TalkFutures ne nécessite que quelques étapes simples&colon;
+        content_li_1: Téléchargez TalkFutures sur l'Apple Store ou Google Play et créez votre compte.
+        content_li_2: Appuyez sur le thème intitulé «L’avenir de la Croix-Rouge et du Croissant-Rouge».
+        content_li_3: Ajoutez votre interlocuteur en tant que participant. Cela leur permet d'accéder à l'enregistrement par la suite et les avertit si quelqu'un commente leur conversation.
+        content_li_4: Consentement pour que l'enregistrement soit utilisé dans la recherche et comment il devrait être mis à la disposition du public (par exemple, le public de sorte que tout le site Web puisse écouter votre interview)
+        content_li_5: La liste des questions de l’entretien  apparaîtra. Commencez à enregistrer en tapotant sur la première question. Appuyez sur une question d'entretien différente dans l’application mobile avant de la poser à votre interlocuteur. Cela permet de visualiser le son sur le site Web.
+        content_li_6: Appuyez sur le bouton d'arrêt pour terminer votre conversation.
+      ic_4:
+        title: 1.4 Processus TalkFutures
+      ic_interview_questions:
+        title: 1.5 Questions d'entretien d'embauche à TalkFutures
+        content_1: Votre rôle en tant que correspondant en matière d'innovation consistera à interroger des volontaires, des gestionnaires, des dirigeants et / ou des experts externes locaux de la Croix-Rouge et du Croissant-Rouge sur le futur Croix-Rouge et le Croissant-Rouge. Nous avons développé quatre questions clés pour guider les entretiens afin de maintenir la cohérence du contenu dans le monde entier. Il y a aussi une question supplémentaire que vous pouvez utiliser si vous voulez rendre la conversation plus personnelle ou si vous avez vos propres idées! Une fois que vous êtes à l'aise avec le guide ci-dessous, n'hésitez pas à organiser vos entretiens comme vous le souhaitez.
+        content_2: Nous allons maintenant expliquer pourquoi nous posons chaque question pour vous aider à comprendre le contexte et à faciliter le processus d’entrevue. Il est essentiel que vous compreniez ces questions avant de mener une entrevue. Chaque question est liée à la précédente, nous vous suggérons donc de les utiliser l'une après l'autre. Nous vous avons écrit des recommandations à lire et à réfléchir avant d'enregistrer un entretien afin que vous soyez prêt à guider la personne interrogée si elle reste bloquée sur une question.
 
+        iq_1:
+          title: 1.5.1. Quelles tendances dans votre pays affecteront la plupart des gens dans les 10 prochaines années?
+          content_1: Cette question est utilisée pour établir une relation avec votre participant car elle s’appuie sur les connaissances et l’expérience locales pour se concentrer sur le pays des répondants et l’effet des tendances mondiales sur ce pays. Il commence également à familiariser la personne interrogée avec les prévisions futures&colon; voyez comment quelque chose va changer dans les années à venir.
+          content_2: Lorsque nous parlons de tendances, nous faisons référence à  certaines des 5 identifiées dans les travaux de la Stratégie 2030, par exemple&colon; bénévolat, confiance et intégrité, financement, nouvelles technologies, modèle organisationnel et culture. Par exemple, une tendance (et une préoccupation majeure) pour le Liban est la stabilité de son économie, qui concerne les locaux, car cela aura un effet sur les emplois locaux et encourage les citoyens à émigrer à d’autres  pays.
+          content_3: <b>Recommandation&colon;</b> réfléchissez aux tendances qui poussent votre pays à s’adapter et aidez le répondant s’il est coincé avec cette question.
+
+        iq_2:
+          title: 1.5.2. Comment ces tendances affecteront-elles la Croix-Rouge et le Croissant-Rouge?
+          content_1: Nous avons déjà discuté des tendances, nous nous intéressons maintenant à la manière dont elles auront un impact direct (positif et / ou négatif) sur la Croix-Rouge et le Croissant-Rouge. Vous pouvez parler de la société nationale des participants, mais nous sommes également curieux de savoir comment, à leur avis, ces tendances auront un impact international plus large sur la Croix-Rouge et le Croissant-Rouge en tant que réseau.
+          content_2: <b>Recommandation&colon;</b> Déterminez dans quelle mesure les tendances, selon vous, ont un impact (positif et / ou négatif) sur la Croix-Rouge et le Croissant-Rouge.
+
+        iq_3:
+          title: 1.5.3. Quelles mesures concrètes votre société nationale devrait-elle prendre pour répondre à ces tendances?
+          content_1: Sur la base de votre discussion précédente sur les tendances affectant la communauté locale des répondants et son impact sur la Croix-Rouge et le Croissant-Rouge, nous sommes particulièrement intéressés par les solutions potentielles aux tendances et à leurs impacts évoquées précédemment. Il est important que vous invitiez la personne interrogée à discuter des détails de ses suggestions pratiques. Par exemple, s'ils mentionnent qu'ils utiliseraient les technologies émergentes sans rien dire d'autre, encouragez-les à réfléchir à la manière dont cette technologie pourrait être utilisée et aux étapes à suivre pour l'utiliser.
+          content_2: <b>Recommandation&colon;</b> invitez le répondant  à examiner la question sous un angle différent, à savoir s’il s’agissait des dirigeants de la société nationale ou du pouvoir de changer tout ou partie de la société nationale.
+
+        iq_4:
+          title: 1.5.4 Quelle serait votre vision de la Croix-Rouge et du Croissant-Rouge en 2030?
+          content_1: Cette question vise à déplacer la discussion de solutions pratiques au niveau national vers un niveau international. Quel devrait être le rôle des autres sociétés nationales? Comment ces tendances peuvent-elles être utilisées pour favoriser la collaboration? Comment l'organisation actuelle devrait-elle changer pour soutenir le point de vue des répondants?
+          content_2: <b>Recommandation&colon;</b> Vous devriez encourager la personne interrogée non seulement à discuter de ce que pourrait être la vision de la Croix-Rouge et du Croissant-Rouge, mais également à réfléchir à des mesures pratiques pour y arriver.
+
+        iq_5:
+          title: 1.5.5. Posez vos propres questions
+          content_1: Si vous souhaitez connaître les détails d'une personne interrogée ou si vous pensez que le monde devrait entendre une idée (ou une solution pratique à un problème résolu par la Croix-Rouge et le Croissant-Rouge), appuyez sur cette question de la maintenance. Cela vous permet d'avoir plus de contrôle sur l'interview. Si votre interlocuteur parle hors sujet, nous vous recommandons de sélectionner / sélectionner ce sujet pour aider les assistants de recherche à ignorer le contenu.
+          content_2: <b>Recommandation&colon;</b> Vous pouvez poser vos propres questions à tout moment entre (ou au cours de) l'une des autres questions de l'entretien. Essayez toujours de vous concentrer sur l'expérience et les connaissances locales des personnes interrogées et sur la manière dont elles peuvent être utilisées pour informer la stratégie 2030.
+      ic_6:
+        title: 1.6 Conseils pour enregistrer un entretien de haute qualité
+        content: Enregistrer un entretien nécessite de connaître le sujet et de mettre la personne interrogée à l'aise afin qu'elle puisse facilement partager ses expériences et ses idées. Nous avons créé les 10 conseils de soutien qui garantiront la qualité de votre entretien, sa rigueur et son sens pour la personne interrogée. Ils ont pris le temps de partager leurs idées avec vous. Donc, vous voulez vous assurer qu'ils comprennent l'impact de leur maintenance.
+        instructions:
+          content_li_1: Comprendre le contexte et revoir  les questions avant l'enregistrement.
+          content_li_2: Présentez le contexte et les objectifs de l'entretien à la personne interrogée avant de commencer.
+          content_li_3: Trouvez un espace silencieux pour enregistrer votre interview afin de produire un enregistrement de meilleure qualité.
+          content_li_4: Laissez l’interviewé(e) parler le plus souvent;
+          content_li_5: Faites une pause et gardez le silence pour aider l’interviewé(e) à continuer de parler;
+          content_li_6: Utilisez des questions ouvertes pour obtenir le maximum de la personne interrogée.
+          content_li_7: Interrogez l’interviewé(e) en lui demandant comment et / ou pourquoi il/elle a dit
+          content_li_8: Évitez des réponses en un mot [questions fermées];
+          content_li_9: Demandez à la personne interrogée de développer ses idées lorsqu'elle propose des réponses d’ un mot.
+
+      ra:
+        title: 2. Assistant de recherche&colon; rôle et responsabilités
+        content_1: En tant qu’assistant de recherche, nous avons besoin de votre aide pour identifier les visions intéressantes et perspicaces qui, selon vous, auront le plus d’impact sur le CRRC. Cela implique d'écouter les interviews créées par nos correspondants Innovation à l'aide de TalkFutures et de créer des commentaires permettant d'identifier des idées, de poser des questions ou de créer une discussion avec les participants à l'interview et notre communauté.
+        content_2: Après avoir écouté les interviews, vous vous familiarisez avec les thèmes et les visions émergents qui se dégagent des interviews. Nous vous aiderons à créer un document de réflexion qui rassemble ces informations et analyses et sera publié <a href="https://future-rcrc.com/" class="non">sur le site Web de Future</a> pour que le monde entier le lise et en discute. Votre analyse (commentaires et réflexions) aidera également les assistants de communication à produire des supports de communication (affiches, podcasts, etc.) que nous allons promouvoir par courrier électronique, médias sociaux et notre site Web sur l’avenir afin de mettre en valeur vos idées et les visions identifiées à travers ce document. processus.
+
+      ra_1:
+        title: 2.1 Écoute et mise en évidence des idées dans TalkFutures
+        content_1: TalkFutures aide à structurer les entretiens pour les maintenir cohérents au sein de notre réseau de correspondants Innovation et rassemble tous les enregistrements au même endroit pour faciliter leur accès. Les enregistrements audio et les personnes qui ont participé apparaissent sous forme de liste <a href="https://talk.future-rcrc.com/conversations/" class="non">sur la page de conversations de TalkFutures</a>. Vous pouvez voir un aperçu de chaque entretien avant de choisir celui que vous souhaitez écouter cela vous aide à filtrer la liste en fonction de la langue, de la société nationale, etc.
+        content_2: Vous pouvez écouter les visions d'experts internes et externes en lisant l'interview audio. La création de commentaires vous permet de sélectionner un extrait audio que vous jugez perspicace et que vous utiliserez éventuellement dans votre pensée. Une fois que vous avez sélectionné un extrait audio et créé votre commentaire, les autres assistants de recherche seront en mesure de l'afficher et d'y répondre, ce qui créera un processus d'analyse en collaboration avec d'autres assistants de recherche. Les participants à l'entrevue seront informés par courrier électronique et par l'application mobile TalkFutures pour les informer de votre commentaire afin qu'ils puissent répondre à votre commentaire et fournir davantage de conseils.
+
+      ra_2:
+        title: 2.2 Créer et publier vos pièces de pensée
+        content_1: Après avoir écouté au moins 5 entretiens, vous aurez une idée générale des visions discutées dans différentes régions du monde. Nous aimerions que vous écriviez ensuite un article de réflexion mettant en valeur vos conclusions après avoir écouté ces entretiens. La structure d'un élément de pensée est flexible, mais de bons éléments de pensée contrastent les visions de multiples entretiens, ajoutent leur propre interprétation à la vision et peuvent éventuellement partager vos propres connaissances / expériences pour fournir une perspective qui rendra l'élément de pensée unique et intéressant pour les lecteurs.
+        content_2: Vos réflexions seront publiées sur notre site Web Futures où tout le monde peut lire et commenter vos idées afin de créer davantage de discussions sur le futur Croix-Rouge et le Croissant-Rouge. <a href="https://future-rcrc.com/thought-pieces/" class="non">Vous pouvez consulter les idées actuelles en ligne pour vous inspirer</a>.
+        content_3: Une fois que vous avez une idée ou une structure pour vos idées, nous vous recommandons de la partager avec ce groupe et de pouvoir en discuter et donner votre avis. Enfin, une fois que vous souhaitez le publier sur notre site Web, envoyez un courrier électronique à <a href="mailto:innovation.team@ifrc.org" class="non">innovation.team@ifrc.org</a> et nous le téléchargerons sur notre site Web dans quelques jours. Une fois qu'il sera publié, nous enverrons l'URL au groupe que vous pourrez partager avec d'autres personnes sur WhatsApp.
+
+      ca:
+        title: 3. Assistant de communication&colon; rôles et responsabilités
+        content: En tant qu'assistant de communication, nous avons besoin de votre aide pour utiliser le matériel créé par nos correspondants en innovation et nos assistants de recherche afin de produire des messages percutants sur les visions de nos membres que nous pouvons publier et partager avec le monde. Cela implique de se familiariser avec la Stratégie 2030, le contenu créé, et d'utiliser votre créativité pour concevoir des supports que nous pouvons utiliser pour promouvoir ces visions. Vous avez un contrôle créatif total sur ce que vous produisez, qui peut aller d’une affiche avec visualisation de données contenant des citations de tous les pays à la production d’un podcast illustrant la voix authentique de nos bénévoles. Nous vous fournirons un soutien et vous mettrons en contact avec d'autres assistants de communication où vous pourrez discuter de vos idées créatives et éventuellement collaborer sur votre production créative.
+
+      ca_1:
+        title: 3.1 Discussion créative entre pairs et commentaires
+        content: Comme décrit ci-dessus, nous vous ajouterons à un groupe WhatsApp avec un autre assistant de communication où vous pourrez discuter de la manière dont vous pourriez représenter un aperçu de haut niveau des entretiens et des informations relatives aux assistants de recherche. Nous vous recommandons de vous familiariser avec les supports existants (commentaires textuels, entretiens audio) pour vous aider à réfléchir à la manière dont vous pourriez les représenter. <a href="https://talk.future-rcrc.com/themes/14/conversations/0560bac7727a421a96f3b2d03f074a27" class="non">Voici un entretien qui contient des commentaires pour vous aider à démarrer</a>.
+
+      ca_2:
+        title: 3.2 Produire du matériel créatif à partir d’entrevues TalkFutures
+        content: Le principal résultat de la participation en tant qu’assistant en communication est la production de supports de communication qui présentent les visions de nos membres. Cela peut prendre plusieurs formes et nous vous recommandons d’en discuter avec d’autres assistants de communication. Nous pouvons fournir des conseils techniques et une assistance si vous envisagez de produire un podcast à partir de ce matériel.
+
+      thanks:
+        title: 4. Merci pour votre aide
+        content: Nous apprécions votre participation à la formulation de la stratégie 2030 et souhaitons fournir des preuves que vous pouvez utiliser pour mettre en valeur votre contribution. En fonction de votre participation et de vos rôles, nous proposons deux possibilités&colon;
+
+      certification:
+        title: 4.1 Certificat de participation
+        content: Lorsqu'un correspondant d'innovation enregistre 3 entretiens, l'équipe d'innovation de la Fédération internationale envoie un certificat de participation signé par le directeur  de l'équipe d'innovation de la Fédération internationale.
+
+      reference:
+        title: 4.2 Lettre de référence
+        content: Si vous occupez un poste d'assistant de recherche et / ou de communication, l'équipe innovation et avenir de la FICR peut fournir une lettre de référence signée par le directeur de l'équipe.
+        options:
+          first: Pour recevoir cela en tant qu'assistant de recherche, vous devez produire au moins un article de réflexion en écoutant au moins 3 entretiens et en créant des commentaires pour illustrer votre processus d'analyse.
+          second: Pour recevoir cela en tant qu'assistant de communication, vous devez participer à la production de matériel créatif afin de présenter les analyses et les idées de nos autres membres.
 
   holder:
     # ...

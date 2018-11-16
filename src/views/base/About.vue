@@ -192,7 +192,6 @@ a
 .m-top
   padding-top: 1em
 
-
 .click-to-show
   cursor: pointer
 .video-container
