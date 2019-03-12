@@ -83,6 +83,7 @@ export const make = {
     return model('Session', id, {
       id: hasher.encode(id),
       project_id: projectId,
+      lang_id: pickFrom([1, 4]),
       creator: make.creator(creatorId),
       audio_url: '/static/audio/horse.mp3',
       participants: makeList(pickBetween(1, 7), make.participant),
