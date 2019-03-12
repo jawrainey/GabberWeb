@@ -36,9 +36,9 @@
         label="Language"
         :value="language.endonym"
       )
-    .column.is-third-tablet
+    .column.is-third-tablet.is-clipped
       label-value(:label="$t('comp.session.session_pill.topic_label')")
-        .tags
+        .tags.is-clipped
           .tag(v-for="topic in limitedTopics")
             | {{trim(topic.text, 60)}}
           .tag(v-if="session.topics.length > topicLimit")
