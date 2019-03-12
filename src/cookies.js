@@ -10,16 +10,18 @@ const CookieConsent = window.cookieconsent
 const cookieConsentConfig = {
   palette: {
     popup: {
-      background: '#2ECC71',
+      background: 'rgba(31, 36, 36, 0.925)',
       text: '#FFF'
     },
     button: {
       background: '#282f2f',
-      text: '#FFF'
+      text: '#FFF',
+      border: '#4C5759'
     },
     highlight: {
       background: '#343C3D',
-      text: '#FFF'
+      text: '#FFF',
+      border: '#4C5759'
     }
   },
   position: 'bottom-right',
@@ -31,7 +33,7 @@ const cookieConsentConfig = {
     allow: 'Allow Cookies',
     dismiss: 'Disable Cookies',
     href: 'https://gabber.audio/cookies',
-    message: 'We use cookies on this website to analyse traffic, remember your preferences, and optimise your experience.',
+    message: 'We use cookies to analyse traffic and optimise your experience.',
     policy: 'Cookie Policy'
   },
   onStatusChange (status, hasChanged) {
