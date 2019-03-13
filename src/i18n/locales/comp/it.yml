@@ -232,7 +232,8 @@ session:
     when_label: Registrato
     annotation_label: annotazioni
     topic_label: Argomenti
-
+    language: Lingua
+    duration: Durata
 
 
 shared:

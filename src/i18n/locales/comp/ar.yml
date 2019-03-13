@@ -232,7 +232,8 @@ session:
     when_label: مسجل
     annotation_label: الشروح
     topic_label: المواضيع
-
+    language: لغة
+    duration: المدة الزمنية
 
 
 shared:

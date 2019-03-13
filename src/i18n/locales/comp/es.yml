@@ -232,7 +232,8 @@ session:
     when_label: Grabado
     annotation_label: Anotaciones
     topic_label: Temas
-
+    language: Idioma
+    duration: Duración
 
 
 shared:

@@ -232,7 +232,8 @@ session:
     when_label: Записано
     annotation_label: Аннотации
     topic_label: Темы
-
+    language: язык
+    duration: продолжительность
 
 
 shared:

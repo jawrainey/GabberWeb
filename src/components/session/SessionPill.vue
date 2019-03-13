@@ -24,7 +24,7 @@
       .columns.is-hidden-mobile
         .column.is-half-tablet
           label-value.is-primary.is-hidden-mobile(
-            label="Duration"
+            :label="$t('comp.session.session_pill.duration')",
             :value="duration"
           )
         .column.is-half-tablet
@@ -33,7 +33,7 @@
             :value="session.num_user_annotations"
           )
       label-value.is-primary.is-hidden-mobile(
-        label="Language"
+        :label="$t('comp.session.session_pill.language')",
         :value="language.endonym"
       )
     .column.is-third-tablet.is-clipped

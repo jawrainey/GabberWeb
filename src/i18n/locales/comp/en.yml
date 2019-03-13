@@ -232,7 +232,8 @@ session:
     when_label: Recorded
     annotation_label: Annotations
     topic_label: Topics
-
+    language: Language
+    duration: Duration
 
 
 shared:
