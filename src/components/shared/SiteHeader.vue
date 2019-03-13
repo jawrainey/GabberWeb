@@ -63,7 +63,7 @@ export default {
   }),
   computed: {
     availableLocales () { return this.$store.getters.availableLanguages },
-    currentLocale () { return this.availableLocales.find(l => l.code === this.$i18n.locale) },
+    currentLocale () { return this.$store.getters.currentLocale },
     dropdownClasses () { return { 'is-active': this.showLocaleDropdown } },
     isLoggedIn () { return this.$store.getters.currentUser },
     homeRoute () { return { name: HOME_ROUTE } },

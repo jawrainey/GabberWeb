@@ -13,7 +13,13 @@ const getters = {
   publicProjects: (state, getters) => state.allProjects.filter(proj =>
     !getters.personalProjects.includes(proj)
   ),
-  projectById: state => id => state.allProjects.find(p => p.id === id)
+  projectById: state => id => state.allProjects.find(p => p.id === id),
+  projectContentByLanguage: (state, getters) => {
+    return function (project) {
+      let projectLocale = project.content[getters.currentLocale.code]
+      return projectLocale === undefined ? project.content['en'] : projectLocale
+    }
+  }
 }
 
 const mutations = {
