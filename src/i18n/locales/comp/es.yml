@@ -4,21 +4,21 @@ annotation:
     without_tags: Añadir un comentario
 
   annotation_edit:
-    label: Anotación – {start} → {end}
+    label: Comentario – {start} → {end}
     cancel_action: Cancelar
     create_action: Crear
     placeholder: Creo que ...
 
   annotation_filter:
-    sort_title: Ordenar anotaciones
-    filter_title: Anotaciones de filtro
+    sort_title: Ordenar comentarios
+    filter_title: Comentarios de filtro
     message_field:
       label: Por mensaje
       placeholder: p.ej. El poco sobre ...
     topic_field:
       label: Por tema
     annotator_field:
-      label: Por anotador
+      label: Por comentarista
 
   annotation_pill:
     desktop_duration: '{start} → {end}'
@@ -94,8 +94,8 @@ consent:
     title: Consentimiento actualizado
     subtitle: Puedes revisarlo y actualizarlo en cualquier momento
     message_title: Éxito
-    message_body: Gracias por actualizar su consentimiento para esta conversación. Ahora puedes ver las conversaciones y comenzar a anotar. Siempre puede volver y actualizar su consentimiento en cualquier momento.
-    session_action: Ver sesión
+    message_body: Gracias por actualizar su consentimiento para esta conversación. Ahora puedes ver las conversaciones y comenzar a comentarista. Siempre puede volver y actualizar su consentimiento en cualquier momento.
+    session_action: Ver conversacion
 
 
 
@@ -154,14 +154,14 @@ project:
   project_info:
     info_label: Descripción
     members_label: Miembros
-    sessions_action: Sesiones
+    sessions_action: Conversaciones
     playlists_action: Listas de reproducción
 
   project_info_sidebar:
     info_label: Descripción
     members_label: Miembros
     owner_label: Creador
-    sessions_label: Sesiones
+    sessions_label: Conversaciones
     researchers_label: Investigadores
 
   project_members:
@@ -202,8 +202,8 @@ project:
 
 session:
   session_filters:
-    sort_title: Clasificar Sesiones
-    filter_title: Sesiones de filtro
+    sort_title: Clasificar Conversaciones
+    filter_title: Conversaciones de filtro
     language_title:
       label: Por idioma
     name_field:
@@ -215,7 +215,7 @@ session:
       label: Por participante
 
   session_info_sidebar:
-    title: Información de la sesión
+    title: Información de la conversacion
     created_label: Creado en
     creator_label: Creador
     members_label: Participantes
@@ -223,14 +223,14 @@ session:
       title: Investigadores
       description: Actualmente no hay investigadores involucrados en este proyecto
     topics_label: Temas
-    annotations_label: Anotaciones
+    annotations_label: Comentarios
     date_format: h:mm a MMMM Do YYYY
 
   session_pill:
     more: más
     member_label: Participantes
     when_label: Grabado
-    annotation_label: Anotaciones
+    annotation_label: Comentarios
     topic_label: Temas
     language: Idioma
     duration: Duración
@@ -250,7 +250,7 @@ topic:
     title: Temas
     warn_title: Advertencia
     warn_body: Cambiar estos temas actualizará las conversaciones existentes
-    help_body: Agregue temas para que las personas discutan en sus Gabbers
+    help_body: Agregue temas para que las personas discutan en sus conversaciones
     placeholder: p.ej. Un tema sobre ...
     add_action: Agregar tema
 

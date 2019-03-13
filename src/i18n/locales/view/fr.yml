@@ -9,7 +9,7 @@ auth:
     loading_title: Récupération de votre invitation
     bad_token_title: Jeton invalide
     subtitle: Inscrivez-vous ci-dessous pour rejoindre le projet
-    info: Gabber vous permet d'enregistrer et d'annoter des interviews structurées
+    info: Gabber vous permet d'enregistrer et d'd'commentateur des interviews structurées
     email_field:
       label: Email
       placeholder: me@example.com
@@ -174,25 +174,25 @@ project:
     failed_body: Quelque chose s'est mal passé, vérifiez le lien dans votre email.
 
   session_detail:
-    title: "{name}'s session"
-    nav_title: Détails de la session
+    title: "{name}'s conversation"
+    nav_title: Détails de la conversation
     mobile_filter_title: Filtrer
-    mobile_info_title: Info de la session
+    mobile_info_title: Info de la conversation
     topic_title: Rubrique
-    annotations_title: Annotations
-    no_annotations_title: Pas d'annotations
-    no_annotations: Il n'y a pas d'annotations à ce moment, voulez vous ajouter une annotation?
-    no_filtered_annotations: Aucune annotation ne correspond à votre requête, essayez de l'ajuster dans la barre latérale
+    annotations_title: Commentaires
+    no_annotations_title: Pas d'commentaires
+    no_annotations: Il n'y a pas d'commentaires à ce moment, voulez vous ajouter une commentaire?
+    no_filtered_annotations: Aucune commentaires ne correspond à votre requête, essayez de l'ajuster dans la barre latérale
     fetch_failed_body: Ce  Gabber n'est pas retrouvé ou ça n'existe pas
-    create_failed_body: Impossible de créer une annotation. Veuillez réessayer.
+    create_failed_body: Impossible de créer une commentaire. Veuillez réessayer.
 
   session_list:
-    title: Sessions
-    nav_title: Sessions
+    title: Conversations
+    nav_title: Conversations
     loading_title: Récupération des sessions du projet
     mobile_filter_title: Filtrer
-    no_sessions: Il n'y a pas de sessions disponibles en ce moment, pourquoi ne pas en enregistrer une dans l'application?
-    no_filtered_sessions: Aucune session ne correspond à votre requête, essayez de la rafiner à l'aide de la barre latérale.
+    no_sessions: Il n'y a pas de conversations disponibles en ce moment, pourquoi ne pas en enregistrer une dans l'application?
+    no_filtered_sessions: Aucune conversation ne correspond à votre requête, essayez de la rafiner à l'aide de la barre latérale.
     mobile_project_title: Info du Projet
     not_found: le Projet n'est pas retrouvé, veuillez revoir votre URL
 

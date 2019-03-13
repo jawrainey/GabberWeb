@@ -1,6 +1,6 @@
 # Gabber Web
 
-A user interface for manage projects and annotate audio conversations using the Gabber Api.
+A user interface for manage projects and comment audio conversations using the Gabber API.
 It is a [Vue](https://vuejs.org) webapp using [npm](https://www.npmjs.com/) packages, written using
 [JavaScript](https://developer.mozilla.org/bm/docs/Web/JavaScript),
 [Sass](https://sass-lang.com/) and [Pug](https://pugjs.org/api/getting-started.html),

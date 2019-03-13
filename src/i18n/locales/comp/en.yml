@@ -4,29 +4,29 @@ annotation:
     without_tags: Add a comment
 
   annotation_edit:
-    label: Annotation – {start} → {end}
+    label: Comment – {start} → {end}
     cancel_action: Cancel
     create_action: Create
     placeholder: I think that ...
-  
+
   annotation_filter:
-    sort_title: Sort Annotations
-    filter_title: Filter Annotations
+    sort_title: Sort Comments
+    filter_title: Filter Comments
     message_field:
       label: By message
       placeholder: e.g. The bit about ...
     topic_field:
       label: By topic
     annotator_field:
-      label: By annotator
-  
+      label: By commentor
+
   annotation_pill:
     desktop_duration: '{start} → {end}'
     hide_action: Hide comments
     comment_action: Add a comment | 1 comment | {count} comments
-  
+
   annotation_range:
-  
+
   draggable:
 
 
@@ -46,12 +46,12 @@ comment:
     replies_action: Add a reply | 1 reply | {count} replies
     delete_body: Are you sure you want to delete your comment? This cannot be undone
     deleted_title: '[deleted]'
-  
+
   comment_composer:
     action: Comment
     placeholder: I think that ...
     fail_body: Could not make your comment, please try again
-  
+
   comment_section:
     blocked_body: You cannot reply to this thread
     login_action: Login to comment
@@ -83,13 +83,13 @@ consent:
     access_label: Who has access
     submit_action: Update Consent
     people:
-      researcher: Project researchers
+      researcher: Researchers
       interviewer: The interviewer
-      administrators: Project administrators
+      administrators: Administrators
       participant: Participants in this conversation
-      member: Members of this project
+      member: Members
       public: Anyone visiting the Gabber website
-  
+
   consent_success:
     title: Consent Updated
     subtitle: You can review and update it at any time
@@ -101,7 +101,7 @@ consent:
 
 member:
   member_bubble:
-  
+
   member_option:
 
 
@@ -143,25 +143,25 @@ project:
     default_submit_action: Save
     private_body: Only you and invited participants will see your project
     public_body: Anyone on Gabber will see and be able to join your project
-  
+
   project_header:
     members_action: Members
     edit_action: Edit
     close_action: Close
     join_action: Join
     leave_action: Leave
-  
+
   project_info:
     info_label: Description
     members_label: Members
-    sessions_action: Sessions
+    sessions_action: Conversations
     playlists_action: Playlists
-  
+
   project_info_sidebar:
     info_label: Description
     members_label: Members
     owner_label: Creator
-    sessions_label: Sessions
+    sessions_label: Conversations
     researchers_label: Researchers
 
   project_members:
@@ -187,7 +187,7 @@ project:
     was_added: '{name} was added'
     delete_confirm: Are you sure you want to remove this member?
     was_removed: '{name} was removed'
-  
+
   project_pill:
     update_action: Update
     update_failed: Could not save project, try again?
@@ -202,8 +202,8 @@ project:
 
 session:
   session_filters:
-    sort_title: Sort Sessions
-    filter_title: Filter Sessions
+    sort_title: Sort Conversations
+    filter_title: Filter Conversations
     language_title:
       label: By language
     name_field:
@@ -213,9 +213,9 @@ session:
       label: By topics
     member_field:
       label: By participant
-  
+
   session_info_sidebar:
-    title: Session Info
+    title: Conversation Info
     created_label: Created on
     creator_label: Creator
     members_label: Participants
@@ -223,14 +223,14 @@ session:
       title: Researchers
       description: There are currently no researchers involved in this project.
     topics_label: Topics
-    annotations_label: Annotations
+    annotations_label: Comments
     date_format: h:mm a MMMM Do YYYY
-  
+
   session_pill:
     more: more
     member_label: Participants
     when_label: Recorded
-    annotation_label: Annotations
+    annotation_label: Comments
     topic_label: Topics
     language: Language
     duration: Duration
@@ -239,7 +239,7 @@ session:
 shared:
   site_footer:
     copyright: A research project at
-  
+
   site_header:
     logout_action: Logout
 
@@ -250,40 +250,40 @@ topic:
     title: Topics
     warn_title: WARNING
     warn_body: Changing these topics will update existing conversations
-    help_body: Add topics for people to discuss in their Gabbers
+    help_body: Add topics for people to discuss
     placeholder: e.g. A topic about ...
     add_action: Add Topic
-  
+
   topic_option:
-  
+
   topics_bar:
-  
+
   topic_segment:
 
 
 
 utils:
   action_box:
-  
+
   add_cancel_button:
-  
+
   breadcrumbs:
-  
+
   circle_button:
-  
+
   icon_bubble:
-  
+
   label_value:
-  
+
   loading:
     default_label: Loading
-  
+
   markdown:
-  
+
   message:
-  
+
   sort_field:
     newest_label: Newest
     oldest_label: Oldest
-  
+
   tooltip:

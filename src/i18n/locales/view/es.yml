@@ -9,7 +9,7 @@ auth:
     loading_title: Autentificando
     bad_token_title: simbolo no valido
     subtitle: Regístrese abajo para unirse al proyecto
-    info: Gabber te permite grabar y anotar entrevistas estructuradas
+    info: Gabber te permite grabar y comentarista entrevistas estructuradas
     email_field:
       label: Email
       placeholder: p.ej. me@example.com
@@ -174,25 +174,25 @@ project:
     failed_body: Algo salió mal, revisa el enlace en tu correo electrónico.
 
   session_detail:
-    title: "{name}'s sesión"
-    nav_title: Detalle de la sesión
+    title: "{name}'s conversacion"
+    nav_title: Detalle de la conversacion
     mobile_filter_title: Filtrar
-    mobile_info_title: Información de la sesión
+    mobile_info_title: Información de la conversacion
     topic_title: Tema
-    annotations_title: Anotaciones
-    no_annotations_title: No hay anotaciones
-    no_annotations: Todavía no hay anotaciones, ¿por qué no agregar una?
-    no_filtered_annotations: No hay anotaciones que coincidan con su consulta, cambia el criterío de busqueda en la barra lateral
+    annotations_title: Comentarios
+    no_annotations_title: No hay comentarios
+    no_annotations: Todavía no hay comentarios, ¿por qué no agregar una?
+    no_filtered_annotations: No hay comentarios que coincidan con su consulta, cambia el criterío de busqueda en la barra lateral
     fetch_failed_body: No se ha podido encontrar a ese Gabber o no exist
-    create_failed_body: Error al crear la anotación, por favor intente de nuevo
+    create_failed_body: Error al crear la comentario, por favor intente de nuevo
 
   session_list:
-    title: Sesiones
-    nav_title: Sesiones
-    loading_title: Cómo obtener sesiones del proyecto
+    title: Conversaciones
+    nav_title: Conversaciones
+    loading_title: Cómo obtener conversaciones del proyecto
     mobile_filter_title: Filtrar
-    no_sessions: No hay sesiones disponibles en este momento, ¿por qué no grabar una en la aplicación?
-    no_filtered_sessions: No hay sesiones que coincidan con su consulta, cambia el criterío de busqueda en la barra lateral
+    no_sessions: No hay conversaciones disponibles en este momento, ¿por qué no grabar una en la aplicación?
+    no_filtered_sessions: No hay conversaciones que coincidan con su consulta, cambia el criterío de busqueda en la barra lateral
     mobile_project_title: Información del proyecto
     not_found: Proyecto no encontrado, revisa tu URL
 

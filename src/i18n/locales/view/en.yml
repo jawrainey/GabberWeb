@@ -8,8 +8,8 @@ auth:
     nav_title: Accept Invite
     loading_title: Authenticating
     bad_token_title: Invalid Token
-    subtitle: Sign up below to join project
-    info: Gabber lets you record and annotate structured interviews
+    subtitle: Sign up below to join
+    info: Gabber helps you record structured interviews
     email_field:
       label: Email
       placeholder: me@example.com
@@ -160,7 +160,7 @@ project:
     unauthed_empty_body: There are no public projects right now, why not sign up and create your own!
     fetch_failed_body: Could not fetch projects, please reload
     create_failed_body: Could not create project, please try again
-    
+
   session_consent:
     title: Gabber Consent
     nav_title: Gabber Consent
@@ -171,27 +171,27 @@ project:
     info_email_label: Email
     mobile_info_title: Your info
     failed_body: Something went wrong, check the link in your email.
-  
+
   session_detail:
-    title: "{name}'s session"
-    nav_title: Session Detail
+    title: "{name}'s conversation"
+    nav_title: Conversation Detail
     mobile_filter_title: Filter
-    mobile_info_title: Session info
+    mobile_info_title: Conversation info
     topic_title: Topic
-    annotations_title: Annotations
-    no_annotations_title: No Annotations
-    no_annotations: There aren't any annotations yet, why not add one?
-    no_filtered_annotations: No annotations matched your query, try tweaking it in the sidebar
-    fetch_failed_body: Couldn't find that Gabber or it doesn't exist
-    create_failed_body: Failed to create annotation, please try again
-  
+    annotations_title: Comments
+    no_annotations_title: No Comments
+    no_annotations: There are no comments yet, why not add one?
+    no_filtered_annotations: No comments matched your query, try tweaking it in the sidebar
+    fetch_failed_body: Couldn't find that conversation or it doesn't exist
+    create_failed_body: Failed to create comment, please try again
+
   session_list:
-    title: Sessions
-    nav_title: Sessions
-    loading_title: Fetching Project's Sessions
+    title: Conversations
+    nav_title: Conversations
+    loading_title: Fetching Project's Conversations
     mobile_filter_title: Filter
-    no_sessions: There are no sessions available right now, why not record one in the app?
-    no_filtered_sessions: No sessions matched your query, try tweaking it using in the sidebar.
+    no_sessions: There are no conversations yet, why not record one in the app?
+    no_filtered_sessions: No conversations matched your query, try tweaking it using in the sidebar.
     mobile_project_title: Project info
     not_found: Project not found, check your url
 

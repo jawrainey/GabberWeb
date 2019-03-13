@@ -4,21 +4,21 @@ annotation:
     without_tags: Ajouter un commentaire
 
   annotation_edit:
-    label: Annotation – {start} → {end}
+    label: Commentaire – {start} → {end}
     cancel_action: Annuler
     create_action: Créer
     placeholder: Je pense que …
 
   annotation_filter:
-    sort_title: Trier les annotations
-    filter_title: Filtrer les annotations
+    sort_title: Trier les commentaires
+    filter_title: Filtrer les commentaires
     message_field:
       label: Par message
       placeholder: 'Par exemple: La partie à propos de...'
     topic_field:
       label: Par sujet
     annotator_field:
-      label: Par annotateur
+      label: Par commentateur
 
   annotation_pill:
     desktop_duration: '{start} → {end}'
@@ -95,7 +95,7 @@ consent:
     subtitle: Vous pouvez le consulter et le mettre à jour à tout moment
     message_title: Succès
     message_body: Merci d'avoir mis  à jour votre consentement pour cette conversation. Vous pouvez maintenant voir et commencer à l'annoter. Vous pouvez toujours revenir et mettre à jour votre consentement à tout moment.
-    session_action: Voir la session
+    session_action: Voir la conversation
 
 
 
@@ -154,14 +154,14 @@ project:
   project_info:
     info_label: La description
     members_label: Membres
-    sessions_action: Sessions
+    sessions_action: Conversations
     playlists_action: Playlists
 
   project_info_sidebar:
     info_label: La description
     members_label: Members
     owner_label: Créateur
-    sessions_label: Sessions
+    sessions_label: Conversations
     researchers_label: Chercheurs
 
   project_members:
@@ -202,8 +202,8 @@ project:
 
 session:
   session_filters:
-    sort_title: Trier les sessions
-    filter_title: Filtrer les sessions
+    sort_title: Trier les conversations
+    filter_title: Filtrer les conversations
     language_title:
       label: Par langue
     name_field:
@@ -215,7 +215,7 @@ session:
       label: Par participant
 
   session_info_sidebar:
-    title: Informations sur la session
+    title: Informations sur la conversation
     created_label: Créé le
     creator_label: Créateur
     members_label: Participants
@@ -223,14 +223,14 @@ session:
       title: Chercheurs
       description: Il n'y a actuellement aucun chercheur impliqué dans ce projet
     topics_label: Les Rubriques
-    annotations_label: Annotations
+    annotations_label: Commentaires
     date_format: h:mm a MMMM Do YYYY
 
   session_pill:
     more: Plus
     member_label: Participants
     when_label: Enregistré
-    annotation_label: Annotations
+    annotation_label: Commentaires
     topic_label: Les Rubriques
     language: Langue
     duration: Durée

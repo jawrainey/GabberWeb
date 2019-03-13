@@ -27,10 +27,10 @@ export default [
         component: Holder,
         children: [
           {
-            path: 'sessions',
+            path: 'conversations',
             component: Holder,
             meta: {
-              crumb: 'Sessions',
+              crumb: 'Conversations',
               holderFor: ROUTES.SESSION_LIST_ROUTE
             },
             children: [
@@ -38,15 +38,15 @@ export default [
                 path: '',
                 name: ROUTES.SESSION_LIST_ROUTE,
                 component: SessionList,
-                meta: { title: 'Sessions' }
+                meta: { title: 'Conversations' }
               },
               {
                 path: ':session_id',
                 name: ROUTES.SESSION_DETAIL_ROUTE,
                 component: SessionDetail,
                 meta: {
-                  crumb: 'View Session',
-                  title: 'Session'
+                  crumb: 'View Conversation',
+                  title: 'Conversation'
                 }
               }
             ]
