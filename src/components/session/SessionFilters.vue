@@ -28,7 +28,7 @@
   .field
     label.label {{$t('comp.session.session_filters.topic_field.label')}}
     topic-option(
-      v-for="topic in project.content['en'].topics",
+      v-for="topic in projectContent.topics",
       :key="topic.id",
       :topic="topic",
       :selected="topics.includes(topic.id)",
@@ -66,6 +66,11 @@ export default {
     sortMode: { type: String, required: true }
   },
   computed: {
+    projectContent () {
+      let project = this.$store.getters.projectContentByLanguage(this.project)
+      project.topics = project.topics.filter(p => p.is_active)
+      return project
+    },
     availableLanguages () {
       let languages = this.$store.getters.availableLanguages
       for (let i = 0; i < languages.length; i++) {
