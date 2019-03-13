@@ -5,20 +5,6 @@ footer.hero.is-dark.is-small
       .level
         .level-left
           .level-item
-            .dropdown.is-up(:class="dropdownClasses", v-if="availableLocales && availableLocales.length > 0")
-              .dropdown-trigger
-                button.button.is-small(aria-haspopup="true", aria-controls="dropdown-menu", @click="showLocaleDropdown = !showLocaleDropdown")
-                  .icon: fa(icon="globe")
-                  span {{ currentLocale.endonym }}
-              #dropdown-menu.dropdown-menu(role="menu")
-                .dropdown-content
-                  a.dropdown-item(
-                    v-for="locale in availableLocales",
-                    @click.prevent="setLocale(locale)",
-                    :class="localeClasses(locale)"
-                    v-text="locale.endonym"
-                  )
-          .level-item
             router-link.button.is-text(:to="privacyRoute")
               | {{$t('view.base.privacy.nav_title')}}
           .level-item
@@ -43,28 +29,11 @@ footer.hero.is-dark.is-small
 import { PRIVACY_ROUTE, TERMS_ROUTE, RESEARCH_ROUTE, COOKIES_ROUTE } from '@/const/routes'
 
 export default {
-  data: () => ({ showLocaleDropdown: false }),
   computed: {
-    availableLocales () { return this.$store.getters.availableLanguages },
     privacyRoute () { return { name: PRIVACY_ROUTE } },
     termsRoute () { return { name: TERMS_ROUTE } },
     researchRoute () { return { name: RESEARCH_ROUTE } },
-    cookiesRoute () { return { name: COOKIES_ROUTE } },
-    currentLocale () { return this.availableLocales.find(l => l.code === this.$i18n.locale) },
-    dropdownClasses () { return { 'is-active': this.showLocaleDropdown } }
-  },
-  methods: {
-    localeClasses (locale) { return { 'is-active': this.$i18n.locale === locale.key } },
-    setLocale (locale) {
-      this.$i18n.locale = locale.code
-      this.showLocaleDropdown = false
-    }
+    cookiesRoute () { return { name: COOKIES_ROUTE } }
   }
 }
 </script>
-
-<style lang="sass">
-  a.dropdown-item:hover, a.dropdown-item.is-active
-    background-color: #1abc9c
-    color: white
-</style>
