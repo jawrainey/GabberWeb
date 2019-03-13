@@ -180,7 +180,7 @@ project:
     topic_title: Topic
     annotations_title: Comments
     no_annotations_title: No Comments
-    no_annotations: There are no comments yet, why not add one?
+    no_annotations: Sign up to comment
     no_filtered_annotations: No comments matched your query, try tweaking it in the sidebar
     fetch_failed_body: Couldn't find that conversation or it doesn't exist
     create_failed_body: Failed to create comment, please try again

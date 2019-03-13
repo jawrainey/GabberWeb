@@ -1,7 +1,7 @@
 <template lang="pug">
 loading-full-layout(
   v-if="apiInProgress || apiErrors.length > 0"
-  loading-message="Fetching Gabber Session",
+  loading-message="Fetching Gabber Conversation",
   :is-loading="apiInProgress",
   :errors="apiErrors",
   :back-route="sessionListRoute"
@@ -62,7 +62,7 @@ full-layout.session-detail(v-else-if="session")
         span  {{ currentTopic.text }}
         span(v-if="highlightTopic && currentTopic.id !== highlightTopic.id")
           span  → {{highlightTopic.text}}
-    
+
     section
       .level.is-mobile
         .level-left
@@ -75,18 +75,18 @@ full-layout.session-detail(v-else-if="session")
             :toggled="!!newAnnotation",
             :disabled="apiInProgress || isCreatingAnnotation"
           )
-      
+
       .box.is-pill.is-success.new-annotation(v-if="newAnnotation")
         message.is-danger(v-model="newAnnotationErrors", clearable)
         annotation-edit(
           :codebook="project.codebook",
           :annotation="newAnnotation",
           :disabled="isCreatingAnnotation",
-          @position="t => seekTo(t)"
+          @position="t => seekTo(t)",
           @submit="createAnnotation",
           @cancel="toggleNewAnnotation"
         )
-      
+
       annotation-pill(
         v-for="annotation in filteredAnnotations",
         :key="annotation.id",
@@ -96,7 +96,7 @@ full-layout.session-detail(v-else-if="session")
         @focus="annot => focusedAnnotation = annot",
         @blur="annot => focusedAnnotation = null",
       )
-      
+
       action-box(v-if="!newAnnotation && filteredAnnotations.length === 0", :title="$t('view.project.session_detail.no_annotations_title')")
         p.is-size-5.has-text-centered.current-topic-name(slot="content")
           span(v-if="annotations.length === 0")
@@ -107,7 +107,7 @@ full-layout.session-detail(v-else-if="session")
     slot="right",
     :session="session"
   )
-  
+
   template(slot="mobileRight")
     span.icon: fa(icon="info")
     span Gabber info
@@ -217,14 +217,14 @@ export default {
       let comments = annotations.reduce((comments, annotation) => {
         return comments.concat(annotation.comments)
       }, [])
-      
+
       if (meta.success) {
         this.$store.commit(SAVE_PROJECT, projectRes.data)
         this.$store.commit(ADD_SESSIONS, sessions)
         this.$store.commit(ADD_ANNOTATIONS, annotations)
         this.$store.commit(ADD_COMMENTS, comments)
       }
-      
+
       this.endApiWork(
         meta, this.$t('view.project.session_detail.fetch_failed_body')
       )
@@ -276,7 +276,7 @@ export default {
         this.newAnnotation = null
         return
       }
-      
+
       this.newAnnotation = {
         creator: this.currentUser,
         content: '',
@@ -289,7 +289,7 @@ export default {
       if (this.isCreatingAnnotation) return
       this.isCreatingAnnotation = true
       this.newAnnotationErrors = []
-      
+
       let { meta, data } = await this.$api.createAnnotation(
         this.newAnnotation.content,
         this.newAnnotation.tags,
@@ -298,9 +298,9 @@ export default {
         this.sessionId,
         this.projectId
       )
-      
+
       this.newAnnotationErrors = meta.messages
-      
+
       if (meta.success) {
         this.$store.commit(ADD_ANNOTATIONS, [ data ])
         this.newAnnotation = null
@@ -309,7 +309,7 @@ export default {
           this.$t('view.project.session_detail.create_failed_body')
         )
       }
-      
+
       this.isCreatingAnnotation = false
     }
   }
@@ -322,7 +322,7 @@ export default {
 
   .topic-tags .tag
     cursor: pointer
-  
+
   .current-topic-name
     padding-top: 0.5em
 
