@@ -37,7 +37,7 @@ full-layout.session-detail(v-else-if="session")
             :start="newAnnotation.start_interval",
             :end="newAnnotation.end_interval",
             :disabled="isCreatingAnnotation",
-            :editable="true"
+            :editable="true",
             @change="updateRange"
           )
         transition(name="fade")
@@ -98,9 +98,10 @@ full-layout.session-detail(v-else-if="session")
       )
       
       action-box(v-if="!newAnnotation && filteredAnnotations.length === 0", :title="$t('view.project.session_detail.no_annotations_title')")
-        p.is-size-5(slot="content")
-      
-          span(v-if="annotations.length === 0") {{$t('view.project.session_detail.no_annotations')}}
+        p.is-size-5.has-text-centered.current-topic-name(slot="content")
+          span(v-if="annotations.length === 0")
+            a.button.is-success-red(@click.prevent="pushRegister")
+              span {{$t('comp.comment.comment_section.login_action')}}
           span(v-else) {{$t('view.project.session_detail.no_filtered_annotations')}}
   session-info-sidebar(
     slot="right",
