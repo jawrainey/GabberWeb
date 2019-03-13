@@ -23,7 +23,9 @@
         li.tag(v-for="item in annotation.labels")
           span(v-text="item.text" v-bind:key="item.id")
       p.is-size-5 {{ annotation.content }}
-    .column.is-narrow.has-text-right
+  hr
+  .columns
+    .column.is-narrow
       button.button.is-link.is-rounded(@click="toggleComments")
         | {{ commentTitle }}
   transition(name="slide")
