@@ -25,23 +25,23 @@ header.site-header.hero
         .navbar-item(v-else)
           button.button.is-dark(@click="logout")
             | {{$t('comp.shared.site_header.logout_action')}}
-      .navbar-item
-        .dropdown(:class="dropdownClasses", v-if="availableLocales && availableLocales.length > 0")
-          .dropdown-trigger
-            button.button.is-small(
-            aria-haspopup="true",
-            aria-controls="dropdown-menu",
-            @click="showLocaleDropdown = !showLocaleDropdown"
-            )
-              .icon: fa(icon="globe")
-              span {{ currentLocale.endonym }}
-          #dropdown-menu.dropdown-menu(role="menu")
-            .dropdown-content
-              a.dropdown-item(
-              v-for="locale in availableLocales",
-              @click.prevent="setLocale(locale)",
-              :class="localeClasses(locale)"
-              v-text="locale.endonym")
+        .navbar-item
+          .dropdown(:class="dropdownClasses", v-if="availableLocales && availableLocales.length > 0")
+            .dropdown-trigger
+              button.button.is-small.make-red(
+              aria-haspopup="true",
+              aria-controls="dropdown-menu",
+              @click="showLocaleDropdown = !showLocaleDropdown"
+              )
+                .icon: fa(icon="globe")
+                span {{ currentLocale.endonym }}
+            #dropdown-menu.dropdown-menu(role="menu")
+              .dropdown-content
+                a.dropdown-item(
+                v-for="locale in availableLocales",
+                @click.prevent="setLocale(locale)",
+                :class="localeClasses(locale)"
+                v-text="locale.endonym")
 </template>
 
 <script>
@@ -80,8 +80,11 @@ export default {
     },
     localeClasses (locale) { return { 'is-active': this.$i18n.locale === locale.key } },
     setLocale (locale) {
-      this.$i18n.locale = locale.code
       this.showLocaleDropdown = false
+      this.$i18n.locale = locale.code
+      const html = document.documentElement
+      html.setAttribute('lang', this.$i18n.locale)
+      html.setAttribute('dir', locale.code === 'ar' ? 'rtl' : 'ltr')
     },
     routeClass (route) {
       return {
