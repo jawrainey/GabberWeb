@@ -35,7 +35,7 @@
       @select="selectTopic(topic)",
       @deselect="deselectTopic(topic)"
     )
-  .field.members-field
+  .field.members-field(v-if="uniqueParticipants.length > 0")
     label.label {{$t('comp.session.session_filters.member_field.label')}}
     .bubble-list.is-multiline.is-size-3
       member-option(
