@@ -11,7 +11,7 @@ full-layout.session-detail(v-else-if="session")
     slot="left",
     :session="session",
     :annotations="annotations",
-    :query.sync="query"
+    :query.sync="query",
     :topics.sync="topicFilters",
     :members.sync="memberFilters",
     :sortMode.sync="sortMode"
@@ -21,8 +21,8 @@ full-layout.session-detail(v-else-if="session")
     span Filter
   .main(slot="main")
     breadcrumbs
-    h1.title {{$t('view.project.session_detail.title', {name: session.creator.fullname})}}
-    
+    h1.title {{ projectContent.title }}
+    h2.subtitle {{$t('view.project.session_detail.title', {name: session.creator.fullname})}}
     .box
       audio-player(
         ref="audioPlayer",
@@ -174,6 +174,7 @@ export default {
   computed: {
     ...mapGetters([ 'currentUser' ]),
     sessionListRoute () { return { name: SESSION_LIST_ROUTE } },
+    projectContent () { return this.$store.getters.projectContentByLanguage(this.project) },
     projectId () { return parseInt(this.$route.params.project_id) },
     sessionId () { return this.$route.params.session_id },
     session () { return this.$store.getters.sessionById(this.sessionId) },
