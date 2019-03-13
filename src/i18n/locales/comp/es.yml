@@ -67,7 +67,7 @@ consent:
     perms_title: ¿Te gustaría tener acceso a esta conversación?
     research:
       title: ¿Cómo se usará su conversación para la investigación?
-      body: Su grabación y los metadatos asociados (quién participó, cuándo, qué temas se discutieron, etc.) estarán disponibles para el personal de investigación y se utilizarán para ayudar a comprender cómo las herramientas digitales pueden ayudarlo a usted y a otros ciudadanos que participan en prácticas de investigación cualitativa, utilizando el audio para hacer estas aproximaciones más accesibles. Cualquier trabajo publicado como resultado de los datos capturados a través de TalkFutures nunca incluirá detalles que podrían usarse para identificarlo a usted o a otros participantes.
+      body: Su grabación y los metadatos asociados (quién participó, cuándo, qué temas se discutieron, etc.) estarán disponibles para el personal de investigación y se utilizarán para ayudar a comprender cómo las herramientas digitales pueden ayudarlo a usted y a otros ciudadanos que participan en prácticas de investigación cualitativa, utilizando el audio para hacer estas aproximaciones más accesibles. Cualquier trabajo publicado como resultado de los datos capturados a través de Gabber nunca incluirá detalles que podrían usarse para identificarlo a usted o a otros participantes.
       statement: Para obtener más información, incluida la opción de exclusión, revise nuestra
       link: Declaración de investigación.
       embargo: 'Nota: su conversación se someterá a un embargo de 24 horas donde solo los participantes de la conversación pueden escuchar. Después de este período, la conversación de audio estará disponible según el consentimiento que elija a continuación.'

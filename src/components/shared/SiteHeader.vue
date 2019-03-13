@@ -3,7 +3,7 @@ header.site-header.hero
   nav.navbar(role="navigation", aria-label="main navigation")
     .navbar-brand
       router-link.navbar-item(:to="homeRoute")
-        img(src="/static/img/logo.png" width="30")
+        span.is-size-4.has-text-weight-bold G
       .navbar-burger(@click="toggleMobileNav", :class="menuClasses")
         span
         span

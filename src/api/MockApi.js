@@ -181,7 +181,11 @@ export default class MockApi extends ApiInterface {
       ? this.mock(make.session(id, projectId, CURRENT_USER_ID))
       : this.mock(null, false)
   }
-  
+
+  async getSessionsRecommendations () {
+    return this.mock([make.recommendation(1), make.recommendation(2), make.recommendation(3)])
+  }
+
   /*
    * Annotations
    */

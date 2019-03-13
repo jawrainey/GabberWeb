@@ -21,8 +21,8 @@ full-layout.session-detail(v-else-if="session")
     span Filter
   .main(slot="main")
     breadcrumbs
-    h1.title {{ projectContent.title }}
-    h2.subtitle {{$t('view.project.session_detail.title', {name: session.creator.fullname})}}
+    h1.title.is-size-4-mobile {{ projectContent.title }}
+    h2.subtitle.is-size-6-mobile {{$t('view.project.session_detail.title', {name: session.creator.fullname})}}
     .box
       audio-player(
         ref="audioPlayer",
@@ -67,7 +67,7 @@ full-layout.session-detail(v-else-if="session")
       .level.is-mobile
         .level-left
           .level-item
-            h1.title {{$t('view.project.session_detail.annotations_title')}}
+            h1.title.is-size-4-mobile {{$t('view.project.session_detail.annotations_title')}}
         .level-right
           add-cancel-button.is-medium(
             v-if="currentUser && audioDuration",
@@ -98,7 +98,7 @@ full-layout.session-detail(v-else-if="session")
       )
 
       action-box(v-if="!newAnnotation && filteredAnnotations.length === 0", :title="$t('view.project.session_detail.no_annotations_title')")
-        p.is-size-5.has-text-centered.current-topic-name(slot="content")
+        p.is-size-4.is-size-6-mobile.is-italic.current-topic-name(slot="content")
           router-link.button.is-success-red(:to="registerRoute" v-if="annotations.length === 0")
             span {{$t('view.project.session_detail.no_annotations')}}
           span(v-else) {{$t('view.project.session_detail.no_filtered_annotations')}}

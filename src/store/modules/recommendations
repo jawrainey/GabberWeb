@@ -1,0 +1,25 @@
+import { ADD_SESSIONS_RECOMMENDATIONS } from '@/const/mutations'
+
+const state = {
+  sessions: []
+}
+
+const getters = {
+  sessionsRecommendations: state => state.sessions
+}
+
+const mutations = {
+  [ADD_SESSIONS_RECOMMENDATIONS]: (state, sessions) => {
+    state.sessions = sessions
+  }
+}
+
+const actions = {
+}
+
+export default {
+  state,
+  getters,
+  mutations,
+  actions
+}

@@ -14,6 +14,7 @@ export const EDIT_MEMBER_ON_PROJECT = 'EditMemberOnProject'
 export const REMOVE_MEMBER_FROM_PROJECT = 'RemoveMemberFromProject'
 
 export const ADD_SESSIONS = 'AddSessions'
+export const ADD_SESSIONS_RECOMMENDATIONS = 'AddSessionsRecommendations'
 export const ADD_ANNOTATIONS = 'AddAnnotations'
 export const ADD_COMMENTS = 'AddComments'
 export const REMOVE_COMMENT = 'RemoveComment'

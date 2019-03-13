@@ -110,10 +110,14 @@ base:
     # ...
 
   home:
-    title: Structure, Record and Tag Audio Conversations
-    subtitle: Listen, annotate and collaboratively discuss recorded conversations
+    title: Welcome to Gabber
+    strapline: Gabber helps structure and record conversations for feedback and discussion. Recorded conversations appear on the website where you and others can comment, highlight, and share your discussions with the world.
     nav_title: Home
-    action: Explore Conversations
+    action: Listen to what others have said
+    features: Featured Conversations
+    alt_text:
+      ios: Download Gabber for iOS
+      android: Download Gabber for Android
 
   not_found:
     title: Page Not Found

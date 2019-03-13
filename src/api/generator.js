@@ -114,6 +114,28 @@ export const make = {
       user_id: id
     })
   },
+  recommendation (id) {
+    return model('Recommendation', id, {
+      comments: 2,
+      content: [
+        {
+          lang: 'en',
+          title: 'Example'
+        },
+        {
+          lang: 'ar',
+          title: 'مثال'
+        }
+      ],
+      id: id,
+      image: '/static/img/logo.png',
+      participants: pickBetween(1, 4),
+      pid: pickBetween(1, 3),
+      sessions: pickBetween(1, 40),
+      // This is used to display language without having to do a lookup
+      lang: pickFrom(['English', 'Arabic'])
+    })
+  },
   annotation (id, sessionId) {
     let when = pickBetween(0, MOCK_DURATION)
     return model('Annotation', id, {

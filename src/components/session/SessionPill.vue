@@ -18,7 +18,7 @@
           )
     .column.is-third-tablet
       label-value.is-primary.created-on(
-        :label="$t('comp.session.session_pill.when_label')"
+        :label="$t('comp.session.session_pill.when_label')",
         :value="session.created_on | longDate"
       )
       .columns.is-hidden-mobile
@@ -29,7 +29,7 @@
           )
         .column.is-half-tablet
           label-value.is-primary.is-hidden-mobile(
-          :label="$t('comp.session.session_pill.annotation_label')"
+          :label="$t('comp.session.session_pill.annotation_label')",
             :value="session.num_user_annotations"
           )
       label-value.is-primary.is-hidden-mobile(

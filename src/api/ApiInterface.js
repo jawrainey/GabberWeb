@@ -150,7 +150,12 @@ export default class ApiInterface {
   async getSession (sessionId, projectId) {
     this.notImplemented()
   }
-  
+
+  // projects.sessions.recommendation -> Recommendation[]
+  async getSessionsRecommendations () {
+    this.notImplemented()
+  }
+
   /*
    * Annotations
    */
