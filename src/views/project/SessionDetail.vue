@@ -98,8 +98,8 @@ full-layout.session-detail(v-else-if="session")
       )
 
       action-box(v-if="!newAnnotation && filteredAnnotations.length === 0", :title="$t('view.project.session_detail.no_annotations_title')")
-        p.is-size-4.is-size-6-mobile.is-italic.current-topic-name(slot="content")
-          router-link.button.is-success-red(:to="registerRoute" v-if="annotations.length === 0")
+        p.has-text-centered.is-size-4.is-size-6-mobile.is-italic.current-topic-name(slot="content")
+          router-link.button.is-success-red(:to="registerRoute" v-if="annotations.length === 0 && !isLoggedIn")
             span {{$t('view.project.session_detail.no_annotations')}}
           span(v-else) {{$t('view.project.session_detail.no_filtered_annotations')}}
   session-info-sidebar(
@@ -172,6 +172,7 @@ export default {
   },
   computed: {
     ...mapGetters([ 'currentUser' ]),
+    isLoggedIn () { return this.$store.getters.currentUser },
     registerRoute () { return { name: REGISTER_ROUTE } },
     sessionListRoute () { return { name: SESSION_LIST_ROUTE } },
     projectContent () { return this.$store.getters.projectContentByLanguage(this.project) },
