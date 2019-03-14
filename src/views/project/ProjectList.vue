@@ -97,7 +97,8 @@ export default {
     noProjects () {
       return this.filteredPersonalProjects.length === 0 &&
         this.filteredPublicProjects.length === 0
-    }
+    },
+    currentLocale () { return this.$store.getters.currentLocale }
   },
   mounted () {
     this.fetchProjects()
@@ -109,10 +110,7 @@ export default {
   methods: {
     filterProjects (projects, query) {
       return projects.filter(project => {
-        return this.queryFilter(this.query, [
-          project.creator.fullname,
-          ...project.members.map(m => m.fullname)
-        ])
+        return this.queryFilter(query, [project.content[this.currentLocale.code].title])
       }).sort(this.modelSorter(this.sortMode))
     },
     toggleCreate () {
@@ -122,6 +120,7 @@ export default {
         this.newProject = {
           image: '/static/img/logo.png',
           content: {
+            // TODO: there is no way to create for other languages
             // By default we will create English
             'en': {
               title: '',

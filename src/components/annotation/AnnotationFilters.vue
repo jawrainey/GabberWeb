@@ -1,13 +1,12 @@
 <template lang="pug">
 .annotation-filters
-  h3.subtitle {{$t('comp.annotation.annotation_filter.sort_title')}}
+  h2.is-size-4.has-text-weight-semibold.margin-bottom {{$t('comp.annotation.annotation_filter.sort_title')}}
   sort-field(
     :value="sortMode",
     @input="v => $emit('update:sortMode', v)",
     label=""
   )
-  hr
-  h3.subtitle {{$t('comp.annotation.annotation_filter.filter_title')}}
+  h2.is-size-4.has-text-weight-semibold.margin-bottom {{$t('comp.annotation.annotation_filter.filter_title')}}
   .field
     label.label
       | {{$t('comp.annotation.annotation_filter.message_field.label')}}
@@ -24,7 +23,7 @@
       :key="topic.id",
       :topic="topic",
       :selected="topics.includes(topic.topic_id)",
-      :color-id="topic.topic_id"
+      :color-id="topic.topic_id",
       @select="selectTopic(topic)",
       @deselect="deselectTopic(topic)"
     )
