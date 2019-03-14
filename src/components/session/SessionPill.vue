@@ -67,6 +67,7 @@ export default {
       }
     },
     duration () {
+      if (this.session.topics[this.session.topics.length - 1] === undefined) return 0
       return this.$options.filters.duration(this.session.topics[this.session.topics.length - 1].end_interval)
     },
     language () {

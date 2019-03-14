@@ -1,8 +1,8 @@
 <template lang="pug">
 full-layout.project-list-view
   section.filter(slot="left")
-    h2.subtitle {{$t('view.project.project_list.filter_title')}}
-    sort-field(v-model="sortMode")
+    h2.is-size-4.has-text-weight-semibold.margin-bottom {{$t('view.project.project_list.filter_title')}}
+    sort-field(v-model="sortMode", label="")
     .field
       label.label {{$t('view.project.project_list.filter_field.label')}}
       input.input.is-small(

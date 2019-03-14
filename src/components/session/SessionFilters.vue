@@ -1,20 +1,12 @@
 <template lang="pug">
 .session-filters
-  h3.subtitle {{$t('comp.session.session_filters.sort_title')}}
+  h2.is-size-4.has-text-weight-semibold.margin-bottom {{$t('comp.session.session_filters.sort_title')}}
   sort-field(
     :value="sortMode",
     @input="v => $emit('update:sortMode', v)",
     label=""
   )
-  hr
-  h3.subtitle {{$t('comp.session.session_filters.filter_title')}}
-  .field
-    label.label {{$t('comp.session.session_filters.name_field.label')}}
-    input.input.is-small(
-      :value="query",
-      @input="e => $emit('update:query', e.target.value)",
-      :placeholder="$t('comp.session.session_filters.name_field.placeholder')"
-    )
+  h2.is-size-4.has-text-weight-semibold.margin-bottom {{$t('comp.session.session_filters.filter_title')}}
   .field
     label.label {{$t('comp.session.session_filters.language_title.label')}}
     topic-option(
@@ -24,16 +16,6 @@
       :selected="languages.includes(lang.id)",
       @select="selectLang(lang)",
       @deselect="deselectLang(lang)"
-    )
-  .field
-    label.label {{$t('comp.session.session_filters.topic_field.label')}}
-    topic-option(
-      v-for="topic in projectContent.topics",
-      :key="topic.id",
-      :topic="topic",
-      :selected="topics.includes(topic.id)",
-      @select="selectTopic(topic)",
-      @deselect="deselectTopic(topic)"
     )
   .field.members-field(v-if="uniqueParticipants.length > 0")
     label.label {{$t('comp.session.session_filters.member_field.label')}}
@@ -118,4 +100,19 @@ export default {
 </script>
 
 <style lang="sass">
+  .is-sidebar-heading
+    padding: 1em 0 0 0
+  .is-white
+    background-color: white
+  .border-bottom
+    margin-bottom: .5em !important
+    padding-bottom: 3px
+    border-bottom: 1px solid #ED4E56
+  .first, .second
+    display: inline-flex
+    align-items: center
+  .meta
+    padding: 0 0 .5em 1em
+  .bubble-list
+    margin-bottom: 0
 </style>
