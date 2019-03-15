@@ -4,7 +4,7 @@
     :in-progress="apiInProgress",
     :is-editing="isEditingInfo || isEditingMembers",
     :project="project",
-    :readonly="readonly"
+    :readonly="readonly",
     @startEdit="startEdit",
     @stopEdit="cancelEdit",
     @editMembers="isEditingMembers = true",
@@ -53,8 +53,7 @@ export default {
     changes: {}
   }),
   computed: {
-    ...mapGetters(['currentUser']),
-    canDelete () { return this.isOwner && !this.apiInProgress }
+    ...mapGetters(['currentUser'])
   },
   methods: {
     startEdit () {

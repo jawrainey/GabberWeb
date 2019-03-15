@@ -57,7 +57,7 @@ export default {
       this.startApiWork()
       let { meta, data } = await this.$api.getSessionsRecommendations()
       if (meta.success) this.$store.commit(ADD_SESSIONS_RECOMMENDATIONS, data)
-      this.endApiWork(meta, 'No recommendations were found.')
+      this.endApiWork(meta)
     }
   },
   computed: {

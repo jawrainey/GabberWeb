@@ -3,7 +3,7 @@ section.coming-soon.is-vertical-aligned
   .columns.is-centered
     .column.is-half
       p.has-text-centered
-        img.branding(src="/static/img/gabber.png")
+        img.branding(src="/static/img/about/capturing.png")
       .message.is-medium
         .message-header
           p Coming soon!

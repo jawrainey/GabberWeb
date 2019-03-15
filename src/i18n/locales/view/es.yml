@@ -93,18 +93,18 @@ auth:
 #
 base:
   about:
-    title: ¿Qué es?
+    title: Empezando con Gabber
     nav_title: Acerca de
-    subtitle: Gabber permite interactuar con su comunidad para compartir y comprender sus experiencias compartidas
-    col_1:
-      title: Estructura
-      body: Crea un proyecto y estructuralo alrededor de los temas que deseas que se discutan. Luego descarga la aplicación Gabber.
-    col_2:
-      title: Grabar
-      body: Usa la aplicación para grabar conversaciones con tu comunidad y etiquetarlas con tus temas. Una vez que tu conversación es cargada, todos los participantes pueden revisar y dar su consentimiento a cómo se va a usar la grabación.
-    col_3:
-      title: Anotar
-      body: Escuche y anote sus conversaciones para crear discusiones con otros miembros de la comunidad.
+    subtitle: Gabber le permite interactuar con su comunidad para compartir y comprender sus experiencias compartidas capturando
+    capturing:
+      title: Recopile perspectivas locales
+      content: Registre conversaciones con otros sobre una variedad de temas o temas llamados proyectos a través de nuestra aplicación móvil.
+    sensemaking:
+      title: Identifique ideas interesantes
+      content: todas estas conversaciones estarán disponibles en línea, donde usted y otras personas pueden escuchar los puntos de vista de los compañeros de su comunidad. Las personas pueden comentar y reaccionar a segmentos interesantes de cada conversación.
+    reuse:
+      title: Las ideas se compartirán globalmente
+      content: cree y comparta el audio de la voz de la comunidad para mostrar sus ideas y sus puntos de vista a partir de los datos
 
   holder:
     # ...
@@ -158,6 +158,7 @@ project:
     private_title: Mis proyectos
     public_title: Proyectos públicos
     authed_empty_body: No estás en ningún proyecto ... todavía. ¿Por qué no creas uno arriba?
+    unauthed_empty_title: Sin proyectos
     unauthed_empty_body: No hay proyectos públicos en este momento, ¿por qué no suscribirse y crear el suyo propio?
     fetch_failed_body: No se pudieron recuperar los proyectos, por favor recarga la pagina
     create_failed_body: No se pudo crear el proyecto, inténtelo de nuevo
@@ -191,6 +192,7 @@ project:
     nav_title: Conversaciones
     loading_title: Cómo obtener conversaciones del proyecto
     mobile_filter_title: Filtrar
+    no_sessions_title: Sin Conversaciones
     no_sessions: No hay conversaciones disponibles en este momento, ¿por qué no grabar una en la aplicación?
     no_filtered_sessions: No hay conversaciones que coincidan con su consulta, cambia el criterío de busqueda en la barra lateral
     mobile_project_title: Información del proyecto

@@ -18,7 +18,6 @@ full-layout.session-detail(v-else-if="session")
   )
   template(slot="mobileLeft")
     span.icon: fa(icon="filter")
-    span Filter
   .main(slot="main")
     breadcrumbs
     h1.title.is-size-4-mobile {{ projectContent.title }}
@@ -56,10 +55,8 @@ full-layout.session-detail(v-else-if="session")
         @over="t => highlightTopic = t",
         @leave="highlightTopic = null"
       )
-      p.is-size-4.current-topic-name(v-if="currentTopic")
-        span.is-size-5.has-text-grey-light
-          | {{$t('view.project.session_detail.topic_title')}}
-        span  {{ currentTopic.text }}
+      p.is-size-4.is-size-5-mobile.current-topic-name(v-if="currentTopic")
+        span {{ currentTopic.text }}
         span(v-if="highlightTopic && currentTopic.id !== highlightTopic.id")
           span  → {{highlightTopic.text}}
 
@@ -109,7 +106,6 @@ full-layout.session-detail(v-else-if="session")
 
   template(slot="mobileRight")
     span.icon: fa(icon="info")
-    span Gabber info
 </template>
 
 <script>
@@ -317,6 +313,8 @@ export default {
 </script>
 
 <style lang="sass">
+.layout-main
+  margin: 0 auto !important
 
 .session-detail
 

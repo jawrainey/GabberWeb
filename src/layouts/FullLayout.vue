@@ -13,7 +13,7 @@
           slot(v-if="mobileMode !== 'left'", name="mobileLeft")
           template(v-else)
             span.icon: fa(icon="arrow-left")
-            span Close
+            span {{ $t('comp.project.project_header.close_action') }}
       .column
       .column.is-narrow
         button.button.is-dark.no-focus-effects(
@@ -22,7 +22,7 @@
         )
           slot(v-if="mobileMode !== 'right'", name="mobileRight")
           template(v-else)
-            span Close
+            span {{ $t('comp.project.project_header.close_action') }}
             span.icon: fa(icon="arrow-right")
   .full-layout-items(:style="itemsStyles")
     aside.layout-left(v-if="$slots.left", :class="leftClasses")

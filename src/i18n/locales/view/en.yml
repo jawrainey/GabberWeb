@@ -93,18 +93,18 @@ auth:
 #
 base:
   about:
-    title: What is it?
+    title: Getting Started with Gabber
     nav_title: About
     subtitle: Gabber lets engage with your community to share and understand your shared experiences
-    col_1:
-      title: Structure
-      body: Create a project and structure it around the topics you want to be discussed. Then download the Gabber app.
-    col_2:
-      title: Record
-      body: Use the app to record conversations with your community and tag them with your topics. Once your conversation is uploaded, all participants can review and consent to the how recording is used.
-    col_3:
-      title: Annotate
-      body: Listen to and annotate your conversations to create discussions with other community members.
+    capturing:
+      title: Gathering Local Perspectives
+      content: Record conversations with others on a range of issues or themes called projects through our mobile application.
+    sensemaking:
+      title: Highlighting interesting ideas
+      content: All these conversations will be available online, where you and others can listen to viewpoints of peers from across your community. People can comment and react to interesting segments of each conversation.
+    reuse:
+      title: Ideas Shared Globally
+      content: Create and share audio the voice of the community to showcase their ideas and your insights from the data.
 
   holder:
     # ...
@@ -115,6 +115,7 @@ base:
     nav_title: Home
     action: Listen to what others have said
     features: Featured Conversations
+    no_recommendations: We are unable to suggest recommendations right now.
     alt_text:
       ios: Download Gabber for iOS
       android: Download Gabber for Android
@@ -161,6 +162,7 @@ project:
     private_title: My Projects
     public_title: Public Projects
     authed_empty_body: You aren't on any projects ... yet. Why not create one above!
+    unauthed_empty_title: No Projects
     unauthed_empty_body: There are no public projects right now, why not sign up and create your own!
     fetch_failed_body: Could not fetch projects, please reload
     create_failed_body: Could not create project, please try again
@@ -194,6 +196,7 @@ project:
     nav_title: Conversations
     loading_title: Fetching Project's Conversations
     mobile_filter_title: Filter
+    no_sessions_title: No Conversations
     no_sessions: There are no conversations yet, why not record one in the app?
     no_filtered_sessions: No conversations matched your query, try tweaking it using in the sidebar.
     mobile_project_title: Project info

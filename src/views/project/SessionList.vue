@@ -31,7 +31,7 @@ full-layout.session-list-view(v-else-if="project")
       :session="session",
       @view="viewSession"
     )
-    action-box(v-if="filteredSessions.length === 0", title="No gabbers")
+    action-box(v-if="filteredSessions.length === 0", :title="$t('view.project.session_list.no_sessions_title')")
       p.is-size-5(slot="content")
         span(v-if="sessions.length === 0") {{$t('view.project.session_list.no_sessions')}}
         span(v-else) {{$t('view.project.session_list.no_filtered_sessions')}}

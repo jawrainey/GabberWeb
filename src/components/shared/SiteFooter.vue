@@ -18,8 +18,8 @@ footer.hero.is-dark.is-small
               | {{$t('view.base.cookies.nav_title')}}
         .level-right
           .level-item
-            p.has-text-grey
-              | Gabber &copy; &mdash; {{$t('comp.shared.site_footer.copyright')}}
+            p.has-text-light-grey
+              | {{$t('comp.shared.site_footer.copyright')}}
               |
               b: a(href="https://openlab.ncl.ac.uk", target="_blank")
                 | Open Lab

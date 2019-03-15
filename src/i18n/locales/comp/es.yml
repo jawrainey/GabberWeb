@@ -202,7 +202,7 @@ project:
 
 session:
   session_filters:
-    sort_title: Clasificar Conversaciones
+    sort_title: Filtrar Conversaciones
     filter_title: Conversaciones de filtro
     language_title:
       label: Por idioma

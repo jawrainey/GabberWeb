@@ -93,18 +93,18 @@ auth:
 #
 base:
   about:
-    title: Qu'Est-ce que c'est?
+    title: Commencez avec Gabber
     nav_title: A propos
-    subtitle: Gabber vous permet de vous engager avec votre communauté pour partager et comprendre vos expériences
-    col_1:
-      title: Structure
-      body: Créez un projet et structurez-le autour des rubriques que vous souhaitez aborder. Ensuite, téléchargez l'application Gabber.
-    col_2:
-      title: Enregistrer
-      body: Utilisez l'application pour enregistrer des conversations avec votre communauté et marquez-les avec vos rubriques. Une fois votre conversation téléchargée, tous les participants peuvent revoir et fournir leur consentement pour l'utilisation de l'enregistrement
-    col_3:
-      title: Annoter
-      body: Écoutez et annotez vos conversations pour créer des discussions avec d'autres membres de la communauté.
+    subtitle: Gabber permet de dialoguer avec votre communauté pour partager et comprendre vos expériences partagées
+    capturing:
+      title: Rassembler les perspectives locales
+      content: Enregistrez des conversations avec d'autres personnes sur un éventail de problèmes ou de thèmes appelés projets via notre application mobile
+    sensemaking:
+      title: Mettre en évidence des idées intéressantes
+      content: Toutes ces conversations seront disponibles en ligne, où vous et les autres pourrez écouter les points de vue de vos pairs de votre communauté. Les gens peuvent commenter et réagir à des segments intéressants de chaque conversation.
+    reuse:
+      title: Des idées partagées à l'échelle mondiale
+      content: Créez et partagez de manière audio la voix de la communauté pour présenter ses idées et vos idées à partir des données.
 
   holder:
     # ...
@@ -158,6 +158,7 @@ project:
     private_title: Mes projets
     public_title: Projets Publics
     authed_empty_body: Vous n'êtes pas sur un projet ... pour le moment. Pourquoi ne pas en créer un ci-dessus!
+    unauthed_empty_title: Aucun Projets
     unauthed_empty_body: Il n'y a pas de projets publics en ce moment, pourquoi ne pas vous inscrire et créer le vôtre!
     fetch_failed_body: Impossible de récupérer les projets, rechargez-les
     create_failed_body: Impossible de créer le projet. Veuillez réessayer.
@@ -191,6 +192,7 @@ project:
     nav_title: Conversations
     loading_title: Récupération des sessions du projet
     mobile_filter_title: Filtrer
+    no_sessions_title: Pas de Conversations
     no_sessions: Il n'y a pas de conversations disponibles en ce moment, pourquoi ne pas en enregistrer une dans l'application?
     no_filtered_sessions: Aucune conversation ne correspond à votre requête, essayez de la rafiner à l'aide de la barre latérale.
     mobile_project_title: Info du Projet

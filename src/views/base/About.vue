@@ -1,26 +1,31 @@
 <template lang="pug">
-simple-layout
-  section.hero.is-dark
-    .hero-body
-      .container
-        h1.title.has-text-white {{ $t('view.base.about.title') }}
-        h2.subtitle.has-text-grey-light {{ $t('view.base.about.subtitle') }}
-  section.section
-    .columns
-      .column.has-text-centered
-        img.column-icon(src="/static/img/about_capture.png" width="165" height="165")
-        h3.subtitle.is-3.has-text-white {{ $t('view.base.about.col_1.title') }}
-        p.has-text-grey-light {{ $t('view.base.about.col_1.body') }}
-
-      .column.has-text-centered
-        img.column-icon(src="/static/img/about_structure.png" width="165" height="165")
-        h3.subtitle.is-3.has-text-white {{ $t('view.base.about.col_2.title') }}
-        p.has-text-grey-light {{ $t('view.base.about.col_2.body') }}
-
-      .column.has-text-centered
-        img.column-icon(src="/static/img/about_discuss.png" width="165" height="165")
-        h3.subtitle.is-3.has-text-white {{ $t('view.base.about.col_3.title') }}
-        p.has-text-grey-light {{ $t('view.base.about.col_3.body') }}
+  simple-layout
+    section.section.has-text-centered
+      .columns.is-mobile.is-centered
+        .column.is-two-thirds
+          h1.title.is-2.is-size-4-mobile.has-text-weight-semibold
+            | {{$t('view.base.about.title')}}
+          hr
+          .columns.is-vcentered
+            .column.is-half
+              .title.is-4.is-size-5-mobile.has-text-weight-semibold {{$t('view.base.about.capturing.title')}}
+              p.is-5.is-size-7-mobile {{$t('view.base.about.capturing.content')}}
+            .column
+              img.branding(src="/static/img/about/capturing.png")
+          hr
+          .columns.is-vcentered.reverse-on-mobile
+            .column.is-half
+              img.branding(src="/static/img/about/highlighting.png")
+            .column
+              .title.is-4.is-size-5-mobile.has-text-weight-semibold {{$t('view.base.about.sensemaking.title')}}
+              p.is-5.is-size-7-mobile {{$t('view.base.about.sensemaking.content')}}
+          hr
+          .columns.is-vcentered
+            .column.is-half
+              .title.is-4.is-size-5-mobile.has-text-weight-semibold {{$t('view.base.about.reuse.title')}}
+              p.is-5.is-size-7-mobile {{$t('view.base.about.reuse.content')}}
+            .column
+              img.branding(src="/static/img/about/sharing.png")
 </template>
 
 <script>
@@ -31,8 +36,12 @@ export default {
 </script>
 
 <style lang="sass">
-
-.column-icon
-  margin-bottom: 2rem
-
+  +mobile
+    .reverse-on-mobile
+      display: flex
+      flex-direction: column-reverse
+  .branding
+    max-height: 250px
+    max-width: 100%
+    margin: 0 auto
 </style>

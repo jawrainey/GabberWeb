@@ -49,8 +49,8 @@ full-layout.project-list-view
         :key="project.id",
         :project="project"
       )
-    
-    action-box(v-if="noProjects && !newProject && !apiInProgress", title="No projects")
+
+    action-box(v-if="noProjects && !newProject && !apiInProgress", :title="$t('view.project.project_list.unauthed_empty_title')")
       p.is-size-5(slot="content")
         span(v-if="currentUser") {{$t('view.project.project_list.unauthed_empty_body')}}
         span(v-else) {{$t('view.project.project_list.authed_empty_body')}}

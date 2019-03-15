@@ -93,18 +93,18 @@ auth:
 #
 base:
   about:
-    title: Che cos'è?
+    title: Introduzione a Gabber
     nav_title: Info
-    subtitle: Gabber consente di coinvolgere la tua comunità per condividere e comprendere le tue esperienze condivise
-    col_1:
-      title: Struttura
-      body: Crea un progetto e strutturalo attorno agli argomenti che desideri siano discussi. Quindi scarica l'app Gabber.
-    col_2:
-      title: Registra
-      body: Usa l'app per registrare le conversazioni con la tua comunità e taggarle con i tuoi argomenti. Una volta caricata la tua conversazione, tutti i partecipanti possono rivedere e accettare il modo in cui viene utilizzata la registrazione
-    col_3:
-      title: Annota
-      body: Ascolta e annota le tue conversazioni per creare discussioni con altri membri della comunità.
+    subtitle: Gabber consente alla community di condividere e comprendere le tue esperienze condivise
+    capturing:
+      title: Raccolta di prospettive locali
+      content: consente di acquisire conversazioni con gli altri su una vasta gamma di temi o temi denominati progetti tramite la nostra applicazione mobile.
+    sensemaking:
+      title: Mettere in evidenza idee interessanti
+      content: tutte queste conversazioni saranno disponibili online, dove tu e altri potrete ascoltare i punti di vista dei colleghi di tutta la vostra comunità. Le persone possono commentare e reagire a segmenti interessanti di ogni conversazione.
+    reuse:
+      title: Idee condivise globalmente
+      content: Crea e condividi l'audio della voce della comunità per mettere in mostra le loro idee e le tue conoscenze dai dati.
 
   holder:
     # ...
@@ -158,6 +158,7 @@ project:
     private_title: I miei progetti
     public_title: Progetti pubblici
     authed_empty_body: Non sei ancora in nessun progetto ... Perché non crearne uno di sopra!
+    unauthed_empty_title: Nessun progetto
     unauthed_empty_body: Al momento non ci sono progetti pubblici, perché non registrarti e crearne uno tuo!
     fetch_failed_body: Impossibile recuperare i progetti, si prega di ricaricare
     create_failed_body: Impossibile creare un progetto, per favore riprova
@@ -191,6 +192,7 @@ project:
     nav_title: Sessioni
     loading_title: Recupero delle sessioni del progetto
     mobile_filter_title: Filtro
+    no_sessions_title: Nessuna conversazione
     no_sessions: Non ci sono sessioni disponibili al momento, perché non registrarne una nell'app?
     no_filtered_sessions: Nessuna sessione corrisponde alla tua ricerca, prova a modificarla utilizzando la barra laterale.
     mobile_project_title: Informazioni sul progetto
