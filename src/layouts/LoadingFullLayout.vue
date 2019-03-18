@@ -2,13 +2,11 @@
 full-layout(v-if="isLoading")
   aside(slot="left")
   .main(slot="main")
-    breadcrumbs
     loading(:title="loadingMessage")
   aside(slot="right")
 full-layout(v-else-if="errors.length > 0")
   aside(slot="left")
   .main(slot="main")
-    breadcrumbs
     section.section.is-medium
       message.is-danger.is-medium(v-model="errors")
       .buttons.is-centered(v-if="backRoute")

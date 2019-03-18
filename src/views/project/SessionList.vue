@@ -17,31 +17,31 @@ full-layout.session-list-view(v-else-if="project")
     :members.sync="filterMembers",
     :sortMode.sync="sortMode"
   )
-  
+
   template(slot="mobileLeft")
     span.icon: fa(icon="filter")
     span {{$t('view.project.session_list.mobile_filter_title')}}
-  
+
   template(slot="main")
-    breadcrumbs
-    h1.title.is-1 {{$t('view.project.session_list.title')}}
-    session-pill(
-      v-for="session in filteredSessions",
-      :key="session.id",
-      :session="session",
-      @view="viewSession"
-    )
+    h1.title.is-1.is-size-3-mobile {{$t('view.project.session_list.title')}}
+    .columns.is-multiline.add-padding
+      session-pill.column.is-half.is-45(
+        v-for="session in filteredSessions",
+        :key="session.id",
+        :session="session",
+        @view="viewSession"
+      )
     action-box(v-if="filteredSessions.length === 0", :title="$t('view.project.session_list.no_sessions_title')")
       p.is-size-5(slot="content")
         span(v-if="sessions.length === 0") {{$t('view.project.session_list.no_sessions')}}
         span(v-else) {{$t('view.project.session_list.no_filtered_sessions')}}
-  
+
   project-info-sidebar(
     slot="right",
     :project="project",
     :sessions="sessions"
   )
-  
+
   template(slot="mobileRight")
     span.icon: fa(icon="info")
     span {{$t('view.project.session_list.mobile_project_title')}}
@@ -104,7 +104,7 @@ export default {
         let participantIds = [
           ...session.participants.map(p => p.user_id), session.creator.user_id
         ]
-        
+
         return this.queryFilter(this.query, queryValues) &&
           this.idListOrFilter(this.filterTopics, topicIds) &&
           this.idListOrFilter(this.filterMembers, participantIds) &&
@@ -125,19 +125,19 @@ export default {
   methods: {
     async fetchSessions () {
       this.startApiWork()
-      
+
       let [ projectRes, sessionsRes ] = await Promise.all([
         this.$api.getProject(this.projectId),
         this.$api.getProjectSessions(this.projectId)
       ])
-      
+
       let meta = this.mergeMetaBlocks(projectRes.meta, sessionsRes.meta)
-      
+
       if (meta.success) {
         this.$store.commit(SAVE_PROJECT, projectRes.data)
         this.$store.commit(ADD_SESSIONS, sessionsRes.data || [])
       }
-      
+
       this.endApiWork(meta, this.$t('view.project.session_list.not_found'))
     },
     viewSession (session) {
@@ -149,9 +149,17 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-
++tablet
+  .is-45
+    width: 47.5%
+  .is-45:nth-child(odd)
+    margin-right: 2%
+    margin-left: 1%
+  .is-45:last-child()
+    margin-bottom: 1em
+.add-padding
+  padding: 0 0 1em 0
 .session-list-view
   .main
     max-width: $desktop
-
 </style>

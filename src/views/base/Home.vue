@@ -75,8 +75,8 @@ export default {
 
 <style lang="sass" scoped>
   .badge
-    width: 200px
-    height: 60px
+    width: 180px
+    height: 55px
   .with-padding
     padding: 1em
     margin: 0

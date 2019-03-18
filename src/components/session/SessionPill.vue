@@ -2,48 +2,43 @@
 .session-pill.box(@click.stop="$emit('view', session)", :style="pillStyle")
   fa.disclosure(icon="chevron-right", size="2x")
   .columns.is-multiline
-    .column.is-third-tablet
-      h1.title.main-title.is-4
+    .column.is-third-tablet.is-text-overflow
+      h1.title.main-title.is-4.is-text-overflow.hmm
         member-bubble(:member="session.creator", pad-right)
           fa.mic-icon(icon="microphone", size="lg")
-        span {{ ' ' + session.creator.fullname }}
-      label-value.is-hidden-mobile(
-        :label="$t('comp.session.session_pill.member_label')"
-      )
-        .bubble-list.is-multiline
-          member-bubble(
-            v-for="member in session.participants",
-            :key="member.id",
-            :member="member"
-          )
-    .column.is-third-tablet
-      label-value.is-primary.created-on(
-        :label="$t('comp.session.session_pill.when_label')",
-        :value="session.created_on | longDate"
-      )
-      .columns.is-hidden-mobile
+        span.is-capitalized {{ ' ' + session.creator.fullname }}
+      .columns.is-hidden-mobile.no-bottom
         .column.is-half-tablet
-          label-value.is-primary.is-hidden-mobile(
+          label-value.is-primary.is-hidden-mobile.no-bottom(
+            :label="$t('comp.session.session_pill.member_label')"
+          )
+          .bubble-list.is-multiline
+            member-bubble(
+              v-for="member in session.participants",
+              :key="member.id",
+              :member="member"
+            )
+        .column.is-half-tablet
+          label-value.is-primary.created-on(
+            :label="$t('comp.session.session_pill.when_label')",
+            :value="session.created_on | longDate"
+          )
+      .columns.is-mobile
+        .column.is-half-mobile
+          label-value.is-primary(
+          :label="$t('comp.session.session_pill.language')",
+          :value="language.endonym"
+          )
+        .column.is-half-mobile
+          label-value.is-primary(
             :label="$t('comp.session.session_pill.duration')",
             :value="duration"
           )
-        .column.is-half-tablet
-          label-value.is-primary.is-hidden-mobile(
-          :label="$t('comp.session.session_pill.annotation_label')",
+        .column
+          label-value.is-primary(
+            :label="$t('comp.session.session_pill.annotation_label')",
             :value="session.num_user_annotations"
           )
-      label-value.is-primary.is-hidden-mobile(
-        :label="$t('comp.session.session_pill.language')",
-        :value="language.endonym"
-      )
-    .column.is-third-tablet.is-clipped
-      label-value(:label="$t('comp.session.session_pill.topic_label')")
-        .tags.is-clipped
-          .tag(v-for="topic in limitedTopics")
-            | {{trim(topic.text, 60)}}
-          .tag(v-if="session.topics.length > topicLimit")
-            | +{{session.topics.length - topicLimit}}
-            | {{$t('comp.session.session_pill.more')}}
 </template>
 
 <script>
@@ -94,36 +89,42 @@ export default {
 </script>
 
 <style lang="sass">
+.hmm
+  padding-bottom: .3em
+  margin-bottom: 0 !important
+
+.no-bottom
+  margin-bottom: 0 !important
 
 .session-pill
   border-left: 15px solid $grey-light
   cursor: pointer
   position: relative
   transition: border-color 0.3s, transform 0.3s
-  padding-right: 3rem
-  
+  padding-right: 2rem
+
   &:not(:last-child)
     margin-bottom: 1em
-  
+
   .main-title
     margin-bottom: 0.3em
-    
+
     .member-bubble
       font-size: 1.1em
-  
+
   .label-value:last-child
     margin-bottom: 0
-  
+
   +desktop
     &:hover
       transform: translateX(2px)
     &:not(:hover)
       border-left-color: $grey-light !important
-  
+
   +mobile
     .label-value
       margin-bottom: 0
-  
+
   .disclosure
     position: absolute
     right: 0.5em
@@ -131,4 +132,9 @@ export default {
     transform: translateY(-50%)
     color: $grey
 
+  .is-text-overflow
+    flex: 1
+    white-space: nowrap
+    overflow: hidden
+    text-overflow: ellipsis
 </style>

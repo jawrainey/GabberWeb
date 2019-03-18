@@ -1,6 +1,6 @@
 <template lang="pug">
 .session-info-sidebar
-  h3.subtitle {{$t('comp.session.session_info_sidebar.title')}}
+  h3.title.is-size-4.has-text-weight-semibold.is-marginless.m-bottom {{$t('comp.session.session_info_sidebar.title')}}
   label-value(
     :label="$t('comp.session.session_info_sidebar.created_label')",
     :value="sessionDate"

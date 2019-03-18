@@ -19,7 +19,6 @@ full-layout.session-detail(v-else-if="session")
   template(slot="mobileLeft")
     span.icon: fa(icon="filter")
   .main(slot="main")
-    breadcrumbs
     h1.title.is-size-4-mobile {{ projectContent.title }}
     h2.subtitle.is-size-6-mobile {{$t('view.project.session_detail.title', {name: session.creator.fullname})}}
     .box
@@ -55,7 +54,7 @@ full-layout.session-detail(v-else-if="session")
         @over="t => highlightTopic = t",
         @leave="highlightTopic = null"
       )
-      p.is-size-4.is-size-5-mobile.current-topic-name(v-if="currentTopic")
+      p.is-size-5.is-size-5-mobile.current-topic-name(v-if="currentTopic")
         span {{ currentTopic.text }}
         span(v-if="highlightTopic && currentTopic.id !== highlightTopic.id")
           span  → {{highlightTopic.text}}
@@ -174,7 +173,10 @@ export default {
     projectContent () { return this.$store.getters.projectContentByLanguage(this.project) },
     projectId () { return parseInt(this.$route.params.project_id) },
     sessionId () { return this.$route.params.session_id },
-    session () { return this.$store.getters.sessionById(this.sessionId) },
+    session () {
+      // TODO: we must set the session topics to local language
+      return this.$store.getters.sessionById(this.sessionId)
+    },
     project () { return this.$store.getters.projectById(this.projectId) },
     annotations () { return this.$store.getters.annotationsForSession(this.sessionId) },
     currentTopic () {
@@ -317,11 +319,9 @@ export default {
   margin: 0 auto !important
 
 .session-detail
-
   .topic-tags .tag
     cursor: pointer
 
   .current-topic-name
     padding-top: 0.5em
-
 </style>

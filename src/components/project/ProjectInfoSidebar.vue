@@ -1,8 +1,7 @@
 <template lang="pug">
 .project-detail
-  h3.title.is-3 {{ projectContent.title }}
-  p.subtitle {{ project.created_on | longDate }}
-  label-value(
+  h3.title.is-size-4.has-text-weight-semibold.is-marginless.smaller-margin-bottom {{ projectContent.title }}
+  label-value.is-size-7(
     :label="$t('comp.project.project_info_sidebar.info_label')",
     :value="projectContent.description"
   )
@@ -16,14 +15,9 @@
       )
       span {{ project.creator.fullname }}
   label-value(
-    :label="$t('comp.project.project_info_sidebar.members_label')"
+    :label="$t('comp.project.project_info_sidebar.members_label')",
+    :value="project.members.length"
   )
-    .bubble-list.is-multiline
-      member-bubble.is-size-6(
-        v-for="member in project.members",
-        :key="member.id",
-        :member="member"
-      )
   label-value(
   :label="$t('comp.project.project_info_sidebar.researchers_label')"
   )
@@ -34,7 +28,7 @@
       pad-right
       )
       span {{ member.fullname }}
-    p(v-if="projectResearchers.length <= 0").blockquote {{ $t('comp.session.session_info_sidebar.researchers.description') }}
+    p(v-if="projectResearchers.length <= 0").blockquote.is-size-7 {{ $t('comp.session.session_info_sidebar.researchers.description') }}
   label-value(
     :label="$t('comp.project.project_info_sidebar.sessions_label')",
     :value="sessions.length"
@@ -59,4 +53,6 @@ export default {
 </script>
 
 <style lang="sass">
+  .smaller-margin-bottom
+    margin-bottom: .5em !important
 </style>
