@@ -12,7 +12,7 @@
           label-value.is-primary.is-hidden-mobile.no-bottom(
             :label="$t('comp.session.session_pill.member_label')"
           )
-          .bubble-list.is-multiline
+          .bubble-list.is-multiline.is-clipped
             member-bubble(
               v-for="member in session.participants",
               :key="member.id",

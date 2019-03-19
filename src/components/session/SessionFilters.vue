@@ -19,7 +19,7 @@
     )
   .field.members-field(v-if="uniqueParticipants.length > 0")
     label.label {{$t('comp.session.session_filters.member_field.label')}}
-    .bubble-list.is-multiline.is-size-3
+    .bubble-list.is-multiline.is-size-3.scrolling-wrapper
       member-option(
         v-for="member in uniqueParticipants",
         :key="member.id",
@@ -64,7 +64,7 @@ export default {
       let people = this.sessions.reduce((people, session) =>
         ([ ...people, ...session.participants, session.creator ]),
       [])
-      
+
       return people.filter((person, index) =>
         index === people.findIndex(p => p.user_id === person.user_id)
       )
@@ -100,6 +100,16 @@ export default {
 </script>
 
 <style lang="sass">
+  .scrolling-wrapper
+    display: flex
+    flex-wrap: nowrap
+    overflow-x: auto
+    -webkit-overflow-scrolling: touch
+    &::-webkit-scrollbar
+      display: none
+    .member-option
+      flex: 0 0 auto
+
   .is-sidebar-heading
     padding: 1em 0 0 0
   .is-white
