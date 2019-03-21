@@ -54,10 +54,11 @@ full-layout.session-detail(v-else-if="session")
         @over="t => highlightTopic = t",
         @leave="highlightTopic = null"
       )
-      p.is-size-5.is-size-5-mobile.current-topic-name(v-if="currentTopic")
-        span {{ currentTopic.text }}
+      p.is-size-5.is-size-5-mobile.current-topic-name.is-text-overflow(v-if="currentTopic")
+        span.is-text-overflow {{ currentTopic.text }}
         span(v-if="highlightTopic && currentTopic.id !== highlightTopic.id")
-          span  → {{highlightTopic.text}}
+          br
+          span.indent.is-size-6.is-siz-7-mobile.is-italic → {{highlightTopic.text}}
 
     section
       .level.is-mobile
@@ -315,6 +316,13 @@ export default {
 </script>
 
 <style lang="sass">
+.is-text-overflow
+  flex: 1
+  white-space: nowrap
+  overflow: hidden
+  text-overflow: ellipsis
+.indent
+  margin-left: .25em
 .layout-main
   margin: 0 auto !important
 
