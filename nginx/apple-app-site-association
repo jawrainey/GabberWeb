@@ -5,10 +5,6 @@
        {
          "appID": "J3676MPZ85.uk.ac.ncl.openlab.gabber",
          "paths": ["/verify/*"]
-       },
-       {
-         "appID": "J3676MPZ85.uk.ac.ncl.openlab.ifrc.gabber",
-         "paths": ["/verify/*"]
        }
      ]
    }
