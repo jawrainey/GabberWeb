@@ -68,6 +68,7 @@ general:
   COMMENT_404: The comment you tried to access does not exist
   COMMENT_NOT_IN_SESSION: That comment is not associated with that session.
   EMBARGO: This session is currently undergoing a 24-hour embargo. Check back soon.
+  NO_PHOTOS: There is an issue with our image provider. Please upload your own instead.
 
 jwt:
   EXPIRED: The request has an expired JWT. Use a refresh token or re-authenticate.
