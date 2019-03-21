@@ -242,4 +242,13 @@ export default class MockApi extends ApiInterface {
   async sendConsent (token, consent) {
     return this.mock(null)
   }
+
+  /*
+   * Misc
+   */
+
+  // misc.photos
+  async getPhotos (query) {
+    return this.mock({thumbnails: Array(5).fill('/static/img/logo.png')})
+  }
 }

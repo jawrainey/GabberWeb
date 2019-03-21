@@ -37,8 +37,6 @@
     "cookieconsent": "^3.0.6",
     "eases": "^1.0.8",
     "moment-mini": "^2.19.4",
-    "unsplash": "^4.2.0",
-    "unsplash-js": "^4.8.0",
     "vue": "^2.4.4",
     "vue-analytics": "^5.12.2",
     "vue-content-loader": "^0.2.1",

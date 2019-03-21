@@ -100,10 +100,9 @@
 </template>
 
 <script>
+import ApiWorkerMixin from '@/mixins/ApiWorker'
 import ProjectPropMixin from '@/mixins/ProjectProp'
 import TopicListEdit from '@/components/topic/TopicListEdit'
-import Unsplash, { toJson } from 'unsplash-js'
-import { getConfig } from '../../mixins/Config'
 
 /* Emitted Events:
 
@@ -114,7 +113,7 @@ import { getConfig } from '../../mixins/Config'
 */
 
 export default {
-  mixins: [ ProjectPropMixin ],
+  mixins: [ ApiWorkerMixin, ProjectPropMixin ],
   components: { TopicListEdit },
   props: {
     disabled: { type: Boolean, required: true },
@@ -156,22 +155,21 @@ export default {
     async doSearch () {
       if (this.previousSearch !== this.keywords) {
         this.loading = true
-        const unsplash = new Unsplash({
-          applicationId: getConfig('UNSPLASH_APP_ID'),
-          secret: getConfig('UNSPLASH_SECRET'),
-          callbackUrl: 'https://api.unsplash.com/search/photos'
-        })
-
+        // Reset the photos dict between searches
         this.photos = []
 
-        unsplash.search.photos(this.keywords, 1)
-          .then(toJson)
-          .then(data => {
-            this.photos = data.results.map(a => a.urls.thumb)
-            this.loading = false
-            this.noresults = this.photos.length <= 0
-          })
+        this.startApiWork()
+
+        let { meta, data } = await this.$api.getPhotos(this.keywords)
+
+        if (meta.success) {
+          this.photos = data.thumbnails
+          this.noresults = this.photos.length <= 0
+        }
+        this.loading = false
         this.previousSearch = this.keywords
+
+        this.endApiWork(meta)
       }
     },
     showPicker () {

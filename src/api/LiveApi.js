@@ -310,4 +310,13 @@ export default class LiveApi extends ApiInterface {
   async sendConsent (token, consent) {
     return this.endpoint('put', `consent/${token}`, { consent })
   }
+
+  /*
+   * Misc
+   */
+
+  // misc.photos
+  async getPhotos (query) {
+    return this.endpoint('get', `misc/photos/?query=${query}`)
+  }
 }

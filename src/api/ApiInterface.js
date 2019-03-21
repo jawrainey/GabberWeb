@@ -207,4 +207,13 @@ export default class ApiInterface {
   async sendConsent (token, consent) {
     this.notImplemented()
   }
+
+  /*
+   * Misc
+   */
+
+  // misc.photos -> { thumbnails[] }
+  async getPhotos (query) {
+    this.notImplemented()
+  }
 }
