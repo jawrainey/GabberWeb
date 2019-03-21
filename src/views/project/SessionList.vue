@@ -23,7 +23,7 @@ full-layout.session-list-view(v-else-if="project")
     span {{$t('view.project.session_list.mobile_filter_title')}}
 
   template(slot="main")
-    h1.title.is-1.is-size-3-mobile {{$t('view.project.session_list.title')}}
+    h1.title.is-1.is-size-3-mobile {{ filteredSessions.length }} {{$t('view.project.session_list.title')}}
     .columns.is-multiline.add-padding
       session-pill.column.is-half.is-45(
         v-for="session in filteredSessions",
