@@ -110,6 +110,7 @@ export default {
   methods: {
     filterProjects (projects, query) {
       return projects.filter(project => {
+        if (project.content[this.currentLocale.code] === undefined) return project
         return this.queryFilter(query, [project.content[this.currentLocale.code].title])
       }).sort(this.modelSorter(this.sortMode))
     },
