@@ -1,11 +1,11 @@
 import * as ROUTES from '@/const/routes'
 
-import Login from '@/views/auth/Login'
-import Register from '@/views/auth/Register'
-import Forgot from '@/views/auth/Forgot'
-import Reset from '@/views/auth/Reset'
-import Verify from '@/views/auth/Verify'
-import AcceptInvite from '@/views/auth/AcceptInvite'
+const Login = () => import('@/views/auth/Login')
+const Register = () => import('@/views/auth/Register')
+const Forgot = () => import('@/views/auth/Forgot')
+const Reset = () => import('@/views/auth/Reset')
+const Verify = () => import('@/views/auth/Verify')
+const AcceptInvite = () => import('@/views/auth/AcceptInvite')
 
 export default [
   {

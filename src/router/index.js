@@ -5,11 +5,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import NotFound from '../views/base/NotFound'
-
 import authRoutes from './routes/auth'
 import projectRoutes from './routes/project'
 import staticRoutes from './routes/static'
+
+const NotFound = () => import('../views/base/NotFound')
 
 Vue.use(VueRouter)
 

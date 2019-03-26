@@ -1,11 +1,11 @@
 import * as ROUTES from '@/const/routes'
 
-import Home from '@/views/base/Home'
-import About from '@/views/base/About'
-import Terms from '@/views/base/Terms'
-import Privacy from '@/views/base/Privacy'
-import Research from '@/views/base/Research'
-import Cookies from '@/views/base/Cookies'
+const Home = () => import('@/views/base/Home')
+const About = () => import('@/views/base/About')
+const Terms = () => import('@/views/base/Terms')
+const Privacy = () => import('@/views/base/Privacy')
+const Research = () => import('@/views/base/Research')
+const Cookies = () => import('@/views/base/Cookies')
 
 export default [
   {

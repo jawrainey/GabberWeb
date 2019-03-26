@@ -1,10 +1,10 @@
 import * as ROUTES from '@/const/routes'
 
-import Holder from '@/views/base/Holder'
-import ProjectList from '@/views/project/ProjectList'
-import SessionList from '@/views/project/SessionList'
-import SessionDetail from '@/views/project/SessionDetail'
-import SessionConsent from '@/views/project/SessionConsent'
+const Holder = () => import('@/views/base/Holder')
+const ProjectList = () => import('@/views/project/ProjectList')
+const SessionList = () => import('@/views/project/SessionList')
+const SessionDetail = () => import('@/views/project/SessionDetail')
+const SessionConsent = () => import('@/views/project/SessionConsent')
 
 export default [
   {
