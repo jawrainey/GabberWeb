@@ -14,15 +14,103 @@ import './api'
 import { formatDuration, formatDateLong } from './mixins/Temporal'
 import { getConfig } from './mixins/Config'
 
-import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
-import fontawesome from '@fortawesome/fontawesome'
-import solidIcons from '@fortawesome/fontawesome-free-solid'
-import regularIcons from '@fortawesome/fontawesome-free-regular'
-
 import { configureCookieConsent } from './cookies'
 
+import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import {
+  faGlobe,
+  faStar,
+  faBackward,
+  faForward,
+  faPlay,
+  faPause,
+  faCog,
+  faLock,
+  faUnlock,
+  faInfo,
+  faPaperPlane,
+  faAmbulance,
+  faRocket,
+  faFlask,
+  faNewspaper,
+  faCar,
+  faBicycle,
+  faBell,
+  faBinoculars,
+  faBolt,
+  faBook,
+  faBug,
+  faCamera,
+  faChessPawn,
+  faChessKnight,
+  faUniversity,
+  faMotorcycle,
+  faFilter,
+  faClock,
+  faUsers,
+  faComment,
+  faMagic,
+  faTrash,
+  faChevronRight,
+  faMicrophone,
+  faCheck,
+  faTimes,
+  faUserTimes,
+  faUserPlus,
+  faSearch,
+  faPlus,
+  faCircleNotch,
+  faToggleOn,
+  faToggleOff } from '@fortawesome/free-solid-svg-icons'
+
 // Add Fontawesome libraries
-fontawesome.library.add(solidIcons, regularIcons)
+library.add(
+  faGlobe,
+  faStar,
+  faBackward,
+  faForward,
+  faPlay,
+  faPause,
+  faCog,
+  faLock,
+  faUnlock,
+  faInfo,
+  faAmbulance,
+  faRocket,
+  faFlask,
+  faNewspaper,
+  faCar,
+  faBicycle,
+  faBell,
+  faBinoculars,
+  faBolt,
+  faBook,
+  faBug,
+  faCamera,
+  faChessPawn,
+  faChessKnight,
+  faUniversity,
+  faMotorcycle,
+  faMagic,
+  faFilter,
+  faClock,
+  faUsers,
+  faComment,
+  faTrash,
+  faChevronRight,
+  faMicrophone,
+  faCheck,
+  faTimes,
+  faUserTimes,
+  faUserPlus,
+  faSearch,
+  faPaperPlane,
+  faPlus,
+  faCircleNotch,
+  faToggleOn,
+  faToggleOff
+)
 Vue.component('fa', FontAwesomeIcon)
 
 // Turn of the production tip
