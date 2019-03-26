@@ -3,7 +3,7 @@
     .columns.no-bottom
       .column.is-narrow.is-hidden-mobile.logo-column
         img.project-logo(:src="session.image")
-      .column.has-text-left.is-clipped
+      .column.has-text-left.is-clipped.no-padding-bottom
         h3.project-title.is-size-4.has-text-weight-bold.is-size-6-mobile.is-text-overflow {{ sessionTitle }} / {{ sessionTitle }}
         .level.is-mobile
           .level-left.is-size-7
@@ -32,6 +32,8 @@ export default {
 </script>
 
 <style scoped lang="sass">
+  .no-padding-bottom
+    padding-bottom: 0 !important
   .right-pad
     padding-right: 1em
   .is-text-overflow
