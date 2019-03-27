@@ -19,6 +19,8 @@ import { configureCookieConsent } from './cookies'
 import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
+  faChevronLeft,
+  faUser,
   faGlobe,
   faStar,
   faBackward,
@@ -66,6 +68,8 @@ import {
 
 // Add Fontawesome libraries
 library.add(
+  faChevronLeft,
+  faUser,
   faGlobe,
   faStar,
   faBackward,
