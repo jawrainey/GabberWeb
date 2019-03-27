@@ -2,10 +2,10 @@
  * A mixin for components that want to format temporal data (dates / times)
  */
 
-import moment from 'moment-mini'
+import { format as formatDate } from 'date-fns'
 
 export default {
-  methods: { formatDuration, formatDateLong }
+  methods: { formatDuration, formatDateLong, formatDateTime }
 }
 
 // Format a duration – e.g. "01:32"
@@ -19,7 +19,11 @@ export function formatDuration (seconds) {
 
 // Format a date – e.g. "5:32am, 15th March 2018"
 export function formatDateLong (date) {
-  return moment(date).format('DD/MM/YY')
+  return formatDate(date, 'DD/MM/YY')
+}
+
+export function formatDateTime (datetime, format) {
+  return formatDate(datetime, format)
 }
 
 // Pad a string with `n` preceeding zeros

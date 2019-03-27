@@ -42,7 +42,6 @@
 </template>
 
 <script>
-import moment from 'moment-mini'
 import { ColorGenerator } from '@/mixins'
 import LabelValue from '@/components/utils/LabelValue'
 import IconBubble from '@/components/utils/IconBubble'
@@ -67,15 +66,6 @@ export default {
     },
     language () {
       return this.$store.getters.languageById(this.session.lang_id)
-    },
-    formatedDate () {
-      return moment(this.session.created_on).format('do MMM Y')
-    },
-    formatedTime () {
-      return moment(this.session.created_on).format('h:mm a')
-    },
-    limitedTopics () {
-      return this.session.topics.slice(0, this.topicLimit)
     }
   },
   methods: {

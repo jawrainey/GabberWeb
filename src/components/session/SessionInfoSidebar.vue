@@ -50,8 +50,7 @@
 </template>
 
 <script>
-import moment from 'moment-mini'
-
+import { formatDateTime } from '@/mixins/Temporal'
 import MemberBubble from '@/components/member/MemberBubble'
 import LabelValue from '@/components/utils/LabelValue'
 
@@ -64,8 +63,7 @@ export default {
   },
   computed: {
     sessionDate () {
-      return moment(this.session.created_on)
-        .format(this.$t('comp.session.session_info_sidebar.date_format'))
+      return formatDateTime(this.session.created_on, this.$t('comp.session.session_info_sidebar.date_format'))
     },
     showResearchDescription () {
       return this.projectResearchers.length > 0
