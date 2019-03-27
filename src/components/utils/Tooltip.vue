@@ -13,11 +13,11 @@ export default {
 }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 
 .tooltip-wrapper
   position: relative
-  
+
   &:not(:hover) .tooltip
     display: none
 

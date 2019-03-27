@@ -59,7 +59,7 @@ section.consent-form
         .column
           label-value(:label="$t('comp.consent.consent_form.access_label')")
             ol: li(v-for="person in whoHasAccess", v-text="person")
-  
+
   .field
     .buttons.is-centered
       button.button.is-success.is-medium(
@@ -96,7 +96,7 @@ export default {
   watch: {
     updatedConsent (newValue) {
       if (!this.project || !this.user) return
-      
+
       // Filter out our injected user
       this.project.members = this.project.members.filter(m =>
         m.user_id !== this.user.id
@@ -145,7 +145,7 @@ export default {
 }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 
 .consent-form
   .field

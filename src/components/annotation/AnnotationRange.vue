@@ -54,7 +54,7 @@ export default {
 }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 
 $bumper-width: 14px
 
@@ -74,15 +74,15 @@ $bumper-width: 14px
   bottom: 0
   z-index: 50
   pointer-events: none
-  
+
   &.is-disabled
     opacity: 0.6
-  
+
   &:not(.is-editable) .background
     border-left: 2px solid transparentize($link, 0.3)
     border-right: 2px solid transparentize($link, 0.7)
     background: transparentize($link, 0.7)
-  
+
   .background
     background: transparentize($primary, 0.7)
     position: absolute
@@ -90,11 +90,11 @@ $bumper-width: 14px
     right: 0
     top: 0
     bottom: 0
-  
+
   .left-bumper
     +is-bumper
     left: $bumper-width * -0.5
-  
+
   .right-bumper
     +is-bumper
     right: $bumper-width * -0.5

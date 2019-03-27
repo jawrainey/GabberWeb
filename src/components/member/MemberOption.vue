@@ -17,12 +17,12 @@ export default {
 }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 
 .member-option
   cursor: pointer
   user-select: none
-  
+
   &:hover:not(.is-active)
     opacity: 0.9
 

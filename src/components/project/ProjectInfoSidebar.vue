@@ -52,7 +52,7 @@ export default {
 }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
   .smaller-margin-bottom
     margin-bottom: .5em !important
 </style>

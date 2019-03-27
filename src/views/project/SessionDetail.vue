@@ -315,7 +315,7 @@ export default {
 }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 .is-text-overflow
   flex: 1
   white-space: nowrap

@@ -17,15 +17,15 @@ export default {
 }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 
 .add-cancel-button
   transition: transform $transition, background-color $transition
   transform: rotate(0deg)
-  
+
   &.is-danger
     transform: rotate(135deg)
-  
+
   .icon *
     transform: scale(1.2)
     transform-origin: center

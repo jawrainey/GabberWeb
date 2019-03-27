@@ -15,13 +15,13 @@ export default {
 }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 
 .simple-layout
   display: flex
   min-height: 100vh
   flex-direction: column
-  
+
   > main
     flex: 1
     display: flex

@@ -84,7 +84,7 @@ export default {
 }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 .annotation-edit
   .tags .tag
     cursor: pointer

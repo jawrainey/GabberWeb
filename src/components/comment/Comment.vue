@@ -83,7 +83,7 @@ export default {
       let msg = this.$t('comp.comment.comment.delete_body')
       if (!this.isCreator || this.apiInProgress || !confirm(msg)) return
       this.startApiWork()
-      
+
       // Try to delete the comment
       let { meta } = await this.$api.deleteComment(
         parseInt(this.$route.params.project_id),
@@ -91,7 +91,7 @@ export default {
         this.annotation.id,
         this.comment.id
       )
-      
+
       // If successfull, remove from the state
       if (meta.success) {
         // this.comment.content = '[deleted]'
@@ -103,14 +103,14 @@ export default {
           }
         ])
       }
-      
+
       // Re-enable the ui
       this.endApiWork(meta)
     },
     toggleReplies () {
       this.showReplies = !this.showReplies
       if (!this.showReplies) return
-      
+
       // If no replies, fetch them
       if (this.replies.length === 0) {
         this.fetchReplies()
@@ -118,7 +118,7 @@ export default {
     },
     async fetchReplies () {
       this.startApiWork()
-      
+
       // Fetch child comments
       let { meta, data } = await this.$api.getChildComments(
         parseInt(this.$route.params.project_id),
@@ -126,29 +126,29 @@ export default {
         this.annotation.id,
         this.comment.id
       )
-      
+
       // Commit the comments
       if (meta.success) {
         this.$store.commit(ADD_COMMENTS, data || [])
       } else {
         console.log('Error', meta.messages)
       }
-      
+
       this.endApiWork(meta)
     }
   }
 }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 
 .comment
   .comment-content
     margin-bottom: 0.5em
-  
+
   > .media-content
     overflow: visible
-    
+
     > .comment-section
       margin-left: -1.5rem
 

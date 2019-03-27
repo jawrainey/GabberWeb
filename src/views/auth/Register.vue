@@ -4,9 +4,9 @@ box-layout
     h3.title {{$t('view.auth.register.title')}}
     h4.subtitle() {{$t('misc.words.or')}}
       router-link(:to="loginRoute")  {{$t('view.auth.register.login_action')}}
-    
+
     message.is-danger(v-model="apiErrors", clearable)
-    
+
     .login-form
       .field
         label.label {{$t('view.auth.register.name_field.label')}}
@@ -55,7 +55,7 @@ box-layout
           | {{$t('view.auth.register.cancel_action')}}
         button.button.is-success(@click="register", :disabled="!canRegister")
           | {{$t('view.auth.register.submit_action')}}
-  
+
   section.section.has-registered(v-else)
     h2.title.is-2.has-text-centered
       fa.email(icon="envelope-open", size="lg")
@@ -107,20 +107,20 @@ export default {
     async register () {
       if (!this.canRegister || this.apiInProgress) return
       this.startApiWork()
-      
+
       let { meta } = await this.$api.register(
         this.fullname, this.email, this.password, this.lang
       )
-      
+
       this.hasRegistered = meta.success
-      
+
       this.endApiWork(meta, this.$t('view.auth.register.failed_body'))
     }
   }
 }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 
 .has-registered
   .email

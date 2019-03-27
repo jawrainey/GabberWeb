@@ -21,7 +21,7 @@ function globalDrag (e) {
   if (currentDrag) {
     // Get the last positions
     let { x: prevX, y: prevY } = currentDrag
-    
+
     // Process the first touch if a TouchEvent
     if (e.type === 'touchmove') {
       currentDrag.x = e.changedTouches[0].clientX
@@ -31,7 +31,7 @@ function globalDrag (e) {
       currentDrag.x = e.clientX
       currentDrag.y = e.clientY
     }
-    
+
     // Emit the change x & y coord changes
     currentDrag.vm.$emit(
       'move',
@@ -46,7 +46,7 @@ function globalUp (e) {
   if (currentDrag) {
     currentDrag.vm.active = false
   }
-  
+
   currentDrag = null
 }
 
@@ -97,7 +97,7 @@ export default {
 }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 
 .draggable-elem
   cursor: grab

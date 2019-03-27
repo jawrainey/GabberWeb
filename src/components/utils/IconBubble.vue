@@ -27,7 +27,7 @@ export default {
 }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 
 =bubble
   display: inline-flex
@@ -42,10 +42,10 @@ export default {
   vertical-align: middle
   color: white
   position: relative
-  
+
   &.is-padded-right
     margin-right: 0.3em
-  
+
   > .sub-icon
     +bubble
     position: absolute

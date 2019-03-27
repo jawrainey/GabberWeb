@@ -68,7 +68,7 @@ export default {
     async saveEdit () {
       if (this.apiInProgress) return
       this.startApiWork()
-      
+
       let { meta, data } = await this.$api.editProject(
         this.project.id,
         this.changes.image,
@@ -76,68 +76,68 @@ export default {
         this.changes.privacy,
         this.changes.organisation
       )
-      
+
       if (meta.success) {
         this.$store.commit(SAVE_PROJECT, data)
         this.isEditingInfo = false
       }
-      
+
       this.endApiWork(meta, this.$t('comp.project.project_pill.update_failed'))
     },
     async deleteProject () {
       let message = this.$t('comp.project.project_pill.delete_confirm')
       if (this.apiInProgress || !confirm(message)) return
       this.startApiWork()
-      
+
       let { meta } = await this.$api.deleteProject(this.project.id)
-      
+
       if (meta.success) {
         this.$store.commit(DELETE_PROJECT, this.project.id)
       }
-      
+
       this.endApiWork(meta, this.$t('comp.project.project_pill.delete_failed'))
     },
     async joinProject () {
       let message = this.$t('comp.project.project_pill.join_confirm')
       if (this.apiInProgress || !confirm(message)) return
       this.startApiWork()
-      
+
       let { meta, data } = await this.$api.joinProject(this.project.id)
-      
+
       if (meta.success) {
         this.$store.commit(ADD_MEMBER_TO_PROJECT, {
           projectId: this.project.id,
           member: data
         })
       }
-      
+
       this.endApiWork(meta, this.$t('comp.project.project_pill.join_failed'))
     },
     async leaveProject () {
       let member = this.currentMembership
-      
+
       let message = this.$t('comp.project.project_pill.leave_confirm')
       if (!member || this.apiInProgress || !confirm(message)) return
       this.startApiWork()
-      
+
       let { meta } = await this.$api.leaveProject(
         this.project.id, member.id
       )
-      
+
       if (meta.success) {
         this.$store.commit(REMOVE_MEMBER_FROM_PROJECT, {
           projectId: this.project.id,
           memberId: member.id
         })
       }
-      
+
       this.endApiWork(meta, this.$t('comp.project.project_pill.leave_failed'))
     }
   }
 }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 
 .project-item
   &:not(:last-child)

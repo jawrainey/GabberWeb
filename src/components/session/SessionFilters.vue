@@ -99,7 +99,7 @@ export default {
 }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
   .scrolling-wrapper
     display: flex
     flex-wrap: nowrap

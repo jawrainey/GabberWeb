@@ -38,12 +38,12 @@ export default {
 }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 
 .breadcrumb
   ul li:not(:last-child) a
     color: $grey-lighter
-  
+
   ul li:last-child a
     color: $grey-light
 

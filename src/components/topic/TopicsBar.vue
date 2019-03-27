@@ -5,7 +5,7 @@
     :key="topic.id",
     :topic="topic",
     :audio-duration="audioDuration",
-    :is-active="topic.topic_id === (activeTopic && activeTopic.topic_id)"
+    :is-active="topic.topic_id === (activeTopic && activeTopic.topic_id)",
     @click="$emit('pickTopic', topic)",
     @over="t => $emit('over', t)",
     @leave="t => $emit('leave', t)"
@@ -25,7 +25,7 @@ export default {
 }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 
 .topics-bar
   display: flex

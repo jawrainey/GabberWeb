@@ -35,7 +35,7 @@ export default {
 }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 
 .topic-option
   border-radius: 4px
@@ -44,14 +44,14 @@ export default {
   cursor: pointer
   transition: margin $transition, background-color $transition
   user-select: none
-  
+
   &.is-selected
     background-color: $primary
     margin-left: 0.3em
-  
+
   &:not(.is-selected)
     background-color: $grey
-  
+
   &:hover:not(.is-selected)
     opacity: 0.9
 

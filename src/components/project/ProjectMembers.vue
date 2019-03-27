@@ -131,7 +131,7 @@ export default {
       let { meta, data } = await this.$api.inviteToProject(
         this.project.id, this.newMember.fullname, this.newMember.email, this.newMember.role
       )
-      
+
       if (meta.success) {
         this.$store.commit(ADD_MEMBER_TO_PROJECT, {
           projectId: this.project.id,
@@ -224,7 +224,7 @@ export default {
 }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
   .extra-padding
     padding-left: 6px
 </style>

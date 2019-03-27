@@ -6,7 +6,7 @@
       span  {{ projectContent.title }}
       span.membership.is-size-5.has-text-grey-light(v-if="membershipType")
         |  {{ membershipType }}
-  
+
   .column.is-narrow(v-if="!readonly")
     .buttons.is-right
       icon-button.is-dark.is-rounded(
@@ -15,20 +15,20 @@
         icon="users",
         :title="$t('comp.project.project_header.members_action')"
       )
-      
+
       icon-button.is-dark.is-rounded(
         v-if="canEdit",
         @click="$emit('startEdit')",
         icon="cog",
         :title="$t('comp.project.project_header.edit_action')"
       )
-      
+
       icon-button.is-dark.is-rounded(
         v-if="isEditing",
         @click="$emit('stopEdit')",
         :title="$t('comp.project.project_header.close_action')"
       )
-      
+
       icon-button.is-dark.is-rounded(
         v-if="!isProjectMember && currentUser",
         icon="user-plus",
@@ -36,7 +36,7 @@
         :disabled="inProgress",
         :title="$t('comp.project.project_header.join_action')"
       )
-      
+
       icon-button.is-dark.is-rounded(
         v-if="isProjectMember && !isOwner",
         icon="user-times",
@@ -78,15 +78,15 @@ export default {
 }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 .project-header
   min-height: 40px
-  
+
   +desktop
     .icon-item
       display: inline-block
       width: 0.8em
-  
+
   .membership
     text-transform: lowercase
 </style>

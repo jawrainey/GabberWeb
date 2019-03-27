@@ -31,7 +31,7 @@ export default {
 }
 </script>
 
-<style scoped lang="sass">
+<style lang="sass" scoped>
   .no-padding-bottom
     padding-bottom: 0 !important
   .right-pad

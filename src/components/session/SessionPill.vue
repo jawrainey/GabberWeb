@@ -78,7 +78,7 @@ export default {
 }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 .hmm
   padding-bottom: .3em
   margin-bottom: 0 !important

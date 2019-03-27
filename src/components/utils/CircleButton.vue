@@ -11,7 +11,7 @@ export default {
 }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 
 .circle-button
   display: inline-flex
@@ -21,7 +21,7 @@ export default {
   text-align: center
   vertical-align: middle
   width: 2.5em
-  
+
   .icon
     transform: scale(0.7)
 

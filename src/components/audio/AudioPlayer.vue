@@ -110,7 +110,7 @@ export default {
     toggle () {
       // If stopped, seek to the start
       if (this.state === PlayerState.Stopped) this.audio.seekTo(0)
-      
+
       // If playing, pause
       if (this.state === PlayerState.Playing) {
         this.pause()
@@ -145,7 +145,7 @@ export default {
     setProgress (progress) {
       this.progress = progress
       this.$emit('progress', progress)
-      
+
       // If stopped, move to a paused state
       if (this.isStopped && progress > 0) {
         this.setState(PlayerState.Paused)
@@ -162,16 +162,16 @@ export default {
     },
     setup () {
       this.teardown()
-      
+
       // Create a wavesurfer instance
       let wavesurfer = WaveSurfer.create({
         ...PLAYER_CONFIG, container: this.$refs.player
       })
-      
+
       // Load the audio & set the volume
       wavesurfer.load(this.session.audio_url)
       // wavesurfer.setVolume(0.5)
-      
+
       // Add event listeners
       wavesurfer.on('ready', () => {
         this.$emit('ready', this.audio.getDuration())
@@ -193,7 +193,7 @@ export default {
         this.failed = true
         this.$emit('error', error)
       })
-      
+
       // Store the instance & set our state
       this.failed = false
       this.audio = wavesurfer
@@ -210,29 +210,29 @@ export default {
 }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 
 $player-height: 42px
 
 .audio-player
-  
+
   .controls
     padding-bottom: 1em
-    
+
     .is-time
       line-height: 3.5rem
       color: $grey-light
-      
+
       +tablet
         font-size: 1.5rem
-  
+
   .player-wrapper
     height: $player-height
     position: relative
-    
+
     .player
       z-index: 100
-  
+
   .loading
     position: absolute
     left: 0

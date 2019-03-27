@@ -98,7 +98,7 @@ export default {
 }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 a.dropdown-item:hover, a.dropdown-item.is-active
   background-color: #1abc9c
   color: white
@@ -107,7 +107,7 @@ a.dropdown-item:hover, a.dropdown-item.is-active
   nav
     border-bottom: 1px solid $border
     z-index: 100
-  
+
   +touch
     .navbar .navbar-menu
       background: $grey-darker

@@ -41,14 +41,14 @@ export default {
 }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 
 .topic-segment
   height: 1em
   cursor: pointer
   transition: border-bottom-width 0.3s
-  border-bottom: 0px solid rgba(0, 0, 0, 0.15)
-  
+  border-bottom: 0 solid rgba(0, 0, 0, 0.15)
+
   &.is-active
     border-bottom-width: 0.25em
 

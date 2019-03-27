@@ -62,7 +62,7 @@ export default {
       this.$emit('input', this.value.concat([
         { text: '', is_active: undefined }
       ]))
-      
+
       // Focus the input on the next tick
       this.$nextTick(() => {
         this.$refs.inputs[this.$refs.inputs.length - 1].focus()
@@ -90,10 +90,10 @@ export default {
     navBy (change) {
       let index = this.indexOfInput(event.target)
       if (index === -1) return
-      
+
       let newIndex = index + change
       if (newIndex < 0 || newIndex >= this.$refs.inputs.length) return
-      
+
       let next = this.$refs.inputs[newIndex]
       next.focus()
       next.selectionStart = next.value.length
@@ -102,27 +102,27 @@ export default {
 }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 
 .topic-list-edit
-  
+
   $duration: 0.3s
-  
+
   .help
     margin-bottom: 1em
     padding: 0.5em
     border-left: 3px solid $white
     background-color: rgba(255,255,255, 0.1)
-  
+
   .field
     opacity: 1
     transition: opacity $duration
-  
+
   .field.inactive
     opacity: 0.7
     .input
       text-decoration: line-through
-  
+
   .toggle-control button
     transition: background-color $duration, border-color $duration
 

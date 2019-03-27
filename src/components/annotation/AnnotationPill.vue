@@ -105,35 +105,35 @@ export default {
     },
     async deleteSelf () {
       let message = 'Are you sure you want to delete this annotation? This cannot be undone'
-      
+
       if (!this.isOwner || this.apiInProgress || !confirm(message)) return
       this.startApiWork()
-      
+
       let { meta } = await this.$api.deleteAnnotation(
         parseInt(this.$route.params.project_id),
         this.$route.params.session_id,
         this.annotation.id
       )
-      
+
       if (meta.success) {
         this.$store.commit(REMOVE_ANNOTATION, this.annotation.id)
         this.$emit('blur')
       }
-      
+
       this.endApiWork(meta, 'Could not delete annotation, please try again')
     }
   }
 }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 
 .annotation-pill
   > .comment-section
     margin-top: 1em
     border-top: 1px solid $grey
     padding-top: 1em
-  
+
   .info-column > *
       vertical-align: middle
 

@@ -16,13 +16,13 @@ export default {
 }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 .coming-soon
   min-height: 100vh
   // display: flex
-  
+
   .branding
     max-width: 360px
     margin: 0 auto
-  
+
 </style>
