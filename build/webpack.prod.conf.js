@@ -67,7 +67,8 @@ const webpackConfig = merge(baseWebpackConfig, {
         path.join(__dirname, './../index.html'),
         path.join(__dirname, './../src/**/*.vue'),
         path.join(__dirname, './../src/**/*.js')
-      ])
+      ]),
+      whitelist: [path.join(__dirname, './../src/cookies.js')]
     }),
     // generate dist index.html with correct asset hash for caching.
     // you can customize output by editing /index.html
