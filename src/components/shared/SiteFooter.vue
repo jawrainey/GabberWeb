@@ -21,7 +21,7 @@ footer.hero.is-dark.is-small
             p.has-text-light-grey
               | {{$t('comp.shared.site_footer.copyright')}}
               |
-              b: a(href="https://openlab.ncl.ac.uk", target="_blank")
+              b: a(href="https://openlab.ncl.ac.uk", target="_blank", rel="noreferrer")
                 | Open Lab
 </template>
 
