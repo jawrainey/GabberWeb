@@ -10,8 +10,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-
-// import Purgecss webpack plugin and glob-all
 const PurgecssPlugin = require('purgecss-webpack-plugin')
 const glob = require('glob-all')
 
@@ -68,7 +66,7 @@ const webpackConfig = merge(baseWebpackConfig, {
         path.join(__dirname, './../src/**/*.vue'),
         path.join(__dirname, './../src/**/*.js')
       ]),
-      whitelist: [path.join(__dirname, './../src/cookies.js')]
+      whitelistPatterns: ['cc-\\w*']
     }),
     // generate dist index.html with correct asset hash for caching.
     // you can customize output by editing /index.html
