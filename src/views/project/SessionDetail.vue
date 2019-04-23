@@ -18,61 +18,54 @@ full-layout.session-detail(v-else-if="session")
   )
   template(slot="mobileLeft")
     span.icon: fa(icon="filter")
-  .main(slot="main")
-    h1.title.is-size-4-mobile {{ projectContent.title }}
-    h2.subtitle.is-size-6-mobile {{$t('view.project.session_detail.title', {name: session.creator.fullname})}}
-    .box
-      audio-player(
-        ref="audioPlayer",
-        :session="session",
-        @progress="onProgress",
-        @ready="setAudioDuration"
-      )
-        transition(name="fade")
-          annotation-range(
-            v-if="newAnnotation",
-            :audio-duration="audioDuration && audioDuration",
-            :start="newAnnotation.start_interval",
-            :end="newAnnotation.end_interval",
-            :disabled="isCreatingAnnotation",
-            :editable="true",
-            @change="updateRange"
+  .main(slot="main", ref="main")
+    .box.fixer
+          audio-player(
+            ref="audioPlayer",
+            :session="session",
+            @progress="onProgress",
+            @ready="setAudioDuration"
           )
-        transition(name="fade")
-          annotation-range(
-            v-if="audioDuration && focusedAnnotation",
+            transition(name="fade")
+              annotation-range(
+                v-if="newAnnotation",
+                :audio-duration="audioDuration && audioDuration",
+                :start="newAnnotation.start_interval",
+                :end="newAnnotation.end_interval",
+                :disabled="isCreatingAnnotation",
+                :editable="true",
+                @change="updateRange"
+              )
+            transition(name="fade")
+              annotation-range(
+                v-if="audioDuration && focusedAnnotation",
+                :audio-duration="audioDuration",
+                :start="focusedAnnotation.start_interval",
+                :end="focusedAnnotation.end_interval"
+              )
+          topics-bar(
+            v-if="audioDuration",
+            :topics="session.topics",
             :audio-duration="audioDuration",
-            :start="focusedAnnotation.start_interval",
-            :end="focusedAnnotation.end_interval"
+            :active-topic="currentTopic",
+            @pickTopic="pickTopic",
+            @over="t => highlightTopic = t",
+            @leave="highlightTopic = null"
           )
-      topics-bar(
-        v-if="audioDuration",
-        :topics="session.topics",
-        :audio-duration="audioDuration",
-        :active-topic="currentTopic",
-        @pickTopic="pickTopic",
-        @over="t => highlightTopic = t",
-        @leave="highlightTopic = null"
-      )
-      p.is-size-5.is-size-5-mobile.current-topic-name.is-text-overflow(v-if="currentTopic")
-        span.is-text-overflow {{ currentTopic.text }}
-        span(v-if="highlightTopic && currentTopic.id !== highlightTopic.id")
-          br
-          span.indent.is-size-6.is-siz-7-mobile.is-italic → {{highlightTopic.text}}
-
+          .columns.is-mobile
+            .column.is-10.is-text-overflow
+              p.is-size-5.is-size-5-mobile.current-topic-name.is-text-overflow(v-if="currentTopic")
+                span {{ currentTopic.text }}
+                span(v-if="highlightTopic && currentTopic.id !== highlightTopic.id")
+                  br
+                  span.indent.is-size-6.is-siz-7-mobile.is-italic → {{highlightTopic.text}}
+            .column.is-2
+              add-cancel-button.is-small.is-pulled-right(
+                v-if="currentUser && audioDuration",
+                @click="toggleNewAnnotation",
+                :toggled="!!newAnnotation",
+                :disabled="apiInProgress || isCreatingAnnotation")
     section
-      .level.is-mobile
-        .level-left
-          .level-item
-            h1.title.is-size-4-mobile {{$t('view.project.session_detail.annotations_title')}}
-        .level-right
-          add-cancel-button.is-medium(
-            v-if="currentUser && audioDuration",
-            @click="toggleNewAnnotation",
-            :toggled="!!newAnnotation",
-            :disabled="apiInProgress || isCreatingAnnotation"
-          )
-
       .box.is-pill.is-success.new-annotation(v-if="newAnnotation")
         message.is-danger(v-model="newAnnotationErrors", clearable)
         annotation-edit(
@@ -283,6 +276,12 @@ export default {
         start_interval: Math.max(this.audioProgress - 10, 0),
         end_interval: Math.min(this.audioProgress + 10, this.audioDuration)
       }
+
+      // Wait for render to happen before scrolling to top
+      this.$nextTick(() => {
+        this.$refs.main.scrollTop = 0
+        this.$refs.main.scrollIntoView()
+      })
     },
     async createAnnotation () {
       if (this.isCreatingAnnotation) return
@@ -316,6 +315,20 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+
+.add-cancel-button
+  margin-top: 0.4em
+.wrapper
+  display: flex
+  max-height: 100%
+  flex-direction: column
+.fixer
+  position: sticky
+  top: -.5em
+  z-index: 100
+  margin: 0 -1em 1em -1em
+  border-bottom: 1px solid $border
+  border-radius: 0 !important
 .is-text-overflow
   flex: 1
   white-space: nowrap
@@ -323,8 +336,9 @@ export default {
   text-overflow: ellipsis
 .indent
   margin-left: .25em
-.layout-main
-  margin: 0 auto !important
+
+.main
+  margin-top: -.5em !important
 
 .session-detail
   .topic-tags .tag
@@ -332,4 +346,8 @@ export default {
 
   .current-topic-name
     padding-top: 0.5em
+
++touch
+  .fixer
+    top: 3em
 </style>

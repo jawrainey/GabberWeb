@@ -166,10 +166,10 @@ export default {
   +sidebar-panel
   position: fixed
   width: calc(100vw - 1em)
-  top: 7rem
+  top: 5rem
   bottom: 0
   transition: $transition left, $transition right, $transition box-shadow
-  z-index: 10
+  z-index: 101
   box-shadow: 0 0 0 transparent
 
   &.mobile-show
@@ -177,7 +177,6 @@ export default {
 
 +touch
   .full-layout
-    overflow: hidden
 
     .mobile-controls
       padding: 0.4em 1em
@@ -206,6 +205,7 @@ export default {
 
       > .layout-right
         +mobile-panel
+        z-index: 200
         border-top-left-radius: 0.5em
         &:not(.mobile-show)
           right: -100vw
