@@ -12,12 +12,7 @@ const getters = {
   sessionsForProject: state => projectId => state.sessions.filter(session =>
     session.project_id === projectId
   ),
-  sessionById: state => id => state.sessions.find(s => s.id === id),
-  allSessions: state => state.sessions || [],
-  numSessions: (state, getters) => {
-    if (getters.allProjects.length === 0) return 0
-    return getters.allProjects.map(p => p.sessions).reduce((a, b) => a + b)
-  }
+  sessionById: state => id => state.sessions.find(s => s.id === id)
 }
 
 const mutations = {

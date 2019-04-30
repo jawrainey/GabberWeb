@@ -24,7 +24,8 @@ export default {
   computed: {
     sessionTitle () {
       let lang = this.$store.getters.currentLocale !== undefined ? this.$store.getters.currentLocale.code : 'en'
-      return this.session.content.find(i => i.lang === lang).title
+      let itemLang = this.session.content.find(i => i.lang === lang)
+      return (itemLang === undefined) ? this.session.content[0].title : itemLang.title
     },
     url () { return `${window.location.origin}/projects/${this.session.pid}/conversations/${this.session.id}` }
   }
@@ -44,7 +45,7 @@ export default {
   .box
     margin-bottom: .75em !important
   .logo-column
-    padding: 1em 0 0 1em
+    padding: 1em 0 .5em 1em
   .project-logo
     max-width: 55px
     max-height: 55px
