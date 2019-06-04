@@ -99,11 +99,11 @@ export default class MockApi extends ApiInterface {
       ? this.mock(make.project(id, id % 2 ? 'public' : 'private'))
       : this.mock(null, false)
   }
-  async createProject (image, content, privacy, organisation) {
+  async createProject (image, content, privacy) {
     let id = mockIds.project++
-    return this.editProject(id, image, content, privacy, organisation)
+    return this.editProject(id, image, content, privacy)
   }
-  async editProject (id, image, content, privacy, organisation) {
+  async editProject (id, image, content, privacy) {
     let lang = MOCK.LANGUAGES[0].code
     if (content[lang].title === MOCK.FAIL_TOKEN) return this.mock(null, false)
 

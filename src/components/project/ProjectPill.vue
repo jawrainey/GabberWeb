@@ -73,8 +73,7 @@ export default {
         this.project.id,
         this.changes.image,
         this.changes.content,
-        this.changes.privacy,
-        this.changes.organisation
+        this.changes.privacy
       )
 
       if (meta.success) {

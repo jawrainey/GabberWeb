@@ -130,8 +130,7 @@ export default {
             }
           },
           privacy: 'public',
-          creator: this.currentUser,
-          organisation: {id: 0, description: null, name: null}
+          creator: this.currentUser
         }
       }
     },
@@ -151,7 +150,7 @@ export default {
       this.startApiWork()
 
       let { meta, data } = await this.$api.createProject(
-        this.newProject.image, this.newProject.content, this.newProject.privacy, this.newProject.organisation
+        this.newProject.image, this.newProject.content, this.newProject.privacy
       )
       
       if (meta.success) {

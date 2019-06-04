@@ -64,7 +64,6 @@ export const make = {
       },
       members: memberships,
       privacy,
-      organisation: {id: pickBetween(0, 3), description: null, name: null},
       creator: make.creator(creatorId),
       codebook: {
         tags: DUMMY_LABELS.map((text, id) => ({ id, text }))

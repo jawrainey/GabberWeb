@@ -123,13 +123,6 @@ project:
       search:
         placeholder: Ricerca di foto per parola chiave
         no_results: Nessun risultato trovato. Prova una parola chiave diversa.
-    org_field:
-      label: Questo progetto sarà utilizzato da un'organizzazione?
-      options:
-        individual: No. Userò questo progetto come individuo.
-        ifrc: International Federation of Red Cross and Red Crescent Societies
-        fl: Fulfilling Lives
-        other: Altro
     contact:
       before_link: Contattaci
       after_link: se desideri che la tua organizzazione appaia come opzione.
