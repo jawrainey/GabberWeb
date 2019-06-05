@@ -75,8 +75,8 @@ export default {
 
 <style lang="sass" scoped>
   .badge
-    width: 180px
-    height: 55px
+    width: 188px
+    height: 56px
   .with-padding
     padding: 1em
     margin: 0
@@ -84,6 +84,7 @@ export default {
     padding: .5em 0 0 0
   .no-border > img:hover
     transform: scale(1.025)
+    transition: transform .3s ease
     filter: drop-shadow(0 1px 2px rgba(0,0,0,.5))
   .no-border:hover
     border-bottom: none

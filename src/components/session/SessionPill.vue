@@ -24,20 +24,20 @@
             :value="session.created_on | longDate"
           )
       .columns.is-mobile
-        .column.is-half-mobile
+        .column.is-hidden-mobile
           label-value.is-primary(
           :label="$t('comp.session.session_pill.language')",
           :value="language.endonym"
           )
         .column.is-half-mobile
           label-value.is-primary(
-            :label="$t('comp.session.session_pill.duration')",
-            :value="duration"
-          )
-        .column
-          label-value.is-primary(
             :label="$t('comp.session.session_pill.annotation_label')",
             :value="session.num_user_annotations"
+          )
+        .column.is-half-mobile
+          label-value.is-primary(
+            :label="$t('comp.session.session_pill.duration')",
+            :value="duration"
           )
 </template>
 
@@ -94,7 +94,7 @@ export default {
   padding-right: 2rem
 
   &:not(:last-child)
-    margin-bottom: 1em
+    margin-bottom: .75em
 
   .main-title
     margin-bottom: 0.3em

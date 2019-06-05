@@ -2,7 +2,7 @@
 header.site-header.hero
   nav.navbar(role="navigation", aria-label="main navigation")
     .navbar-brand
-      router-link.navbar-item(:to="homeRoute")
+      router-link.navbar-item(:to="homeRoute").left-pad
         span.is-size-4.has-text-weight-bold G
       .navbar-burger(@click="toggleMobileNav", :class="menuClasses")
         span
@@ -99,6 +99,10 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+
+.left-pad
+  padding: 0 0 0 .75em
+
 a.dropdown-item:hover, a.dropdown-item.is-active
   background-color: #1abc9c
   color: white

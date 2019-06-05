@@ -1,13 +1,15 @@
 <template lang="pug">
 .session-filters
-  h2.is-size-4.has-text-weight-semibold.margin-bottom {{$t('comp.session.session_filters.sort_title')}}
+  h2.is-size-4.has-text-weight-semibold.margin-bottom
+    | {{$t('comp.session.session_filters.sort_title')}}
   sort-field(
     :value="sortMode",
     @input="v => $emit('update:sortMode', v)",
     label=""
   )
-  h2.is-size-4.has-text-weight-semibold.margin-bottom {{$t('comp.session.session_filters.filter_title')}}
-  .field
+  h2.is-size-4.has-text-weight-semibold.margin-bottom
+    | {{$t('comp.session.session_filters.filter_title')}}
+  .field(v-if="availableLanguages.length >= 2")
     label.label {{$t('comp.session.session_filters.language_title.label')}}
     topic-option(
       v-for="lang in availableLanguages",
@@ -58,7 +60,8 @@ export default {
       for (let i = 0; i < languages.length; i++) {
         languages[i]['text'] = languages[i]['endonym']
       }
-      return languages
+      let sessionLangs = this.sessions.map(f => f.lang_id)
+      return languages.filter(l => sessionLangs.includes(l.id))
     },
     uniqueParticipants () {
       let people = this.sessions.reduce((people, session) =>

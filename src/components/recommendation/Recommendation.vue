@@ -1,16 +1,16 @@
 <template lang="pug">
   a.recommendation.box(:href="url")
-    .columns.no-bottom
-      .column.is-narrow.is-hidden-mobile.logo-column
+    .columns.is-mobile.is-vcentered
+      .column.is-narrow.logo-column.is--one-fifth-mobile
         img.project-logo(:src="session.image")
-      .column.has-text-left.is-clipped.no-padding-bottom
-        h3.project-title.is-size-4.has-text-weight-bold.is-size-6-mobile.is-text-overflow {{ sessionTitle }} / {{ sessionTitle }}
+      .column.has-text-left.is-clipped
+        h3.project-title.is-size-4.has-text-weight-bold.is-size-6-mobile.is-text-overflow {{ sessionTitle }}
         .level.is-mobile
           .level-left.is-size-7
             .level-item.is-2
               .icon: fa(icon="comment")
               span {{ session.comments }} {{$t('view.project.session_detail.annotations_title')}}
-            .level-item.is-2.is-hidden-mobile
+            .level-item.is-2.is-hidden-touch
               .icon: fa(icon="users")
               span {{ session.participants }} {{$t('comp.session.session_info_sidebar.members_label')}}
             .level-item.is-2
@@ -33,8 +33,6 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-  .no-padding-bottom
-    padding-bottom: 0 !important
   .right-pad
     padding-right: 1em
   .is-text-overflow
@@ -52,7 +50,7 @@ export default {
   .project-title
     padding-right: .25em
   .recommendation
-    -webkit-transition: width 2s
+    transition: transform .3s ease
     padding: .5em !important
   .recommendation:hover
     border: 0 !important

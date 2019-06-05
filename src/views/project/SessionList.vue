@@ -8,6 +8,7 @@ loading-full-layout(
 )
 full-layout.session-list-view(v-else-if="project")
   session-filters(
+    v-if="sessions.length > 0",
     slot="left",
     :project="project",
     :sessions="sessions",
@@ -24,7 +25,7 @@ full-layout.session-list-view(v-else-if="project")
 
   template(slot="main")
     h1.title.is-1.is-size-3-mobile {{ filteredSessions.length }} {{$t('view.project.session_list.title')}}
-    .columns.is-multiline.add-padding
+    .columns.is-multiline.is-marginless
       session-pill.column.is-half.is-45(
         v-for="session in filteredSessions",
         :key="session.id",
@@ -138,7 +139,7 @@ export default {
         this.$store.commit(ADD_SESSIONS, sessionsRes.data || [])
       }
 
-      this.endApiWork(meta, this.$t('view.project.session_list.not_found'))
+      this.endApiWork(meta)
     },
     viewSession (session) {
       const params = { project_id: this.project.id, session_id: session.id }
@@ -153,12 +154,10 @@ export default {
   .is-45
     width: 47.5%
   .is-45:nth-child(odd)
-    margin-right: 2%
-    margin-left: 1%
+    margin-right: 1em
+    margin-left: .5em
   .is-45:last-child()
     margin-bottom: 1em
-.add-padding
-  padding: 0 0 1em 0
 .session-list-view
   .main
     max-width: $desktop

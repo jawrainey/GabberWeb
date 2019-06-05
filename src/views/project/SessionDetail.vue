@@ -145,7 +145,7 @@ export default {
     query: '',
     topicFilters: [],
     memberFilters: [],
-    sortMode: 'newest'
+    sortMode: 'oldest'
   }),
   created () {
     this.fetchGabber()
