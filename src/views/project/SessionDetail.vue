@@ -53,13 +53,13 @@ full-layout.session-detail(v-else-if="session")
             @leave="highlightTopic = null"
           )
           .columns.is-mobile
-            .column.is-10.is-text-overflow
+            .column.is-10.is-text-overflow.no-padding-bottom
               p.is-size-5.is-size-5-mobile.current-topic-name.is-text-overflow(v-if="currentTopic")
+              template(v-if="highlightTopic && currentTopic.id !== highlightTopic.id")
+                span.indent.is-size-6.is-siz-7-mobile.is-italic → {{highlightTopic.text}}
+              template(v-else)
                 span {{ currentTopic.text }}
-                span(v-if="highlightTopic && currentTopic.id !== highlightTopic.id")
-                  br
-                  span.indent.is-size-6.is-siz-7-mobile.is-italic → {{highlightTopic.text}}
-            .column.is-2
+            .column.is-2.no-padding-bottom
               add-cancel-button.is-small.is-pulled-right(
                 v-if="currentUser && audioDuration",
                 @click="toggleNewAnnotation",
@@ -315,7 +315,8 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-
+.no-padding-bottom
+  padding-bottom: 0
 .add-cancel-button
   margin-top: 0.4em
 .wrapper
