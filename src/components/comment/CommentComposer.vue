@@ -11,7 +11,7 @@ article.comment-composer.media(v-if="user")
         textarea.textarea(
           v-model="content",
           :disabled="!canType",
-          :placeholder="$t('comp.comment.comment_composer.placeholder')"
+          :placeholder="$t('comp.comment.comment_composer.placeholder')",
           @keyup.enter.prevent="submit",
           rows="2"
         )

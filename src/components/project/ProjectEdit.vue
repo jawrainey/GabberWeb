@@ -39,6 +39,25 @@
           :placeholder="$t('comp.project.project_edit.info_field.placeholder')"
         )
       .field
+        label.label {{ $t('comp.project.project_edit.codebook.title ') }}
+        message.is-danger(v-model="errors", clearable)
+        p.is-italic.is-size-7 {{ $t('comp.project.project_edit.codebook.description') }}
+        input.input(
+          type="text",
+          v-model="codeToAdd",
+          :placeholder="$t('comp.project.project_edit.codebook.placeholder')",
+          @keyup.enter="addCode"
+        )
+      .field.is-grouped.is-grouped-multiline(v-if="project.codebook && project.codebook.tags")
+        div.control(v-for="code in project.codebook.tags")
+          a.tags(v-if="code.is_active === 1", @click="removeCode(code)")
+            span.tag.is-medium.is-primary {{ code.text }}
+          a.tags.has-addons(v-else-if="code.is_active === 0", @click="restoreCode(code)")
+            span.tag.is-medium.is-danger.inactive {{ code.text }}
+          a.tags.has-addons(v-else)
+            span.tag.is-medium.is-primary {{ code.text }}
+            span.tag.is-medium.is-delete(@click="deleteCode(code)")
+      .field
         label.label {{$t('comp.project.project_edit.perms_field.label')}}
         .control(v-if="!project.id || understoodPrivacy")
           span.select
@@ -64,17 +83,14 @@
       )
   hr
   .field.is-grouped.is-grouped-right
-
     .control.is-expanded(v-if="isOwner && deletable")
       button.button.is-danger.is-rounded(@click="$emit('delete')", :disabled="disabled")
         .icon: fa(icon="trash")
-
     .control
       button.button.is-link.is-rounded(
         @click="cancel",
         :disabled="disabled"
       ) {{$t('comp.project.project_edit.cancel_action')}}
-
     .control
       button.button.is-success.is-rounded(
         @click="submit",
@@ -86,6 +102,7 @@
 import ApiWorkerMixin from '@/mixins/ApiWorker'
 import ProjectPropMixin from '@/mixins/ProjectProp'
 import TopicListEdit from '@/components/topic/TopicListEdit'
+import Message from '@/components/utils/Message'
 
 /* Emitted Events:
 
@@ -97,7 +114,7 @@ import TopicListEdit from '@/components/topic/TopicListEdit'
 
 export default {
   mixins: [ ApiWorkerMixin, ProjectPropMixin ],
-  components: { TopicListEdit },
+  components: { TopicListEdit, Message },
   props: {
     disabled: { type: Boolean, required: true },
     deletable: { type: Boolean, default: false },
@@ -109,7 +126,9 @@ export default {
     previousSearch: '',
     loading: false,
     noresults: false,
-    photos: []
+    photos: [],
+    codeToAdd: '',
+    errors: []
   }),
   computed: {
     canSubmit () {
@@ -127,6 +146,30 @@ export default {
     }
   },
   methods: {
+    addCode () {
+      if (this.errors.length > 0) return
+      if (this.project.codebook == null) {
+        this.project.codebook = {'tags': []}
+      }
+
+      if (this.project.codebook.tags.map(p => p.text).includes(this.codeToAdd)) {
+        this.$t('comp.project.project_edit.public_body')
+        this.errors.push(this.$t('comp.project.project_edit.codebook.error.duplicate'))
+        return
+      }
+      this.project.codebook.tags.push({'id': null, 'text': this.codeToAdd})
+      this.codeToAdd = ''
+    },
+    removeCode (code) {
+      code.is_active = 0
+    },
+    restoreCode (code) {
+      code.is_active = 1
+    },
+    deleteCode (code) {
+      this.project.codebook.tags = this.project.codebook.tags.filter(t => t.text !== code.text)
+      this.$forceUpdate()
+    },
     assignPhoto (img) {
       let photo = img.path[0]
       let canvas = document.createElement('canvas')
@@ -175,6 +218,9 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+  .inactive
+    opacity: 0.7
+    text-decoration: line-through
   +desktop
     .no-left-pad
       padding-left: 0 !important

@@ -121,9 +121,12 @@ project:
       search:
         placeholder: Recherche de photos par mot-clé
         no_results: Aucun résultat trouvé. Essayez un mot-clé différent.
-    contact:
-      before_link: Contactez-nous
-      after_link: si vous souhaitez que votre organisation apparaisse comme option.
+    codebook:
+      title: Votre livre de code
+      description: Mots ou expressions à utiliser lors de l'analyse de conversations.
+      placeholder: Tapez et appuyez sur Entrée pour ajouter un nouveau code
+      error:
+        duplicate: Le code que vous avez essayé d'ajouter est un doublon.
     perms_field:
       label: Privacy
       public: Publique

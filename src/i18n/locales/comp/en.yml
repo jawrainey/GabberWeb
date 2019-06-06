@@ -121,9 +121,12 @@ project:
       search:
         placeholder: Search for photos by keyword
         no_results: No results found. Try a different keyword.
-    contact:
-      before_link: Contact us
-      after_link: if you would like your organisation to appear as an option.
+    codebook:
+      title: Your codebook
+      description: Words or phrases to use when analysing conversations.
+      placeholder: Type and press enter to add a new code
+      error:
+        duplicate: The code you tried to add is a duplicate.
     perms_field:
       label: Privacy
       public: Public

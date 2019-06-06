@@ -123,9 +123,12 @@ project:
       search:
         placeholder: Ricerca di foto per parola chiave
         no_results: Nessun risultato trovato. Prova una parola chiave diversa.
-    contact:
-      before_link: Contattaci
-      after_link: se desideri che la tua organizzazione appaia come opzione.
+    codebook:
+      title: Il tuo libro di esercizi
+      description: Parole o frasi da utilizzare quando si analizzano le conversazioni.
+      placeholder: Digita e premi Invio per aggiungere un nuovo codice
+      error:
+        duplicate: Il codice che hai provato ad aggiungere è un duplicato.
     perms_field:
       label: Privacy
       public: Pubblico

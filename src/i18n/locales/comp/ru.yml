@@ -121,9 +121,12 @@ project:
       search:
         placeholder: поиск фотографий по ключевому слову
         no_results: Результаты не найдены. Попробуйте другое ключевое слово.
-    contact:
-      before_link: Contact us
-      after_link: if you would like your organisation to appear as an option.
+    codebook:
+      title: Ваша кодовая книга
+      description: Слова или фразы для использования при анализе разговоров.
+      placeholder: Введите и нажмите ввод, чтобы добавить новый код
+      error:
+        duplicate: Код, который вы пытались добавить, является дубликатом.
     perms_field:
       label: Конфиденциальность
       public: Публичный

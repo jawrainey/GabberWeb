@@ -129,6 +129,7 @@ export default {
               topics: []
             }
           },
+          codebook: {'id': null, 'tags': []},
           privacy: 'public',
           creator: this.currentUser
         }
@@ -150,7 +151,8 @@ export default {
       this.startApiWork()
 
       let { meta, data } = await this.$api.createProject(
-        this.newProject.image, this.newProject.content, this.newProject.privacy
+        this.newProject.image, this.newProject.content,
+        this.newProject.codebook, this.newProject.privacy
       )
       
       if (meta.success) {

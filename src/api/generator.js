@@ -66,7 +66,7 @@ export const make = {
       privacy,
       creator: make.creator(creatorId),
       codebook: {
-        tags: DUMMY_LABELS.map((text, id) => ({ id, text }))
+        tags: DUMMY_LABELS.map((text, id) => ({ id, text, is_active: pickFrom([0, 1]) }))
       }
     })
   },

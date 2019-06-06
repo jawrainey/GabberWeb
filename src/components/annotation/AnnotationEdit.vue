@@ -13,7 +13,7 @@
               | {{$t('comp.annotation.annotation_edit.label', { start, end })}}
       ul.tags(v-if="codebook && codebook.tags")
         li.tag.is-medium(
-          v-for="tag in codebook.tags",
+          v-for="tag in codebook.tags.filter(c => c.is_active)",
           :class="tagClass(tag.id)",
           @click="toggle(tag.id)"
         )

@@ -55,7 +55,6 @@ export default {
     restoreTopic (topic) {
       topic.is_active = 1
       this.$forceUpdate()
-      // this.$emit('input', this.value.filter(t => t !== topic))
     },
     addTopic () {
       // Add a new topic which is neither active or inactive

@@ -121,9 +121,12 @@ project:
       search:
         placeholder: Buscar fotos por palabra clave
         no_results: No se encontraron resultados. Pruebe con una palabra clave diferente.
-    contact:
-      before_link: Póngase en contacto
-      after_link: con nosotros si desea que su organización aparezca como una opción.
+    codebook:
+      title: Tu libro de códigos
+      description: Palabras o frases a utilizar al analizar conversaciones.
+      placeholder: Escribe y presiona enter para agregar un nuevo código
+      error:
+        duplicate: El código que intentaste agregar es un duplicado.
     perms_field:
       label: Privacidad
       public: Público

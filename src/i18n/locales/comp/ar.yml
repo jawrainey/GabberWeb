@@ -121,9 +121,12 @@ project:
       search:
         placeholder: البحث عن الصور عن طريق الكلمات الرئيسية
         no_results: لا توجد نتائج. جرب كلمة مختلفة.
-    contact:
-      before_link: اتصل بنا
-      after_link: إذا كنت ترغب في أن تظهر منظمتك كخيار.
+    codebook:
+      title: كودك الخاص بك
+      description: كلمات أو عبارات لاستخدامها عند تحليل المحادثات.
+      placeholder: اكتب واضغط مفتاح الإدخال لإضافة رمز جديد
+      error:
+        duplicate: الكود الذي حاولت إضافته مكرر.
     perms_field:
       label: الخصوصية
       public: عامة

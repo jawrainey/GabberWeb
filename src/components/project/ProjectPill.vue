@@ -73,6 +73,7 @@ export default {
         this.project.id,
         this.changes.image,
         this.changes.content,
+        this.changes.codebook,
         this.changes.privacy
       )
 
