@@ -27,7 +27,7 @@ section.consent-form
 
   .field
     label.label {{$t('comp.consent.consent_form.perms_title')}}
-    i.help.is-warning(v-if="showEmbargo") {{$t('comp.consent.consent_form.research.embargo')}}
+    i.help.is-warning {{$t('comp.consent.consent_form.research.embargo')}}
     br
     .box.consent-control.is-size-5
       label

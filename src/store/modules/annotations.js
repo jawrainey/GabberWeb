@@ -6,6 +6,7 @@ const state = {
 }
 
 const getters = {
+  annotations: state => state.annotations,
   annotationsForSession: state => sessionId => state.annotations.filter(annotation =>
     annotation.session_id === sessionId
   ),

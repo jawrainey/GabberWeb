@@ -64,6 +64,12 @@ import {
   faPlus,
   faCircleNotch,
   faToggleOn,
+  faEllipsisV,
+  faVolumeUp,
+  faExternalLinkAlt,
+  faStepBackward,
+  faStepForward,
+  faEdit,
   faToggleOff } from '@fortawesome/free-solid-svg-icons'
 
 // Add Fontawesome libraries
@@ -113,7 +119,14 @@ library.add(
   faPlus,
   faCircleNotch,
   faToggleOn,
-  faToggleOff
+  faToggleOff,
+  faEllipsisV,
+  faCog,
+  faVolumeUp,
+  faExternalLinkAlt,
+  faStepBackward,
+  faStepForward,
+  faEdit
 )
 Vue.component('fa', FontAwesomeIcon)
 

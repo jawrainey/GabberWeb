@@ -10,6 +10,13 @@ export const CURRENT_USER_ID = 99
 export const CONSENT_USER_ID = 101
 export const MOCK_DURATION = 1.53
 
+export const DUMMY_PLAYLIST_TITLE = [
+  'The future of now',
+  'Workers right in NCL',
+  'Understanding Complex Needs',
+  'فهم الايمان'
+]
+
 export const DUMMY_TOPICS = [
   'Introduction',
   'What is the point of this chat?',
@@ -20,11 +27,11 @@ export const DUMMY_TOPICS = [
 ]
 
 export const DUMMY_COMMENTS = [
-  'I love that!',
-  'I really like this bit, it means ...',
-  'How did they do that?',
-  'Would it still work if you ...',
-  'I do not agree, I think that ...'
+  'I love that! I love that! I love that! I love that!',
+  'I really like this bit, it means ... I really like this bit, it means ... I really like this bit, it means ...',
+  'How did they do that? How did they do that? How did they do that?',
+  'Would it still work if you ... Would it still work if you ... Would it still work if you ...',
+  'I do not agree, I think that ... I do not agree, I think that ...'
 ]
 
 export const DUMMY_LABELS = [
@@ -90,8 +97,29 @@ export const make = {
       num_user_annotations: pickBetween(2, 10)
     })
   },
-  playlist (id, creatorId) {
-    return model('Playlist', id, { name: `Playlist ${id}` })
+  playlist (creatorId, id, name, description, image, annotations = makeList(3, make.annotation, id, id)) {
+    return model('Playlist', id, {
+      id: id,
+      name: name,
+      description: description,
+      image: image,
+      annotations: annotations,
+      creatorId: creatorId
+    })
+  },
+  // This is useful when testing the sidebar, etc.
+  playlistWithData (creatorId, id = pickBetween(1, 10000)) {
+    let annotations = makeList(pickBetween(8, 16), make.annotation, hasher.encode(id))
+    // IN order to make a session, we need to know the project_id, ffs.
+    annotations.map(a => { a.project_id = 10 })
+    return model('Playlist', id, {
+      id: id,
+      name: pickFrom(DUMMY_PLAYLIST_TITLE),
+      description: pickFrom(DUMMY_COMMENTS),
+      image: 'imageURL',
+      annotations: annotations,
+      creatorId: CURRENT_USER_ID
+    })
   },
   membership (id, role = pickFrom(['participant', 'researcher', 'administrator'])) {
     return model('Membership', id, {
@@ -137,15 +165,17 @@ export const make = {
   },
   annotation (id, sessionId) {
     let when = pickBetween(0, MOCK_DURATION)
+    id = Math.floor(Math.random() * 60000) + (id + 1)
     return model('Annotation', id, {
       session_id: sessionId,
+      project_id: pickBetween(1, 4),
       user_id: pickBetween(1, 9),
       comments: makeIds(pickBetween(2, 5)),
-      labels: makeList(3, make.label),
+      labels: makeList(pickBetween(0, 5), make.label),
       content: pickFrom(DUMMY_COMMENTS),
       creator: make.creator(pickFrom([1, 2, 3, 4, 5, CURRENT_USER_ID])),
       start_interval: when,
-      end_interval: 2
+      end_interval: pickBetween(10, 123)
     })
   },
   sessionTopic (id, projectId, count, duration) {

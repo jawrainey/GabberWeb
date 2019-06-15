@@ -1,6 +1,6 @@
 /*
  * The names of the vue-router routes
- * These are seperate exports so you get a compile-time error if you mistype it
+ * These are separate exports so you get a compile-time error if you mistype it
  */
 
 export const HOME_ROUTE = 'Home'
@@ -18,7 +18,9 @@ export const VERIFY_ROUTE = 'Verify'
 
 export const PROJECT_LIST_ROUTE = 'ProjectList'
 export const SESSION_LIST_ROUTE = 'SessionList'
+export const PLAYLIST_LIST_ROUTE = 'PlaylistCreate'
 export const SESSION_DETAIL_ROUTE = 'Session'
+export const PLAYLIST_ROUTE = 'Playlist'
 export const CONSENT_ROUTE = 'Consent'
 
 export const ACCEPT_INVITE_ROUTE = 'AcceptInvite'

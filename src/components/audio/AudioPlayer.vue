@@ -26,7 +26,7 @@
   .player-wrapper.is-clipped
     template(v-if="!canPlay")
       .loading.has-text-centered.is-size-3(v-if="!failed")
-        fa(icon="circle-notch", spin)
+        fa(icon="circle-notch")
         span  {{$t('comp.audio.audio_player.loading')}}
       message.is-warning(
         v-else,

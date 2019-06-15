@@ -1,6 +1,7 @@
 import * as ROUTES from '@/const/routes'
 
 const Holder = () => import('@/views/base/Holder')
+const PlaylistCreate = () => import('@/views/project/PlaylistCreate')
 const ProjectList = () => import('@/views/project/ProjectList')
 const SessionList = () => import('@/views/project/SessionList')
 const SessionDetail = () => import('@/views/project/SessionDetail')
@@ -48,6 +49,22 @@ export default [
                   crumb: 'View Conversation',
                   title: 'Conversation'
                 }
+              }
+            ]
+          },
+          {
+            path: 'playlists',
+            component: Holder,
+            meta: {
+              crumb: 'Playlist',
+              holderFor: ROUTES.PLAYLIST_LIST_ROUTE
+            },
+            children: [
+              {
+                path: '',
+                name: ROUTES.PLAYLIST_LIST_ROUTE,
+                component: PlaylistCreate,
+                meta: { title: 'Playlists' }
               }
             ]
           }

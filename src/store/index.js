@@ -6,6 +6,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import auth from './modules/auth'
 import projects from './modules/projects'
+import playlists from './modules/playlists'
 import sessions from './modules/sessions'
 import annotations from './modules/annotations'
 import comments from './modules/comments'
@@ -19,6 +20,7 @@ export const store = new Vuex.Store({
     languages,
     auth,
     projects,
+    playlists,
     sessions,
     annotations,
     comments,

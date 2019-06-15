@@ -26,6 +26,7 @@ const MOCK = {
 // Auto incrementing ids for mocking
 const mockIds = {
   project: 10,
+  playlist: 100,
   comment: 100,
   membership: 100,
   annotation: 100
@@ -230,7 +231,48 @@ export default class MockApi extends ApiInterface {
   async deleteComment (projectId, sessionId, annotationId, commentId) {
     return this.mock(null)
   }
-  
+
+  /*
+   * Playlist management
+   */
+  async createPlaylist (name, description, image, annotations) {
+    let id = mockIds.playlist++
+    return this.editPlaylist(id, name, description, image, annotations)
+  }
+
+  async addAnnotationToPlaylist (playlistId, annotationId) {
+    // Not sure if we need to return this?
+    // If so, why not just use editPlaylist?
+    let creator = store.getters.currentUser
+    let playlist = make.playlistWithData(creator.id, playlistId)
+    playlist.annotations.push(make.annotation(annotationId, hasher.encode(playlistId + annotationId)))
+    return this.mock(playlist)
+  }
+
+  async removeAnnotationFromPlaylist (playlistId, annotationId) {
+    return this.mock(null)
+  }
+
+  async editPlaylist (id, name, description, image, annotations) {
+    let creator = make.user(CURRENT_USER_ID)
+    return this.mock(make.playlist(creator.id, id, name, description, image, annotations))
+  }
+
+  async deletePlaylist (id) {
+    return this.mock(null)
+  }
+
+  async listPlaylists () {
+    let creator = store.getters.currentUser
+    let personalPlaylists = !creator ? [] : makeList(3, make.playlistWithData)
+    return this.mock(personalPlaylists)
+  }
+
+  async getPlaylist (id) {
+    let creator = store.getters.currentUser
+    return !creator ? [] : this.mock(make.playlistWithData)
+  }
+
   /*
    * Consent
    */

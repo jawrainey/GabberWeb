@@ -19,7 +19,7 @@ export default {
     audioDuration: { type: Number, required: true }
   },
   computed: {
-    duration () { return this.topic.end_interval - this.topic.start_interval },
+    duration () { return this.audioDuration ? this.audioDuration : this.topic.end_interval - this.topic.start_interval },
     classes () {
       return { 'is-active': this.isActive }
     },

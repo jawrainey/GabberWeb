@@ -17,7 +17,7 @@
       :project="changes",
       :disabled="apiInProgress",
       :deletable="true",
-      :action="this.$t('comp.project.project_pill.update_action')",
+      :action="$t('comp.project.project_pill.update_action')",
       @submit="saveEdit",
       @cancel="cancelEdit",
       @delete="deleteProject"

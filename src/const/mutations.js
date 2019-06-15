@@ -13,6 +13,10 @@ export const ADD_MEMBER_TO_PROJECT = 'AddMemberToProject'
 export const EDIT_MEMBER_ON_PROJECT = 'EditMemberOnProject'
 export const REMOVE_MEMBER_FROM_PROJECT = 'RemoveMemberFromProject'
 
+export const SET_PLAYLISTS = 'SetPlaylists'
+export const SAVE_PLAYLIST = 'SavePlaylist'
+export const DELETE_PLAYLIST = 'DeletePlaylist'
+
 export const ADD_SESSIONS = 'AddSessions'
 export const ADD_SESSIONS_RECOMMENDATIONS = 'AddSessionsRecommendations'
 export const ADD_ANNOTATIONS = 'AddAnnotations'

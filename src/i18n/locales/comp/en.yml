@@ -194,7 +194,37 @@ project:
     leave_confirm: Are you sure you want to leave this project?
     leave_failed: Failed to leave project, please try again
 
-
+playlist:
+  main:
+    titles:
+      comments: Comments
+      comment: Comment
+      logged_in_not_active: No Playlist Selected
+      not_logged_in: Login to Create Playlists
+  sidebar:
+    titles:
+      main: Playlists
+      not_logged_in: Login to Create Playlists
+    pill:
+      tracks: Tracks
+      share: View Sharable
+  create:
+    title: Create Playlist
+    form:
+      name:
+        title: Name
+        placeholder: How others will identify your playlist
+      description:
+        title: Description
+        placeholder: Describe your playlist to others
+      buttons:
+        cancel: Cancel
+        submit: Create
+  edit:
+    title: Edit Playlist
+    form:
+      buttons:
+        submit: Save
 
 session:
   session_filters:

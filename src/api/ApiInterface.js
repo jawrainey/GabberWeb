@@ -193,7 +193,30 @@ export default class ApiInterface {
   async deleteComment (projectId, sessionId, annotationId, commentId) {
     this.notImplemented()
   }
-  
+
+  /*
+   * Playlist management
+   */
+  async createPlaylist (name, description, image) {
+    this.notImplemented()
+  }
+
+  async editPlaylist (id, name, description, image) {
+    this.notImplemented()
+  }
+
+  async deletePlaylist (id) {
+    this.notImplemented()
+  }
+
+  async listPlaylists () {
+    this.notImplemented()
+  }
+
+  async getPlaylist (id) {
+    this.notImplemented()
+  }
+
   /*
    * Consent
    */

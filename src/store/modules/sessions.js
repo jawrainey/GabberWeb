@@ -9,6 +9,7 @@ const state = {
 }
 
 const getters = {
+  sessions: state => state.sessions,
   sessionsForProject: state => projectId => state.sessions.filter(session =>
     session.project_id === projectId
   ),
