@@ -100,8 +100,10 @@ export default {
   },
   methods: {
     createWithAnnotation (annotation) {
+      // This creates an empty playlist and opens modal
+      this.createWithoutAnnotation()
+      // Add the annotation passed from the view
       this.playlist.annotations = [annotation]
-      this.isCreating = true
     },
     createWithoutAnnotation () {
       // Reset between opening/closing
