@@ -20,7 +20,7 @@
         @click="createWithoutAnnotation")
   .box(v-if="!isLoggedIn")
     .buttons.is-centered.is-size-7.is-italic
-      router-link.button.is-success-red(:to="registerRoute")
+      router-link.button.is-success-red(:to="loginRoute")
         span {{ $t('comp.playlist.sidebar.titles.not_logged_in') }}
   .playlist-pill.box(
     v-else,
@@ -40,7 +40,7 @@
               span.icon: fa.is-small(icon="external-link-alt", size="xs")
             a(@click.stop="editPlaylist(playlist)") Edit
               span.icon: fa.is-small(icon="edit", size="xs")
-            a(@click.stop="") Delete
+            a(@click.stop="deletePlaylist(playlist)") Delete
               span.icon: fa.is-small(icon="trash", size="xs")
 </template>
 
@@ -51,8 +51,8 @@
 */
 
 <script>
-import { ADD_SESSIONS, SET_PLAYLISTS } from '@/const/mutations'
-import { REGISTER_ROUTE } from '@/const/routes'
+import { ADD_SESSIONS, DELETE_PLAYLIST, SET_PLAYLISTS } from '@/const/mutations'
+import { LOGIN_ROUTE } from '@/const/routes'
 import { AuthEvents, PlaylistEvents } from '@/events'
 import ApiWorkerMixin from '@/mixins/ApiWorker'
 import TemporalMixin from '@/mixins/Temporal'
@@ -86,16 +86,12 @@ export default {
     AuthEvents.$off('logout', this.fetchPlaylists)
   },
   computed: {
-    registerRoute () { return { name: REGISTER_ROUTE } },
+    loginRoute () { return { name: LOGIN_ROUTE } },
+    playlists () { return this.$store.getters.allPlaylists },
+    isLoggedIn () { return this.$store.getters.currentUser },
     isActivePlaylistID () {
       let selectedPlaylist = this.playlists.find(pl => pl.id === this.activePlaylist.id)
       return selectedPlaylist !== undefined ? selectedPlaylist.id : null
-    },
-    playlists () {
-      return this.$store.getters.allPlaylists
-    },
-    isLoggedIn () {
-      return this.$store.getters.currentUser
     }
   },
   methods: {
@@ -125,6 +121,17 @@ export default {
     changeActivePlaylist (playlist) {
       this.$emit('update:changeActivePlaylist', playlist)
     },
+    async deletePlaylist (playlist) {
+      let message = `Are you sure you want to delete this Playlist (${playlist.name})? This action cannot be undone`
+      if (this.apiInProgress || !confirm(message)) return
+      this.startApiWork()
+      let { meta } = await this.$api.deletePlaylist(playlist.id)
+      if (meta.success) {
+        this.$store.commit(DELETE_PLAYLIST, playlist.id)
+      }
+      this.changeActivePlaylist({})
+      this.endApiWork(meta)
+    },
     async fetchPlaylists () {
       this.startApiWork()
       let { meta, data } = await this.$api.listPlaylists()
@@ -134,8 +141,8 @@ export default {
         // If a user clicks a playlist, we need to know all the associated metadata.
         // Transform playlist to only obtain session/project ids
         let sessions = data.map(pl =>
-          pl.annotations.map(z => (
-            {session_id: z.session_id, project_id: z.project_id})
+          pl.annotations.map(a => (
+            {session_id: a.session_id, project_id: a.project_id})
           )
         )
         // As there may be X playlists with Y annotations, we want to reduce this to one list

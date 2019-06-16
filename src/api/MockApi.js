@@ -240,17 +240,9 @@ export default class MockApi extends ApiInterface {
     return this.editPlaylist(id, name, description, image, annotations)
   }
 
-  async addAnnotationToPlaylist (playlistId, annotationId) {
-    // Not sure if we need to return this?
-    // If so, why not just use editPlaylist?
+  async getPlaylist (id) {
     let creator = store.getters.currentUser
-    let playlist = make.playlistWithData(creator.id, playlistId)
-    playlist.annotations.push(make.annotation(annotationId, hasher.encode(playlistId + annotationId)))
-    return this.mock(playlist)
-  }
-
-  async removeAnnotationFromPlaylist (playlistId, annotationId) {
-    return this.mock(null)
+    return !creator ? [] : this.mock(make.playlistWithData)
   }
 
   async editPlaylist (id, name, description, image, annotations) {
@@ -268,9 +260,15 @@ export default class MockApi extends ApiInterface {
     return this.mock(personalPlaylists)
   }
 
-  async getPlaylist (id) {
+  async addAnnotationToPlaylist (playlistId, annotationId) {
     let creator = store.getters.currentUser
-    return !creator ? [] : this.mock(make.playlistWithData)
+    let playlist = make.playlistWithData(creator.id, playlistId)
+    playlist.annotations.push(make.annotation(annotationId, hasher.encode(playlistId + annotationId)))
+    return this.mock(playlist)
+  }
+
+  async removeAnnotationFromPlaylist (playlistId, annotationId) {
+    return this.mock(null)
   }
 
   /*

@@ -64,7 +64,6 @@ export default {
   },
   methods: {
     selectCode (code) {
-      console.log(code)
       this.$emit('update:codesSelected', [ ...this.codesSelected, code.id ])
     },
     deselectCode (code) {
