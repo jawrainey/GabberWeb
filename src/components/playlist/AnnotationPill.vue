@@ -32,6 +32,7 @@
           | &#32; &middot; {{ annotation.comments.length }} Responses &middot; &#32;
           a(@click.stop="", :href="sessionURL", target="_blank") View Conversation
              span.icon: fa.is-small(icon="external-link-alt", size="xs")
+          span: fa.is-small(icon="grip-vertical")
       .column.is-full(v-if="annotation.labels.length > 0 && showTags")
         a.tags
           span(v-for="tag in annotation.labels").tag.is-primary {{ tag.text }}
@@ -63,7 +64,7 @@ export default {
   components: { CircleButton, LabelValue, IconBubble, MemberBubble, TopicSegment },
   props: {
     annotation: {type: Object, required: true},
-    isPlaylist: false,
+    isPlaylist: {type: Boolean, required: false, default: false},
     selectedAnnotation: {type: Object, required: true}
   },
   data: () => ({

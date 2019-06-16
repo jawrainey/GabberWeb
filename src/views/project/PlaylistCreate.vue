@@ -48,14 +48,19 @@ full-layout.session-list-view(v-else-if="annotations && project")
                 @chosen="chooseAnnotation")
           .container.column.is-half
             .content.scrollable-panel
-              annotation-pill(
-                v-for="annotation in activePlaylist.annotations",
-                :key="annotation.id",
-                :annotation="annotation",
-                :isPlaylist="true",
-                :selectedAnnotation="selectedAnnotation",
-                @playPause="playPauseAnnotation",
-                @chosen="removeAnnotation")
+              draggable(
+                v-model="activePlaylist.annotations",
+                ghost-class="ghost",
+                @change="playlistOrderChanged")
+                transition-group(type="transition", name="flip-list")
+                  annotation-pill(
+                    v-for="annotation in activePlaylist.annotations",
+                    :key="annotation.id",
+                    :annotation="annotation",
+                    :isPlaylist="true",
+                    :selectedAnnotation="selectedAnnotation",
+                    @playPause="playPauseAnnotation",
+                    @chosen="removeAnnotation")
       audio-player(
         ref="audioPlayer",
         :annotation="selectedAnnotation",
@@ -96,6 +101,7 @@ import AudioPlayer from '@/components/playlist/AudioPlayer'
 import CircleButton from '@/components/utils/CircleButton'
 import CreatePlaylistModal from '@/components/playlist/CreatePlaylistModal'
 import PlaylistSidebar from '@/components/playlist/PlaylistSidebar'
+import draggable from 'vuedraggable'
 
 export default {
   mixins: [ ApiWorkerMixin, FiltersMixin ],
@@ -106,6 +112,7 @@ export default {
     AnnotationFilters,
     CircleButton,
     CreatePlaylistModal,
+    draggable,
     FullLayout,
     LoadingFullLayout,
     PlaylistSidebar },
@@ -140,7 +147,8 @@ export default {
       return this.annotations.filter(annotation => {
         let userIds = [annotation.creator.user_id]
         let codeIds = annotation.labels.map(a => a.id)
-        let topicIds = this.sessions.find(s => s.id === annotation.session_id).topics.map(t => t.topic_id)
+        let topicIds = this.sessions.find(s => s.id === annotation.session_id)
+        topicIds = topicIds ? topicIds.topics.map(t => t.topic_id) : []
 
         return this.idListOrFilter(this.annotatorFilters, userIds) &&
           this.idListOrFilter(this.topicsSelected, topicIds) &&
@@ -163,6 +171,21 @@ export default {
     AuthEvents.$off('logout', this.fetchAnnotations)
   },
   methods: {
+    playlistOrderChanged () {
+      this.editPlaylist(this.activePlaylist)
+    },
+    async editPlaylist (playlist) {
+      this.startApiWork()
+
+      let { meta, data } = await this.$api.editPlaylist(
+        playlist.id, playlist.name, playlist.description,
+        playlist.image, playlist.annotations, playlist.annotations.map(a => a.id))
+
+      if (meta.success) {
+        this.$store.commit(SAVE_PLAYLIST, data)
+      }
+      this.endApiWork(meta)
+    },
     async addRemove () {
       if (this.activePlaylist.annotations.findIndex(a => a.id === this.selectedAnnotation.id) === -1) {
         this.chooseAnnotation(this.selectedAnnotation)
@@ -183,22 +206,12 @@ export default {
       this.addAnnotation(annotation)
     },
     async removeAnnotation (annotation) {
-      this.startApiWork()
-      let { meta } = await this.$api.removeAnnotationFromPlaylist(this.activePlaylist.id, annotation.id)
-      if (meta.success) {
-        this.activePlaylist.annotations = this.activePlaylist.annotations.filter(f => f.id !== annotation.id)
-        this.$store.commit(SAVE_PLAYLIST, this.activePlaylist)
-      }
-      this.endApiWork(meta)
+      this.activePlaylist.annotations = this.activePlaylist.annotations.filter(f => f.id !== annotation.id)
+      this.editPlaylist(this.activePlaylist)
     },
     async addAnnotation (annotation) {
-      this.startApiWork()
-      let { meta } = await this.$api.addAnnotationToPlaylist(this.activePlaylist.id, annotation.id)
-      if (meta.success) {
-        this.activePlaylist.annotations.push(annotation)
-        this.$store.commit(SAVE_PLAYLIST, this.activePlaylist)
-      }
-      this.endApiWork(meta)
+      this.activePlaylist.annotations.push(annotation)
+      this.editPlaylist(this.activePlaylist)
     },
     scrollToAnnotation (annotation) {
       // TODO: could be improved by jumping to the region before or improve UI spacing above
@@ -251,8 +264,6 @@ export default {
       }
       this.scrollToAnnotation(this.selectedAnnotation)
     },
-    // TODO: this will be VERY different later because we will fetch ALL PROJECTS, ALL SESSIONS, etc.
-    // On reflection, better to have 1-on-1 per project, then iterate?
     async fetchAnnotations () {
       this.startApiWork()
 
@@ -269,12 +280,12 @@ export default {
 
         // Now we have the project and session data, we want the annotations for the session
         if (sessionsRes.data.length > 0) {
-        // By default, sessions do not come with all annotations for performance issues/simplicity
+          // By default, sessions do not come with all annotations for performance reasons
           let sessionsWithAnnotations = sessionsRes.data.map(
             session => this.$api.getSessionAnnotations(session.id, this.projectId))
           let sessionsWithAnnotationsRes = await Promise.all(sessionsWithAnnotations)
           let annotationsMeta = this.mergeMetaBlocks(...sessionsWithAnnotationsRes.map(m => m.meta))
-          // All annotations were retrieved without a hitch
+          // All annotations were retrieved
           if (annotationsMeta.success) {
             sessionsWithAnnotationsRes.map(a => this.$store.commit(ADD_ANNOTATIONS, a.data))
           }
@@ -282,7 +293,7 @@ export default {
       }
 
       this.selectedAnnotation = this.annotations.length > 0 ? this.annotations[0] : {}
-      this.endApiWork(meta, this.$t('view.project.session_list.not_found'))
+      this.endApiWork(meta)
     }
   }
 }
@@ -342,4 +353,10 @@ export default {
   .action-border.is-success, .action-border.is-danger
     color: white
     border: none
+  .flip-list-move
+    transition: transform 0.5s
+  .no-move
+    transition: transform 0s
+  .ghost
+    opacity: 0.5
 </style>

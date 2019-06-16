@@ -245,9 +245,9 @@ export default class MockApi extends ApiInterface {
     return !creator ? [] : this.mock(make.playlistWithData)
   }
 
-  async editPlaylist (id, name, description, image, annotations) {
+  async editPlaylist (id, name, description, image, annotations, order) {
     let creator = make.user(CURRENT_USER_ID)
-    return this.mock(make.playlist(creator.id, id, name, description, image, annotations))
+    return this.mock(make.playlist(creator.id, id, name, description, image, annotations, order))
   }
 
   async deletePlaylist (id) {
@@ -258,17 +258,6 @@ export default class MockApi extends ApiInterface {
     let creator = store.getters.currentUser
     let personalPlaylists = !creator ? [] : makeList(3, make.playlistWithData)
     return this.mock(personalPlaylists)
-  }
-
-  async addAnnotationToPlaylist (playlistId, annotationId) {
-    let creator = store.getters.currentUser
-    let playlist = make.playlistWithData(creator.id, playlistId)
-    playlist.annotations.push(make.annotation(annotationId, hasher.encode(playlistId + annotationId)))
-    return this.mock(playlist)
-  }
-
-  async removeAnnotationFromPlaylist (playlistId, annotationId) {
-    return this.mock(null)
   }
 
   /*

@@ -119,6 +119,12 @@ export default {
       return this.formatDuration(secs)
     },
     changeActivePlaylist (playlist) {
+      // e.g. when we delete or create a playlist the order does not exist
+      if ('order' in playlist) {
+        let order = playlist.order
+        // Sort by user-defined order before displaying
+        playlist.annotations = playlist.annotations.sort((a, b) => order.indexOf(a.id) - order.indexOf(b.id))
+      }
       this.$emit('update:changeActivePlaylist', playlist)
     },
     async deletePlaylist (playlist) {

@@ -27,7 +27,8 @@ export default {
 
       let { meta, data } = await this.$api.editPlaylist(
         this.playlist.id, this.playlist.name, this.playlist.description,
-        this.playlist.image, this.playlist.annotations)
+        this.playlist.image, this.playlist.annotations,
+        this.playlist.annotations.map(a => a.id))
 
       if (meta.success) {
         this.$store.commit(SAVE_PLAYLIST, data)

@@ -70,6 +70,7 @@ import {
   faStepBackward,
   faStepForward,
   faEdit,
+  faGripVertical,
   faToggleOff } from '@fortawesome/free-solid-svg-icons'
 
 // Add Fontawesome libraries
@@ -126,7 +127,8 @@ library.add(
   faExternalLinkAlt,
   faStepBackward,
   faStepForward,
-  faEdit
+  faEdit,
+  faGripVertical
 )
 Vue.component('fa', FontAwesomeIcon)
 
