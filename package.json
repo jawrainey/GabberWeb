@@ -1,6 +1,6 @@
 {
   "name": "gabber-web",
-  "version": "0.0.2-pl",
+  "version": "0.0.3-pl",
   "description": "Frontend for viewing, filtering, and creating playlists from regions of audio.",
   "main": "main.js",
   "repository": "https://github.com/jawrainey/GabberWeb",
