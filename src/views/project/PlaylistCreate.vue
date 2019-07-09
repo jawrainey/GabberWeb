@@ -225,7 +225,7 @@ export default {
     },
     scrollToAnnotation (annotation) {
       // TODO: could be improved by jumping to the region before or improve UI spacing above
-      // this.$el.getElementsByClassName(`ST-${annotation.id}`)[0].scrollIntoView()
+      this.$el.getElementsByClassName(`ST-${annotation.id}`)[0].scrollIntoView()
     },
     // TODO: why is this here and not in the AudioPlayer? Given it has next/prev? should
     nextAnnotation (annotation) {

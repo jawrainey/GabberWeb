@@ -94,7 +94,7 @@ export default {
     uniqueClass () { return `ST-${this.annotation.id}` },
     showAddOrRemove () { return this.isPlaylist ? 'trash' : 'plus' },
     actionAddRemove () { return { 'is-danger': this.isPlaylist } },
-    isSelectedOrHover () { return this.isSelectedAndPlaying || this.isHover },
+    isSelectedOrHover () { return this.isSelected || this.isSelectedAndPlaying || this.isHover },
     classes () {
       let custom = {
         'is-selected': this.isSelected,
@@ -104,7 +104,7 @@ export default {
       return custom
     },
     styles () {
-      let color = this.isSelectedOrHover ? '#4A5253' : '#343C3D'
+      let color = this.isSelectedOrHover ? '#6d6d6d' : '#343C3D'
       return {
         background: `linear-gradient(${color}, ${color}) padding-box, ${this.computeLinearGradient}`,
         borderLeft: '7px solid transparent'
@@ -159,10 +159,7 @@ export default {
     width: 1.75em !important
     height: 1.75em !important
   .is-selected
-    background: #434343
-
-  .is-playing, .annotation-pill:hover
-    background: #434343
+    background: red
 
   .annotation-pill
     cursor: pointer
