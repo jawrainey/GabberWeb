@@ -17,7 +17,7 @@
     .column.is-narrow(v-if="isOwner")
       button.button.is-dark.is-rounded(@click="deleteSelf")
         .icon: fa(icon="trash")
-  .columns.is-gapless
+  .columns.is-gapless.is-vcentered
     .column
       ul.tags(v-if="annotation.labels.length > 0")
         li.tag(v-for="item in annotation.labels")

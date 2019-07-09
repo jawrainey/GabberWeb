@@ -132,9 +132,7 @@ export default {
       if (this.apiInProgress || !confirm(message)) return
       this.startApiWork()
       let { meta } = await this.$api.deletePlaylist(playlist.id)
-      if (meta.success) {
-        this.$store.commit(DELETE_PLAYLIST, playlist.id)
-      }
+      if (meta.success) this.$store.commit(DELETE_PLAYLIST, playlist.id)
       this.changeActivePlaylist({})
       this.endApiWork(meta)
     },
@@ -151,8 +149,7 @@ export default {
             {session_id: a.session_id, project_id: a.project_id})
           )
         )
-        // As there may be X playlists with Y annotations, we want to reduce this to one list
-        let allSessions = [].concat.apply([], sessions.map(s => s))
+        let allSessions = [].concat.apply([], sessions)
         // Remove duplicates from the list to reduce number of requests sent
         let uniqueSessions = [...new Set(allSessions.map(s => JSON.stringify(s)))].map(s => JSON.parse(s))
         // Get all the sessions related to the annotations in the playlist

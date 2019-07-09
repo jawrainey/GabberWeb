@@ -5,8 +5,10 @@
       .column.is-full.is-mobile
         .columns.is-vcentered.is-mobile
           .settings.column.is-1
-              circle-button.rm-bg(icon="cog")
+              <!--circle-button.rm-bg(icon="cog")-->
           .buttons.column.is-10.is-marginless.has-text-centered
+            span.circle-button.button.rm-bg.is-marginless.is-paddingless
+              | {{ this.formatDuration(Math.round(position)) }}
             circle-button.rm-bg(
               @click="$emit('prev', annotation)",
               icon="step-backward")
@@ -16,6 +18,8 @@
             circle-button.rm-bg(
               @click="$emit('next', annotation)",
               icon="step-forward")
+            span.circle-button.button.rm-bg.is-marginless.is-paddingless
+              | {{ this.formatDuration(max) }}
           .add.column.is-1(v-if="$slots.action")
             slot(name="action")
       .column.is-full.is-paddingless(
@@ -26,7 +30,8 @@
           @drag-end="dragEnd",
           v-model="position",
           tooltip="false",
-          :max="annotation.end_interval",
+          :max="max",
+          :speed="0.1",
           :bgStyle="bgStyle",
           :processStyle="processStyle",
           :height="5",
@@ -34,7 +39,7 @@
       .column.is-full.is-paddingless.opac(
         @mouseover="hover = true",
         @mouseleave="hover = false")
-        .topics-bar.is-flex
+        .topics-bar.is-flex(v-if="topicsExist")
           topic-segment(
             v-for="topic in topicsOverlappingAnnotation",
             :key="topic.id",
@@ -72,6 +77,7 @@ export default {
   },
   data: () => ({
     hover: false,
+    annotationChanged: false,
     player: null,
     volume: 1,
     premuteVolume: 0,
@@ -83,13 +89,15 @@ export default {
   }),
   mounted () { this.setup() },
   computed: {
+    topicsExist () { return !(this.session === undefined || this.session.topics.length <= 0) },
+    // TODO: this is also in AnnotationPill? make a mixin? It's also incorrect!
     topicsOverlappingAnnotation () {
-      if (this.session.topics === undefined || this.session.topics.length <= 0) return
       return this.session.topics.filter(
         t => this.annotation.start_interval <= t.start_interval ||
           this.annotation.end_interval <= t.end_interval)
     },
     session () { return this.$store.getters.sessionById(this.annotation.session_id) },
+    max () { return Math.floor(this.annotation.end_interval - this.annotation.start_interval) },
     isPlaying () { return this.state === PlayerState.Playing },
     isStopped () { return this.state === PlayerState.Stopped },
     toggleIcon () { return this.annotation && this.annotation.isPlaying ? 'pause' : 'play' },
@@ -100,17 +108,23 @@ export default {
       return { 'backgroundColor': bg, 'border-radius': '0' }
     }
   },
+  watch: {
+    'annotation' () {
+      this.annotationChanged = true
+    }
+  },
   methods: {
     audioURI (annotation) {
-      return `${this.session.audio_url}#t=${annotation.start_interval},${annotation.end_interval}`
+      let session = this.$store.getters.sessionById(annotation.session_id)
+      return `${session.audio_url}#t=${annotation.start_interval},${annotation.end_interval}`
     },
     play (annotation) {
-      let uri = this.audioURI(annotation)
       // The audio was first pressed or a different audio was selected.
-      if (this.state === PlayerState.Stopped ||
-        (this.state !== PlayerState.Paused && !this.player.src.includes(uri))) {
-        this.player.src = uri
+      if (this.state === PlayerState.Stopped || this.annotationChanged) {
+        this.player.src = this.audioURI(annotation)
         this.player.currentTime = annotation.start_interval
+        this.position = 0
+        this.annotationChanged = false
       } else if (this.state === PlayerState.Paused) {
         // When continuing to play from pause we want to start of from previous position
         this.player.currentTime = annotation.start_interval + this.position
@@ -159,10 +173,10 @@ export default {
       if (this.state === PlayerState.Playing) this.resetProgress()
 
       this.progressTimer = setInterval(_ => {
-        if (Math.round(this.position) >= this.annotation.end_interval) {
+        if (this.position >= this.max) {
           this.stop()
         } else {
-          this.position += 0.1
+          this.position = Math.round((this.position + 0.1) * 100) / 100
         }
       }, 100)
     },

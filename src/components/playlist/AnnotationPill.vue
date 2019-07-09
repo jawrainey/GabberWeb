@@ -11,7 +11,7 @@
        icon-bubble.is-smaller(
          v-if="isSelectedOrHover",
          :icon="isPlaying",
-         :colorId="annotation.creator.id",
+         :colorId="annotation.creator.user_id",
          @click="$emit('playPause', annotation)")
        member-bubble.is-smaller(
          v-else,
@@ -28,11 +28,11 @@
         span.is-size-7(v-else) {{ length }}
       .column.is-full.is-paddingless.padding-left-right.is-hidden-mobile
         span.is-size-7.is-italic
-          a(@click.stop="showTags = !showTags") {{ annotation.labels.length }} Tags
+          a(@click.stop="showTags = !showTags") {{ annotation.labels.length }} Codes
           | &#32; &middot; {{ annotation.comments.length }} Responses &middot; &#32;
           a(@click.stop="", :href="sessionURL", target="_blank") View Conversation
              span.icon: fa.is-small(icon="external-link-alt", size="xs")
-          span: fa.is-small(icon="grip-vertical")
+          span(v-if="isPlaylist"): fa.is-small(icon="grip-vertical")
       .column.is-full(v-if="annotation.labels.length > 0 && showTags")
         a.tags
           span(v-for="tag in annotation.labels").tag.is-primary {{ tag.text }}
@@ -73,19 +73,13 @@ export default {
   }),
   computed: {
     computeLinearGradient () {
-      // need to get a SID somehow as the annotation IDs are obv all different
-      return `linear-gradient(to top, ${this.colorFromId(this.session.project_id)} 50%,
-        ${this.colorFromId(this.annotation.id)} 50%) border-box`
+      // SessionIDs are UUIDs, so we take all the digits (of which theres many) and divide to get a unique-ish num
+      let sid = this.colorFromId(this.session.id.replace(/\D/g, '') / 10000)
+      return `linear-gradient(to top, ${this.colorFromId(this.session.project_id)} 50%, ${sid} 50%) border-box`
     },
-    sessionURL () {
-      // Allows us to stream
-      return `/projects/${this.session.project_id}/conversations/${this.annotation.session_id}`
-    },
-    session () {
-      return this.$store.getters.sessionById(this.annotation.session_id)
-    },
-    // This implies that all sessions for annotation and therefore
-    // all projects have been downloaded, for the sidebar to work correctly.
+    sessionURL () { return `/projects/${this.session.project_id}/conversations/${this.annotation.session_id}` },
+    session () { return this.$store.getters.sessionById(this.annotation.session_id) },
+    // TODO: create Playlist mixin as this is shared across AudioPlayler/AnnotationPill
     topicsOverlappingAnnotation () {
       return this.session.topics.filter(
         t => this.annotation.start_interval <= t.start_interval ||

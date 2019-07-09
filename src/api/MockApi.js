@@ -27,7 +27,7 @@ const MOCK = {
 const mockIds = {
   project: 10,
   playlist: 100,
-  comment: 100,
+  comment: 1,
   membership: 100,
   annotation: 100
 }
@@ -235,19 +235,19 @@ export default class MockApi extends ApiInterface {
   /*
    * Playlist management
    */
-  async createPlaylist (name, description, image, annotations) {
+  async createPlaylist (name, description, annotations) {
     let id = mockIds.playlist++
-    return this.editPlaylist(id, name, description, image, annotations)
+    return this.editPlaylist(id, name, description, annotations)
   }
 
   async getPlaylist (id) {
     let creator = store.getters.currentUser
-    return !creator ? [] : this.mock(make.playlistWithData)
+    return !creator ? [] : this.mock(make.playlistWithData(creator.id))
   }
 
-  async editPlaylist (id, name, description, image, annotations, order) {
+  async editPlaylist (id, name, description, annotations, order) {
     let creator = make.user(CURRENT_USER_ID)
-    return this.mock(make.playlist(creator.id, id, name, description, image, annotations, order))
+    return this.mock(make.playlist(creator.id, id, name, description, annotations, order))
   }
 
   async deletePlaylist (id) {

@@ -279,7 +279,6 @@ export default class LiveApi extends ApiInterface {
   // projects.sessions.annotations.comments.replies
   async getChildComments (pId, sId, aId, cId) {
     return this.endpoint('get', `projects/${pId}/sessions/${sId}/annotations/${aId}/comments/${cId}/replies`)
-    // this.notImplemented()
   }
   
   // projects.sessions.annotations.comments.create
@@ -300,24 +299,24 @@ export default class LiveApi extends ApiInterface {
   /*
    * Playlist management
    */
-  async createPlaylist (name, description, image) {
-    this.notImplemented()
+  async createPlaylist (name, description, annotations) {
+    return this.endpoint('post', `playlists`, { name, description, annotations })
   }
 
-  async editPlaylist (id, name, description, image) {
-    this.notImplemented()
+  async editPlaylist (id, name, description, annotations, order) {
+    return this.endpoint('put', `playlists/${id}`, { name, description, annotations, order })
   }
 
   async deletePlaylist (id) {
-    this.notImplemented()
+    return this.endpoint('delete', `playlists/${id}`)
   }
 
   async listPlaylists () {
-    this.notImplemented()
+    return this.endpoint('get', `playlists`)
   }
 
   async getPlaylist (id) {
-    this.notImplemented()
+    return this.endpoint('get', `playlists/${id}`)
   }
 
   /*

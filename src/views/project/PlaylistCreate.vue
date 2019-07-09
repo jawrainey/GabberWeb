@@ -24,7 +24,7 @@ full-layout.session-list-view(v-else-if="annotations && project")
       .columns.is-vcentered.is-mobile.border-bottom
         .column.is-half
           h1.title.main-title.is-4
-            | Annotations ({{ filteredAnnotations.length }})
+            | Comments ({{ filteredAnnotations.length }})
         .column.is-text-overflow
           .columns.is-vcentered.is-mobile
             .column.is-full
@@ -50,7 +50,6 @@ full-layout.session-list-view(v-else-if="annotations && project")
             .content.scrollable-panel
               draggable(
                 v-model="activePlaylist.annotations",
-                ghost-class="ghost",
                 @change="playlistOrderChanged")
                 transition-group(type="transition", name="flip-list")
                   annotation-pill(
@@ -62,12 +61,14 @@ full-layout.session-list-view(v-else-if="annotations && project")
                     @playPause="playPauseAnnotation",
                     @chosen="removeAnnotation")
       audio-player(
+        v-if="annotations.length > 0",
         ref="audioPlayer",
         :annotation="selectedAnnotation",
+        :id="selectedAnnotation.id",
         @playPause="playPauseAnnotation",
         @next="nextAnnotation",
         @prev="prevAnnotation",
-        @ended="selectedAnnotation.isPlaying = false",
+        @ended="ended",
         @dragEnd="selectedAnnotation.isPlaying = true")
         circle-button.rm-bg.action-border(
           v-if="activePlaylistExists",
@@ -174,15 +175,23 @@ export default {
     playlistOrderChanged () {
       this.editPlaylist(this.activePlaylist)
     },
+    async ended () {
+      this.selectedAnnotation.isPlaying = false
+      await new Promise(resolve => setTimeout(resolve, 1250)) // 3 sec
+      this.nextAnnotation(this.selectedAnnotation)
+    },
     async editPlaylist (playlist) {
       this.startApiWork()
 
       let { meta, data } = await this.$api.editPlaylist(
         playlist.id, playlist.name, playlist.description,
-        playlist.image, playlist.annotations, playlist.annotations.map(a => a.id))
+        playlist.annotations, playlist.annotations.map(a => a.id))
 
       if (meta.success) {
         this.$store.commit(SAVE_PLAYLIST, data)
+        let order = data.order
+        data.annotations.sort((a, b) => order.indexOf(a.id) - order.indexOf(b.id))
+        this.activePlaylist = data
       }
       this.endApiWork(meta)
     },
@@ -199,7 +208,8 @@ export default {
         PlaylistEvents.$emit('AddToUnknownPlaylist', annotation)
         return
       }
-      if (this.activePlaylist.annotations.includes(annotation)) {
+
+      if (this.activePlaylist.annotations.map(a => a.id).includes(annotation.id)) {
         console.log('You cannot add the same annotation more than once')
         return
       }
@@ -321,6 +331,8 @@ export default {
     min-height: 100%
     max-width: 100% // e.g. the parents width
     flex-direction: column
+  .container .columns
+    flex-grow: inherit
 
   .content
     overflow: hidden // Prevent scroll in columns

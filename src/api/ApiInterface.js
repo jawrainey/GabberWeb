@@ -197,11 +197,11 @@ export default class ApiInterface {
   /*
    * Playlist management
    */
-  async createPlaylist (name, description, image) {
+  async createPlaylist (name, description, annotations) {
     this.notImplemented()
   }
 
-  async editPlaylist (id, name, description, image) {
+  async editPlaylist (id, name, description, annotations, order) {
     this.notImplemented()
   }
 

@@ -26,8 +26,7 @@ export default {
       this.startApiWork()
 
       let { meta, data } = await this.$api.createPlaylist(
-        this.playlist.name, this.playlist.description,
-        this.playlist.image, this.playlist.annotations)
+        this.playlist.name, this.playlist.description, this.playlist.annotations)
 
       if (meta.success) {
         this.$store.commit(SAVE_PLAYLIST, data)

@@ -97,12 +97,11 @@ export const make = {
       num_user_annotations: pickBetween(2, 10)
     })
   },
-  playlist (creatorId, id, name, description, image, annotations = makeList(3, make.annotation, id, id), order) {
+  playlist (creatorId, id, name, description, annotations = makeList(3, make.annotation, id, id), order) {
     return model('Playlist', id, {
       id: id,
       name: name,
       description: description,
-      image: image,
       annotations: annotations,
       order: annotations.map(a => a.id),
       creatorId: creatorId
