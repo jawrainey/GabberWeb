@@ -23,13 +23,13 @@
       router-link.button.is-link.is-rounded(:to="sessionsRoute")
         .icon: fa(icon="microphone")
         span {{$t('comp.project.project_info.sessions_action')}}
-      //- router-link.button.is-link.is-rounded(:to="playlistsRoute")
+      router-link.button.is-link.is-rounded(:to="playlistsRoute")
         .icon: fa(icon="headphones")
         span {{$t('comp.project.project_info.playlists_action')}}
 </template>
 
 <script>
-import { SESSION_LIST_ROUTE } from '@/const/routes'
+import { SESSION_LIST_ROUTE, PLAYLIST_LIST_ROUTE } from '@/const/routes'
 import ProjectPropMixin from '@/mixins/ProjectProp'
 
 import LabelValue from '@/components/utils/LabelValue'
@@ -43,6 +43,9 @@ export default {
   },
   computed: {
     projectContent () { return this.$store.getters.projectContentByLanguage(this.project) },
+    playlistsRoute () {
+      return { name: PLAYLIST_LIST_ROUTE, params: { project_id: this.project.id } }
+    },
     sessionsRoute () {
       const params = { project_id: this.project.id }
       return { name: SESSION_LIST_ROUTE, params }
